@@ -37,3 +37,6 @@ nbdist/
 
 # 测试文档
 */DocServer/data/*
+
+# 数据配置
+.data
