@@ -1,0 +1,246 @@
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-family: Tahoma, Arial, Helvetica, Sans-serif;
+}
+!important {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-family: Tahoma, Arial, Helvetica, Sans-serif;
+}
+
+h2 {
+	font-family: "黑体";
+	font-size: 24px;
+	text-align: center;
+	line-height: 32px;
+}
+
+h5 {
+	font-size: 11pt;
+	text-align: center;
+	font-weight: normal;
+	color: #666;
+	line-height: 28px;
+}
+
+#tree ul {
+	margin-bottom: 5px;
+}
+
+#tree strong {
+	color: #696;
+}
+
+#tree.org li ul {
+	display: none;
+}
+
+#tree.org li ul.show {
+	display: block;
+}
+
+#tree.org li{
+	padding-left: 15px;
+	background: url(../image/tree/minus3.gif) -3px 5px no-repeat;
+}
+
+#tree.org li.parent {
+	background: url(../image/tree/plus3.gif) -3px 5px no-repeat;
+}
+
+#tree.org li.open {
+	background: url(../image/tree/minus3.gif) -3px 5px no-repeat;
+}
+
+#tree.org a.no {
+	text-decoration: none;
+	color: #000;
+	font-size: 11pt;
+	line-height: 24px;
+	padding-left: 15px;
+	background: url(../image/tree/org.gif) -1px 0px no-repeat;
+}
+
+#tree.org a {
+	text-decoration: none;
+	color: #000;
+	font-size: 11pt;
+	line-height: 24px;
+	padding-left: 15px;
+	background: url(../image/tree/org.gif) -1px 0px no-repeat;
+}
+
+
+#tree.org a.se {
+	text-decoration: none;
+	color: #ffffff;
+	font-size: 11pt;
+	line-height: 24px;
+	padding-left: 15px;
+	border: 1px #c0c0c0 solid;
+	background: url(../image/tree/org.gif) -1px 0px no-repeat;
+	background-color:#0033FF;
+}
+
+#tree.file li ul {
+	display: none;
+}
+
+#tree.file li ul.show {
+	display: block;
+}
+
+#tree.file li button{
+	border:0px;
+	padding-left: 2px;
+	margin-left: -5px;
+	line-height: 24px;
+	background: url(../image/tree/minus3.gif) -3px 0px no-repeat;
+	width: 15px;
+	height: 15px;
+}
+
+#tree.file li button.parent {
+	background: url(../image/tree/plus3.gif) -3px 0px no-repeat;
+}
+
+#tree.file li button.open {
+	background: url(../image/tree/minus3.gif) -3px 0px no-repeat;
+}
+
+#tree.file li{
+	padding-left: 10px;
+}
+
+#tree.file li.parent a {
+	text-decoration: none;
+	color: #000;
+	font-size: 11pt;
+	line-height: 24px;
+	padding-left: 15px;
+	background: url(../image/tree/folder.gif) -1px 0px no-repeat;
+}
+
+#tree.file li.parent a.no {
+	text-decoration: none;
+	color: #000;
+	font-size: 11pt;
+	line-height: 24px;
+	padding-left: 15px;
+	background: url(../image/tree/folder.gif) -1px 0px no-repeat;
+}
+
+#tree.file li.parent a.se {
+	text-decoration: none;
+	color: #ffffff;
+	font-size: 11pt;
+	line-height: 24px;
+	padding-left: 15px;
+	background: url(../image/tree/folder.gif) -1px 0px no-repeat;
+	background-color:#0033FF;
+}
+
+#tree.file li.open a.no {
+	text-decoration: none;
+	color: #000;
+	font-size: 11pt;
+	line-height: 24px;
+	padding-left: 15px;
+	background: url(../image/tree/folder.gif) -1px 0px no-repeat;
+}
+
+#tree.file li.open a {
+	text-decoration: none;
+	color: #000;
+	font-size: 11pt;
+	line-height: 24px;
+	padding-left: 15px;
+	background: url(../image/tree/folder-open.gif) -1px 0px no-repeat;
+}
+
+#tree.file li.open a.se {
+	text-decoration: none;
+	color: #ffffff;
+	font-size: 11pt;
+	line-height: 24px;
+	padding-left: 15px;
+	background: url(../image/tree/folder-open.gif) -1px 0px no-repeat;
+	background-color:#0033FF;
+}
+
+#tree.file ul.show li a.no {
+	text-decoration: none;
+	color: #000;
+	font-size: 11pt;
+	line-height: 24px;
+	padding-left: 15px;
+	background: url(../image/tree/folder-open.gif) -1px 0px no-repeat;
+}
+
+#tree.file ul.show li.parent a.no {
+	text-decoration: none;
+	color: #000;
+	font-size: 11pt;
+	line-height: 24px;
+	padding-left: 15px;
+	background: url(../image/tree/folder.gif) -1px 0px no-repeat;
+}
+
+#tree.file ul.show li a.se {
+	text-decoration: none;
+	color: #ffffff;
+	font-size: 11pt;
+	line-height: 24px;
+	padding-left: 15px;
+	border: 1px #c0c0c0 solid;
+	background: url(../image/tree/folder-open.gif) -1px 0px no-repeat;
+	background-color:#0033FF;
+}
+
+#tree.normal li ul {
+	display: none;
+}
+
+#tree.normal li ul.show {
+	display: block;
+}
+
+#tree.normal li {
+	padding-left: 15px;
+}
+
+#tree.normal li.parent {
+	background: url(../image/tree/user_23.gif) 5px 10px no-repeat;
+}
+
+#tree.normal li.open {
+	background: url(../image/tree/user_23.gif) 5px -34px no-repeat;
+}
+
+#tree.normal a {
+	text-decoration: none;
+	color: #000000;
+	font-size: 11pt;
+	line-height: 24px;
+	padding-left: 1px;
+}
+
+#tree.normal a.no {
+	text-decoration: none;
+	color: #000000;
+	font-size: 11pt;
+	line-height: 24px;
+	padding-left: 1px;
+}
+
+#tree.normal a.se {
+	text-decoration: none;
+	color: #ffffff;
+	font-size: 11pt;
+	line-height: 24px;
+	padding-left: 1px;
+	background-color:#0033FF;
+}

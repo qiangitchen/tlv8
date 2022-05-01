@@ -1,0 +1,146 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>讨论区设置</title>
+    <link rel="stylesheet" href="../../../resources/layui/css/layui.css" type="text/css"/>
+    <link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/default/easyui.css" />
+	<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/icon.css" />
+    <link rel="stylesheet" href="../../../comon/css/zTreeStyle/zTreeStyle.css" type="text/css"/>
+    <link rel="stylesheet" href="../../../comon/css/formDetail/formDetail.css" type="text/css"/>
+    <style>
+	#menuContent {
+		display: none;
+		whidth: 180px;
+		background: #F5F5F5;
+		position: absolute;
+		z-index: 30;
+	}
+	</style>
+	<script type="text/javascript" src="../../../comon/js/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../comon/jTree/tree.main.js"></script>
+	<script type="text/javascript" src="../../../comon/js/comon.main.js"></script>
+	<script type="text/javascript" src="../../../comon/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../../resources/layui/layui.js"></script>
+	<script type="text/javascript" src="BO_blogadd.js"></script>
+  </head>
+  <body>
+   <div class="layui-fluid">
+   	<form id='blogDetail' class="layui-form">
+   	  <div class="row mt-2">
+	   	  <div class="layui-card">
+	   		<div class="layui-card-body">
+			 <div class="layui-form-item">
+	            <div class="layui-inline">
+	              <label class="layui-form-label" style="width:110px;">排序号</label>
+	              <div class="layui-input-inline">
+	                <input type="number" id="ENTRY_NUMBER" name="ENTRY_NUMBER" lay-verify="required" placeholder="请输入数字" autocomplete="off" class="layui-input">
+	              </div>
+	            </div>
+	            <div class="layui-inline">
+	              <label class="layui-form-label" style="width:110px;">讨论名称</label>
+	              <div class="layui-input-inline">
+	                <input type="text" id="NAME" name="NAME" lay-verify="required" placeholder="请输入讨论名称" autocomplete="off" class="layui-input">
+	              </div>
+	            </div>
+	          </div>
+			 <div class="layui-form-item">
+	            <div class="layui-inline">
+	              <label class="layui-form-label" style="width:110px;">开放范围</label>
+	              <div class="layui-input-inline">
+	                <INPUT id="OPENSCOPE" name="OPENSCOPE" readonly class="layui-input DetailSelectInput" placeholder="点击选择" autocomplete="off" onClick="SelectDept()"/>
+	              </div>
+	            </div>
+	            <div class="layui-inline">
+	              <label class="layui-form-label" style="width:110px;">是否锁定</label>
+	              <div class="layui-input-inline" id="STATUS">
+	              </div>
+	            </div>
+	          </div>
+			 <div class="layui-form-item">
+	            <div class="layui-inline">
+	              <label class="layui-form-label" style="width:110px;">版主</label>
+	              <div class="layui-input-inline">
+	                <INPUT id="CHAIRMAN" name="CHAIRMAN" readonly class="layui-input DetailSelectInput" placeholder="点击选择" autocomplete="off" onClick="SelectDeptpsm(DeptpsmCallback)"/>
+					<INPUT id="CHAIRMAN_ID" name="CHAIRMAN_ID" readonly style="display:none;" />
+	              </div>
+	            </div>
+	            <div class="layui-inline">
+	              <label class="layui-form-label" style="width:110px;">是否审核</label>
+	              <div class="layui-input-inline" id="COMMENT_AUDIT">
+	              </div>
+	            </div>
+	          </div>
+			 <div class="layui-form-item">
+	            <div class="layui-inline">
+	              <label class="layui-form-label" style="width:110px;">发帖设置</label>
+	              <div class="layui-input-inline">
+	                <SELECT id="SETTING" title="机会阶段" name="SETTING">
+						<OPTION value="">
+							--请选择--
+						</OPTION>
+						<OPTION value="允许匿名">
+							允许匿名
+						</OPTION>
+						<OPTION value="禁止匿名">
+							禁止匿名
+						</OPTION>
+						<OPTION value="禁止发帖">
+							禁止发帖
+						</OPTION>
+					</SELECT>
+	              </div>
+	            </div>
+	            <div class="layui-inline">
+	              <label class="layui-form-label" style="width:110px;">帖子分类</label>
+	              <div class="layui-input-inline">
+	                <div id="BLOGCATEGORY"></div>
+	              </div>
+	            </div>
+	          </div>
+	          <div class="layui-form-item layui-form-text">
+	            <label class="layui-form-label" style="width:110px;">简介描述</label>
+	            <div class="layui-input-block">
+	              <textarea id="DESCRIPTION" name="DESCRIPTION" class="layui-textarea" style="min-height:70px;"></textarea>
+	            </div>
+	          </div>  
+			</div>
+		   </div>
+	   </div>
+	   <div class="row mt-2">
+	        <div class="layui-btn-container" style="text-align:right;padding-top:10px;">
+	            <button type="button" class="layui-btn layui-btn-normal" style="margin-bottom: 0px;" lay-submit lay-filter="SavaShiftClass">确定</button>
+	        	<button type="button" class="layui-btn" style="margin-bottom: 0px;" data-dismiss="modal" onclick="tlv8.portal.dailog.dailogCancel()">取消</button>
+	        </div>
+		</div>
+	  </form>
+	</div>
+	 <div id='selectchpsm' style="display: none;">
+	 </div>
+	 <div id="menuContent" class="menuContent" style="display:none;">
+	    <ul id="treeDemo" class="ztree" style="margin-top:0; width:160px;"></ul>
+     </div>
+	<script type="text/javascript">
+		var item = new Map();
+        item.put("1","是");
+        item.put("0","否");
+        tlv8.Radio(J$("STATUS"),item);
+
+		var item1 = new Map();
+        item1.put("是","是");
+        item1.put("否","否");
+        tlv8.Radio(J$("COMMENT_AUDIT"),item1);
+
+    	var Jtree = new Jtree();
+ 		var treebody = "treeDemo";
+   		Jtree.init(treebody, setting, param);
+
+		/* 监听提交 */
+    	layui.form.on('submit(SavaShiftClass)', function(data){
+			tlv8.portal.dailog.dailogEngin(savedata());
+      		return false;
+    	});
+	</script>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>  
+	<head> 
+	    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<link rel="stylesheet" type="text/css" href="../../../system/css/jquery.mobile-1.3.0.min.css"/>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/jquery.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/jquery.mobile-1.3.0.min.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/dialog.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/base.js"></script>
+		<script type="text/javascript" src="processAudit.js"></script>
+  </head>
+  <!--  -->
+  <body onload="pageInit()">
+  	<div data-role="page">
+  		<div data-role="header" data-theme="b" data-position="fixed">
+		    <a href="#popupMenu" onclick="javascript:history.back();"  data-rel="popup" data-icon="arrow-l" data-transition="slidedown">返回</a>
+		    <h1 id="title_val">填写意见</h1>
+		    <a onclick="javascript:dailogEngin();" data-rel="popup" data-icon="check" data-iconpos="right" data-transition="slidedown" id="task_execute">确定</a>
+		</div>
+		<div id="contenView" data-role="content" style="padding-top: 0px;">
+			<ul data-role="listview" data-inset="true">
+				<li data-role="list-divider" data-theme="c">
+					<label style="font-size:17px;">常用意见</label></li>
+					<li>
+						<div id="selectListView" style="width: 100%; overflow: auto; padding:0px;"></div>
+					</li>
+					<li>
+						<button onclick="clearData()">清空</button>
+					</li>
+				</li>
+			</ul>
+			<ul data-role="listview" data-inset="true">
+				<li data-role="list-divider" data-theme="c">
+					<label style="font-size:17px;">当前意见</label>
+					<li>
+						<textarea id="opinionData" style="width:100%;height: 100%;border:0px none;"></textarea>
+					</li>
+					<li>
+						<button onclick="saveDatatoMyOp()">保存为常用</button>
+					</li>
+				</li>
+			</ul>
+		</div>
+	</div>
+  	<div style="display: none;">
+  		<form id="maindata_form">
+  			<input type="text" id="FCONCLUSIONNAME"/>
+  			<input type="text" id="FCREATORID"/>
+  			<input type="text" id="FCREATOR"/>
+  		</form>
+  		<form id="option_data">
+  			
+  		</form>
+  	</div>
+  </body>
+</html>

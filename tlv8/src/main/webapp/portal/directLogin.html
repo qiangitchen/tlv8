@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" cacheable="true" sys-param="false">  
+  <head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>  
+    <title>TLv8</title>
+    <style type="text/css">html,body{ margin:0; padding:0; height:100%; border:none; overflow:hidden;} * { margin: 0; padding: 0; list-style: none; }</style>  
+    <script type="text/javascript" src="../comon/js/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../comon/js/jquery/jquery.cookie.js"></script>
+    <script type="text/javascript" src="system/js/jpolite.data.js"></script>
+    <script type="text/javascript">
+		window.moveTo(0, 0);
+		window.resizeTo(screen.availWidth, screen.availHeight);
+		var getURLParam = function(name) {
+			var lurl = window.location.href;
+			if (lurl.indexOf(name) < 0)
+				return;
+			if (lurl.indexOf("?") < 0) {
+				return "";
+			} else {
+				var par = lurl.substring(lurl.indexOf(name), lurl.length);
+				var start = lurl.indexOf(name) + name.length + 1;
+				var len = (par.indexOf("&") > 0) ? lurl.indexOf(name)
+						+ par.indexOf("&") : lurl.length;
+				return lurl.substring(start, len);
+			}
+		};
+		var username = getURLParam("username");
+		var password = getURLParam("password");
+		$.jpolite.Data.send('system/User/MD5login',$.extend({},{username:username,password:password,captcha:"no_captcha",language:"zh_CN",time:new Date().getTime()}),function(data){
+			if(data && data.status){
+				var timestamp = new Date().getTime();
+				window.location.href = "index.html?timestamp="+timestamp;
+			} else {
+				window.location.href = "login.html";
+			}
+		},true);
+	</script>
+  </head>
+
+	<body id="userlogin_body" style="text-align:center;; overflow:hidden;">
+	</body>
+</html>

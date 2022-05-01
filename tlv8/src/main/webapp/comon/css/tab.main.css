@@ -1,0 +1,215 @@
+#tab {
+	width: 100%;
+	border: 2px;
+}
+
+#menu {
+	float: left;
+	z-index: 0;
+}
+
+#menu ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+#menu li {
+	width:15px;
+	float: left;
+	top:0px;
+	display: block;
+	cursor: pointer;
+	text-align: center;
+	height:10px;
+	font-size:12px;
+	padding: 5px 0px;
+	background-color: #e3ebff;
+	background: url(../image/tab/u3_1.gif)  no-repeat;
+	border-right: 1px solid #fff;
+}
+
+#menu li.hover {
+	height:10px;
+	background: #0099FF;
+	background: url(../image/tab/u5.png);
+	color: white;
+	border-bottom: solid 1px #fff;
+}
+
+#tab_view {
+	topmargin:0px;
+	clear: left;
+	border: solid 1px #ddd;
+}
+
+#tab_view ul {
+	display: none;
+	list-style: none;
+}
+
+#tab_view ul.block {
+	display: block;
+}
+
+td.annwindowtl
+{
+	font-size: 0px;
+	width: 5px;
+	height: 24px;
+	background-image: url(../image/tab/window_01.gif);
+	background-repeat: no-repeat;
+}
+
+td.annwindowt
+{
+	font-size: 0px;
+	height: 24px;
+	background-image: url(../image/tab/window_02.gif);
+	background-repeat: repeat-x;
+}
+
+td.annwindowtr
+{
+	font-size: 0px;
+	width: 6px;
+	height: 24px;
+	background-image: url(../image/tab/window_04.gif);
+	background-repeat: no-repeat;
+	background-position: right;
+}
+td.annwindowml
+{
+	font-size: 0px;
+	width: 5px;
+	background-image: url(../image/tab/window_09.gif);
+	background-repeat: repeat-y;
+}
+
+td.annwindowmr
+{
+	font-size: 0px;
+	width: 6px;
+	background-image: url(../image/tab/window_07.gif);
+	background-repeat: repeat-y;
+	background-position: right;
+}
+
+td.annwindowbl
+{
+	font-size: 0px;
+	width: 5px;
+	height: 5px;
+	background-image: url(../image/tab/window_10.gif);
+	background-repeat: no-repeat;
+	background-position: left bottom;
+}
+
+td.annwindowb
+{
+	font-size: 0px;
+	height: 5px;
+	background-image: url(../image/tab/window_11.gif);
+	background-repeat: repeat-x;
+	background-position: bottom;
+}
+
+td.annwindowbr
+{
+	font-size: 0px;
+	width: 6px;
+	height: 5px;
+	background-image: url(../image/tab/window_12.gif);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}
+
+.tab_table {
+	table-layout:fixed; 
+	word-break: break-all;
+	border-collapse: collapse; /*细线表格*/
+}
+
+table {
+	border-collapse: collapse; /*细线表格*/
+}
+
+.menu_label{
+	cursor:pointer;	
+}
+
+.Main_tab {
+	margin: 0px auto;
+	padding: 0;
+	font: Georgia 11px;
+	color: #333333;
+	float:left;
+	table-layout: fixed;
+	word-break: break-all;
+}
+
+.Tab_label {
+	Vertical-Align: Middle;
+	font-size: 11pt;
+	height: 25px;
+	float:left;
+	line-height: 22px;
+}
+
+.Tab_labelL {
+	font-size: 11pt;
+	height: 25px;
+	border:0px;
+	float:left;
+	background: url(../image/tab/window_01.gif) no-repeat left;
+}
+.Tab_labelC {
+	font-size: 11pt;
+	height: 25px;
+	border:0px;
+	float:left;
+	text-align:center;
+	cursor: pointer;
+	background: url(../image/tab/window_02.gif);
+}
+.Tab_labelR {
+	font-size: 11pt;
+	height: 25px;
+	border:0px;
+	float:left;
+	background: url(../image/tab/window_04.gif) no-repeat right;
+}
+
+.Tab_labelL_s {
+	font-size: 11pt;
+	height: 25px;
+	border:0px;
+	float:left;
+	background: url(../image/tab/tab_s_l.gif) no-repeat left;
+}
+.Tab_labelC_s {
+	font-size: 11pt;
+	height: 25px;
+	border:0px;
+	color:#ffffff;
+	float:left;
+	text-align:center;
+	cursor: pointer;
+	background: url(../image/tab/tab_s_c.gif);
+}
+.Tab_labelR_s {
+	font-size: 11pt;
+	height: 25px;
+	border:0px;
+	float:left;
+	background: url(../image/tab/tab_s_r.gif) no-repeat right;
+}
+
+.Tab_Contect {
+	Text-Align: Center;
+	Vertical-Align: Middle;
+	table-layout: fixed;
+	width:100%;
+	height:99%;
+	word-break: break-all;
+}

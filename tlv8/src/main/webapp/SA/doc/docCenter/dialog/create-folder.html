@@ -1,0 +1,106 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>创建目录</title>
+		<link type="text/css" rel="stylesheet" href="../../../../resources/bootstrap/css/bootstrap.min.css"/>
+		<link type="text/css" rel="stylesheet" href="../../../../resources/layui/css/layui.css" media="all">
+		<link type="text/css" rel="stylesheet" href="../../../../resources/jquery-easyui/themes/default/easyui.css" />
+		<link type="text/css" rel="stylesheet" href="../../../../resources/jquery-easyui/themes/icon.css" />
+		<style>
+		#data_table td {
+			font-size: 11pt;
+		}
+		</style>
+		<script type="text/javascript" src="../../../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../../comon/js/comon.main.js" ></script>
+		<script type="text/javascript" src="../../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="../../../../resources/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../../../../resources/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript">
+			var isnewdata = false;
+			var maindata = new tlv8.Data();
+			function saveDatafn(formfield) {
+				var rowid = maindata.saveData(formfield);
+				document.getElementById("org_create_mng").rowid = rowid;//记住当前rowid 避免重复创建
+				$("#org_create_mng").attr("rowid", rowid);//记住当前rowid 避免重复创建
+				if(isnewdata){
+					var pdocpath = tlv8.RequestURLParam.getParam("pdocpath");
+					var pdocpathname = tlv8.RequestURLParam.getParam("pdocpathname");
+					$("#SDOCPATH").val(pdocpath+"/"+rowid);
+					$("#SDOCDISPLAYPATH").val(pdocpathname+"/"+$("#SDOCNAME").val());
+					maindata.saveData();
+				}
+				return rowid;
+			}
+			function dailogEngin() {
+				$("#mainfsub").click();
+				return false;
+			}
+			function initDialog() {
+				maindata.setDbkey("system");//指定使用数据库连接
+				maindata.setTable("SA_DOCNODE");//设置保存的表
+				//maindata.setSaveAction("saveFolderAction");//设置保存动作
+				maindata.setFormId("org_create_mng");//设置提交的表单
+				
+				var rowid = tlv8.RequestURLParam.getParam("rowid");
+				if (rowid && rowid != "") {
+					isnewdata = false;
+					var data = new tlv8.Data();
+					data.setTable("SA_DOCNODE");// 设置保存的表
+					data.setFormId("org_create_mng");// 设置提交的表单
+					document.getElementById("org_create_mng").rowid = rowid;
+					$("#org_create_mng").attr("rowid", rowid);
+					data.setFilter("sID='" + rowid + "'");
+					data.refreshData();
+				}else{
+					isnewdata = true;
+					var sparent = tlv8.RequestURLParam.getParam("sparent");
+					sparent = (sparent && sparent != "null") ? sparent : "";
+					document.getElementById("SPARENTID").value = sparent;
+					document.getElementById("SKIND").value = "dir";
+					document.getElementById("SFLAG").value = "1";
+					document.getElementById("SCREATORFID").value = tlv8.Context.getCurrentPersonFID();
+					document.getElementById("SCREATORNAME").value = tlv8.Context.getCurrentPersonName();
+				}
+				
+				layui.form.on('submit(mainform)', function(data) {
+					//console.log(JSON.stringify(data.field));
+					var nCode = $("#SDOCNAME").val();
+					saveDatafn(data.field);
+					tlv8.portal.dailog.dailogEngin(nCode);
+					return false;
+				});
+			}
+		</script>
+	</head>
+	<body onload="initDialog()" style="padding-top: 10px; padding-right: 20px;">
+		<form id="org_create_mng" class="layui-form">
+			  <div class="layui-form-item">
+			    <label class="layui-form-label">名称</label>
+			    <div class="layui-input-block">
+			      	<input name="SDOCNAME" type="text" id="SDOCNAME" placeholder="请输入名称" size="30" class="layui-input" lay-verify="required"/>
+			    </div>
+			  </div>
+			  <div class="layui-form-item layui-form-text">
+			    <label class="layui-form-label">描述</label>
+			    <div class="layui-input-block">
+			      <textarea name="SDESCRIPTION" id="SDESCRIPTION" placeholder="" class="layui-textarea"></textarea>
+			    </div>
+			  </div>
+			  <div style="display: none;">
+				<input type="text" id="SPARENTID" name="SPARENTID" style="display: none"/>
+				<input type="text" id="SCREATORFID" name="SCREATORFID" style="display: none"/>
+				<input type="text" id="SKIND" name="SKIND" style="display: none"/>
+				<input type="text" id="SCREATORNAME" name="SCREATORNAME" style="display: none"/>
+				<input type="text" id="SFLAG" name="SFLAG" style="display: none"/>
+				<input type="text" id="SDOCPATH" name="SDOCPATH" style="display: none"/>
+				<input type="text" id="SDOCDISPLAYPATH" name="SDOCDISPLAYPATH" style="display: none"/>
+		      </div>
+			  <div style="display: none;"> 
+        		<button id="mainfsub" class="layui-btn" lay-submit lay-filter="mainform">立即提交</button> 
+     			<button type="reset" class="layui-btn layui-btn-primary">重置</button> 
+     		  </div>
+		</form>
+	</body>
+</html>

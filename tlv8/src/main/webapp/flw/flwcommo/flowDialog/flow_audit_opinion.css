@@ -1,0 +1,71 @@
+.auditPageTable {
+	margin: 0px auto;
+	padding: 0;
+	font: Georgia 11px;
+	font-size: 11pt;
+	color: #333333;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+.auditPageTable_td {
+	line-height: 22px;
+	border: 1px #CCCCCC solid;
+	word-wrap: break-word;
+	word-break: keep-all;
+}
+
+textarea {
+	width: 100%;
+	height: 100%;
+}
+
+select {
+	width: 100%;
+}
+
+.flowBarTable {
+	margin: 0px auto;
+	padding: 0;
+	font: Georgia 11px;
+	font-size: 11pt;
+	color: #333333;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+.flowBarItem {
+	width: 60px;
+	margin-right: 10px;
+	borderColor: #A4DBF1;
+	background: url(../../../comon/image/csbar/d_5.gif);
+	margin-right: 10px;
+	margin-left: 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius:5px; 
+	border: 1px solid #000;
+	padding: 10px;
+	font-size: 11pt;
+}
+
+.flowBarItem:HOVER{
+	color: #ffffff;
+}
+
+.forminput {
+	font: normal 10pt Verdana;
+	border-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-color: #b8bbcc;
+	background: #ffffff;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-color: #b8bbcc;
+	width: 99%;
+}

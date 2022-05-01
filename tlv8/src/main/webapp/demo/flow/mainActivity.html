@@ -1,0 +1,126 @@
+<html>
+ <head> 
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+  <title>mainActivity.html</title> 
+  <link type="text/css" rel="stylesheet" href="../../resources/layui/css/layui.css"> 
+  <link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/default/easyui.css"> 
+  <link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/icon.css"> 
+  <link type="text/css" rel="stylesheet" href="../../comon/css/formsyle.css"> 
+  <script type="text/javascript" src="../../comon/js/jquery/jquery.min.js"></script> 
+  <script type="text/javascript" src="../../comon/js/comon.main.js"></script> 
+  <script type="text/javascript" src="../../comon/js/flow.main.js"></script> 
+  <script type="text/javascript" src="../../comon/My97DatePicker/WdatePicker.js"></script> 
+  <script type="text/javascript" src="../../resources/jquery-easyui/jquery.easyui.min.js"></script> 
+  <script type="text/javascript" src="../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script> 
+  <script type="text/javascript" src="../../resources/layui/layui.js"></script> 
+  <script type="text/javascript" src="mainActivity.js"></script> 
+ </head> 
+ <body style="overflow: hidden;" onload="initDocumentPage();"> 
+  <div class="easyui-layout" fit="true"> 
+   <div data-options="region:'north',split:false" style="height:35px;overflow: hidden;"> 
+    <table style="text-align: left;"> 
+     <tbody>
+      <tr> 
+       <td width="180px"> 
+        <div id="stander_bar" insertAction="dataInsert()" saveAction="dataSave()" refreshAction="dataRefresh()" deleteAction="dataDeleted()" style="margin-left: 1px;"> 
+        </div> </td> 
+       <td align="left"> 
+        <div component="flowprocess" id="flowToolbar"></div> </td> 
+      </tr> 
+     </tbody>
+    </table> 
+   </div> 
+   <div data-options="region:'center',border:false"> 
+    <div class="layui-fluid"> 
+     <div class="layui-card"> 
+      <div class="layui-card-header">
+       表单信息
+      </div> 
+      <div class="layui-card-body"> 
+       <form id="MAIN_DATA_FORM" class="layui-form"> 
+        <div class="layui-form-item">
+         <div class="layui-inline">
+          <label class="layui-form-label" style="width: 110px;">申请人</label>
+          <div class="layui-input-inline">
+           <input type="text" id="FCREATORNAME" name="FCREATORNAME" class="layui-input" readonly="readonly">
+          </div>
+         </div>
+         <div class="layui-inline" style="display: none;">
+          <label class="layui-form-label">申请人</label>
+          <div class="layui-input-inline">
+           <input type="text" id="FCREATORID" name="FCREATORID" class="layui-input">
+          </div>
+         </div>
+         <div class="layui-inline" style="display: none;">
+          <label class="layui-form-label">申请人FID</label>
+          <div class="layui-input-inline">
+           <input type="text" id="FCREATORFID" name="FCREATORFID" class="layui-input">
+          </div>
+         </div>
+         <div class="layui-inline">
+          <label class="layui-form-label" style="width: 110px;">请假类型</label>
+          <div class="layui-input-inline">
+           <select id="FLEAVETYPE" name="FLEAVETYPE" class="layui-input">
+           		<option>事假</option>
+           		<option>病假</option>
+           		<option>其他</option>
+           </select>
+          </div>
+         </div>
+        </div>
+        <div class="layui-form-item">
+         <div class="layui-inline" style="display: none;">
+          <label class="layui-form-label">申请人FNAME</label>
+          <div class="layui-input-inline">
+           <input type="text" id="FCREATORFNAME" name="FCREATORFNAME" class="layui-input">
+          </div>
+         </div>
+         <div class="layui-inline">
+          <label class="layui-form-label" style="width: 110px;">申请时间</label>
+          <div class="layui-input-inline">
+           <input type="text" id="FCREATEDATE" name="FCREATEDATE" class="layui-input" readonly="readonly">
+          </div>
+         </div>
+         <div class="layui-inline">
+          <label class="layui-form-label" style="width: 110px;">请假天数</label>
+          <div class="layui-input-inline">
+           <input type="number" id="FDAY" name="FDAY" class="layui-input">
+          </div>
+         </div>
+        </div>
+        <div class="layui-form-item">
+         <div class="layui-inline">
+          <label class="layui-form-label" style="width: 110px;">开始时间</label>
+          <div class="layui-input-inline">
+           <input type="text" id="FSTARTDATE" name="FSTARTDATE" autocomplete="off" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="layui-input Wdate">
+          </div>
+         </div>
+         <div class="layui-inline">
+          <label class="layui-form-label" style="width: 110px;">结束时间</label>
+          <div class="layui-input-inline">
+           <input type="text" id="FENDDATE" name="FENDDATE" autocomplete="off" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="layui-input Wdate">
+          </div>
+         </div>
+        </div>
+        <div class="layui-form-item">
+         <div class="layui-inline" style="display: none;">
+          <label class="layui-form-label">申请状态</label>
+          <div class="layui-input-inline">
+           <input type="text" id="FSTATE" name="FSTATE" class="layui-input">
+          </div>
+         </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+          <label class="layui-form-label" style="width: 110px;">请假原因</label>
+          <div class="layui-input-block">
+           <textarea id="FREASON" name="FREASON" class="layui-textarea"></textarea>
+          </div>
+        </div> 
+       </form> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div>  
+ </body>
+</html>

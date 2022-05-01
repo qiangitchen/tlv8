@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>  
+	<head> 
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="../../../system/css/mui.min.css"/>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/jquery.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/mui.min.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/base.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/dialog.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/flow.main.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../oa/common/js/oaUtils.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="bizActivity2.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../common/css/oaUitls.css"/>
+    </head>
+    <body>
+    	<header class="mui-bar mui-bar-nav">
+		    <button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<button id="task_execute" component="flowprocess" class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right">
+				<span class="mui-icon mui-icon-compose"></span>
+				处理
+			</button>
+		    <h1 class="mui-title" id="title_val">领导审批</h1>
+	    </header>
+		<div id="contenView" class="mui-content">
+		  <form id="DATA_FORM" afterRefresh="afRefresh">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-divider mui-table-view-cell">
+					<label style="font-size:17px;">详细内容</label>
+				</li>
+				<li class="mui-input-group">
+					<div class="mui-input-row" data-filtered="filtered">
+						<label>文件标题:</label>
+						<label id="FTITLE" class="ui-lable-info"></label>
+					</div>
+					<div class="mui-input-row">
+						 <label for="FTYPE" >发文类别:</label>
+						 <label id="FTYPE" class="ui-lable-info"></label>
+					</div>
+					<div class="mui-input-row">
+			         	<label for="FURGENCY" >缓急程度:</label>
+			         	<label id="FURGENCY" class="ui-lable-info"></label>
+					</div>
+					<div class="mui-input-row">
+			         	<label for="FDOCNUMBER" >发文编号:</label>
+			         	<label id="FDOCNUMBER" class="ui-lable-info"></label>
+			        </div>
+					<div class="mui-input-row">
+			         	<label for="FSENDDATE" >发文日期:</label>
+			         	<label id="FSENDDATE" class="ui-lable-info"></label>
+					</div>
+					<div class="mui-input-row">
+			         	<label for="FPAGECOUNT" >页数:</label>
+			         	<label id="FPAGECOUNT" class="ui-lable-info"></label>
+					</div>
+					<div class="mui-input-row">
+			         	<label for="FPRINTCOUNT" >印发份数:</label>
+			         	<label id="FPRINTCOUNT" class="ui-lable-info"></label>
+			        </div>
+					<div class="mui-input-row">
+			         	<label for="FMAINDEPT" >主送:</label>
+			         	<label id="FMAINDEPT" class="ui-lable-info"></label>
+			        </div>
+					<div class="mui-input-row">
+			         	<label for="FCOPYDEPT" >超送:</label>
+			         	<label id="FCOPYDEPT" class="ui-lable-info"></label>
+					</div>
+					<div class="mui-input-row">
+			         	<label for="FCREATEPERSONNAME" >拟稿人:</label>
+			         	<label id="FCREATEPERSONNAME" class="ui-lable-info"></label>
+					</div>
+					<div class="mui-input-row">
+			         	<label for="FCREATETIME" >拟稿时间:</label>
+			         	<label id="FCREATETIME" class="ui-lable-info" format="yyyy-MM-dd"></label>
+					</div>
+					<div class="mui-input-row" style="min-height: 60px;">
+			         	<label for="FDOCFILE" >正&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文:</label>
+						<div id="FDOCFILE_showdiv"></div>
+						<input id="FDOCFILE" type="text" style="display:none;"/>
+					</div>
+					<div class="mui-input-row" style="min-height: 60px;">
+			         	<label for="FATTACHMENT" >附&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;件:</label>
+						<div id="FATTACHMENT_showdiv"></div>
+						<input id="FATTACHMENT" type="text" style="display:none;"/>
+					</div>
+			  	</li>
+			</ul>
+  		</form>
+  		<div id="opinion_list"></div>
+	</div>
+</body>
+</html>

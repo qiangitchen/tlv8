@@ -1,0 +1,128 @@
+<html>
+ <head> 
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+  <title>writeActivity.html</title> 
+  <link type="text/css" rel="stylesheet" href="../../resources/bootstrap/css/bootstrap.min.css"/>
+  <link type="text/css" rel="stylesheet" href="../../resources/layui/css/layui.css"> 
+  <link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/default/easyui.css"> 
+  <link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/icon.css"> 
+  <link type="text/css" rel="stylesheet" href="../../comon/css/formsyle.css"> 
+  <script type="text/javascript" src="../../comon/js/jquery/jquery.min.js"></script> 
+  <script type="text/javascript" src="../../comon/js/comon.main.js"></script> 
+  <script type="text/javascript" src="../../comon/My97DatePicker/WdatePicker.js"></script> 
+  <script type="text/javascript" src="../../resources/jquery-easyui/jquery.easyui.min.js"></script> 
+  <script type="text/javascript" src="../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script> 
+  <script type="text/javascript" src="../../resources/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="../../resources/layui/layui.js" charset="utf-8"></script> 
+  <script type="text/javascript" src="writeActivity.js"></script> 
+ </head> 
+ <body style="overflow: hidden;" onload="initDocumentPage();"> 
+  <div class="easyui-layout" fit="true"> 
+   <div data-options="region:'north',split:false" style="height:40px;overflow: hidden; padding: 4px;"> 
+    <table> 
+     <tbody>
+      <tr> 
+       <td> 
+        <div id="stander_bar" insertAction="dataInsert()" saveAction="dataSave()" refreshAction="dataRefresh()" deleteAction="dataDeleted()" style="margin-left: 1px;"> 
+        </div> </td> 
+      </tr> 
+     </tbody>
+    </table> 
+   </div> 
+   <div data-options="region:'center',border:false"> 
+    <div class="layui-fluid"> 
+     <div class="layui-card"> 
+      <div class="layui-card-body"> 
+       <form id="MAIN_DATA_FORM" class="layui-form">
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="width: 110px;">邮箱地址</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="SMAIL" name="SMAIL" lay-verify="required" autocomplete="off" placeholder="请输入发件邮箱地址" class="layui-input">
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="width: 110px;">密码</label>
+			    <div class="layui-input-block">
+			      <input type="password" id="SACCOUNT" name="SACCOUNT" lay-verify="required" autocomplete="off" placeholder="请输入发件邮箱密码（授权码）" class="layui-input">
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="width: 110px;">发信名称</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="SNAME" name="SNAME" class="layui-input">
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="width: 110px;">发件地址</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="SSENDHOST" name="SSENDHOST" lay-verify="required" value="smtp.163.com" class="layui-input">
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="width: 110px;">发件端口</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="SSENDPOST" name="SSENDPOST" value="465" class="layui-input">
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="width: 110px;">发件是否启用SSL</label>
+			    <div class="layui-input-block">
+			      <input type="radio" name="SISSSL" value="true" title="是" checked="checked">
+      			  <input type="radio" name="SISSSL" value="false" title="否">
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="width: 110px;">邮箱类型</label>
+			    <div class="layui-input-block">
+			      <select id="STYPE" name="STYPE" value="imap">
+			      	<option>imap</option>
+			      	<option>pop3</option>
+			      </select>
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="width: 110px;">收件地址</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="SRECHOST" name="SRECHOST" value="imap.163.com" class="layui-input">
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="width: 110px;">收件端口</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="SRECPORT" name="SRECPORT" value="993" class="layui-input">
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="width: 110px;">收件是否启用SSL</label>
+			    <div class="layui-input-block">
+			      <input type="radio" name="SRECSSL" value="true" title="是" checked="checked">
+      			  <input type="radio" name="SRECSSL" value="false" title="否">
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="width: 110px;">是否公用</label>
+			    <div class="layui-input-block">
+			      <input type="radio" name="SISPUB" value="true" title="是" checked="checked">
+      			  <input type="radio" name="SISPUB" value="false" title="否">
+			    </div>
+			</div>
+			<div style="display: none;"> 
+	         <input type="text" name="FCREATEPSNFID" id="FCREATEPSNFID"> 
+	         <input type="text" name="FCREATEPSNID" id="FCREATEPSNID"> 
+	         <input type="text" name="FCREATEPSNNAME" id="FCREATEPSNNAME"> 
+	         <input type="text" name="FCREATEDEPTID" id="FCREATEDEPTID"> 
+	         <input type="text" name="FCREATEDEPTNAME" id="FCREATEDEPTNAME"> 
+	         <input type="text" name="FCREATEOGNID" id="FCREATEOGNID"> 
+	         <input type="text" name="FCREATEOGNNAME" id="FCREATEOGNNAME"> 
+	         <input type="text" name="FCREATEORGID" id="FCREATEORGID"> 
+	         <input type="text" name="FCREATEORGNAME" id="FCREATEORGNAME"> 
+	         <input type="text" name="FCREATETIME" id="FCREATETIME"> 
+	        </div> 
+       </form> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div>  
+ </body>
+</html>

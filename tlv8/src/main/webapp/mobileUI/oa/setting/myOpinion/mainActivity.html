@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"/>
+    	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/> 
+    	<title>手机版本表单</title>
+    	<link rel="stylesheet" type="text/css" href="../../../../mobileUI/system/css/mui.min.css"/>
+    	<script type="text/javascript" charset="utf-8" src="../../../../mobileUI/system/js/jquery.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../../mobileUI/system/js/mui.min.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../../mobileUI/system/js/base.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="mainActivity.js"></script>
+    </head>
+    <body>
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right" onclick="doDataSaveaAtion()">
+				<span class="mui-icon mui-icon-checkmarkempty"></span>
+				保存
+			</button>
+		    <h1 class="mui-title" id="title_val">审批意见</h1>
+		</header>
+		<div class="mui-content">
+		<form class="mui-input-group" id="MAIN_DATA_FORM"
+			afterRefresh="afRefresh">
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">显示序号</label> <input type="text"
+					placeholder="请输入数字" data-filtered="filtered" id="FORDER"
+					name="FORDER" class="forminput" />
+			</div>
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">审批意见</label> <textarea style="height: 300px;"
+					placeholder="请输入意见内容" data-filtered="filtered" id="FCONCLUSIONNAME"
+					name="FCONCLUSIONNAME" class="forminput"></textarea>
+			</div>
+			<div style="display: none;">
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">创建人ID</label> <input type="text"
+						placeholder="普通输入框" data-filtered="filtered" id="FCREATORID"
+						name="FCREATORID" class="forminput" readonly="readonly" />
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">创建人</label> <input type="text"
+						placeholder="普通输入框" data-filtered="filtered" id="FCREATOR"
+						name="FCREATOR" class="forminput" readonly="readonly" />
+				</div>
+			</div>
+
+		</form>
+	</div>
+    </body>
+</html>

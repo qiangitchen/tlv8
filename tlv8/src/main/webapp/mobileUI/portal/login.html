@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html cacheable="false" sys-param="false">
+	<head>
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+		<title>TLv8-登录</title>
+		<link rel="stylesheet" type="text/css" href="../system/css/mui.min.css" />
+		<script type="text/javascript" src="../system/js/jquery.js"></script>
+		<script src="../system/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="../system/js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="system/js/login.js"></script>
+		<script type="text/javascript" src="system/js/md5.js"></script>
+		<style type="text/css">
+			html,
+			body {
+				height: 100%;
+			}
+			
+			.ui-page {
+				margin: 0;
+				padding: 0;
+				line-height: normal;
+				font-family: 宋体, arial;
+				overflow: hidden;
+				background: -webkit-gradient(linear, left top, left bottom, from(#409fde), to(#afcde4));
+				/*background-image:url(system/images/body_bg.jpg);*/
+			}
+			
+			.ui-btn {
+				width: 50%;
+			}
+			
+			a {
+				color: #0669B2;
+				text-decoration: none;
+			}
+			
+			td {
+				color: #fff;
+			}
+			
+			#hint_label {
+				padding: .5em;
+				color: #800000;
+			}
+			
+			input {
+				width: 96%;
+				height: 28px;
+				border: 1px solid #c8c8c8;
+			}
+			
+/*			#login_button {
+				width: 120px;
+				height: 40px;
+				font-size: 14px;
+			}*/
+			
+			.link-area {
+				display: block;
+				margin-top: 25px;
+				text-align: center;
+			}
+			
+			.downApp {
+				line-height: 20px;
+				font-size: 14px;
+				margin: 0px auto;
+				height: 38px;
+			}
+			
+			.downApp a {
+				display: block;
+				width: 33px;
+				height: 38px;
+			}
+			
+			#appleDown {
+				color: #22718F;
+				float: left;
+				margin-right: 22px;
+				background: url(./system/images/down_apple.png) no-repeat;
+			}
+			
+			#appleDown:hover {
+				background: url(./system/images/down_apple_hov.png) no-repeat;
+			}
+			
+			#androidDown {
+				color: #22718F;
+				float: left;
+				background: url(./system/images/down_android.png) no-repeat;
+			}
+			
+			#androidDown:hover {
+				background: url(./system/images/down_android_hov.png) no-repeat;
+			}
+		</style>
+		<style type="text/css">
+		*{margin:0; padding:0;}
+		a{text-decoration: none;}
+		img{max-width: 100%; height: auto;}
+		.weixin-tip{display: none; position: fixed; left:0; top:0; bottom:0; background: rgba(0,0,0,0.8); filter:alpha(opacity=80);  height: 100%; width: 100%; z-index: 100;}
+		.weixin-tip p{text-align: center; margin-top: 10%; padding:0 5%;}
+		</style>
+	</head>
+
+	<body align="center">
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">TLv8</h1>
+		</header>
+		<div class="mui-content">
+			<div id="hint_label" style="height: 60px; padding-top: 30px;"></div>
+			<form id='login-form' class="mui-input-group">
+				<div class="mui-input-row">
+					<label>账号</label>
+					<input id='username_input' type="text" class="mui-input-clear mui-input" placeholder="请输入账号" value="system">
+				</div>
+				<div class="mui-input-row">
+					<label>密码</label>
+					<input id='password_input' type="password" class="mui-input-clear mui-input" placeholder="请输入密码" value="1">
+				</div>
+				<div class="mui-input-row" style="vertical-align: middle; text-align: center;">
+					<label onclick="checkRememberMe();" style="font-size: 14px;">记住用户名</label>
+					<input type="checkbox" id="remember_me_checkbox" class="custom" style="width: 20px; height:20px; float: left; margin-top: 10px;"/>
+				</div>
+			</form>
+			<div class="mui-content-padded" style="padding-top: 30px;">
+				<button id="login_button" onclick="return false;" class="mui-btn mui-btn-block mui-btn-primary">登录</button>
+			</div>
+			<div style="height: 20px;"></div>
+			<!-- 
+			<div class="mui-content-padded oauth-area">
+				<div style="text-align: center; width: 300px; margin: auto;">
+	                <label style="margin-right:22px;float:left;text-decoration: none;margin-top:10px;font-family: 宋体, arial;">下载客户端:</label>
+					<div class="link-area downApp">
+						<a id="appleDown" href="javascript:void(0);" onclick="downApp('apple');" title="下载iphone客户端"></a>
+						<a id="androidDown" href="javascript:void(0);" onclick="downApp('android');" title="下载android客户端"></a>
+					</div>
+				</div>
+			</div>
+			 -->
+			<br>
+			<div class="mui-content-padded" style="text-align: center;">
+				Copyright © <a href="https://www.tlv8.com/">www.tlv8.com</a>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function checkRememberMe() {
+			var rememberMe = jQuery("#remember_me_checkbox")[0];
+			console.log(rememberMe);
+			if(rememberMe) {
+				rememberMe.checked = !rememberMe.checked;
+			}
+		}
+		jQuery(function() {
+			Login.initHintLabel("hint_label"); // 初始化提示信息标签
+			Login.initUsernameInput("username_input"); // 初始化用户名输入框
+			Login.initPasswordInput("password_input"); // 初始化密码输入框
+			Login.initRememberCheckbox("remember_me_checkbox"); // 初始化记录用户名复选框			
+			Login.initLoginButton("login_button"); // 初始化登陆按钮
+			Login.initFormCookie(); // 初始化存储信息 from cookie
+			Login.initFocus(); // 初始化焦点
+		});
+
+		var msg = getParamValueFromUrl("msg");
+		if(msg && msg != "") {
+			Login.items.hintLabel && Login.items.hintLabel.text(k).show();
+		}
+
+		var downApp = function(type) {
+			if(type == "apple") {
+				window.open('https://itunes.apple.com/cn/app/id990900647?l=zh&ls=1&mt=8', '_download');
+			} else if(type == "android") {
+				window.open('YunJieApp.apk', '_download');
+			}
+		}
+	</script>
+	<div class="weixin-tip" style="display:none;z-index:9999;">
+		<p>
+			<img src="live_weixin.png" alt="微信打开"/>
+		</p>
+	</div>
+	<script type="text/javascript">
+        $(window).on("load",function(){
+	        var winHeight = $(window).height();
+			function is_weixin() {
+			    var ua = navigator.userAgent.toLowerCase();
+			    if (ua.match(/MicroMessenger/i) == "micromessenger") {
+			        return true;
+			    } else {
+			        return false;
+			    }
+			}
+			var isWeixin = is_weixin();
+			if(isWeixin){
+				$(".weixin-tip").css("height",winHeight);
+	            $(".weixin-tip").show();
+			}else{
+				$(".weixin-tip").hide();
+			}
+        })
+	</script>
+</html>

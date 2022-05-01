@@ -1,0 +1,270 @@
+.bbsbodycolor {
+	BACKGROUND: #F8F8F8
+}
+
+#title_body {
+	padding: 0px;
+}
+
+.table_header {
+	width: 95%;
+	height: 30px;
+	font-weight: bold;
+	font-size: 13px;
+	background: url("images/list_hd_bg.png");
+	border-collapse: collapse;
+	border: solid #9F9F9F;
+	border-width: 1px 1px 0px 1px;
+	border-bottom-style: dotted;
+	border-bottom-width: 1px;
+}
+
+.title_table {
+	width: 95%;
+	font-size: 9pt;
+	border-collapse: collapse;
+	border: solid #9F9F9F;
+	border-width: 0px 1px 1px 1px;
+}
+
+.title_list {
+	font-size: 15px;
+	color: #003399;
+	font-weight: bolder;
+}
+
+.table_row {
+	BACKGROUND: #ffffff;
+	font-size: 11pt;
+}
+
+#bbs_body {
+	width: 98%;
+	font-size: 11pt;
+	margin-left: 15px;
+	text-align: center;
+}
+
+.operate_bar {
+	BACKGROUND: #F8F8F8;
+}
+
+.light_button {
+	BORDER-RIGHT: #bbe9ff 1px solid;
+	BORDER-TOP: #bbe9ff 1px solid;
+	BORDER-LEFT: #bbe9ff 1px solid;
+	BORDER-BOTTOM: #bbe9ff 1px solid;
+	font-size: 11pt;
+	COLOR: #154ba0;
+	BACKGROUND: #ffffff;
+}
+
+.title_body {
+	width: 100%;
+}
+
+.title_bar {
+	FONT: 12px Arial, Tahoma;
+	background: url("images/list_hd_bg.png");
+	background-color: #C1FFE4;
+	font-weight: bold;
+	height: 30px;
+}
+
+.operate_footer {
+	text-align: left;
+}
+
+.page_span {
+	font-size: 11pt;
+}
+
+.p_total {
+	width: 30px;
+	text-align: center;
+	FONT-WEIGHT: normal;
+	border-collapse: collapse;
+	BORDER: 1px #9F9F9F solid;
+}
+
+.p_pages {
+	BORDER-RIGHT: #bbe9ff 1px solid;
+	BORDER-TOP: #bbe9ff 1px solid;
+	FONT-WEIGHT: bold;
+	VERTICAL-ALIGN: middle;
+	BORDER-LEFT: #bbe9ff 1px solid;
+	MARGIN-RIGHT: 1px;
+	BORDER-BOTTOM: #bbe9ff 1px solid;
+	BACKGROUND-COLOR: #f5fbff
+}
+
+#comment {
+	text-align: center;
+	clear: both;
+}
+
+.comment_box {
+	background-color: #FFFFFF;
+	border-left: 1px #9F9F9F solid;
+	border-right: 1px #9F9F9F solid;
+	border-bottom: 1px #9F9F9F solid;
+}
+
+.subject_header {
+	text-align: left;
+	font-weight: bold;
+	font-size: 14px;
+	height: 30px;
+	padding-top: 6px;
+	padding-left: 5px;
+	border-top: 1px #9F9F9F solid;
+	border-left: 1px #9F9F9F solid;
+	border-right: 1px #9F9F9F solid;
+	background: url("images/list_hd_bg.png");
+}
+
+.comment_title {
+	height: 22px;
+	text-align: left;
+	margin-top: opx;
+	margin-left: 0px;
+	font-size: 11pt;
+	padding-top: 0px;
+	border-bottom: 1px dotted #9F9F9F;
+}
+
+#comment_body {
+	width: 98%;
+}
+
+.op_bar {
+	text-align: right;
+	padding-right: 10px;
+	padding-bottom: 2px;
+}
+
+.main_contment {
+	font-size: 11pt;
+	text-align: left;
+	padding-bottom: 20px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 15px;
+	word-break: break-all;
+}
+
+#set_jing {
+	background-color: #AEEECF;
+	font-size: 11pt;
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom: 0px;
+	width: 150px;
+	height: 30px;
+	padding-top: 4px;
+}
+
+.fast_replay_table {
+	font-size: 11pt;
+	border-collapse: collapse;
+	border: solid #9F9F9F;
+	border-width: 0px 1px 1px 1px;
+}
+
+.fast_replay_td {
+	font-size: 11pt;
+	border-collapse: collapse;
+	border: solid #9F9F9F;
+	border-width: 0px 0px 1px 0px;
+	line-height: 18px;
+}
+
+.fast_replay_td1 {
+	font-size: 11pt;
+	border-collapse: collapse;
+	border: solid #9F9F9F;
+	border-width: 0px 0px 1px 0px;
+}
+
+.fast_replay_table1 {
+	font-size: 11pt;
+	border-collapse: collapse;
+	border: solid #9F9F9F;
+	border-width: 1px 1px 1px 1px;
+}
+
+#welcome_span {
+	color: #8B8B8B;
+	font-size: 11pt;
+	line-height: 14px;
+}
+
+.flower_span {
+	border: 1px #9F9F9F solid;
+	background-color: InfoBackground;
+	font-weight: lighter;
+	padding-top: 2px;
+	font-size: 11pt;
+	text-align: center;
+	height: 13px;
+	width: 30px;
+}
+
+.info_span {
+	color: #8B8B8B;
+	font-size: 11pt;
+}
+
+#a_span {
+	font-size: 13px;
+	line-height: 20px;
+}
+
+.subject_header1 {
+	text-align: left;
+	font-weight: bold;
+	font-size: 14px;
+	height: 30px;
+	padding-top: 6px;
+	padding-left: 5px;
+	border-top: 1px #9F9F9F solid;
+	background: url("images/list_hd_bg.png");
+}
+
+.op_bar a {
+	font-size: 11pt;
+}
+
+.buttom_a {
+	text-decoration: none;
+	border: 0px #9F9F9F solid;
+}
+
+.operate_bar a:link {
+	color: #003366;
+}
+
+.operate_bar a:link {
+	color: #003366;
+}
+
+.operate_bar a:hover {
+	color: #003366;
+}
+
+.operate_bar a:visited {
+	color: #003366;
+}
+
+.threadflow {
+	BORDER-RIGHT: #cad9ea 1px solid;
+	BORDER-TOP: #cad9ea 1px solid;
+	BACKGROUND: #f7f7f7;
+	FLOAT: left;
+	BORDER-LEFT: #cad9ea 1px solid;
+	COLOR: #999;
+	LINE-HEIGHT: 22px;
+	BORDER-BOTTOM: #cad9ea 1px solid;
+	HEIGHT: 20px;
+	width: 20%;
+}

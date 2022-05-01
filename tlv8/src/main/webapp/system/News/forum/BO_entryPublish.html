@@ -1,0 +1,100 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<title>发帖</title>
+		<link rel="stylesheet" href="../../../resources/layui/css/layui.css" type="text/css"/>
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/default/easyui.css" />
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/icon.css" />
+		<link type="text/css" rel="stylesheet" href="../../../comon/css/formDetail/formDetail.css"/>
+		<link type="text/css" rel="stylesheet" href="../../../comon/css/toolbar.main.css"/>
+		<script type="text/javascript" src="../../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../comon/xheditor/xheditor-1.1.12-zh-cn.min.js"></script>
+		<script type="text/javascript" src="../../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="../../../comon/My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="../../../resources/layui/layui.js"></script>
+		<script type="text/javascript" src="BO_entryPublish.js"></script>
+	</head>
+	<body>
+		<div class="easyui-layout" fit="true">
+			<div data-options="region:'north',border:false" style="height: 45px; text-align: center; overflow: hidden; padding: 5px;">
+				<table style="table-layout: fixed; margin: auto;">
+					<tr>
+						<td align="center" width="90px">
+							<a class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="SaveDelait()">保存</a>
+						</td>
+						<!--
+						<td width="90px">
+							<a class="easyui-linkbutton" data-options="iconCls:'icon-tip'" onclick="pushSaveDelaitData()">发布</a>
+						</td>
+						-->
+						<td>
+							<a class="easyui-linkbutton" data-options="iconCls:'icon-back'" onclick="tlv8.portal.closeWindow()">取消</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div data-options="region:'center',border:true">
+				<div class="layui-fluid">
+					<div class="layui-card">
+				      <div class="layui-card-header">发帖</div>
+				      <div class="layui-card-body">
+						<form id='bo_entry' class="layui-form">
+							<div class="layui-form-item">
+					            <div class="layui-inline">
+					              <label class="layui-form-label" style="width:110px;">文章标题</label>
+					              <div class="layui-input-inline">
+					                <INPUT id="TITLE" name="TITLE" lay-verify="required" placeholder="请输入标题" class="layui-input" />
+									<INPUT id="BO_BLOGID" name="BO_BLOGID" style="display: none;" />
+					              </div>
+					            </div>
+					            <div class="layui-inline">
+					              <label class="layui-form-label" style="width:110px;">分类</label>
+					              <div class="layui-input-inline">
+					                <div id="CATEGORY_NAME"></div>
+					              </div>
+					            </div>
+					          </div>
+							<div class="layui-form-item">
+					            <div class="layui-inline">
+					              <label class="layui-form-label" style="width:110px;">发表时间</label>
+					              <div class="layui-input-inline">
+					                <input type="text" name="CREATED_TIME" id="CREATED_TIME" class="layui-input" readonly="readonly"/>
+					              </div>
+				            </div>
+				            <div class="layui-inline">
+				              <label class="layui-form-label" style="width:110px;">发表人员</label>
+				              <div class="layui-input-inline">
+				                <input type="text" name="ONESELF" id="ONESELF" class="layui-input" readonly="readonly" />
+				              </div>
+				            </div>
+				          </div>
+				          <div class="layui-form-item">
+				            <label class="layui-form-label" style="width:110px;">详细内容</label>
+				            <div class="layui-input-block">
+				              <TEXTAREA id="CONTENT" name="CONTENT" rows="5" style="height: 298px; width: 96%"></TEXTAREA>
+				            </div>
+				          </div>
+				          <button id="submitdata" type="button" class="layui-btn layui-btn-normal" style="display:none;" lay-submit lay-filter="SavaShiftClass">确定</button>
+						</form>
+					 </div>
+				    </div>
+					<div class="layui-card">
+				      <div class="layui-card-header">附件</div>
+				      <div class="layui-card-body">
+						<div id="fileCompDiv"></div>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			/* 监听提交 */
+    		layui.form.on('submit(SavaShiftClass)', function(data){
+				SaveDelaitData();
+      			return false;
+    		});
+		</script>
+	</body>
+</html>

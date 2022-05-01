@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>角色管理</title>
+		<link type="text/css" rel="stylesheet" href="../../../resources/bootstrap/css/bootstrap.min.css"/>
+		<link type="text/css" rel="stylesheet" href="../../../resources/layui/css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../resources/jquery-easyui/themes/default/easyui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../comon/css/formDetail/formDetail.css" />
+		<script type="text/javascript" src="../../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="../../../comon/js/grid.main.js"></script>
+		<script type="text/javascript" src="../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../resources/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../../../resources/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="mainActivity.js"></script>
+	</head>
+	<body onload="initWeb()">
+		<div class="layui-fluid">
+			<div class="layui-row layui-col-space15">
+			  <div class="layui-col-md6">
+			    <div class="layui-card">
+		          <div class="layui-card-header">角色设置</div>
+		          <div class="layui-card-body" style="height: 90%; padding: 1px; min-height: 500px;">
+		          	<div component="dataGrid" id="main-grid-view" onselected="mainGridselected" afterInert="afterInertFn" 
+							afterRefresh="afterRefreshFn" style="width: 100%; height: 100%; align: left;">
+					</div>
+		    		<form id="main-auther-form" style="display: none;"></form>
+		          </div>
+		        </div>
+			  </div>
+			  <div class="layui-col-md6">
+			    <div class="layui-card">
+		          <div class="layui-card-header">功能分配</div>
+		          <div class="layui-card-body" style="height: 90%; padding: 1px; min-height: 500px;">
+		          	<div component="dataGrid" id="auth-grid-view" onRowInit="readNameLabel" style="width: 100%; height: 100%; align: left;">
+					</div>
+		          </div>
+		        </div> 
+			  </div>
+			</div>   
+		</div>
+	<!-- 
+		<form id="main-auther-form"></form>
+		<div class="easyui-layout" fit="true" style="width:100%;height:100%;">
+			<div data-options="region:'west',split:true,title:'角色设置'" style="width:546px;">
+				<div component="dataGrid" id="main-grid-view" onselected="mainGridselected" afterInert="afterInertFn" 
+					afterRefresh="afterRefreshFn" style="width: 100%; height: 100%; align: left;">
+				</div>
+			</div>
+			<div data-options="region:'center',title:'功能分配',onResize:standardPartitionResize" style="background:#fff;overflow:hidden">
+				<div component="dataGrid" id="auth-grid-view" onRowInit="readNameLabel" 
+					style="width: 100%; height: 100%; align: left;">
+				</div>
+			</div>
+		</div>
+	 -->
+	</body>
+</html>

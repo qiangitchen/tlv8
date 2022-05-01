@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<!-- 文件存储位置,默认情况可以不用配置 -->
+	<doc-dir>/data/doc</doc-dir>
+	
+	<!-- 用共享目录：协议://用户名:密码@IP/目录 -->
+	<!-- 
+	<doc-dir>smb://administrator:123456@192.168.1.25/data/doc</doc-dir>
+	 -->
+</root>

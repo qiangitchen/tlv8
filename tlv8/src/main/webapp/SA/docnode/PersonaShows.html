@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<title>首页显示个人文件柜</title>
+		<link type="text/css" rel="stylesheet" href="../../resources/bootstrap/css/bootstrap.min.css"/> 
+		<link type="text/css" rel="stylesheet" href="../../resources/layui/css/layui.css" media="all"/>
+		<style type="text/css">
+			.mydiv {
+				border-bottom: #cdcdcd 0px solid;
+				border-left: #cdcdcd 0px solid;
+				line-height: 1.5;
+				background-color: #ffffff;
+				margin-top: 1px;
+				border-top: #cdcdcd 0px solid;
+				border-right: #cdcdcd 0px solid;
+			}
+			
+			.symbol {
+				background: url("image/symbol.png") no-repeat center 4;
+			}
+			
+			a {
+				text-decoration: none;
+			}
+			
+			a:hover {
+				color: #2E8B57
+			}
+		</style>
+		<script type="text/javascript" src="../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="../../resources/bootstrap/js/bootstrap.min.js"></script> 
+		<script type="text/javascript" src="../../resources/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/PersonaShows.js"></script>
+		<script type="text/javascript">
+			window.isWriteLog = false; //不写系统日志
+		</script>
+	</head>
+	<body style="overflow: hidden">
+ 		<div id="more_infor" 
+ 			style="text-align: right; font-size: 11pt; height: 15px; margin-top: 1px;"> 
+ 			<a href="javascript:void(0);" onclick="onhistory()">更多...</a> 
+ 		</div> 
+		<table width="90%" border="0" align="left" cellpadding="0"
+			cellspacing="0" id="news_show" class="spanFont"
+			style="margin-left: 10px;">
+			<tr>
+				<td>
+					<div id="addnewsload" style="font-size: 11pt;">
+					</div>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+	</body>
+</html>

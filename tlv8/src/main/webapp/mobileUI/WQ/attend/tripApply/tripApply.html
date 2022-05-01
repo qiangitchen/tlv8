@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>出差申请</title>
+		<link rel="stylesheet" type="text/css" href="../../../system/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../system/css/app.css" />
+		<link rel="stylesheet" type="text/css" href="../../../system/css/mui.picker.min.css" />
+		<script type="text/javascript" charset="utf-8" src="../../../system/js/jquery.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../../system/js/base.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../../system/js/flow.main.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../../OA/common/js/oaUtils.js"></script>
+		<script src="../../../system/js/mui.min.js"></script>
+		<script src="../../../system/js/mui.picker.min.js"></script>
+		<script src="../../../system/js/mui.poppicker.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../common/css/wqUitls.css" />
+		<script type="text/javascript" charset="utf-8" src="tripApply.js"></script>
+		<style type="text/css">
+			a {
+				font-size: 14px;
+			}
+		</style>
+	</head>
+
+	<body onload="initPage()">
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" onclick="backhistory()">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<button id="submitItem" class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right" onclick="saveData()">
+				<span class="mui-icon mui-icon-redo"></span>
+				提交
+			</button>
+			<h1 class="mui-title" id="readtitle">出差申请</h1>
+		</header>
+		<div id="contenView" class="mui-content">
+			<div>
+				<div id="flowToolbar"></div>
+			</div>
+
+			<form id="trip_form" class="mui-input-group">
+				<div class="mui-input-row">
+					<label for="FCREATORNAME">申请人:</label>
+					<input name="FCREATORNAME" id="FCREATORNAME" type="text" placeholder="请假人姓名">
+				</div>
+				<div class="mui-input-row">
+					<label for="FSTARTDATE">开始日期:</label>
+					<input name="FSTARTDATE" data-options='{"type":"date"}' class="dtpicker" id="FSTARTDATE" type="text" placeholder="点击选择日期">
+				</div>
+				<div class="mui-input-row">
+					<label for="FENDDATE">结束日期:</label>
+					<input name="FENDDATE" data-options='{"type":"date"}' class="dtpicker" id="FENDDATE" type="text" placeholder="点击选择日期">
+				</div>
+				<div class="mui-input-row">
+					<label for="FSTARTADDR">始发地:</label>
+					<input name="FSTARTADDR" id="FSTARTADDR" type="text" placeholder="请输入始发地" />
+				</div>
+				<div class="mui-input-row">
+					<label for="FENDADDR">目的地:</label>
+					<input name="FENDADDR" id="FENDADDR" type="text" placeholder="请输入目的地" />
+				</div>
+				<div class="mui-input-row">
+					<label for="FTRIPTYPE">出差类型:</label>
+					<input name="FTRIPTYPE" id="FTRIPTYPE" type="text" placeholder="点击选择出差类型" />
+				</div>
+				<div class="mui-row">
+					<label for="FREASON">出差事由:</label>
+					<textarea name="FREASON" id="FREASON" style="height:100px;" placeholder="请输入出差事由"></textarea>
+				</div>
+				<div style="display:none;">
+					<input type="text" name="FCREATORID" id="FCREATORID" value="" readonly="readonly" />
+					<input type="text" name="FCREATORDEPTID" id="FCREATORDEPTID" value="" readonly="readonly" />
+					<input type="text" name="FCREATORDEPT" id="FCREATORDEPT" value="" readonly="readonly" />
+					<input type="text" name="FCREATEDATE" id="FCREATEDATE" value="" readonly="readonly" />
+				</div>
+			</form>
+			<div id="opinion_list" />
+		</div>
+	</body>
+
+</html>

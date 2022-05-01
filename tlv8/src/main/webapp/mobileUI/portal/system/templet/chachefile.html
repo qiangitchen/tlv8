@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"/>
+		<meta charset="utf-8">
+		<title>缓存文件</title>
+		<link rel="stylesheet" type="text/css" href="../../../system/css/mui.min.css" />
+		<script type="text/javascript" charset="utf-8" src="../../../system/js/jquery.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../../system/js/mui.min.js"></script>
+		<script type="text/javascript">
+			function loadCacheInfo(){
+				try{
+					$("#datacache").text(tlv8YnApp.getDataCacheSize());
+					$("#tempcache").text(tlv8YnApp.getTempCacheSize());
+					$("#srcache").text(tlv8YnApp.getSourceCacheSize());
+				}catch (e) {
+					mui.toast('客户端不支持!',{ duration:'long', type:'div' });
+				}
+			}
+			
+			function clearTempCache(){
+				try{
+					tlv8YnApp.clearTempCache();
+					loadCacheInfo();
+				}catch (e) {
+					mui.toast('客户端不支持!',{ duration:'long', type:'div' });
+				}
+			}
+			
+			function clearSourceCache(){
+				try{
+					tlv8YnApp.clearSourceCache();
+					loadCacheInfo();
+				}catch (e) {
+					mui.toast('客户端不支持!',{ duration:'long', type:'div' });
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav ">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<h1 class="mui-title" id="title_val">清理缓存</h1>
+		</header>
+		<nav class="mui-bar mui-bar-footer">
+			<h1 class="mui-title">TLv8</h1>
+		</nav>
+		<div class="mui-content">
+			<ul class="mui-table-view">
+			    <li class="mui-table-view-cell">
+			    	数据文件
+			    	<span class="mui-badge mui-badge-inverted" id="datacache">-1</span>
+			    </li>
+			    <li class="mui-table-view-cell" onclick="clearTempCache()">
+			    	临时文件
+			    	<span class="mui-badge mui-badge-primary" id="tempcache">-1</span>
+			    </li>
+			    <li class="mui-table-view-cell" onclick="clearSourceCache()">
+			    	缓存文件
+			    	<span class="mui-badge mui-badge-royal" id="srcache">-1</span>
+			    </li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		setTimeout(loadCacheInfo,1000);//延时处理
+	</script>
+</html>

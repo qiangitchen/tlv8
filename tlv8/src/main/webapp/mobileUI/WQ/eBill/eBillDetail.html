@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>  
+	<head> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<title>电子订单</title>
+    	<link rel="stylesheet" type="text/css" href="../../system/css/mui.min.css" />
+    		<link rel="stylesheet" type="text/css" href="../../system/css/jqm-datebox.min.css"/>
+    	<script type="text/javascript" charset="utf-8" src="../../system/js/jquery.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../system/js/jquery.mobile-1.3.0.min.js"></script>
+    	
+   	    <script type="text/javascript" charset="utf-8" src="../../system/js/jqm-datebox.core.min.js"></script>
+   	    <script type="text/javascript" charset="utf-8" src="../../system/js/jqm-datebox.mode.calbox.min.js"></script><!--日历 类型 -->
+    	<script type="text/javascript" charset="utf-8" src="../../system/js/jqm-datebox.mode.flipbox.min.js"></script><!--滚动 类型    timeflipbox hh:ss-->
+    	<script type="text/javascript" charset="utf-8" src="../../system/js/jquery.mobile.datebox.i18n.zh-CN.utf8.js"></script> <!--日期 中文 -->
+    	
+    	<script type="text/javascript" charset="utf-8" src="../../system/js/base.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="eBillDetail.js"></script>
+    	<style type="text/css">
+    		a{
+    			font-size:14px;
+    		}
+    	</style>
+    </head>
+    <body >
+    	<header class="mui-bar mui-bar-nav">
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav " onclick="backhistory()">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<button class="mui-btm mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right mui-plus-visible" >
+				<span class="mui-icon mui-icon-search"></span>
+				查询
+			</button>
+			<h1 class="mui-title" id="readtitle">电子订单</h1>
+		</header>
+		<div id="contenView" class="mui-content">
+			<form id="replenishment_form">
+			    <table width="100%">
+			      <tr>
+				    <td width="80px">
+				        	<label for="FCOMMODITYNAME">商品名称:</label>
+				       </td>
+				       <td>
+			         	  <input name="FCOMMODITYNAME" id="FCOMMODITYNAME" readonly="readonly" disabled="disabled"/>
+			         </td>
+			       </tr>
+			       	<tr>
+			       		<td width="80px">
+				        	<label for="FPRICE">单价:</label>
+				        </td>
+		  	            <td>
+				         	 <input name="FPRICE" type="number" id="FPRICE" readonly="readonly" disabled="disabled"/>
+				        </td>
+			       	</tr>
+			       	<tr>
+			       		<td width="80px">
+				        	<label for="FCOMMODITYCOUNT">商品数量:</label>
+				        </td>
+		  	            <td>
+				         	 <input  type="number" name="FCOMMODITYCOUNT" id="FCOMMODITYCOUNT" readonly="readonly" disabled="disabled"/>
+				        </td>
+			       	</tr>
+			       	<tr>
+			       		<td width="80px">
+				        	<label for="FSUM">总价:</label>
+				        </td>
+		  	            <td>
+				         	 <input type="number" name="FSUM" id="FSUM" readonly="readonly" disabled="disabled"/>
+				        </td>
+			       	</tr>
+			       	<tr>
+			       		<td width="80px">
+				        	<label for="FNEEDDATE">订单日期:</label>
+				        </td>
+		  	            <td id="needdate">
+		  	             	<input name="FNEEDDATE"  id="FNEEDDATE" type="text" format="yyyy-MM-dd"  readonly="readonly" disabled="disabled"/>
+				        </td>
+			       	</tr>
+				   <tr>
+				     <td width="80px">
+			         	<label for="FREMARK">备注:</label>
+			         </td>
+			         <td>
+			         	<textarea name="FREMARK" id="FREMARK" style="height:80px;" readonly="readonly" disabled="disabled"></textarea>
+			         </td>
+			      </tr>
+			     <!--  <tr>
+				     <td colspan="2">
+				     	<a data-role="button" href="javascript:photograph()" id="addphoto">拍照</a>
+				     	<a data-role="button" href="javascript:lookphotograph()" id="viewphoto" style="display:none;">照片信息</a>
+			         </td>
+			      </tr> -->
+				 </table>
+				 <div style="display:none;">
+				 	<input type="text" name="FCREATORID" id="FCREATORID" value="" readonly="readonly"/>
+				 	<input type="text" name="FCREATORNAME" id="FCREATORNAME" value="" readonly="readonly"/>
+				 	<input type="text" name="FCREATORDEPTID" id="FCREATORDEPTID" value="" readonly="readonly"/>
+				 	<input type="text" name="FCREATORDEPT" id="FCREATORDEPT" value="" readonly="readonly"/>
+				 	<input type="text" name="FCREATEDATE" id="FCREATEDATE" value="" readonly="readonly"/>
+				 </div>
+			</form>		
+		</div> 
+    </body>
+</html>

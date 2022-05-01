@@ -1,0 +1,49 @@
+<script type="text/javascript">
+var data = {"total":28,"rows":[
+	{"productid":"FI-SW-01","productname":"Koi","unitcost":10.00,"status":"P","listprice":36.50,"attr1":"Large","itemid":"EST-1"},
+	{"productid":"K9-DL-01","productname":"Dalmation","unitcost":12.00,"status":"P","listprice":18.50,"attr1":"Spotted Adult Female","itemid":"EST-10"},
+	{"productid":"RP-SN-01","productname":"Rattlesnake","unitcost":12.00,"status":"P","listprice":38.50,"attr1":"Venomless","itemid":"EST-11"},
+	{"productid":"RP-SN-01","productname":"Rattlesnake","unitcost":12.00,"status":"P","listprice":26.50,"attr1":"Rattleless","itemid":"EST-12"},
+	{"productid":"RP-LI-02","productname":"Iguana","unitcost":12.00,"status":"P","listprice":35.50,"attr1":"Green Adult","itemid":"EST-13"},
+	{"productid":"FL-DSH-01","productname":"Manx","unitcost":12.00,"status":"P","listprice":158.50,"attr1":"Tailless","itemid":"EST-14"},
+	{"productid":"FL-DSH-01","productname":"Manx","unitcost":12.00,"status":"P","listprice":83.50,"attr1":"With tail","itemid":"EST-15"},
+	{"productid":"FL-DLH-02","productname":"Persian","unitcost":12.00,"status":"P","listprice":23.50,"attr1":"Adult Female","itemid":"EST-16"},
+	{"productid":"FL-DLH-02","productname":"Persian","unitcost":12.00,"status":"P","listprice":89.50,"attr1":"Adult Male","itemid":"EST-17"},
+	{"productid":"AV-CB-01","productname":"Amazon Parrot","unitcost":92.00,"status":"P","listprice":63.50,"attr1":"Adult Male","itemid":"EST-18"}
+]}
+</script>
+<div class="easyui-layout" fit="true">
+	<div data-options="region:'west',split:true,hideCollapsedContent:false" title="West" style="width:200px;">
+		<div class="easyui-accordion" data-options="fit:true,border:false">
+			<div title="Title1" style="padding:10px;">
+				content1
+			</div>
+			<div title="Title2" data-options="selected:true" style="padding:10px;">
+				content2
+			</div>
+			<div title="Title3" style="padding:10px">
+				content3
+			</div>
+		</div>
+	</div>
+	<div data-options="region:'center',title:'Center'">
+		<div class="easyui-tabs" data-options="fit:true,border:false,plain:true">
+			<div title="About" data-options="href:'_about.html'" style="padding:10px"></div>
+			<div title="DataGrid" style="padding:5px">
+				<table class="easyui-datagrid"
+						data-options="data:data,singleSelect:true,fit:true,fitColumns:true">
+					<thead>
+						<tr>
+							<th data-options="field:'itemid'" width="80">Item ID</th>
+							<th data-options="field:'productid'" width="100">Product ID</th>
+							<th data-options="field:'listprice',align:'right'" width="80">List Price</th>
+							<th data-options="field:'unitcost',align:'right'" width="80">Unit Cost</th>
+							<th data-options="field:'attr1'" width="150">Attribute</th>
+							<th data-options="field:'status',align:'center'" width="50">Status</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

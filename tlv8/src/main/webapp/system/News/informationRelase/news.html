@@ -1,0 +1,92 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/default/easyui.css" />
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/icon.css" />
+		<style type="text/css"> 
+			.align-center{
+				margin:0 auto;		/* 居中 这个是必须的，，其它的属性非必须 */
+				width:960px;		/* 给个宽度 顶到浏览器的两边就看不出居中效果了 */
+				/*background:#c6d9e7;		 背景色 */
+				text-align:center; 	/* 文字等内容居中 */
+				/*line-height:40PX;   dic高度 */
+			}
+		</style>
+		<script type="text/javascript" src="../../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="../../../comon/xheditor/xheditor-1.1.12-zh-cn.min.js"></script>
+		<script type="text/javascript" src="../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="news.js"></script>
+		<script type="text/javascript">
+			window.isWriteLog = false; //不写系统日志
+		</script>
+
+	</head>
+
+	<body onload="shows()">
+		<div class="easyui-layout" style="width: 100%; height: 100%" fit="true">
+			<div data-options="region:'north',border:false" style="overflow: hidden;">
+				<table border="0" cellpadding="0" cellspacing="0"
+					style="width:100%; border-collapse: collapse;">
+					<tr align="center">
+						<td height="60px" align="center">
+							<div>
+								<label id="FNEWSTITLE"
+									style="font-size: 24px; color: #4169E1; font-weight: bold"></label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td height="10px" align="right"
+							style="font-size: 13px; border-collapse: collapse; border-bottom: #dcdcdc 1px solid;">
+							<div>
+								当前浏览者：
+								<label id="NEWS_PERSON111" style="color: #4169E1;">
+								</label>
+								浏览次数：
+								<a id="NEWS_NUMBER111" style="color: #4169E1;" href="javascript:readorList()">
+								</a>
+								发布者：
+								<label id="FPEOPLE" style="color: #4169E1;">
+								</label>
+								发布时间：
+								<label id="FTIME" style="color: #4169E1; margin-right: 5px;"></label>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div data-options="region:'center',border:false" style="overflow: auto;">
+				<div style="width: 95%; height: 100%; font-size: 13px; text-align: left;">
+					<div id="FRELEASECONNEXT"></div>
+				</div>
+			</div>
+			<div data-options="region:'south',border:false,title:'附件'" style="height:80px; overflow: hidden;">
+				<div id="fileCompDiv">
+				</div>
+				<form id="news_form">
+					<input type="text" id="FID" style="display: none;" />
+				</form>
+			</div>
+		</div>
+		<!-- 
+		<div class="align-center">
+			<fieldset
+				style="border: 1px solid #808A87; padding-left: 1px; padding-right4px; padding-top: 1px; padding-bottom: 1px; font-size: 13px; text-align:left;">
+				<a href="javascript:void(0);" onclick="readorList()">已阅查看</a>
+			</fieldset>
+		</div>
+		 -->
+		<div style="display: none;">
+			<form id="cyea_news_count">
+				<input type="text" id="NEWS_NUMBER" name="NEWS_NUMBER" />
+				<input type="text" id="NEWS_PERSON" name="NEWS_PERSON" />
+				<input type="text" id="NEWS_PERSONID" name="NEWS_PERSONID" />
+				<input type="text" id="NEWS_RELEASEID" name="NEWS_RELEASEID" />
+				<input type="text" id="YETPERSON" name="YETPERSON" />
+				<input type="text" id="YETPERSONID" name="YETPERSONID" />
+			</form>
+		</div>
+	</body>
+</html>

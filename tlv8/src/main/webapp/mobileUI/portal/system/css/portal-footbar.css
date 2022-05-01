@@ -1,0 +1,49 @@
+html,body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.toolbar {
+	background: -webkit-gradient(linear, left top, left bottom, from(#ABABAB),
+		to(#182018) );
+	width: 100%;
+	height: 50px;
+}
+
+.toolitem {
+	width: 25%;
+	height: 100%;
+	float: left;
+	z-index: 2;
+	position: relative;
+}
+
+.toolitem .content {
+	position: absolute;
+	top: 2px;
+	left: 0;
+	z-index: 10;
+	width: 100%;
+	text-align: center;
+}
+
+.toolitem .title {
+	font-size: 9pt;
+	color: white;
+}
+
+.itembg {
+	width: 25%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.itembg img {
+	width: 100%;
+	height: 50px;
+}

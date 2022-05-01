@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- 配置允许上传的文件大小   单位字节  配置最多可以上传500MB的文件-->
+	<constant name="struts.multipart.maxSize" value="5242880000"></constant>
+	<package name="fileupload" extends="json-default">
+
+		<!-- 文件上传 -->
+		<action name="upload" class="com.tlv8.doc.clt.upload.FileUploadAction"
+			method="upload">
+			<result name="error">upload.jsp</result>
+			<result name="input">upload.jsp</result>
+			<result>upload-success.jsp</result>
+		</action>
+
+		<!-- 图片上传 -->
+		<action name="ImageWriteAction" class="com.tlv8.doc.clt.upload.ImageWriteAction"
+			method="upload">
+			<result name="error">Imag-upload.jsp</result>
+			<result name="input">Imag-upload.jsp</result>
+			<result>upload-success.jsp</result>
+		</action>
+
+		<!-- 删除图片 不删除数据-->
+		<action name="ImageDeleteAction" class="com.tlv8.doc.clt.upload.ImageDeleteAction">
+			<result type="json" />
+		</action>
+
+		<!-- xheditor上传文件-->
+		<action name="xhUpload" class="com.tlv8.doc.clt.upload.XhUpload">
+			<result name="none" type="json">
+				<param name="contentType">text/html; charset=utf-8</param>
+			</result>
+		</action>
+
+		<!-- 文件上传雅虎控件引用 -->
+		<action name="docUploadAction" class="com.tlv8.doc.clt.upload.DocUploadAction">
+			<result type="json"></result>
+		</action>
+		
+		<action name="writeUploadDataAction" class="com.tlv8.doc.clt.upload.WriteUploadDataAction">
+			<result type="json"></result>
+		</action>
+		
+		<action name="docCommitFile" class="com.tlv8.doc.clt.upload.DocCommitFile">
+			<result type="json"></result>
+		</action>
+		
+	</package>
+
+</struts>

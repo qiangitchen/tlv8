@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>  
+	<head> 
+	    <meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="../../../system/css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../../resources/jquery-easyui/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="../../../../resources/jquery-easyui/themes/mobile.css">
+		<link rel="stylesheet" type="text/css" href="../../../../resources/jquery-easyui/themes/icon.css">
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/jquery.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/mui.min.js" ></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/base.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/dialog.js"></script>
+    	<script type="text/javascript" src="../../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../../resources/jquery-easyui/jquery.easyui.mobile.js"></script>
+		<script type="text/javascript" src="../../../../resources/jquery-easyui/jquery.easyui.tree.search.js"></script>
+		<script type="text/javascript" src="processAudit.js"></script>
+  </head>
+  <body onload="pageInit()">
+  	<header class="mui-bar mui-bar-nav">
+	    <button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+			<span class="mui-icon mui-icon-closeempty"></span>
+			取消
+		</button>
+		<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right" onclick="dailogEngin()">
+			<span class="mui-icon mui-icon-checkmarkempty"></span>
+			确定
+		</button>
+	    <h1 class="mui-title" id="title_val">填写意见</h1>
+	</header>
+	<div id="contenView" data-role="content" class="mui-content">
+		<div class="mui-card"> 
+	    	<div class="mui-card-header">当前意见
+	    		<button onclick="saveDatatoMyOp()">保存为常用</button>
+	    		<button onclick="clearData()">清空</button>
+	    	</div> 
+	    	<div class="mui-card-content" style="min-height: 100px; padding: 10px;">
+				<textarea id="opinionData" placeholder="请填写处理意见" style="width:100%; min-height: 100px;"></textarea>
+	    	</div>
+	    </div>
+	    <div class="mui-card"> 
+	    	<div class="mui-card-header">常用意见</div> 
+	    	<div class="mui-card-content" style="min-height: 100px;">
+				<div id="selectListView" style="width: 100%;"></div>
+	    	</div> 
+	    </div>
+	</div>
+  	<div style="display: none;">
+  		<form id="maindata_form">
+  			<input type="text" id="FCONCLUSIONNAME"/>
+  			<input type="text" id="FCREATORID"/>
+  			<input type="text" id="FCREATOR"/>
+  		</form>
+  		<form id="option_data">
+  		</form>
+  	</div>
+  </body>
+</html>

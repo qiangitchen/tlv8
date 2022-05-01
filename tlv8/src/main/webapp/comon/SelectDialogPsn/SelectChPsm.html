@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>人员多选</title>
+    <link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/default/easyui.css" />
+	<link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/icon.css" />
+   	<link rel="stylesheet" href="../css/grid.main.css" type="text/css"/>
+   	<link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css"/>
+    <style type="text/css">
+	    body {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 11pt;
+			color: #666666;
+			margin-top: 5px;
+			margin-bottom:5px;
+			background:url(../css/formDetail/img/body_detail_bg.jpg);
+		}
+		
+		.maininput {
+			font: normal 12px Verdana;
+			color: #333333;
+			background: #ffffff;
+			height: 20px;
+			width:150px;
+		}
+		.toobar_item{
+			margin-left: 5px;
+		}	
+	  </style>  
+	  <script type="text/javascript" src="../js/jquery/jquery.min.js"></script>
+	  <script type="text/javascript" src="../js/jquery/jquery.ztree.core-3.1.js"></script>
+	  <script type="text/javascript" src="../js/comon.main.js"></script>
+	  <script type="text/javascript" src="../jTree/tree.main.js"></script>
+	  <script type="text/javascript" src="../js/grid.main.js"></script>
+	  <script type="text/javascript" src="../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+	  <script type="text/javascript" src="../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+	  <script type="text/javascript" src="SelectChPsm.js"></script>
+ </head>
+  <body style="overflow:hidden; font-size: 9pt;" >
+   <div class="easyui-layout" data-options="fit:true,border:false">
+    	<div data-options="region:'west',split:true" style="width: 230px; overflow: hidden;">
+	    	<div style="overflow:auto; width:100%; height:100%; overflow: hidden;">
+				<ul id="maintree" class="ztree"></ul>
+			</div>
+		</div>
+		<div data-options="region:'center'" style="overflow: hidden;">
+    		<div class="easyui-layout" fit="true">
+    			<div data-options="region:'center',border:false,onResize:bodyresizeFn" style="overflow: hidden;">
+		    		<div id="maingridview" style="width: 100%; height: 100%; align: left;" 
+		    			onchecked="gridChecked" oncheckAll="gridCheckedAll" onuncheckAll="gridCheckedAll">
+		    		</div>
+		    	</div>
+		    	<div data-options="region:'south',border:false" style="height:120px;overflow: hidden;">
+		    		<div style="width: 100%; height: 25px; background: url(../image/csbar/d_5.gif);">
+						&nbsp;&nbsp;选择列表 <a href="javascript:void(0);" title="单个删除"> <img
+							src="../image/toolbar/templete/reset.gif" onclick="deleteBills()"></img>
+						</a>&nbsp;&nbsp; <a href="javascript:void(0);" title="全部清除"> <img
+							src="../image/toolbar/templete/reset_all.gif" onclick="deleteAll()"></img>
+						</a>
+					</div> 
+					<span id="Chtext"></span>
+		    	</div>
+		    </div>
+    	</div>
+    </div>
+	<script type="text/javascript">
+		var mainJtree = new Jtree();
+		$(document).ready(function(){
+			mainJtree.init("maintree", setting, param);
+		});
+	</script>
+  </body>
+</html>

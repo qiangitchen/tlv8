@@ -1,0 +1,151 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<title>工作日志</title>
+		<link type="text/css" rel="stylesheet" href="../../resources/layui/css/layui.css" />
+		<link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/default/easyui.css" />
+		<link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/icon.css" />
+		<link rel="stylesheet" href="../../comon/css/formDetail/formDetail.css" type="text/css" />
+		<script type="text/javascript" src="../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="../../comon/My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="../../resources/layui/layui.js"></script>
+		<script type="text/javascript" src="WorkLog.js"></script>
+	</head>
+	<body onload="Init()" style="width: 100%; height: 100%; overflow: hidden;">
+		<div class="easyui-layout" fit="true">
+			<div data-options="region:'center'">
+				<div class="layui-fluid">
+					<form id='WorkLog' class="layui-form">
+					  <div class="layui-card">
+      					<div class="layui-card-header">工作日志</div>
+      					<div class="layui-card-body">
+								<div class="layui-form-item">
+						            <div class="layui-inline">
+						              <label class="layui-form-label" style="width:110px;">编码</label>
+						              <div class="layui-input-inline">
+						                <input type="text" id="SLOCK" name="SLOCK" autocomplete="off" class="layui-input" readonly>
+						              </div>
+						            </div>
+						            <div class="layui-inline">
+						              <label class="layui-form-label" style="width:110px;">客户</label>
+						              <div class="layui-input-inline">
+						                <input type="text" id="SCUSTOMERNAME" name="SCUSTOMERNAME" autocomplete="off" class="layui-input">
+						              </div>
+						            </div>
+						          </div>
+						          <div class="layui-form-item">
+						            <label class="layui-form-label" style="width:110px;">标题<font color="red">*</font></label>
+						            <div class="layui-input-block">
+						              <input type="text" id="SNAME" name="SNAME" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+						            </div>
+						          </div>
+						          <div class="layui-form-item">
+						            <div class="layui-inline">
+						              <label class="layui-form-label" style="width:110px;">重要性</label>
+						              <div class="layui-input-inline">
+						                <select id="SIMPORTANCENAME" title="重要性" name="SIMPORTANCENAME">
+											<option value="">
+												--请选择--
+											</option>
+											<option value="最高">
+												最高
+											</option>
+											<option value="高">
+												高
+											</option>
+											<option value="中">
+												中
+											</option>
+											<option value="低">
+												低
+											</option>
+										</select> 
+						              </div>
+						            </div>
+						            <div class="layui-inline">
+						              <label class="layui-form-label" style="width:110px;">紧迫度</label>
+						              <div class="layui-input-inline">
+						                <select id="SEMERGENCYNAME" title="紧迫度" name="SEMERGENCYNAME">
+											<option value="">
+												--请选择--
+											</option>
+											<option value="紧急">
+												紧急
+											</option>
+											<option value="急迫">
+												急迫
+											</option>
+											<option value="一般">
+												一般
+											</option>
+											<option value="较低">
+												较低
+											</option>
+										</select> 
+						              </div>
+						            </div>
+						          </div>
+						          <div class="layui-form-item">
+						            <div class="layui-inline">
+						              <label class="layui-form-label" style="width:110px;">计划/工作项</label>
+						              <div class="layui-input-inline">
+						                <input type="text" id="SPLANNAME" name="SPLANNAME" autocomplete="off" class="layui-input">
+						              </div>
+						            </div>
+						            <div class="layui-inline">
+						              <label class="layui-form-label" style="width:110px;">限制时间</label>
+						              <div class="layui-input-inline">
+						                <input type="text" id="SLIMITTIME" name="SLIMITTIME" autocomplete="off" class="layui-input Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})">
+						              </div>
+						            </div>
+						          </div>
+						          <div class="layui-form-item">
+						            <label class="layui-form-label" style="width:110px;">项目</label>
+						            <div class="layui-input-block">
+						              <input type="text" id="SPROJECTNAME" name="SPROJECTNAME" autocomplete="off" placeholder="请输入项目名称" class="layui-input">
+						            </div>
+						          </div>
+						          <div class="layui-form-item layui-form-text">
+						            <label class="layui-form-label">内容</label>
+						            <div class="layui-input-block">
+						              <textarea id="SCONTENT" name="SCONTENT" class="layui-textarea" style="height:120px;"></textarea>
+						            </div>
+						          </div>
+						          <div class="layui-form-item">
+						            <div class="layui-inline">
+						              <label class="layui-form-label" style="width:110px;">提交人</label>
+						              <div class="layui-input-inline">
+						                <input id="SCREATORFID" name="SCREATORFID" style="display: none">
+						                <input type="text" id="SCREATOFNAME" name="SCREATOFNAME" autocomplete="off" class="layui-input" readonly>
+						              </div>
+						            </div>
+						            <div class="layui-inline">
+						              <label class="layui-form-label" style="width:110px;">创建时间</label>
+						              <div class="layui-input-inline">
+						                <input type="text" id="SCREATETIME" name="SCREATETIME" autocomplete="off" class="layui-input" readonly>
+						              </div>
+						            </div>
+						         </div>
+      						</div>
+						</div>
+						<div class="layui-card">
+      						<div class="layui-card-body" style="text-align:center;">
+      							<button class="layui-btn" lay-submit="" lay-filter="component-form">提交保存</button>
+      						</div>
+      					</div>	
+					</form>
+				</div>
+			</div>
+		</div>
+		 <script>
+		 	/* 监听提交 */
+    		layui.form.on('submit(component-form)', function(data){
+				savedata();
+      			return false;
+    		});
+		 </script>
+	</body>
+</html>

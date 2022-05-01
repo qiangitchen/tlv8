@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>任务交办</title>
+		<link rel="stylesheet" type="text/css" href="../../system/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../system/css/jqm-datebox.min.css" />
+		<script type="text/javascript" charset="utf-8" src="../../system/js/jquery.js"></script>
+		<script src="../../system/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8" src="../../system/js/jqm-datebox.core.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../system/js/jqm-datebox.mode.calbox.min.js"></script>
+		<!--日历 类型 -->
+		<script type="text/javascript" charset="utf-8" src="../../system/js/jqm-datebox.mode.flipbox.min.js"></script>
+		<!--滚动 类型    timeflipbox hh:ss-->
+		<script type="text/javascript" charset="utf-8" src="../../system/js/jquery.mobile.datebox.i18n.zh-CN.utf8.js"></script>
+		<!--日期 中文 -->
+		<script type="text/javascript" charset="utf-8" src="../../system/js/base.js"></script>
+
+		<script type="text/javascript" charset="utf-8" src="filltask.js"></script>
+		<style type="text/css">
+			a {
+				font-size: 14px;
+			}
+		</style>
+	</head>
+
+	<body onload="initPage()">
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<button class="mui-btn mui-but-blue mui-btn-link mui-btn-nav mui-pull-right">
+				<a href="#popupMenu" id="submitItem"  onclick="saveData()"><span class="mui-icon mui-icon-redo"></span>
+				提交</a>
+			</button>
+			<h1 class="mui-title" id="readtitle">任务填报</h1>
+		</header>
+		<div id="contenView" class="mui-content">
+			<div>
+				<div id="flowToolbar" onStartCommit="start1"></div>
+			</div>
+			<div id="task_list" />
+
+			<form id="task_form">
+				<table width="100%">
+					<tr>
+						<td width="80px">
+							<label for="FTITLE">标题:</label>
+						</td>
+						<td>
+							<input name="FTITLE" id="FTITLE" type="text" readonly="readonly" disabled="disabled" />
+						</td>
+					</tr>
+					<tr>
+						<td width="80px">
+							<label for="FPRECEDENCE">优先级别:</label>
+						</td>
+						<td>
+							<input name="FPRECEDENCE" id="FPRECEDENCE" type="text" readonly="readonly" disabled="disabled" />
+						</td>
+					</tr>
+					<tr>
+						<td width="80px">
+							<label for="FDEADLINEDATE">期限日期:</label>
+						</td>
+						<td>
+							<input name="FDEADLINEDATE" format="yyyy-MM-dd" id="FDEADLINEDATE" type="text" readonly="readonly" disabled="disabled" />
+						</td>
+					</tr>
+					<tr>
+						<td width="80px">
+							<label for="FDEADLINETIME">期限时间:</label>
+						</td>
+						<td>
+							<input name="FDEADLINETIME" id="FDEADLINETIME" type="text" readonly="readonly" disabled="disabled" />
+						</td>
+					</tr>
+					<tr>
+						<td width="80px">
+							<label for="FTASKCONTENT">任务内容:</label>
+						</td>
+						<td>
+							<textarea name="FTASKCONTENT" id="FTASKCONTENT" style="height:100px;" disabled="disabled" readonly="readonly"></textarea>
+						</td>
+					</tr>
+				</table>
+			</form>
+
+			<hr>
+			<form id="psn_form">
+				<table width="100%">
+					<tr>
+						<td width="80px">
+							<label for="FRESULT">办理结果</label>
+						</td>
+						<td>
+							<select name="FRESULT" id="FRESULT">
+								<option>完成</option>
+								<option>拒绝</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td width="80px">
+							<label for="FSUMMARIZE">总结:</label>
+						</td>
+						<td>
+							<textarea name="FSUMMARIZE" id="FSUMMARIZE" style="height:100px;"></textarea>
+						</td>
+					</tr>
+				</table>
+				<div style="display:none">
+					<input type="text" name="FEDITDATE" id="FEDITDATE" value="" readonly="readonly" />
+				</div>
+			</form>
+			<!-- <div id="psn_list"/>	 -->
+		</div>
+	</body>
+
+</html>

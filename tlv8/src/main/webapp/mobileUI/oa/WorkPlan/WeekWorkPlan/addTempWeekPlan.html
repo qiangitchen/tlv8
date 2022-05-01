@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"/>
+    	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/> 
+    	<title>手机版本表单</title>
+    	<link rel="stylesheet" type="text/css" href="../../../../mobileUI/system/css/mui.min.css"/>
+    	<script type="text/javascript" charset="utf-8" src="../../../../mobileUI/system/js/jquery.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../../mobileUI/system/js/mui.min.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../../mobileUI/system/js/base.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../../mobileUI/system/js/dialog.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../comon/js/utils.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="addTempWeekPlan.js"></script>
+    </head>
+    <body>
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" onclick="windowCancel()">
+				<span class="mui-icon mui-icon-closeempty"></span>
+				取消
+			</button>
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right" onclick="doDataSaveaAtion()">
+				<span class="mui-icon mui-icon-checkmarkempty"></span>
+				保存
+			</button>
+		    <h1 class="mui-title" id="title_val">本周目标项</h1>
+		</header>
+	<div class="mui-content">
+		<form class="mui-input-group" id="MAIN_DATA_FORM"
+			afterRefresh="afRefresh">
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">序号</label> <input type="text"
+					placeholder="请输入数字" data-filtered="filtered" id="SORT" name="SORT"
+					class="forminput" />
+			</div>
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">重要紧急</label> 
+				<select data-filtered="filtered" id="FIMPORTANT"
+					name="FIMPORTANT" class="forminput">
+					<option value="">请选择</option>
+					<option value="很重要很紧急">很重要很紧急</option>
+					<option value="很重要不紧急">很重要不紧急</option>
+					<option value="不重要很紧急">不重要很紧急</option>
+					<option value="不重要不紧急">不重要不紧急</option>
+				</select>
+			</div>
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">工作项目<br/>内容</label> <textarea rows="2"
+					placeholder="请输入工作内容" data-filtered="filtered" id="JOBCONTENT"
+					name="JOBCONTENT" class="forminput"></textarea>
+			</div>
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">协作部门/人</label> <input type="text"
+					placeholder="请输入框部门或人员名称" data-filtered="filtered"
+					id="DEPARTMENTCOOPERATION" name="DEPARTMENTCOOPERATION"
+					class="forminput" />
+			</div>
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">遇到或需要协助的问题</label> <textarea
+					 placeholder="" data-filtered="filtered"
+					id="COMPLETIONEVALUATION" name="COMPLETIONEVALUATION"
+					class="forminput"></textarea>
+			</div>
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">完成情况</label> 
+				<select data-filtered="filtered" id="COMPLETECONDITION"
+					name="COMPLETECONDITION" class="forminput">
+					<option>未完成</option>
+					<option>已完成</option>
+				</select>
+			</div>
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">未完成原因</label> <input type="text"
+					placeholder="" data-filtered="filtered" id="UNFINISHEDCAUSE"
+					name="UNFINISHEDCAUSE" class="forminput" />
+			</div>
+			<div style="display: none;">
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">AUDITOR</label> <input type="text"
+						placeholder="普通输入框" data-filtered="filtered" id="AUDITOR"
+						name="AUDITOR" class="forminput" readonly="readonly" />
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">MAINID</label> <input type="text"
+						placeholder="普通输入框" data-filtered="filtered" id="MAINID"
+						name="MAINID" class="forminput" readonly="readonly" />
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">FCREATEID</label> <input type="text"
+						placeholder="普通输入框" data-filtered="filtered" id="FCREATEID"
+						name="FCREATEID" class="forminput" readonly="readonly" />
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">FCREATENAME</label> <input
+						type="text" placeholder="普通输入框" data-filtered="filtered"
+						id="FCREATENAME" name="FCREATENAME" class="forminput"
+						readonly="readonly" />
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">FCREATEDATETIME</label> <input
+						type="text" placeholder="普通输入框" data-filtered="filtered"
+						id="FCREATEDATETIME" name="FCREATEDATETIME" class="forminput"
+						readonly="readonly" />
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">STARTTIME</label> <input type="text"
+						placeholder="普通输入框" data-filtered="filtered" id="STARTTIME"
+						name="STARTTIME" class="forminput" readonly="readonly" />
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">FINISHTIME</label> <input
+						type="text" placeholder="普通输入框" data-filtered="filtered"
+						id="FINISHTIME" name="FINISHTIME" class="forminput"
+						readonly="readonly" />
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">FOGNID</label> <input type="text"
+						placeholder="普通输入框" data-filtered="filtered" id="FOGNID"
+						name="FOGNID" class="forminput" readonly="readonly" />
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">FOGNNAME</label> <input type="text"
+						placeholder="普通输入框" data-filtered="filtered" id="FOGNNAME"
+						name="FOGNNAME" class="forminput" readonly="readonly" />
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">FORGID</label> <input type="text"
+						placeholder="普通输入框" data-filtered="filtered" id="FORGID"
+						name="FORGID" class="forminput" readonly="readonly" />
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">FORGNAME</label> <input type="text"
+						placeholder="普通输入框" data-filtered="filtered" id="FORGNAME"
+						name="FORGNAME" class="forminput" readonly="readonly" />
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">FCOMPLETTIME</label> <input
+						type="text" placeholder="普通输入框" data-filtered="filtered"
+						id="FCOMPLETTIME" name="FCOMPLETTIME" class="forminput"
+						readonly="readonly" />
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">PLANTYPE</label> <input type="text"
+						placeholder="普通输入框" data-filtered="filtered" id="PLANTYPE"
+						name="PLANTYPE" class="forminput" readonly="readonly" />
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

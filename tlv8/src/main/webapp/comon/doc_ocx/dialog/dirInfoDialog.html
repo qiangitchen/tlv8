@@ -1,0 +1,223 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/default/easyui.css" />
+	<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/icon.css" />
+  	<link rel="stylesheet" href="../../css/formsyle.css" type="text/css"></link>
+  	<link rel="stylesheet" href="../../css/tab-view.css" type="text/css"></link>
+  	<script type="text/javascript" src="../../js/jquery/jquery.min.js"></script>
+  	<script type="text/javascript" src="../../js/comon.main.js"></script>
+  	<script type="text/javascript" src="../../js/tab-view.js"></script>
+  	<script type="text/javascript" src="../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+  	<script type="text/javascript" src="../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+  	<script type="text/javascript" src="dirInfoDialog.js"></script>
+	<script type="text/javascript">
+    	window.isWriteLog = false;
+    </script>
+  </head>
+  <body style="overflow:hidden;">
+  <center id="cent__">
+    <form id="docInfo_form">
+  	<div id="tabbar" style="height:100%;width:100%;"> 
+    	<div class="dhtmlgoodies_aTab">
+         <table height="100%" width="100%" style="table-layout: fixed;"> 
+           <tr style="height:25px"> 
+             <td style="width:8px;"></td>  
+             <td scope="row" style="width:100px;"> 
+               <div class="th">名称:</div> 
+             </td>  
+             <td style="width:320px;"> 
+               <input type="text" style="width:100%" id="sDocName"/> 
+             </td>  
+             <td>
+             </td> 
+           </tr>  
+           <tr style="height:30px"> 
+             <td></td>  
+             <td> 
+               <div class="th">类型:</div> 
+             </td>  
+             <td> 
+               <input type="text" id="sKind" readonly="readonly"/> 
+             </td>  
+             <td/> 
+           </tr>  
+           <tr style="height:30px"> 
+             <td></td>  
+             <td> 
+               <div class="th">大小(字节):</div> 
+             </td>  
+             <td> 
+               <input type="text" id="sSize" format="0,000" readonly="readonly"/> 
+             </td>  
+             <td/> 
+           </tr>  
+           <tr style="height:38px"> 
+             <td></td>  
+             <td scope="row"> 
+               <div class="th">路径:</div> 
+             </td>  
+             <td> 
+               <input id="sDocDisplayPath" readonly="readonly"/> 
+             </td>  
+             <td/> 
+           </tr>  
+           <tr style="height:3px"> 
+             <td></td>  
+             <td colspan="2"> 
+               <div style="overflow:hidden;display:block;background:silver; width:100%;height:1px"></div> 
+             </td>  
+             <td/> 
+           </tr>  
+           <tr style="height:30px"> 
+             <td></td>  
+             <td> 
+               <div class="th">创建人:</div> 
+             </td>  
+             <td> 
+               <input type="text" id="sCreatorName" readonly="readonly"/> 
+             </td> 
+           </tr>  
+           <tr style="height:30px"> 
+             <td></td>  
+             <td> 
+               <div class="th">创建部门：</div> 
+             </td>  
+             <td> 
+               <input type="text" id="sCreatorDeptName" readonly="readonly"/> 
+             </td> 
+           </tr>  
+           <tr style="height:30px"> 
+             <td></td>  
+             <td> 
+               <div style="width:120px" class="th">创建时间:</div> 
+             </td>  
+             <td> 
+               <input type="text" id="sCreateTime" format="yyyy-MM-dd hh:mm:ss" readonly="readonly"/> 
+             </td> 
+           </tr>  
+           <tr style="height:3px"> 
+             <td></td>  
+             <td colspan="2"> 
+               <div style="overflow:hidden;display:block;background:silver; width:100%;height:1px"></div> 
+             </td>  
+             <td/> 
+           </tr>  
+           <tr style="height:30px"> 
+             <td></td>  
+             <td> 
+               <div class="th">编辑人:</div> 
+             </td>  
+             <td> 
+               <input type="text" id="sEditorName" readonly="readonly"/> 
+             </td>  
+             <td/> 
+           </tr>  
+           <tr style="height:30px"> 
+             <td></td>  
+             <td> 
+               <div class="th">编辑部门:</div> 
+             </td>  
+             <td> 
+               <input type="text" id="sEditorDeptName" readonly="readonly"/> 
+             </td>  
+             <td/> 
+           </tr>  
+           <tr style="height:3px"> 
+             <td></td>  
+             <td colspan="2"> 
+               <div style="overflow:hidden;display:block;background:silver; width:100%;height:1px"></div> 
+             </td>  
+             <td/> 
+           </tr>  
+           <tr style="height:30px"> 
+             <td></td>  
+             <td> 
+               <div class="th">最后修改人:</div> 
+             </td>  
+             <td> 
+               <input type="text" id="sLastWriterName" readonly="readonly"/> 
+             </td>  
+             <td/> 
+           </tr>  
+           <tr style="height:30px"> 
+             <td></td>  
+             <td> 
+               <div class="th">最后修改部门:</div> 
+             </td>  
+             <td> 
+               <input type="text" id="sLastWriterDeptName" readonly="readonly"/> 
+             </td>  
+             <td/> 
+           </tr>  
+           <tr style="height:22px"> 
+             <td></td>  
+             <td> 
+               <div style="width:120px" class="th">最后修改时间:</div> 
+             </td>  
+             <td> 
+               <input type="text" id="sLastWriteTime" format="yyyy-MM-dd hh:mm:ss" readonly="readonly"/> 
+             </td> 
+           </tr>  
+         </table> 
+       </div>  
+       <div class="dhtmlgoodies_aTab">
+         <table width="100%" style="table-layout: fixed;"> 
+           <tr style="height:25px"> 
+             <td style="width:8px;">
+             </td>  
+             <td style="width:100px;">
+               <div class="th">文件编号：</div> 
+             </td>  
+             <td style="width:320px;"> 
+               <input type="text" style="width:100%" id="sDocSerialNumber"/> 
+             </td>  
+             <td>
+             </td> 
+           </tr>  
+           <tr style="height:30px"> 
+             <td></td>  
+             <td> 
+               <div class="th">成文日期：</div> 
+             </td>  
+             <td> 
+               <input type="text" format="yyyy-MM-dd hh:mm:ss" style="width:100%" id="sFinishTime"/> 
+             </td>  
+             <td/> 
+           </tr>  
+           <tr style="height:30px"> 
+             <td></td>  
+             <td> 
+               <div class="th">关 键 字：</div> 
+             </td>  
+             <td> 
+               <input type="text" id="sKeywords" style="width:100%"/> 
+             </td>  
+             <td/> 
+           </tr>  
+           <tr style="height:260px"> 
+             <td></td>  
+             <td> 
+               <div class="th">文件描述：</div> 
+             </td>  
+             <td> 
+               <textarea id="docDescTextarea" id="sDescription" style="width:100%;height:90%;margin-top:10px"></textarea> 
+             </td>  
+             <td/> 
+           </tr>  
+         </table> 
+       </div> 
+     </div>
+    </form>
+  </center>
+  <div id="bot__" style="position: absolute; bottom:0px; height:25px; right: 10px;">
+    	<a onclick="tlv8.portal.dailog.dailogEngin(getDocInfoData())" class="easyui-linkbutton">确定</a>
+   		<a onclick="tlv8.portal.dailog.dailogCancel()" class="easyui-linkbutton">取消</a>  
+    </div>
+  <script type="text/javascript">
+		var tabTitle=Array('常规', '摘要');
+		//var tabAction=Array(tab_flowView,tab_taskWindow,tab_flowChart,tab_flowData);
+		initTabs('tabbar', tabTitle, 0, '100%', '100%');
+ </script>
+  </body>
+</html>

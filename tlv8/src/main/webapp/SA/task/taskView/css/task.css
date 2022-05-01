@@ -1,0 +1,58 @@
+body {
+	padding: 0px;
+	margin: 0px;
+	bgcolor:red;
+}
+
+div.header {
+	font-size: 16px;
+	font: bold;
+}
+
+a {
+	font-size: 22px;
+}
+
+a.task {
+	color: #479cd0;
+}
+
+a:link {
+	text-decoration: none;
+	color: #1f3a87;
+}
+
+a:visited {
+	text-decoration: none;
+	color: #1f3a87;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: #0A73E9;
+}
+
+a:active {
+	text-decoration: none;
+	color: #1f3a87;
+}
+
+table {
+	table-layout: fixed;
+	cursor: default;
+}
+
+.className {
+	font-size: 14px;
+	word-break: keep-all;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+body {
+	background: #fff;
+	color: #000;
+	font-family: "宋体";
+	font-size: 11pt;
+	line-height: 19px;
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>  
+	<head> 
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0"/>
+    	<meta charset="UTF-8">
+	    <title>查看流程图、波特图</title>
+	    <link rel="stylesheet" type="text/css" href="../../../../../system/css/mui.min.css"/>
+	    <link rel="stylesheet" href="css/draw.css"></link>
+	    
+	    <script type="text/javascript" src="../../../../../../comon/js/jquery/jquery.min.js"></script>
+	    <script type="text/javascript" src="../../../../../system/js/mui.min.js"></script>
+	    
+	  	<script type="text/javascript" src="../../../../js/base.js"></script>
+	  	
+	  	<script type="text/javascript" src="../../../../../../flw/processChart/js/dojoAll.js"></script>
+	  	
+	  	<script type="text/javascript" src="../../../../../../flw/processChart/js/json.js"></script>
+		<script type="text/javascript" src="../../../../../../flw/processChart/js/base.js"></script>
+		<script type="text/javascript" src="../../../../../../flw/processChart/js/observable.js"></script>
+		<script type="text/javascript" src="../../../../../../flw/processChart/js/route.js"></script>
+		<script type="text/javascript" src="../../../../../../flw/processChart/js/graphics.js"></script>
+		<script type="text/javascript" src="../../../../../../flw/processChart/js/canvas.js"></script>
+		<script type="text/javascript" src="js/diagram.js"></script>
+		<script type="text/javascript" src="../../../../../../flw/processChart/js/processTrajectoryView.js"></script>
+		
+	  	<script type="text/javascript" src="../../../../../../flw/spec/dist/svg.js"></script>
+	  	<script type="text/javascript" src="../../../../../../flw/res/js/graphic.js"></script>
+	  	<script type="text/javascript" src="../../../../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+	  	<script type="text/javascript" src="js/flow-ioc-load.js"></script>
+		<script type="text/javascript" src="js/loadiocus.js"></script>
+		<script type="text/javascript">
+			function initDesigner(botData){   
+		        var canvas = new Justep.graphics.Canvas({id:'main_bot_body'});
+				var diagram = new Baud();
+				diagram.setCanvas(canvas);
+				diagram.loadData(botData);
+		     }	
+			$(document).ready(function() {
+				var iocu = new JIocus();
+				iocu.loadData();
+			});
+		</script>
+  	</head>
+  
+  <body style="overflow:hidden;">
+  	<header class="mui-bar mui-bar-nav">
+		<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+			<span class="mui-icon mui-icon-left-nav"></span>
+			返回
+		</button>
+	    <h1 class="mui-title" id="title_val">查看流程图/波特图</h1>
+	</header>
+	<nav class="mui-bar mui-bar-tab">
+		<a class="mui-tab-item mui-active" href="#detail_01">
+			<span class="mui-icon mui-icon-image"></span>
+			<span class="mui-tab-label">流程图</span>
+		</a>
+		<a class="mui-tab-item" href="#detail_02">
+			<span class="mui-icon mui-icon-videocam"></span>
+			<span class="mui-tab-label">波特图</span>
+		</a>
+	</nav>
+  	<div id="tabveiw1" class="mui-content" style="width: 100%; height: 100%;">
+       	<div id="detail_01" title="流程图" style="width: 100%; height: 100%; overflow: auto;" class="mui-control-content mui-active">
+		    <div id="group" onselectstart="return false;" style="cursor: default; position: relative; overflow: hidden;">
+		    </div>
+		    <div id="svgdotview">
+		    	<!-- SVG 箭头线绘制 -->
+			  	<svg id="isvg">
+					<defs>
+						<marker id="idArrow"
+					         viewBox="0 0 20 20" refX="0" refY="10" 
+					         markerUnits="strokeWidth" markerWidth="8" markerHeight="10"
+					         orient="auto">
+					         <path d="M 0 0 L 20 10 L 0 20 z" fill="purple" stroke="black"/>
+					     </marker>
+					</defs>
+				</svg>
+		    </div>
+			<div id="tool" style="display: none;"></div>
+		    <div id="foolter_line" class="Body_Foot">
+				<div style="width:60px;height:27px;background:#006699;float:left;margin-left: 10px; color:#fff;">当前环节</div>
+				<br/>
+				<div style="width:60px;height:27px;background:green;float:left;margin-left: 10px; color:#fff; margin-top: 5px;">已经过</div>
+				<br/>
+				<div style="width:60px;height:27px;background:#fff; border:1px solid blue;float:left;margin-left: 10px; margin-top: 5px;">未经过</div>
+				<br/>
+				<div style="width:60px;height:27px;background:#FFFF00;float:left;margin-left: 10px; margin-top: 5px;">已回退</div>
+				<br/>
+				<div style="width:60px;height:27px;background:red;float:left;margin-left: 10px; color:#fff; margin-top: 5px;">终止环节</div>
+			</div>
+        </div>
+       	<div id="detail_02" title="波特图" class="mui-control-content" style="width: 100%; height: 100%; overflow: auto;">
+       		<div id="main_bot_body" style="width: 100%; height:100%; cursor: default; overflow:auto;"></div>
+        </div>
+ 	 </div>
+  </body>
+</html>

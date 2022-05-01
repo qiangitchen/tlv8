@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>任务中心</title>
+    <link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/default/easyui.css" />
+	<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/icon.css" />
+	<script type="text/javascript" src="../../../comon/js/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../comon/js/comon.main.js"></script>
+	<script type="text/javascript" src="../../../comon/js/grid.main.js"></script>
+	<script type="text/javascript" src="../../../comon/js/flow.main.js"></script>
+	<script type="text/javascript" src="../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="mainActivity.js"></script>
+  </head>
+  <body onload="initPage()" style="width:100%;height:100%; overflow: hidden;">
+  		<div class="easyui-layout" fit="true">
+			<div data-options="region:'center',border:false" style="text-align: center;">
+  				<div component="dataGrid" id="task_list" onselected="gridSelected" 
+  					ondbclick="griddbclick" style="width: 100%; height: 100%;">
+  				</div>
+  			</div>
+  		</div>
+  </body>
+</html>

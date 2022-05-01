@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>TLv8</title>
+		<link rel="stylesheet" type="text/css" href="../resources/jquery-easyui/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="../resources/jquery-easyui/themes/icon.css">
+		<link rel="stylesheet" type="text/css" href="../resources/jquery-easyui/themes/portal.css">
+		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<script type="text/javascript" src="../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../comon/js/jquery/jquery.cookie.js"></script>
+		<script type="text/javascript" src="../comon/js/jquery/jquery.timers.js"></script>
+		<script type="text/javascript" src="../comon/js/json2.js"></script>
+		<script type="text/javascript" src="../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../resources/jquery-easyui/jquery.portal.js"></script>
+		<script type="text/javascript" src="../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+  		<script type="text/javascript" src="system/js/jpolite.data.js"></script>
+		<script type="text/javascript" src="system/js/jpolite.core.js"></script>
+		<script type="text/javascript" src="system/js/md5.js"></script>
+		<script type="text/javascript" src="js/X.js"></script>
+		<style type="text/css">
+			#footer_status_info {color:#3673a8; float:left;padding-left:5px;}
+			#footer_status_online {color:#3673a8; float:right;padding-right: 5px;}
+		</style>
+	</head>
+	<body>
+		<div class="easyui-layout" data-options="fit:true">
+			<div data-options="region:'north',border:false,split:false" style="height:50px;overflow: hidden; padding: 0px;">
+				<div class="define-head">
+		            <div class="define-logo">
+		                <div id="LoginTopLine">TLv8平台</div>
+		            </div>
+		            <div class="define-right">
+		            	<span id="main_btn_del" title="关闭所有功能标签页">关闭功能 
+		            	<span class="sep"> | </span></span> 
+		            	<span id="main_btn_set" title="设置">设置 <span class="sep"> | </span></span> 
+		            	<span id="main_btn_ext" title="注销">退出</span>
+		            </div>
+		        </div>
+			</div>
+		    <div data-options="region:'west',title:'功能菜单',split:true,onResize:funviewresize" style="width: 208px;">
+                <div id="LeftMenu" style="width: 200px;">
+                </div>
+		    </div>
+		    <div data-options="region:'center',border:false" style="padding:0px;background:#eee;">
+	            <div id="mainTab" class="easyui-tabs" data-options="fit:true,onBeforeClose:$.jpolite.ontabclose,onSelect:$.jpolite.ontabselected">
+	                <div title="首页" data-options="closable:false,onResize:tabresize" style="overflow:hidden;background-color:#fff;">
+	                    <div class="client_owner" id="client"></div>
+	                </div>
+	            </div>
+		    </div>
+		    <div data-options="region:'south',border:false,split:false" style="height:25px;padding:0px;">
+			    <div class="panel-header panel-header-noborder" style="position: relative;">
+			    	<div class="panel-title" style="font-size: 11pt; font-weight: normal;">
+			    		<span id="footer_status_info"></span>
+			    		<span id="footer_status_online">在线人数:<span id="footer_status_online_count"></span>人
+						</span>
+			    	</div>
+			    </div>
+		    </div>
+		    <!-- 
+		    <div data-options="region:'east',title:'East',split:true" style="width:100px;"></div>
+		     -->
+		</div>
+		<div id='content_loading'><img src="images/index/loading3_.gif" alt="Loading..."/></div>
+		<div id="setdd" class="easyui-dialog" data-options="closed:true"></div>
+		<div id="tab_menu" class="easyui-menu" data-options="onClick:rightmenuSelected" style="width:150px;">
+	        <div id="tab_menu_tabrefresh" data-options="iconCls:'icon-reload'">刷新</div>
+	        <div class="menu-sep"></div>
+	        <div id="tab_menu_tabclose" data-options="iconCls:'icon-cancel'">关闭</div>
+	        <div id="tab_menu_tabcloseother">关闭其他</div>
+	        <div id="tab_menu_tabcloseleft">关闭左边</div>
+	        <div id="tab_menu_tabcloseright">关闭右边</div>
+	        <div class="menu-sep"></div>
+	        <div id="tab_menu_tabcloaseall" data-options="iconCls:'icon-clear'">关闭所有</div>
+	    </div>
+		<script type="text/javascript" src="config/portal.config.js"></script>
+		<script type="text/javascript" src="js/portal.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+	</body>
+</html>

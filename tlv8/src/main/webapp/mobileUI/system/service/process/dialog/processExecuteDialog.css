@@ -1,0 +1,17 @@
+.process-icon-delete {
+	background-position: -73px -1px;
+	position: relative;
+	left: 1px;
+	top: 1px;
+}
+
+.process-icon {
+	background-color: #fff;
+	background-color: rgba(255, 255, 255, .3);
+	background-image: url(image/icons-18-black.png);
+	background-repeat: no-repeat
+}
+
+.process-btn {
+	display: block;
+}

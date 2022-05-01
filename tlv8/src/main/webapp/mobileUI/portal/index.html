@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<title>TLv8-移动版</title>
+	<link rel="stylesheet" type="text/css" href="../system/css/mui.min.css" />
+	<link rel="stylesheet" type="text/css" href="../system/css/mui.icons-extra.css" />
+	<script type="text/javascript" charset="utf-8" src="../system/js/jquery.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../system/js/mui.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../system/js/jquery.confirm.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../system/js/jquery.corner.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../system/js/base.js"></script>
+	<script type="text/javascript" charset="utf-8" src="system/js/portal.js"></script>
+	<script type="text/javascript" charset="utf-8" src="system/js/index.js"></script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" onclick="tlv8.logout()">
+			<span class="mui-icon mui-icon-left-nav"></span>
+		</button>
+		<h1 class="mui-title">TLv8-移动版</h1>
+		<button class="mui-btm mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right" onclick="javascript:window.open('system/templet/setting.html','_self');">
+			<span class="mui-icon mui-icon-gear"></span>
+		</button>
+	</header>
+	<div class="mui-content">
+		<div id="tabbar-contenView" class="mui-control-content mui-active">
+		</div>
+		<div id="tabbar-with-chat" class="mui-control-content">
+		</div>
+		<div id="tabbar-conaddr" class="mui-control-content">
+		</div>
+	</div>
+	<nav class="mui-bar mui-bar-tab">
+		<a class="mui-tab-item mui-active" href="#tabbar-contenView">
+			<span class="mui-icon mui-icon-home"></span>
+			<span class="mui-tab-label">首页</span>
+		</a>
+		<a class="mui-tab-item" onclick="mui.openWindow({url:'../SA/task/taskView/waitActivity.html'});">
+			<span class="mui-icon mui-icon-compose"><span class="mui-badge" id="taskcount" style="display: none;"></span></span>
+			<span class="mui-tab-label">待办</span>
+		</a>
+		<a class="mui-tab-item" onclick="mui.openWindow({url:'../oa/addressBook/addressBookSystem/startActivity.html'});">
+			<span class="mui-icon mui-icon-contact"></span>
+			<span class="mui-tab-label">通讯录</span>
+		</a>
+	</nav>
+</body>
+</html>

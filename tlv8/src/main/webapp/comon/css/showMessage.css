@@ -1,0 +1,23 @@
+#msg_Text {
+	border-left: 1px #669999 solid;
+	border-right: 1px #669999 solid;
+	background-color: #669999;
+	margin: 0;
+	padding: 2px;
+	font-size: 16px;
+}
+
+.mborder {
+	height: 1px;
+	overflow: hidden;
+	border-left: 1px #669999 solid;
+	border-right: 1px #669999 solid;
+	background-color: #669999;
+	filter: alpha(opacity = 70);
+}
+
+.showmessage {
+	position: absolute;
+	left: expression(( document.body.offsetWidth-300)/2 );
+	top: expression(( document.body.offsetHeight-100)/2 );
+}

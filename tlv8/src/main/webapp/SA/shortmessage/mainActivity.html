@@ -1,0 +1,124 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>短信发送</title>
+	<link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/default/easyui.css" />
+	<link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/icon.css" />
+  	<link type="text/css" rel="stylesheet" href="../../comon/css/formsyle.css"></link>
+  	<script type="text/javascript" src="../../comon/js/jquery/jquery.min.js"></script>
+  	<script type="text/javascript" src="../../comon/js/comon.main.js"></script>
+  	<script type="text/javascript" src="../../comon/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+  	<script type="text/javascript" src="mainActivity.js"></script>
+  </head> 
+  <body style="overflow: hidden;" onload="initDocumentPage();">
+	<div class="easyui-layout" fit="true">
+		<div data-options="region:'north',split:false" style="height:30px;overflow: hidden;">
+			<table>
+				<tr>
+					<td  align="left" width="160px">
+						<div id="stander_bar" insertAction="dataInsert()"
+							saveAction="dataSave()" refreshAction="dataRefresh()"
+							deleteAction="dataDeleted()" style="margin-left: 1px;">
+						</div>
+					</td>
+					<td align="left">
+						<input type="button" id="sendBtn" value="发送" 
+							onclick="sendMessage()"
+							style="width: 60px; height: 22px;" disabled="disabled"/>
+					</td>
+			</table>
+			<script type="text/javascript">
+				init_toolbar();
+			</script>
+		</div>
+		<div data-options="region:'center'" style="padding:5px; text-align: center;">
+			<div style="width: 1000px; margin: auto;">
+				<form id="MAIN_DATA_FORM">
+					<div class="easyui-panel" title="发送给" style="margin-bottom: 5px; padding: 2px;">
+						<table style="width:100%; table-layout: fixed;">
+							<tr>
+								<td style="width:110px;height: 35px;">※发送到指定群组:</td>
+								<td width="30px;">
+									<a href="javascript:void(0);" class="toobar_item" onclick="selectSendGroup()">
+										<img src="../../comon/image/toolbar/standard_toolbar/default/add.png"/>
+									</a>
+								</td>
+								<td>
+									<input type="text" id="SRANGENAME" name="SRANGENAME"
+										class="forminput" readonly="readonly" style="width: 100%;" />
+									<input type="text" id="SRANGEID" name="SRANGEID"
+										class="forminput" readonly="readonly" style="display: none;" />
+								</td>
+							</tr>
+							<tr>
+								<td style="height: 35px;">※发送到指定人员:</td>
+								<td>
+									<a href="javascript:void(0);" class="toobar_item" onclick="selectSendPerson()">
+										<img src="../../comon/image/toolbar/standard_toolbar/default/add.png"/>
+									</a>
+								</td>
+								<td>
+									<input type="text" id="SPERSONIDS" name="SPERSONIDS"
+										class="forminput" readonly="readonly" style="display: none;" />
+									<input type="text" id="SPERSONNAMES" name="SPERSONNAMES"
+										class="forminput" readonly="readonly" style="width: 100%;" />
+								</td>
+							</tr>
+							<tr>
+								<td style="height: 35px;">※发送到指定号码:</td>
+								<td colspan="2">
+									<input type="text" id="SPHONES" name="SPHONES"
+										class="forminput" style="width: 100%;" />
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" style="color: red;">多个手机号用英文逗号","分隔</td>
+							</tr>
+						</table>
+					</div>
+					<div class="easyui-panel" title="短信内容" style="margin-bottom: 5px; padding: 2px;">
+						<textarea id="SMESSAGES" name="SMESSAGES"
+							class="forminput" style="width: 100%; height: 170px;"></textarea>
+					</div>
+					<div class="easyui-panel" title="短信类型" style="margin-bottom: 5px; padding: 2px;">
+						<div id='STYPE' style="padding: 5px;"></div>
+						<script type="text/javascript">
+					         var radioDemo = document.getElementById("STYPE");
+					         var item = new Map();
+					         item.put("0","短短信&nbsp;&nbsp;");
+					         item.put("1","长短信");
+					         tlv8.Radio(radioDemo,item);
+					         radioDemo.Radio.setValue("1"); 
+						</script>
+					</div>
+					<div style="display: none;">
+						<table>
+							<tr>
+								<td>发送类型</td>
+								<td><input type="text" id="SSENDTYPE" name="SSENDTYPE" value="手动发送"
+									class="forminput" readonly="readonly" style="width: 100%;" /></td>
+								<td>创建人ID</td>
+								<td><input type="text" id="SCREATORID" name="SCREATORID"
+									class="forminput" readonly="readonly" style="width: 100%;" /></td>
+								<td>创建人名称</td>
+								<td><input type="text" id="SCREATORNAME" name="SCREATORNAME"
+									class="forminput" readonly="readonly" style="width: 100%;" /></td>
+								<td>创建时间</td>
+								<td>
+									<input type="text" id="SCREATEDATE" name="SCREATEDATE"
+									class="forminput" readonly="readonly" style="width: 100%;" />
+									<input type="text" id="SSTATE" name="SSTATE" value="0"
+									class="forminput" readonly="readonly" style="width: 100%;" />
+								</td>
+							</tr>
+						</table>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+  </body>
+</html>

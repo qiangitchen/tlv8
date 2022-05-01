@@ -1,0 +1,173 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<title>新闻发布</title>
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/default/easyui.css" />
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/icon.css" />
+		<link type="text/css" rel="stylesheet" href="../../../comon/kindeditor/themes/default/default.css" />
+		<link type="text/css" rel="stylesheet" href="../../../comon/kindeditor/plugins/code/prettify.css" />
+		<link rel="STYLESHEET" type="text/css" href="../../../comon/css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../comon/css/formDetail/formDetail.css"/>
+		<link rel="STYLESHEET" type="text/css" href="css/news.css" />
+		<script type="text/javascript" src="../../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="../../../comon/My97DatePicker/WdatePicker.js"></script> 
+		<script type="text/javascript" src="../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script charset="utf-8" src="../../../comon/kindeditor/kindeditor-all-min.js"></script>
+	    <script charset="utf-8" src="../../../comon/kindeditor/lang/zh-CN.js"></script>
+	    <script charset="utf-8" src="../../../comon/kindeditor/plugins/code/prettify.js"></script>
+		<script type="text/javascript" src="newcolumn.js"></script>
+	</head>
+	<body  onLoad="news_load()" style="width: 100%; height: 100%;">
+        <div align="center" class="easyui-layout" data-options="fit:true">
+        	<div data-options="region:'north',border:false" style="height: 40px; overflow: hidden; padding: 5px;">
+        		<table style="table-layout: fixed; margin: auto;">
+					<tr>
+						<td align="center" width="90px">
+							<a class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="save_news()">保存</a>
+						</td>
+						<td width="90px">
+							<a class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="viewSurvey()">预览</a>
+						</td>
+						<td>
+							<a class="easyui-linkbutton" data-options="iconCls:'icon-tip'" onclick="publishServey()">发布</a>
+						</td>
+					</tr>
+				</table>
+        	</div>
+        	<div data-options="region:'center'" style="text-align: center; padding: 5px;">
+        		<div style="width: 870px; margin: auto;">
+					<form id="news_release" afterrefresh="afterDatarefresh">
+						<div class="easyui-panel" title="栏目信息" style="margin-bottom: 5px;">
+								<TABLE border="0" cellSpacing="0" align="center" style="width: 100%; table-layout: fixed;">
+										<TR id="page1_block2_row1">
+											<TD width="100px" class="DetailSpanTD" noWrap>
+												<SPAN>发布栏目</SPAN>
+											</TD>
+											<TD Width="30%" align="left">
+												<div id="FCOLUMNNAME" style="width:100%"></div> 
+											</TD>
+											<TD width="150px" height="" class="DetailSpanTD" noWrap align="center">
+											<font color="red">缩略图为：400 x 300</font>
+											</TD>
+											<TD Width="40%" noWrap align="center">
+												<input type="button" class="btn btn-default btn-xs" value="添加栏目"  title="添加栏目" onClick="getcolumnDailog()"/>
+												<input type="button" class="btn btn-default btn-xs" onclick="minimap()" value="添加缩略图"/>
+											</TD> 
+										</TR>
+								</TABLE>
+							</div>
+							<div class="easyui-panel" title="基本信息" style="margin-bottom: 5px;">
+								<TABLE  border="0" cellSpacing="0" align="center" style="width: 100%; table-layout: fixed;">
+										<TR id="page1_block1_row1">
+											<TD width="100px" class="DetailSpanTD" noWrap>
+												<font color="red"><SPAN>标题</SPAN></font><br></TD>
+											<TD Width="40%">
+												<SPAN>
+												<input type="text" name="FNEWSTITLE" id="FNEWSTITLE"
+													class="DetailInput ReadOnly" 
+													onchange="if(this.value!=''){this.className='DetailInput'}else{this.className='DetailInput ReadOnly'}"/>
+												</SPAN>
+											</TD>
+											<TD width="100px" noWrap class="DetailSpanTD">
+												<SPAN>状态</SPAN>
+											</TD>
+											<TD Width="40%">
+												<input type="text" name="FSTATE" id="FSTATE"
+														 readonly="readonly" class="DetailInput"/>
+											</TD>
+										</TR>
+										<TR id="page1_block1_row2">
+											<TD width="150px" noWrap class="DetailSpanTD">
+												<font color="blue"><SPAN>发布部门</SPAN> </font>
+											</TD>
+											<TD Width="40%">
+												<input type="text" name="FRELEASEDEPARTMENT"
+														id="FRELEASEDEPARTMENT"  class="DetailInput"/>
+											</TD>
+											<TD width="150px" noWrap class="DetailSpanTD">
+												<SPAN>发布人</SPAN>
+											</TD>
+											<TD Width="40%">
+												<input type="text" name="FPEOPLE" id="FPEOPLE"
+														 readonly="readonly" class="DetailInput"/>
+											</TD>
+										</TR>
+										<TR id="page1_block1_row3">
+											<TD width="150px" noWrap class="DetailSpanTD">
+												<SPAN>发布时间</SPAN>
+											</TD>
+											<TD Width="40%">
+												<input type="text" id="FTIME" 
+														readonly="readonly" class="DetailInput "/>
+											</TD>
+											<TD width="150px" noWrap class="DetailSpanTD">
+												<SPAN>发布范围</SPAN>
+											</TD>
+											<TD Width="40%">
+												<INPUT  id="FOPENSCOPE" class="DetailSelectInput"  onclick="SelectDept()" readonly="readonly" style="width:90%;"/>
+												<INPUT  id="FOPENSCOPEID" class="DetailSelectInput"   style="display: none;"/>
+											</TD>
+										</TR>
+								</TABLE>
+							</div>
+							<div class="easyui-panel" title="发布设置" style="margin-bottom: 5px;">
+								<TABLE border="0" cellSpacing="0" align="center" style="width: 100%; table-layout: fixed;">
+									<TR id="page1_block3_row1">
+										<TD width="100px" class="DetailSpanTD" noWrap>
+											<SPAN>是否置顶</SPAN><br></TD>
+										<TD Width="40%">
+											<SPAN><select id="FSETTOPWHETHER" name="FSETTOPWHETHER"
+													onchange="gettop()" style="width: 90%">
+													<option value="1">
+														是
+													</option>
+													<option value="0">
+														否
+													</option>
+										  </select> </SPAN>
+										</TD>
+										<TD width="100px" class="DetailSpanTD" noWrap>
+											<SPAN>置顶时间</SPAN><br></TD>
+										<TD Width="40%">
+											<input type="text" name="FSETTOPTIME" id="FSETTOPTIME"
+													style="width: 90%" class="Wdate"
+													onFocus="WdatePicker({format:'yyyy-MM-dd'})">
+										</TD>
+									</TR>
+									<TR id="page1_block3_row2">
+										<TD width="150px" class="DetailSpanTD" noWrap>
+											<SPAN>置顶结束时间</SPAN><br></TD>
+										<TD Width="40%">
+											<input type="text" name="FSETENDTIME" id="FSETENDTIME"
+													style="width: 90%" class="Wdate"
+													onFocus="WdatePicker({format:'yyyy-MM-dd hh-mm-ss'})">
+										</TD>
+										<TD class="TableData LabelBg" width=150 noWrap></TD>
+										<TD class="TableData Width40" noWrap></TD>
+									</TR>
+								</TABLE>
+							</div>
+							<div class="easyui-panel" title="新闻内容" style="margin-bottom: 5px; padding: 5px;">
+								<TABLE border="0" cellSpacing="0" align="center" style="width: 100%; table-layout: fixed;">
+									<TR id="page1_block1_row6">
+										<TD width="100px" height="70px" noWrap class="DetailSpanTD">
+											<SPAN>详细内容</SPAN>
+										</TD>
+										<TD Width="90%" colSpan="3" height="70px">
+											<textarea name="FRELEASECONNEXT" id="FRELEASECONNEXT"
+												style="height: 200px; width: 100%"></textarea>
+										</TD>
+									</TR>
+								</TABLE>
+							</div>
+							<div class="easyui-panel" title="附件 " style="margin-bottom: 5px; padding: 5px; min-height: 90px;">
+	 							<div id="fileCompDiv"></div> 
+	 						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

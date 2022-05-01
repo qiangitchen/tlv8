@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<title>文件列表</title>
+		<link type="text/css" rel="stylesheet" href="../../resources/bootstrap/css/bootstrap.min.css"/> 
+		<link type="text/css" rel="stylesheet" href="../../resources/layui/css/layui.css" media="all"/>
+		<link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/default/easyui.css" />
+		<link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/icon.css" />
+		<link rel="stylesheet" type="text/css" href="../../comon/css/formDetail/formDetail.css" />
+		<link rel="stylesheet" type="text/css" href="../../comon/css/grid.main.css" />
+		<script type="text/javascript" src="../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="../../comon/js/grid.main.js"></script>
+		<script type="text/javascript" src="../../comon/doc_ocx/docUtil.js"></script>
+		<script type="text/javascript" src="../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="../../resources/bootstrap/js/bootstrap.min.js"></script> 
+		<script type="text/javascript" src="../../resources/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="PersonaList.js"></script>
+	</head>
+
+	<body style="overflow: hidden;">
+		<div class="easyui-layout" fit="true">
+			<div data-options="region:'center'" border="false">
+				<div style="height: 35px; overflow: hidden; position: absolute; top:2px;">
+					<table>
+						<tr>
+							<td valign="top">
+								<a href="javascript:void(0);" onclick="downloadFile()"
+									style="border: 1px #FFFFFF solid; font-size: 13px; line-height: 25px;">
+									<img src="image/goDown.gif" title="下载"
+										style="height: 15px; margin-top: 5px; vertical-align: middle;" />【下载】</a>
+							</td>
+							<td>
+								<span style="border: 1px #FFFFFF solid; height: 15px; margin-right: 10px;font-size:10pt;">文件名</span>
+							</td>
+							<td>
+								<input id="looks" type="text"
+									style="padding: 1px; border-top-width: 1px; border-left-width: 1px; border-right-width: 1px solid #ccc; border-bottom-width: 1px solid #ccc;" />
+							</td>
+							<td>
+								<a class="easyui-linkbutton" title="查询" onClick="lookselect()">查询</a> 
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div id="maingridview" component="dataGrid" style="width: 100%; height: 100%;"></div>
+			</div>
+		</div>
+	</body>
+</html>

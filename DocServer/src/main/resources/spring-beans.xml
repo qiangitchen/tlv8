@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd  
+                        http://www.springframework.org/schema/context  
+                        http://www.springframework.org/schema/context/spring-context-3.1.xsd  
+                        http://www.springframework.org/schema/mvc  
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+	<bean id="connectionDao"
+		class="com.tlv8.doc.svr.generator.dao.impl.ConnectionDaoImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	
+	<bean id="springBeanFactoryUtils" 
+    	class="com.tlv8.doc.svr.generator.utils.SpringBeanFactoryUtils">
+    </bean>
+
+	<!-- 文档信息操作 -->
+	<bean id="documentDao"
+		class="com.tlv8.doc.svr.generator.dao.impl.DocDocumentDaoImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<!-- 文档信息操作相关服务 -->
+	<bean id="docDocumentService"
+		class="com.tlv8.doc.svr.generator.service.DocDocumentService">
+		<property name="connectiondao" ref="connectionDao"></property>
+		<property name="documentdao" ref="documentDao"></property>
+	</bean>
+
+	<!-- 文件路径信息操作 -->
+	<bean id="docpathDao"
+		class="com.tlv8.doc.svr.generator.dao.impl.DocDocPathDaoImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<!-- 文件路径信息操作相关服务 -->
+	<bean id="docDocPathService"
+		class="com.tlv8.doc.svr.generator.service.DocDocPathService">
+		<property name="docdocpathdao" ref="docpathDao"></property>
+	</bean>
+
+	<!-- 用户信息操作 -->
+	<bean id="docuserDao" class="com.tlv8.doc.svr.generator.dao.impl.DocUserDaoImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<!-- 用户信息操作相关服务 -->
+	<bean id="docUserService" class="com.tlv8.doc.svr.generator.service.DocUserService">
+		<property name="docuserdao" ref="docuserDao"></property>
+	</bean>
+
+	<!-- 管理信息操作 -->
+	<bean id="docadminDao"
+		class="com.tlv8.doc.svr.generator.dao.impl.DocAdminDaoImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<!-- 管理信息操作服务 -->
+	<bean id="docAdminService" class="com.tlv8.doc.svr.generator.service.DocAdminService">
+		<property name="docadmindao" ref="docadminDao"></property>
+	</bean>
+
+	<!-- 权限信息操作 -->
+	<bean id="docauthorDao"
+		class="com.tlv8.doc.svr.generator.dao.impl.DocAuthorDaoImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<!-- 权限操作相关服务 -->
+	<bean id="docAuthorService"
+		class="com.tlv8.doc.svr.generator.service.DocAuthorService">
+		<property name="docauthordao" ref="docauthorDao"></property>
+	</bean>
+
+	<!--日志信息操作 -->
+	<bean id="doclogDao" class="com.tlv8.doc.svr.generator.dao.impl.DocLogDaoImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<!-- 日志操作相关服务 -->
+	<bean id="docLogService" class="com.tlv8.doc.svr.generator.service.DocLogService">
+		<property name="connectiondao" ref="connectionDao"></property>
+		<property name="doclogdao" ref="doclogDao"></property>
+	</bean>
+
+	<!-- 其他相关服务 -->
+	<bean id="docService" class="com.tlv8.doc.svr.generator.service.DocService">
+		<property name="connectiondao" ref="connectionDao"></property>
+	</bean>
+
+</beans>

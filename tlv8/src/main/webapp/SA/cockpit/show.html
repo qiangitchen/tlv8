@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>监控舱</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../resources/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../resources/Cockpit/css/cockpitui.css" media="all">
+  <script type="text/javascript" src="../../comon/js/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="../../resources/echarts/js/echarts.min.js"></script>
+  <script type="text/javascript" src="../../resources/echarts/js/echarts-gl.min.js"></script>
+  <script type="text/javascript" src="../../resources/echarts/js/ecStat.min.js"></script>
+  <script type="text/javascript" src="../../resources/echarts/js/dataTool.min.js"></script>
+  <script type="text/javascript" src="show.js"></script>
+</head>
+<body class="layui-layout-body">
+	<div id="top" style="width: 100%; height: 15%;">
+		<div class="top-title-line">
+			<div class="top-left"></div>
+			<div class="top-center">服务器实时监控舱</div>
+			<div class="top-right"></div>
+		</div>
+		<div id="screenbar" style="width:100%; height: 18px; position: absolute; right: 0px; top: 0px; z-index:2; padding: 2px; background: #ddd; opacity:0.6;">
+		 <a href="javascript:;" onclick="togofullScreen(this)" style="float: right; margin-right: 5px;">
+           <i class="layui-icon layui-icon-screen-full"></i>
+         </a>
+		</div>
+	</div>
+	<div id="center" style="width: 100%; height: 85%; position: relative;">
+		<div style="width: 30%; height: 45%; position: absolute; left: 8px; top: 1px;">
+			<div class="quick-border-layout-title">
+				<table>
+					<tr>
+						<td class="fh" style="width: 28px;"></td>
+						<td class="fh p15">服务器存储信息</td>
+					</tr>
+				</table>
+			</div>
+			<div class="quick-border-layout">
+				<div id="filesystemchart" style="height:100%; border:0; overflow: hidden;"></div>
+			</div>
+		</div>
+		<div style="width: 30%; height: 45%; position: absolute; right: 10px; top: 1px;">
+			<div class="quick-border-layout-title">
+				<table>
+					<tr>
+						<td class="fh" style="width: 28px;"></td>
+						<td class="fh p15">CPU使用记录</td>
+					</tr>
+				</table>
+			</div>
+			<div class="quick-border-layout">
+				<div id="CPUlineInfochart" style="height:100%; border:0; overflow: hidden;"></div>
+			</div>
+		</div>
+		<div style="height: 80%; position: absolute; left: 31%; right: 32%; top: 10%;">
+			<div class="quick-border-layout-square" style="width: 100%; height: 100%; padding: 3px;">
+				<div id="CPUuxpInfochart" style="height:100%; border:0; overflow: hidden;"></div>
+			</div>
+		</div>
+		<div style="width: 30%; height: 45%; position: absolute; left: 8px; top: 50%;">
+			<div class="quick-border-layout-title">
+				<table>
+					<tr>
+						<td class="fh" style="width: 28px;"></td>
+						<td class="fh p15">服务器网络流量</td>
+					</tr>
+				</table>
+			</div>
+			<div class="quick-border-layout">
+				<div id="netInfochart" style="height:100%; border:0; overflow: hidden;"></div>
+			</div>
+		</div>
+		<div style="width: 30%; height: 45%; position: absolute; right: 10px; top: 50%;">
+			<div class="quick-border-layout-title">
+				<table>
+					<tr>
+						<td class="fh" style="width: 28px;"></td>
+						<td class="fh p15">内存使用记录</td>
+					</tr>
+				</table>
+			</div>
+			<div class="quick-border-layout">
+				<div id="MemlineInfochart" style="height:100%; border:0; overflow: hidden;"></div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="charts.js"></script>
+</html>

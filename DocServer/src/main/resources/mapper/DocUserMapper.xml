@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tlv8.doc.svr.generator.dao.IDocUserDao" >
+  <resultMap id="resultDocUser" type="com.tlv8.doc.svr.generator.beans.DocUser" >
+  </resultMap>
+  <select id="getByPrimaryKey" resultMap="resultDocUser" parameterType="java.lang.String" >
+    select * from Doc_User where fID = #{fID,jdbcType=VARCHAR}
+  </select>
+  <select id="getByLoginID" resultMap="resultDocUser" parameterType="java.lang.String" >
+    select * from Doc_User where fLoginID = #{fLoginID,jdbcType=VARCHAR}
+  </select>
+  <select id="getList" resultMap="resultDocUser">
+    select * from Doc_User
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Doc_User where fID = #{fID,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByLoginID" parameterType="java.lang.String" >
+    delete from Doc_User where fLoginID = #{fLoginID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tlv8.doc.svr.generator.beans.DocUser" >
+    insert into Doc_User (fID, fLoginID, fUserName, fEnable, version) 
+    values (#{fID,jdbcType=VARCHAR}, 
+      #{fLoginID,jdbcType=VARCHAR}, 
+      #{fUserName,jdbcType=VARCHAR}, 
+      #{fEnable,jdbcType=INTEGER}, 
+      #{version,jdbcType=INTEGER}) 
+  </insert>
+  <update id="update" parameterType="com.tlv8.doc.svr.generator.beans.DocUser" >
+    update Doc_User 
+    set fLoginID = #{fLoginID,jdbcType=VARCHAR},
+      fUserName = #{fUserName,jdbcType=VARCHAR},
+      fEnable = #{fEnable,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER} 
+    where fID = #{fID,jdbcType=VARCHAR}
+  </update>
+</mapper>

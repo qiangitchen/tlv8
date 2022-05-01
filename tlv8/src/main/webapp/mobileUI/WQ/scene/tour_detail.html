@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>巡视内容</title>
+		<link rel="stylesheet" type="text/css" href="../../system/css/mui.min.css" />
+		<script type="text/javascript" charset="utf-8" src="../../system/js/jquery.js"></script>
+		<script src="../../system/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8" src="../../system/js/base.js"></script>
+		<script type="text/javascript" charset="utf-8" src="tour_detail.js"></script>
+		<style type="text/css">
+			a {
+				font-size: 14px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" onclick="backhistory()">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<h1 class="mui-title" id="readtitle">巡视内容</h1>
+		</header>
+		<div id="contenView" class="mui-content">
+			<form id="tour_form">
+				<table width="100%">
+					<tr>
+						<td width="80px">
+							<label for="FCREATORNAME">巡视人:</label>
+						</td>
+						<td>
+							<input type="text" name="FCREATORNAME" id="FCREATORNAME" readonly="readonly" disabled="disabled" />
+						</td>
+					</tr>
+					<tr>
+						<td width="80px">
+							<label for="FTITLE">标题:</label>
+						</td>
+						<td>
+							<input name="FTITLE" id="FTITLE" type="text" readonly="readonly" disabled="disabled" />
+						</td>
+					</tr>
+					<tr>
+						<td width="80px">
+							<label for="FADDRESS">地址:</label>
+						</td>
+						<td>
+							<input name="FADDRESS" id="FADDRESS" type="text" readonly="readonly" disabled="disabled" />
+						</td>
+					</tr>
+					<tr>
+						<td width="80px">
+							<label for="FCREATEDATE">日期:</label>
+						</td>
+						<td>
+							<input name="FCREATEDATE" type="text" id="FCREATEDATE" readonly="readonly" disabled="disabled" />
+						</td>
+					</tr>
+
+				</table>
+				<ul class="mui-table-view">
+				
+					<li>
+						<a href="javascript:dis1()" data-transition="slidefade">安全</a>
+					</li>
+					<div id="contenView2" class="mui-content">
+						<ul class="mui-table-view" id="list_safe">
+						</ul>
+					</div>
+				
+					<li>
+						<a href="javascript:dis2()" data-transition="slidefade">质量</a>
+					</li>
+					<div id="contenView3" class="mui-content">
+						<ul class="mui-table-view" id="list_quality">
+						</ul>
+					</div>
+					<li>
+						<a href="javascript:dis3()" data-transition="slidefade">卫生</a>
+					</li>
+					<div id="contenView1" class="mui-content">
+						<ul class="mui-table-view" id="list_sanitation">
+						</ul>
+					</div>
+
+				</ul>
+
+			</form>
+		</div>
+	</body>
+
+</html>

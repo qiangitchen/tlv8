@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>  
+	<head> 
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="../../../system/css/mui.min.css"/>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/jquery.js"></script>
+    	<script src="../../../system/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/base.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../oa/common/js/oaUtils.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="publicnoticeadd.js"></script>
+    	<link rel="stylesheet" type="text/css" href="../../common/css/oaUitls.css"/>
+    </head>
+    <body>
+    	    <header class="mui-bar mui-bar-nav">
+		    <button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<button id="task_execute" class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right" onclick="javascript:openProcessSelectDialog(true);">
+				<span class="mui-icon mui-icon-compose"></span>
+				处理
+			</button>
+		    <h1 class="mui-title" id="title_val">通知发布:总经理审核</h1>
+	     </header>
+		<div id="contenView" class="mui-content">
+		  <form id="DATA_FORM" afterRefresh="afRefresh">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-divider"><label
+						style="font-size: 17px;">详细内容</label></li>
+					<li>
+						<table>
+							<tr>
+								<td width="80px"><label for="FTITLE"
+									>标题:</label></td>
+								<td><label id="FTITLE" class="ui-lable-info"></label></td>
+							</tr>
+						</table>
+					</li>
+					<li>
+						<table>
+							<tr>
+								<td width="80px"><label for="FCREATENAME"
+									>创建人:</label></td>
+								<td><label id="FCREATENAME" class="ui-lable-info"></label></td>
+							</tr>
+						</table>
+					</li>
+					<li>
+						<table>
+							<tr>
+								<td width="80px"><label for="FCREATEDATETIME"
+									>创建时间:</label></td>
+								<td><label id="FCREATEDATETIME" class="ui-lable-info"></label></td>
+							</tr>
+						</table>
+					</li>
+					<li class="mui-table-view-divider"><label
+						style="font-size: 17px;">通知内容</label></li>
+					<li>
+						<div style="width: 100%; text-align: left;" class="_content"
+							style="padding-top:5px;color:#6D6D6D;"></div>
+				</ul>
+				<div style="display: none;">
+					<textarea name="FCONTENT" id="FCONTENT"
+						style="width: 100%; height: 310px;"></textarea>
+				</div>
+			</form>
+  		<div id="opinion_list"/>
+	</div>
+</body>
+</html>

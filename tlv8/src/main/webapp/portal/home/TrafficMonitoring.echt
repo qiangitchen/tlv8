@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <data>
+  </data>
+  <chart type="Bar" modle="barycategory" theme="light">
+    {
+	    title: {
+	    	textStyle: {
+	        	fontWeight: 'normal',
+		        color: '#666'
+		    },
+	    	x: 'center',
+	        text: '服务器网络信息',
+	        subtext: '收发数据包'
+    	},
+    	tooltip: {
+	        trigger: 'axis',
+	        axisPointer: {
+	            type: 'shadow'
+	        }
+	    },
+	    grid: {
+	        left: '3%',
+	        right: '4%',
+	        bottom: '3%',
+	        containLabel: true
+	    },
+	    xAxis: {
+	        type: 'value',
+	        boundaryGap: [0, 0.01]
+	    },
+	    yAxis: {
+	        type: 'category',
+	        data: ['接收','发送']
+	    },
+	    series: [
+	        {
+	            name: '总字包数',
+	            type: 'bar',
+	            data: [0, 0]
+	        }
+	    ]
+	}
+  </chart>
+  <script>
+  	function loadNetstateInfo(){
+  		$.get('/tlv8/monitor/NetInterfaceStat', function (data) {
+  			 if(typeof data.data == "string"){
+  			 	data = window.eval("("+data.data+")");
+  			 }
+  			 myChart.setOption({
+		        series: [{
+		            data: [data.rxPackets,data.txPackets]
+		        }]
+		    });
+		    delete data;
+		    setTimeout(loadNetstateInfo, 60 * 1000);
+  		}, "json");
+  	}
+  	loadNetstateInfo();
+  	$(window).resize(function() {
+  		window.location.reload();
+  	});
+  </script>
+</root>

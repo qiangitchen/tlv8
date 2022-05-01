@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="../system/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../system/css/jquery.confirm.css" />
+		<link rel="stylesheet" type="text/css" href="system/css/index.css" />
+		<script type="text/javascript" charset="utf-8" src="../system/js/jquery.js"></script>
+		<script src="../system/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8" src="../system/js/jquery.confirm.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../system/js/jquery.corner.js"></script>
+		<script type="text/javascript" charset="utf-8" src="instructionsManager.js"></script>
+		<style type="text/css">
+			.ui-page {
+				background: #fff;
+				/*background: -webkit-gradient(linear, left top, left bottom, from(#409fde), to(#afcde4));*/
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<a class="mui-icon mui-icon-bars mui-pull-right mui-plus-visible"></a>
+			<h1 class="mui-title" id="title_val">批示件管理</h1>
+		</header>
+		<nav class="mui-bar mui-bar-footer">
+			<h1 class="mui-title">TLv8</h1>
+		</nav>
+		<div class="mui-content" id="fileSearchView">
+			<div id="contenView">
+				<ul class="mui-table-view mui-grid-view mui-grid-9">
+					<li class="mui-table-view-cell mui-media mui-col-xs-6 mui-col-sm-6">
+						<div class='countTixview_un' id="empty_backlog_Instructions"></div>
+						<a href='../SA/task/taskView/waitInstructions.html' id='dbpsjlist'>
+							<img src='system/images/wait_task.png'>
+							<p class="mui-media-body">待办批示件</p>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6 mui-col-sm-6">
+						<div class='countTixview_un' id='empty_Instructions_demand'></div>
+						<a href='../SA/task/taskView/instructionsSearch.html'>
+							<img src='system/images/fileSearch_1.jpg'>
+							<p class="mui-media-body">批示件查询</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(".MenuItem").corner();
+	</script>
+
+</html>

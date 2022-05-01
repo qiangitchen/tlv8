@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+ <head> 
+  <meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"> 
+  <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"> 
+  <title>手机版本表单</title> 
+  <link rel="stylesheet" type="text/css" href="../../../../mobileUI/system/css/mui.min.css"> 
+  <script type="text/javascript" charset="utf-8" src="../../../../mobileUI/system/js/jquery.js"></script> 
+  <script type="text/javascript" charset="utf-8" src="../../../../mobileUI/system/js/mui.min.js"></script> 
+  <script type="text/javascript" charset="utf-8" src="../../../../mobileUI/system/js/base.js"></script> 
+  <script type="text/javascript" charset="utf-8" src="../../../../mobileUI/system/js/dialog.js"></script> 
+  <script type="text/javascript" charset="utf-8" src="groupdeatail.js"></script> 
+ </head> 
+ <body> 
+  <header class="mui-bar mui-bar-nav"> 
+   <button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left"> <span class="mui-icon mui-icon-left-nav"></span> 返回 </button> 
+   <button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right" onclick="doDataSaveaAtion()"> <span class="mui-icon mui-icon-checkmarkempty"></span> 保存 </button> 
+   <h1 class="mui-title" id="title_val">群组管理</h1> 
+  </header> 
+  <div class="mui-content"> 
+   <form class="mui-input-group" id="MAIN_DATA_FORM" afterRefresh="afRefresh" beforeSave="maindatasvBefore"> 
+    <div class="mui-input-row" data-filtered="filtered"> 
+     <label data-filtered="filtered">群组名称</label> 
+     <input type="text" placeholder="请输入群组名称" data-filtered="filtered" id="FGROUPNAME" name="FGROUPNAME" class="forminput"> 
+    </div> 
+    <div style="display: none;"> 
+     <div class="mui-input-row" data-filtered="filtered"> 
+      <label data-filtered="filtered">FCREATORID</label> 
+      <input type="text" placeholder="" data-filtered="filtered" id="FCREATORID" name="FCREATORID" class="forminput" readonly> 
+     </div> 
+     <div class="mui-input-row" data-filtered="filtered"> 
+      <label data-filtered="filtered">FCREATOR</label> 
+      <input type="text" placeholder="" data-filtered="filtered" id="FCREATOR" name="FCREATOR" class="forminput" readonly> 
+     </div> 
+     <div class="mui-input-row" data-filtered="filtered"> 
+      <label data-filtered="filtered">FCREATEDEPTID</label> 
+      <input type="text" placeholder="" data-filtered="filtered" id="FCREATEDEPTID" name="FCREATEDEPTID" class="forminput" readonly> 
+     </div> 
+     <div class="mui-input-row" data-filtered="filtered"> 
+      <label data-filtered="filtered">FCREATEDEPT</label> 
+      <input type="text" placeholder="" data-filtered="filtered" id="FCREATEDEPT" name="FCREATEDEPT" class="forminput" readonly> 
+     </div> 
+     <div class="mui-input-row" data-filtered="filtered"> 
+      <label data-filtered="filtered">FCREATEDATE</label> 
+      <input type="text" placeholder="" data-filtered="filtered" id="FCREATEDATE" name="FCREATEDATE" class="forminput" readonly> 
+     </div> 
+    </div> 
+   </form> 
+   <div class="mui-card"> 
+    <div class="mui-card-header">
+      成员 
+     <button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right" onclick="addGroupPerson()"> <span class="mui-icon mui-icon-plus"></span> 添加 </button> 
+    </div> 
+    <div class="mui-card-content" style="min-height: 400px; padding: 10px;" id="groupPersons"></div> 
+   </div> 
+  </div> 
+  <div style="display: none;"> 
+   <form id="SUB_DATA_FORM"></form> 
+  </div>  
+ </body>
+</html>

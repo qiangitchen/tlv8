@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>任务交办</title>
+		<link rel="stylesheet" type="text/css" href="../../system/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../system/css/jqm-datebox.min.css" />
+		<script type="text/javascript" charset="utf-8" src="../../system/js/jquery.js"></script>
+		<script src="../../system/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8" src="../../system/js/jqm-datebox.core.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../system/js/jqm-datebox.mode.calbox.min.js"></script>
+		<!--日历 类型 -->
+		<script type="text/javascript" charset="utf-8" src="../../system/js/jqm-datebox.mode.flipbox.min.js"></script>
+		<!--滚动 类型    timeflipbox hh:ss-->
+		<script type="text/javascript" charset="utf-8" src="../../system/js/jquery.mobile.datebox.i18n.zh-CN.utf8.js"></script>
+		<!--日期 中文 -->
+		<script type="text/javascript" charset="utf-8" src="../../system/js/base.js"></script>
+
+		<script type="text/javascript" charset="utf-8" src="task.js"></script>
+		<style type="text/css">
+			a {
+				font-size: 14px;
+			}
+		</style>
+	</head>
+
+	<body onload="initPage()">
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" onclick="backhistory()">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<button class="mui-btn mui-but-blue mui-btn-link mui-btn-nav mui-pull-right">
+				<a href="#popupMenu" id="submitItem"  onclick="saveData()"><span class="mui-icon mui-icon-redo"></span>
+				提交</a>
+			</button>
+			<h1 class="mui-title" id="readtitle">任务交办</h1>
+		</header>
+		<div id="contenView" class="mui-content">
+			<div>
+				<div id="flowToolbar" onStartCommit="start1"></div>
+			</div>
+
+			<form id="leave_form">
+				<table width="100%">
+					<tr>
+						<td width="80px">
+							<label for="FTITLE">标题:</label>
+						</td>
+						<td>
+							<input name="FTITLE" id="FTITLE" type="text" />
+						</td>
+					</tr>
+					<tr>
+						<td width="80px">
+							<label for="FPRECEDENCE">优先级别:</label>
+						</td>
+						<td>
+							<select name="FPRECEDENCE" id="FPRECEDENCE">
+								<option>高</option>
+								<option>中</option>
+								<option>低</option>
+								</select>
+						</td>
+					</tr>
+					<tr>
+						<td width="80px">
+							<label for="FDEADLINEDATE">期限日期:</label>
+						</td>
+						<td>
+							<input name="FDEADLINEDATE" format="yyyy-MM-dd" id="FDEADLINEDATE" type="text" data-role="datebox" data-options='{"mode": "calbox"}' />
+						</td>
+					</tr>
+					<tr>
+						<td width="80px">
+							<label for="FDEADLINETIME">期限时间:</label>
+						</td>
+						<td>
+							<input name="FDEADLINETIME" id="FDEADLINETIME" type="text" data-role="datebox" data-options='{"mode": "timeflipbox"}' />
+						</td>
+					</tr>
+					<!-- <tr>
+				     <td width="80px">
+			         	<label for="FTRANSACTIONPSNID">办理人:</label>
+			         </td>
+			         <td>
+			          <input name="FTRANSACTIONPSNID" id="FTRANSACTIONPSNID" type="text" />
+			         </td>
+			      </tr> -->
+					<tr>
+						<td width="80px">
+							<label for="FTASKCONTENT">任务内容:</label>
+						</td>
+						<td>
+							<textarea name="FTASKCONTENT" id="FTASKCONTENT" style="height:100px;"></textarea>
+						</td>
+					</tr>
+				</table>
+				<div style="display:none;">
+					<input type="text" name="FCREATORID" id="FCREATORID" value="" readonly="readonly" />
+					<input type="text" name="FCREATORDEPTID" id="FCREATORDEPTID" value="" readonly="readonly" />
+					<input type="text" name="FCREATORDEPT" id="FCREATORDEPT" value="" readonly="readonly" />
+					<input type="text" name="FCREATEDATE" id="FCREATEDATE" value="" readonly="readonly" />
+					<input type="text" name="FCREATORNAME" id="FCREATORNAME" value="" readonly="readonly" />
+				</div>
+			</form>
+		</div>
+		<a data-role="button" href="javascript:addPsn()" id="addphoto">选择人员</a>
+
+		<div id="psn_list" />
+		</div>
+	</body>
+
+</html>

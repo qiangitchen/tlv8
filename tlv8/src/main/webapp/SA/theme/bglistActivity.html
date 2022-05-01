@@ -1,0 +1,34 @@
+<html>
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+  <title>bglistActivity.html</title> 
+  <link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/default/easyui.css"> 
+  <link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/icon.css"> 
+  <script type="text/javascript" src="../../comon/js/jquery/jquery.min.js"></script> 
+  <script type="text/javascript" src="../../comon/js/comon.main.js"></script> 
+  <script type="text/javascript" src="../../comon/js/grid.main.js"></script> 
+  <script type="text/javascript" src="../../resources/jquery-easyui/jquery.easyui.min.js"></script> 
+  <script type="text/javascript" src="../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script> 
+  <script type="text/javascript" src="bglistActivity.js"></script> 
+  <style type="text/css">
+  	#tooltip{
+	 position:absolute;
+	 border:1px solid #ccc;
+	 background:#333;
+	 display:none;
+	 color:#fff;
+	 display:inline-block;
+	}
+	
+	#tooltip img{
+		border: 0px;
+		width: 100%;
+		height: 100%;
+	}
+  </style> 
+ </head> 
+ <body onload="getData()" style="overflow:hidden;"> 
+  <div component="dataGrid" id="main-grid-view" style="width: 100%; height: 100%; align: left;" ondbclick="griddbclick" afterRefresh="afterdatarefreshed" onselected="gridrowselected"> 
+  </div>  
+ </body>
+</html>

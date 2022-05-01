@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>  
+	<head> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<title>质量反馈</title>
+    	<link rel="stylesheet" type="text/css" href="../../../system/css/mui.min.css" />
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/jquery.js"></script>
+    	<script src="../../../system/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/base.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="mainActivity.js"></script>
+    	<style type="text/css">
+    		a{
+    			font-size:14px;
+    		}
+    	</style>
+    </head>
+    <body onload="initPage()">
+    	<header class="mui-bar mui-bar-nav">
+		    <button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" onclick="backhistory()">
+				<a href='../scanindex.html'><span class="mui-icon mui-icon-left-nav"></span>
+				返回</a>
+			</button>
+			 <a><span class="ui-li-count" id="clockInCount"></span></a>
+		    <h1 class="mui-title">投诉记录</h1>
+	       </header>
+    	<div data-role="header" data-theme="d" data-position="fixed">
+		<a data-icon="arrow-l" onclick="backhistory()" data-transition="slideup">返回</a>
+		    <h1 id="readtitle">质量反馈</h1>
+		     <a id="submitItem" href="javascript:saveData(true)" data-rel="popup" data-icon="check" data-iconpos="right">提交</a>
+		</div>
+		<div id="contenView" class="mui-content">
+			<form id="feedBack_form">
+			    <table width="100%">
+		       	<tr>
+		       		<td width="80px">
+			        	<label for="FSHOPNAME">店铺名称:</label>
+			        </td>
+	  	            <td colspan="2">
+			         	 <input name="FSHOPNAME" id="FSHOPNAME"/>
+			        </td>
+		       	</tr>
+		       	<tr>
+			       		<td width="80px">
+				        	<label for="FADDRESS">店铺地址:</label>
+				        </td>
+		  	            <td colspan="2">
+				         	 <input name="FADDRESS" id="FADDRESS"/>
+				        </td>
+			       	</tr>
+			      <tr>
+				    <td width="80px">
+				        	<label for="FCOMMODITYNAME">商品名称:</label>
+				       </td>
+				       <td>
+			         	  <input name="FCOMMODITYNAME" id="FCOMMODITYNAME" width="60"/>
+			         </td>
+			         <td>
+			         	<input type="button"  onclick="scanBarCode()" value="扫描" width="15px"/> 
+			         </td>
+			       </tr>
+			       	<tr>
+			       		<td width="80px">
+				        	<label for="FCOMMODITYCOUNT">商品数量:</label>
+				        </td>
+		  	            <td colspan="2">
+				         	 <input name="FCOMMODITYCOUNT" id="FCOMMODITYCOUNT"/>
+				        </td>
+			       	</tr>
+			       	<tr>
+			       		<td width="80px">
+				        	<label for="FCOMPANY">供货商:</label>
+				        </td>
+		  	            <td colspan="2">
+				         	 <input name="FCOMPANY" id="FCOMPANY"/>
+				        </td>
+			       	</tr>
+				   <tr>
+				     <td width="80px">
+			         	<label for="FQUESTION">反馈问题:</label>
+			         </td>
+			         <td colspan="2">
+			         	<textarea name="FQUESTION" id="FQUESTION" style="height:80px;"></textarea>
+			         </td>
+			      </tr>
+			      <tr>
+				     <td colspan="3">
+				     	<a data-role="button" href="javascript:photograph()" id="addphoto">拍照</a>
+				     	<a data-role="button" href="javascript:lookphotograph()" id="viewphoto" style="display:none;">照片信息</a>
+			         </td>
+			      </tr>
+				 </table>
+				 <div style="display:none;">
+				 	<input type="text" name="FCREATORID" id="FCREATORID" value="" readonly="readonly"/>
+				 	<input type="text" name="FCREATORNAME" id="FCREATORNAME" value="" readonly="readonly"/>
+				 	<input type="text" name="FCREATORDEPTID" id="FCREATORDEPTID" value="" readonly="readonly"/>
+				 	<input type="text" name="FCREATORDEPT" id="FCREATORDEPT" value="" readonly="readonly"/>
+				 	<input type="text" name="FCREATEDATE" id="FCREATEDATE" value="" readonly="readonly"/>
+				 </div>
+			</form>		
+		</div> 
+    </body>
+</html>

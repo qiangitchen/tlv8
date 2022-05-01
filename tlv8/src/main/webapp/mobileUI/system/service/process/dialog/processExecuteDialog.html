@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>  
+	<head> 
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0"/>
+    	<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../../../../system/css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../../../resources/jquery-easyui/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="../../../../../resources/jquery-easyui/themes/mobile.css">
+		<link rel="stylesheet" type="text/css" href="../../../../../resources/jquery-easyui/themes/icon.css">
+    	<link rel="stylesheet" type="text/css" href="processExecuteDialog.css"/>
+    	<script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../js/json2.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../js/mui.min.js" ></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../js/base.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../js/dialog.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../js/flow.main.js"></script>
+    	<script type="text/javascript" src="../../../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../../../resources/jquery-easyui/jquery.easyui.mobile.js"></script>
+		<script type="text/javascript" src="../../../../../resources/jquery-easyui/jquery.easyui.tree.search.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="processExecuteDialog.js"></script>
+    </head>
+    <body>
+    	<header class="mui-bar mui-bar-nav">
+		    <button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" onclick="windowCancel()">
+				<span class="mui-icon mui-icon-closeempty"></span>
+				取消
+			</button>
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right" onclick="ensure()">
+				<span class="mui-icon mui-icon-checkmarkempty"></span>
+				确定
+			</button>
+		    <h1 class="mui-title" id="title_val">任务流转</h1>
+		</header>
+		<div id="contenView" data-role="content" class="mui-content">
+			<div data-role="fieldcontain" style="display: none;">
+				<fieldset data-role="controlgroup" >
+					<input type="checkbox"  id="isSendMessage" class="custom"/>
+					<label for="isSendMessage">发送短信提醒（请选择）</label>
+				</fieldset>
+			</div>
+			<!-- 
+			<div class="mui-card"> 
+		    	<div class="mui-card-header">处理意见 </div> 
+		    	<div class="mui-card-content" style="min-height: 60px; padding: 10px;" id="opinions"></div>
+		    </div>
+			 -->
+			<div class="mui-card"> 
+		    	<div class="mui-card-header">选择处理环节 </div> 
+		    	<div class="mui-card-content" style="min-height: 60px;">
+					<ul class="mui-table-view mui-table-view-radio" id="activitylist"></ul> 
+		    	</div> 
+		    </div>
+		    <div class="mui-card"> 
+		    	<div class="mui-card-header">选择处理人 </div> 
+		    	<div class="mui-card-content" style="min-height: 200px; padding: 10px;">
+		    		<input id="ss" class="easyui-searchbox" style="width:100%" data-options="searcher:dosearchText"></input>
+					<ul id="Executorslist"></ul>
+		    	</div> 
+		    </div> 
+		</div>
+		<div id="congirminfo" data-role="content" class="mui-content" style="display: none; text-align: center;">
+		</div>
+	</body>
+</html>

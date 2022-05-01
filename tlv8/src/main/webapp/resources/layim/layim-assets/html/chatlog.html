@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>聊天记录</title>
+<link rel="stylesheet" href="../../../layui/css/layui.css">
+<style>
+body .layim-chat-main{height: auto;}
+</style>
+</head>
+<body>
+
+<div class="layim-chat-main">
+  <ul id="LAY_view"></ul>
+</div>
+
+<div id="LAY_page" style="margin: 0 10px;"></div>
+
+
+<textarea title="消息模版" id="LAY_tpl" style="display:none;">
+{{# layui.each(d.data, function(index, item){
+  if(item.id == layui.layim.cache().mine.id){ }}
+    <li class="layim-chat-mine"><div class="layim-chat-user"><img src="{{ item.avatar }}"><cite><i>{{ layui.data.date(item.timestamp) }}</i>{{ item.username }}</cite></div><div class="layim-chat-text">{{ layui.layim.content(item.content) }}</div></li>
+  {{# } else { }}
+    <li><div class="layim-chat-user"><img src="{{ item.avatar }}"><cite>{{ item.username }}<i>{{ layui.data.date(item.timestamp) }}</i></cite></div><div class="layim-chat-text">{{ layui.layim.content(item.content) }}</div></li>
+  {{# }
+}); }}
+</textarea>
+
+<!-- 
+上述模版采用了 laytpl 语法
+
+-->
+
+
+<script src="../../../layui/layui.js"></script>
+<script>
+layui.link('../layim.css', 'skinlayimcss') //加载 css
+layui.use(['jquery'], function(){
+  var layim = parent.layui.layim
+  ,laytpl = parent.layui.laytpl
+  ,$ = layui.jquery
+  ,laypage = parent.layui.laypage;
+  
+  //聊天记录的分页此处不做演示，你可以采用 laypage
+  
+  //开始请求聊天记录
+  var param =  location.search; //获得URL参数。该窗口url会携带会话id和type，他们是你请求聊天记录的重要凭据
+  
+  //console.log(param)
+  
+  //$('.layim-chat-main').height($(document).height());
+  //$(window).resize(function(){
+  //  $('.layim-chat-main').height($(document).height());
+  //});
+  
+  $.get('/tlv8/layim/getMessageHistory'+param, function(res){
+  	  //console.log(res);
+	  var html = laytpl(LAY_tpl.value).render({
+	    data: res.data
+	  });
+	  $('#LAY_view').html(html);
+  },'json');
+  
+});
+</script>
+</body>
+</html>

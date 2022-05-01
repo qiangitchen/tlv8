@@ -1,0 +1,93 @@
+<html>
+ <head> 
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+  <title>MyDirectFlowPage.html</title> 
+  <link type="text/css" rel="stylesheet" href="../../resources/layui/css/layui.css"> 
+  <link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/default/easyui.css"> 
+  <link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/icon.css"> 
+  <link type="text/css" rel="stylesheet" href="../../comon/css/formsyle.css"> 
+  <script type="text/javascript" src="../../comon/js/jquery/jquery.min.js"></script> 
+  <script type="text/javascript" src="../../comon/js/comon.main.js"></script> 
+  <script type="text/javascript" src="../../comon/js/flow.main.js"></script> 
+  <script type="text/javascript" src="../../comon/js/grid.main.js"></script> 
+  <script type="text/javascript" src="../../comon/My97DatePicker/WdatePicker.js"></script> 
+  <script type="text/javascript" src="../../resources/jquery-easyui/jquery.easyui.min.js"></script> 
+  <script type="text/javascript" src="../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script> 
+  <script type="text/javascript" src="../../resources/layui/layui.js"></script> 
+  <script type="text/javascript" src="MyDirectFlowPage.js"></script> 
+ </head> 
+ <body onload="getData();" style="overflow: hidden;"> 
+  <div class="easyui-layout" fit="true"> 
+   <div data-options="region:'north',split:false" style="height:40px;overflow: hidden; padding: 4px;"> 
+    <table style="text-align: left;"> 
+     <tbody>
+      <tr> 
+       <td> 
+        <div id="stander_bar" insertAction="dataInsert()" saveAction="dataSave()" refreshAction="dataRefresh()" deleteAction="dataDeleted()" style="margin-left: 1px;"> 
+        </div> 
+       </td> 
+       <td align="left"> 
+        <div component="flowprocess" id="flowToolbar"></div> 
+       </td> 
+      </tr> 
+     </tbody>
+    </table> 
+   </div> 
+   <div data-options="region:'center',border:false"> 
+    <div class="layui-fluid"> 
+     <div class="layui-card"> 
+      <div class="layui-card-header">
+       主表信息
+      </div> 
+      <div class="layui-card-body"> 
+       <form id="MAIN_DATA_FORM" class="layui-form"> 
+        <div class="layui-form-item">
+         <div class="layui-inline">
+          <label class="layui-form-label">标题</label>
+          <div class="layui-input-inline">
+           <input type="text" id="FTITLE" name="FTITLE" class="layui-input">
+          </div>
+         </div>
+         <div class="layui-inline">
+          <label class="layui-form-label">机构</label>
+          <div class="layui-input-inline">
+           <input type="text" id="FCREATEOGNNAME" name="FCREATEOGNNAME" class="layui-input">
+          </div>
+         </div>
+         <div class="layui-inline">
+          <label class="layui-form-label">部门</label>
+          <div class="layui-input-inline">
+           <input type="text" id="FCREATEDEPTNAME" name="FCREATEDEPTNAME" class="layui-input">
+          </div>
+         </div>
+        </div>
+        <div class="layui-form-item">
+         <div class="layui-inline">
+          <label class="layui-form-label">姓名</label>
+          <div class="layui-input-inline">
+           <input type="text" id="FCREATEPERSONNAME" name="FCREATEPERSONNAME" class="layui-input">
+          </div>
+         </div>
+         <div class="layui-inline">
+          <label class="layui-form-label">时间</label>
+          <div class="layui-input-inline">
+           <input type="text" id="FCREATETIME" name="FCREATETIME" class="layui-input">
+          </div>
+         </div>
+        </div> 
+       </form> 
+      </div> 
+     </div> 
+     <div class="layui-card"> 
+      <div class="layui-card-header">
+       子表信息
+      </div> 
+      <div class="layui-card-body" style="overflow: hidden;height:250px; padding: 1px;"> 
+       <div component="dataGrid" id="direct_from_subgrid" style="width:100%;height:100%;" dataValueChanged="cheng_stae_bar()"></div> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div>  
+ </body>
+</html>

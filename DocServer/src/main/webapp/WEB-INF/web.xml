@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>TLV8 DocServer Applecation</display-name>
+	<!-- Spring和mybatis的配置文件 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring-mybatis.xml,classpath:spring-beans.xml</param-value>
+	</context-param>
+	<!-- Spring监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<!-- 防止Spring内存溢出监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+	<!-- 文档服务监听 -->
+	<listener>
+		<listener-class>com.tlv8.doc.svr.listenner.DataSourceLoaderListener</listener-class>
+	</listener>
+	<!-- filter -->
+	<filter>
+		<filter-name>TLV8DocServer</filter-name>
+		<filter-class>com.tlv8.doc.svr.controller.svlet.DispathServelet</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>TLV8DocServer</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- servlet -->
+	<servlet>
+		<servlet-name>TLV8DocLogServlet</servlet-name>
+		<servlet-class>com.tlv8.doc.svr.controller.svlet.LogServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TLV8DocLogServlet</servlet-name>
+		<url-pattern>/log</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>TLV8DocSWFServlet</servlet-name>
+		<servlet-class>com.tlv8.doc.svr.controller.svlet.SWFServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TLV8DocSWFServlet</servlet-name>
+		<url-pattern>/crossdomain.xml</url-pattern>
+	</servlet-mapping>
+
+</web-app>

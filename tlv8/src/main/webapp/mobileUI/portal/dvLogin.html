@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml" cacheable="false" sys-param="false">
+	<head>
+	<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+	<script type="text/javascript" src="../system/js/jquery.js"></script>
+	<script type="text/javascript" src="../system/js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="system/js/login.js"></script>
+	<script type="text/javascript" src="system/js/md5.js"></script>
+	</head>
+<body>
+</body>
+<script type="text/javascript">
+		var username = getParamValueFromUrl("username");
+		var password = getParamValueFromUrl("password");
+		$.ajax( {
+			type : "post",
+			async : true,
+			dataType: 'json',
+			data: "username="+username+"&password="+password+"&captcha=no_captcha&language=zh_CN",
+			url : cpath+"/system/User/MD5login",
+			success : function(data, textStatus) {
+				data = data[0]; //TODO:[]
+				if(data && data.status =="SUCCESS"){
+					//$.cookie("jpolite_username", username, {expires:7,path:'/'});
+					//$.cookie("jpolite_password",password, {expires:7,path:'/'});
+					window.loginSuccess = true;
+					window.open("index.html","_self");
+				}else{
+					var k=data.data;
+					if(typeof k =="string"){
+						k = window.eval("("+k+")");
+					}
+					k = k.msg;
+					if (k) {
+						var colon = k.indexOf(":");
+						if (colon != -1) {
+							k = k.substring(colon+1, k.length);
+						}else{
+							k="系统出错,请联系管理员";
+						}
+					}
+					try {
+						tlv8YnApp.reloadLoginPage(k);
+					} catch (e) {
+						window.open("login.html?timestamp="+ new Date().valueOf()+"&msg="+k,"_self");
+					}
+				}
+			},
+			error : function() {
+			}
+		});
+	</script>
+</html>

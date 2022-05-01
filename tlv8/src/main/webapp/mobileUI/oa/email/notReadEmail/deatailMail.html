@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../../../system/css/mui.min.css"/>
+<script type="text/javascript" charset="utf-8"
+	src="../../../system/js/jquery.js"></script>
+<script src="../../../system/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8"
+	src="../../../system/js/dialog.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="../../../system/js/base.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="../../common/js/oaUtils.js"></script>
+<script type="text/javascript" charset="utf-8" src="deatailMail.js"></script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		    <button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<button id="mailAitem" class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right" onclick="mailAction()">
+				<span class="mui-icon mui-icon-email"></span>
+				回复
+			</button>
+		    <h1 class="mui-title" id="title_val">邮件详细</h1>
+	</header>
+	<div class="mui-content">
+		<div id="titleView"></div>
+		<div id="contenView" style="width: 100%; height:100%; background: #fff; padding: 5px;"></div>
+		<ul class="mui-table-view">
+			<li class="mui-table-view-divider"><label
+				style="font-size: 17px;">附件</label></li>
+			<li>
+				<div
+					style="width: 100%; text-align: left; color: #6D6D6D; margin-bottom: 10px; font-size: 11pt; line-height: 25px;padding: 5px;"
+					id="_content"></div>
+		</ul>
+		<!--<div id="footer" data-role="footer" data-id="foo1" data-theme="c" data-position="fixed">
+	    </div>-->
+	</div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>CommentDialog.html</title>
+
+		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+		<meta http-equiv="description" content="this is my page">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="../../../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../../comon/xheditor/xheditor-1.1.12-zh-cn.min.js"></script>
+		<script type="text/javascript" src="../../../../comon/js/comon.main.js"></script>
+       <script type="text/javascript" src="../../../../comon/My97DatePicker/WdatePicker.js"></script>
+
+	<script type="text/javascript" src="../js/CommentDialog.js"></script>
+	</head>
+
+	<BODY class="Detailbody">
+		<form id='bo_comment'>
+			<DIV class="DetailnavReg">
+				<DIV style="width: 50px; height: 50px; float: left;">
+					<IMG class="DetailnavLogoImage"
+						src="../../../../comon/css/formDetail/img/navLogo.jpg">
+				</DIV>
+				<DIV class="Detailtitle">
+					<span>回复</span>
+				</DIV>
+				<DIV class=tips></DIV>
+			</DIV>
+			<BR>
+
+			<DIV class="DetailDiv">
+				
+				<DIV class="DetailInfoDiv">
+					<TABLE class="Detailtable" border=0 cellSpacing=0 width="95%"
+						align=center>
+						<TBODY>
+							<TR>
+								<TD class='DetailtableHeader' colSpan='6'>
+									回复信息
+								</TD>
+							</TR>
+							<tr>
+								<td rowspan="8" width="2%"></td>
+							</tr>
+							<TR id=page1_block1_row1>
+								<TD width='15%' noWrap>
+									<font color="red"><SPAN>回复标题</SPAN> </font>
+								</TD>
+								<TD>
+									<INPUT id="ENTRY_TITLE" class="DetailInput ReadOnly" />
+									<INPUT id="ENTRY_ID" style="display:none;" />
+								</TD>
+								<td rowspan="7" width="3%"></td>
+								<TD width='15%' noWrap>
+									 <SPAN>回复人</SPAN>  
+								</TD>
+								<TD>
+									<INPUT id="AUTHOR" readonly class="DetailInput" />
+								</TD>
+							</TR>
+							<TR id=page1_block1_row2>
+								<TD noWrap>
+									 <SPAN class=TableContent>回复时间</SPAN>  
+								</TD>
+								<TD Width="30%">
+									<INPUT id="CREATED_TIME" name="CREATED_TIME" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+										format="yyyy-MM-dd" class="Wdate" />
+								</TD>
+								<TD width='15%' noWrap>
+									<SPAN class=TableContent> </SPAN> 
+								</TD>
+								<TD Width="30%">
+
+								</TD>
+							</TR>
+
+
+							<TD class="TableData " noWrap>
+								<SPAN class=TableContent>回复内容</SPAN>
+							</TD>
+							<TD colSpan="6" height="80px">
+								<TEXTAREA id="CONTENT" rows="5"  style="height:200px;width: 96%"></TEXTAREA>
+							</TD>
+							</TR>
+						</TBODY>
+					</TABLE>
+
+
+				</DIV>
+			</DIV>
+
+		</FORM>
+	</BODY>
+</html>

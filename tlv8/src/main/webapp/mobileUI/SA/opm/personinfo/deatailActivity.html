@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"/>
+    	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/> 
+    	<title>个人信息单</title>
+    	<link rel="stylesheet" type="text/css" href="../../../../mobileUI/system/css/mui.min.css"/>
+    	<script type="text/javascript" charset="utf-8" src="../../../../mobileUI/system/js/jquery.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../../mobileUI/system/js/mui.min.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../../mobileUI/system/js/base.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="deatailActivity.js"></script>
+    </head>
+    <body>
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right" onclick="doDataSaveaAtion()">
+				<span class="mui-icon mui-icon-checkmarkempty"></span>
+				保存
+			</button>
+		    <h1 class="mui-title" id="title_val">个人信息</h1>
+		</header>
+		<div class="mui-content">
+		<form class="mui-input-group" id="MAIN_DATA_FORM"
+			afterRefresh="afRefresh">
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">编码</label> <input type="text"
+					placeholder="" data-filtered="filtered" id="SCODE" name="SCODE"
+					class="forminput" readonly="readonly" />
+			</div>
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">名称</label> <input type="text"
+					placeholder="" data-filtered="filtered" id="SNAME" name="SNAME"
+					class="forminput" />
+			</div>
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">年龄</label> <input type="text"
+					placeholder="" data-filtered="filtered" id="SNUMB" name="SNUMB"
+					class="forminput" />
+			</div>
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">性别</label> <input type="text"
+					placeholder="" data-filtered="filtered" id="SSEX" name="SSEX"
+					class="forminput" />
+			</div>
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">生日</label> 
+				<input type="date" data-filtered="filtered" id="SBIRTHDAY"
+					name="SBIRTHDAY" class="WdateinputLine" format="yyyy-MM-dd" />
+			</div>
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">住址</label> <input type="text"
+					placeholder="" data-filtered="filtered" id="SHOMEPLACE"
+					name="SHOMEPLACE" class="forminput" />
+			</div>
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">学历</label> <input type="text"
+					placeholder="" data-filtered="filtered" id="SDEGREE" name="SDEGREE"
+					class="forminput" />
+			</div>
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">学校</label> <input type="text"
+					placeholder="" data-filtered="filtered" id="SGRADUATESCHOOL"
+					name="SGRADUATESCHOOL" class="forminput" />
+			</div>
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">专业</label> <input type="text"
+					placeholder="" data-filtered="filtered" id="SSPECIALITY"
+					name="SSPECIALITY" class="forminput" />
+			</div>
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">邮编</label> <input type="text"
+					placeholder="" data-filtered="filtered" id="SZIP" name="SZIP"
+					class="forminput" />
+			</div>
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">QQ</label> <input type="text"
+					placeholder="" data-filtered="filtered" id="SQQ" name="SQQ"
+					class="forminput" />
+			</div>
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">邮箱</label> <input type="text"
+					placeholder="" data-filtered="filtered" id="SMAIL" name="SMAIL"
+					class="forminput" />
+			</div>
+			<div class="mui-input-row" data-filtered="filtered">
+				<label data-filtered="filtered">手机</label> <input type="text"
+					placeholder="" data-filtered="filtered" id="SMOBILEPHONE"
+					name="SMOBILEPHONE" class="forminput" />
+			</div>
+
+		</form>
+	</div>
+    </body>
+</html>

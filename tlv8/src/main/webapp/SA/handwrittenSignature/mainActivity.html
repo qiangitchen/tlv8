@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<title>手写签名配置</title>
+		<link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/default/easyui.css" />
+		<link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/icon.css" />
+		<link type="text/css" rel="stylesheet" href="../../comon/css/zTreeStyle/zTreeStyle.css"></link>
+		<script type="text/javascript" src="../../comon/js/jquery/jquery.min.js"></script>
+	  	<script type="text/javascript" src="../../comon/js/jquery/jquery.ztree.core-3.1.js"></script>
+	  	<script type="text/javascript" src="../../comon/js/jquery/jquery.ztree.excheck-3.1.js"></script>
+		<script type="text/javascript" src="../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="../../comon/jTree/tree.main.js"></script>
+		<script type="text/javascript" src="../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="mainActivity.js"></script>
+	</head>
+	<body class="easyui-layout" onload="pageInit()">
+		<div data-options="region:'west',title:'人员信息',split:true" style="width:200px;">
+			<div style="width: 100%; height: 100%; overflow: hidden;">
+				<ul id="JtreeView" class="ztree"></ul>
+			</div>
+		</div>
+		 <div data-options="region:'center',title:'签名图片配置'" style="text-align: center;">
+		 	<form id="maindata_form" style="text-align: center;" afterRefresh="dataafRefresh">
+		 		<table>
+		 			<tr>
+		 				<td style="font-size: 11pt; width: 100px; height: 120px;" align="center">签名图片</td>
+		 				<td>
+		 					<div id="handwrsPic" style="width:300px; height:100px;"></div>
+		 				</td>
+		 				<td rowspan="2" valign="top" style="font-size: 11pt;">
+		 					<br/>
+		 					<span style="font-weight: bold;">说明：</span><br/>
+		 					<span>签名图片的规格为：300×100像素；</span><br/>
+		 					<span>图片大小不超过1M</span>
+		 				</td>
+		 			</tr>
+		 			<!-- 
+		 			<tr>
+		 				<td style="font-size: 11pt;" align="center">备注</td>
+		 				<td>
+		 					<textarea id="SREMARK" style="width: 100%; height: 200px;"></textarea>
+		 				</td>
+		 			</tr>
+		 			 -->
+		 			<tr>
+		 				<td colspan="2" align="center">
+		 					<br/>
+		 					<a class="easyui-linkbutton" href="javascript:void(0);" disabled="disabled" id="submbtn">提交/修改</a>
+		 					<a class="easyui-linkbutton" href="javascript:void(0);" disabled="disabled" id="deletbtn">删除签名</a>
+		 				</td>
+		 				<td></td>
+		 			</tr>
+		 		</table>
+		 		<div style="display: none;">
+		 			<input type="text" id="SPERSONID" name="SPERSONID"/>
+		 			<input type="text" id="SPERSONNAME" name="SPERSONNAME"/>
+		 			<input type="text" id="SCREATERID" name="SCREATERID"/>
+		 			<input type="text" id="SCREATERNAME" name="SCREATERNAME"/>
+		 			<input type="text" id="SCREATETIME" name="SCREATETIME"/>
+		 		</div>
+		 	</form>
+		 </div>
+	</body>
+</html>

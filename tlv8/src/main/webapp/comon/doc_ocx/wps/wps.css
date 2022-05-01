@@ -1,0 +1,179 @@
+html#demohtml {
+    height: 99%;    /* 设置成 100% 会出现 纵向滚动条 */
+}
+html#itemhtml {
+    height: 100%;
+}
+
+body#demobody{
+    height: 100%;   
+    width: 99%;
+    background: #fff;
+}
+body#itembody {
+    height: 100%;    
+}
+
+
+.layui-tab-content,
+.layui-tab-item {
+    height: 0px;
+}
+
+div#iframediv {
+    height: 99%;
+}
+
+
+div#divLayout_bar {
+    background-color: transparent; 
+    border-bottom: 1px solid rgb(230, 230, 230); 
+    height: 28px;
+    padding: 2px;
+}
+
+ul#ul_tab {
+    background-color: white; 
+    color: black;
+}
+
+div#divLayout_docBar {
+    height: 100%; 
+    padding-top: 20px; 
+    text-align: left;
+}
+
+div#divLayout_docBar a {
+    margin-left: none;
+    margin-right: 10px; 
+    color: #1E9FFF;
+    text-decoration: underline;
+}
+div#divLayout_docBar a:hover {
+    color: rgb(83, 201, 247);
+}
+div#divLayout_docBar a:first-child {
+    margin-left: 10px;
+}
+div#divLayout_docBar a:last-child {
+    margin-right: none;
+}
+
+div#divLayout_docBar a#l_aboutDoc {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+div#divLayout_docBar a#l_aboutDoc:hover {
+    color: black;
+}
+
+.layui-tab-title#tab_title {
+    display: none;
+}
+
+/* ------------- item css ------------- */
+body#itembody {
+    overflow:hidden;    /* 禁用 Item html 的滚动条 */
+}
+
+#topLayoutDiv {
+    height: 85%; 
+    min-height: 85%;
+    max-height: 85%;
+    width: 98%;         /* 设置成 100% 会出现 横向滚动条 */
+    margin-left: 20px;
+    margin-right: 20px;
+}
+/* 设置列宽百分比, 和为 100% */
+div#optLayoutDiv {
+    height: 100%;
+    width: 13%;     
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+div#wpsLayoutDiv {
+    height: 100%;
+    width: 87%;
+    padding-left: 30px;
+    padding-right: 20px;
+}
+div#docLayoutDiv {
+    height: 100%;
+}
+
+div#wps,
+div#wpp,
+div#et {
+    height: 100%;
+}
+
+
+#bottomLayoutDiv {
+    height: 15%; 
+    min-height: 15%;
+    max-height: 15%;
+    width: 98%;         /* 设置成 100% 会出现 横向滚动条 */
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+#codeDocLayoutDiv,
+#codeLayoutDiv,
+#codeDocElemDiv,
+#codeElemDiv {
+    height: 100%;
+}
+
+/* 设置列宽百分比, 和为 100% */
+#codeDocLayoutDiv {
+    width: 30%;  
+}
+#codeLayoutDiv {
+    width: 70%;  
+}
+
+legend#codeDocTitle,
+legend#codeTitle {
+    font-size: 14px;
+    color: black;
+}
+
+p#codeDoc {
+    overflow-y: auto;
+    min-height: 80%;
+    max-height: 80%;
+    margin: 10px 10px 10px 10px;
+}
+
+pre#codepre {
+    min-height: 80%;
+    max-height: 80%;
+    margin: 10px 10px 10px 10px;
+    overflow-y: auto;
+    white-space: nowrap;     /* 不换行 */
+    white-space: pre;
+}
+
+
+.layui-btn-sm {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 100%;
+    height: auto;
+    word-wrap: break-word; 
+    word-break: break-all;
+    white-space:pre-wrap;
+    outline: none;
+}
+
+.layui-nav .layui-nav-item a {
+    color: black;
+    outline: none;
+}
+
+.layui-nav .layui-nav-item a:hover {
+    color: black;
+}

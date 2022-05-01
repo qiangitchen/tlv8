@@ -1,0 +1,99 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>文档中心</title>
+		<link type="text/css" rel="stylesheet" href="../../../resources/bootstrap/css/bootstrap.min.css"/>
+		<link type="text/css" rel="stylesheet" href="../../../resources/layui/css/layui.css" media="all">
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/default/easyui.css" />
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/icon.css" />
+		<link rel="stylesheet" type="text/css" href="../../../comon/css/grid.main.css"></link>
+		<link rel="stylesheet" type="text/css" href="../../../comon/css/zTreeStyle/zTreeStyle.css" />
+		<style>
+			a img {
+				font-size: 11pt;
+				border:0px;
+			}
+		</style>
+		<script type="text/javascript" src="../../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../comon/js/jquery/jquery.ztree.core-3.1.js"></script>
+		<script type="text/javascript" src="../../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="../../../comon/js/grid.main.js"></script>
+		<script type="text/javascript" src="../../../comon/jTree/tree.main.js"></script>
+		<script type="text/javascript" src="../../../comon/doc_ocx/common/base64.js"></script>
+		<script type="text/javascript" src="../../../comon/doc_ocx/common/json.js"></script>
+		<script type="text/javascript" src="../../../comon/doc_ocx/docUtil.js"></script>
+		<script type="text/javascript" src="../../../comon/doc_ocx/WindowDialog.js"></script>
+		<script type="text/javascript" src="../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="../../../resources/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../../../resources/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="mainActivity.js"></script>
+	</head>
+	<body onload="getData()" style="width:100%; height:100%; overflow: hidden;">
+		<div class="layui-fluid">
+	        <div class="layui-row layui-col-space15">
+	        	<div class="layui-col-md3">
+					<div class="layui-card">
+						<div class="layui-card-header">文档目录</div>
+						<div class="layui-card-body" style="height: 90%; padding: 1px;">
+							<form id="main_org_trr" style="display: none;"></form>
+							<div class="easyui-layout" fit="true" border="false">
+								<div data-options="region:'north',border:false" style="height: 40px;padding: 2px; overflow: hidden;">
+									<table>
+										<tr>
+											<td><a href="javascript:void(0);" class="toobar_item" title="新建目录">
+												<img src="../../../comon/image/doc/newfolder_g.gif" id="new_folder_item">
+												</a>
+											</td>
+											<td><a href="javascript:void(0);" class="toobar_item" title="目录属性">
+												<img src="../../../comon/image/doc/folder_pro_g.gif" id="folder_pro_item">
+												</a>
+											</td>
+											<td><a href="javascript:void(0);" class="toobar_item" title="目录权限">
+												<img src="../../../comon/image/doc/folder_perm_g.gif" id="folder_perm_item">
+												</a>
+											</td>
+											<td><a href="javascript:void(0);" class="toobar_item" title="删除目录">
+												<img src="../../../comon/image/doc/deletefile_g.gif" id="deletefile_item">
+												</a>
+											</td>
+											<td><a href="javascript:Jtree.refreshJtree('maintree');" class="toobar_item" title="刷新目录">
+												<img src="../../../comon/image/doc/refresh.gif" id="refresh_folder_item">
+												</a>
+											</td>
+											<td></td>
+										</tr>
+									</table>
+								</div>
+								<div data-options="region:'center',border:false" style="padding: 0px; overflow: hidden;">
+									<div id="docfoldertree" style="border-top:1px solid #eee; width:100%;height:100%; overflow:auto;">
+										<ul id="maintree" class="ztree"></ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md9">
+					<div class="layui-card">
+						<div class="layui-card-header">文件列表</div>
+						<div class="layui-card-body" style="height: 90%; padding: 1px;">
+							<div id="main-grid-view" component="dataGrid" afterRefresh="afGridrefresh" onselected="select_file"
+								style="width: 100%; height: 100%; align: left;" ondbclick="griddbclickFN">
+							</div>
+						</div>
+					</div>
+				</div>
+	        </div>
+        </div>
+		<div id="dialogsView"></div>  
+		<div id="transportDiv"></div>
+		<div id="docExtDiv"></div>
+		<script type="text/javascript">
+			var Jtree = new Jtree();
+			var treebody = "maintree";
+			Jtree.init(treebody, setting, param);
+			$("#docfoldertree").height($("#docfoldertree").parent().height());
+		</script>
+	</body>
+</html>

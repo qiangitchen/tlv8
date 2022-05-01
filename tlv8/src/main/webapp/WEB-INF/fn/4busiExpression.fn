@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<!-- 系统函数配置 -->
+	<item id="busiExp" isParent="true" name="业务功能">
+		<function pId="busiExp" id="getRelationValueString" name="获取表中字段的值"
+			param="concept,individual,condition,orderRelation,returnRelation,dbkey"
+			paramvalue=",getProcesssData1()"
+			javacode="com.tlv8.flw.expression.BusinessExpression.getRelationValueString"
+			helper="说明： 根据传入参数从数据库中获取字符串值，此函数可嵌套用来查从表数据&lt;br/&gt;参数说明：&lt;br/&gt;concept【必填】： 表(视图)名称&lt;br/&gt;individual【必填】： 主键的值 fID/sID 流程单据主键 如 ：getProcesssData1()&lt;br/&gt;condition【可选】： 过虑条件， 例如：fName='system'; &lt;br/&gt;orderRelation【可选】： 用来作排序的字段&lt;br/&gt;returnRelation【必填】： 要取哪个字段的值.&lt;br/&gt;dbkey【必填】：数据库连接标志。">
+		</function>
+		<function pId="busiExp" id="electChoice" name="空值选择" param="value1,value2"
+			paramvalue=""
+			javacode="com.tlv8.flw.expression.CommonalityFunction.electChoice"
+			helper="说明： 如果value1存在取value1否则取value2">
+		</function>
+		<function pId="busiExp" id="isNull" name="是否为空" param="values"
+			paramvalue="" javacode="com.tlv8.flw.expression.CommonalityFunction.isNull"
+			helper="说明： 判断是否为空">
+		</function>
+		<function pId="busiExp" id="concat" name="字符串连接" param="values"
+			paramvalue="" javacode="com.tlv8.flw.expression.CommonalityFunction.concat"
+			helper="说明： 多个字符串连接，多个参数">
+		</function>
+		<function pId="busiExp" id="upper" name="字符串转大写" param="value"
+			paramvalue="" javacode="com.tlv8.flw.expression.CommonalityFunction.upper"
+			helper="说明： 把字符串转成大写字符">
+		</function>
+		<function pId="busiExp" id="lower" name="字符串转小写" param="value"
+			paramvalue="" javacode="com.tlv8.flw.expression.CommonalityFunction.lower"
+			helper="说明： 把字符串转成小写字符">
+		</function>
+		<function pId="busiExp" id="trim" name="字符串去空格" param="value"
+			paramvalue="" javacode="com.tlv8.flw.expression.CommonalityFunction.trim"
+			helper="说明： 字符串去空格">
+		</function>
+		<function pId="busiExp" id="isContain" name="是否包含" param="str1,str2"
+			paramvalue="" javacode="com.tlv8.flw.expression.CommonalityFunction.isContain"
+			helper="说明： 判断字符串str1中是否包含str2">
+		</function>
+
+	</item>
+</root>

@@ -1,0 +1,125 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/default/easyui.css" />
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/icon.css" />
+		<link type="text/css" rel="stylesheet" href="../../../comon/css/formDetail/formDetail.css" />
+		<script type="text/javascript" src="../../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="../../../common/js/common.js"></script>
+		<script type="text/javascript" src="../../../comon/js/flow.main.js"></script>
+		<script type="text/javascript" src="../../common/common.js"></script>
+		<script type="text/javascript" src="../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="reportAdd1.js"></script>
+		<style>
+		.tbright {
+			padding-right: 15px;
+		}
+		
+		.grid_data_view {
+			height: 200px;
+		}
+		</style>
+	</head>
+<body style="width: 80%; height: 100%;" onload="initDocumentPage();">
+	<table style="height: 100%; width: 100%; text-align: center;">
+		<tr id="toolbar">
+			<td height="30px">
+				<table>
+					<tr>
+						<td width="100px">
+							<div id="stander_bar" saveAction="dataSave()"
+								refreshAction="dataRefresh()" style="margin-left: 1px;"></div>
+						</td>
+						<td align="left">
+							<div id="flowToolbar" onAdvanceCommit="onAdvanceCommitDef"></div>
+						</td>
+						<td style="width: 100%;" />
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div
+					style="height: 100%; width: 100%; text-align: center; overflow: auto;">
+					<form id="MAIN_DATA_FORM" afterrefresh="afterDatarefresh">
+						<table class="Detailtable"
+							style="table-layout: fixed; width: 100%;">
+							<tr style="display: none;">
+								<td width="10%" />
+								<td width="20%" />
+								<td width="10%" />
+								<td width="20%" />
+								<td width="10%" />
+								<td width="20%" />
+								<td><input type="text" id="FCREATEOGNID" /> <input
+									type="text" id="FCREATEDEPTID" /> <input type="text"
+									id="FCREATEOGNNAME" /> <input type="text" id="FCREATEPOSID" /><input
+									type="text" id="FCREATEPOSNAME" /> <input type="text"
+									id="FCREATEPERSONID" /> <input type="text"
+									id="FCREATEPERSONFID" /> <input type="text"
+									id="FCREATEPERSONFNAME" /><input type="text"
+									id="FPUSHDATETIME" /></td>
+							<tr>
+								<td class="DetailtableHeader" colSpan="7">用户信息</td>
+							</tr>
+							<tr>
+								<td class="DetailSpanTD">登记部门</td>
+								<td><input type="text" id="FCREATEDEPTNAME"
+									name="FCREATEDEPTNAME" style="width: 90%;" readOnly="readOnly" /></td>
+								<td class="DetailSpanTD">登记人</td>
+								<td><input type="text" id="FCREATEPERSONNAME"
+									name="FCREATEPERSONNAME" style="width: 90%;"
+									readOnly="readOnly" /></td>
+								<td class="DetailSpanTD">登记时间</td>
+								<td class="tbright"><input type="text" id="FCREATETIME"
+									name="FCREATETIME" class="Wdate" format="yyyy-MM-dd hh:mm:ss"
+									readOnly="readOnly" style="width: 90%;" /></td>
+								<td></td>
+							</tr>
+						</table>
+						<table
+							style="margin-top: 5px; border: solid 1px #c3c3c3; width: 100%;"
+							id="mainLayoutTable2">
+							<tr>
+								<td class="DetailtableHeader" colSpan="2">月报信息</td>
+							</tr>
+							<tr>
+								<td class="DetailSpanTD" style="width: 10%;">标题(<font
+									color="red">*</font>)
+								</td>
+								<td class="tbright"><input type="text" id="FTITLE"
+									name="FTITLE" style="width: 100%;" /></td>
+							</tr>
+							<tr>
+								<td class="DetailSpanTD">文件信息</td>
+								<td><div id="fileCompDiv"></div></td>
+							</tr>
+						</table>
+					</form>
+					<table class="Detailtable"
+						style="table-layout: fixed; width: 100%;" id="mainLayoutTable3">
+						<tr>
+							<td class="DetailtableHeader">访问人员列表</td>
+						</tr>
+						<tr id="newperson_btn">
+							<td style="padding-left: 10px; height: 22px;">
+								<div onfocus="this.blur();">
+									<a href="javascript:void(0);" onclick="addPerson()">新增访问人员</a>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td height="100%">
+								<div id="personList" style="height: 100%"></div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

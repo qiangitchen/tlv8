@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  	<link rel="stylesheet" href="css/FilterSet.css" type="text/css"></link>
+  	<script type="text/javascript" src="../js/jquery/jquery.min.js"></script>
+  	<script type="text/javascript" src="../js/comon.en.js"></script>
+  	<script type="text/javascript" src="js/FilterSet.js"></script>
+	<script type="text/javascript">
+		window.isWriteLog = false; 
+	</script>
+  </head>
+  
+  <body style="overflow: hidden;">
+  <div align="center">
+    <table width="680" height="355" style="border:0px solid gray;">
+      <tr>
+        <td width="568" valign="top">
+		<table width="100%" height="100%" style="border:1px solid #B9B9FF;">
+		  <tr style="background:#DDDDFF;height:19px;align:center;">
+			<td width="31%" height="22"><div align="center">Fields</div></td>
+			<td width="18%"><div align="center">Operate</div></td>
+			<td width="35%"><div align="center">Value</div></td>
+			<td width="16%"><div align="center">Relevance</div></td>
+		  </tr>
+		  <tr>
+		<td colspan="4"><div align="left" style="text-align:left;width:568px;height:335px;overflow-y:auto;" id="filter_select_set">
+		  <table width="100%" border="0" style="background:#FFFFCE;" id="filter_select_data_tab">
+            <tr style="height:22px;" id="filter_base_line" onclick="select_line(this)">
+              <td width="30%" height="26" align="center" id="relation_td_0">
+			  <select name="relation" id="relation" style="width:100%;">
+			    <option value=""></option>
+              </select>
+              </td>
+              <td width="18%" align="center">
+                <select name="opration" id="opration">
+                  <option value="=">=</option>
+                  <option value="like">like</option>
+                  <option value="!=">!=</option>
+                  <option value="&lt;">&lt;</option>
+                  <option value="&gt;">&gt;</option>
+                  <option value="&lt;=">&lt;=</option>
+                  <option value="&gt;=">&gt;=</option>
+                  <option value="is null">is null</option>
+                  <option value="is not null">is not null</option>
+                </select>
+              </td>
+              <td width="37%" align="center">
+                <input type="text" id="relationvalue" name="relationvalue" onkeyup="ensureKey(event)" style="width:98%;">
+              </td>
+              <td width="15%" align="center">
+                <select id="direct" name="direct" style="width:98%;">
+                  <option value="and">And</option>
+                  <option value="or">Or</option>
+                </select>
+              </td>
+            </tr>
+          </table>
+		</div></td>
+		</tr>
+		</table>
+		</td>
+        <td width="102" align="center" valign="top">
+		<p><button id="addItem" class="buttonitem" style="width:80px;" onclick="addLine()" 
+			onmouseover="this.style.background='url(image/d_5_h.gif)';this.style.borderColor='#baceeb'"  
+			onmouseout="this.style.background='url(image/d_5.gif)';this.style.borderColor='#A4DBF1'" title="Add">Add</button></p>
+		<p><button id="removeItem" class="buttonitem" style="width:80px;"  onclick="removeLine()"  
+			onmouseover="this.style.background='url(image/d_5_h.gif)';this.style.borderColor='#baceeb'"  
+			onmouseout="this.style.background='url(image/d_5.gif)';this.style.borderColor='#A4DBF1'" title="Remove">Remove</button></p>
+		<br/>
+		<p><button id="clearItem" class="buttonitem" style="width:80px;" onclick="clearFilter()" 
+			onmouseover="this.style.background='url(image/d_5_h.gif)';this.style.borderColor='#baceeb'"  
+			onmouseout="this.style.background='url(image/d_5.gif)';this.style.borderColor='#A4DBF1'" title="Clear">Clear</button>
+		</p>
+		<p><button id="resetItem" class="buttonitem" style="width:80px;" onclick="filter_reset()" 
+			onmouseover="this.style.background='url(image/d_5_h.gif)';this.style.borderColor='#baceeb'"  
+			onmouseout="this.style.background='url(image/d_5.gif)';this.style.borderColor='#A4DBF1'" title="Reset">Reset</button>
+		</p>
+		</td>
+      </tr>
+    </table>
+  </div>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>功能树选择</title>
+		<link type="text/css" rel="stylesheet" href="../../../resources/layui/css/layui.css"/>
+		<link type="text/css" rel="stylesheet" href="../../../comon/css/zTreeStyle/zTreeStyle.css"></link>
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/default/easyui.css" />
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/icon.css" />
+		<script type="text/javascript" src="../../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="../../../comon/js/jquery/jquery.ztree.core-3.1.js"></script>
+		<script type="text/javascript" src="../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="../../../resources/layui/layui.js" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="easyui-layout" fit="true">
+			<div data-options="region:'center',border:false" style="overflow: auto;">
+				<ul id="treeDemo" class="ztree"></ul>
+			</div>
+		</div>
+		<script type="text/javascript">
+		window.isWriteLog = false; //不写系统日志
+		/*
+		 * 机构树配置
+		 */
+		var setting = {
+			view : {
+				selectedMulti : false
+			},
+			data : {
+				simpleData : {
+					enable : true,
+					idKey: "id",
+					pIdKey: "pid"
+				}
+			},
+			callback : {
+				onClick : treecheckedSelect
+			}
+		};
+		var zNodes = [];
+		var funTree;
+		tlv8.XMLHttpRequest("getFunctionTreeAction", null, "post", true,
+			function(r) {
+				var NodeData = r.data.data;
+				if (typeof NodeData == "string") {
+					zNodes = eval("(" + NodeData + ")");
+				} else {
+					zNodes = NodeData;
+				}
+				funTree = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+		});
+		var currentNode;
+		function treecheckedSelect(event, treeId, node, clickFlag) {
+			currentNode = node;
+		}
+		function dailogEngin() {
+			if(!currentNode || currentNode.surl=="null"){
+				alert('请选择功能!');
+				return false;
+			}
+			return currentNode;
+		}
+	</script>
+	</body>
+</html>

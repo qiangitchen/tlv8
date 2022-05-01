@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>inquire_main.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+	<link rel="stylesheet" href="../../../comon/css/formDetail/formDetail.css" type="text/css"></link>
+    <script type="text/javascript" src="../../../comon/js/comon.main.js"></script>
+    <script type="text/javascript" src="../../../comon/js/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../comon/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="js/inquire_main.js"></script>
+	<style type="text/css">
+.header-right .week-view:hover {
+	background-position: -53px -20px;
+}
+
+.header-right .day-view:hover {
+	background-position: -27px -20px;
+}
+
+.header-right .month-view:hover {
+	background-position: -78px -20px;
+}
+
+.header-right .calendar-view {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url('img/calendar_view.png') 0px center no-repeat;
+	background-repeat-x: no-repeat;
+	background-repeat-y: no-repeat;
+	background-attachment: initial;
+	background-position-x: 0px;
+	background-position-y: 50%;
+	background-origin: initial;
+	background-clip: initial;
+	background-color: initial;
+	margin-left: 10px;
+}
+
+.header-right .month-view {
+	background-position: -78px 0px;
+}
+
+.header-right .week-view {
+	background-position: -53px 0px;
+}
+
+.header-right .day-view {
+	background-position: -27px 0px;
+}
+</style>
+
+  </head>
+  
+  <body class="Detailbody" onLoad="affairsInquire.dayInquire()">
+	<div id="inquireMain" style="background: #eee; width: 100%; height: 100%;margin-left:0; margin-right:0"><!--margin-left:0; margin-right:0-->
+  	<!--<div style="width: 100%; height: 100%;">-->
+    <table class="DetailInfoDiv" width="100%" cellpadding="0" cellspacing="0" bgcolor="#FBFFFB">
+      <tr>
+        <td width="10%">&nbsp;
+        <input type="button" name="button" value="今 天" onClick="specifiedDate('now')" style="line-height:1.4;font-family: '宋体';width:57"></td>
+		<td width="75%" align="left" style="vertical-align:middle;line-height:1.4;font-family: '宋体' ;font-size:12;">转到日期：<!--<span style=" margin-top:5px;"></span>-->
+		  <input name="senddate" type="text" class="Wdate" id="specified" onClick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',readOnly:false})" style="width:97;">
+		<input type="button" name="button" value="确 定" onClick="specifiedDate('ok')" style="line-height:1.4;font-family: '宋体';width:57"></td>
+        <td align="right">
+		<div class="header-right" style="margin-right:24;" > 
+		<p><a href="javascript:affairsInquire.dayInquire();" class="calendar-view day-view" title="日视图"></a>
+		<a href="javascript:affairsInquire.weekInquire();" class="calendar-view week-view" title="周视图"></a>
+		<a href="javascript:affairsInquire.monthInquire();" class="calendar-view month-view" title="月视图"></a></p>
+		</div>
+		<!--<input type="button" name="button" value="测试" onClick="weekInquire()" style="line-height:1.4;font-family: '宋体';width:57">&nbsp;&nbsp;--></td>
+      </tr>
+      </table>
+<div >
+    <iframe bgcolor="#FFFFFF" id="iframeInquire" marginheight="0px" marginwidth="0px" frameborder=0 src="/tlv8/system/office/inquire_schedule/day_inquire.html" style=" width: 100%; height: 100%;"></iframe></div>
+          
+  </div>
+  </body>
+</html>

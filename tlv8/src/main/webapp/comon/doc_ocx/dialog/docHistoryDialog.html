@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>文档编辑历史</title>
+    <link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/default/easyui.css" />
+	<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/icon.css" />
+    <link rel="stylesheet" href="../../css/common.css" type="text/css"></link>
+    <link rel="stylesheet" href="../../css/formsyle.css" type="text/css"></link>
+  	<link rel="stylesheet" href="../../css/toolbar.main.css" type="text/css"></link>
+  	<script type="text/javascript" src="../../js/jquery/jquery.min.js"></script>
+  	<script type="text/javascript" src="../../js/comon.main.js"></script>
+  	<script type="text/javascript" src="../common/json.js"></script>
+  	<script type="text/javascript" src="../docUtil.js"></script>
+  	<script type="text/javascript" src="../../StaticGrid/StaticGrid.js"></script>
+  	<script type="text/javascript" src="../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+  	<script type="text/javascript" src="../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+  	<script type="text/javascript" src="docHistoryDialog.js"></script>
+  </head>
+  
+  <body style="overflow:hidden;">
+ 	 <div class="easyui-layout" data-options="fit:true,border:false">
+		 <div data-options="region:'north',split:false,border:false" style="height:28px;overflow: hidden;">
+	        <table>
+	        <tr>
+	          <td>
+	          <a id="downloadDoc" class="toobar_item" href="javascript:void(0)"> 
+	            <img src="../../image/doc/download.gif" id="downlaodBtn" title="下载文件" onclick="downloadDoc()"/> 
+	          </a>  
+	          </td>
+	          <td>
+	           <a name="browseDoc" class="toobar_item" href="javascript:void(0)"> 
+	             <img src="../../image/doc/browse.gif" title="查看文件" onclick="browseDoc()"/> 
+	           </a>  
+	          </td>
+	          <td>
+	           <a name="docEditHistory" class="toobar_item" href="javascript:void(0)"> 
+	             <img src="../../image/doc/modify_record.gif" title="查看修订文件" onclick="browseRevisionDoc()"/> 
+	           </a>  
+	          </td>
+	          <td>
+	           <a name="deleteCurrentVersion" class="toobar_item" href="javascript:void(0)"> 
+	             <img src="../../image/doc/un_delete.gif" onclick="" title="删除当前历史版本"/> 
+	           </a>  
+	          </td>
+	          <td>
+	           <a name="deleteVersion" class="toobar_item" href="javascript:void(0)"> 
+	             <img src="../../image/doc/un_disable.gif" title="删除历史版本" onclick=""/> 
+	           </a> 
+	          </td>
+	         </tr>
+	        </table>
+	     </div>
+	     <div id="tabbar" data-options="region:'center',border:false"> 
+	     	<div class="easyui-tabs" data-options="fit:true,border:false,onSelect:tabselected">
+		    	<div id="detail_01" title="常规">
+		    		<div id="historyRecordNav" style="padding:0;width:99%;height:99%" onclick="tabPage1Select()"></div>
+		    	</div>
+		    	<div id="detail_02" title="摘要" style="overflow: hidden;">
+		    		<textarea id="commentArea" class="xui-textarea" style="padding:0;width:100%;height:100%;" readonly="readonly"></textarea>
+		    	</div>
+	     	</div>
+	     </div>
+	     <div data-options="region:'south',split:false,border:false" style="height:30px;text-align:right; padding-right: 5px; padding-bottom: 5px; overflow: hidden;">
+	         <a onclick="tlv8.portal.dailog.dailogEngin()" class="easyui-linkbutton">关闭</a>
+	     </div>
+     </div>
+  </body>
+</html>

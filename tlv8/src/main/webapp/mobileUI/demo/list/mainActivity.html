@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0"></meta>
+		<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"></meta>
+		<link rel="stylesheet" type="text/css" href="../../system/css/mui.min.css"/>
+		<script type="text/javascript" charset="utf-8" src="../../system/js/jquery.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../system/js/base.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../system/js/dialog.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../system/js/mobileListview.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../system/js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="mainActivity.js"></script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right" onclick="searchData()">
+				<span class="mui-icon mui-icon-search"></span>
+				查询
+			</button>
+		    <h1 class="mui-title" id="title_val">列表(<a id="list_count"></a>条)</h1>
+		</header>
+		<div class="mui-content">
+			<div id="contenView" class="mui-content">
+			</div>
+		</div>
+	</body>
+</html>

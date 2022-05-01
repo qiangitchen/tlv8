@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>审批对话框</title>
+		<link type="text/css" rel="stylesheet" href="../../../resources/bootstrap/css/bootstrap.min.css" />
+		<link type="text/css" rel="stylesheet" href="../../../resources/layui/css/layui.css" />
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/default/easyui.css" />
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/icon.css" />
+		<link rel="stylesheet" href="../../../comon/css/toolbar.main.css" type="text/css"></link>
+		<link rel="stylesheet" href="flow_audit_opinion.css" type="text/css"></link>
+	
+		<script type="text/javascript" src="../../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="../../../comon/js/grid.main.js"></script>
+		<script type="text/javascript" src="../../../comon/js/flow.main.js"></script>
+		<script type="text/javascript" src="../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="../../../resources/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../../resources/layui/layui.js"></script>
+		<script type="text/javascript" src="flow_audit_opinion.js"></script>
+	
+		<script type="text/javascript">
+	    	window.isWriteLog = false;
+	    </script>
+	
+	</head>
+	
+	<body onload="initPage()" style="overflow: hidden;">
+		<div class="easyui-layout" data-options="fit:true,border:false" id="mainlayout">
+			<div data-options="region:'center',border:false" style="overflow: hidden;">
+				<table style="width: 100%; height: 100%; table-layout: fixed;">
+					<tr>
+						<td style="height: 180px; padding: 5px;">
+							<form class="layui-form">
+								 <div class="layui-form-item layui-form-text">
+								    <label class="layui-form-label" style="width: 110px;">处理意见</label>
+								    <div class="layui-input-block" style="width: 75%;">
+								      <textarea id="auditOpinion" name="auditOpinion" class="layui-textarea" style="min-height: 35px;"></textarea>
+								    </div>
+								 </div>
+								 <div class="layui-form-item">
+								    <label class="layui-form-label" style="width: 110px;">快捷输入</label>
+								    <div class="layui-input-block" style="width: 75%;">
+								      <div id="quickInput" onValueChanged="QuickInputSelected" style="width: 100%;height: 40px;"></div>
+								    </div>
+								 </div>
+								 <div class="layui-form-item">
+								 	 <div class="layui-inline">
+									    <label class="layui-form-label" style="width: 110px;">处理部门</label>
+									    <div class="layui-input-inline">
+									      <input type="text" id="auditorDept" autocomplete="off" class="layui-input" readonly="readonly">
+									    </div>
+									  </div>
+								 	 <div class="layui-inline">
+									    <label class="layui-form-label" style="width: 110px;">处 理 人</label>
+									    <div class="layui-input-inline">
+									      <input type="text" id="auditorName" autocomplete="off" class="layui-input" readonly="readonly">
+									    </div>
+									  </div>
+								 </div>
+							</form>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div component="dataGrid" id="audit_list_grid_view"
+								style="width: 100%; height: 100%; border-top: 1px solid #95b8e7; border-bottom: 1px solid #95b8e7;"></div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div data-options="region:'south',split:false,border:false" style="height: 40px; overflow: hidden; border-top: 1px solid #eee;">
+				<div id="audit_toolbar_view" style="width: 100%;height:100%;"></div>
+			</div>
+		</div>
+	</body>
+</html>

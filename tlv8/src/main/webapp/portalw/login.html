@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>TLv8平台</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/login.css"/>
+		<script type="text/javascript" src="../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../comon/js/jquery/jquery.cookie.js"></script>
+		<script type="text/javascript" src="system/js/jpolite.data.js"></script>
+		<script type="text/javascript" src="system/js/md5.js"></script>
+		<script type="text/javascript" src="system/js/jpolite.login.js"></script>
+		<script type="text/javascript" src="js/login.js"></script>
+	</head>
+	<body>
+		<div class="viewrap"></div>
+		<div class="loginbox">
+			<div class="logotitle">TLv8平台</div>
+			<div class="spitline"><img id="loading_image" src="images/loading.gif"/></div>
+			<div class="hitline">
+				<span id="hint_lable" class="lable" style="color:red; font-size: 14px;"></span>
+			</div>
+			<div class="login">
+				<form>
+					<div style="height: 45px;">
+						<input id="uname" type="text" style="width:220px;height:35px;" placeholder="用户名">
+					</div>
+					<div style="height: 45px;">
+						<input id="passw" type="password" style="width:220px;height:35px;" placeholder="密码">
+					</div>
+					<div style="height: 45px; position: relative;">
+						<input id="captcha_input" type="text" style="width:220px;height:35px;" placeholder="验证码" autocomplete="off">
+						<img src="" alt="" id="captcha_image" style="position: absolute; z-index: 2; right: 120px; top: 3px;">
+					</div>
+					<div style="height: 45px; position: relative; margin-top: 10px;">
+						<input value="登录" style="width: 272px;" id="login_button" name="login_button" type="button">
+					</div>
+				</form>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(function() {
+				$.jpolite.Login.indexPage = "index.html"; // 登陆后跳转页面
+				//$.jpolite.Login.checkLogin();				     // 检查是否登陆过，如果登陆这则跳转到主页面
+				$.jpolite.Login.initUsernameInput("uname"); // 初始化用户名输入框
+				$.jpolite.Login.initPasswordInput("passw"); // 初始化密码输入框
+				$.jpolite.Login.initLanguageInput("language"); // 初始化语言输入框
+				//此处为生成验证图片时的Js脚本初始化调用
+				$.jpolite.Login.initCaptchaInput("captcha_input");			// 初始化校验输入框
+				$.jpolite.Login.initCaptchaImage("captcha_image");			// 初始化校验图片
+				
+				$.jpolite.Login.initAgentSelect("agent_select"); // 初始化代理选择框
+				$.jpolite.Login.initHintLable("hint_lable"); // 初始化提示信息标签
+				$.jpolite.Login.initLoadingImage("loading_image"); // 初始化加载中图片
+				$.jpolite.Login.initRememberCheckbox("remember_checkbox"); // 初始化记住设置选择框
+				$.jpolite.Login.initPasswordCheckbox("password_checkbox");	// 初始化记住密码设置选择框
+				//$.jpolite.Login.initMaximize("maximize_checkbox"); // 初始化记住最大化选择框
+				$.jpolite.Login.initLoginButton("login_button"); // 初始化登陆按钮
+				//$.jpolite.Login.initCancelButton("cancel_button"); // 初始化取消按钮
+				//$.jpolite.Login.initFromCookie(); // 初始化存储信息，从Cookie中
+				$.jpolite.Login.initFocus(); // 初始化焦点
+			});
+		</script>
+	</body>
+</html>

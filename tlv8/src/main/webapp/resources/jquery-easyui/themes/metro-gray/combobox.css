@@ -1,0 +1,20 @@
+.combobox-item,
+.combobox-group {
+  font-size: 11pt;
+  padding: 3px;
+  padding-right: 0px;
+}
+.combobox-gitem {
+  padding-left: 10px;
+}
+.combobox-group {
+  font-weight: bold;
+}
+.combobox-item-hover {
+  background-color: #E6E6E6;
+  color: #404040;
+}
+.combobox-item-selected {
+  background-color: #84909c;
+  color: #fff;
+}

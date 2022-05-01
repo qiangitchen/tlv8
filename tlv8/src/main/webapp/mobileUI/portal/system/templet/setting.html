@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"/>
+		<meta charset="utf-8">
+		<title>选项</title>
+		<link rel="stylesheet" type="text/css" href="../../../system/css/mui.min.css" />
+		<script type="text/javascript" charset="utf-8" src="../../../system/js/jquery.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../../system/js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../js/portal.js"></script>
+		<style type="text/css">
+		.infoName{
+			line-height: 30px;
+			text-align: center;
+		}
+		.userImg{
+			width: 80px;
+			height: 80px;
+			border-radius: 50%;
+		}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav ">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<a class="mui-icon mui-icon-bars mui-pull-right mui-plus-visible"></a>
+			<h1 class="mui-title" id="title_val">选项</h1>
+		</header>
+		<nav class="mui-bar mui-bar-footer">
+			<h1 class="mui-title">TLv8</h1>
+		</nav>
+		<div class="mui-content">
+		
+			<ul class="mui-table-view">
+			
+				<li class="mui-table-view-cell infoName">
+					<div style="width: 100px; margin: auto;">
+				    	<img class="userImg" src="../../../../comon/picCompant/personhead.jsp" />
+				    	<span style="color: #ddd;" id="userInfo"></span>
+					</div>
+				</li>
+				
+				<li class="mui-table-view-cell" onclick="window.open('changePassword.html','_self')">
+					<label>修改密码</label>
+				</li>
+				<li class="mui-table-view-cell" onclick="window.open('../../../SA/opm/personinfo/deatailActivity.html','_self')">
+					<label>个人信息</label>
+				</li>
+				<li class="mui-table-view-cell" onclick="window.open('../../../oa/setting/myOpinion/listActivity.html','_self')">
+					<label>常用意见</label>
+				</li>
+				<li class="mui-table-view-cell" onclick="window.open('../../../oa/setting/myGroup/grouplist.html','_self')">
+					<label>我的群组</label>
+				</li>
+				<li class="mui-table-view-cell" onclick="window.open('chachefile.html','_self')">
+					<label>清理缓存</label>
+				</li>
+			
+			</ul>
+			
+			<div class="mui-button-row" style="padding-top: 40px;">
+				<button type="button" class="mui-btn mui-btn-outlined mui-btn-danger" style="width: 80%;" onclick="tlv8.logout()">退出登录</button>
+			</div>
+		</div>
+		
+	</body>
+
+	<script type="text/javascript">
+		if (!tlv8.UserInfo.inited) {
+			tlv8.UserInfo.init();
+		}
+	</script>
+</html>

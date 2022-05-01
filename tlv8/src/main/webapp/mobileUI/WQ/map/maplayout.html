@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>查看地图</title>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<style>
+			body,
+			html,
+			#container {
+				height: 100%;
+				width: 100%;
+				padding: 0;
+				margin: 0;
+				font-size: 14px;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="../../system/css/mui.min.css" />
+		<script type="text/javascript" charset="utf-8" src="../../system/js/jquery.js"></script>
+		<script src="../../system/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://api.map.baidu.com/api?v=15&key=7622ae8de04695339a921792eddf1578" type="text/javascript"></script>
+		<script type="text/javascript" src="maplayout.js"></script>
+	</head>
+
+	<body onload="creatMaplay();pageInit();">
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav ">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<h1 class="mui-title">查看地图</h1>
+		</header>
+		<div id="contenView" class="mui-content">
+			<table width="100%" height="100%">
+				<tr>
+					<td>
+						<div id="container"></div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+
+</html>

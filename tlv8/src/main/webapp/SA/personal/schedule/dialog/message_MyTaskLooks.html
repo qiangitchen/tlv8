@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>message_MyTaskLooks.html</title>
+    <script type="text/javascript" src="../../../../comon/js/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../../comon/My97DatePicker/WdatePicker.js"></script>
+  	<script type="text/javascript" src="../../../../comon/js/comon.main.js"></script>
+  	<script type="text/javascript" src="../js/message_MyTaskLooks.js"></script>
+  </head>
+  <body onLoad="onloadset()">
+	  <form id="affairsdata">
+	    <table style=" text-align: center; font-size: 13px;" id="tbadd" >
+			<tr>
+				<td width="67" align="center" valign="middle">标题：</td>
+				<td width="168" align="left" valign="middle" id="tdscaption">
+					<input type="text" name="SCAPTION" id="SCAPTION">			</td>
+				<td width="67" align="center" valign="middle">优先级别：</td>
+				<td width="168" align="left" valign="middle"><select name="SPRIORITY" id="SPRIORITY" style="width:154">
+				  <option value="0" selected>普通</option>
+				  <option value="1">不重要/不紧急</option>
+				  <option value="2">不重要/紧急</option>
+				  <option value="3">重要/不紧急</option>
+				  <option value="4">重要/紧急</option>
+				  </select>			 </td>
+			</tr>
+			<tr>
+				<td align="center" valign="middle">开始时间：</td>
+			  	<td width="168" align="left" valign="middle">
+			  		<input name="SSTARTDATE" type="text" class="Wdate" id="SSTARTDATE" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:false})">		  	</td>
+				<td align="center" valign="middle">结束时间：</td>
+			  	<td align="left" valign="middle">
+					<input name="SENDDATE" type="text" class="Wdate" id="SENDDATE" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:false})">			</td>
+			</tr>
+			<tr>
+			  <td align="center" valign="middle">类型：</td>
+			  <td align="left" valign="middle"><select name="SAFFAIRSTYPE" id="SAFFAIRSTYPE" style="width:154">
+	            <option value="4" selected>工作</option>
+	            <option value="5">个人</option>
+	          </select></td>
+			  <td align="center" valign="middle">完成率：</td>
+			  <td align="left" valign="middle"><input name="SCOMPLETERATE" type="text" id="SCOMPLETERATE" style="width:34;text-align:right">%</td>
+		  	</tr>
+			<tr>
+			  <td align="center" valign="middle">状态：</td>
+			  <td align="left" valign="middle"><input type="text" name="SSTATUS" id="SSTATUS"/>		  </td>
+			  <td align="center" valign="middle">&nbsp;</td>
+			  <td align="left" valign="middle">&nbsp;</td>
+		  </tr>
+			<tr height="80">
+				<td height="64" align="center" valign="middle">事务内容：</td>
+				<td colspan="3" align="left" valign="middle">
+					<textarea style="width: 100%; height: 100%;" id="SCONTENT" name="SCONTENT"></textarea>			</td>
+			</tr>
+			<tr>
+			  <td height="27" align="center" valign="middle">&nbsp;</td>
+			  <td align="left" valign="middle">&nbsp;</td>
+		      <td colspan="2" align="left" valign="middle"><input type="button" name="button" value="已完成" onClick="affairsCompleted()" style="line-height:1.4;font-family: '宋体';width:57">
+		        &nbsp;&nbsp;&nbsp;&nbsp;
+	            <input type="button" name="button3" value="修 改" onClick="affairsUpdate()" style="line-height:1.4;font-family: '宋体';width:57">
+	            &nbsp;&nbsp;&nbsp;&nbsp;
+	            <input type="button" name="button2" value="删 除" onClick="affairsDelete()" style="line-height:1.4;font-family: '宋体';width:57"></td>
+	      </tr>
+	  	</table>
+	  </form>
+  </body>
+</html>

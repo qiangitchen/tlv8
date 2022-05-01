@@ -1,0 +1,455 @@
+/**
+*<!--body样式 -->
+*/
+.Detailbody {
+	background-attachment: scroll;
+	background-color: transparent;
+	background-image: url("img/body_detail_bg.jpg");
+	background-position-x: 0%;
+	background-position-y: 0%;
+	background-repeat: repeat;
+	color: #393939;
+	font-size: 9pt;
+	margin-bottom: 0px;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 0px;
+	padding-bottom: 5px;
+	padding-left: 0px;
+	padding-top: 0px;
+	padding-right: 0px;
+}
+
+/**<!--蓝色分割线标题与表单分割-->
+*/
+.DetailnavReg {
+	border-bottom-color: #005eb5;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	color: #393939;
+	font-size: 9pt;
+	height: 26px;
+	margin-bottom: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0px;
+	text-align: left;
+	width: 100%;
+}
+
+.DetailLogoDiv {
+	float: left;
+	height: 20px;
+	width: 50px;
+}
+
+.DetailnavLogoImage {
+	border-bottom-style: none;
+	border-bottom-width: 0px;
+	border-left-style: none;
+	border-left-width: 0px;
+	border-top-style: none;
+	border-top-width: 0px;
+	color: #393939;
+	font-size: 9pt;
+	height: 26px;
+	left: 10px;
+	margin-top: 12px;
+	position: relative;
+	top: -5px;
+	text-align: left;
+	width: 32px;
+}
+
+/**<!--保存和取消按钮table样式->*/
+.DetailnavButton {
+	border-bottom-style: none;
+	border-bottom-width: 0px;
+	border-left-style: none;
+	border-left-width: 0px;
+	border-top-style: none;
+	border-top-width: 0px;
+	height: 35px;
+	text-align: center;
+}
+
+/**<!--左上角标题-->*/
+.Detailtitle {
+	color: #393939;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 20px;
+	margin-top: 16px;
+	position: relative;
+	text-align: left;
+	top: -5px;
+}
+
+/**<!---类似tab的样式->*/
+.DetailDiv {
+	color: #393939;
+	font-size: 9pt;
+	padding-bottom: 0px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-left: 0px;
+	position: relative;
+	zoom: 1;
+}
+
+.Detailul {
+	background-image: none;
+	background-attachment: scroll;
+	background-repeat: repeat-x;
+	background-position-x: center;
+	background-position-y: center;
+	background-color: transparent;
+	color: #393939;
+	font-size: 9pt;
+	height: 28px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+}
+
+.Detailli {
+	background-attachment: scroll;
+	background-color: transparent;
+	background-image: url("img/ulnav_bg.jpg");
+	background-position-x: left;
+	background-position-y: top;
+	background-repeat: no-repeat;
+	border-bottom-style: none;
+	border-bottom-width: 0px;
+	color: #393939;
+	float: left;
+	font-size: 14px;
+	font-weight: bold;
+	height: 28px;
+	left: 0px;
+	list-style-type: none;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: -px;
+	margin-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	position: relative;
+	top: 0px;
+	white-space: nowrap;
+	width: 115px;
+	z-index: 2;
+}
+
+.Detailli_un {
+	background-attachment: scroll;
+	background-color: transparent;
+	background-image: url("img/un_ulnav_bg.jpg");
+	background-position-x: left;
+	background-position-y: top;
+	background-repeat: no-repeat;
+	border-bottom-style: none;
+	border-bottom-width: 0px;
+	color: #393939;
+	float: left;
+	font-size: 14px;
+	font-weight: bold;
+	height: 28px;
+	left: 0px;
+	list-style-type: none;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: -px;
+	margin-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	position: relative;
+	top: 0px;
+	white-space: nowrap;
+	width: 115px;
+	z-index: 2;
+}
+
+.DetailliA {
+	background-image: url("img/ulnav_bg.jpg");
+	background-position-x: right;
+	background-position-y: top;
+	background-repeat: no-repeat;
+	color: #393939;
+	cursor: text;
+	float: left;
+	font-size: 14px;
+	font-weight: bold;
+	height: 28px;
+	list-style-type: none;
+	outline-color: invert;
+	outline-style: none;
+	outline-width: medium;
+	padding-left: 22px;
+	padding-top: 0.5em;
+	text-transform: none;
+	white-space: nowrap;
+	width: 120px;
+}
+
+/**<!--详细表单-->*/
+.DetailInfoDiv {
+	background-attachment: scroll;
+	background-color: rgb(246, 246, 246);
+	background-image: none;
+	background-repeat: repeat;
+	background-position-x: 0%;
+	background-position-y: 0%;
+	border-top-color: #c3c3c3;
+	border-right-color: #c3c3c3;
+	border-bottom-color: #c3c3c3;
+	border-left-color: #c3c3c3;
+	border-top-width: 0px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: none;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	color: #393939;
+	display: block;
+	font-size: 9pt;
+	padding-bottom: 1em;
+	padding-left: 1.4em;
+	padding-right: 1.4em;
+	padding-top: 1em;
+}
+
+/**<!--详细table-->*/
+.Detailtable {
+	line-height: 20px;
+	font-size: 9pt;
+	border-top-color: #c3c3c3;
+	border-right-color: #c3c3c3;
+	border-bottom-color: #c3c3c3;
+	border-left-color: #c3c3c3;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-collapse: collapse;
+	color: #393939;
+	display: block;
+	background: #ffffff;
+	margin-top: 5px;
+}
+
+.Detailtable1 {
+	line-height: 20px;
+	font-size: 9pt;
+	border-top-color: #c3c3c3;
+	border-right-color: #c3c3c3;
+	border-bottom-color: #c3c3c3;
+	border-left-color: #c3c3c3;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-collapse: collapse;
+	color: #393939;
+	display: block;
+	background: #ffffff;
+	margin-top: 5px;
+}
+
+.Detailtable tr {
+	height: 30px;
+}
+
+/**<!--详细表单标签-->*/
+.DetailtableHeader {
+	height: 30px;
+	color: #393939;
+	line-height: 23px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 10px;
+	font-size: 14px;
+	font-weight: bold;
+	vertical-align: middle;
+	background-image: url("img/header_bg.jpg");
+	background-attachment: scroll;
+	background-repeat: repeat-x;
+	background-position-x: center;
+	background-position-y: center;
+	background-color: transparent;
+	border-collapse: collapse;
+	vertical-align: middle;
+}
+
+/**<!--标准input-->*/
+.DetailInput {
+	border-bottom-color: #b8bbcc;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-top-color: #b8bbcc;
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-right-color: #b8bbcc;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-left-color: #b8bbcc;
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-collapse: collapse;
+	color: #000000;
+	font-size: 9pt;
+	height: 20px;
+	line-height: 18px;
+	padding-left: 3px;
+	width: 90%;
+}
+
+/**<!--带图片的input-->*/
+.DetailSelectInput {
+	background-image: url("img/input_bg_add.jpg");
+	background-repeat: no-repeat;
+	background-position-x: right;
+	background-position-y: center;
+	border-bottom-color: #b8bbcc;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-top-color: #b8bbcc;
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-right-color: #b8bbcc;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-left-color: #b8bbcc;
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-collapse: collapse;
+	color: #000000;
+	font-size: 9pt;
+	height: 20px;
+	line-height: 18px;
+	padding-left: 3px;
+	width: 83%;
+	border-bottom-color: #b8bbcc;
+	background-position-y: center;
+}
+
+/**<!--清除（红色叉叉图片） -->*/
+.DetailClearImage {
+	border-bottom-style: none;
+	border-bottom-width: 0px;
+	border-collapse: collapse;
+	border-left-style: none;
+	border-left-width: 0px;
+	border-top-style: none;
+	border-top-width: 0px;
+	color: #297fd4;
+	font-size: 9pt;
+	left: 3pt;
+	line-height: 10px;
+	position: relative;
+	top: 3px;
+	height: 15px;
+	width: 15px;
+}
+
+/**<!--标准textarea-->*/
+.Detailtextarea {
+	border-bottom-color: #b8bbcc;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-top-color: #b8bbcc;
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-right-color: #b8bbcc;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-left-color: #b8bbcc;
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-collapse: collapse;
+	color: #000000;
+	font-size: 9pt;
+	height: 20px;
+	line-height: 18px;
+	padding-left: 3px;
+	width: 96%;
+	height: 100%;
+}
+
+/**
+ *background-color: rgb(255, 255, 255);
+**/
+.DetailSpanTD {
+	background-attachment: scroll;
+	background-image: none;
+	background-repeat: repeat;
+	background-position-x: 0%;
+	background-position-y: 0%;
+	border-collapse: collapse;
+	font-size: 9pt;
+	height: 30px;
+	padding-left: 15px;
+	padding-top: 5px;
+	vertical-align: top;
+}
+
+/**
+*2012-3-21 Liubing 按钮样式  验证文本样式
+**/
+.SaveButton {
+	width: 62px;
+	height: 23px;
+	line-height: 18px;
+	margin-top: 4px;
+	border: 0;
+	background: url("img/savebutton.gif");
+	color: #2F4F4F;
+}
+
+.ReadOnly {
+	background-image: url("img/yanzheng.gif");
+	background-repeat: repeat-x;
+	background-position: bottom;
+}
+
+/*end*/ /*客户关系新保存按钮*/
+.btnCrmSaveNew {
+	width: 76;
+	height: 25;
+	border: 0;
+	cursor: hand;
+	background: url(img/baocun.jpg);
+}
+
+/*客户关系取消按钮*/
+.btnCrmCancelNew {
+	width: 76;
+	height: 25;
+	border: 0;
+	cursor: hand;
+	background: url(img/quxiao.jpg);
+}
+
+.sum_num_alignRight {
+	text-align: right;
+}

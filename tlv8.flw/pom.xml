@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.tlv8</groupId>
+		<artifactId>tlv8-root</artifactId>
+		<version>2.4.0</version>
+	</parent>
+	<artifactId>tlv8.flw</artifactId>
+
+	<description>TLv8 平台 流程引擎</description>
+
+	<dependencies>
+
+		<!-- 核心包 -->
+		<dependency>
+			<groupId>com.tlv8</groupId>
+			<artifactId>tlv8.core</artifactId>
+		</dependency>
+
+	</dependencies>
+
+</project>

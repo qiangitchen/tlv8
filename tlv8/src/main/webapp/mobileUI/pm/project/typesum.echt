@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <data>
+    <sql dbkey="pm">select t.fMINGCHENG fEXTYPE,ROUND(sum(p.fjine),2) jine from pm_expense p left join pm_expense_type t on t.fid=p.fEXTYPE where fXIANGMUID={p1} group by fEXTYPE</sql>
+  </data>
+  <script><![CDATA[
+  var xdata = eval('{{fEXTYPE}}');
+  var ydata = eval('{{jine}}');
+  if(!xdata){
+  	xdata = [];
+  }
+  if(!ydata){
+  	ydata=[];
+  }
+  var sdata = [];
+  for(var i=0; i<ydata.length;i++){
+  	sdata.push({value:ydata[i],name:xdata[i]});
+  }
+  option = {
+    title: {
+        text: '费用类型统计',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+    },
+    series: [
+        {
+            name: '费用类型统计',
+            type: 'pie',
+            radius: '50%',
+            data: sdata,
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+  myChart.setOption(option);
+  ]]></script>
+  <chart type="pie" theme="light"><![CDATA[]]></chart>
+</root>

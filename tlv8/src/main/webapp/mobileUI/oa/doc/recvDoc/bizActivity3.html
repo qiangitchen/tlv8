@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="../../../system/css/mui.min.css"/>
+		<script type="text/javascript" charset="utf-8" src="../../../system/js/jquery.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/mui.min.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/base.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/dialog.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/flow.main.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../oa/common/js/oaUtils.js"></script>
+		<script type="text/javascript" charset="utf-8" src="bizActivity2.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../common/css/oaUitls.css" />
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			    <button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>
+					返回
+				</button>
+				<button id="task_execute" component="flowprocess" class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right">
+					<span class="mui-icon mui-icon-compose"></span>
+					处理
+				</button>
+			    <h1 class="mui-title" id="title_val">文件传阅</h1>
+		</header>
+			<div class="mui-content" id="contenView">
+				<form id="OA_DC_DOC_FORM" afterRefresh="afRefresh">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-divider">
+							<label>来文信息</label></li>
+						<li>
+						<li class="mui-input-group">
+							<div class="mui-input-row">
+								<label for="FTITLE">文件标题:</label>
+								<label id="FTITLE" class="ui-lable-info"></label>
+							</div>
+							<div class="mui-input-row">
+								<label for="FDOCNUMBER">来文字号:</label>
+								<label id="FDOCNUMBER" class="ui-lable-info"></label>
+							</div>
+							<div class="mui-input-row">
+								<label for="FDOCSOURCEDEPT">来文单位:</label>
+								<label id="FDOCSOURCEDEPT" class="ui-lable-info"></label>
+							</div>
+							<div class="mui-input-row">
+								<label for="FDOCSOURCEDATE">来文日期:</label>
+								<label id="FDOCSOURCEDATE" class="ui-lable-info" format="yyyy-MM-dd"></label>
+							</div>
+							<div class="mui-input-row">
+								<label for="FDOCCOPIES">来文份数:</label>
+								<label id="FDOCCOPIES" class="ui-lable-info"></label>
+							</div>
+							<div class="mui-input-row">
+								<label for="FPAGECOUNT"
+										>文件页数:</label><label id="FPAGECOUNT" class="ui-lable-info"></label>
+									</div>
+							<div class="mui-input-row"><label for="FDOCTYPE"
+										>文件种类:</label><label id="FDOCTYPE" class="ui-lable-info"></label></div>
+							<div class="mui-input-row"><label for="FURGENCY"
+										>缓急程度:</label><label id="FURGENCY" class="ui-lable-info"></label>
+							</div>
+							<div class="mui-input-row">
+								<label for="FCONFIDENTIALITY"
+										>文件密级:</label><label id="FCONFIDENTIALITY" class="ui-lable-info"></label>
+							</div>
+						</li>
+						<li class="mui-table-view-divider">
+							<label style="font-size: 17px;">登记信息</label>
+						</li>
+						<li class="mui-input-group">
+							<div class="mui-input-row">
+								<label for="FDOCRECVNO">收文编号:</label>
+								<label id="FDOCRECVNO" class="ui-lable-info"></label>
+							</div>
+							<div class="mui-input-row">
+								<label for="FDOCRECVDATE">收文日期:</label>
+								<label id="FDOCRECVDATE" class="ui-lable-info" format="yyyy-MM-dd"></label>
+							</div>
+							<div class="mui-input-row">
+								<label for="FCREATEPERSONNAME">登记人:</label>
+								<label id="FCREATEPERSONNAME" class="ui-lable-info"></label>
+							</div>
+							<div class="mui-input-row">
+								<label for="FCREATETIME">登记日期:</label>
+								<label id="FCREATETIME" class="ui-lable-info" format="yyyy-MM-dd"></label>
+							</div>
+							<div class="mui-input-row">
+								<label for="FREMARK">说明备注:</label>
+								<label id="FREMARK" class="ui-lable-info"></label>
+							</div>
+						</li>
+						<li class="mui-table-view-divider" data-theme="c">
+							<label style="font-size: 17px;">文件</label>
+						</li>
+						<li>
+							<div class="mui-input-row">
+								<label for="FATTACHMENT">附&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;件:</label>
+								<div id="FATTACHMENT_showdiv"></div> 
+								<input id="FATTACHMENT" type="text" style="display: none;" />
+							</div>
+						</li>
+					</ul>
+				</form>
+				<div id="opinion_list"></div>
+			</div>
+	</body>
+</html>

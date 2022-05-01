@@ -1,0 +1,68 @@
+﻿.input-of-float input {text-align: right;border:0px;top:3px;}
+
+.custom-toolbar-background
+{
+	padding: 0px; 
+	cellspacing:0; 
+	border-bottom: 1px solid #99bbe8; 
+	font-size:11px; 
+	text-align:left; 
+	font-weight:bold
+}
+  
+.select_radio .xforms-item
+{
+	display:inline;
+}
+
+.xforms-trigger img {
+	cursor: pointer;
+}
+
+.xforms-trigger span {
+	cursor: pointer;
+}
+
+.xforms-label {
+	vertical-align: middle;
+	font-family: 宋体, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+}
+
+.xforms-control {
+	vertical-align: middle;
+	font-family: 宋体, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+}
+
+.xforms-value {
+	vertical-align: middle;
+	font-family: 宋体, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+}
+
+a {
+	font-size: 9pt;
+    COLOR:	 RGB(5,120,160);
+	text-decoration:none;
+}
+a:link {
+	font-size: 9pt;
+    COLOR:	 RGB(5,120,160);
+	text-decoration:none;
+}
+a:active {
+	font-size: 9pt;
+    COLOR:	 RGB(5,120,160);
+	text-decoration:none;
+}
+a:visited {
+	font-size: 9pt;
+    COLOR:	 RGB(5,120,160);
+	text-decoration:none;
+}
+a:hover {
+	font-size: 9pt;
+	COLOR:   #27408B; 
+	text-decoration:none;
+}

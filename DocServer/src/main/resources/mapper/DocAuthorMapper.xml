@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tlv8.doc.svr.generator.dao.IDocAuthorDao" >
+  <resultMap id="resultDocAuthor" type="com.tlv8.doc.svr.generator.beans.DocDocPath" >
+  </resultMap>
+  <select id="getByPrimaryKey" resultMap="resultDocAuthor" parameterType="java.lang.String" >
+    select * from Doc_Author where fID = #{fID,jdbcType=VARCHAR}
+  </select>
+  <select id="getByUserID" resultMap="resultDocAuthor" parameterType="java.lang.String" >
+    select * from Doc_Author where fUserID = #{fUserID,jdbcType=VARCHAR}
+  </select>
+  <select id="getList" resultMap="resultDocAuthor">
+    select * from Doc_Author
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Doc_Author where fID = #{fID,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByUserID" parameterType="java.lang.String" >
+    delete from Doc_Author where fUserID = #{fUserID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tlv8.doc.svr.generator.beans.DocDocPath" >
+    insert into Doc_Author (fID, fUserID, fAmLeve, version) 
+    values (#{fID,jdbcType=VARCHAR}, 
+      #{fUserID,jdbcType=VARCHAR}, 
+      #{fAmLeve,jdbcType=INTEGER}, 
+      #{version,jdbcType=INTEGER}) 
+  </insert>
+  <update id="update" parameterType="com.tlv8.doc.svr.generator.beans.DocDocPath" >
+    update Doc_Author 
+    set fUserID = #{fUserID,jdbcType=VARCHAR},
+      fAmLeve = #{fAmLeve,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER} 
+    where fID = #{fID,jdbcType=VARCHAR}
+  </update>
+</mapper>

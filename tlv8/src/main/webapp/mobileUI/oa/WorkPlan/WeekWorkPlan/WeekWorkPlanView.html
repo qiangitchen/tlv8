@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="../../../system/css/mui.min.css" />
+		<script type="text/javascript" charset="utf-8" src="../../../system/js/jquery.js"></script>
+		<script src="../../../system/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8" src="../../../system/js/base.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../comon/js/utils.js"></script>
+		<script type="text/javascript" charset="utf-8" src="WeekWorkPlanView.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../common/css/oaUitls.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right" onclick="javascript:newOpinion()">
+				<span class="mui-icon mui-icon-compose"></span>
+				填写意见
+			</button>
+			<h1 class="mui-title" id="title_val"></h1>
+		</header>
+		<div class="mui-content">
+			<div id="contenView">
+				<form id="DATA_FORM" afterRefresh="afRefresh">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-divider"><label style="font-size: 17px;">基本信息</label></li>
+						<li class="mui-input-group" style="padding: 10px;line-height: 25px;">
+							<table>
+								<tr>
+									<td width="80px"><label for="FORGNAME">计划部门:</label></td>
+									<td><label id="FORGNAME" class="ui-lable-info"></label></td>
+								<tr>
+									<td width="80px"><label for="STARTTIME">开始时间:</label></td>
+									<td><label id="STARTTIME" class="ui-lable-info" format="yyyy-MM-dd"></label></td>
+								</tr>
+								<tr>
+									<td width="80px"><label for="FINISHTIME">结束时间:</label></td>
+									<td><label id="FINISHTIME" class="ui-lable-info" format="yyyy-MM-dd"></label></td>
+								</tr>
+								<tr>
+									<td width="80px"><label for="PLANPERSON">计&nbsp;&nbsp;&nbsp;划&nbsp;&nbsp;人:</label></td>
+									<td><label id="PLANPERSON" class="ui-lable-info"></label></td>
+									<td style="display: none;"><label id="FCREATEID" class="ui-lable-info"></label></td>
+								</tr>
+							</table>
+						</li>
+						<li class="mui-table-view-divider"><label style="font-size: 17px;">计划工作内容</label></li>
+						<li class="mui-input-group" style="padding: 10px;line-height: 25px;">
+							<a class="showDetailInfo" style="font-size: 17px;" data-ajax="false" href="lastWeekInfo.html">上周遗留(
+								<font color="red" id="last_count">0</font>)
+							</a>
+						</li>
+						<li class="mui-input-group" style="padding: 10px;line-height: 25px;">
+							<a class="showDetailInfo" style="font-size: 17px;" data-ajax="false" href="thisWeekInfo.html">本周目标(
+								<font color="red" id="this_count">0</font>)
+							</a>
+						</li>
+						<li class="mui-input-group" style="padding: 10px;line-height: 25px;">
+							<a class="showDetailInfo" style="font-size: 17px;" data-ajax="false" href="tempWeekInfo.html">临时工作事项(
+								<font color="red" id="ls_count">0</font>)
+							</a>
+						</li>
+						<li class="mui-table-view-divider"><label style="font-size: 17px;">审核情况</label></li>
+						<li>
+							<div id="lookWorkPlanPerson" style="padding: 10px;"></div>
+						</li>
+					</ul>
+				</form>
+			</div>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<title>服务器监控</title>
+	<link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/default/easyui.css" />
+	<link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/icon.css" />
+  	<link rel="stylesheet" href="../../comon/css/formsyle.css" type="text/css"></link>
+  	<script type="text/javascript" src="../../comon/js/jquery/jquery.min.js"></script>
+  	<script type="text/javascript" src="../../comon/js/comon.main.js"></script>
+  	<script type="text/javascript" src="../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="servicesInfo.js"></script>
+ </head>
+  
+  <body style="overflow: hidden;">
+   <div id="tabveiw1" class="easyui-tabs" fit="true" data-options="onSelect:tabsselected">
+    	<div id="detail_01" title="服务器属性" style="height: 100%;">
+    		<div id="MainInfo" style="width:100%;height:100%;overflow:auto;"></div>
+    	</div>
+     	<div id="detail_02" title="服务器CPU信息" style="height:100%;">
+     		<div id="CPUInfo" style="width:100%;height:100%;overflow:auto;"></div>
+     	</div>
+     	<div id="detail_03" title="服务器内存信息" style="height:100%;">
+     		<div id="MemoryInfo" style="width:100%;height:100%;overflow:auto;"></div>
+     	</div>
+     	<div id="detail_04" title="服务器硬盘信息" style="height:100%;">
+     		<div id="FilesystemInfo" style="width:100%;height:100%;overflow:auto;"></div>
+     	</div>
+     	<div id="detail_05" title="服务器网络信息" style="height:100%;">
+     		<div id="NetInfo" style="width:100%;height:100%;overflow:auto;"></div>
+     	</div>
+     	<div id="detail_06" title="服务器EtherNet信息" style="height:100%;">
+     		<div id="EtherNetInfo" style="width:100%;height:100%;overflow:auto;"></div>
+     	</div>
+     </div>
+  </body>
+</html>

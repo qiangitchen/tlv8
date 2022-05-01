@@ -1,0 +1,151 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>mainActivity.html</title>
+	<link type="text/css" rel="stylesheet" href="../../../../resources/jquery-easyui/themes/default/easyui.css" />
+	<link type="text/css" rel="stylesheet" href="../../../../resources/jquery-easyui/themes/icon.css" />
+  	<link type="text/css" rel="stylesheet" href="../../../../comon/css/formsyle.css"></link>
+  	<link type="text/css" rel="stylesheet" href="mainActivity.css"></link>
+  	<script type="text/javascript" src="../../../../comon/js/jquery/jquery.min.js"></script>
+  	<script type="text/javascript" src="../../../../comon/js/comon.main.js"></script>
+  	<script type="text/javascript" src="../../../../comon/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+  	<script type="text/javascript" src="mainActivity.js"></script>
+  </head> 
+  <body style="overflow: hidden;" onload="initDocumentPage();">
+	<div class="easyui-layout" fit="true">
+		<div data-options="region:'north',split:false" style="height:30px;overflow: hidden;">
+			<div id="stander_bar" insertAction="dataInsert()"
+				saveAction="dataSave()" refreshAction="dataRefresh()"
+				deleteAction="dataDeleted()" style="margin-left: 1px;">
+			</div>
+			<script type="text/javascript">
+				init_toolbar();
+			</script>
+		</div>
+		<div data-options="region:'center'" style="padding:5px;">
+			<form id="MAIN_DATA_FORM">
+				<table class="Detailtable" align="center" style="table-layout: fixed; width: 700px; margin-left: auto; margin-right: auto;"
+					id="mainLayoutTable">
+					<tr height="10px">
+						<td width="60px"></td>
+						<td width="200px"></td>
+						<td width="60px"></td>
+						<td width="150px"></td>
+						<td width="60px"></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>姓名</td>
+						<td><input type="text" id="SNAME" name="SNAME"
+							class="forminput" style="width: 100%;" /></td>
+						<td>编号</td>
+						<td colspan="2"><input type="text" id="SCODE" name="SCODE"
+							class="forminput" readonly="readonly" style="width: 100%;" /></td>
+						<td rowspan="6">
+							<div id="picphotoview" style="width: 100%; height: 170px;"></div>
+						</td>
+					</tr>
+					<tr>
+						<td>手机号</td>
+						<td><input type="text" id="SMOBILEPHONE" name="SMOBILEPHONE"
+							class="forminput" style="width: 100%;" /></td>
+						<td>登录名</td>
+						<td colspan="2"><input type="text" id="SLOGINNAME" name="SLOGINNAME"
+							class="forminput" style="width: 100%;" /></td>
+					</tr>
+					<tr>
+						<td>QQ</td>
+						<td><input type="text" id="SQQ" name="SQQ" class="forminput"
+							style="width: 100%;" /></td>
+						<td>电子邮箱</td>
+						<td colspan="2"><input type="text" id="SMAIL" name="SMAIL"
+							class="forminput" style="width: 100%;" /></td>
+					</tr>
+					<tr>
+						<td>身份证</td>
+						<td colspan="4"><input type="text" id="SIDCARD" name="SIDCARD"
+							class="forminput" style="width: 100%;" /></td>
+					</tr>
+					<tr>
+						<td>年龄</td>
+						<td><input type="text" id="SNUMB" name="SNUMB"
+							class="forminput" style="width: 100%;" /></td>
+						<td>性别</td>
+						<td colspan="2">
+							<select id="SSEX" name="SSEX"
+								class="forminput" style="width: 100%;">
+								<option value="男">男</option>
+								<option value="女">女</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>生日</td>
+						<td><input type="text" id="SBIRTHDAY" name="SBIRTHDAY"
+							class="WdateinputLine"
+							onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" format="yyyy-MM-dd"
+							class="forminput" style="width: 100%;" /></td>
+						<td>入职时间</td>
+						<td colspan="2"><input type="text" id="SJOINDATE" name="SJOINDATE"
+							class="WdateinputLine"
+							onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" format="yyyy-MM-dd"
+							style="width: 100%;" /></td>
+					</tr>
+					<tr>
+						<td>联系住址</td>
+						<td colspan="5"><input type="text" id="SHOMEPLACE" name="SHOMEPLACE"
+							class="forminput" style="width: 100%;" /></td>
+					</tr>
+					<tr>
+						<td>学历</td>
+						<td><input type="text" id="SDEGREE" name="SDEGREE"
+							class="forminput" style="width: 100%;" /></td>
+						<td>学校</td>
+						<td><input type="text" id="SGRADUATESCHOOL"
+							name="SGRADUATESCHOOL" class="forminput" style="width: 100%;" /></td>
+						<td>专业</td>
+						<td><input type="text" id="SSPECIALITY" name="SSPECIALITY"
+							class="forminput" style="width: 100%;" /></td>
+					</tr>
+					<tr>
+						<td>证件类型</td>
+						<td><input type="text" id="SCARDKIND" name="SCARDKIND"
+							class="forminput" style="width: 100%;" /></td>
+						<td>证件号码</td>
+						<td><input type="text" id="SCARDNO" name="SCARDNO"
+							class="forminput" style="width: 100%;" /></td>
+						<td>婚姻状况</td>
+						<td>
+							<select id="SMARRIAGE" name="SMARRIAGE"
+								class="forminput" style="width: 100%;">
+								<option value="未婚">未婚</option>
+								<option value="已婚">已婚</option>
+								<option value="离异">离异</option>
+								<option value="散偶">散偶</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>家庭电话</td>
+						<td><input type="text" id="SFAMILYPHONE" name="SFAMILYPHONE"
+							class="forminput" style="width: 100%;" /></td>
+						<td>办公电话</td>
+						<td><input type="text" id="SOFFICEPHONE" name="SOFFICEPHONE"
+							class="forminput" style="width: 100%;" /></td>
+						<td>邮编</td>
+						<td><input type="text" id="SZIP" name="SZIP"
+							class="forminput" style="width: 100%;" /></td>
+					</tr>
+					<tr>
+						<td>家庭地址</td>
+						<td colspan="5"><input type="text" id="SFAMILYADDRESS"
+							name="SFAMILYADDRESS" class="forminput" style="width: 100%;" /></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+  </body>
+</html>

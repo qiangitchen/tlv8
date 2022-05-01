@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+		<title>移动外勤</title>
+		<link rel="stylesheet" type="text/css" href="../../system/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../mobileUI/system/css/jquery.confirm.css" />
+		<link rel="stylesheet" type="text/css" href="scene.css" />
+		<script type="text/javascript" charset="utf-8" src="../../../mobileUI/system/js/jquery.js"></script>
+		<script src="../../system/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8" src="../../../mobileUI/system/js/jquery.confirm.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../../mobileUI/system/js/jquery.corner.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../../mobileUI/system/js/dialog.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../../mobileUI/portal/system/js/portal.js"></script>
+		<script type="text/javascript" charset="utf-8" src="sceneindex.js"></script>
+		<style type="text/css">
+			.ui-page {
+				background: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+				<a href='../../../mobileUI/portal/ydwqindex.html'><span class="mui-icon mui-icon-left-nav"></span>
+				返回</a>
+			</button>
+			<h1 class="mui-title" id="userInfo"></h1>
+		</header>
+		<div class="mui-content">
+			<div id="mainview">
+				<div id="contenView">
+					<table align='center' width='90%' style='margin-left:6%;'>
+						<tr height='98px'>
+							<td>
+								<div class='MenuItem'>
+									<div class='countTixview_un'></div>
+									<a data='item' href='../../../mobileUI/WQ/scene/tour.html' rel="external">
+										<img src='../../../mobileUI/portal/system/images/newscreen.png'>
+										<p><b class="MenuItem_text">巡视内容</b></p>
+									</a>
+								</div>
+							</td>
+							<td>
+								<div class='MenuItem'>
+									<div class='countTixview_un'></div>
+									<a data='item' href='../../../mobileUI/WQ/scene/mainActivity.html' rel="external">
+										<img src='../../../mobileUI/portal/system/images/investigation.png'>
+										<p><b class="MenuItem_text">现场调查</b></p>
+									</a>
+								</div>
+							</td>
+							<td>
+								<div class='MenuItem'>
+									<div class='countTixview_un' id="empty_waittask"></div>
+									<a data='item' href='../../../mobileUI/WQ/scene/listActivity.html' rel="external">
+										<img src='../../../mobileUI/portal/system/images/scene_list.png'>
+										<p><b class="MenuItem_text">调查记录</b></p>
+									</a>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class='MenuItem'>
+									<div class='countTixview_un' id="empty_waittask"></div>
+									<a data='item' href='../../../mobileUI/WQ/scene/tourQuery.html' rel="external">
+										<img src='../../../mobileUI/portal/system/images/screenrecord.png'>
+										<p><b class="MenuItem_text">巡视记录</b></p>
+									</a>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(".MenuItem").corner();
+	</script>
+
+</html>

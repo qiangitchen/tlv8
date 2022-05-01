@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0"></meta>
+		<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"></meta>
+		<title>写邮件</title>
+		<link rel="stylesheet" type="text/css" href="../../../system/css/mui.min.css"/>
+		<script type="text/javascript" charset="utf-8" src="../../../system/js/jquery.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../../system/js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../../system/js/base.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../../system/js/dialog.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../common/js/oaUtils.js"></script>
+		<script type="text/javascript" charset="utf-8" src="mainActivity.js"></script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			    <button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>
+					返回
+				</button>
+				<a class="mui-icon mui-icon-compose mui-pull-right mui-plus-visible"></a>
+			    <h1 class="mui-title" id="title_val">写邮件</h1>
+		</header>
+		<nav class="mui-bar mui-bar-tab">
+				<a class="mui-btn mui-btn-green mui-btn-nav " href="javascript:writeMail('save');" style="margin-left: 20px;">
+					<span class="mui-icon mui-icon-download"></span>
+					<span class="mui-tab-label">保存</span>
+				</a>
+				<a class="mui-btn mui-btn-primary mui-btn-nav mui-pull-right" href="javascript:writeMail('send');" style="margin-right: 20px;">
+					<span class="mui-icon mui-icon-paperplane"></span>
+					<span class="mui-tab-label">发送</span>
+				</a>
+		</nav>
+		<div id="contenView" class="mui-content">
+			<form id="WRITE_DATA_FORM">
+				<table width="100%" style="margin-top: 20px;">
+					<tr>
+						<td width="60"><label for="FCONSIGNEE"
+							>收件人:</label></td>
+						<td><input type="text" name="FCONSIGNEE" id="FCONSIGNEE"
+							value="" readonly="readonly" style="margin-bottom: 0px;"/></td>
+						<td width="20"><a class="mui-btn mui-btn-royal mui-btn-outlined"
+							href="javascript:void(0);" onclick="selectPerson()"
+							id="selectPsn" style="font-weight: bold; color: blue;"
+							title="选择收件人">+</a></td>
+					</tr>
+					<tr>
+						<td><label for="FEMAILNAME" >主&nbsp;&nbsp;&nbsp;题:</label>
+						</td>
+						<td>
+							<textarea rows="3" style="margin-top: 20px;"
+								name="FEMAILNAME" id="FEMAILNAME"></textarea>
+						</td>
+						<td>
+						</td>
+					</tr>
+					<tr>
+						<td><label for="FTEXT" >内&nbsp;&nbsp;&nbsp;容:</label>
+						</td>
+						<td>
+							<textarea name="FTEXT"
+								id="FTEXT" style="min-height: 200px;"></textarea>
+						</td>
+						<td>
+						</td>
+					</tr>
+					<tr>
+						<td align="center"><label>附&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;件</label></td>
+						<td>
+							<div id="FATTACHMENT_showdiv"></div> 
+						</td>
+						<td width="20"></td>
+					</tr>
+				</table>
+				<div style="display: none;">
+					<input type="text" name="FCONSIGNEEID" id="FCONSIGNEEID" value=""
+						readonly="readonly" /> <input type="text" name="FCONSIGNEECODE"
+						id="FCONSIGNEECODE" value="" readonly="readonly" /> <input
+						type="text" name="FSENDPERID" id="FSENDPERID" value=""
+						readonly="readonly" /> <input type="text" name="FSENDPERCODE"
+						id="FSENDPERCODE" value="" readonly="readonly" /> <input
+						type="text" name="FSENDPERNAME" id="FSENDPERNAME" value=""
+						readonly="readonly" /> <input type="text" name="FCREATTIME"
+						id="FCREATTIME" value="" readonly="readonly" /> <input
+						type="text" name="rowid" id="rowid" value="" readonly="readonly" />
+				</div>
+			</form>
+		</div>
+	</body>
+</html>

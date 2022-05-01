@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <style type="text/css">
+		button.op{
+			width:120px;
+			background-color:#9DC2DB;
+			border:1px #EEEEEE solid;
+			cursor: pointer;
+		}
+	</style>
+  	<script type="text/javascript" src="../../js/jquery/jquery.min.js"></script>
+  	<script type="text/javascript" src="../../js/comon.main.js"></script>
+  	<script type="text/javascript" src="../docUtil.js"></script>
+  	<script type="text/javascript">
+  		window.isWriteLog = false;
+  	</script>
+  	<script type="text/javascript">
+	function colseWindow(){
+		TANGER_OCX_OBJ.FullScreenMode=false;
+		TANGER_OCX_OBJ.close();
+		try{
+			tlv8.portal.closeWindow();
+		}catch(e){
+			window.close();
+		}
+	}
+	 //添加自定义菜单子项
+	function AddMyMenuItems()
+	{
+	 	try
+		{
+			/************添加自定义工具栏*****************/
+			TANGER_OCX_OBJ.AddCustomToolButton("Close",2);
+		}
+	   	catch(err){
+			alert("Can't create Document："+ err.number +":" + err.description);
+		}
+		finally{
+		}
+	}
+	function  openDoc()
+	{   
+		  document.all.item("TANGER_OCX").FullScreenMode=true;		  
+		  TANGER_OCX_OBJ = document.all.item("TANGER_OCX");	
+		  TANGER_OCX_OBJ.EnableFileCommand(3) =true; 
+		  TANGER_OCX_OBJ.EnableFileCommand(4) =true;
+		  var docPath = tlv8.RequestURLParam.getParam("docPath");
+		  var fileID = tlv8.RequestURLParam.getParam("fileID");
+		  var url = justep.Doc.getURLByFileID(docPath, fileID);
+		  AddMyMenuItems();
+		  TANGER_OCX_OBJ.BeginOpenFromURL(url,true);
+	}
+	</script>
+  </head>
+  <body onload="openDoc();">
+  	<object id="TANGER_OCX" classid="clsid:C9BC4DFF-4248-4a3c-8A49-63A7D317F404" codebase="OfficeControl.cab#version=5,0,2,1" width="100%" height="100%">
+        <param name="BorderStyle" value="1">
+		<param name="CustomToolBar" value="1">
+	 	<param name="BorderColor" value="14402205">        
+	 	<param name="TitlebarColor" value="14402205">
+        <param name="TitlebarTextColor" value="0">
+		<param name="Menubar" value="true">		
+        <param name="Caption" value="Trace retain components">
+        <param name="MenubarColor" value="14402205">
+		<param name="MenuBarStyle" value="3">
+		<param name="MenuButtonStyle" value="7">
+		<param name="CustomMenuCaption" value="Over the template">
+        <param name="filenew" value="0">
+        <param name="IsNoCopy" value="0">
+		<i></i>	
+		<param name="ProductCaption" value="北京起步科技有限公司">
+		<param name="ProductKey" value="82A976172B476F3EEFFDBC144588EB4378D6A76E">
+		<SPAN STYLE="color:red">Cannot load document control. Please check in the check browser option browser security Settings.</SPAN>
+	</object>
+	<script language="JScript">
+		//红头模板的实际保存路径 全局js变量。
+		var readModelRealPath="";
+		var issetRedHead=false;
+	</script>
+	<script language="JScript" for="TANGER_OCX" event="AfterOpenFromURL(doc)">
+	    try{
+	   //设置试图显示100%
+		   TANGER_OCX_OBJ.ActiveDocument.ActiveWindow.ActivePane.View.Zoom.Percentage = 100;
+		   //设置试图为页面试图
+		   TANGER_OCX_OBJ.ActiveDocument.ActiveWindow.ActivePane.View.Type =3;
+		   //设置悬停显示工具条
+		   TANGER_OCX_OBJ.ActiveDocument.ActiveWindow.DisplayScreenTips =1; 
+			TANGER_OCX_ShowRevisions(false);
+		  
+		}catch(e){
+		}
+	</script>
+	<script language="JScript" for=TANGER_OCX event="OnDocumentClosed()">
+	 	TANGER_OCX_bDocOpen = false;
+	</script>
+	<script language="JScript">
+		var TANGER_OCX_str;
+		var TANGER_OCX_obj;
+	</script>
+	<script language="JScript" for=TANGER_OCX event="OnDocumentOpened(TANGER_OCX_str,TANGER_OCX_obj)">
+		TANGER_OCX_OnDocumentOpened(TANGER_OCX_str,TANGER_OCX_obj);
+		TANGER_OCX_OBJ.ActiveDocument.AcceptAllRevisions();//接受所有修订
+	</script>
+	<script language="JScript" for="TANGER_OCX" event="OnCustomToolBarCommand(btnIdx)">
+		switch(btnIdx)
+		{
+			case 0://关闭
+				colseWindow();
+			break;
+			default: break;
+		}
+	</script>
+  </body>
+</html>

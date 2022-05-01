@@ -1,0 +1,36 @@
+# Compiled class file
+*.class
+*/classes/*
+*/test-classes/*
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Eclipse
+.metadata
+/.metadata/
+#/classes/
+/bin/
+#*/classes/*
+*/bin/*
+
+# Maven
+target/*
+*/target/*
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/*
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/

@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="../../../system/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../system/css/jquery.confirm.css"></link>
+		<script type="text/javascript" charset="utf-8" src="../../../system/js/jquery.js"></script>
+		<script src="../../../system/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="../../../system/js/jquery.corner.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../../portal/system/css/index.css"></link>
+		<script type="text/javascript" charset="utf-8" src="../../../system/js/base.js"></script>
+		<script type="text/javascript" src="showReport.js"></script>
+		<style type="text/css">
+			.ui-page {
+				background: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<a class="mui-icon mui-icon-compose mui-pull-right mui-plus-visible"></a>
+			<h1 class="mui-title" id="title_val">月报</h1>
+		</header>
+		<nav class="mui-bar mui-bar-footer">
+			<h1 class="mui-title">TLv8</h1>
+		</nav>
+		<div class="mui-content">
+			<div id="contenView">
+				<div>
+					<ul class="mui-table-view mui-grid-view mui-grid-9">
+						<li class="mui-table-view-cell mui-media mui-col-xs-6 mui-col-sm-6 MItem">
+							<div class='countTixview_un' id="empty_gl"></div>
+							<a id='reportManage' href='reportList.html' rel="external">
+								<img src='image/write.png'></img>
+								<p class="mui-media-body">月报管理</p>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-6 mui-col-sm-6 MItem">
+							<div class='countTixview_un' id="empty_look"></div>
+							<a id='report' href='reportLookList.html' rel="external">
+								<img src='image/show.png'></img>
+								<p class="mui-media-body">月报查看</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(".MItem").corner();
+		</script>
+	</body>
+
+</html>

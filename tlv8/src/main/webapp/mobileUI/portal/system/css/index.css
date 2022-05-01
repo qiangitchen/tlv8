@@ -1,0 +1,68 @@
+@CHARSET "UTF-8";
+
+.MenuItem {
+	font-size: 16px;
+	cursor: hand;
+	width: 92px;
+	height: 120px;
+	text-align: center;
+	border: 1px solid #afcde4;
+	margin: auto;
+}
+
+.MenuItem_un {
+	font-size: 16px;
+	cursor: hand;
+	width: 92px;
+	height: 120px;
+	text-align: center;
+	margin: auto;
+}
+
+.MenuItem img {
+	width: 68px;
+	height: 68px;
+}
+
+.MenuItem a {
+	color: blue;
+	text-decoration: none;
+	line-height: 1px;
+}
+
+.countTixview_un {
+	position: relative;
+	top: 20px;
+	left: 55px;
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+	color: #fff;
+	font-size: 11pt;
+	z-index: 1;
+	margin-top: -20px;
+}
+
+.countTixview {
+	position: relative;
+	top: 20px;
+	left: 55px;
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+	color: #fff;
+	font-size: 11pt;
+	background: url(image/rouan.png);
+	z-index: 1;
+	margin-top: -20px;
+}
+
+.itemborder{
+	border: 1px solid #555;
+}
+
+.mui-grid-view.mui-grid-9 .mui-table-view-cell {
+	margin-top: 5px;
+	padding: 0px;
+	text-align: center;
+}

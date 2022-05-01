@@ -1,0 +1,40 @@
+ 
+.j-m-mpanel {
+	background: #F0F0F0 url(image/menu_bg.gif) left repeat-y;
+	border: 1px solid #718BB7;
+	padding: 2px 0;
+	position: absolute;
+	z-index: 99997;
+}
+.j-m-split {
+	height: 6px;
+	background: url(image/m_splitLine.gif) center repeat-x;
+	font-size: 0px;
+	margin: 0 2px;
+}
+.j-m-item, .j-m-ifocus, .j-m-idisable {
+	width: 100%;
+	padding: 4px 3px;
+	margin: 0 2px;
+	cursor: pointer;
+}
+.j-m-ibody, .j-m-arrow {
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.j-m-arrow {
+	background: url(image/m_arrow.gif) right  no-repeat;
+	margin-right: 1px;
+}
+.j-m-item img, .j-m-ifocus img, .j-m-idisable img {
+	margin-right: 7px;
+}
+.j-m-ifocus {
+	background: url(image/m_item.gif);
+	border: 1px solid #AACCF6;
+	padding: 3px 2px;
+}
+.j-m-idisable img {
+	visibility:hidden;
+}

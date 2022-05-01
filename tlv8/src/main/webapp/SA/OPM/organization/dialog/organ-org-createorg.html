@@ -1,0 +1,104 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<title>机构信息</title>
+		<link type="text/css" rel="stylesheet" href="../../../../resources/bootstrap/css/bootstrap.min.css"/>
+		<link type="text/css" rel="stylesheet" href="../../../../resources/layui/css/layui.css"/>
+		<link type="text/css" rel="stylesheet" href="../../../../comon/css/formDetail/formDetail.css"/>
+		<link type="text/css" rel="stylesheet" href="../../../../resources/jquery-easyui/themes/default/easyui.css" />
+		<link type="text/css" rel="stylesheet" href="../../../../resources/jquery-easyui/themes/icon.css" />
+		<link type="text/css" rel="stylesheet" href="organ-org-createorg.css"/>
+		<script type="text/javascript" src="../../../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="../../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="../../../../resources/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../../../../resources/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="orgIndex.js"></script>
+		<script type="text/javascript" src="organ-org-createorg.js"></script>
+	</head>
+	<body onload="initDialog()">
+		<div class="layui-fluid">
+			<div class="layui-card">
+				<div class="layui-card-body">
+					<form id="org_create_form" class="layui-form" afterRefresh="afRefresh">
+						<div style="display: none;">
+							<input type="text" name="SPARENT" id="SPARENT" style="display: none;" />
+							<input type="text" name="SFCODE" id="SFCODE" readonly="readonly" style="display: none;" />
+							<input type="text" name="SFID" id="SFID" readonly="readonly" style="display: none;" />
+							<input type="text" name="SVALIDSTATE" id="SVALIDSTATE" readonly="readonly" style="display: none;" />
+							<input type="text" name="SSEQUENCE" id="SSEQUENCE" readonly="readonly" style="display: none;" />
+							<input type="text" name="SLEVEL" id="SLEVEL" readonly="readonly" style="display: none;" />
+						</div>
+						<div class="layui-form-item">
+				            <label class="layui-form-label">路径</label>
+				            <div class="layui-input-block" style="margin-left:80px;">
+								<input type="text" name="SFNAME" id="SFNAME" readonly="readonly" class="layui-input"/>
+				            </div>
+				        </div>
+						<div class="layui-form-item">
+				            <div class="layui-inline">
+					            <label class="layui-form-label">编号</label>
+					            <div class="layui-input-inline">
+									<input type="text" id="SCODE" name="SCODE" class="layui-input" lay-verify="required" placeholder="编号不能为空"/>
+					            </div>
+				            </div>
+				            <div class="layui-inline">
+					            <label class="layui-form-label">类型</label>
+					            <div class="layui-input-inline">
+									<select id="SORGKINDID" name="SORGKINDID" style="width: 100%">
+										<option value="ogn">
+											机构
+										</option>
+										<option value="dpt">
+											部门
+										</option>
+										<option value="pos">
+											岗位
+										</option>
+									</select>
+					            </div>
+				            </div>
+				        </div>
+				        <div class="layui-form-item">
+				            <label class="layui-form-label">名称</label>
+				            <div class="layui-input-block" style="margin-left:80px;">
+								<input type="text" name="SNAME" id="SNAME" class="layui-input" lay-verify="required" placeholder="名称不能为空"/>
+				            </div>
+				        </div>
+				        <div class="layui-form-item">
+				            <div class="layui-inline">
+					            <label class="layui-form-label">电话</label>
+					            <div class="layui-input-inline">
+									<input type="text" name="SPHONE" id="SPHONE" class="layui-input"/>
+					            </div>
+				            </div>
+				            <div class="layui-inline">
+					            <label class="layui-form-label">传真</label>
+					            <div class="layui-input-inline">
+									<input type="text" name="SFAX" id="SFAX" class="layui-input"/>
+					            </div>
+				            </div>
+				        </div>
+				        <div class="layui-form-item">
+				            <label class="layui-form-label">地址</label>
+				            <div class="layui-input-block" style="margin-left:80px;">
+								<input type="text" name="SADDRESS" id="SADDRESS" class="layui-input"/>
+				            </div>
+				        </div>
+				        <div class="layui-form-item">
+				            <label class="layui-form-label">描述</label>
+				            <div class="layui-input-block" style="margin-left:80px;">
+								<textarea id="SDESCRIPTION" name="SDESCRIPTION" class="layui-textarea" style="min-height:40px;"></textarea>
+				            </div>
+				        </div>
+				        <div style="display: none;"> 
+				        	<button id="mainfsub" class="layui-btn" lay-submit lay-filter="mainform">立即提交</button> 
+         					<button type="reset" class="layui-btn layui-btn-primary">重置</button> 
+         				</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

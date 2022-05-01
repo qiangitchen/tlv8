@@ -1,0 +1,362 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<title>个人资料</title>
+		<link type="text/css" rel="stylesheet" href="../../../resources/layui/css/layui.css"></link>
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/default/easyui.css"></link>
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/icon.css"></link>
+		<link type="text/css" rel="stylesheet" href="../../../comon/css/formsyle.css"> 
+		<script type="text/javascript" src="../../../comon/js/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="../../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="../../../comon/My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+	  	<script type="text/javascript" src="../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+	  	<script type="text/javascript" src="../../../resources/layui/layui.js"></script>
+		<script type="text/javascript" src="PersonData.js"></script>
+	</head>
+	<body>
+	  <div class="layui-fluid">
+		<form id="sa_opperson_form" class="layui-form" afterRefresh="afRefresh">
+			<div class="layui-card">
+				<div class="layui-card-header">基本信息</div>
+				<div class="layui-card-body">
+					 <div class="layui-form-item">
+			            <div class="layui-inline">
+			              <label class="layui-form-label" style="width:110px;">姓名</label>
+			              <div class="layui-input-inline">
+			                <input type="text" id="SNAME" name="SNAME" lay-verify="required" autocomplete="off" class="layui-input">
+			              </div>
+			            </div>
+			            <div class="layui-inline">
+			              <label class="layui-form-label" style="width:110px;">性别</label>
+			              <div class="layui-input-inline">
+			                <select id="SSEX" name="SSEX">
+								<option value="">--请选择--</option>
+								<option value="男">男</option>
+								<option value="女">女</option>
+							</select> 
+			              </div>
+			            </div>
+			          </div>
+					 <div class="layui-form-item">
+					 	<div class="layui-inline">
+			              <label class="layui-form-label" style="width:110px;">生日</label>
+			              <div class="layui-input-inline">
+			                <input type="text" name="SBIRTHDAY" id="SBIRTHDAY" class="layui-input Wdate" onFocus="WdatePicker({format:'yyyy-MM-dd hh'})" />
+			              </div>
+			            </div>
+					 	<div class="layui-inline">
+			              <label class="layui-form-label" style="width:110px;">QQ</label>
+			              <div class="layui-input-inline">
+			                <input type="text" name="SQQ" id="SQQ" class="layui-input" />
+			              </div>
+			            </div>
+			          </div>
+					 <div class="layui-form-item">
+					 	<div class="layui-inline">
+			              <label class="layui-form-label" style="width:110px;">MSN</label>
+			              <div class="layui-input-inline">
+			                <input type="text" name="SMSN" id="SMSN" class="layui-input" />
+			              </div>
+			            </div>
+					 	<div class="layui-inline">
+			              <label class="layui-form-label" style="width:110px;">家庭住址</label>
+			              <div class="layui-input-inline">
+			                <input type="text" name="SDESCRIPTION" id="SDESCRIPTION" class="layui-input" />
+			              </div>
+			            </div>
+			          </div>
+			          <div class="layui-inline" style="float:right;margin-top:-170px;">
+		              	<div class="layui-input-inline" style="background-color: #ffffff;">
+		              		<div id="picDemo" style="width: 250px; height: 150px;"></div>
+		              	</div>
+		              </div>
+				</div>
+			</div>
+			<div class="layui-card">
+				<div class="layui-card-header">登录信息</div>
+				<div class="layui-card-body">
+					<div class="layui-form-item">
+			            <div class="layui-inline">
+			              <label class="layui-form-label" style="width:110px;">昵称</label>
+			              <div class="layui-input-inline">
+			                <input type="text" id="SLOGINNAME" name="SLOGINNAME" autocomplete="off" class="layui-input">
+			              </div>
+			            </div>
+			            <div class="layui-inline">
+			              <label class="layui-form-label" style="width:110px;">学历</label>
+			              <div class="layui-input-inline">
+			                <SELECT id="SDEGREE" name="SDEGREE" style="width: 90%">
+								<OPTION selected value="">
+									--请选择--
+								</OPTION>
+								<OPTION value="高中">
+									高中
+								</OPTION>
+								<OPTION value="中专">
+									中专
+								</OPTION>
+								<OPTION value="大专">
+									大专
+								</OPTION>
+								<OPTION value="本科">
+									本科
+								</OPTION>
+								<OPTION value="其他">
+									其他
+								</OPTION>
+							</SELECT>
+			              </div>
+			            </div>
+			          </div>
+					<div class="layui-form-item">
+			            <div class="layui-inline">
+			              <label class="layui-form-label" style="width:110px;">国家</label>
+			              <div class="layui-input-inline">
+			                <SELECT id="SCOUNTRY" name="SCOUNTRY" style="width: 90%">
+								<OPTION selected value="">
+									--请选择--
+								</OPTION>
+								<OPTION value="中国">
+									中国
+								</OPTION>
+								<OPTION value="美国">
+									美国
+								</OPTION>
+								<OPTION value="英国">
+									英国
+								</OPTION>
+								<OPTION value="德国">
+									德国
+								</OPTION>
+								<OPTION value="日本">
+									日本
+								</OPTION>
+								<OPTION value="其他">
+									其他
+								</OPTION>
+							</SELECT>
+			              </div>
+			            </div>
+			            <div class="layui-inline">
+			              <label class="layui-form-label" style="width:110px;">省份</label>
+			              <div class="layui-input-inline">
+			                <select name="SPROVINCE" id="SPROVINCE" style="width: 90%">
+									<option selected value="">
+										--请选择--
+									</option>
+									<option value="北京">
+										北京
+									</option>
+									<option value="上海">
+										上海
+									</option>
+									<option value="重庆">
+										重庆
+									</option>
+									<option value="天津">
+										天津
+									</option>
+									<option value="河北省">
+										河北省
+									</option>
+									<option value="河南省">
+										河南省
+									</option>
+									<option value="湖北省">
+										湖北省
+									</option>
+									<option value="湖南省">
+										湖南省
+									</option>
+									<option value="广东省">
+										广东省
+									</option>
+									<option value="广西省">
+										广西省
+									</option>
+									<option value="黑龙江省">
+										黑龙江省
+									</option>
+									<option value="吉林省">
+										吉林省
+									</option>
+									<option value="辽宁省">
+										辽宁省
+									</option>
+									<option value="内蒙古自治区">
+										内蒙古自治区
+									</option>
+									<option value="新疆自治区">
+										新疆自治区
+									</option>
+									<option value="宁夏自治区">
+										宁夏自治区
+									</option>
+									<option value="西藏自治区">
+										西藏自治区
+									</option>
+									<option value="甘肃省">
+										甘肃省
+									</option>
+									<option value="青海省">
+										青海省
+									</option>
+									<option value="四川省">
+										四川省
+									</option>
+									<option value="山西省">
+										山西省
+									</option>
+									<option value="山东省">
+										山东省
+									</option>
+									<option value="陕西省">
+										陕西省
+									</option>
+									<option value="江西省">
+										江西省
+									</option>
+									<option value="江苏省">
+										江苏省
+									</option>
+									<option value="浙江省">
+										浙江省
+									</option>
+									<option value="安徽省">
+										安徽省
+									</option>
+									<option value="福建省">
+										福建省
+									</option>
+									<option value="贵州省">
+										贵州省
+									</option>
+									<option value="云南省">
+										云南省
+									</option>
+									<option value="海南省">
+										海南省
+									</option>
+									<option value="香港特别行政区">
+										香港特别行政区
+									</option>
+									<option value="澳门特别行政区">
+										澳门特别行政区
+									</option>
+									<option value="台湾省">
+										台湾省
+									</option>
+								</select>
+			              </div>
+			            </div>
+			          </div>
+				</div>
+			</div>
+			<div class="layui-card">
+				<div class="layui-card-header">其他信息</div>
+				<div class="layui-card-body">
+					<div class="layui-form-item">
+			            <div class="layui-inline">
+			              <label class="layui-form-label" style="width:110px;">出生地</label>
+			              <div class="layui-input-inline">
+			                <input type="text" id="SHOMEPLACE" name="SHOMEPLACE" autocomplete="off" class="layui-input">
+			              </div>
+			            </div>
+			            <div class="layui-inline">
+			              <label class="layui-form-label" style="width:110px;">入职时间</label>
+			              <div class="layui-input-inline">
+			                <input type="text" id="SJOINDATE" name="SJOINDATE" autocomplete="off" class="layui-input">
+			              </div>
+			            </div>
+			        </div>
+					<div class="layui-form-item">
+			            <div class="layui-inline">
+			              <label class="layui-form-label" style="width:110px;">邮政编码</label>
+			              <div class="layui-input-inline">
+			                <input type="text" id="SZIP" name="SZIP" autocomplete="off" class="layui-input" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
+										onkeyup="value=value.replace(/[^\d]/g,'')">
+			              </div>
+			            </div>
+			            <div class="layui-inline">
+			              <label class="layui-form-label" style="width:110px;">联系电话</label>
+			              <div class="layui-input-inline">
+			                <input type="text" id="SMOBILEPHONE" name="SMOBILEPHONE" autocomplete="off" class="layui-input" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
+										onkeyup="value=value.replace(/[^\d]/g,'')">
+			              </div>
+			            </div>
+			        </div>
+			        <div class="layui-form-item">
+			            <div class="layui-inline">
+			              <label class="layui-form-label" style="width:110px;">婚否</label>
+			              <div class="layui-input-inline">
+			                <SELECT id="SMARRIAGE" name="SMARRIAGE">
+								<OPTION selected value="">
+									--请选择--
+								</OPTION>
+								<OPTION value="已婚">
+									已婚
+								</OPTION>
+								<OPTION value="未婚">
+									未婚
+								</OPTION>
+							</SELECT> 
+			              </div>
+			            </div>
+			            <div class="layui-inline">
+			              <label class="layui-form-label" style="width:110px;">电子邮箱</label>
+			              <div class="layui-input-inline">
+			                <input type="text" id="SMAIL" name="SMAIL" autocomplete="off" class="layui-input">
+			              </div>
+			            </div>
+			        </div>
+			        <div class="layui-form-item">
+			            <div class="layui-inline">
+			              <label class="layui-form-label" style="width:110px;">毕业学校</label>
+			              <div class="layui-input-inline">
+			                <input type="text" id="SGRADUATESCHOOL" name="SGRADUATESCHOOL" autocomplete="off" class="layui-input">
+			              </div>
+			            </div>
+			            <div class="layui-inline">
+			              <label class="layui-form-label" style="width:110px;">学校地址</label>
+			              <div class="layui-input-inline">
+			                <input type="text" id="SSCHOOLLENGTH" name="SSCHOOLLENGTH" autocomplete="off" class="layui-input">
+			              </div>
+			            </div>
+			        </div>
+			        <div class="layui-form-item">
+			            <div class="layui-inline">
+			              <label class="layui-form-label" style="width:110px;">证件类型</label>
+			              <div class="layui-input-inline">
+			                <select type="text" id="SCARDKIND" name="SCARDKIND">
+			                	<option value="">--请选择--</option>
+			                	<option value="身份证">身份证</option>
+			                	<option value="驾驶证">驾驶证</option>
+			                	<option value="护照">护照</option>
+			                	<option value="其他">其他</option>
+			                </select>
+			              </div>
+			            </div>
+			            <div class="layui-inline">
+			              <label class="layui-form-label" style="width:110px;">证件号</label>
+			              <div class="layui-input-inline">
+			                <input type="text" id="SCARDNO" name="SCARDNO" autocomplete="off" class="layui-input">
+			              </div>
+			            </div>
+			        </div>
+				</div>
+			</div>
+			<div class="layui-btn-container" style="text-align:center;">
+	            <button type="button" class="layui-btn layui-btn-normal" style="margin-bottom: 0px;" lay-submit lay-filter="SavaShiftClass">保存设置并应用</button>
+	        </div>
+			</form>
+		 </div>
+		 <script type="text/javascript">
+		 	/* 监听提交 */
+    		layui.form.on('submit(SavaShiftClass)', function(data){
+				PICsaveData();
+      			return false;
+    		});
+		 </script>
+	</body>
+</html>

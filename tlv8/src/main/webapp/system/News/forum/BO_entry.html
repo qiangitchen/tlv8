@@ -1,0 +1,63 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/default/easyui.css" />
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/icon.css" />
+		<style type="text/css">
+		a:hover {
+			background: #CCCCFF;
+			color: #036;
+			text-decoration: none;
+		}
+		</style>
+		<script type="text/javascript" src="../../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="../../../comon/js/grid.main.js"></script>
+		<script type="text/javascript" src="../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="BO_entry.js"></script>
+	</head>
+	<body class="Detailbody">
+		<div class="easyui-layout" fit="true">
+			<div data-options="region:'north',border:false" style="height: 30px; overflow: hidden;">
+				<table class="Detailtable" border="0" cellSpacing="0" width="100%" align="center">
+						<tr id="page1_block1_row2">
+							<td class="DetailSpanTD" align="left" noWrap>
+								<a href="javascript:void(0);" onclick="openview()"
+									style="border: 1px #FFFFFF solid;"><img
+										src="image/readwrite_obj.gif" title="发帖"
+										style="height: 18px;" />【发帖】</a>
+								<a href="javascript:void(0);" onclick="lookEntry()"
+									style="border: 1px #FFFFFF solid;"><img
+										src="image/cpyqual_menu.gif" title="浏览"
+										style="height: 18px;" />【浏览】</a>
+								<a href="javascript:void(0);" onclick="lockEntry()"
+									style="border: 1px #FFFFFF solid;"><img
+										src="image/disable.gif" title="锁帖" style="height: 18px;" />【锁帖】</a>
+								<a href="javascript:void(0);" onclick="unbindEntry()"
+									style="border: 1px #FFFFFF solid;"><img
+										src="image/password.gif" title="解锁" style="height: 18px;" />【解锁】</a>
+								<a href="javascript:void(0);" onclick="deleteEntry()"
+									style="border: 1px #FFFFFF solid;"><img
+										src="image/delete.gif" title="删除" style="height: 18px;" />【删除】</a>
+								<a href="javascript:void(0);" onclick="velocity()"
+									style="border: 1px #FFFFFF solid;"><img
+										src="image/insp_sbook.gif" title="查看" style="height: 18px;" />【查看】</a>
+								<span style="border: 1px #FFFFFF solid; height: 18px;">[标题]
+									<input id="looks" type="text"
+										style="padding: 1px; border-top-width: 1px; border-left-width: 1px; border-right-width: 1px solid #ccc; border-bottom-width: 1px solid #ccc; margin-right: 5px;" />
+									<img src="image/insp_sbook.gif" title="查看"
+										onClick="lookselect()" />
+								</span>
+								<hr style="border: 1 dashed #987cb9" width="100%"
+									color=#987cb9 SIZE=1>
+							</td>
+						</tr>
+				</table>
+			</div>
+			<div data-options="region:'center',border:false" style="text-align: center;">
+				<div id='gridmainView' ondbclick="editOrgData" style="width: 100%; height: 100%;"></div>
+			</div>
+		</div>
+	</body>
+</html>

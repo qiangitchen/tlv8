@@ -1,0 +1,39 @@
+#content {
+	width: 650px;
+	border: 1px solid #808080;
+	text-align: center;
+}
+
+table {
+	margin-top: 0px;
+	border-collapse: collapse;
+}
+
+input {
+	font: normal 12px Verdana;
+	color: #333333;
+	border: 1px solid #999999;
+	background: #ffffff;
+	height: 25px
+}
+
+select {
+	font: normal 12px Verdana;
+	color: #333333;
+	border: 1px solid #999999;
+	background: #ffffff;
+	width: 100px;
+}
+
+textarea {
+	font: normal 12px Verdana;
+	color: #333333;
+	border: 1px solid #999999;
+	background: #ffffff;
+}
+
+.SCODE {
+	background-image: url(../../image/yanzheng.gif);
+	background-repeat: repeat-x; /*水平位置重复图片*/
+	background-position: bottom; /*控制在文本框的最下方*/
+}

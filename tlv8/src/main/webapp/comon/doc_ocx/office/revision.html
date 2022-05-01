@@ -1,0 +1,102 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>审阅窗口</title>
+<style type="text/css">
+body
+{
+	width:auto;
+	height:auto;
+}
+.revision_item
+{
+	border: 1px solid #ddd;
+	margin: 0 0 0.5% 0;
+	float: left;
+	width: 99%;
+	text-align: left;
+	padding: 5px 5px 5px 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+.revision_title
+{
+	color:#999999;
+	font-size:12px;
+	cursor: pointer;
+}
+.revision_left
+{
+	float:left;
+	width:20%;
+	text-align:left;
+}
+.revision_center
+{
+	float:left;
+	width:60%;
+	text-align:center;
+}
+.revision_right
+{
+	float:left;
+	width:20%;
+	text-align:right;
+}
+.revision_content,
+.revision_content_show
+{
+	clear:both;
+	float:left;
+	padding:5px 3px 0px 3px;
+}
+.revision_content_full,
+.revision_content_hide
+{
+	display:none;
+}
+
+</style>
+<script language="javascript" type="text/javascript" src="officeViewer.js"></script>
+<script language="javascript">
+function initClickEvent() {
+	var titleList = OV.getElementsByClassName("revision_title");
+	for (var i = 0; i < titleList.length; i++)
+	{
+		OV.addEvent(titleList[i], 'click',
+			function(event){
+				var element = event.srcElement;
+				var isself = false;
+				var contentHindList = OV.getElementsByClassName("revision_content_hide");
+				for (var j = 0; j < contentHindList.length; j++) {
+					isself = isself || contentHindList[j].parentNode == element.parentNode.parentNode;
+					contentHindList[j].className = "revision_content";
+				}
+				var contentShowList = OV.getElementsByClassName("revision_content_show");
+				for (var j = 0; j < contentShowList.length; j++) {
+					isself = isself || contentHindList[j].parentNode == element.parentNode.parentNode;
+					contentShowList[j].className = "revision_content_full";
+				}
+				var contentList = OV.getElementsByClassName("revision_content");
+				for (var j = 0; j < contentList.length; j++) {
+					if (!isself && (contentList[j].parentNode == element.parentNode.parentNode)) {
+						contentList[j].className = "revision_content_hide";
+					}
+				}
+				var contentFullList = OV.getElementsByClassName("revision_content_full");
+				for (var j = 0; j < contentFullList.length; j++) {
+					if (!isself && (contentFullList[j].parentNode == element.parentNode.parentNode)) {
+						contentFullList[j].className = "revision_content_show";
+					}
+				}
+			});
+	}
+}
+</script>
+</head>
+
+<body>
+	<div class="revision_list">
+	</div>
+</body>
+</html>

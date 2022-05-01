@@ -1,0 +1,25 @@
+#content {
+	width: 410px;
+	border: 1px solid #808080;
+	text-align: center;
+}
+
+table {
+	margin-top: 2px;
+	border-collapse: collapse;
+}
+
+input,textarea {
+	font: normal 12px Verdana;
+	color: #333333;
+	border: 1px solid #999999;
+	background: #ffffff;
+}
+
+select {
+	font: normal 12px Verdana;
+	color: #333333;
+	border: 1px solid #999999;
+	background: #ffffff;
+	width: 200px;
+}

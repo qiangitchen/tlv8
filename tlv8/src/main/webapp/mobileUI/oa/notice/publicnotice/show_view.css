@@ -1,0 +1,9 @@
+.title{line-height:35px;text-align: center;}
+.title label{line-height: 30px;text-align: center;color: #003366;font-size: 20px;font-weight: 700;}
+.info{color: #999;font-size: 11pt;text-align: center;padding-bottom: 5px;margin-top: 15px;}
+.content{width: 100%;font-size: 16px!important;color: #333;line-height: 30px; text-align: left;}
+.content h2{font-size: 18px; text-align: left; font-weight: bold; line-height: 31px; clear: both; margin-top:15px; color: #ef0000;}
+.content a:hover{color: #00c;}
+.file{width: 100%;font-size: 16px!important;color: #333;line-height: 30px; text-align: left; padding: 10px;}
+.lookperson{border:1px solid #ddd;text-align: left;}
+.lookperson h2{line-height: 30px;}

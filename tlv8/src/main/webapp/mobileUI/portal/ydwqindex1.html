@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+		<title>移动外勤</title>
+		<link rel="stylesheet" type="text/css" href="../system/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../system/css/jquery.confirm.css" />
+		<link rel="stylesheet" type="text/css" href="ydwqindex.css" />
+		<script type="text/javascript" charset="utf-8" src="../system/js/jquery.js"></script>
+		<script src="../system/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8" src="../system/js/jquery.confirm.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../system/js/jquery.corner.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../system/js/dialog.js"></script>
+		<script type="text/javascript" charset="utf-8" src="system/js/portal.js"></script>
+		<script type="text/javascript" charset="utf-8" src="ydwqindex.js"></script>
+		<style type="text/css">
+			.ui-page {
+				background: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" onclick="tlv8.logout()">
+				<span class="mui-icon mui-icon-undo"></span>
+				退出
+			</button>
+			<button id="task_execute" class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right">
+				<a href="system/templet/ydwqsetting.html"><span class="mui-icon mui-icon-bars"></span>
+				选项</a>
+			</button>
+			<h1 class="mui-title" id="userInfo"></h1>
+		</header>
+		<div class="mui-content" id="mainview">
+			<div id="contenView">
+				<ul class="mui-table-view mui-grid-view mui-grid-9">
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+						<div class='countTixview_un'></div>
+						<a href='javascript:void(0)' onclick="tlv8YnApp.getMapLocatin()" id='waittask'>
+							<img src='system/images/myMap.png'>
+							<p class="mui-media-body">我的地图</p>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+						<div class='countTixview_un'></div>
+						<a href='javascript:void(0)' onclick="scanBarCode()" id='waitfile'>
+							<img src='system/images/wait_read.png'>
+							<p class="mui-media-body">扫描条码</p>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+						<div class='countTixview_un'></div>
+						<a href='javascript:void(0)' onclick="getCamera()" id='importent_note'>
+							<img src='system/images/photograph.png'>
+							<p class="mui-media-body">拍照上传</p>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+						<div class='countTixview_un'></div>
+						<a href='../WQ/clockin/mainActivity.html'>
+							<img src='system/images/clockIn.png'>
+							<p class="mui-media-body">在线打卡</p>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+						<div class='countTixview_un'></div>
+						<a href='../WQ/custormer/mainActivity.html'>
+							<img src='system/images/customervisit.png'></img>
+							<p class="mui-media-body">客户拜访</p>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+						<div class='countTixview_un'></div>
+						<a href='../WQ/scene/mainActivity.html'>
+							<img src='system/images/investigation.png'>
+							<p class="mui-media-body">现场调查</p>
+						</a>
+					</li>
+
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+						<div class='countTixview_un'></div>
+						<a href='../WQ/clockin/listActivity.html'>
+							<img src='system/images/clockInRecord.png'>
+							<p class="mui-media-body">打卡记录</p>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+						<div class='countTixview_un'></div>
+						<a href='../WQ/custormer/listActivity.html'>
+							<img src='system/images/visitRecord.png'>
+							<p class="mui-media-body">拜访记录</p>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+						<div class='countTixview_un'></div>
+						<a href='../WQ/scene/listActivity.html'>
+							<img src='system/images/scene_list.png'>
+							<p class="mui-media-body">现场记录</p>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+						<div class='countTixview_un'></div>
+						<a href='../WQ/addressbook/startActivity.html'>
+							<img src='system/images/addr.png'>
+							<p class="mui-media-body">通讯录</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(".MenuItem").corner();
+	</script>
+
+</html>

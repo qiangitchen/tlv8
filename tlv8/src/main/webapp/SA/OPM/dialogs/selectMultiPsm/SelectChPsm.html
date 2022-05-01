@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>SelectChPsm.html</title>
+    <link type="text/css" rel="stylesheet" href="../../../../resources/bootstrap/css/bootstrap.min.css"/>
+	<link type="text/css" rel="stylesheet" href="../../../../resources/layui/css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../../resources/jquery-easyui/themes/default/easyui.css" />
+	<link rel="stylesheet" type="text/css" href="../../../../resources/jquery-easyui/themes/icon.css" />
+    <link rel="stylesheet" href="../../../../comon/css/grid.main.css" type="text/css"/>
+    <link rel="stylesheet" href="../../../../comon/css/zTreeStyle/zTreeStyle.css" type="text/css"/>
+    <style type="text/css">
+	    body {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 11pt;
+			color: #666666;
+			margin-top: 5px;
+			margin-bottom:5px;
+			background:url(../../../../comon/css/formDetail/img/body_detail_bg.jpg);
+		}
+		.layout {
+			 border-left:0;
+			 border-right:1px solid #4d9ab0;
+			 border-bottom:1px solid #4d9ab0;
+			}
+			
+			.maininput {
+			font: normal 12px Verdana;
+			color: #333333;
+			border: 1px solid #999999;
+			background: #ffffff;
+			height: 20px;
+			width:150px;
+		}
+		.toobar_item{
+		margin-left: 5px;
+		}	
+   </style>  
+   <script type="text/javascript" src="../../../../comon/js/jquery/jquery.min.js"></script>
+   <script type="text/javascript" src="../../../../comon/js/jquery/jquery.ztree.core-3.1.js"></script>
+   <script type="text/javascript" src="../../../../comon/js/comon.main.js"></script>
+   <script type="text/javascript" src="../../../../comon/jTree/tree.main.js"></script>
+   <script type="text/javascript" src="../../../../comon/js/grid.main.js"></script>
+   <script type="text/javascript" src="../../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+   <script type="text/javascript" src="../../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+   <script type="text/javascript" src="../../../../resources/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
+   <script type="text/javascript" src="../../../../resources/layui/layui.js" charset="utf-8"></script>
+   <script type="text/javascript" src="SelectChPsm.js"></script>
+ </head>
+  
+  <body style="overflow:hidden; font-size: 9pt;" >
+   <div class="easyui-layout" fit="true">
+   	<div data-options="region:'west',split:true,border:false" style="width:220px;">
+		<div style="width:100%; height:100%; overflow: hidden;">
+			<ul id="maintree" class="ztree"></ul>
+		</div>
+	</div>
+	<div data-options="region:'center',border:false">
+    	<div class="easyui-layout" fit="true">
+    		<div data-options="region:'center',border:false">
+    			<div id="maingridview" component="dataGrid" style="width: 100%; height: 100%; align: left;" onchecked="gridChecked" oncheckAll="gridCheckedAll" onuncheckAll="gridCheckedAll"></div>
+			</div>
+			<div data-options="region:'south',split:false,border:false" style="height:70px;">
+				<div style="width:100%;height:25px; background:url(../../../../comon/image/csbar/d_5.gif);">
+			      &nbsp;&nbsp;选择列表
+				   <a href="javascript:void(0);" title="单个删除">
+				   <img src="../../../../comon/image/toolbar/templete/reset.gif" onclick="deleteBills()"></img>
+				   </a>&nbsp;&nbsp;
+				   <a href="javascript:void(0);" title="全部清除">
+				   <img src="../../../../comon/image/toolbar/templete/reset_all.gif" onclick="deleteAll()"></img>
+				   </a>
+			   	</div>
+			   	<span id="Chtext">
+			   
+			   	</span>
+			</div>
+		</div>
+	</div>
+	</div>
+	<script type="text/javascript">
+		var Jtree = new Jtree();
+		var treebody = "maintree";
+		Jtree.init(treebody, setting, param);
+	</script>
+  </body>
+</html>

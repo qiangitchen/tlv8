@@ -1,0 +1,267 @@
+<html>
+  <head>
+    <!--<title>officeViewerFieldDialog.html</title>-->
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../../css/common.css" type="text/css"></link>
+    <style type="text/css">
+           body {
+               margin-left: 7px;
+               margin-top: 7px;
+               margin-right: 7px;
+               margin-bottom: 7px;
+           }
+           legend, span {
+               font-size: 0.75em;
+               font-weight: 700;
+               color: #313334;
+           }
+           .tools {
+               margin-left: 7px;
+               margin-top: 7px;
+               margin-right: 7px;
+               margin-bottom: 7px;
+           }
+           .fieldLeft {
+               float: left;
+           }
+           .fieldRight {
+               float: right;
+           }
+           ul {
+               list-style-type: none;
+               margin: 1px 0px 5px 10px;
+               color: #ccc;
+           }
+           a {
+               color: #6b7b95;
+           }
+           a:focus, a:hover {
+               color: #666;
+           }
+           li {
+               font-size: 0.75em;
+           }
+      </style>
+  	<script type="text/javascript" src="../../js/jquery/jquery.min.js"></script>
+  	<script type="text/javascript" src="../../js/comon.main.js"></script>
+  	<script type="text/javascript" src="../docUtil.js"></script>
+  	<script type="text/javascript" src="../../StaticGrid/StaticGrid.js"></script>
+  	<script type="text/javascript" src="officeViewerFieldDialog.js"></script>
+  	<script type="text/javascript">
+  		window.isWriteLog = false;
+  	</script>
+  	<script language="JavaScript" type="text/javascript">
+       	function getFun(funOrName){
+			if(typeof(funOrName) == "function") return funOrName;
+			var funName = justep.String.trim(funOrName);
+			if(funName == "") return null;
+			var fun = null;
+			try{
+				eval("if(typeof(" + funName + ") == 'function') fun = " + funName + ";");
+			}
+			catch(e){}
+			return fun;
+		}
+		
+       	var OP = {
+       		queryLinkReady: false,
+       		linkList: new Array(),
+            officeViewerFieldInit : function(obj) {
+            	this.OVFP = obj;
+            	document.getElementById('inputFieldID').value = this.OVFP.fieldID;
+            	document.getElementById('inputFieldName').value = this.OVFP.fieldName;
+            },
+            officeNotifySendData : function() {
+            	this.OVFP.fieldID = document.getElementById('inputFieldID').value;
+            	this.OVFP.fieldName = document.getElementById('inputFieldName').value;
+            	return OV.JSON.stringify(this.OVFP);
+            },
+            toggleFieldGrid : function(source) {
+            	if (source.innerHTML == "∵&nbsp;&nbsp;选择域") {
+            		if (!OP.queryLinkReady) {
+            			OP.queryLinkReady = true;
+            			OP.queryLink();
+            		}
+            		source.innerHTML = "∴&nbsp;&nbsp;选择域";
+            		document.getElementById('trGrid').style.display = "";
+            		document.getElementById('trGridSplit').style.display = "";
+            	} else {
+            		source.innerHTML = "∵&nbsp;&nbsp;选择域";
+            		document.getElementById('trGrid').style.display = "none";
+            		document.getElementById('trGridSplit').style.display = "none";
+            	}
+            },
+            updateSelectActivity: function() {
+            	var sProcess = document.getElementById('selectProcess').value;
+            	document.getElementById("selectActivity").options.length = 0;
+            	var index = 0;
+            	for (var i = 0; i < OP.linkList.length; i++) {
+            		if (OP.linkList[i].sProcess == sProcess) {
+            			var sActivity = OP.linkList[i].sActivity;
+            			document.getElementById("selectActivity")[index] = new Option(sActivity, sActivity);
+            			index++;
+            		}
+            	}
+            },
+            selectProcessChange: function() {
+            	OP.updateSelectActivity();
+            	OP.showFieldGrid();
+            },
+            selectActivityChange: function() {
+            	OP.showFieldGrid();
+            },
+            showFieldGrid: function() {
+            	var id = "";
+            	for (var i = 0; i < OP.linkList.length; i++) {
+            		if ((OP.linkList[i].sProcess == document.getElementById('selectProcess').value) &&
+						(OP.linkList[i].sActivity == document.getElementById("selectActivity").value)) {
+            			id = OP.linkList[i].id;
+            			break;
+            		}
+            	}
+            	if (!OP.showFieldGridData(id)) {
+            		OP.loadFields(id);
+            	}
+            },
+            showFieldGridData: function(linkID, xml) {
+            	for (var i = 0; i < OP.linkList.length; i++) {
+            		if (OP.linkList[i].id == linkID) {
+            			if (OV.isClear(xml)) {
+            				if (OV.isClear(OP.linkList[i].xml)) return false;
+            				xml = OP.linkList[i].xml;
+            			} else {
+            				OP.linkList[i].xml = xml;
+            			}
+            			justep.xbl('fieldGridData').loadData(null, xml, null, false);
+            			break;
+            		}
+            	}
+            	return true;
+            },
+            
+            queryLink: function() {
+                var root = tlv8.sqlQueryActionforJson("system", "select SA_DocLinkDefine.SID, SA_DocLinkDefine.SPROCESS,SA_DocLinkDefine.SACTIVITY from SA_DocLinkDefine SA_DocLinkDefine ORDER BY SA_DocLinkDefine.sProcess asc,SA_DocLinkDefine.sActivity asc");
+				var rows = root.data;
+				var linkProcessNameList = new Array();
+				for (var i = 0; i < rows.length; i++) {
+					var row = rows[i];						
+					OP.linkList[i] = {};
+					var lst = "id,sProcess,sActivity".split(",");
+					for(var j = 0; j < lst.length; j++){
+						var name = lst[j];
+						var value = (j==0)?row[j].SID:(j==1)?row[j].SPROCESS:row[j].SACTIVITY;
+						OP.linkList[i][name] = value;
+					}
+					var sProcess = OP.linkList[i].sProcess;
+					if (linkProcessNameList.toString().indexOf(sProcess) == -1) {
+						linkProcessNameList.push(sProcess);
+						document.getElementById("selectProcess")[linkProcessNameList.length - 1] = new Option(sProcess, sProcess);
+					}
+				}
+				OP.selectProcessChange();
+			},
+           
+            loadFields: function(id) {
+           		var root = tlv8.sqlQueryActionforJson("system", "select SA_DocActivityTemplateField.SID,SA_DocActivityTemplateField.sFieldID,SA_DocActivityTemplateField.sFieldName from SA_DocActivityTemplateField SA_DocActivityTemplateField where SA_DocActivityTemplateField.sDocLinkDefineID='"+id+"'");
+                staticGrid.initData(root.data);
+            }
+            
+           };
+           
+           function getUrlParam(event){
+        	   	if(typeof event=="string"){
+        	   		event = eval("("+event+")");
+        	   	}
+				var data = event;
+	           	OP.officeViewerFieldInit(data);
+           }
+           
+           fieldGridDbClick = function(){
+                var grid = justep.xbl('fieldGridData');
+				document.getElementById('inputFieldID').value = grid.getValue('sFieldID');
+  				document.getElementById('inputFieldName').value = grid.getValue('sFieldName');
+	        }
+       </script>
+  
+  </head>
+  
+  <body onload="initPage()" style="overflow: hidden;">
+	<table style="width:100%;height:100%;table-layout:fixed" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td width="100%">
+							<span>域标识:&nbsp;</span><input id="inputFieldID" type="text"></input>
+							<span>&nbsp;</span><span>&nbsp;</span>
+							<span>域名称:&nbsp;</span><input id="inputFieldName" type="text"></input>
+							<span>&nbsp;</span><span>&nbsp;</span>
+						</td>
+					</tr>
+					<tr id="trGridSplit" style="display:none;">
+						<td>
+							<span>&nbsp;</span>
+						</td>
+					</tr>
+					<tr id="trGrid" style="display:none;">
+						<td width="100%">
+							<fieldset>
+							<legend>选择模板域</legend>
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td>
+   											<span>过程名:&nbsp;</span>
+   												<select id="selectProcess" onchange="OP.selectProcessChange()" style="width:300">
+   												</select>
+   											<span>&nbsp;</span><span>&nbsp;</span>
+   											<span>活动名:&nbsp;</span>
+   											<select id="selectActivity" onchange="OP.selectActivityChange()" style="width:100">
+   											</select>
+   										</td>
+   									</tr>
+   									<tr>
+								<td>
+									<span>&nbsp;</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+								     <div id="fieldGrid" style="width:100%;height:140;overflow:hidden">
+									</div>
+								</td>
+							</tr>
+							</table>
+            			</fieldset>
+						</td>
+					</tr>
+				</table>
+    		</td>
+		</tr>
+		<tr style="height: 25px">
+			<td align="right">
+			 <table style="table-layout:fixed;">
+				<tr>
+					<td width="60px" align="right">
+						<input class="btn" type="button" value="确定" onclick="ensureFn()">
+						<script type="text/javascript">
+							function ensureFn(){
+								OP.officeNotifySendData();
+								closeself();
+							}
+						</script>
+					</td>
+					<td width="60px" align="right">
+						<input class="btn" type="button" value="取消" onclick="cancellFn()">
+						<script type="text/javascript">
+							function cancellFn(){
+								closeself();
+							}
+						</script>
+					</td>
+				</tr>
+			</table>
+ 			</td>
+		</tr>
+	</table>
+  </body>
+</html>

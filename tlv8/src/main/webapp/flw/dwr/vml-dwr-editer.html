@@ -1,0 +1,58 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>流程编辑器</title>
+    <link type="text/css" rel="stylesheet" href="../../resources/bootstrap/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../../resources/layui/css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../resources/jquery-easyui/themes/default/easyui.css"></link>
+	<link rel="stylesheet" type="text/css" href="../../resources/jquery-easyui/themes/icon.css"></link>
+  	<link rel="stylesheet" type="text/css" href="css/main.dwr.css"></link>
+	<script type="text/javascript" src="../../comon/js/jquery/jquery.min.js"></script>
+  	<script type="text/javascript" src="../../comon/js/comon.main.js"></script>
+	<script type="text/javascript" src="../res/js/dojo.js"></script>
+	<script type="text/javascript" src="../res/js/_base.js"></script>
+	<script type="text/javascript" src="../res/js/shape.js"></script>
+	<script type="text/javascript" src="../res/js/path.js"></script>
+	<script type="text/javascript" src="../res/js/vml.js"></script>
+	<script type="text/javascript" src="../spec/dist/svg.js"></script>
+	<script type="text/javascript" src="../res/js/graphic.js"></script>
+	<script type="text/javascript" src="../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+  	<script type="text/javascript" src="../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+  	<script type="text/javascript" src="../../resources/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
+  	<script type="text/javascript" src="../../resources/layui/layui.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/operationhistory.js"></script>
+	<script type="text/javascript" src="js/main.dwr.js"></script>
+  </head>
+  <body onload="Prop.clear();document.getElementById('group').focus();" class='btype'  unselectable="on" onselectstart="return false;" style="-moz-user-select:none; background-color: #fff; background-image: url(img/bg.png); overflow: hidden;">
+	<div class="easyui-layout" fit="true">
+		<div data-options="region:'north',split:false" style="height:30px;background-image: url(img/menubg.gif);">
+			<div id="tool" class="toolbar_line"></div>
+		</div>
+		<div data-options="region:'west',title:'元素',split:true" style="width:300px;padding:5px;text-align:left;" id="leftview">
+			<table class="elements">
+				<tbody id="elementviewer">
+				</tbody>
+			</table>
+		</div>
+		<div data-options="region:'center'" id="drawView" style="background-image: url(img/bg.png); overflow: auto;">
+			<div id="group" onselectstart="return false;" style="position: relative;"></div>
+		</div>
+	</div>
+  	<svg id="isvg">
+		<defs>
+			<marker id="idArrow"
+		         viewBox="0 0 20 20" refX="0" refY="10" 
+		         markerUnits="strokeWidth" markerWidth="8" markerHeight="10"
+		         orient="auto">
+		         <path d="M 0 0 L 20 10 L 0 20 z" fill="purple" stroke="black"/>
+		     </marker>
+		</defs>
+	</svg>
+	<script type="text/javascript">
+		drow_init("test1","演示流程");
+		$(window).bind("scroll", function(){ 
+			$("#tool").css("top",$(window).scrollTop()+"px");
+		}); 
+	</script>
+   </body>
+</html>

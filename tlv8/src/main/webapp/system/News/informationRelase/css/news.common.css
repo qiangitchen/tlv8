@@ -1,0 +1,18 @@
+input {
+	padding: 1px;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-right-width: 1px solid #ccc;
+	border-bottom-width: 1px solid #ccc;
+	margin-right: 5px;
+}
+
+a:hover {
+	background: #CCCCFF;
+	color: #036;
+	text-decoration: none;
+}
+
+.so {
+	background: #00CC33;
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<!-- 
+	<business-server>
+		http://192.168.1.100/BusinessServer
+	</business-server>
+	<ui-server>
+		http://192.168.1.100/x5
+	</ui-server>
+	 -->
+	<login captcha="true" md5captcha="false"></login>
+</root>

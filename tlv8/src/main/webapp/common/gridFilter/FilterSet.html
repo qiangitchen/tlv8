@@ -1,0 +1,113 @@
+<html lang="zh_CN">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="../../resources/bootstrap/css/bootstrap.min.css" media="all">
+    <link type="text/css" rel="stylesheet" href="../../resources/layui/css/layui.css" />
+  	<link type="text/css" rel="stylesheet" href="css/FilterSet.css"></link>
+  	<script type="text/javascript" src="../jQuery/jquery.min.js"></script>
+  	<script type="text/javascript" src="../js/base.js"></script>
+  	<script type="text/javascript" src="../../resources/bootstrap/js/bootstrap.min.js"></script>
+  	<script type="text/javascript" src="../../resources/My97DatePicker/WdatePicker.js"></script>
+  	<script type="text/javascript" src="../../resources/layui/layui.js"></script>
+  	<script type="text/javascript" src="js/FilterSet.js"></script>
+	<script type="text/javascript">
+		window.isWriteLog = false; //不写系统日志
+	</script>
+  </head>
+  <body style="overflow: hidden;">
+  	<div class="panel panel-default" fit="true">		
+		<table class="table table-bordered" style="height: 100%;">
+			<tr>
+				<td>
+					<table style="width: 100%;" class="layui-table" lay-skin="nob">
+						<thead>
+							<tr>
+								<th width="31%"><div align="center">字段</div></th>
+								<th width="18%"><div align="center">操作符</div></th>
+								<th width="35%"><div align="center">数值</div></th>
+								<th width="16%"><div align="center">关联</div></th>
+							</tr>
+						</thead>
+						<tr>
+							<td colspan="4">
+								<div id="filter_select_set" style="width: 100%; height: 100%;">
+									<table width="100%" class="layui-table" lay-skin="nob" lay-even>
+										<tbody id="filter_select_data_tab">
+											<tr style="height: 22px;" onclick="select_line(this)">
+												<td width="31%" height="26" align="center" id="relation_td_0">
+													<select name="relation" id="relation" style="width: 100%;">
+														<option value=""></option>
+												</select>
+												</td>
+												<td width="18%" align="center">
+													<select name="opration" id="opration">
+														<option value="=">等于</option>
+														<option value="like">包含</option>
+														<option value="!=">不等于</option>
+														<option value="&lt;">小于</option>
+														<option value="&gt;">大于</option>
+														<option value="&lt;=">小于等于</option>
+														<option value="&gt;=">大于等于</option>
+														<option value="is null">为空</option>
+														<option value="is not null">非空</option>
+													</select>
+												</td>
+												<td width="35%" align="center">
+													<input type="text"
+													id="relationvalue" name="relationvalue" style="width: 98%;"/>
+												</td>
+												<td width="16%" align="center">
+													<select id="direct"
+													name="direct" style="width: 98%;">
+														<option value="and">并且</option>
+														<option value="or">或者</option>
+													</select>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td width="100px" style="text-align: center;">
+					<br/>
+					<p>
+						<button id="addItem" class="buttonitem" style="width: 80px;"
+							onclick="addLine()"
+							onmouseover="this.style.background='url(image/d_5_h.gif)';this.style.borderColor='#baceeb'"
+							onmouseout="this.style.background='url(image/d_5.gif)';this.style.borderColor='#A4DBF1'"
+							title="增加">增加</button>
+					</p>
+					<br/>
+					<p>
+						<button id="removeItem" class="buttonitem" style="width: 80px;"
+							onclick="removeLine()"
+							onmouseover="this.style.background='url(image/d_5_h.gif)';this.style.borderColor='#baceeb'"
+							onmouseout="this.style.background='url(image/d_5.gif)';this.style.borderColor='#A4DBF1'"
+							title="删除">删除</button>
+					</p>
+					<br />
+					<br />
+					<p>
+						<button id="clearItem" class="buttonitem" style="width: 80px;"
+							onclick="clearFilter()"
+							onmouseover="this.style.background='url(image/d_5_h.gif)';this.style.borderColor='#baceeb'"
+							onmouseout="this.style.background='url(image/d_5.gif)';this.style.borderColor='#A4DBF1'"
+							title="清空">清空</button>
+					</p>
+					<br/>
+					<p>
+						<button id="resetItem" class="buttonitem" style="width: 80px;"
+							onclick="filter_reset()"
+							onmouseover="this.style.background='url(image/d_5_h.gif)';this.style.borderColor='#baceeb'"
+							onmouseout="this.style.background='url(image/d_5.gif)';this.style.borderColor='#A4DBF1'"
+							title="重置">重置</button>
+					</p>
+				</td>
+			</tr>
+		</table>
+	</div>
+  </body>
+</html>

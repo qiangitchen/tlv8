@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>事务详情</title>
+    <link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/default/easyui.css" />
+	<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/icon.css" />
+	<script type="text/javascript" src="../../../comon/js/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../comon/js/comon.main.js"></script>
+  	<script type="text/javascript" src="js/enterprise_affirsShow.js"></script>
+  	<script type="text/javascript" src="../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+  	<style type="text/css">
+	  *{
+			font-size:12px;
+			list-style: none;
+		}
+		body{
+			margin: 0;
+			padding: 0;
+		}
+	  .symbol {
+			background: url(img/symbol.png) no-repeat center 4;
+		}
+	  a {
+			color:#1f3a87;
+			font-size:12px;
+			text-decoration: none;
+		}
+		a:hover {
+		 text-decoration:underline;
+		 color:#0A73E9;
+		 font-size:12px;
+		}
+  	</style>
+  	<script type="text/javascript">
+		window.isWriteLog = false; //不写系统日志
+	</script>
+  </head>
+  
+  <body onLoad="onloadrun('day')" style="overflow:hidden;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:12px">
+    <tr>
+      <td valign="middle" nowrap>
+        <a style="text-decoration:'none';color:'black';" href='javascript:void(0);' onClick="onloadrun('day')" id="a_day">今天日程</a> | 
+        <a style="text-decoration:'none';color:'black';" href='javascript:void(0);' onClick="onloadrun('week')" id="a_week">本周日程</a></td>
+      <td align="right" valign="middle" nowrap>
+      <div  align="right" style="text-align: right;font-size: 11pt;position:relative;right:5;width :100%;">
+			<a style="text-decoration:none;" href="javascript:void(0);" onclick="gotoSchedule()">更多...</a>
+		</div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><div id="affairsLoad"  style="font-size:12px;overflow:hidden;"></div></td>
+    </tr>
+  </table>
+  </body>
+</html>

@@ -1,0 +1,254 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<title>人员信息</title>
+		<link type="text/css" rel="stylesheet" href="../../../../resources/bootstrap/css/bootstrap.min.css"/>
+		<link type="text/css" rel="stylesheet" href="../../../../resources/layui/css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../../resources/jquery-easyui/themes/default/easyui.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../resources/jquery-easyui/themes/icon.css" />
+		<link type="text/css" rel="stylesheet" href="../../../../comon/css/formDetail/formDetail.css"/>
+		<link type="text/css" rel="stylesheet" href="organ-psm-createpsm.css"/>
+		<script type="text/javascript" src="../../../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="../../../../comon/My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="../../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="../../../../resources/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../../../../resources/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="orgIndex.js"></script>
+		<script type="text/javascript" src="organ-psm-createpsm.js"></script>
+	</head>
+	<body  style="overflow:hidden;">
+		<div class="easyui-layout" fit="true">
+			<div data-options="region:'center',border:false">
+				<form id="psm_create_form" afterRefresh="afRefresh">
+				<table  border="0" cellSpacing="0" width="760px"
+					align="center" style="color: #393939">
+						<tr id="page1_block1_row1">
+							<td height="25px" width="62px" valign="top" class="DetailSpanTD">
+								直属组织
+							</td>
+							<td valign="top" colspan="3">
+								<span id="sparentName"
+									style="width: 100%; font-size: 11pt; line-height: 22px;"></span>
+								<b id="sparentcode"
+									style="width: 100%; font-size: 11pt; display: none;"></b>
+								<b id="sparentFid"
+									style="width: 100%; font-size: 11pt; display: none;"></b>
+							</td>
+							<td valign="top" rowspan="9" colspan="2">
+								<div id="PersonPic" style="width:238px;height:280px;"></div>
+							</td>
+						</tr>
+						<tr id="page1_block1_row2">
+							<td width="60px" height="25px" valign="top" class="DetailSpanTD">
+								姓&nbsp;&nbsp;&nbsp;&nbsp; 名
+							</td>
+							<td valign="top" width= "160px">
+								<input type="text" name="SNAME" id="SNAME" class="easyui-validatebox" onchange="validateboxdacg(this)" data-options="required:true,missingMessage:'姓名不能为空'" style="width: 160px;"/>
+							</td>
+							<td width="60px" height="25px" valign="top" class="DetailSpanTD">
+								编&nbsp;&nbsp;&nbsp;&nbsp;码
+								<font color='red'>*</font>
+							</td>
+							<td valign="top">
+								<input type="text" id="SCODE" name="SCODE" class="easyui-validatebox" data-options="required:true,missingMessage:'编码不能为空'" 
+									onchange="check_code(this)" style="width: 160px;"/>
+								<input type="text" id="SPASSWORD" name="SPASSWORD"
+									style="display: none;" />
+							</td>
+						</tr>
+						<tr id="page1_block1_row3">
+							<td width="60px" height="25px" valign="top" class="DetailSpanTD">
+								登陆名
+							</td>
+							<td valign="top">
+								<input type="text" name="SLOGINNAME" id="SLOGINNAME" style="width: 160px;"/>
+							</td>
+							<td width="60px" height="25px" valign="top" class="DetailSpanTD">
+								英文名称
+							</td>
+							<td valign="top">
+								<input type="text" name="SENGLISHNAME" id="SENGLISHNAME" style="width: 160px;"/>
+							</td>
+						</tr>
+						<tr id="page1_block1_row4">
+							<td width="60px" height="25px" valign="top" class="DetailSpanTD">
+								性&nbsp;&nbsp; &nbsp; &nbsp;别
+							</td>
+							<td valign="top">
+								<div id="SSEX" style="width: 160px;"></div>
+								<script type="text/javascript">
+								var radioDemo = document.getElementById("SSEX");
+								var item = new Map();
+								item.put("男", "男");
+								item.put("女", "女");
+								var sts = new tlv8.Radio(radioDemo, item);
+								</script>
+							</td>
+							<td width="60px" height="25px" valign="top" class="DetailSpanTD">
+								婚姻状况
+							</td>
+							<td valign="top">
+								<select name="SMARRIAGE" id="SMARRIAGE" style="width: 160px;">
+									<option value=""></option>
+									<option value="未婚">未婚</option>
+									<option value="已婚">已婚</option>
+									<option value="离异">离异</option>
+									<option value="丧偶">丧偶</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td width="60px" height="25px" valign="top" class="DetailSpanTD">
+								身份证号
+							</td>
+							<td valign="top">
+								<input type="text" name="SIDCARD" id="SIDCARD" style="width: 160px;"/>
+							</td>
+							<td width="60px" height="25px" valign="top" class="DetailSpanTD">
+								生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日
+							</td>
+							<td valign="top">
+								<input type="text" name="SBIRTHDAY" id="SBIRTHDAY" 
+								onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" format="yyyy-MM-dd"
+								class="Wdate" style="width: 160px;"/>
+							</td>
+						</tr>
+						<tr>
+							<td width="60px" height="25px" valign="top" class="DetailSpanTD">
+								证件类型
+							</td>
+							<td valign="top">
+								<input type="text" name="SCARDKIND" id="SCARDKIND" style="width: 160px;"/>
+							</td>
+							<td width="60px" height="25px" valign="top" class="DetailSpanTD">
+								证件号码
+							</td>
+							<td valign="top">
+								<input type="text" name="SCARDNO" id="SCARDNO" style="width: 160px;"/>
+							</td>
+						</tr>
+						<tr>
+							<td width="80px" height="25px" valign="top" class="DetailSpanTD">
+								参加工作日期
+							</td>
+							<td valign="top">
+								<input type="text" name="SJOINDATE" id="SJOINDATE"
+									class="Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+									format="yyyy-MM-dd" style="width: 160px;"/>
+							</td>
+							<td width="60px" height="25" valign="top" class="DetailSpanTD">
+								职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称
+							</td>
+							<td valign="top">
+								<input type="text" name="STITLE" id="STITLE" style="width: 160px;"/>
+							</td>
+						</tr>
+						<tr>
+							<td width="80px" height="25px" valign="top" class="DetailSpanTD">
+								学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历
+							</td>
+							<td valign="top">
+								<input type="text" name="SDEGREE" id="SDEGREE" style="width: 160px;"/>
+							</td>
+							<td width="60px" height="25px" valign="top" class="DetailSpanTD">
+								毕业院校
+							</td>
+							<td valign="top">
+								<input type="text" name="SGRADUATESCHOOL" id="SGRADUATESCHOOL" style="width: 160px;"/>
+							</td>
+						</tr>
+						<tr>
+							<td height="25px" valign="top" class="DetailSpanTD">
+								专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业
+							</td>
+							<td valign="top">
+								<input type="text" name="SSPECIALITY" id="SSPECIALITY" style="width: 160px;"/>
+							</td>
+							<td height="25px" valign="top" class="DetailSpanTD">
+								学年制
+							</td>
+							<td valign="top">
+								<input type="text" name="SSCHOOLLENGTH" id="SSCHOOLLENGTH" style="width: 160px;"/>
+							</td>
+						</tr>
+						<tr>
+							<td width="80px" height="25px" valign="top" class="DetailSpanTD">
+								电子邮件
+							</td>
+							<td valign="top">
+								<input type="text" name="SMAIL" id="SMAIL" style="width: 160px;"/>
+							</td>
+							<td width="60px" height="25px" valign="top" class="DetailSpanTD">
+								QQ
+							</td>
+							<td valign="top">
+								<input type="text" name="SQQ" id="SQQ" style="width: 160px;"/>
+							</td>
+							<td width="60px" height="25px" valign="top" class="DetailSpanTD">
+								MSN
+							</td>
+							<td valign="top">
+								<input type="text" name="SMSN" id="SMSN" style="width: 160px;"/>
+							</td>
+						</tr>
+						<tr>
+							<td height="25" valign="top" class="DetailSpanTD">
+								办公电话
+							</td>
+							<td valign="top">
+								<input type="text" name="SOFFICEPHONE" id="SOFFICEPHONE" style="width: 160px;"/>
+							</td>
+							<td height="25" valign="top" class="DetailSpanTD">
+								移动电话
+							</td>
+							<td valign="top">
+								<input type="text" name="SMOBILEPHONE" id="SMOBILEPHONE"
+									onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
+									onkeyup="value=value.replace(/[^\d]/g,'')" maxlength="11" onChange="check_mobile(this)" style="width: 160px;"/>
+							</td>
+							<td height="25" valign="top" class="DetailSpanTD">
+								家庭电话
+							</td>
+							<td valign="top">
+								<input type="text" name="SFAMILYPHONE" id="SFAMILYPHONE" style="width: 160px;"/>
+							</td>
+						</tr>
+						<tr>
+							<td height="25" valign="top" class="DetailSpanTD">
+								邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;编
+							</td>
+							<td valign="top">
+								<input type="text" name="SZIP" id="SZIP" style="width: 160px;"/>
+							</td>
+							<td height="25" valign="top" class="DetailSpanTD">
+								家庭住址
+							</td>
+							<td valign="top" colspan="3">
+								<input type="text" name="SFAMILYADDRESS" id="SFAMILYADDRESS" style="width: 398px;"/>
+							</td>
+						</tr>
+						<tr id="page1_block1_row7" >
+							<td height="25" class="DetailSpanTD">
+								备注
+							</td>
+							<td colspan="5">
+								<label>
+									<textarea id="SDESCRIPTION" name="SDESCRIPTION" rows="3"
+										style="width: 640px;"></textarea>
+								</label>
+							</td>
+						</tr>
+				</table>
+				<div style="display: none;">
+					<input id="SMAINORGID" name="SMAINORGID" />
+					<input type="text" id="SNUMB" name="SNUMB" value="0"/>
+					<input type="text" name="SVALIDSTATE" id="SVALIDSTATE" value="1"/>
+					<input type="text" name="SSEQUENCE" id="SSEQUENCE" />
+				</div>	
+			</form>
+		</div>
+	</div>
+	</body>
+</html>

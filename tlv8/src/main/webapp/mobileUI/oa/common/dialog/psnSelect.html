@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>  
+	<head> 
+    	<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="../../../system/css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../../resources/jquery-easyui/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="../../../../resources/jquery-easyui/themes/mobile.css">
+		<link rel="stylesheet" type="text/css" href="../../../../resources/jquery-easyui/themes/icon.css">
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/jquery.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/mui.min.js" ></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/base.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../system/js/dialog.js"></script>
+    	<script type="text/javascript" src="../../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../../resources/jquery-easyui/jquery.easyui.mobile.js"></script>
+		<script type="text/javascript" src="../../../../resources/jquery-easyui/jquery.easyui.tree.search.js"></script>
+		<script type="text/javascript" src="psnSelect.js"></script>
+    </head>
+    <body>
+    	<header class="mui-bar mui-bar-nav">
+		    <button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" onclick="windowCancel()">
+				<span class="mui-icon mui-icon-closeempty"></span>
+				取消
+			</button>
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right" onclick="selectPsn()">
+				<span class="mui-icon mui-icon-checkmarkempty"></span>
+				确定
+			</button>
+		    <h1 class="mui-title" id="title_val">人员选择</h1>
+		</header>
+		 <div class="mui-content">
+		 	<div style="overflow:auto; width:100%; height:100%; overflow: hidden; padding: 6px;">
+				<input id="ss" class="easyui-searchbox" style="width:100%" data-options="searcher:dosearchText"></input>
+				<ul id="maintree"></ul>
+			</div>
+		 </div>
+    </body>
+</html>

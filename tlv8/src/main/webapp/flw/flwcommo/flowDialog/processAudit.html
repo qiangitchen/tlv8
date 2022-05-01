@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>审批意见对话框</title>
+    <link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/default/easyui.css" />
+	<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/icon.css" />
+	<link type="text/css" rel="stylesheet" href="../zTree/css/zTreeStyle/zTreeStyle.css"></link>
+  	<link type="text/css" rel="stylesheet" href="../../../comon/css/toolbar.main.css"></link>
+	<script type="text/javascript" src="../../../comon/js/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../comon/js/comon.main.js"></script>
+	<script type="text/javascript" src="../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="processAudit.js"></script>
+  </head>
+  <body class="easyui-layout" onload="pageInit()">
+  	<div data-options="region:'west',title:'常用意见&nbsp;<a href=\'javascript:managemyop();\'>管理</a>',split:true" style="width: 360px;">
+  		<div id="selectListView" style="width: 100%;height: 100%; overflow: auto;">
+  		</div>
+  	</div>
+  	<div data-options="region:'center',title:'当前意见'" style="overflow: hidden;">
+  		<!-- 
+  		<textarea id="opinionData" style="width:100%;height: 100%;border:0px none;"></textarea>
+  		 -->
+  		<div class="easyui-layout" fit="true">
+  			<div data-options="region:'west',split:false,border:false" style="width: 70px;">
+  				<table style="height:100%;">
+  					<!-- 
+  					<tr>
+  						<td valign="bottom">
+  							<a href="javascript:void(0)" class="easyui-linkbutton">选择</a>
+  						</td>
+  					</tr>
+  					 -->
+  					<tr>
+  						<td valign="middle">
+  							<button href="javascript:void(0)" class="easyui-linkbutton" onclick="clearData()" style="width:60px; height:25px;">清空</button>
+  						</td>
+  					</tr>
+  				</table>
+  			</div>
+  			<div data-options="region:'center',border:true">
+  				<div class="easyui-layout" fit="true">
+  					<div data-options="region:'center',border:false" style="overflow: hidden;">
+  						<textarea id="opinionData" style="width:100%;height: 100%;border:0px none;"></textarea>
+  					</div>
+  					<div data-options="region:'south',split:false,border:false" style="height: 30px;">
+  						<a href="javascript:void(0)" class="easyui-linkbutton" onclick="saveDatatoMyOp()">保存为常用</a>
+  					</div>
+  				</div>		
+  			</div>
+  		</div>
+  	</div>
+  	<div style="display: none;">
+  		<form id="maindata_form">
+  			<input type="text" id="FCONCLUSIONNAME"/>
+  			<input type="text" id="FCREATORID"/>
+  			<input type="text" id="FCREATOR"/>
+  		</form>
+  		<form id="option_data">
+  			
+  		</form>
+  	</div>
+  </body>
+</html>

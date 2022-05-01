@@ -1,0 +1,38 @@
+* {
+	font-size: 16px;
+	list-style: none;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.mydiv {
+	border-bottom: #cdcdcd 0px solid;
+	border-left: #cdcdcd 0px solid;
+	line-height: 1.5;
+	background-color: #ffffff;
+	margin-top: 1px;
+	border-top: #cdcdcd 0px solid;
+	border-right: #cdcdcd 0px solid;
+}
+
+a {
+	color: #1f3a87;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: #0A73E9;
+}
+
+b {
+	color: red;
+}
+
+td {
+	height: 19px;
+	line-height: 19px;
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>  
+	<head> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<title>在线打卡</title>
+    	<link rel="stylesheet" type="text/css" href="../../system/css/mui.min.css" />
+    	<script type="text/javascript" charset="utf-8" src="../../system/js/jquery.js"></script>
+    	<script src="../../system/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../system/js/base.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="mainActivity.js"></script>
+    	<style type="text/css">
+    		a{
+    			font-size:14px;
+    		}
+    	</style>
+    </head>
+    <body>
+    	<header class="mui-bar mui-bar-nav">
+		    <button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right" onclick="javascript:loockMap();">
+				<span class="mui-icon mui-icon-map"></span>
+				查看地图
+			</button>
+		    <h1 class="mui-title">在线打卡</h1>
+	       </header>
+		<div id="contenView" class="mui-content">
+			<form>
+			    <table width="100%">
+			      <tr>
+			    	<td width="40px">
+			         	<label for="signAddress">位置:</label>
+			         </td>
+			         <td>
+			         	<input type="text" name="signAddress" id="signAddress" value="" readonly="readonly"/>
+			         </td>
+			       </tr>
+				   <tr>
+				     <td width="40px">
+			         	<label for="signUsername">部门:</label>
+			         </td>
+			         <td>
+			         	<input type="text" name="signDeptname" id="signDeptname" value="" readonly="readonly"/>
+			         </td>
+			      </tr>
+				   <tr>
+				     <td width="40px">
+			         	<label for="signUsername">姓名:</label>
+			         </td>
+			         <td>
+			         	<input type="text" name="signUsername" id="signUsername" value="" readonly="readonly"/>
+			         </td>
+			      </tr>
+			      <tr>
+				    <td width="40px">
+			         	<label for="signTime">客户:</label>
+			         </td>
+			         <td>
+			         	<input type="text" name="CUSTOMER" id="CUSTOMER" value="" />
+			      	</td>
+			      </tr>
+			      <tr>
+			   	  <td colspan="2" align="center">
+				    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" id="signType">
+				        <input type="radio" name="radio-choice-b" id="fOnofficework" checked="checked" onclick="setType(this)">
+				        <label for="fOnofficework">上班</label>
+				        <input type="radio" name="radio-choice-b" id="fEndWork" onclick="setType(this)">
+				        <label for="fEndWork">下班</label>
+				        <input type="radio" name="radio-choice-b" id="fGoout" onclick="setType(this)">
+				        <label for="fGoout">外出</label>
+					</fieldset>
+					<div style="height:20px;"></div>
+					<div>
+						<a href="#" onclick="signSbmit();" style="margin-top: 25px;"><img src="../img/ico_ooopic.png"/></a>
+					</div>
+				 </table>
+				 <!-- 隐藏字段放在这里 -->
+				 <div style="display:none;">
+				 	<input type="text" name="mapPoint" id="mapPoint" value="" readonly="readonly"/>
+				 	<input type="text" name="signDeptID" id="signDeptID" value="" readonly="readonly"/>
+				 	<input type="text" name="signUserID" id="signUserID" value="" readonly="readonly"/>
+				 	<input type="text" name="CUSTOMERID" id="CUSTOMERID" value="" readonly="readonly"/>
+				 	<input type="text" name="CUSTOMERADDR" id="CUSTOMERADDR" value="" readonly="readonly"/>
+				 	<input type="text" name="FCUSTOMERPOINT" id="FCUSTOMERPOINT" value="" readonly="readonly"/>
+				 </div>
+			</form>
+		</div> 
+    </body>
+</html>

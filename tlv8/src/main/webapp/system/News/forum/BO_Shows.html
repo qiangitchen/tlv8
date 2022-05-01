@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<title>首页显示讨论区</title>
+		<style type="text/css">
+		<!--
+		.mydiv {
+			border-bottom: #cdcdcd 0px solid;
+			border-left: #cdcdcd 0px solid;
+			line-height: 1.5;
+			background-color: #ffffff;
+			margin-top: 1px;
+			border-top: #cdcdcd 0px solid;
+			border-right: #cdcdcd 0px solid;
+		}
+		.symbol {
+			background: url("image/symbol.png") no-repeat center 4;
+		}
+		a {
+			text-decoration: none;
+		}
+		a:hover {
+			color: #2E8B57;
+		}
+		-->
+		</style>
+		<script type="text/javascript" src="../../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="BO_Shows.js"></script>
+		<script type="text/javascript">
+			window.isWriteLog = false; //不写系统日志
+		</script>
+	</head>
+	<body  style="overflow: hidden">
+		<div id="more_infor" style="text-align: right;font-size: 11pt;height: 15px; margin:0px;padding-top:0px;" >
+			<a href="javascript:void(0);" onclick="onhistory()">更多...</a>
+		</div>
+		<table width="90%" border="0" align="left"
+			cellpadding="0" cellspacing="0" id="news_show" class="spanFont"
+			style="margin-left: 10px;">
+			<tr>
+				<td valign="top">
+					<div id="addnewsload" style="font-size: 11pt;">
+					</div>
+				</td>
+               <td></td>
+			</tr>
+		</table>
+	</body>
+</html>

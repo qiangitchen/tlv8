@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+		<title>移动外勤</title>
+		<link rel="stylesheet" type="text/css" href="../system/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../system/css/jquery.confirm.css" />
+		<link rel="stylesheet" type="text/css" href="ydwqindex.css" />
+		<script type="text/javascript" charset="utf-8" src="../system/js/jquery.js"></script>
+		<script src="../system/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8" src="../system/js/jquery.confirm.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../system/js/jquery.corner.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../system/js/dialog.js"></script>
+		<script type="text/javascript" charset="utf-8" src="system/js/portal.js"></script>
+		<script type="text/javascript" charset="utf-8" src="ydwqindex.js"></script>
+		<style type="text/css">
+			.ui-page {
+				background: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" onclick="tlv8.logout()">
+				<span class="mui-icon mui-icon-undo"></span>
+				退出
+			</button>
+			<button id="task_execute" class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right">
+				<a href="system/templet/ydwqsetting.html"><span class="mui-icon mui-icon-bars"></span>
+				选项</a>
+			</button>
+			<h1 class="mui-title" id="title_val"></h1>
+		</header>
+		<nav class="mui-bar mui-bar-footer">
+			<h1 class="mui-title">移动外勤系统</h1>
+		</nav>
+		<div class="mui-content" id="mainview">
+			<div id="contenView">
+				<ul class="mui-table-view mui-grid-view mui-grid-9">
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+						<div class='countTixview_un'></div>
+						<a href='../SA/task/taskView/waitActivity.html' id='waittask'>
+							<img src='system/images/wait_task.png'>
+							<p class="mui-media-body">待办任务</p>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+						<div class='countTixview_un'></div>
+						<a data='item' href='../WQ/eBill/ebillindex.html'>
+							<img src='system/images/eBill.png'>
+							<p class="mui-media-body">订单管理</p>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+						<div class='countTixview_un'></div>
+						<a href='../WQ/attend/attendindex.html'>
+							<img src='system/images/attendManager.png'>
+							<p class="mui-media-body">考勤管理</p>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+						<div class='countTixview_un'></div>
+						<a href='../WQ/scene/sceneindex.html'>
+							<img src='system/images/screen.png'>
+							<p class="mui-media-body">巡视管理</p>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+						<div class='countTixview_un'></div>
+						<a href='../WQ/custormer/custormerindex.html'>
+							<img src='system/images/custormerM.png'></img>
+							<p class="mui-media-body">客户管理</p>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+						<div class='countTixview_un'></div>
+						<a href='../WQ/scan/scanindex.html'>
+							<img src='system/images/spgl.png'>
+							<p class="mui-media-body">商品管理</p>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+						<div class='countTixview_un'></div>
+						<a href='../WQ/task/taskIndex.html'>
+							<img src='system/images/task_comit.png'>
+							<p class="mui-media-body">任务交办</p>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+						<div class='countTixview_un'></div>
+						<a href='../WQ/other/otherindex.html'>
+							<img src='system/images/xttxl.png'>
+							<p class="mui-media-body">其他</p>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+						<div class='countTixview_un'></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(".MenuItem").corner();
+	</script>
+
+</html>

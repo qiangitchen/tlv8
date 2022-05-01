@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>静态数据列表</title>
+		<link type="text/css" rel="stylesheet" href="../../resources/layui/css/layui.css"> 
+  		<link type="text/css" rel="stylesheet" href="../../resources/bootstrap/css/bootstrap.min.css" media="all">
+  		<script type="text/javascript" src="../../common/jQuery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../common/js/base.js"></script>
+		<script type="text/javascript" src="../../common/js/grid.js"></script>
+		<script type="text/javascript" src="../../resources/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../resources/layui/layui.js"></script> 
+		<script type="text/javascript" src="../../resources/My97DatePicker/WdatePicker.js"></script>
+	</head>
+	<body style="overflow: hidden;">
+		<div class="panel panel-default" fit="true">
+			<table id="datagrid1" dbkey="oa" table="oa_test1" class="table table-striped table-bordered table-hover" dataValueChanged="vvchange">
+				<thead>
+					<tr>
+						<th width="40px" data-type="No" rowspan="2"></th>
+						<th width="40px" data-type="master_check" rowspan="2"></th>
+						<th colspan="4" style="text-align: center;">数据</th>
+						<th width="100px" data-type="ro" rowspan="2">操作</th>
+					</tr>
+					<tr>
+						<th width="80px" data-ref="SCODE" data-type="number">编号</th>
+						<th width="100px" data-ref="FMINGCHENG" data-type="string">名称</th>
+						<th width="150px" data-ref="fdate" data-type="datetime">日期</th>
+						<th data-ref="CODE" data-type="string">邮箱</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var grid1 = tlv8.grid("datagrid1",{/*billdataformid:"form1",billcell:"fbillid",*/rows:15,showindex:true,master:true});
+			grid1.settoolbar(true, "no", "no", true);
+			grid1.seteditModel(true);
+			grid1.setExcelimpBar(true);
+			grid1.setExcelexpBar(true);
+			grid1.refreshData();
+		});
+		function vvchange(event){
+			//console.log(event);
+		}
+	</script>
+</html>

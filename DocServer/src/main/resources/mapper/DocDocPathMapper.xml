@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tlv8.doc.svr.generator.dao.IDocDocPathDao" >
+  <resultMap id="resultDocPath" type="com.tlv8.doc.svr.generator.beans.DocDocPath" >
+  </resultMap>
+  <select id="getByPrimaryKey" resultMap="resultDocPath" parameterType="java.lang.String" >
+    select * from Doc_DocPath where fID = #{fID,jdbcType=VARCHAR}
+  </select>
+  <select id="getByFileID" resultMap="resultDocPath" parameterType="java.lang.String" >
+    select * from Doc_DocPath where fFileID = #{fFileID,jdbcType=VARCHAR} 
+      and fVersion = (select max(fVersion) from Doc_DocPath where fFileID = #{fFileID,jdbcType=VARCHAR})
+  </select>
+  <select id="getListByFileID" resultMap="resultDocPath" parameterType="java.lang.String" >
+    select * from Doc_DocPath where fFileID = #{fFileID,jdbcType=VARCHAR} 
+  </select>
+  <select id="getList" resultMap="resultDocPath">
+    select * from Doc_DocPath
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Doc_DocPath where fID = #{fID,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByFileID" parameterType="java.lang.String" >
+    delete from Doc_DocPath where fFileID = #{fFileID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tlv8.doc.svr.generator.beans.DocDocPath" >
+    insert into Doc_DocPath (fID, fFileID, fFilePath, fFileSize, fVersion, fAddTime, version) 
+    values (#{fID,jdbcType=VARCHAR}, 
+      #{fFileID,jdbcType=VARCHAR}, 
+      #{fFilePath,jdbcType=VARCHAR}, 
+      #{fFileSize,jdbcType=FLOAT}, 
+      #{fVersion,jdbcType=INTEGER}, 
+      #{fAddTime,jdbcType=TIMESTAMP},
+      #{version,jdbcType=INTEGER}) 
+  </insert>
+  <update id="update" parameterType="com.tlv8.doc.svr.generator.beans.DocDocPath" >
+    update Doc_DocPath 
+    set fFileID = #{fFileID,jdbcType=VARCHAR},
+      fFilePath = #{fFilePath,jdbcType=VARCHAR},
+      fFileSize = #{fFileSize,jdbcType=FLOAT},
+      fVersion = #{fVersion,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER} 
+    where fID = #{fID,jdbcType=VARCHAR}
+  </update>
+</mapper>

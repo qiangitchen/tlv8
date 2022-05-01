@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>message_cycleLooks.html</title>
+    <link type="text/css" rel="stylesheet" href="../../../../resources/layui/css/layui.css" />
+    <script type="text/javascript" src="../../../../comon/js/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../../comon/My97DatePicker/WdatePicker.js"></script>
+  	<script type="text/javascript" src="../../../../comon/js/comon.main.js"></script>
+  	<script type="text/javascript" src="../../../../resources/layui/layui.js"></script>
+  	<script type="text/javascript" src="../js/message_cycleLooks.js"></script>
+  </head>
+  <body onLoad="onloadset()">
+	  <div class="layui-fluid">
+	  	<div class="layui-card">
+		  	<div class="layui-card-body">
+			  <form id="affairslooks" class="layui-form">
+		    	<div class="layui-form-item">
+			     	<div class="layui-inline">
+		              <label class="layui-form-label" style="width: 110px;">标题</label>
+		              <div class="layui-input-inline">
+		                <input type="text" id="scaption" name="scaption" lay-verify="required" autocomplete="off" class="layui-input">
+		              </div>
+		            </div>
+		            <div class="layui-inline">
+		              <label class="layui-form-label" style="width: 110px;">优先级别</label>
+		              <div class="layui-input-inline">
+		                <select name="spriority" id="spriority">
+						  <option value="0" selected>普通</option>
+						  <option value="1">不重要/不紧急</option>
+						  <option value="2">不重要/紧急</option>
+						  <option value="3">重要/不紧急</option>
+						  <option value="4">重要/紧急</option>
+						</select>
+		              </div>
+		            </div>
+			     </div>
+			     <div class="layui-form-item">
+			     	<div class="layui-inline">
+		              <label class="layui-form-label" style="width: 110px;">开始时间</label>
+		              <div class="layui-input-inline">
+					  	<input name="sstartdate" type="text" class="layui-input Wdate" id="sstartdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:false})" >
+		              </div>
+		            </div>
+		            <div class="layui-inline">
+		              <label class="layui-form-label" style="width: 110px;">优先级别</label>
+		              <div class="layui-input-inline">
+					  	<input name="senddate" type="text" class="layui-input Wdate" id="senddate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:false})" >
+		              </div>
+		            </div>
+			     </div>
+			     <div class="layui-form-item">
+		            <label class="layui-form-label" style="width: 110px;">事务内容</label>
+		            <div class="layui-input-block">
+		              <textarea id="scontent" name="scontent" onBlur="setTextdata()" class="layui-textarea" style="min-height:30px;"></textarea>
+		            </div>
+		          </div>
+			  </form>
+			 </div>
+			 <div class="layui-card-body" style="text-align:center;">
+			 	<button class="layui-btn layui-btn-normal" onClick="affairsUpdate()">修 改</button>
+				<button class="layui-btn layui-btn-danger" onClick="affairsDelete()">删 除</button>
+			 </div>
+		</div>
+	  </div>
+  </body>
+</html>

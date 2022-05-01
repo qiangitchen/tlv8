@@ -1,0 +1,43 @@
+.DetailliAD {
+	background-image: url("../../../comon/css/formDetail/img/ulnav_bg.jpg");
+	background-position-x: right;
+	background-position-y: top;
+	background-repeat: no-repeat;
+	color: #393939;
+	cursor:hand;
+	float: left;
+	font-size: 14px;
+	font-weight: bold;
+	height: 28px;
+	list-style-type: none;
+	outline-color: invert;
+	outline-style: none;
+	outline-width: medium;
+	padding-left: 22px;
+	padding-top: 0.5em;
+	text-transform: none;
+	white-space: nowrap;
+	width: 120px;
+}
+.DetailliAS {
+	background-image: url("../../../comon/css/formDetail/img/ulnav_bg.jpg");
+	background-position-x: right;
+	background-position-y: top;
+	background-repeat: no-repeat;
+	color: #ffffff;
+	cursor:hand;
+	text-decoration: none;
+	float: left;
+	font-size: 14px;
+	font-weight: bold;
+	height: 28px;
+	list-style-type: none;
+	outline-color: invert;
+	outline-style: none;
+	outline-width: medium;
+	padding-left: 22px;
+	padding-top: 0.5em;
+	text-transform: none;
+	white-space: nowrap;
+	width: 120px;
+}

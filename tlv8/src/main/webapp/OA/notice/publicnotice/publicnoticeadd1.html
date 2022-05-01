@@ -1,0 +1,159 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>publicnoticeadd1.html</title>
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/default/easyui.css" />
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/icon.css" />
+		<link type="text/css" rel="stylesheet" href="../../../comon/css/formsyle.css"></link>
+		<link type="text/css" rel="stylesheet" href="../../../comon/css/formDetail/formDetail.css" />
+		<script type="text/javascript" src="../../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="../../../comon/My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="../../../comon/xheditor/xheditor-1.1.12-zh-cn.min.js"></script>
+		<script type="text/javascript" src="../../../comon/js/flow.main.js"></script>
+		<script type="text/javascript" src="../../common/common.js"></script>
+		<script type="text/javascript" src="../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="publicnoticeadd1.js"></script>
+		<style>
+		.tbright {
+			padding-right: 15px;
+		}
+		
+		.grid_data_view {
+			height: 200px;
+		}
+		</style>
+	</head>
+	<body style="width: 80%; height: 100%;" onload="initDocumentPage();">
+		<table
+			style="height: 100%; width: 100%; text-align: center; overflow-x: hidden;">
+			<tr>
+				<td height="30">
+					<table style="height: 22px; text-align: left;" align="left">
+						<tr>
+							<td width="60px">
+								<div id="stander_bar" refreshAction="dataRefresh()"
+									saveAction="dataSave()" style="margin-left: 1px;"></div> <script
+									type="text/javascript">
+										init_toolbar();
+									</script>
+							</td>
+							<td align="left">
+											<div id="flowToolbar" />
+							</td>
+							
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div
+						style="height: 100%; width: 100%; text-align: center; overflow: auto;">
+						<form id="MAIN_DATA_FORM" afterrefresh="afterDatarefresh">
+							<table width="95%" class="Detailtable"
+								style="table-layout: fixed;" id="mainLayoutTable">
+								<tr style="height: 0px; display: none;">
+									<td width="90px" />
+									<td width="200px" />
+									<td width="90px" />
+									<td width="200px" />
+									<td width="90px" />
+									<td width="200px" />
+									<td width="90px" />
+									<td></td>
+								</tr>
+								<tr style="height: 0px; display: none;">
+									<td>组织机构id</td>
+									<td colspan="5"><input type="text" id="FOGNID"
+										name="FOGNID" style="width: 100%;" /> <input type="text"
+										id="FOGNNAME" name="FOGNNAME" style="width: 100%;" /> <input
+										type="text" id="FORGID" name="FORGID" style="width: 100%;" />
+										<input type="text" id="FCREATEID" name="FCREATEID"
+										style="width: 100%;" /> <input type="text"
+										id="FCREATEDATETIME" name="FCREATEDATETIME" class="Wdate"
+										format="yyyy-MM-dd hh:mm:ss" readOnly="readOnly" style="width: 100%;" />
+	
+									</td>
+								</tr>
+								<tr>
+									<td class="DetailtableHeader" colSpan="8">基本信息</td>
+								</tr>
+								<tr>
+									<td class="DetailSpanTD">发布部门</td>
+									<td><input type="text" id="FORGNAME" name="FORGNAME"
+										style="width: 100%;" readOnly="readOnly" /></td>
+									<td class="DetailSpanTD">发布人</td>
+									<td><input type="text" id="FCREATENAME" name="FCREATENAME"
+										style="width: 100%;" readOnly="readOnly" /></td>
+									<td class="DetailSpanTD">发布类型</td>
+									<td class="tbright"><select id="FTYPE" name="FTYPE"
+										style="width: 100%;" onchange="changType()">
+											<option value="集体发布">集体发布</option>
+											<option value="限制发布">限制发布</option>
+									</select></td>
+									<td class="DetailSpanTD">创建日期</td>
+									<td class="tbright"><input type="text" id="FCREATEDATE"
+										name="FCREATEDATE" class="Wdate" format="yyyy-MM-dd hh:mm:ss"
+										readOnly="readOnly" style="width: 95%;" /></td>
+								</tr>
+							</table>
+							<table width="95%"
+								style="margin-top: 5px; table-layout: fixed; border: solid 1px #c3c3c3;"
+								id="mainLayoutTable2">
+								<tr style="height: 0px; display: none;">
+									<td width="90px" />
+									<td width="260px" />
+									<td width="90px" />
+									<td width="140px" />
+									<td width="90px" />
+									<td></td>
+								</tr>
+								<tr>
+									<td class="DetailtableHeader" colSpan="6">通知信息</td>
+								</tr>
+								<tr>
+									<td class="DetailSpanTD">标题</td>
+									<td colspan="5" class="tbright"><input type="text"
+										id="FTITLE" name="FTITLE" style="width: 100%;" /></td>
+								</tr>
+								<tr>
+									<td class="DetailSpanTD">详细内容</td>
+									<td class="tbright" colspan="5" valign="top"
+										style="padding-bottom: 5px; height: 210px;"><textarea
+											name="FCONTENT" id="FCONTENT"
+											style="width: 100%; height: 200px;"></textarea>
+									</td>
+								</tr>
+							</table>
+							<!-- <div style="display: none">
+								<input type="text" id="FPUSHDATETIME"> <input type="text"
+									id="FPUSHID"> <input type="text" id="FPUSHNAME">
+							</div> -->
+						</form>
+						<table width="95%" class="Detailtable" style="table-layout: fixed;display:none;"
+							id="mainLayoutTable3">
+							<tr>
+								<td class="DetailtableHeader">访问人员列表(<font color="red">*</font>)
+								</td>
+							</tr>
+							<tr>
+								<td style="padding-left: 10px; height: 22px;">
+									<div onfocus="this.blur();">
+										<a href="###" onclick="addPerson()">新增访问人员</a>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td height="100%">
+									<div id="personList" style="height: 100%"></div>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

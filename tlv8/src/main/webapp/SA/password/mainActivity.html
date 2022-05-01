@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>密码修改</title>
+		<link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/default/easyui.css" />
+		<link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/icon.css" />
+		<script type="text/javascript" src="../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="../../comon/js/md5.js"></script>
+		<script type="text/javascript" src="../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="mainActivity.js"></script>
+	</head>
+	<body style="overflow:hidden;">
+		<form id="resetPassWord" name="resetPassWord">
+			<table align="center" class="Detailtable" border="0" cellSpacing="0" style="width: 310px; height:300px; align: center;">
+				<tr>
+					<td style="width: 100px; height: 50px;">
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						原始密码：
+					</td>
+					<td>
+						<input type="password" id="old_pass_word"></input>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						新密码：
+					</td>
+					<td>
+						<input type="password" id="new_pass_word"></input>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						确认密码：
+					</td>
+					<td>
+						<input type="password" id="new_pass_word_ord"></input>
+					</td>
+				</tr>
+				<tr>
+					<td colspan='2' align="center">
+						<span id="changed_status_show" style="font-size: 11pt;"></span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan='2' style="text-align: center;">
+						<a onclick="change_password()" class="easyui-linkbutton" icon="icon-ok">保存</a>
+						<a onclick="reset_table()" class="easyui-linkbutton" icon="icon-undo">重置</a>
+					</td>
+				</tr>
+				<tr style="height:40px;">
+					<td colspan='2' align="center">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

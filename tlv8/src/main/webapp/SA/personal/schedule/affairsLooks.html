@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <title>事务详情</title>
+  <script type="text/javascript" src="../../../comon/js/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="../../../comon/js/comon.main.js"></script>
+  </head>
+  <body onLoad="onloadrun()">
+  <div  align="center">
+  	<table border="1" bordercolor="#88C4FF">
+	  <tr align="center">
+	    <td height="221">
+	    	<form id="affairslooks">
+	    <table border="0" style=" text-align: center; font-size: 13px;" >
+			<tr>
+				<td width="67" align="center" valign="middle">标题：</td>
+				<td width="168" align="left" valign="middle">
+					<input type="text" name="scaption" id="scaption" readonly/><!--readonly="readonly"-->			</td>
+				<td width="67" align="center" valign="middle" >优先级别：</td>
+				<td width="168" colspan="2" align="left" valign="middle">
+				  <select name="spriority" id="spriority" style="width:160" disabled="true">
+				  <option value="0" selected>普通</option>
+				  <option value="1">不重要/不紧急</option>
+				  <option value="2">不重要/紧急</option>
+				  <option value="3">重要/不紧急</option>
+				  <option value="4">重要/紧急</option>
+				  </select>			</td>
+			</tr>
+			<tr>
+				<td align="center" valign="middle">开始时间：</td>
+			  	<td width="168" align="left" valign="middle">
+			  		<input name="sstartdate" type="text" class="Wdate" id="sstartdate" readonly  >	  		</td>
+				<td align="center" valign="middle">结束时间：</td>
+			  	<td colspan="2" align="left" valign="middle">
+			  		<input name="senddate" type="text" class="Wdate" id="senddate" readonly  >			</td>
+			</tr>
+			<tr>
+				<td align="center" valign="middle">状态：</td>
+				<td align="left" valign="middle">
+			  		<input type="text" name="sstatus" id="sstatus" readonly/></td>
+		   </tr>
+			<tr height="80">
+				<td height="64" align="center" valign="middle">事务内容：</td>
+				<td colspan="4" align="left" valign="middle">
+					<textarea style="width: 100%; height: 100%;" id="scontent" name="scontent" readonly></textarea>			</td>
+			</tr>
+	  	</table>
+	  	</form>
+	    </td>
+	  </tr>
+	</table>
+  </div>
+  </body>
+  <script type="text/javascript">
+  /*页面载入*/
+var onloadrun = function(){
+		setTableData();
+}
+	/*页面载入获取设置数据*/
+var setTableData = function(){
+	affairsID = decodeURIComponent(tlv8.RequestURLParam.getParam("sid"));
+	document.getElementById("scaption").value = decodeURIComponent(tlv8.RequestURLParam.getParam("scaption"));//标题
+	var priority = decodeURIComponent(tlv8.RequestURLParam.getParam("spriority"));//优先级
+	document.getElementById("spriority").value = priority;//
+	var startdate = decodeURIComponent(tlv8.RequestURLParam.getParam("sstartdate")).substring(0, 19);//开始时间
+	document.getElementById("sstartdate").value = startdate;//开始时间
+	var enddate = decodeURIComponent(tlv8.RequestURLParam.getParam("senddate")).substring(0, 19);//结束时间
+	document.getElementById("senddate").value = enddate;//结束时间
+	var status = decodeURIComponent(tlv8.RequestURLParam.getParam("status"));//状态
+	if(status!=""||status!=null||status!="null"){
+		document.getElementById("sstatus").value = status;
+	}
+	if(status==""||status==null||status=="null"){//状态
+		var stime,stime_a,stime_b,stime_c,stime_d;
+		var etime,etime_a,etime_b,etime_c,etime_d;
+		var nowDate = new Date();
+		var nowYears = nowDate.getFullYear().toString();//当前年份
+		var nowMonths = nowDate.getMonth()+1;//当前月份
+		if(nowMonths < 10){nowMonths = "0"+ nowMonths.toString();}
+		var nowDates = nowDate.getDate();//当前日
+		if(nowDates < 10){nowDates = "0"+ nowDates.toString();}
+		var nowTime = nowDate.toLocaleTimeString().split(":");//获取当前时间,时分秒
+		var mydate = nowYears+nowMonths+nowDates+nowTime[0].toString()+nowTime[1].toString()+nowTime[2].toString();
+		stime_a = startdate.toString().substring(0, 10);
+		stime_b = startdate.toString().substring(11, 19);
+		stime_c = stime_a.split("-");
+		stime_a = stime_c[0].toString() + stime_c[1].toString()+ stime_c[2].toString();
+		stime_d = stime_b.split(":");
+		stime_b = stime_d[0].toString() + stime_d[1].toString() + stime_d[2].toString();
+		
+		etime_a = enddate.toString().substring(0, 10);
+		etime_b = enddate.toString().substring(11, 19);
+		etime_c = etime_a.split("-");
+		etime_a = etime_c[0].toString() + etime_c[1].toString()+ etime_c[2].toString();
+		etime_d = etime_b.split(":");
+		etime_b = etime_d[0].toString() + etime_d[1].toString() + etime_d[2].toString();
+		stime = stime_a+stime_b;
+		etime = etime_a+etime_b;
+		if(mydate<stime){
+			document.getElementById("sstatus").value = "未开始";
+		}
+		if(mydate>stime && mydate<etime){
+			document.getElementById("sstatus").value = "进行中";
+		}
+		if(mydate>etime){
+			document.getElementById("sstatus").value = "已过期";
+		}
+	}
+	document.getElementById("scontent").value = decodeURIComponent(tlv8.RequestURLParam.getParam("scontent"));//内容
+}
+</script>
+</html>

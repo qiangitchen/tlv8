@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<style type="text/css">
+		* {
+			margin: 0;
+			padding: 2;
+		}
+		.mydiv {
+			border-bottom: #cdcdcd 0px solid;
+			border-left: #cdcdcd 0px solid;
+			line-height: 1.5;
+			background-color: #ffffff;
+			margin-top: 1px;
+			border-top: #cdcdcd 0px solid;
+			border-right: #cdcdcd 0px solid;
+			width: 150px;
+		}
+		.symbol {
+			background: url("symbol.png") no-repeat center 4;
+		}
+		a {
+			color:#1f3a87;
+			font-size:12px;
+			text-decoration: none;
+		}
+		a:hover {
+		 text-decoration:underline;
+		 color:#0A73E9;
+		 font-size:12px;
+		}
+		</style>
+		<script type="text/javascript" src="../../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../comon/js/comon.main.js"></script>
+		<script type="text/javascript">
+			window.isWriteLog = false; //不写系统月志
+		</script>
+		<script type="text/javascript" src="showReport.js"></script>
+	</head>
+
+	<body onLoad="init()" style="overflow-y: auto;">
+	<table style="width: 100%; size: 12; table-layout: fixed;" border="0">
+		<tr>
+			<td height="22px" valign="top">
+				<div id="more_infor" style="text-align: right; font-size: 11pt;">
+					<a href="javascript:void(0);" onclick="more()">更多...&nbsp;&nbsp;</a>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table width="99%" height="10px" border="0" align="left"
+					cellpadding="0" cellspacing="0" id="news_show" class="spanFont"
+					style="margin-left: 7px;">
+					<tr>
+						<td>
+							<div id="addnewsload" style="font-size: 11pt; text-align: left;">
+							</div>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	</body>
+</html>

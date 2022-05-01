@@ -1,0 +1,144 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>人事自助</title>
+    <link type="text/css" rel="stylesheet" href="../../../resources/layui/css/layui.css"></link>
+	<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/default/easyui.css" />
+	<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/icon.css" />
+  	<script type="text/javascript" src="../../../comon/js/jquery/jquery.min.js"></script>
+  	<script type="text/javascript" src="../../../comon/js/comon.main.js"></script>
+  	<script type="text/javascript" src="../../../comon/js/grid.main.js"></script>
+  	<script type="text/javascript" src="../../../comon/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../../resources/layui/layui.js"></script>
+  	<script type="text/javascript" src="mainActivity.js"></script>
+  </head> 
+  <body style="overflow: hidden;" onload="initDocumentPage();">
+	<div class="easyui-layout" fit="true" id="bodymainlayout">
+		<div data-options="region:'north',split:false" style="height:40px;overflow: hidden; padding: 4px;">
+			<table>
+				<tr>
+					<td>
+						<div id="stander_bar" insertAction="dataInsert()"
+							saveAction="dataSave()" refreshAction="dataRefresh()"
+							deleteAction="dataDeleted()" style="margin-left: 1px;">
+						</div>
+					</td>
+				</tr>
+			</table>
+			<script type="text/javascript">
+				init_toolbar();
+			</script>
+		</div>
+		<div data-options="region:'center',border:false">
+			<div class="layui-fluid">
+				<div class="layui-card">
+				    <div class="layui-card-header">基本信息</div>
+				    <div class="layui-card-body">
+						<form id="MAIN_DATA_FORM" class="layui-form" afterRefresh="afRefresh">
+							<div class="layui-form-item">
+					            <div class="layui-inline">
+					              <label class="layui-form-label" style="width:110px;">姓名</label>
+					              <div class="layui-input-inline">
+					                <input type="text" id="SNAME" name="SNAME" lay-verify="required" autocomplete="off" class="layui-input">
+					              </div>
+					            </div>
+					            <div class="layui-inline">
+					              <label class="layui-form-label" style="width:110px;">性别</label>
+					              <div class="layui-input-inline">
+					                <select id="SSEX" name="SSEX">
+										<option value="">--请选择--</option>
+										<option value="男">男</option>
+										<option value="女">女</option>
+									</select> 
+					              </div>
+					            </div>
+					          </div>
+							 <div class="layui-form-item">
+							 	<div class="layui-inline">
+					              <label class="layui-form-label" style="width:110px;">生日</label>
+					              <div class="layui-input-inline">
+					                <input type="text" name="SBIRTHDAY" id="SBIRTHDAY" class="layui-input Wdate" onFocus="WdatePicker({format:'yyyy-MM-dd hh'})" />
+					              </div>
+					            </div>
+							 	<div class="layui-inline">
+					              <label class="layui-form-label" style="width:110px;">QQ</label>
+					              <div class="layui-input-inline">
+					                <input type="text" name="SQQ" id="SQQ" class="layui-input" />
+					              </div>
+					            </div>
+					          </div>
+							 <div class="layui-form-item">
+							 	<div class="layui-inline">
+					              <label class="layui-form-label" style="width:110px;">MSN</label>
+					              <div class="layui-input-inline">
+					                <input type="text" name="SMSN" id="SMSN" class="layui-input" />
+					              </div>
+					            </div>
+							 	<div class="layui-inline">
+					              <label class="layui-form-label" style="width:110px;">家庭住址</label>
+					              <div class="layui-input-inline">
+					                <input type="text" name="SDESCRIPTION" id="SDESCRIPTION" class="layui-input" />
+					              </div>
+					            </div>
+					          </div>
+					          <div class="layui-inline" style="float:right;margin-top:-170px;">
+				              	<div class="layui-input-inline" style="background-color: #ffffff;">
+				              		<div id="picDemo" style="width: 250px; height: 150px;"></div>
+				              	</div>
+				              </div>
+						</form>
+					</div>
+				</div>
+				<div class="layui-card">
+					<div class="layui-card-body" style="min-height:300px;">
+						<div class="easyui-tabs" data-options="fit:true,border:false,onSelect:tabselected" id="infotabs">   
+						    <div title="学习经历">   
+						        <div id="study_per" style="width: 100%; height: 100%;" afterInert="gridfInsert" dataValueChanged="dataValueChangedAction">
+								</div> 
+						    </div>   
+						    <div title="工作经历">   
+						        <div id="work_per" style="width: 100%; height: 100%;" afterInert="gridfInsert" dataValueChanged="dataValueChangedAction">
+								</div> 
+						    </div>   
+						    <div title="进修经历">   
+						        <div id="advanceds_per" style="width: 100%; height: 100%;" afterInert="gridfInsert" dataValueChanged="dataValueChangedAction">
+								</div> 
+						    </div>   
+						    <div title="培训经历">   
+						        <div id="cultivate_per" style="width: 100%; height: 100%;" afterInert="gridfInsert" dataValueChanged="dataValueChangedAction">
+								</div> 
+						    </div>   
+						    <div title="资质证书">   
+						        <div id="certificate_per" style="width: 100%; height: 100%;" afterInert="gridfInsert" dataValueChanged="dataValueChangedAction">
+								</div> 
+						    </div>   
+						    <div title="著作论文">   
+						        <div id="thesis_per" style="width: 100%; height: 100%;" afterInert="gridfInsert" dataValueChanged="dataValueChangedAction">
+								</div> 
+						    </div>   
+						    <div title="其他信息">   
+						        <div id="other_per" style="width: 100%; height: 100%;" afterInert="gridfInsert" dataValueChanged="dataValueChangedAction">
+								</div> 
+						    </div>   
+						    <div title="科研项目">   
+						        <div id="project_per" style="width: 100%; height: 100%;" afterInert="gridfInsert" dataValueChanged="dataValueChangedAction">
+								</div> 
+						    </div>   
+						    <div title="技术职务变更">   
+						        <div id="alteration_per" style="width: 100%; height: 100%;" afterInert="gridfInsert" dataValueChanged="dataValueChangedAction">
+								</div> 
+						    </div>   
+						    <div title="学分完成情况">   
+						        <div id="credit_per" style="width: 100%; height: 100%;" afterInert="gridfInsert" dataValueChanged="dataValueChangedAction">
+								</div> 
+						    </div>   
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+  </body>
+</html>

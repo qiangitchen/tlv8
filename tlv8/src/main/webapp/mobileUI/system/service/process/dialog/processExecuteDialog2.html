@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>  
+	<head> 
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"/>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<link rel="stylesheet" type="text/css" href="../../../css/jquery.mobile-1.3.0.min.css"/>
+    	<link rel="stylesheet" type="text/css" href="processExecuteDialog.css"/>
+    	<script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../js/jquery.mobile-1.3.0.min.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../js/base.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../js/dialog.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../js/flow.main.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="processExecuteDialog2.js"></script>
+    </head>
+    <body>
+    	<div data-role="page">
+    		<div data-role="header" data-theme="b" data-position="fixed">
+		    <a href="#popupMenu" onclick="windowCancel();"  data-rel="popup" data-icon="delete" data-transition="slidedown">取消</a>
+		    <h1 id="title_val">任务流转</h1>
+		    <a href="#popupMenu" onclick="ensure()" data-rel="popup" data-icon="check" data-iconpos="right" data-transition="slidedown">确定</a>
+		</div>
+		<div id="contenView" data-role="content" >
+			<div data-role="fieldcontain" style="display: none;">
+				<fieldset data-role="controlgroup" >
+					<input type="checkbox"  id="isSendMessage" class="custom"/>
+					<label for="isSendMessage">发送短信提醒（请选择）</label>
+				</fieldset>
+			</div>
+			<!-- 
+			<ul data-role="listview" data-inset="true">
+			<li data-role="list-divider" data-theme="c"><label style="font-size:17px;">处理意见</label></li>
+				<li>
+					<label for="opinions" style="font-weight:bold;">意见:</label>
+					<textarea  name="opinions" id="opinions"></textarea>
+				</li>
+			</ul>
+			 -->
+			<ul data-role="listview"  id="activitylist" data-inset="true">
+				<li data-role="list-divider" data-theme="c"><label style="font-size:17px;">选择处理环节</label></li>
+			</ul>
+			<ul data-role="listview"  id="Executorslist" data-inset="true">
+				<li data-role="list-divider" data-theme="c"><label style="font-size:17px;">选择处理人</label></li>
+			</ul>
+		</div>
+		<div id="congirminfo" data-role="content" style="display: none;">
+		</div>
+	</body>
+</html>

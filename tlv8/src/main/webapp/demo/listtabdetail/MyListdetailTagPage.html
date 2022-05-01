@@ -1,0 +1,105 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<title>MyListdetailTagPage.html</title>
+	<link type="text/css" rel="stylesheet" href="../../resources/layui/css/layui.css"></link>
+	<link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/default/easyui.css" />
+	<link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/icon.css" />
+  	<link type="text/css" rel="stylesheet" href="../../comon/css/formsyle.css"></link>
+  	<script type="text/javascript" src="../../comon/js/jquery/jquery.min.js"></script>
+  	<script type="text/javascript" src="../../comon/js/comon.main.js"></script>
+  	<script type="text/javascript" src="../../comon/js/grid.main.js"></script>
+	<script type="text/javascript" src="../../comon/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../resources/layui/layui.js"></script>
+	<script type="text/javascript" src="MyListdetailTagPage.js"></script>
+ </head>
+  
+  <body style="overflow: hidden;" onLoad="getData();init_toolbar();">
+	<div id="tabveiw1" class="easyui-tabs" fit="true" data-options="onSelect:tabsselected">
+		<div id="detail_01" title="列表">
+			<div component="dataGrid" id="main_grid_view" style="width:100%;height:100%;" ondbclick="griddbclick">
+			</div>
+		 </div>
+		<div id="detail_02" title="详细" style="height:100%;">
+			<div class="easyui-layout" fit="true">
+				<div data-options="region:'north',split:false" style="height:40px; overflow: hidden;padding: 4px;">
+					<table>
+						<tr>
+							<td>
+								<div id="stander_bar" insertAction="dataInsert()"
+									saveAction="dataSave()" refreshAction="dataRefresh()"
+									deleteAction="dataDeleted()">
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div data-options="region:'center',border:false">
+					<div class="layui-fluid">
+						<div class="layui-card">
+						    <div class="layui-card-header">表单信息</div>
+						    <div class="layui-card-body">
+								<form id="MAIN_DATA_FORM" class="layui-form">
+									<div class="layui-form-item">
+										<div class="layui-inline">
+											<label class="layui-form-label">申请人名称</label>
+											<div class="layui-input-inline">
+												<input type="text" id="FCREATORNAME" name="FCREATORNAME"
+													class="layui-input" />
+											</div>
+										</div>
+										<div class="layui-inline">
+											<label class="layui-form-label">申请时间</label>
+											<div class="layui-input-inline">
+												<input type="text" id="FCREATEDATE" name="FCREATEDATE"
+													class="layui-input" />
+											</div>
+										</div>
+										<div class="layui-inline">
+											<label class="layui-form-label">开始时间</label>
+											<div class="layui-input-inline">
+												<input type="text" id="FSTARTDATE" name="FSTARTDATE"
+													class="layui-input" />
+											</div>
+										</div>
+									</div>
+									<div class="layui-form-item">
+										<div class="layui-inline">
+											<label class="layui-form-label">结束时间</label>
+											<div class="layui-input-inline">
+												<input type="text" id="FENDDATE" name="FENDDATE"
+													class="layui-input" />
+											</div>
+										</div>
+										<div class="layui-inline">
+											<label class="layui-form-label">请假天数</label>
+											<div class="layui-input-inline">
+												<input type="text" id="FDAY" name="FDAY" class="layui-input" />
+											</div>
+										</div>
+										<div class="layui-inline">
+											<label class="layui-form-label">请假类型</label>
+											<div class="layui-input-inline">
+												<input type="text" id="FLEAVETYPE" name="FLEAVETYPE"
+													class="layui-input" />
+											</div>
+										</div>
+									</div>
+									<div class="layui-form-item layui-form-text">
+							           <label class="layui-form-label">请假原因</label>
+							           <div class="layui-input-block">
+							             <textarea id="FREASON" name="FREASON" placeholder="请输入内容" class="layui-textarea"></textarea>
+							           </div>
+							         </div>  
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		 </div>
+	</div>
+  </body>
+</html>

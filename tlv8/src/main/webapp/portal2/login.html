@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>TLv8</title>
+		<link rel="stylesheet" href="../resources/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="style/admin.css" media="all">
+		<link rel="stylesheet" href="style/login.css" media="all">
+		<link rel="stylesheet" href="css/login.css" media="all"/>
+		<script type="text/javascript" src="../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../comon/js/jquery/jquery.cookie.js"></script>
+		<script type="text/javascript" src="system/js/jpolite.data.js"></script>
+		<script type="text/javascript" src="system/js/md5.js"></script>
+		<script type="text/javascript" src="system/js/jpolite.login.js"></script>
+		<script type="text/javascript">
+			window.moveTo(0, 0);
+			window.resizeTo(screen.availWidth, screen.availHeight);
+			if($.browser.msie){
+				if($.browser.version<10){
+					alert("请使用谷歌浏览器、火狐浏览器、360极速模式或IE10以上版本！");
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div class="login_box">
+			<div class="login_l_img">
+				<!-- 
+				<img src="./image/login-img.png"/>
+				-->
+			</div>
+			<div class="login">
+				<div class="layadmin-user-login-main">
+			      <div class="layadmin-user-login-box layadmin-user-login-header">
+			        <h2>TLv8平台</h2>
+			        <p>欢迎登录TLv8平台！</p>
+			      </div>
+			      <span id="hint_lable" class="lable" style="color:red; font-size: 14px; padding: 10px;">&nbsp;</span>
+			      <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+			        <div class="layui-form-item">
+			          <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-username"></label>
+			          <input type="text" name="username" id="TxtUserName" lay-verify="required" placeholder="用户名" class="layui-input">
+			        </div>
+			        <div class="layui-form-item">
+			          <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"></label>
+			          <input type="password" name="password" id="TxtPassword" lay-verify="required" placeholder="密码" class="layui-input">
+			        </div>
+			        <div class="layui-form-item">
+			          <div class="layui-row">
+			            <div class="layui-col-xs7">
+			              <label class="layadmin-user-login-icon layui-icon layui-icon-vercode" for="LAY-user-login-vercode"></label>
+			              <input type="text" name="vercode" id="captcha_input" lay-verify="required" autocomplete="off" placeholder="图形验证码" class="layui-input">
+			            </div>
+			            <div class="layui-col-xs5">
+			              <div style="margin-left: 10px;">
+			                <img src="" class="layadmin-user-login-codeimg" id="captcha_image">
+			              </div>
+			            </div>
+			          </div>
+			        </div>
+			        <div class="layui-form-item" style="margin-bottom: 20px;">
+			        </div>
+			        <div class="layui-form-item">
+			          <button id="login_button" class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-login-submit">登 入</button>
+			        </div>
+			      </div>
+			    </div>
+			</div>
+		</div>
+		
+		<div class="copyright">
+			©www.tulinxian.com All Right Reserved 技术支持：<a style="color: #fff;" href="https://dev.tulinxian.com/" target="_blank">dev.tulinxian.com</a>
+		</div>
+	
+		<script type="text/javascript">
+			$(function() {
+				$.jpolite.Login.indexPage = "index.html"; // 登陆后跳转页面
+				//$.jpolite.Login.checkLogin();				     // 检查是否登陆过，如果登陆这则跳转到主页面
+				$.jpolite.Login.initUsernameInput("TxtUserName"); // 初始化用户名输入框
+				$.jpolite.Login.initPasswordInput("TxtPassword"); // 初始化密码输入框
+				$.jpolite.Login.initLanguageInput("language"); // 初始化语言输入框
+				//此处为生成验证图片时的Js脚本初始化调用
+				$.jpolite.Login.initCaptchaInput("captcha_input");			// 初始化校验输入框
+				$.jpolite.Login.initCaptchaImage("captcha_image");			// 初始化校验图片
+				
+				$.jpolite.Login.initAgentSelect("agent_select"); // 初始化代理选择框
+				$.jpolite.Login.initHintLable("hint_lable"); // 初始化提示信息标签
+				$.jpolite.Login.initLoadingImage("loading_image"); // 初始化加载中图片
+				$.jpolite.Login.initRememberCheckbox("remember_checkbox"); // 初始化记住设置选择框
+				$.jpolite.Login.initPasswordCheckbox("password_checkbox");	// 初始化记住密码设置选择框
+				//$.jpolite.Login.initMaximize("maximize_checkbox"); // 初始化记住最大化选择框
+				$.jpolite.Login.initLoginButton("login_button"); // 初始化登陆按钮
+				//$.jpolite.Login.initCancelButton("cancel_button"); // 初始化取消按钮
+				//$.jpolite.Login.initFromCookie(); // 初始化存储信息，从Cookie中
+				$.jpolite.Login.initFocus(); // 初始化焦点
+			});
+		</script>
+	</body>
+</html>

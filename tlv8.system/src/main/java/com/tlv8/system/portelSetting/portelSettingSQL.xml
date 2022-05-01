@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="portalSetting">
+	<select id="selectPortelSettingFromIndex"
+		resultType="com.tlv8.system.portelSetting.PortelsettingEntity"
+		parameterType="java.util.HashMap">
+		select SID,SPORTALTYPE,SPSNDESKINFO from
+		sa_portelsetting where 1=1
+		<if test="personId != null">
+		    AND SPERSONID like #{personId}
+		</if>
+		<if test="isOpen != null">
+		    AND SISOPENWHENLONGING=#{isOpen}
+		</if>
+		<if test="type != null">
+		    AND SPORTALTYPE=#{type}
+		</if>
+	</select>
+	<select id="selectPortelSettingByPersonID"
+		resultType="com.tlv8.system.portelSetting.PortelsettingEntity"
+		parameterType="string">
+		select SID,SPORTALTYPE,SPSNDESKINFO from
+		sa_portelsetting where SPERSONID=#SPERSONID#
+	</select>
+	<insert id="insertPSByEntity"
+		parameterType="com.tlv8.system.portelSetting.PortelsettingEntity">
+		insert into
+		sa_portelsetting
+		(SID,SPSNDESKINFO,SPERSONID,SPORTALTYPE,SORDER,SISOPENWHENLONGING)values
+		(#SID#,#SPSNDESKINFO#,#SPERSONID#,#SPORTALTYPE#,#SORDER#,#SISOPENWHENLONGING#)
+	</insert>
+	<update id="updatePSByEntity"
+		parameterType="com.tlv8.system.portelSetting.PortelsettingEntity">
+		update
+		sa_portelsetting set
+		SPSNDESKINFO=#SPSNDESKINFO#,SORDER=#SORDER#,SISOPENWHENLONGING=#SISOPENWHENLONGING#
+		where SID=#SID#
+	</update>
+</mapper>

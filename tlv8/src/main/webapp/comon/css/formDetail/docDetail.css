@@ -1,0 +1,143 @@
+
+/**<!--详细table-->*/
+.Detailtable {
+	line-height: 20px;
+	width:800px;
+	font-size: 11pt;
+	border:0px;
+	border-top-color: #c3c3c3;
+	border-right-color: #c3c3c3;
+	border-bottom-color: #c3c3c3;
+	border-left-color: #c3c3c3;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-collapse: collapse;
+	color: #000000;
+	display: block;
+	background: #ffffff;
+	margin-top: 5px;
+}
+
+.Detailtable1 {
+	line-height: 20px;
+	font-size: 11pt;
+	border-top-color: #c3c3c3;
+	border-right-color: #c3c3c3;
+	border-bottom-color: #c3c3c3;
+	border-left-color: #c3c3c3;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-collapse: collapse;
+	color:#000000;
+	display: block;
+	background: #ffffff;
+	margin-top: 5px;
+}
+
+.Detailtable tr {
+	height: 30px;
+}
+
+/**<!--标准input-->*/
+.DetailInput {
+    border:0px;
+	color: #000000;
+	font-size: 12pt;
+	height: 20px;
+	line-height: 18px;
+	width: 90%;
+}
+
+
+/**<!--标准textarea-->*/
+.Detailtextarea {
+	border-bottom-color: #b8bbcc;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-top-color: #b8bbcc;
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-right-color: #b8bbcc;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-left-color: #b8bbcc;
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-collapse: collapse;
+	color: #000000;
+	font-size: 11pt;
+	height: 20px;
+	line-height: 18px;
+	padding-left: 3px;
+	width: 96%;
+	height: 100%;
+}
+
+/**
+ *background-color: rgb(255, 255, 255);
+**/
+.DetailSpanTD {
+	border:1px solid red;
+	background-attachment: scroll;
+	background-image: none;
+	background-repeat: repeat;
+	background-position-x: 0%;
+	background-position-y: 0%;
+	border-collapse: collapse;
+	font-size: 12pt;
+	height: 30px;
+	padding-top: 5px;
+	padding-left: 15px;
+	vertical-align: middle;
+}
+
+/**
+*2012-3-21 Liubing 按钮样式  验证文本样式
+**/
+.SaveButton {
+	width: 62px;
+	height: 23px;
+	line-height: 18px;
+	margin-top: 4px;
+	border: 0;
+	background: url("img/savebutton.gif");
+	color: #2F4F4F;
+}
+
+
+.WdateinputLine {
+	border-top: solid 0px #000000;
+	border-left: solid 0px #000000;
+	border-right: solid 0px #000000;
+	border-bottom: solid 0px #000000;
+	width: 100%;
+	height: 20px;
+	background: #fff url(datePicker.gif) no-repeat right;
+}
+#FPULICITY_compent a{
+	font-size:12pt;
+}
+
+/*全部单元格边框*/
+.td_border_all{
+	border: 1px solid black;
+	margin-left: 10px;
+	/* padding-left: 5px; */
+}
+td input{font-size:12pt;border:none;}
+textarea,td,select{border: none;font-size:12pt;}
+td p{width:100%;font-size:12pt;text-align: center;}
+table td span {font-size:12pt;}
+td{margin-left: 15px;padding-left: 5px;}

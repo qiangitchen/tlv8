@@ -1,0 +1,23 @@
+#showdivt {
+	display: none;
+	background: #F5F5F5;
+	border: 1px solid #C9DCA6;
+	width: 100px;
+	position: absolute;
+	z-index: 30;
+}
+
+#showdivt li a:hover {
+	background: #CCCCFF;
+	color: #036;
+	text-decoration: none;
+}
+
+.buttnew {
+	width: 56px;
+	height: 17px;
+	line-height: 18px;
+	margin-top: 4px;
+	border: 0;
+	color: #2F4F4F;
+}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tlv8.doc.svr.generator.dao.IDocLogDao">
+	<resultMap id="resultDocLog" type="com.tlv8.doc.svr.generator.beans.DocLog">
+	</resultMap>
+	<select id="getByPrimaryKey" resultMap="resultDocLog"
+		parameterType="java.lang.String">
+		select * from Doc_Log where fID = #{fID,jdbcType=VARCHAR}
+	</select>
+	<select id="getByUserID" resultMap="resultDocLog" parameterType="java.lang.String">
+		select * from Doc_Log where fUserID = #{fUserID,jdbcType=VARCHAR}
+	</select>
+	<select id="getList" resultMap="resultDocLog">
+		select * from Doc_Log
+	</select>
+	<insert id="insert" parameterType="com.tlv8.doc.svr.generator.beans.DocLog">
+		insert into Doc_Log (fID, fUserID, fAddTime, fAction, fMessage, version)
+		values (#{fID,jdbcType=VARCHAR},
+		#{fUserID,jdbcType=VARCHAR},
+		#{fAddTime,jdbcType=TIMESTAMP},
+		#{fAction,jdbcType=VARCHAR},
+		#{fMessage,jdbcType=VARCHAR},
+		#{version,jdbcType=INTEGER})
+	</insert>
+	<update id="update" parameterType="com.tlv8.doc.svr.generator.beans.DocLog">
+		update Doc_Log
+		set fUserID = #{fUserID,jdbcType=VARCHAR},
+		fAddTime = #{fAddTime,jdbcType=TIMESTAMP},
+		fAction = #{fAction,jdbcType=VARCHAR}
+		fMessage = #{fMessage,jdbcType=VARCHAR}
+		version = #{version,jdbcType=INTEGER}
+		where fID = #{fID,jdbcType=VARCHAR}
+	</update>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from Doc_Log where fID = #{fID,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteByUserID" parameterType="java.lang.String">
+		delete from Doc_Log where fUserID = #{fUserID,jdbcType=VARCHAR}
+	</delete>
+	<delete id="clearData">
+		delete from Doc_Log
+	</delete>
+</mapper>

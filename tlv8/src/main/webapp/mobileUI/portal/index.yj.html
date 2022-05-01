@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0"></meta>
+		<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"></meta>
+		<title>TLv8-手机首页</title>
+		<link rel="stylesheet" type="text/css" href="../system/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../system/css/jquery.confirm.css"></link>
+		<link rel="stylesheet" type="text/css" href="system/css/index.css"></link>
+		<script type="text/javascript" charset="utf-8" src="../system/js/jquery.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../system/js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../system/js/jquery.confirm.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../system/js/jquery.corner.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../system/js/dialog.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../system/js/base.js"></script>
+		<script type="text/javascript" charset="utf-8" src="system/js/portal.js"></script>
+		<script type="text/javascript" charset="utf-8" src="system/js/index.js"></script>
+		<style type="text/css">
+			.ui-page {
+				background: #fff;
+				/*background: -webkit-gradient(linear, left top, left bottom, from(#409fde), to(#afcde4));*/
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" onclick="tlv8.logout()">
+				<span class="mui-icon mui-icon-undo"></span>
+				退出
+			</button>
+			<button id="task_execute" class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right">
+				<a href="system/templet/setting.html"><span class="mui-icon mui-icon-bars"></span>
+				选项</a>
+			</button>
+			<h1 class="mui-title" id="userInfo"></h1>
+		</header>
+		<nav class="mui-bar mui-bar-footer">
+			<h1 class="mui-title">TLv8</h1>
+		</nav>
+		<div class="mui-content" id="mainview" style="text-align: center;">
+			<div id="contenView" style="padding: 20px; margin: auto; text-align: left;">
+			</div>
+		</div>
+	</body>
+</html>

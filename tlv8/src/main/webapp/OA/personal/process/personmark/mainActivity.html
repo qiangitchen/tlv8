@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>个人痕迹查询</title>
+	<link type="text/css" rel="stylesheet" href="../../../../resources/jquery-easyui/themes/default/easyui.css" />
+	<link type="text/css" rel="stylesheet" href="../../../../resources/jquery-easyui/themes/icon.css" />
+  	<link type="text/css" rel="stylesheet" href="../../../../comon/css/formsyle.css"></link>
+  	<link type="text/css" rel="stylesheet" href="mainActivity.css"></link>
+  	<script type="text/javascript" src="../../../../comon/js/jquery/jquery.min.js"></script>
+  	<script type="text/javascript" src="../../../../comon/js/comon.main.js"></script>
+  	<script type="text/javascript" src="../../../../comon/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+  	<script type="text/javascript" src="mainActivity.js"></script>
+  </head> 
+  <body style="overflow: hidden;" onload="initDocumentPage();">
+	<div id="wrapper" class="wrapper_l">
+
+		<div id="head">
+			<div class="head_wrapper">
+				<div class="s_form">
+					<div class="s_form_wrapper soutu-env-nomac soutu-env-result">
+						<div id="lg"></div>
+						<div class="fm">
+							<span class="bg s_ipt_wr quickdelete-wrap"><span
+								class="soutu-btn"></span> 
+								<input id="kw" name="wd" class="s_ipt" onkeyup="searchtextendpre(event)"
+								value="" maxlength="255"></span><input
+								type="button" id="su" value="查询" class="bg s_btn" onclick="doSearchbtn()"></span>
+						</div>
+						<div id="m"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="s_tab" id="s_tab">
+			<b id="sallrecvFile" class="s_t_p">所有</b>
+			<a id="shangjilaiwen" class="s_t_p">上级来文</a>
+			<a id="sQitalaiwen" class="s_t_p">其他来文</a>
+			<a id="sTongzhi" class="s_t_p">通知</a>
+			<a id="sXinxi" class="s_t_p">信息</a>
+		</div>
+
+		<div class="container_l" style="padding-top: 5px;" id="sresulttex">
+		</div>
+	</div>
+	<div id="page">
+	</div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"/>
+    	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/> 
+    	<title>项目信息</title>
+    	<link rel="stylesheet" type="text/css" href="../../../mobileUI/system/css/mui.min.css"/>
+    	<script type="text/javascript" charset="utf-8" src="../../../mobileUI/system/js/jquery.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../mobileUI/system/js/mui.min.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../mobileUI/system/js/base.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="writeProject.js"></script>
+    </head>
+    <body>
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right" onclick="doDataSaveaAtion()">
+				<span class="mui-icon mui-icon-checkmarkempty"></span>
+				保存
+			</button>
+		    <h1 class="mui-title" id="title_val">项目信息</h1>
+		</header>
+		<div class="mui-content">
+			<form class="mui-input-group" id="MAIN_DATA_FORM" afterRefresh="afRefresh">
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">编号</label>
+					<input type="text" placeholder="请输入项目编号" data-filtered="filtered" id="fBIANHAO" name="fBIANHAO" class="forminput"/>
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">名称</label>
+					<input type="text" placeholder="请输入项目名称" data-filtered="filtered" id="fMINGCHENG" name="fMINGCHENG" class="forminput"/>
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">客户</label>
+					<select data-filtered="filtered" id="fKEHUID" name="fKEHUID" class="forminput" onchange="selectCustomer(this)"></select>
+				</div>
+				<div style="display: none;">
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">客户</label>
+					<input type="text" placeholder="请选择" data-filtered="filtered" id="fKEHU" name="fKEHU" class="forminput" readonly="readonly"/>
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">创建人FID</label>
+					<input type="text" placeholder="普通输入框" data-filtered="filtered" id="FCREATEPSNFID" name="FCREATEPSNFID" class="forminput"/>
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">创建人ID</label>
+					<input type="text" placeholder="普通输入框" data-filtered="filtered" id="FCREATEPSNID" name="FCREATEPSNID" class="forminput"/>
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">创建人名称</label>
+					<input type="text" placeholder="普通输入框" data-filtered="filtered" id="FCREATEPSNNAME" name="FCREATEPSNNAME" class="forminput"/>
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">部门ID</label>
+					<input type="text" placeholder="普通输入框" data-filtered="filtered" id="FCREATEDEPTID" name="FCREATEDEPTID" class="forminput"/>
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">部门名称</label>
+					<input type="text" placeholder="普通输入框" data-filtered="filtered" id="FCREATEDEPTNAME" name="FCREATEDEPTNAME" class="forminput"/>
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">机构ID</label>
+					<input type="text" placeholder="普通输入框" data-filtered="filtered" id="FCREATEOGNID" name="FCREATEOGNID" class="forminput"/>
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">机构名称</label>
+					<input type="text" placeholder="普通输入框" data-filtered="filtered" id="FCREATEOGNNAME" name="FCREATEOGNNAME" class="forminput"/>
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">组织ID</label>
+					<input type="text" placeholder="普通输入框" data-filtered="filtered" id="FCREATEORGID" name="FCREATEORGID" class="forminput"/>
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">组织名称</label>
+					<input type="text" placeholder="普通输入框" data-filtered="filtered" id="FCREATEORGNAME" name="FCREATEORGNAME" class="forminput"/>
+				</div>
+				<div class="mui-input-row" data-filtered="filtered">
+					<label data-filtered="filtered">创建时间</label>
+					<input type="text" placeholder="普通输入框" data-filtered="filtered" id="FCREATETIME" name="FCREATETIME" class="forminput"/>
+				</div>
+				</div>
+			</form>
+		</div>
+    </body>
+</html>

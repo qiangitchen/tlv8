@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <data>
+  </data>
+  <chart type="Dataset" modle="datasetdefault" theme="light">
+  <![CDATA[
+    {
+     // 默认色板
+    color: [
+      '#009688','#1E9FFF','#5FB878','#FFB980','#D87A80',
+      '#8d98b3','#e5cf0d','#97b552','#95706d','#dc69aa',
+      '#07a2a4','#9a7fd1','#588dd5','#f5994e','#c05050',
+      '#59678c','#c9ab00','#7eb00a','#6f5553','#c14089'
+    ],
+    title:{
+    	 textStyle: {
+	        fontWeight: 'normal',
+	        color: '#666'      // 主标题文字颜色
+	     },
+    	 text: '服务器存储信息',
+    	 x: 'left'
+    },
+    legend: {},
+    tooltip: {
+    	trigger: 'item',
+		formatter: '{a} <br/>{b}: {c} GB'
+	},
+    series: []
+	}
+]]>
+  </chart>
+  <script>
+  <![CDATA[
+  	function loadFilesystemInfo(){
+  		$.get('/tlv8/monitor/FileSystemUsage', function(data){
+  			 data = data.data;
+  			 if(typeof data == "string"){
+  			 	data = window.eval("("+data+")");
+  			 }
+  			 var seriesS = [];
+  			 var left = 0, top = 30;
+  			 for(var m = 0; m < data.length; m++){
+  			 	if(m % 2 == 0){
+			    	left = 25;
+			    	if(m!=0){
+			    		top += 30;
+			    	}
+			    }else{
+			    	left += 45+m;
+			    }
+  			 	var fser = data[m];
+  			 	seriesS.push({
+			        name: fser.dirName,
+			        type: 'pie',
+			        radius: 30,
+			        label: {
+			        	formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}GB  ',
+			        	backgroundColor: '#F6F8FC',
+			            borderColor: '#8C8D8E',
+			            borderWidth: 1,
+			            borderRadius: 4,
+			            rich: {
+		                    a: {
+		                        color: '#6E7079',
+		                        lineHeight: 22,
+		                        align: 'center'
+		                    },
+		                    hr: {
+		                        borderColor: '#8C8D8E',
+		                        width: '100%',
+		                        borderWidth: 1,
+		                        height: 0
+		                    },
+		                    b: {
+		                        color: '#4C5058',
+		                        fontSize: 12,
+		                        fontWeight: 'bold',
+		                        lineHeight: 33
+		                    },
+		                    per: {
+		                        color: '#fff',
+		                        backgroundColor: '#4C5058',
+		                        padding: [3, 4],
+		                        borderRadius: 4
+		                    }
+		                }
+			        },
+			        center: [left+'%', top+'%'],
+			        data: [{name:'未使用',value:parseFloat(fser.Free)},{name:'已使用',value:parseFloat(fser.Used)}]
+			    });
+  			 }
+  			 myChart.setOption({
+			    series: seriesS
+		    });
+		    delete data;
+  		},"json");
+  	}
+  	loadFilesystemInfo();
+  ]]>
+  </script>
+</root>

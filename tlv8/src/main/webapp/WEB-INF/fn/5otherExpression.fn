@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<item id="others" isParent="true" name="其他">
+
+		<function pId="others" id="getSupplieridActivity" name="获取供应商对应的采购员"
+			param="supplycede" paramvalue=""
+			javacode="com.tlv8.flw.other.getActivitySupplyId.getSupplyerActivity"
+			helper="根据当前供应商获取对应的采购员 ">
+		</function>
+		<function pId="others" id="judgeIsNotSypplyerActivity" name="判断是否是采购员"
+			param="" paramvalue=""
+			javacode="com.tlv8.flw.other.judgeIsNotSypplyer.judgeIsNotSypplyerActivity"
+			helper="根据当前登录者判断是否是采购员 ">
+		</function>
+		<function pId="others" id="locateCustomerOperator" name="获取当前客户的业务员"
+			param="customid" paramvalue=""
+			javacode="com.tlv8.flw.other.locateCustomerOperatorname.locateCustomerOperator"
+			helper="说明：根据当前客户的ID获得其业务员 &lt;br/&gt;参数说明：&lt;br/&gt;customid【必填】：客户的ID">
+		</function>
+	</item>
+</root>

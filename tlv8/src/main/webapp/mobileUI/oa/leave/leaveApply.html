@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"/>
+    	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/> 
+    	<title>手机版本表单</title>
+    	<link rel="stylesheet" type="text/css" href="../../../mobileUI/system/css/mui.min.css"/>
+    	<script type="text/javascript" charset="utf-8" src="../../system/js/jquery.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../system/js/mui.min.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../system/js/base.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../system/js/dialog.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../system/js/flow.main.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../oa/common/js/oaUtils.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="leaveApply.js"></script>
+    </head>
+    <body>
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<button id="task_execute" component="flowprocess" class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right">
+				<span class="mui-icon mui-icon-compose"></span>
+				处理
+			</button>
+		    <h1 class="mui-title" id="title_val">请假申请</h1>
+		</header>
+		<div class="mui-content">
+			<form class="mui-input-group" id="MAIN_DATA_FORM" afterRefresh="afRefresh">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-divider mui-table-view-cell">
+						<label style="font-size:17px;">申请内容</label>
+					</li>
+					<li>
+						<div class="mui-input-row" data-filtered="filtered">
+							<label data-filtered="filtered">申请人</label>
+							<input type="text" placeholder="" data-filtered="filtered" id="FCREATORNAME" name="FCREATORNAME" class="forminput" readonly="readonly" />
+						</div>
+						<div class="mui-input-row" data-filtered="filtered">
+							<label data-filtered="filtered">申请时间</label>
+							<input type="text" placeholder="" data-filtered="filtered" id="FCREATEDATE" name="FCREATEDATE" class="forminput" readonly="readonly" />
+						</div>
+						<div class="mui-input-row" data-filtered="filtered">
+							<label data-filtered="filtered">开始时间</label>
+							<input type="date" placeholder="" data-filtered="filtered" id="FSTARTDATE" name="FSTARTDATE" class="forminput" format="yyyy-MM-dd" />
+						</div>
+						<div class="mui-input-row" data-filtered="filtered">
+							<label data-filtered="filtered">结束时间</label>
+							<input type="date" placeholder="" data-filtered="filtered" id="FENDDATE" name="FENDDATE" class="forminput" format="yyyy-MM-dd" />
+						</div>
+						<div class="mui-input-row" data-filtered="filtered">
+							<label data-filtered="filtered">请假天数</label>
+							<input type="text" placeholder="" data-filtered="filtered" id="FDAY" name="FDAY" class="forminput" />
+						</div>
+						<div class="mui-input-row" data-filtered="filtered">
+							<label data-filtered="filtered">请假类型</label>
+							<SELECT id="FLEAVETYPE" name="FLEAVETYPE" data-filtered="filtered" class="forminput">
+								<OPTION value="病假">病假</OPTION>
+								<OPTION value="事假">事假</OPTION>
+								<OPTION value="公休假">公休假</OPTION>
+								<OPTION value="其他">其他</OPTION>
+							</SELECT>
+						</div>
+						<div class="mui-input-row" data-filtered="filtered">
+							<label data-filtered="filtered">请假原因</label>
+							<TEXTAREA id="FREASON" name="FREASON" class="forminput"
+								style="width: 100%; height: 80px;"></TEXTAREA>
+						</div>
+					</li>
+				</ul>
+				<div style="display: none;">
+					<input type="text" id="FCREATORID" name="FCREATORID"
+						class="forminput" style="width: 100%;" />
+					<input type="text" id="FCREATORFID" name="FCREATORFID"
+						class="forminput" style="width: 100%;" />
+					<input type="text" id="FCREATORFNAME" name="FCREATORFNAME"
+						class="forminput" style="width: 100%;" />
+				</div>
+			</form>
+		</div>
+		<div id="opinion_list"></div>
+    </body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>  
+	<head> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<title>客户信息</title>
+    	<link rel="stylesheet" type="text/css" href="../../system/css/mui.min.css" />
+    	<link rel="stylesheet" type="text/css" href="../../system/css/jqm-datebox.min.css"/>
+    	<script type="text/javascript" charset="utf-8" src="../../system/js/jquery.js"></script>
+    	<script src="../../system/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../system/js/jqm-datebox.core.min.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../system/js/jqm-datebox.mode.calbox.min.js"></script><!--日历 类型 -->
+    	<script type="text/javascript" charset="utf-8" src="../../system/js/jqm-datebox.mode.flipbox.min.js"></script><!--滚动 类型    timeflipbox hh:ss-->
+    	<script type="text/javascript" charset="utf-8" src="../../system/js/jquery.mobile.datebox.i18n.zh-CN.utf8.js"></script> <!--日期 中文 -->
+    	<script type="text/javascript" charset="utf-8" src="../../system/js/base.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="custormerInfo.js"></script>
+    	
+
+    	<style type="text/css">
+    		a{
+    			font-size:14px;
+    		}
+    	</style>
+    </head>
+    <body onload="initPage()">
+    	<header class="mui-bar mui-bar-nav">
+		    <button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" onclick="backhistory()">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<button id="submitItem" class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right" onclick="javascript:saveData(true)">
+				<span class="mui-icon mui-icon-redo"></span>
+				提交
+			</button>
+		    <h1 class="mui-title" id="readtitle">客户信息</h1>
+	       </header>
+		<div id="contenView" class="mui-content">
+			<form id="costomer_form">
+			    <table width="100%">
+			      <tr>
+			    	<td width="80px">
+			         	<label for="FCUSTOMERNAME">客户名称:</label>
+			         </td>
+			         <td>
+			         	  <input name="FCUSTOMERNAME" id="FCUSTOMERNAME"/>
+			         </td>
+			       </tr>
+			      <tr>
+			    	<td width="80px">
+			         	<label for="FCUSTOMERADDR">客户地址:</label>
+			         </td>
+			         <td>
+			         	  <textarea name="FCUSTOMERADDR" id="FCUSTOMERADDR" style="height:100px;"></textarea>
+			         </td>
+			       </tr>
+			      <tr>
+			    	<td width="80px">
+			         	<label for="FCUSTOMOR">联系人:</label>
+			         </td>
+			         <td>
+			         	  <input name="FCUSTOMOR" id="FCUSTOMOR"/>
+			         </td>
+			       </tr>
+			      <tr>
+			    	<td width="80px">
+			         	<label for="FCUSTOMERPHONE">联系电话:</label>
+			         </td>
+			         <td>
+			         	  <input name="FCUSTOMERPHONE" id="FCUSTOMERPHONE"/>
+			         </td>
+			       </tr>
+			      <tr>
+			    	<td width="80px">
+			         	<label for="FCUSTOMERTYPE">客户类型:</label>
+			         </td>
+			         <td>
+			         	  <input name="FCUSTOMERTYPE" id="FCUSTOMERTYPE"/>
+			         </td>
+			       </tr>
+			     
+			      <tr style="display:none">
+			    	<td width="80px">
+			         	<label for="FCUSTOMERMAP">客户位置:</label>
+			         </td>
+			         <td>
+			         	  <input name="FCUSTOMERMAP" id="FCUSTOMERMAP"/>
+			         </td>
+			       </tr>
+			       <div style="display:none">
+				 	<input type="text" name="FSTATUS" id="FSTATUS" value="" readonly="readonly"/>
+				 	<input type="text" name="FCREATOR" id="FCREATOR" value="" readonly="readonly"/>
+				 	<input type="text" name="FCREATORID" id="FCREATORID" value="" readonly="readonly"/>
+				 	<input type="text" name="FCREATEDATE" id="FCREATEDATE" value="" readonly="readonly"/>
+				 	
+				 	<input type="text" name="FUPDATOR" id="FUPDATOR" value="" readonly="readonly"/>
+				 	<input type="text" name="FUPDATORID" id="FUPDATORID" value="" readonly="readonly"/>
+				 	<input type="text" name="FUPDATEDATE" id="FUPDATEDATE" value="" readonly="readonly"/>
+				 </div>
+			</form>
+			<table width="100%">
+				 <tr>
+			    	<td >
+			    		<div id="addrs" > 
+				         	<input type="button" value="定位地址" onclick="getAddr()"></input>
+			    		</div>
+			         </td>
+			       </tr>
+			</table>
+		</div> 
+    </body>
+</html>

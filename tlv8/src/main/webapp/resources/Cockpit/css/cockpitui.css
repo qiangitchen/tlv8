@@ -1,0 +1,82 @@
+html{
+	width: 100%;
+	height: 100%;
+}
+body{
+	background: #000; /*rgb(12, 22, 54);*/
+	width: 100%;
+	height: 100%;
+}
+
+#top{
+	padding-top: 20px;
+	text-align: center;
+}
+
+.top-title-line{
+	width: 100%;
+	height: 50%;
+	position: relative;
+}
+
+.top-left{
+	overflow: hidden;
+    background: url(../image/form_topleft.png) center center / 100% 100% no-repeat;
+    width: 25%;
+    height: 100%;
+    position: absolute;
+    left: 10%;
+}
+
+.top-center{
+	position: absolute;
+	left: 35%;
+    right: 35%;
+    font-size: 36px;
+    line-height: 60px;
+    color: #1d7eb3;
+}
+
+.top-right{
+	overflow: hidden;
+    background: url(../image/form_topright.png) center center / 100% 100% no-repeat;
+    width: 25%;
+    height: 100%;
+    position: absolute;
+    right: 10%;
+}
+
+.quick-border-layout{
+    overflow: hidden;
+    background: url(../image/form.png) center center / 100% 100% no-repeat;
+    width: 100%; height: 85%; margin-top: 2px;
+    padding: 3px;
+}
+
+.quick-border-layout-square{
+    overflow: hidden;
+    background: url(../image/form_border.png) center center / 100% 100% no-repeat;
+}
+
+.quick-border-layout-title{
+    overflow: hidden;
+    background: url(../image/form_title.png) center center / 100% 100% no-repeat;
+    color: #fff;
+    width: 60%; height: 15%;
+}
+
+.quick-border-layout-title table{
+	table-layout: fixed; width: 100%; height: 100%; overflow: visible;
+}
+
+.fh{
+	overflow: hidden;
+	padding: 0px;
+	vertical-align: middle;
+	font-size: 9pt;
+	font-family: SimSun;
+}
+
+.p15{
+	font-size: 15px;
+}

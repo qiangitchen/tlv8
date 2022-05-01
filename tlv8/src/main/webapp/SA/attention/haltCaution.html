@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>系统停机维护提醒</title>
+    <link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/default/easyui.css" />
+	<link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/icon.css" />
+  	<link rel="stylesheet" href="../../comon/css/formsyle.css" type="text/css"></link>
+  	<link rel="stylesheet" href="../../comon/css/common.css" type="text/css"></link>
+  	<script type="text/javascript" src="../../comon/js/jquery/jquery.min.js"></script>
+  	<script type="text/javascript" src="../../comon/My97DatePicker/WdatePicker.js"></script>
+  	<script type="text/javascript" src="../../comon/js/comon.main.js"></script>
+  	<script type="text/javascript" src="../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+  	<script type="text/javascript" src="haltCaution.js"></script>
+  </head>
+  <body style="text-align: center;">
+  	<div style="width: 100%; text-align: center;">
+	  	<div style="width: 500px; height: 180px; margin-left: auto; margin-right:auto; margin-top: 10%;">
+  			<form id="halt_caution_form">
+					<table width="500" height="180" style="border:1px solid #5e5d5f;">
+						<tr>
+							<td width="90" height="10"></td>
+							<td width="160">
+							</td>
+							<td width="60"></td>
+							<td>
+							</td>
+						</tr>
+						<tr style="display:none;">
+							<td width="90" height="35">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：</td>
+							<td colspan="3">
+								<input type="text" id="STITLE" style="width:100%;"/>
+							</td>
+						</tr>
+						<tr>
+							<td width="90" height="35">开&nbsp;&nbsp;始&nbsp;&nbsp;时&nbsp;&nbsp;&nbsp;&nbsp;间：</td>
+							<td width="160">
+								<input type="text" id="SSTARTTIME" style="width:100%;" class="Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+							</td>
+							<td width="60">结束时间：</td>
+							<td>
+								<input type="text" id="SENDTIME" style="width:100%;" class="Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+							</td>
+						</tr>
+						<tr>
+							<td width="90" height="35">紧急提醒时间：</td>
+							<td colspan="2">
+								<input type="text" id="SATTENTION" style="width:100%;" onkeydown="tlv8.CheckNumber.valNum(event);" 
+		         					onpaste="tlv8.CheckNumber.valClip(event);"/>
+							</td>
+							<td  width="160">
+								分钟。
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4" height="55" align="center">
+								<font color="blue">没有设置紧急提醒时间的在开始时间前5分钟提醒。</font>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" align="center">
+								<input type="button" value="确定&发布" onclick="enginAndPlush()" class="btn" style="width:100px"/>
+							</td>
+							<td colspan="2" align="center">
+								<input type="button" value="取消" onclick="cancell()" class="btn" style="width:100px"/>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<div style="display:none">
+									<input type="text" id="SCREATERID"/>
+									<input type="text" id="SCREATERNAME"/>
+									<input type="text" id="SCREATETIME"/>
+									<input type="text" id="SISPUSHED"/>
+								</div>
+							</td>
+						</tr>
+					</table>
+  			</form>
+		</div>
+	</div>
+  </body>
+</html>

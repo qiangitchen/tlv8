@@ -1,0 +1,27 @@
+﻿@charset "UTF-8";
+/* CSS Document */
+
+body {
+margin: 0;
+font-family: "Microsoft Yahei",arial,"Hiragino Sans GB",sans-serif;
+font-size: 14px;
+line-height: 20px;
+color: #656D78;
+background-color:#fff;
+position: relative;
+
+}
+html{height:100%;margin:0;padding:0;overflow:hidden}
+body{height:100%;margin:0;padding:0;overflow:hidden;font-family:"Microsoft Yahei"}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+margin:0;padding:0;}
+img{border:0px;}
+a, a:visited{color:#3a3a3a; text-decoration:none; }
+ul,li,li ul{list-style:none;}
+/*--clearfix---*/
+.clearfix:after {content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clearfix{display:inline-block;}
+.clearfix {display:block;}
+/*--clearfix---*/
+.clear{clear:both;}

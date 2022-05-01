@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<title>机构选择</title>
+		<link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/default/easyui.css" />
+		<link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/icon.css" />
+		<link type="text/css" rel="stylesheet" href="../../comon/css/zTreeStyle/zTreeStyle.css"></link>
+		<script type="text/javascript" src="../../comon/js/jquery/jquery.min.js"></script>
+	  	<script type="text/javascript" src="../../comon/js/jquery/jquery.ztree.core-3.1.js"></script>
+	  	<script type="text/javascript" src="../../comon/js/jquery/jquery.ztree.excheck-3.1.js"></script>
+		<script type="text/javascript" src="../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="../../comon/jTree/tree.main.js"></script>
+		<script type="text/javascript" src="../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+  		<script type="text/javascript" src="../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="SingleSelectOrg.js"></script>
+	</head>
+	<body>
+		<div class="easyui-layout" fit="true">
+			<div data-options="region:'center',border:false" style="overflow: hidden;">
+				<ul id="JtreeView" class="ztree"></ul>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var MainJtree = new Jtree();
+			$(document).ready(function(){
+				MainJtree.init("JtreeView",setting,param);
+			});
+		</script>
+	</body>
+</html>

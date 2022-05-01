@@ -1,0 +1,119 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link type="text/css" rel="stylesheet" href="../../../resources/layui/css/layui.css" />
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/default/easyui.css" />
+		<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/icon.css" />
+		<link type="text/css" rel="stylesheet" href="../../../comon/css/formDetail/formDetail.css" />
+		<script type="text/javascript" src="../../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="../../common/common.js"></script>
+		<script type="text/javascript" src="../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="../../../resources/layui/layui.js"></script>
+		<script type="text/javascript" src="reportAdd.js"></script>
+		<style>
+		.tbright {
+			padding-right: 15px;
+		}
+		
+		.grid_data_view {
+			height: 200px;
+		}
+		</style>
+	</head>
+	<body style="width: 100%; height: 100%;" onload="initDocumentPage();">
+		<div class="easyui-layout" fit="true">
+			<div data-options="region:'north',split:false" style="height:40px; overflow: hidden; padding: 4px;">
+				<table>
+					<tr>
+						<td width="100px">
+							<div id="stander_bar" saveAction="dataSave()"
+								refreshAction="dataRefresh()" style="margin-left: 1px;"></div>
+						</td>
+						<td width="53px"><div id="push"></div></td>
+						<td style="width: 100%;" />
+					</tr>
+				</table>
+			</div>
+			<div data-options="region:'center'">
+				<div class="layui-fluid">
+					<form id="MAIN_DATA_FORM" class="layui-form">
+						<div class="layui-card">
+					      <div class="layui-card-header">用户信息</div>
+					      	<div class="layui-card-body">
+								<table style="table-layout: fixed; width: 100%;">
+									<tr style="height: 1px;">
+										<td width="10%" />
+										<td width="20%" />
+										<td width="10%" />
+										<td width="20%" />
+										<td width="10%" />
+										<td width="20%" />
+										<td></td>
+									</tr>
+									<tr>
+										<td class="DetailSpanTD">登记部门</td>
+										<td><input type="text" id="FCREATEDEPTNAME"
+										name="FCREATEDEPTNAME" style="width: 90%;" readOnly="readOnly" /></td>
+										<td class="DetailSpanTD">登记人</td>
+										<td><input type="text" id="FCREATEPERSONNAME"
+										name="FCREATEPERSONNAME" style="width: 90%;"
+										readOnly="readOnly" /></td>
+										<td class="DetailSpanTD">登记时间</td>
+										<td class="tbright"><input type="text" id="FCREATETIME"
+										name="FCREATETIME" class="Wdate" format="yyyy-MM-dd hh:mm:ss"
+										readOnly="readOnly" style="width: 90%;" /></td>
+										<td></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<div class="layui-card">
+					      <div class="layui-card-header">日报信息</div>
+					      	<div class="layui-card-body">
+								<div class="layui-form-item">
+						            <label class="layui-form-label">标题(<font color="red">*</font>)</label>
+						            <div class="layui-input-block">
+						              <input type="text" name="FTITLE" id="FTITLE" autocomplete="off" placeholder="请输入标题" class="layui-input">
+						            </div>
+						        </div>
+						        <div class="layui-form-item layui-form-text">
+					            	<label class="layui-form-label">内容</label>
+						            <div class="layui-input-block">
+						              <textarea name="FCONTEXT" id="FCONTEXT" placeholder="请输入内容" class="layui-textarea"></textarea>
+						            </div>
+					            </div>
+							</div>
+						</div>
+						<div class="layui-card">
+					      <div class="layui-card-header">文件信息</div>
+					      	<div class="layui-card-body">
+					      		<div id="fileCompDiv"></div>
+					      	</div>
+					    </div>
+						<div style="display: none;">
+							<input type="text" id="FCREATEOGNID" /> <input
+								type="text" id="FCREATEDEPTID" /> <input type="text"
+							id="FCREATEOGNNAME" /> <input type="text" id="FCREATEPOSID" /><input
+							type="text" id="FCREATEPOSNAME" /> <input type="text"
+							id="FCREATEPERSONID" /> <input type="text"
+							id="FCREATEPERSONFID" /> <input type="text"
+							id="FCREATEPERSONFNAME" /><input type="text"
+							id="FPUSHDATETIME" />
+						</div>
+					</form>
+					<div class="layui-card">
+				      <div class="layui-card-header">
+				      	访问人员列表
+						<button id="newperson_btn" class="layui-btn layui-btn-sm layui-btn-normal" onclick="addPerson()">添加访问人员</button>
+				      </div>
+				      <div class="layui-card-body">
+							<div id="personList"></div>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

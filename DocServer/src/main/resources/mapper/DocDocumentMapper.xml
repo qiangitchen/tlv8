@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tlv8.doc.svr.generator.dao.IDocDocumentDao" >
+  <resultMap id="resultDocument" type="com.tlv8.doc.svr.generator.beans.DocDocument" >
+  </resultMap>
+  <select id="getByPrimaryKey" resultMap="resultDocument" parameterType="java.lang.String" >
+    select * from Doc_Document where fID = #{fID,jdbcType=VARCHAR}
+  </select>
+  <select id="getByDocID" resultMap="resultDocument" parameterType="java.lang.String" >
+    select * from Doc_Document where fDocID = #{fDocID,jdbcType=VARCHAR}
+  </select>
+  <select id="getList" resultMap="resultDocument">
+    select * from Doc_Document
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Doc_Document where fID = #{fID,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByDocID" parameterType="java.lang.String" >
+    delete from Doc_Document where fDocID = #{fDocID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tlv8.doc.svr.generator.beans.DocDocument" >
+    insert into Doc_Document (fID, fDocID, fDocName, fExtName, fDocSize, fDocType, fAddTime, fUpdateTime, version) 
+    values (#{fID,jdbcType=VARCHAR}, 
+      #{fDocID,jdbcType=VARCHAR}, 
+      #{fDocName,jdbcType=VARCHAR}, 
+      #{fExtName,jdbcType=VARCHAR}, 
+      #{fDocSize,jdbcType=FLOAT}, 
+      #{fDocType,jdbcType=VARCHAR}, 
+      #{fAddTime,jdbcType=TIMESTAMP},
+      #{fUpdateTime,jdbcType=TIMESTAMP},
+      #{version,jdbcType=INTEGER}) 
+  </insert>
+  <update id="update" parameterType="com.tlv8.doc.svr.generator.beans.DocDocument" >
+    update Doc_Document 
+    set fDocID = #{fDocID,jdbcType=VARCHAR},
+      fDocName = #{fDocName,jdbcType=VARCHAR},
+      fExtName = #{fExtName,jdbcType=VARCHAR},
+      fDocSize = #{fDocSize,jdbcType=FLOAT},
+      fDocType = #{fDocType,jdbcType=VARCHAR},
+      fUpdateTime = #{fUpdateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER} 
+    where fID = #{fID,jdbcType=VARCHAR}
+  </update>
+</mapper>

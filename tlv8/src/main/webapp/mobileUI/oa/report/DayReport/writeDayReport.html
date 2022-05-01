@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"/>
+    	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/> 
+    	<title>手机版本表单</title>
+    	<link rel="stylesheet" type="text/css" href="../../../../mobileUI/system/css/mui.min.css"/>
+    	<script type="text/javascript" charset="utf-8" src="../../../../mobileUI/system/js/jquery.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../../mobileUI/system/js/mui.min.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../../mobileUI/system/js/base.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../../../mobileUI/system/js/dialog.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="../../common/js/oaUtils.js"></script>
+    	<script type="text/javascript" charset="utf-8" src="writeDayReport.js"></script>
+    </head>
+    <body>
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right" onclick="doDataSaveaAtion()">
+				<span class="mui-icon mui-icon-checkmarkempty"></span>
+				保存
+			</button>
+		    <h1 class="mui-title" id="title_val">日报登记</h1>
+		</header>
+		<nav class="mui-bar mui-bar-tab">
+				<a class="mui-btn mui-btn-green mui-btn-nav " href="javascript:selectPerson();" style="margin-left: 20px;">
+					<span class="mui-icon mui-icon-plus"></span>
+					<span class="mui-tab-label">访问人员</span>
+				</a>
+				<a class="mui-btn mui-btn-primary mui-btn-nav mui-pull-right" href="javascript:pushData();" style="margin-right: 20px;">
+					<span class="mui-icon mui-icon-paperplane"></span>
+					<span class="mui-tab-label">发布</span>
+				</a>
+		</nav>
+		<div class="mui-content">
+		<form class="mui-input-group" id="MAIN_DATA_FORM" beforeSave="checkSaveBefore" 
+			afterRefresh="afRefresh">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-divider" data-theme="c">
+						<label style="font-size: 17px;">信息</label>
+				</li>
+				<li class="mui-input-group">
+					<table width="100%" style="margin-top: 2px;">
+							<tr>
+								<td width="90px" align="center"><label for="FTITLE">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题</label></td>
+								<td style="padding-bottom: 5px; padding-top: 5px;">
+									<input type="text" placeholder="请输入标题" data-filtered="filtered" id="FTITLE" name="FTITLE" style="border:1px solid #ddd;"/>
+								</td>
+								<td width="20"></td>
+							</tr>
+							<tr>
+								<td align="center"><label for="FCONTEXT">内&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;容</label></td>
+								<td>
+									<textarea placeholder="请输入内容" data-filtered="filtered" id="FCONTEXT"
+										name="FCONTEXT" style="height: 220px; border:1px solid #ddd;"></textarea>
+								</td>
+								<td width="20"></td>
+							</tr>
+					</table>
+					<div style="display: none;">
+						<div class="mui-input-row" data-filtered="filtered">
+							<label data-filtered="filtered">登记部门</label> <input
+								type="text" placeholder="" data-filtered="filtered"
+								id="FCREATEDEPTNAME" name="FCREATEDEPTNAME" class="forminput"
+								readonly="readonly" />
+						</div>
+						<div class="mui-input-row" data-filtered="filtered">
+							<label data-filtered="filtered">登&nbsp;&nbsp;记&nbsp;&nbsp;人</label> <input
+								type="text" placeholder="" data-filtered="filtered"
+								id="FCREATEPERSONNAME" name="FCREATEPERSONNAME" class="forminput"
+								readonly="readonly" />
+						</div>
+						<div class="mui-input-row" data-filtered="filtered">
+							<label data-filtered="filtered">登记时间</label> <input
+								type="text" placeholder="" data-filtered="filtered"
+								id="FCREATETIME" name="FCREATETIME" class="forminput"
+								readonly="readonly" />
+						</div>
+						<div class="mui-input-row" data-filtered="filtered">
+							<label data-filtered="filtered">FCREATEOGNID</label> <input
+								type="text" placeholder="普通输入框" data-filtered="filtered"
+								id="FCREATEOGNID" name="FCREATEOGNID" class="forminput"
+								readonly="readonly" />
+						</div>
+						<div class="mui-input-row" data-filtered="filtered">
+							<label data-filtered="filtered">FCREATEOGNNAME</label> <input
+								type="text" placeholder="普通输入框" data-filtered="filtered"
+								id="FCREATEOGNNAME" name="FCREATEOGNNAME" class="forminput"
+								readonly="readonly" />
+						</div>
+						<div class="mui-input-row" data-filtered="filtered">
+							<label data-filtered="filtered">FCREATEDEPTID</label> <input
+								type="text" placeholder="普通输入框" data-filtered="filtered"
+								id="FCREATEDEPTID" name="FCREATEDEPTID" class="forminput"
+								readonly="readonly" />
+						</div>
+						<div class="mui-input-row" data-filtered="filtered">
+							<label data-filtered="filtered">FCREATEPOSID</label> <input
+								type="text" placeholder="普通输入框" data-filtered="filtered"
+								id="FCREATEPOSID" name="FCREATEPOSID" class="forminput"
+								readonly="readonly" />
+						</div>
+						<div class="mui-input-row" data-filtered="filtered">
+							<label data-filtered="filtered">FCREATEPOSNAME</label> <input
+								type="text" placeholder="普通输入框" data-filtered="filtered"
+								id="FCREATEPOSNAME" name="FCREATEPOSNAME" class="forminput"
+								readonly="readonly" />
+						</div>
+						<div class="mui-input-row" data-filtered="filtered">
+							<label data-filtered="filtered">FCREATEPERSONID</label> <input
+								type="text" placeholder="普通输入框" data-filtered="filtered"
+								id="FCREATEPERSONID" name="FCREATEPERSONID" class="forminput"
+								readonly="readonly" />
+						</div>
+						<div class="mui-input-row" data-filtered="filtered">
+							<label data-filtered="filtered">FCREATEPERSONFID</label> <input
+								type="text" placeholder="普通输入框" data-filtered="filtered"
+								id="FCREATEPERSONFID" name="FCREATEPERSONFID" class="forminput"
+								readonly="readonly" />
+						</div>
+						<div class="mui-input-row" data-filtered="filtered">
+							<label data-filtered="filtered">FCREATEPERSONFNAME</label> <input
+								type="text" placeholder="普通输入框" data-filtered="filtered"
+								id="FCREATEPERSONFNAME" name="FCREATEPERSONFNAME" class="forminput"
+								readonly="readonly" />
+						</div>
+						<div class="mui-input-row" data-filtered="filtered">
+							<label data-filtered="filtered">FPUSHDATETIME</label> <input
+								type="text" placeholder="普通输入框" data-filtered="filtered"
+								id="FPUSHDATETIME" name="FPUSHDATETIME" class="forminput"
+								readonly="readonly" />
+						</div>
+					 </div>
+				</li>
+				<li class="mui-table-view-divider" data-theme="c">
+						<label style="font-size: 17px;">文件</label>
+				</li>
+				<li>
+					<table width="100%">
+						<tr>
+							<td width="90px" align="center"><label>附&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;件</label></td>
+							<td>
+								<div id="FATTACHMENT_showdiv"></div> 
+							</td>
+							<td width="20"></td>
+						</tr>
+					</table>
+				</li>
+				<li class="mui-table-view-divider" data-theme="c">
+						<label style="font-size: 17px;">访问人员</label>
+				</li>
+				<li>
+					<table width="100%">
+						<tr>
+							<td>
+								<div id="showPersonInfo"></div> 
+							</td>
+						</tr>
+					</table>
+				</li>
+			</ul>
+		</form>
+	</div>
+    </body>
+</html>

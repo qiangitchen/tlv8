@@ -1,0 +1,80 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>在线用户</title>
+		<link type="text/css" rel="stylesheet" href="../../resources/bootstrap/css/bootstrap.min.css"/> 
+		<link type="text/css" rel="stylesheet" href="../../resources/layui/css/layui.css"/>
+		<link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/default/easyui.css"> 
+		<link type="text/css" rel="stylesheet" href="../../resources/jquery-easyui/themes/icon.css"> 
+		<script type="text/javascript" src="../../comon/js/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../../comon/js/comon.main.js"></script>
+		<script type="text/javascript" src="../../comon/js/grid.main.js"></script>
+		<script type="text/javascript" src="../../comon/My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="../../resources/jquery-easyui/jquery.easyui.min.js"></script> 
+		<script type="text/javascript" src="../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script> 
+		<script type="text/javascript" src="../../resources/bootstrap/js/bootstrap.min.js"></script> 
+		<script type="text/javascript" src="../../resources/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="MySampleListPage.js"></script>
+	</head>
+	<body onload="getData()">
+	<div class="layui-fluid">
+		<div class="layui-card">
+          <div class="layui-card-header">查询条件</div>
+          <div class="layui-card-body" style="height: 80ppx; padding: 1px;">
+          		<div class="layui-form-item">
+				    <div class="layui-inline">
+					    <label class="layui-form-label">姓名：</label>
+					    <div class="layui-input-inline">
+					      <input type="text" id="name" class="layui-input">
+					    </div>
+				    </div>
+				    <div class="layui-inline">
+					    <label class="layui-form-label" style="width: 100px;">单位：</label>
+					    <div class="layui-input-inline">
+					      <input type="text" id="ogn" class="layui-input">
+					    </div>
+				    </div>
+				    <div class="layui-inline">
+					    <label class="layui-form-label" style="width: 300px;">
+						    <button type="button" class="layui-btn layui-btn-sm" onclick="query()">
+							    <i class="layui-icon">&#xe615;</i>
+							    查询
+							</button>
+							<button type="button" class="layui-btn layui-btn-normal layui-btn-sm" id="ExcelExp">
+							    <i class="layui-icon">&#xe615;</i>
+							    导出Excel
+							</button>
+						</label>
+					</div>
+				 </div>
+				 <div class="layui-form-item">
+				    <div class="layui-inline">
+					    <label class="layui-form-label">县区：</label>
+					    <div class="layui-input-inline">
+					      <input type="text" id="ognxq" class="layui-input">
+					    </div>
+				    </div>
+				    <div class="layui-inline">
+					    <label class="layui-form-label" style="width: 100px;">开始时间：</label>
+					    <div class="layui-input-inline">
+					      <input type="text" id="start" autocomplete="off" onclick="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'})" class="layui-input Wdate">
+					    </div>
+				    </div>
+				    <div class="layui-inline">
+					    <label class="layui-form-label" style="width: 100px;">结束时间：</label>
+					    <div class="layui-input-inline">
+					      <input type="text" id="end" autocomplete="off" onclick="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'})" class="layui-input Wdate">
+					    </div>
+				    </div>
+				 </div>
+          </div>
+		</div>
+		<div class="layui-card">
+			<div class="layui-card-header"> 当前在线人数：<span id='onlineCount'></span></div>
+	        <div class="layui-card-body" style="padding: 1px; height: 62%; min-height: 400px;">
+	        	<div id="main-grid-view" component="dataGrid" style="width: 100%; height: 100%; align: left;" afterRefresh="fafterRefresh"></div>
+	        </div>
+	    </div>
+	</div>
+	</body>
+</html>

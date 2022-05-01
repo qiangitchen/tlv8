@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>请假审批</title>
+		<link rel="stylesheet" type="text/css" href="../../../system/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../system/css/app.css" />
+		<link rel="stylesheet" type="text/css" href="../../../system/css/mui.picker.min.css" />
+		<script type="text/javascript" charset="utf-8" src="../../../system/js/jquery.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../../system/js/base.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../../system/js/flow.main.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../../OA/common/js/oaUtils.js"></script>
+		<script src="../../../system/js/mui.min.js"></script>
+		<script src="../../../system/js/mui.picker.min.js"></script>
+		<script src="../../../system/js/mui.poppicker.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../common/css/wqUitls.css" />
+		<script type="text/javascript" charset="utf-8" src="leaveApply1.js"></script>
+		<style type="text/css">
+			a {
+				font-size: 14px;
+			}
+		</style>
+	</head>
+
+	<body onload="initPage()">
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" onclick="backhistory()">
+				<span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<button id="submitItem" class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-right" onclick="saveData()">
+				<span class="mui-icon mui-icon-bars"></span>
+				处理
+			</button>
+			<h1 class="mui-title" id="readtitle">请假申请</h1>
+		</header>
+		<div id="contenView" class="mui-content">
+			<div>
+				<div id="flowToolbar"></div>
+			</div>
+
+			<form id="leave_form" class="mui-input-group">
+				<div class="mui-input-row">
+					<label for="FCREATORNAME">请假人:</label>
+					<input name="FCREATORNAME" id="FCREATORNAME" type="text" readonly="readonly">
+				</div>
+				<div class="mui-input-row">
+					<label for="FSTARTDATE">开始日期:</label>
+					<input name="FSTARTDATE" data-options='{"type":"date"}' class="dtpicker" id="FSTARTDATE" type="text" readonly="readonly">
+				</div>
+				<div class="mui-input-row">
+					<label for="FENDDATE">结束日期:</label>
+					<input name="FENDDATE" data-options='{"type":"date"}' class="dtpicker" id="FENDDATE" type="text" readonly="readonly">
+				</div>
+				<div class="mui-input-row">
+					<label for="FDAY">请假天数:</label>
+					<input name="FDAY" id="FDAY" type="text" readonly="readonly" />
+				</div>
+				<div class="mui-input-row">
+					<label for="FLEAVETYPE">请假类型:</label>
+					<input name="FLEAVETYPE" id="FLEAVETYPE" type="text" readonly="readonly" />
+				</div>
+				<div class="mui-row">
+					<label for="FREASON">请假原因:</label>
+					<textarea name="FREASON" id="FREASON" style="height:100px;" readonly="readonly"></textarea>
+				</div>
+				<div style="display:none;">
+					<input type="text" name="FCREATORID" id="FCREATORID" value="" readonly="readonly" />
+					<input type="text" name="FCREATORDEPTID" id="FCREATORDEPTID" value="" readonly="readonly" />
+					<input type="text" name="FCREATORDEPT" id="FCREATORDEPT" value="" readonly="readonly" />
+					<input type="text" name="FCREATEDATE" id="FCREATEDATE" value="" readonly="readonly" />
+				</div>
+			</form>
+		</div>
+		<div id="opinion_list" />
+		</div>
+	</body>
+
+</html>

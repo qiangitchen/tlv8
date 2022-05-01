@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0;"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>巡视安全项</title>
+		<link rel="stylesheet" type="text/css" href="../../system/css/mui.min.css" />
+		<script type="text/javascript" charset="utf-8" src="../../system/js/jquery.js"></script>
+		<script src="../../system/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8" src="../../system/js/base.js"></script>
+		<script type="text/javascript" charset="utf-8" src="tour_safe.js"></script>
+		<style type="text/css">
+			a {
+				font-size: 14px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+				<a href='javascript:back()'><span class="mui-icon mui-icon-left-nav"></span>
+				返回</a>
+			</button>
+			<button class="mui-btn mui-but-blue mui-btn-link mui-btn-nav mui-pull-right">
+				<a id="submitItem" href="javascript:insertData()"><span class="mui-icon mui-icon-redo"></span>
+				提交</a>
+			</button>
+			<h1 class="mui-title">巡视安全项</h1>
+		</header>
+		<div class="mui-content">
+			<table width="100%">
+				<tr>
+					<td width="80px">
+						<label for="FCONTENT">选项:</label>
+					</td>
+					<td>
+						<select id="FCONTENT">
+						</select>
+						<!-- <input name="FCONTENT" id="FCONTENT"/> -->
+					</td>
+				</tr>
+				<tr>
+					<td width="80px">
+						<label for="FISCONFORM">是否合格:</label>
+					</td>
+					<td>
+						<select id="FISCONFORM">
+							<option value="合格">合格</option>
+							<option value="不合格">不合格</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td width="80px">
+						<label for="DESCRIBE">描述:</label>
+					</td>
+					<td>
+						<textarea id="DESCRIBE" style="height:50px"></textarea>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="contenView" class="mui-content">
+			<ul class="mui-table-view" id="list_view">
+			</ul>
+		</div>
+	</body>
+
+</html>

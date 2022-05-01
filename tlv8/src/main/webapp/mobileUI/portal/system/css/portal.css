@@ -1,0 +1,173 @@
+html,body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: 宋体, arial;
+	font-size: 100%;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+li {
+	float: left;
+	margin: 6px;
+	text-align: center;
+	width: 66px;
+}
+
+a {
+	text-decoration: none;
+	color: #080808;
+	display: block;
+}
+
+img {
+	border: none;
+}
+
+.icon {
+	min-width: 54px;
+	min-height: 54px;
+	width: 54px;
+	height: 54px;
+}
+
+.label {
+	height: 16px;
+	line-height: 16px;
+	font-size: 13px;
+	max-height: 32px;
+	text-align: center;
+	word-break: break-all;
+	max-width: 66px;
+	/*overflow: hidden;
+	white-space: nowrap;*/
+	text-overflow: ellipsis;
+}
+
+.back-button {
+	margin-right: 15px;
+}
+
+#potalPageContainer {
+	width: 100%;
+	overflow: auto;
+	height: 100%;
+	position: relative;;
+}
+
+.page {
+	width: 100%;
+	height: 100%;
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border: 0;
+}
+
+.page-title {
+	/*background: -webkit-gradient(linear, left top, left bottom, from(#5A615C), to(#212821));*/
+	height: 45px;
+	position: relative;
+	line-height: 45px;
+	background: rgb(109, 133, 163) url(../images/maintab_toolbar_bg.png)
+		repeat-x top;
+	border-top: 1px solid rgb(205, 213, 223);
+	border-bottom: 1px solid rgb(46, 55, 68);
+	padding: 0px 6px 0px 6px;
+	margin: 0 0 0 0px;
+	text-align: center;
+	min-height: 44px;
+	-webkit-box-sizing: border-box;
+}
+
+.page-title-label {
+	padding-left: 10px;
+	white-space: nowrap;
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+}
+
+.page-frame {
+	width: 100%;
+	min-height: 100%;
+}
+
+#potalToolbar {
+	height: 50px;
+	overflow: hidden;
+	display: none;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+#systemMenu {
+	display: none;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	border-top: 0px solid red;
+	z-index: 5000;
+	text-align: center;
+	background: rgb(109, 133, 163);
+}
+
+.system-menu-item {
+	line-height: 40px;
+	display: block;
+	float: right;
+	height: 40px;
+	text-align: center;
+	border-right: 1px solid white;
+	color: white;
+	width: 20%;
+}
+
+.system-menu-item-selected {
+	background-color: #FFA500;
+}
+
+.xui-backButton-m {
+	right: 6px;
+	float: right;
+	padding: 0;
+	max-width: 55px;
+	border-width: 0 8px 0 14px;
+	-webkit-border-image: url(../images/backButton.png) 0 8 0 14;
+	display: inline-block;
+	position: absolute;
+	top: 8px;
+	font-size: 10pt;
+	height: 26px;
+}
+
+.xui-backButton-m div {
+	padding: 0;
+	line-height: 28px;
+	height: 28px;
+	font-size: 12px
+}
+
+.help {
+	width: 99%;
+	position: absolute;
+	bottom: 51px;
+	z-index: 999;
+	background: #fff;
+	color: red;
+	font-size:20px;
+	font-weight: bold;
+	border: 1px solid #999999;
+	min-height: 30px;
+	line-height: 30px;
+	display: none;
+}

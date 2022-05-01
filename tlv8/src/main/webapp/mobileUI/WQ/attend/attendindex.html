@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta id="viewport" name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+		<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+		<title>移动外勤</title>
+		<link rel="stylesheet" type="text/css" href="../../system/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../mobileUI/system/css/jquery.confirm.css" />
+		<link rel="stylesheet" type="text/css" href="attendindex.css" />
+		<script type="text/javascript" charset="utf-8" src="../../../mobileUI/system/js/jquery.js"></script>
+		<script src="../../system/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8" src="../../../mobileUI/system/js/jquery.confirm.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../../mobileUI/system/js/jquery.corner.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../../mobileUI/system/js/dialog.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../../../mobileUI/portal/system/js/portal.js"></script>
+		<script type="text/javascript" charset="utf-8" src="attendindex.js"></script>
+		<style type="text/css">
+			.ui-page {
+				background: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-btn-nav ">
+				<a  href='../../../mobileUI/portal/ydwqindex.html'></a><span class="mui-icon mui-icon-left-nav"></span>
+				返回
+			</button>
+			<a class="mui-icon mui-icon-bars mui-pull-right mui-plus-visible"></a>
+			<h1 class="mui-title" id="userInfo"></h1>
+		</header>
+		<div class="mui-content">
+			<div id="mainview">
+				<div id="contenView">
+					<table align='center' width='90%' style='margin-left:6%;'>
+						<tr height='98px'>
+							<td>
+								<div class='MenuItem'>
+									<div class='countTixview_un'></div>
+									<a data='item' href='../../../mobileUI/WQ/attend/clockin/mainActivity.html' rel="external">
+										<img src='../../../mobileUI/portal/system/images/clockIn.png'>
+										<p><b class="MenuItem_text">在线打卡</b></p>
+									</a>
+								</div>
+							</td>
+							<td>
+								<div class='MenuItem'>
+									<div class='countTixview_un'></div>
+									<a data='item' href='../../../mobileUI/WQ/attend/leaveApply/leaveApply.html' rel="external">
+										<img src='../../../mobileUI/portal/system/images/leaveApply.png'>
+										<p><b class="MenuItem_text">请假申请</b></p>
+									</a>
+								</div>
+							</td>
+							<td>
+								<div class='MenuItem'>
+									<div class='countTixview_un'></div>
+									<a data='item' href='../../../mobileUI/WQ/attend/tripApply/tripApply.html' rel="external">
+										<img src='../../../mobileUI/portal/system/images/trip.png'>
+										<p><b class="MenuItem_text">出差申请</b></p>
+									</a>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class='MenuItem'>
+									<div class='countTixview_un'></div>
+									<a data='item' href='../../../mobileUI/WQ/attend/overTimeApply/overtimeApply.html' rel="external">
+										<img src='../../../mobileUI/portal/system/images/overtime.png'>
+										<p><b class="MenuItem_text">加班申请</b></p>
+									</a>
+								</div>
+							</td>
+							<td>
+								<div class='MenuItem'>
+									<div class='countTixview_un'></div>
+									<a data='item' href='../../../mobileUI/WQ/attend/attendquery/query.html' rel="external">
+										<img src='../../../mobileUI/portal/system/images/attendquery.png'>
+										<p><b class="MenuItem_text">考勤查询</b></p>
+									</a>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		jQuery(".MenuItem").corner();
+	</script>
+
+</html>

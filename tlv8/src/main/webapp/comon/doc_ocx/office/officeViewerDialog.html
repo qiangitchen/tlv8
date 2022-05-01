@@ -1,0 +1,589 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>附件查看</title>
+    <style type="text/css">
+          body {
+              margin-left: 0px;
+              margin-top: 0px;
+              margin-right: 0px;
+              margin-bottom: 0px;
+          }
+          span {
+              font-size: 0.75em;
+              font-weight: 700;
+              color: #313334;
+          }
+          .tools {
+              margin-left: 7px;
+              margin-top: 7px;
+              margin-right: 7px;
+              margin-bottom: 7px;
+          }
+          .fieldLeft {
+              float: left;
+          }
+          .fieldRight {
+              float: right;
+          }
+          ul {
+              list-style-type: none;
+              margin: 1px 0px 5px 10px;
+              color: #ccc;
+          }
+          a {
+              color: #6b7b95;
+          }
+          a:focus, a:hover {
+              color: #666;
+          }
+          li {
+              font-size: 0.75em;
+              line-height:25px;
+          }
+      </style>
+     <script type="text/javascript" src="../../js/jquery/jquery.min.js"></script>
+  	 <script type="text/javascript" src="../../js/comon.main.js"></script>
+  	 <script type="text/javascript" src="../common/json.js"></script>
+  	 <script type="text/javascript" src="../yahooUtil.js"></script>
+  	 <script type="text/javascript" src="../docUtil.js"></script>
+  	 <script language="JavaScript" type="text/javascript">
+       	var loaded = false;
+       	var inited = false;
+       	var OP = {
+        	officeFieldTemplate: function() {
+        		/*
+        		<div id="fieldItem_{FieldID}">
+	                <div class="fieldLeft">
+	                    <a href="javascript:void(0);" onclick="OP.officeSelectField('{FieldID}')">{Index}.{FieldID}</a> - {FieldName}`
+	                </div>
+	                <div class="fieldRight">
+	                    <a href="javascript:void(0);" onclick="OP.officeEditField('{FieldID}')">E</a>&#160;<a href="javascript:void(0);" onclick="OP.officeDeleteField('{FieldID}')">D</a>
+	                </div>
+                </div><br/>
+                */
+        	},
+            officeFullScreen: function() {
+                _OV("ov").FullScreen = !_OV("ov").FullScreen;
+                _OV("ov").focus();
+            },
+            officeSelectField: function(fieldID) {
+                _OV("ov").WordFieldSelect(fieldID);
+                _OV("ov").focus();
+            },
+            officeInsertField: function() {
+            	if (!_OV("ov").WordFieldSelected()) {
+	            	this.OVFP = {};
+	            	this.OVFP.isInsert = true;
+	            	this.OVFP.fieldID = _OV("ov").WordGetNewFieldID();
+	            	this.OVFP.fieldName = "";
+	            	openOfficeFieldDialog();
+	            } else
+	            	_OV("ov").focus();
+            },
+            officeUpdateFieldValue: function() {
+            	OP.officeAutomation(this.OVP.id, _OV("ov"), 'UpdateFieldValue');
+            },
+            officeFieldDialogOK: function(offiecViewerFieldParam) {
+            	if (offiecViewerFieldParam.isInsert) {
+            		_OV("ov").WordInsertField(offiecViewerFieldParam.fieldID, offiecViewerFieldParam.fieldName);
+	            } else {
+	            	var field = _OV("ov").WordGetField(offiecViewerFieldParam.oldFieldID);
+	            	_OV("ov").WordUpdateField(field, offiecViewerFieldParam.fieldID, offiecViewerFieldParam.fieldName);
+	            }
+	            OP.officeUpdateField();
+	            _OV("ov").focus();
+            },
+            officeFieldDialogCancel: function() {
+	            _OV("ov").focus();
+            },
+            officeEditField: function(fieldID) {
+                var field = _OV("ov").WordGetField(fieldID);
+                if (!OV.isClear(field)) {
+                	this.OVFP = {};
+	            	this.OVFP.isInsert = false;
+	            	this.OVFP.fieldID = _OV("ov").WordGetFieldID(field);
+	            	this.OVFP.fieldName = _OV("ov").WordGetFieldName(field);
+	            	this.OVFP.oldFieldID = this.OVFP.fieldID;
+	            	openOfficeFieldDialog();
+                } else
+                	_OV("ov").focus();
+            },
+            officeDeleteField: function(fieldID) {
+            	if (OV.isClear(fieldID)) {
+                	_OV("ov").WordDeleteFields();
+                } else {
+                	_OV("ov").WordDeleteFields(fieldID);
+                }
+                OP.officeUpdateField();
+                _OV("ov").focus();
+            },
+            officeUpdateField: function() {
+            	var innerHTML = _OV("ov").WordGetFieldInfo(undefined, OV.getMultiLine(OP.officeFieldTemplate));
+            	var fieldList = OV.getElementByID("fieldList");
+            	fieldList.innerHTML = innerHTML || "";
+            	fieldList.innerHTML = fieldList.innerHTML.replace(/ - \`/g, '').replace(/\`/g, '');
+            	if(OP.officeViewerResize){
+	            	OP.officeViewerResize();
+            	}
+            },
+            officeShowField: function() {
+                _OV("ov").WordToggleShowCodes(true);
+                _OV("ov").focus();
+            },
+            officeHideField: function() {
+                _OV("ov").WordToggleShowCodes(false);
+                _OV("ov").focus();
+            },
+            officeUpdateSeal: function() {
+            	var docNodeSID = _seal_doc_node_sid;
+            	if(!docNodeSID) return;
+            	var res = justep.Doc.queryDoc("", "", ["sFileID","sDocName","sDocPath"], "", "sParentID='" + docNodeSID + "'");
+            	var sealJSON = [];
+            	var resRow = justep.XML.eval(res.responseXML, "//row");
+            	var docAuthList = justep.Doc.getAuthList();
+            	for(var i=0;i<resRow.length;i++){
+            		var resCell = justep.XML.eval(resRow[i], './cell');
+            		var rowId = resRow[i].getAttribute("id");
+            		var sDocPath = resCell[2].text;
+            		var docNamespace = "xmlns:ns='http://www.justep.com/x5#' xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' xmlns:xbiz='http://www.justep.com/xbiz#'";
+            		var deptPathNode = justep.XML.eval(docAuthList.responseXML, "//xbiz:xml/root/data/rdf:RDF/ns:deptPath", null, docNamespace);
+            		var imageAccess = 1;
+					for(var j = 0; j < deptPathNode.length; j++) {
+					    nodeitem = justep.XML.eval(deptPathNode[j], "//ns:SA_DocAuth[ns:sDocPath='" + sDocPath.concat("/").concat(rowId) + "']/ns:sAccess", null, docNamespace)[0];	    
+					    var itemAccess  = justep.XML.getNodeText(nodeitem);
+					    if (itemAccess > imageAccess)
+					    	imageAccess = itemAccess;
+					}
+            		if(imageAccess % 8 < 4){
+						continue;
+					}					            		
+            		var sFileID = resCell[0].text;
+            		var sDocName = resCell[1].text;
+            		var resCell_t = sDocName.replace(_OV("ov").resCellRegExp_t,"");
+            		var docServer = justep.Doc.getDocServerByDocPath(sDocPath);
+            		var resCell_f = docServer.url + "/repository/file/view/" + sFileID + "/last/content?" + justep.Doc.getBSessionIDParam() + "&fileExt=" + String(_OV("ov").resCellRegExp_f.exec(sDocName));
+            		sealJSON.push({t:resCell_t,f:resCell_f});
+            	}
+            	
+            	if (resRow.length==0)
+            		OV.getElementByID("toolsSealList").style.display="";
+            	
+            	var innerHTML = "";
+            	for (var i in sealJSON)
+            		innerHTML += "<li><a href='#' onclick='_OV(\"ov\").WordInsertWebPicture(this.rel, 0, 0, true);' rel='" + sealJSON[i].f + "'>" + sealJSON[i].t + "</a></li>";
+            	var sealList = OV.getElementByID("sealList");
+            	sealList.innerHTML = innerHTML || "";
+            	if(OP.officeViewerResize){
+	            	OP.officeViewerResize();
+            	}
+            },
+            officeAutomation: function(id, ov, programID) {
+	            if ((programID == 'BeforeOK') || (programID == 'AfterOK')|| (programID == 'OpenOffice')){
+      	            	if (!OV.isClear(window.parent) && !OV.isClear(window.parent.officeAutomation) && 
+	            		OV.isFunction(window.parent.officeAutomation)) {
+	            		window.parent.officeAutomation(id, ov, programID);
+    	        	}
+            	return;
+            	}
+            	url='#excuteJS&id='+ id+ ';ov='+ov.id+';programID='+programID;
+            	location=url;
+            }, 
+            officeNotifyCtrlReady: function() {
+            	_OV("ov").InitOfficeViewer;
+            	_OV("ov").focus();
+            },
+            getHost: function(docPath,fileID){
+            	var u="";
+            	if(fileID){
+            		u =justep.Doc.getdocServerAction(docPath, "/repository/file/cache/office/"+fileID);
+            	}else{
+					u = justep.Doc.getdocServerAction(docPath, "/repository/file/cache/office/new");
+            	}
+            	
+          		this.docUrl = u.indexOf(window.location.protocol) < 1 ? u : window.location.protocol+"//"+ window.location.host + u;
+           		return this.docUrl;	 
+            },
+            officeViewerInit : function(obj) {
+            	inited = true;
+            	if (_OV("ov").isOpened) return;
+            	this.OVP = obj;
+            	if (_seal_default_show) this.OVP.showSeal = true;
+            	if (_show_menubar) this.OVP.showMenubar = true;	
+            	this.OVP.saving = false;
+            	this.OVP.isModified = false;
+            	if(this.OVP.programID=="Word.Document"||this.OVP.programID == "Template"||this.OVP.programID=="Excel.Sheet"||this.OVP.programID=="PowerPoint.Show"||this.OVP.programID=="MSProject.Project"){
+            		$('#docSave').css('display','none');
+            	}
+           		this.OVP.state = (this.OVP.programID != "OpenOffice") && (this.OVP.programID != "Template") ? "new" : "edit";
+            	if (loaded) {
+            		initLayout();
+            	}
+            	var docHost = this.OVP.host;
+            	if (this.OVP.programID == "History") {
+            		OV.getElementByID("ovTools").style.display = "none";
+            		_OV("ov").Toolbars = false;
+            		_OV("ov").HttpInit();
+   					_OV("ov").HttpAddpostString("FileID", this.OVP.fileID);
+   					_OV("ov").HttpAddpostString("FileExt", this.OVP.fileExt);
+   					_OV("ov").HttpAddpostString("VersionID", this.OVP.versionID);
+   					_OV("ov").HttpOpenFileFromStream(this.getHost(docHost,this.OVP.fileID));
+   					if (_OV("ov").IsWordOpened()) {
+   						_OV("ov").WordRevisionNone();
+   					}
+   					_OV("ov").OfficeProtectDocument();
+   					$("#docActionDiv").hide();
+            	} else {
+            		OV.getElementByID("toolsFieldOperate").style.display="none";
+            		OV.getElementByID("toolsTemplateOperate").style.display="none";
+	            	OV.getElementByID("toolsFieldList").style.display="none";
+	            	OV.getElementByID("toolsSealList").style.display="none";
+	            	OV.getElementByID("inputFilename").value = this.OVP.filename;
+            		OV.getElementByID("ovTools").style.display = "";
+            		_OV("ov").Toolbars = true;
+            		if(this.OVP.showMenubar){
+            			_OV("ov").Menubar=true;
+            		}
+            		_OV("ov").DisableFileCommand(this.OVP.isPrint);
+	            	if (this.OVP.programID == "OpenOffice") {
+	            		this.OVP.isModified = !(this.OVP.cacheName == "" || OV.isClear(this.OVP.cacheName));
+	            		if (this.OVP.isModified) {
+	            			_OV("ov").HttpInit();
+	            			var fileID = this.OVP.fileID;
+	            			var partType="content";
+	            			if(this.OVP.revisionCacheName){
+	            				fileID=this.OVP.revisionCacheName;
+	            				partType="revision";
+	            			}else if(this.OVP.cacheName){
+	            				fileID=this.OVP.cacheName;
+	            			}
+	            			_OV("ov").HttpAddpostString("FileID", fileID);
+	    					_OV("ov").HttpAddpostString("FileExt", this.OVP.fileExt);
+	    					_OV("ov").HttpAddpostString("PartType", partType);
+	    					_OV("ov").HttpOpenFileFromStream(this.getHost(docHost));
+	    					
+	    				} else {
+	    					_OV("ov").HttpInit();
+	    					_OV("ov").HttpAddpostString("FileID", this.OVP.fileID);
+	    					_OV("ov").HttpAddpostString("FileExt", this.OVP.fileExt);
+	    					
+	    					if (_word_all_history){
+	    						var fileinfo = justep.Doc.queryDocByFileId(this.OVP.host,this.OVP.fileID ,this.OVP.filename);
+		   						
+		   						var partType = !fileinfo.parts.part_3 ? "content" : "revision";
+		   						_OV("ov").HttpAddpostString("PartType", partType);	
+	    					}
+	    					$("#docActionDiv").hide();
+	    					_OV("ov").HttpOpenFileFromStream(this.getHost(docHost));
+	    				}
+	    				if (_OV("ov").IsWordOpened()) {
+	    					if (this.OVP.isModified)
+	    						_OV("ov").WordRevisionInit(false, this.OVP.userName, this.OVP.userInitials);
+	    					else
+	    						_OV("ov").WordRevisionInit(!_word_all_history, this.OVP.userName, this.OVP.userInitials);
+
+	    				}
+	    				OP.officeAutomation(this.OVP.id, _OV("ov"), this.OVP.programID);
+	    				OP.officeAutomation(this.OVP.id, _OV("ov"), 'UpdateFieldValue');
+	    				
+	            	} else if (this.OVP.programID == "Template") {
+	            		_OV("ov").HttpInit();
+						_OV("ov").HttpAddpostString("FileID", this.OVP.templateID);
+						_OV("ov").HttpAddpostString("FileExt", this.OVP.templateExt);
+						_OV("ov").HttpOpenFileFromStream(this.getHost(this.OVP.templateHost));
+						if (_OV("ov").IsWordOpened()) {
+							_OV("ov").WordRevisionInit(true, this.OVP.userName, this.OVP.userInitials);
+						}
+						OP.officeAutomation(this.OVP.id, _OV("ov"), this.OVP.programID);
+	            	} else if (this.OVP.programID != "-") {
+	            		_OV("ov").CreateDoc(this.OVP.programID);
+						if (_OV("ov").IsWordOpened()) {
+							_OV("ov").WordRevisionInit(true, this.OVP.userName, this.OVP.userInitials);
+						}
+	            	}
+	            	if (_OV("ov").IsWordOpened()){
+		            	if (this.OVP.showField) {
+		            		OV.getElementByID("toolsFieldOperate").style.display="";
+		            		OV.getElementByID("toolsFieldList").style.display="";
+		            		OP.officeUpdateField();
+		            	} else {
+		            		if (this.OVP.showSeal) {
+		            			OP.officeUpdateSeal();
+		            			OV.getElementByID("toolsSealList").style.display="";
+		            		}
+		            		OV.getElementByID("toolsTemplateOperate").style.display="";
+		            	}
+	            	}
+	            	_OV("ov").DisableOfficeButton();	
+            	}
+            	this.OVP.initRevision=_OV("ov").WordGetRevisionJSON();
+            },
+			officeNotifyClose:function(){
+            	try{
+				if(_OV("ov").IsDirty&&_OV("ov").WordGetRevisionJSON()!=this.OVP.initRevision){
+					if(window.confirm('有数据已经修改，是否保存数据?')){
+						return 'saveClose';
+					}else{
+						OP.changeInfo = '';
+						var url= '#excuteJS&id=officeAction';
+						location=url;
+						return 'close';
+					}
+				}else{
+					//用来解锁
+					OP.changeInfo = '';
+					var url= '#excuteJS&id=officeAction';
+					location=url;
+					return 'close';
+				}
+            	}catch(e){}
+			},
+            officeNotifySendData: function(item, cancel,createVersion) {
+            	if ((item == 3) && cancel && !this.OVP.saving) {
+            		this.OVP.saving = true;
+            		if (this.OVP.programID == "History") {
+            			var noneResult = {
+            				isReadOnly: true
+            			};
+            			return noneResult;
+            		} else {
+            			if (_OV("ov").IsWordOpened()) { 
+							OP.officeAutomation(this.OVP.id, _OV("ov"), 'BeforeOK');
+						}
+						var filename = OV.getElementByID("inputFilename").value + _OV("ov").GetOpenedFileExt();
+						_OV("ov").HttpInit();
+						
+						_OV("ov").HttpAddpostString("fileID",this.OVP.fileID?this.OVP.fileID:"");
+						_OV("ov").HttpAddpostString("cacheName","");//this.OVP.cacheName?this.OVP.cacheName:"");								
+						_OV("ov").HttpAddpostString("partType","revision");
+						
+						_OV("ov").HttpAddPostOpenedFile(encodeURIComponent(filename));
+						
+						_OV("ov").HttpPost(this.getHost(this.OVP.host));
+						var HTTPResult = OV.JSON.parse(_OV("ov").HttpResult);
+						HTTPResult.filename = filename;
+						
+						if (_OV("ov").IsDocOpened()) {
+							HTTPResult.changes="";
+							if(_OV("ov").IsWordOpened()){
+								HTTPResult.changes = OV.Base64.encode(_OV("ov").WordGetRevisionJSON());
+								if(createVersion){
+									_OV("ov").ActiveDocument.AcceptAllRevisions();
+								}
+							}
+							
+							_OV("ov").HttpInit();
+								
+							_OV("ov").HttpAddPostOpenedFile(encodeURIComponent(filename));
+							
+							_OV("ov").HttpAddpostString("fileID",this.OVP.fileID?this.OVP.fileID:"");
+							_OV("ov").HttpAddpostString("changes",HTTPResult.changes);
+							_OV("ov").HttpAddpostString("partType","content");
+							_OV("ov").HttpAddpostString("cacheName",HTTPResult.cacheName);
+								
+							_OV("ov").HttpPost(this.getHost(this.OVP.host));
+							
+							var revisionHTTPResult = OV.JSON.parse(_OV("ov").HttpResult);
+							revisionHTTPResult.revisionCacheName = HTTPResult.cacheName;
+							revisionHTTPResult.filename = HTTPResult.filename;
+							revisionHTTPResult.changes = HTTPResult.changes;
+							HTTPResult = revisionHTTPResult;
+							
+						} else {
+							HTTPResult.changes = "";
+							
+						}
+						
+						HTTPResult.isReadOnly = false;
+						HTTPResult.createVersion = createVersion;
+						
+            			if (_OV("ov").IsWordOpened()) {
+							OP.officeAutomation(this.OVP.id, _OV("ov"), 'AfterOK');
+						}
+						var sdata = OV.JSON.stringify(HTTPResult);
+						OP.changeInfo = sdata;
+						var url= '#excuteJS&id=officeAction;';
+           				location=url;
+           				this.OVP.saving=false;
+					}
+            	}
+            	if(createVersion){
+            		OP.closeDoc();
+            	}
+            	
+            },
+            getChangeInfo :function(){
+            	return OP.changeInfo;
+            },
+			officeCloseButtonClick : function(item, cancel,createVersion){
+				if(_OV("ov").IsDirty&&_OV("ov").WordGetRevisionJSON()!=this.OVP.initRevision){
+					if(window.confirm('有数据已经修改，是否保存数据?')){
+						return this.officeNotifySendData(item, cancel,createVersion);
+					}else{
+						return "";
+					}
+				}else{
+					return "";
+				}
+			},
+            officeNotifyCancel: function() {
+            	_OV("ov").Close();
+            	OV.getElementByID("toolsFieldOperate").style.display="none";
+            	OV.getElementByID("toolsTemplateOperate").style.display="none";
+            	OV.getElementByID("toolsFieldList").style.display="none";
+            	OV.getElementByID("toolsSealList").style.display="none";
+            },
+            closeDoc:function(){
+            	var url= '#excuteJS&id=closeDoc;';
+				location=url;
+            	url='#closeDoc';
+				location=url;
+           	}
+           }
+
+       	function initLayout() {
+       	 	setLayout(OP.OVP.programID != "Word.Document");
+       	 	OP.officeNotifyCtrlReady();
+           (function () {
+                var fn = function () {
+                    _OV("ov").style.height = document.body.offsetHeight - 8;
+                    _OV("ov").style.height = Math.min(OV.getElementByID("ovParent").offsetHeight, document.body.offsetHeight - 8) -OV.getElementByID("docActionDiv").offsetHeight;
+                }
+                OV.addEvent(window, "resize", fn);
+                fn();
+                OP.officeViewerResize = fn;
+            })();        	 	
+       	}
+       	
+       	function setLayout(toEnd) {
+       	 	if (toEnd) {
+       			splitter.moveToEnd();		        
+	        }
+       	}
+
+           function acceptData(data) {
+           	$OV('ov').CreateOfficeViewer('100%','100%');
+  				OP.officeViewerInit(OV.JSON.parse(data));
+           }
+
+           function notifyCancel() {
+           	OP.officeNotifyCancel();
+           }
+           
+           function afterOfficeFieldDialogEnsure(event){
+			OP.OVFP = OV.JSON.parse(event.data);
+			OP.officeFieldDialogOK(OP.OVFP);
+           }
+           
+           function openOfficeFieldDialog(){
+           	justep.Doc.openOfficeFieldDialog(OP.OVFP, afterOfficeFieldDialogEnsure);
+           }
+       </script>
+	   <script language="JavaScript" type="text/javascript" for="ov" event="OnFileCommand(item, cancel)">
+        	try{
+	   			notifySendData("xml-text", item, cancel);
+        	}catch(e){
+        	}
+       </script>
+  
+  </head>
+  
+  <body style="width: 100%; height: 100%; overflow: hidden;">
+  	<div id="mainsplitview" type="stpa" style="width: 100%; height: 100%;">
+		<div stpa="left" id="div_1" style="width:90%;">
+			<div id="ovParent" style="border:1px solid #D3E2E5:width:100%;">
+				<div id="ov"></div>
+				<div id="docActionDiv" style ="float:right;margin-right:8px;margin-top:8px;">
+					<span id="docSave" style ="margin-right:8px">
+						<button id="btn_save" class="xforms-trigger xui-button" style="width:75px;margin-bottom: 3px" onclick="OP.officeNotifySendData(3,true,false);">保存</button>
+					</span>
+					<span id="docCreateVersion" style ="margin-right:8px">
+						<button id="btn_createVersion" class="xforms-trigger xui-button" style="width:75px;margin-bottom: 3px" onclick="OP.officeNotifySendData(3,true,true);">提交</button>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div stpa="right" id="div_2">
+			<div id="ovTools" valign="top" style="display:none">
+				<div class="tools" id="div_3">
+				 <div style="display:none;" id="div_4">
+					<div id="toolsFilename">
+						<span>文件名称</span>
+						<ul>
+							<li>
+								<input type="text" style="width:160px;" id="inputFilename" />
+							</li>
+						</ul>
+					</div>
+					<div id="toolsShowMode">
+						<span>显示模式</span>
+						<ul>
+							<li>
+								<a href="#" onclick="OP.officeFullScreen()">全屏模式</a>
+								- 编辑区域全屏
+							</li>
+						</ul>
+					</div>
+					</div>
+					<div id="toolsTemplateOperate" style="display:none">
+						<span>模板操作</span>
+						<ul>
+							<li>
+								<a href="#" onclick="OP.officeUpdateFieldValue()">更新域</a>
+								- 从表单中更新数据
+							</li>
+						</ul>
+					</div>
+					<div id="toolsFieldOperate" style="display:none">
+						<span>域操作</span>
+						<ul>
+							<li>
+								<a href="#" onclick="OP.officeInsertField()">插入域</a>
+								- 当前位置插入域
+							
+							</li>
+							<li>
+								<a href="#" onclick="OP.officeEditField()">编辑域</a>
+								- 编辑当前选中域
+							
+							</li>
+							<li>
+								<a href="#" onclick="OP.officeDeleteField()">删除域</a>
+								- 删除当前选中域
+							
+							</li>
+							<li>
+								<a href="#" onclick="OP.officeShowField()">显示域</a>
+								- 显示所有隐藏域
+							
+							</li>
+							<li>
+								<a href="#" onclick="OP.officeHideField()">隐藏域</a>
+								- 隐藏所有显示域
+							
+							</li>
+						</ul>
+					</div>
+					<div id="toolsFieldList" style="display:none">
+						<span>域列表</span>
+						<ul id="fieldList">
+						</ul>
+					</div>
+					<div id="toolsSealList" style="display:none">
+						<span>插入签章</span>
+						<ul id="sealList">
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var splitter = new tlv8.standardPartition(document.getElementById("mainsplitview"));
+		loaded=true;
+		url='#triggerExEvent=true';
+		location=url;
+	</script>
+  </body>
+</html>

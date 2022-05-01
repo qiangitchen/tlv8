@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <data>
+    <sql dbkey="pm">select p.fbianhao fcode,ifnull(p.fmingcheng,'未归到项目') fprojectname,ROUND(sum(c.fjine),2) fmoney from pm_expense c left join pm_project p on c.fxiangmuid = p.fid where c.fraet='收入' group by p.fbianhao,p.fmingcheng order by p.fbianhao desc</sql>
+    <sql dbkey="pm">select p.fbianhao fcode1,ifnull(p.fmingcheng,'未归到项目') fprojectname1,ROUND(sum(c.fjine),2) fmoney1 from pm_expense c left join pm_project p on c.fxiangmuid = p.fid where c.fraet='支出' group by p.fbianhao,p.fmingcheng order by p.fbianhao desc</sql>
+  </data>
+  <script><![CDATA[
+  var xdata1 = {{fprojectname}};
+  var ydata1 = {{fmoney}};
+  var xdata2 = {{fprojectname1}};
+  var ydata2 = {{fmoney1}};
+  var cdata = [];
+  for(var i=0;i<xdata1.length;i++){
+  	if(cdata.indexOf(xdata1[i])<0){
+  		cdata.push(xdata1[i]);
+  	}
+  }
+  for(var i=0;i<xdata2.length;i++){
+  	if(cdata.indexOf(xdata2[i])<0){
+  		cdata.push(xdata2[i]);
+  	}
+  }
+  var vdata1 = [];
+  for(var i=0;i<cdata.length;i++){
+  	if(xdata1.indexOf(cdata[i])>-1){
+  		vdata1[i]=ydata1[xdata1.indexOf(cdata[i])];
+  	}else{
+  		vdata1[i]=0;
+  	}
+  }
+  var vdata2 = [];
+  for(var i=0;i<cdata.length;i++){
+  	if(xdata2.indexOf(cdata[i])>-1){
+  		vdata2[i]=ydata2[xdata2.indexOf(cdata[i])];
+  	}else{
+  		vdata2[i]=0;
+  	}
+  }
+  option = {
+    title: {
+        text: '项目费用',
+        subtext: '收支明细'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['收入', '支出']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: cdata
+    },
+    series: [
+        {
+            name: '收入',
+            type: 'bar',
+            data: vdata1
+        },
+        {
+            name: '支出',
+            type: 'bar',
+            data: vdata2
+        }
+    ]
+};
+  ]]></script>
+  <chart type="Bar" modle="barycategory" theme="light"/>
+</root>

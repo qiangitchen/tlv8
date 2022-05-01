@@ -1,0 +1,124 @@
+@charset "utf-8";
+/* form��ʼ */
+form{
+margin: 0px auto;
+width: 450px;
+border: solid 1px #CCCCCC;
+}
+form.cmxform {
+	width: 760px;
+	font-size: 1.0em;
+	color: #333;
+}
+
+form.cmxform legend {
+	padding-left: 0;
+}
+
+form.cmxform legend, form.cmxform label {
+	color: #333;
+}
+
+form.cmxform fieldset {
+	border: none;
+	border-top: 1px solid #C9DCA6;
+	background: url(../images/cmxform-fieldset.gif) left bottom repeat-x;
+	background-color: #F8FDEF;
+}
+
+form.cmxform fieldset fieldset {
+	background: none;
+}
+
+form.cmxform fieldset p, form.cmxform fieldset fieldset {
+	padding: 5px 10px 7px;
+	background: url(../images/cmxform-divider.gif) left bottom repeat-x;
+}
+
+form.cmxform label.error, label.error {
+	/* remove the next line when you have trouble in IE6 with labels in list */
+	color: red;
+	font-style: italic
+}
+div.error { display: none; }
+input {	border: 1px solid black; }
+input.checkbox { border: none }
+input:focus { border: 1px dotted black; }
+input.error { border: 1px dotted red; }
+form.cmxform .gray * { color: gray; }
+/*div��ʽ*/
+.main{
+border-bottom: solid 1px #CCCCCC;
+}
+/*label��ʽ*/
+
+/*input��ʽ*/
+input{
+padding: 1px;
+		border-top-width: 1px;
+		border-left-width: 1px;
+		border-right-width: 1px solid #ccc;
+		border-bottom-width: 1px solid #ccc;
+		margin-right: 5px;
+width:100%;
+}
+input,textarea{
+border: 1px solid #CCCCCC;
+margin: 5px 0px;
+}
+textarea{
+padding: 2px;
+}
+.bt{
+width: 38px;
+height: 20px;
+font-size: 11px;
+border: solid 1px #CCCCCC;
+background: #FBFBFB;
+text-align: center;
+}
+.btcenter{
+text-align: center;
+clear: left;
+padding: 4px 0px 0px;
+}
+.sffocus {
+background: #F0F9FB; /*----for IE----*/
+border: 1px solid #1D95C7;
+}
+textarea:focus, input:focus {
+background: #F0F9FB; /*----for firefox......----*/
+border: 1px solid #1D95C7;
+}
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11pt;
+color: #666666;
+margin-top: 10px;
+background:#e5edef;
+}
+/*��ť��ʽ*/
+
+
+.buttonblack{
+width:62px; 
+height:23px;
+line-height:18px;
+border:0;margin:2px 0 4px 10px;
+background:url(buttonblack.gif); 
+color:#ffffff;
+}
+
+
+/*�����ʽ*/
+table{
+border-collapse:collapse; 
+border:solid 0px #ededed;
+}
+
+
+img{
+border:1px;
+padding: 1px 1px 1px 1px;
+
+}
