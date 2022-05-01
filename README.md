@@ -5,9 +5,10 @@
 </p>
 
 #### 介绍
-1.  项目集成了工作流引擎、报表引擎和组织机构权限管理后台，可以应用于OA、HR、CRM、PM等系统开发。配合使用[tlv8 ide](https://gitee.com/qianpou/tlv8ide)可以快速实现业务系统开发、测试、部署。
-2.  后台采用Spring MVC架构简单方便，前端使用流行的[layui](https://gitee.com/sentsin/layui)界面美观大方。
-3.  项目还提供了基于Spring Boot+Maven构建的网站前后台，可以快速搭建企业网站。
+
+- 项目集成了工作流引擎、报表引擎和组织机构权限管理后台，可以应用于OA、HR、CRM、PM等系统开发。配合使用[tlv8 ide](https://gitee.com/qianpou/tlv8ide)可以快速实现业务系统开发、测试、部署。
+- 后台采用Spring MVC架构简单方便，前端使用流行的[layui](https://gitee.com/sentsin/layui)界面美观大方。
+
 
     采用组件开发技术，提高系统的灵活性和可扩展性;采用工作流引擎技术提供系统的快速开发和更新; 实现了业务模型和系统实现技术的分离，从根本上提升管理软件的技术无关性， 能够支持各种主流的操作系统、数据库、基础技术环境。 TLv8是能够满足应用高度集中、业务流程高度复杂、业务需求快速变化的基础架构平台。
 
@@ -38,14 +39,13 @@
 #### 使用说明
 
 1.  项目为eclipse的动态web项目，拉取项目代码后直接导入eclipse即可
-2.  业务代码主项目为tlv8,本地项目无网络依赖
+2.  业务代码主项目为"tlv8"
 
-    Tomcat外部引用：&lt;Context docBase="../../workspace/tlv8/WebContent" path="/tlv8" reloadable="false" workDir="work"/&gt; 
+    Tomcat外部引用：<Context docBase="../../tlv8-root/tlv8/target/tlv8" path="/tlv8" reloadable="false" workDir="work"/> 
 
-3.  网站代码主项目为tlv8web,用maven构建
-4.  文档服务“DocServer”部署到tomcat下即可运行
+3.  文档服务“DocServer”部署到tomcat下即可运行
 
-    Tomcat外部引用：&lt;Context docBase="../../workspace/DocServer" path="/DocServer" reloadable="false" workDir="work"/&gt; 
+    Tomcat外部引用：<Context docBase="../../tlv8-root/DocServer/target/DocServer" path="/DocServer" reloadable="false" workDir="work"/> 
 
 
 #### 效果展示
