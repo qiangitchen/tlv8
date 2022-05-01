@@ -41,11 +41,11 @@
 1.  项目为eclipse的动态web项目，拉取项目代码后直接导入eclipse即可
 2.  业务代码主项目为"tlv8"
 
-    Tomcat外部引用：<Context docBase="../../tlv8-root/tlv8/target/tlv8" path="/tlv8" reloadable="false" workDir="work"/> 
+    Tomcat外部引用：&lt;Context docBase="../../tlv8-root/tlv8/target/tlv8" path="/tlv8" reloadable="false" workDir="work"/&gt; 
 
 3.  文档服务“DocServer”部署到tomcat下即可运行
 
-    Tomcat外部引用：<Context docBase="../../tlv8-root/DocServer/target/DocServer" path="/DocServer" reloadable="false" workDir="work"/> 
+    Tomcat外部引用：&lt;Context docBase="../../tlv8-root/DocServer/target/DocServer" path="/DocServer" reloadable="false" workDir="work"/&gt; 
 
 
 #### 效果展示
