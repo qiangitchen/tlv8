@@ -34,3 +34,6 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+# 测试文档
+*/DocServer/data/*
