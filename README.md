@@ -42,10 +42,14 @@
 2.  业务代码主项目为"tlv8"
 
     Tomcat外部引用：&lt;Context docBase="../../tlv8-root/tlv8/target/tlv8" path="/tlv8" reloadable="false" workDir="work"/&gt; 
+    
+    发布运行：tlv8.war
 
 3.  文档服务“DocServer”部署到tomcat下即可运行
 
     Tomcat外部引用：&lt;Context docBase="../../tlv8-root/DocServer/target/DocServer" path="/DocServer" reloadable="false" workDir="work"/&gt; 
+
+    发布运行：DocServer.war
 
 
 #### 效果展示
