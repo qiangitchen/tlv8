@@ -335,13 +335,6 @@
 				<version>${tlv8.version}</version>
 			</dependency>
 
-			<!-- 发布运行模块 -->
-			<dependency>
-				<groupId>com.tlv8</groupId>
-				<artifactId>tlv8</artifactId>
-				<version>${tlv8.version}</version>
-			</dependency>
-
 		</dependencies>
 	</dependencyManagement>
 

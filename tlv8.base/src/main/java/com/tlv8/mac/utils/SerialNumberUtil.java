@@ -10,6 +10,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SerialNumberUtil {
+
+	/**
+	 * 用vb脚本获取主板信息（适用于Windows系统）
+	 * 
+	 * @return
+	 */
 	public static String getMotherboardSN() {
 		String result = "";
 		try {
@@ -39,6 +45,11 @@ public class SerialNumberUtil {
 		return result.trim();
 	}
 
+	/**
+	 * 用vb脚本获取硬盘信息（适用于Windows系统）
+	 * 
+	 * @return
+	 */
 	public static String getHardDiskSN(String drive) {
 		String result = "";
 		try {
@@ -68,6 +79,11 @@ public class SerialNumberUtil {
 		return result.trim();
 	}
 
+	/**
+	 * 用vb脚本获取CPU信息（适用于Windows系统）
+	 * 
+	 * @return
+	 */
 	public static String getCPUSerial() {
 		String result = "";
 		try {
@@ -100,6 +116,12 @@ public class SerialNumberUtil {
 		return result.trim();
 	}
 
+	/**
+	 * 执行命令行 返回输出
+	 * 
+	 * @param cmd
+	 * @return
+	 */
 	public static String executeLinuxCmd(String cmd) {
 		try {
 			Runtime run = Runtime.getRuntime();
@@ -122,6 +144,14 @@ public class SerialNumberUtil {
 		return null;
 	}
 
+	/**
+	 * 命令行 获取主板信息
+	 * 
+	 * @param cmd
+	 * @param record
+	 * @param symbol
+	 * @return
+	 */
 	public static String getSerialNumber(String cmd, String record, String symbol) {
 		String execResult = executeLinuxCmd(cmd);
 		String[] infos = execResult.split("\n");
@@ -136,6 +166,11 @@ public class SerialNumberUtil {
 		return null;
 	}
 
+	/**
+	 * 获取机器信息
+	 * 
+	 * @return
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static Map<String, String> getAllSn() {
 		String os = System.getProperty("os.name");
@@ -186,6 +221,12 @@ public class SerialNumberUtil {
 		return snVo;
 	}
 
+	/**
+	 * unicode 转中文
+	 * 
+	 * @param unicode
+	 * @return
+	 */
 	public static String unicodeToCn(String unicode) {
 		String[] strs = unicode.split("\\\\u");
 		String returnStr = "";
@@ -196,6 +237,12 @@ public class SerialNumberUtil {
 		return returnStr;
 	}
 
+	/**
+	 * 中文转 unicode
+	 * 
+	 * @param cn
+	 * @return
+	 */
 	public static String cnToUnicode(String cn) {
 		char[] chars = cn.toCharArray();
 		String returnStr = "";
@@ -205,6 +252,12 @@ public class SerialNumberUtil {
 		return returnStr;
 	}
 
+	/**
+	 * 字符大写并去除空格
+	 * 
+	 * @param str
+	 * @return
+	 */
 	private static String trim(String str) {
 		if (str != null) {
 			return str.toUpperCase().replace(" ", "");

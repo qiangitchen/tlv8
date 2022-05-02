@@ -10,6 +10,12 @@ import com.alibaba.fastjson.JSONObject;
 public class CryptUtils {
 	public static Map<String, String> devInfo = SerialNumberUtil.getAllSn();
 
+	/**
+	 * MD5 加密
+	 * 
+	 * @param info
+	 * @return
+	 */
 	public static String encryptToMD5(String info) {
 		byte[] digesta = null;
 		try {
@@ -26,6 +32,12 @@ public class CryptUtils {
 		return rs;
 	}
 
+	/**
+	 * SHA 加密
+	 * 
+	 * @param info
+	 * @return
+	 */
 	public static String encryptToSHA(String info) {
 		byte[] digesta = null;
 		try {
@@ -42,6 +54,12 @@ public class CryptUtils {
 		return rs;
 	}
 
+	/**
+	 * byte转16进制
+	 * 
+	 * @param b
+	 * @return
+	 */
 	public static String byte2hex(byte[] b) {
 		String hs = "";
 		String stmp = "";
@@ -56,6 +74,11 @@ public class CryptUtils {
 		return hs.toUpperCase();
 	}
 
+	/**
+	 * 获取机器码
+	 * 
+	 * @return
+	 */
 	public static String getMachineCode() {
 		try {
 			return encryptToMD5(getDevicInfo());
@@ -65,12 +88,17 @@ public class CryptUtils {
 		return null;
 	}
 
+	/**
+	 * 获取设备信息
+	 * 
+	 * @return
+	 */
 	protected static String getDevicInfo() {
 		JSONObject strb = new JSONObject();
 		try {
-			strb.put("cpuid", devInfo.get("cpuid"));
-			strb.put("mainboard", devInfo.get("mainboard"));
-			strb.put("diskid", devInfo.get("diskid"));
+			strb.put("cpuid", devInfo.get("cpuid")); // CPU
+			strb.put("mainboard", devInfo.get("mainboard")); // 主板
+			strb.put("diskid", devInfo.get("diskid")); // 硬盘
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
