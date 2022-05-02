@@ -50,7 +50,7 @@
 			<artifactId>aspose-words</artifactId>
 			<version>15.8.0</version>
 			<scope>system</scope>
-			<systemPath>D:\TuLinv8_ALL\TuLinv8_win64\tlv8-root\DocServer\src\main\webapp\WEB-INF\lib\aspose-words-15.8.0-jdk16.jar</systemPath>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/aspose-words-15.8.0-jdk16.jar</systemPath>
 		</dependency>
 
 		<!-- spring -->
