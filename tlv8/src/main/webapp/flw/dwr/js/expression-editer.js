@@ -54,7 +54,7 @@ ExpressionEditer.addExpression = function() {
  * 清空表达式
  */
 ExpressionEditer.clearExpression = function() {
-	document.getElementById("epressionEditerArea").innerHTML = "";
+	document.getElementById("epressionEditerArea").value = "";
 };
 
 /*

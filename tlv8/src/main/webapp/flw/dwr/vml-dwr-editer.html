@@ -3,9 +3,11 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <title>流程编辑器</title>
     <link type="text/css" rel="stylesheet" href="../../resources/bootstrap/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../../resources/bootstrap/css/justified.css"/>
     <link type="text/css" rel="stylesheet" href="../../resources/layui/css/layui.css"/>
     <link rel="stylesheet" type="text/css" href="../../resources/jquery-easyui/themes/default/easyui.css"></link>
 	<link rel="stylesheet" type="text/css" href="../../resources/jquery-easyui/themes/icon.css"></link>
+  	<link rel="stylesheet" type="text/css" href="../../comon/css/toolbar.main.css"></link>
   	<link rel="stylesheet" type="text/css" href="css/main.dwr.css"></link>
 	<script type="text/javascript" src="../../comon/js/jquery/jquery.min.js"></script>
   	<script type="text/javascript" src="../../comon/js/comon.main.js"></script>
@@ -21,38 +23,109 @@
   	<script type="text/javascript" src="../../resources/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
   	<script type="text/javascript" src="../../resources/layui/layui.js" charset="utf-8"></script>
 	<script type="text/javascript" src="js/operationhistory.js"></script>
+	<script type="text/javascript" src="js/flow_design.js"></script>
 	<script type="text/javascript" src="js/main.dwr.js"></script>
   </head>
-  <body onload="Prop.clear();document.getElementById('group').focus();" class='btype'  unselectable="on" onselectstart="return false;" style="-moz-user-select:none; background-color: #fff; background-image: url(img/bg.png); overflow: hidden;">
-	<div class="easyui-layout" fit="true">
-		<div data-options="region:'north',split:false" style="height:30px;background-image: url(img/menubg.gif);">
-			<div id="tool" class="toolbar_line"></div>
-		</div>
-		<div data-options="region:'west',title:'元素',split:true" style="width:300px;padding:5px;text-align:left;" id="leftview">
-			<table class="elements">
-				<tbody id="elementviewer">
-				</tbody>
-			</table>
-		</div>
-		<div data-options="region:'center'" id="drawView" style="background-image: url(img/bg.png); overflow: auto;">
-			<div id="group" onselectstart="return false;" style="position: relative;"></div>
-		</div>
-	</div>
-  	<svg id="isvg">
-		<defs>
-			<marker id="idArrow"
-		         viewBox="0 0 20 20" refX="0" refY="10" 
-		         markerUnits="strokeWidth" markerWidth="8" markerHeight="10"
-		         orient="auto">
-		         <path d="M 0 0 L 20 10 L 0 20 z" fill="purple" stroke="black"/>
-		     </marker>
-		</defs>
-	</svg>
-	<script type="text/javascript">
-		drow_init("test1","演示流程");
-		$(window).bind("scroll", function(){ 
-			$("#tool").css("top",$(window).scrollTop()+"px");
-		}); 
-	</script>
-   </body>
+  <body onload="Prop.clear();document.getElementById('group').focus();" unselectable="on"
+      onselectstart="return false;">
+<div class="easyui-layout" fit="true">
+    <div data-options="region:'north',split:false,border:false"
+         style="height:40px; padding: 3px; overflow: hidden;">
+        <a class="toobar_item" style="width: 70px; float: left;" onclick="MenuAction.open();">
+            <img src="../../comon/image/tree/folder.gif"> 打开</a>
+        <a class="toobar_item" style="width: 70px; float: left;" onclick="MenuAction.save();">
+            <img src="../../comon/image/toolbar/edit/save_edit.gif"> 保存</a>
+        <a style="float: left;padding: 3px;">
+            <img src="../../comon/image/toolbar/flw/group.gif"></a>
+        <a class="toobar_item" style="width: 70px; float: left;" onclick="MenuAction.remove();">
+            <img src="../../comon/image/toolbar/edit/delete_obj.gif"> 删除</a>
+        <a style="float: left;padding: 3px;">
+            <img src="../../comon/image/toolbar/flw/group.gif"></a>
+        <a class="toobar_item" style="width: 70px; float: left;" onclick="MenuAction.line(false);">
+            <img src="process_icons/select.gif"> 选择</a>
+        <a style="float: left;padding: 3px;">
+            <img src="../../comon/image/toolbar/flw/group.gif"></a>
+        <a class="toobar_item" style="width: 70px; float: left;" onclick="MenuAction.start();">
+            <img src="process_icons/start.png"> 开始</a>
+        <a class="toobar_item" style="width: 70px; float: left;" onclick="MenuAction.end();">
+            <img src="process_icons/end.png"> 结束</a>
+        <a style="float: left;padding: 3px;">
+            <img src="../../comon/image/toolbar/flw/group.gif"></a>
+        <a class="toobar_item" style="width: 100px; float: left;" onclick="MenuAction.nodeRect();">
+            <img src="process_icons/biz.png"> 活动环节</a>
+        <a style="float: left;padding: 3px;">
+            <img src="../../comon/image/toolbar/flw/group.gif"></a>
+        <a class="toobar_item" style="width: 100px; float: left;" onclick="MenuAction.fork();"><img
+                src="process_icons/fork.png"> 条件分支</a>
+        <a style="float: left;padding: 3px;">
+            <img src="../../comon/image/toolbar/flw/group.gif"></a>
+        <a class="toobar_item" style="width: 100px; float: left;" onclick="MenuAction.line(true);">
+            <img src="process_icons/forward.gif"> 直线连线</a>
+        <a class="toobar_item" style="width: 100px; float: left;"
+           onclick="MenuAction.polyline(true);">
+            <img src="process_icons/transition.png"> 折线连线</a>
+        <a style="float: left;padding: 3px;">
+            <img src="../../comon/image/toolbar/flw/group.gif"></a>
+        <a class="toobar_item checked" name="direction" rec="down" style="width: 40px; float: left;"
+           onclick="MenuAction.setAdposation('down');">
+            <img src="process_icons/down.png"></a>
+        <a class="toobar_item" name="direction" rec="right" style="width: 40px; float: left;"
+           onclick="MenuAction.setAdposation('right');">
+            <img src="process_icons/right.png"></a>
+        <a class="toobar_item" name="direction" rec="up" style="width: 40px; float: left;"
+           onclick="MenuAction.setAdposation('up');">
+            <img src="process_icons/up.png"></a>
+        <a class="toobar_item" name="direction" rec="left" style="width: 40px; float: left;"
+           onclick="MenuAction.setAdposation('left');">
+            <img src="process_icons/left.png"></a>
+        <a style="float: left;padding: 3px;">
+            <img src="../../comon/image/toolbar/flw/group.gif"></a>
+        <a class="toobar_item checked" style="width: 70px; float: left;"
+           onclick="MenuAction.grid(this);">
+            <img src="images/grid.gif"> 网格</a>
+        <a style="float: left;padding: 3px;">
+            <img src="../../comon/image/toolbar/flw/group.gif"></a>
+        &nbsp;<input class="easyui-switchbutton" data-options="onText:'锁定',offText:'解锁',onChange:lockchange"
+                     checked>
+    </div>
+    <div data-options="region:'west',title:'元素',split:true" style="width:300px;padding:1px;text-align:left;"
+         id="leftview">
+        <table class="elements layui-table" lay-skin="line">
+            <tbody id="elementviewer">
+            </tbody>
+        </table>
+    </div>
+    <div data-options="region:'center'" id="drawView"
+         style="-moz-user-select:none; background:url(images/bg.jpg); padding: 0px;">
+        <div id="group" onselectstart="return false;" unselectable="on"
+             style="-moz-user-select:none; position: relative; overflow: hidden;"></div>
+    </div>
+    <div data-options="region:'east',title:'属性',split:true" style="width:400px;padding:5px;text-align:left;"
+         id="rightview">
+    </div>
+</div>
+<!-- SVG 箭头线绘制 -->
+<svg id="isvg">
+    <defs>
+        <marker id="idArrow"
+                viewBox="0 0 20 20" refX="0" refY="10"
+                markerUnits="strokeWidth" markerWidth="8" markerHeight="10"
+                orient="auto">
+            <path d="M 0 0 L 20 10 L 0 20 z" fill="purple" stroke="black"/>
+        </marker>
+    </defs>
+</svg>
+</body>
+<script type="text/javascript">
+	$("a[name='direction']").click(function (e) {
+        $("a[name='direction']").removeClass('checked');
+        $(this).addClass('checked');
+    });
+
+    function lockchange(checked) {
+        MenuAction.setLock(checked);
+    }
+
+    drow_init("test1", "演示流程");
+</script>
 </html>
