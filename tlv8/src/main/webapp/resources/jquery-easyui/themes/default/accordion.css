@@ -27,15 +27,63 @@
 }
 .accordion {
   background: #ffffff;
-  border-color: #D4D4D4;
+  border-color: #dfdfdf;
 }
 .accordion .accordion-header {
-  background: #F2F2F2;
+  background: #fafafa;
   filter: none;
 }
 .accordion .accordion-header-selected {
-  background: #0081c2;
+  background: #eee;
 }
 .accordion .accordion-header-selected .panel-title {
-  color: #fff;
+  color: #39c;
+}
+.accordion .panel-last > .accordion-header {
+  border-bottom-color: #fafafa;
+}
+.accordion .panel-last > .accordion-body {
+  border-bottom-color: #ffffff;
+}
+.accordion .panel-last > .accordion-header-selected,
+.accordion .panel-last > .accordion-header-border {
+  border-bottom-color: #dfdfdf;
+}
+.accordion> .panel-hleft {
+  float: left;
+}
+.accordion> .panel-hleft>.panel-header {
+  border-width: 0 1px 0 0;
+}
+.accordion> .panel-hleft> .panel-body {
+  border-width: 0 1px 0 0;
+}
+.accordion> .panel-hleft.panel-last > .accordion-header {
+  border-right-color: #fafafa;
+}
+.accordion> .panel-hleft.panel-last > .accordion-body {
+  border-right-color: #ffffff;
+}
+.accordion> .panel-hleft.panel-last > .accordion-header-selected,
+.accordion> .panel-hleft.panel-last > .accordion-header-border {
+  border-right-color: #dfdfdf;
+}
+.accordion> .panel-hright {
+  float: right;
+}
+.accordion> .panel-hright>.panel-header {
+  border-width: 0 0 0 1px;
+}
+.accordion> .panel-hright> .panel-body {
+  border-width: 0 0 0 1px;
+}
+.accordion> .panel-hright.panel-last > .accordion-header {
+  border-left-color: #fafafa;
+}
+.accordion> .panel-hright.panel-last > .accordion-body {
+  border-left-color: #ffffff;
+}
+.accordion> .panel-hright.panel-last > .accordion-header-selected,
+.accordion> .panel-hright.panel-last > .accordion-header-border {
+  border-left-color: #dfdfdf;
 }
