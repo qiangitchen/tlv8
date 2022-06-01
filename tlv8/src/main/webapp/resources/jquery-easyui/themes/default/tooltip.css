@@ -9,12 +9,12 @@
   border-width: 1px;
   border-style: solid;
   border-radius: 5px;
-  -moz-border-radius: 4px 4px 4px 4px;
-  -webkit-border-radius: 4px 4px 4px 4px;
-  border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
 }
 .tooltip-content {
-  font-size: 14px;
+  font-size: 12px;
 }
 .tooltip-arrow-outer,
 .tooltip-arrow {
@@ -28,9 +28,6 @@
   border-color: transparent;
   _border-color: tomato;
   _filter: chroma(color=tomato);
-}
-.tooltip-arrow {
-  display: none \9;
 }
 .tooltip-right .tooltip-arrow-outer {
   left: 0;
@@ -74,29 +71,29 @@
 }
 .tooltip {
   background-color: #ffffff;
-  border-color: #dfdfdf;
-  color: #404040;
+  border-color: #D4D4D4;
+  color: #333;
 }
 .tooltip-right .tooltip-arrow-outer {
-  border-right-color: #dfdfdf;
+  border-right-color: #D4D4D4;
 }
 .tooltip-right .tooltip-arrow {
   border-right-color: #ffffff;
 }
 .tooltip-left .tooltip-arrow-outer {
-  border-left-color: #dfdfdf;
+  border-left-color: #D4D4D4;
 }
 .tooltip-left .tooltip-arrow {
   border-left-color: #ffffff;
 }
 .tooltip-top .tooltip-arrow-outer {
-  border-top-color: #dfdfdf;
+  border-top-color: #D4D4D4;
 }
 .tooltip-top .tooltip-arrow {
   border-top-color: #ffffff;
 }
 .tooltip-bottom .tooltip-arrow-outer {
-  border-bottom-color: #dfdfdf;
+  border-bottom-color: #D4D4D4;
 }
 .tooltip-bottom .tooltip-arrow {
   border-bottom-color: #ffffff;

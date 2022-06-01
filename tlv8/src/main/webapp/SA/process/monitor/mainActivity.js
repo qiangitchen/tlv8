@@ -455,7 +455,7 @@ function SpecFlowout() {
 								exe_selct_url += "&isflowMonitor=true";
 
 								tlv8.portal.dailog.openDailog('流程信息',
-										exe_selct_url, 650, 380, flowEngion,
+										exe_selct_url, 800, 600, flowEngion,
 										null, null, activityListStr);
 							} catch (e) {
 								alert("流转失败!m:" + e.message);

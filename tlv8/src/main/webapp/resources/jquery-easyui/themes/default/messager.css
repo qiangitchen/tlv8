@@ -1,13 +1,10 @@
 .messager-body {
-  padding: 10px 10px 30px 10px;
-  overflow: auto;
+  padding: 10px;
+  overflow: hidden;
 }
 .messager-button {
   text-align: center;
-  padding: 5px;
-}
-.messager-button .l-btn {
-  width: 70px;
+  padding-top: 10px;
 }
 .messager-icon {
   float: left;
@@ -35,10 +32,6 @@
 }
 .messager-body .messager-input {
   width: 100%;
-  padding: 4px 0;
-  outline-style: none;
-  border: 1px solid #dfdfdf;
-}
-.window-thinborder .messager-button {
-  padding-bottom: 8px;
+  padding: 1px 0;
+  border: 1px solid #D4D4D4;
 }

@@ -2,19 +2,16 @@
   overflow: auto;
 }
 .dialog-toolbar {
-  position: relative;
   padding: 2px 5px;
 }
 .dialog-tool-separator {
   float: left;
   height: 24px;
-  border-left: 1px solid #dfdfdf;
+  border-left: 1px solid #ccc;
   border-right: 1px solid #fff;
   margin: 2px 1px;
 }
 .dialog-button {
-  position: relative;
-  top: -1px;
   padding: 5px;
   text-align: right;
 }
@@ -23,25 +20,11 @@
 }
 .dialog-toolbar,
 .dialog-button {
-  background: #fafafa;
-  border-width: 1px;
-  border-style: solid;
+  background: #F5F5F5;
 }
 .dialog-toolbar {
-  border-color: #dfdfdf #dfdfdf #dfdfdf #dfdfdf;
+  border-bottom: 1px solid #e6e6e6;
 }
 .dialog-button {
-  border-color: #dfdfdf #dfdfdf #dfdfdf #dfdfdf;
-}
-.window-thinborder .dialog-toolbar {
-  border-left: transparent;
-  border-right: transparent;
-  border-top-color: #fafafa;
-}
-.window-thinborder .dialog-button {
-  top: 0px;
-  padding: 5px 8px 8px 8px;
-  border-left: transparent;
-  border-right: transparent;
-  border-bottom: transparent;
+  border-top: 1px solid #e6e6e6;
 }

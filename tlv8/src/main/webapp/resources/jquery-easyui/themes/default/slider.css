@@ -14,7 +14,7 @@
   top: 7px;
   border-width: 1px;
   border-style: solid;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 .slider-handle {
   position: absolute;
@@ -22,15 +22,14 @@
   outline: none;
   width: 20px;
   height: 20px;
-  top: 50%;
-  margin-top: -10px;
+  top: -7px;
   margin-left: -10px;
 }
 .slider-tip {
   position: absolute;
   display: inline-block;
   line-height: 12px;
-  font-size: 14px;
+  font-size: 12px;
   white-space: nowrap;
   top: -22px;
 }
@@ -53,7 +52,7 @@
 .slider-rulelabel span {
   position: absolute;
   display: inline-block;
-  font-size: 14px;
+  font-size: 12px;
 }
 .slider-v .slider-inner {
   width: 6px;
@@ -62,7 +61,7 @@
   float: left;
 }
 .slider-v .slider-handle {
-  left: 50%;
+  left: 3px;
   margin-top: -10px;
 }
 .slider-v .slider-tip {
@@ -90,12 +89,12 @@
   background: url('images/slider_handle.png') no-repeat;
 }
 .slider-inner {
-  border-color: #dfdfdf;
-  background: #fafafa;
+  border-color: #D4D4D4;
+  background: #F2F2F2;
 }
 .slider-rule span {
-  border-color: #dfdfdf;
+  border-color: #D4D4D4;
 }
 .slider-rulelabel span {
-  color: #404040;
+  color: #333;
 }

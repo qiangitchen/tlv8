@@ -731,7 +731,7 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 									exe_selct_url += "&taskID="
 											+ reActData.taskID;
 									tlv8.portal.dailog.openDailog('流程信息',
-											exe_selct_url, 650, 380,
+											exe_selct_url, 800, 600,
 											flowEngion, null, null,
 											activityListStr);
 								} catch (e) {
@@ -839,7 +839,7 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 									exe_selct_url += "&taskID="
 											+ reActData.taskID;
 									tlv8.portal.dailog.openDailog('流程信息',
-											exe_selct_url, 650, 380,
+											exe_selct_url, 800, 600,
 											flowEngion, null, null,
 											activityListStr);
 								} catch (e) {
@@ -966,7 +966,7 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 									exe_selct_url += "&taskID="
 											+ reActData.taskID;
 									tlv8.portal.dailog.openDailog('流程信息',
-											exe_selct_url, 650, 380,
+											exe_selct_url, 800, 600,
 											flowEngion, null, null,
 											activityListStr);
 								} catch (e) {
@@ -1157,7 +1157,7 @@ tlv8.flw.prototype.flowtransmit = function(flowID, taskID, ePersonID) {
 									exe_selct_url += "&taskID="
 											+ reActData.taskID;
 									tlv8.portal.dailog.openDailog('流程转发',
-											exe_selct_url, 650, 380,
+											exe_selct_url, 800, 600,
 											flowTransEngion, null, null,
 											activityListStr);
 								} catch (e) {

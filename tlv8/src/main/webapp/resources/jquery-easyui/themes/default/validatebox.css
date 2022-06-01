@@ -1,13 +1,8 @@
-.inputbox {
-  display: inline-block;
-  vertical-align: middle;
-  overflow: hidden;
-  white-space: nowrap;
-  margin: 0;
-  padding: 0;
-}
 .validatebox-invalid {
+  background-image: url('images/validatebox_warning.png');
+  background-repeat: no-repeat;
+  background-position: right center;
   border-color: #ffa8a8;
-  background-color: #fff;
-  color: #404040;
+  background-color: #fff3f3;
+  color: #000;
 }
