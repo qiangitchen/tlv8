@@ -1096,7 +1096,7 @@ tlv8.createGrid = function(div, labelid, labels, labelwidth, dataAction,
 			};
 			var buttonInputTabkey = function(e) {
 				var event = e || window.event;
-				if(!event.keyCode){
+				if(!event.keyCode && !event.bubbles){
 					grid.outEditBlur();
 				}
 				if (event.keyCode == 13 || event.keyCode == 9
