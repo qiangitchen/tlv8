@@ -13,7 +13,6 @@
       <item activity="newsManageLists" icon="newli.png" label="新闻列表" process="/system/News/informationRelase/process" url="/system/News/informationRelase/newsManageLists.html"></item> 
     </item>  
     <item label="文档资料" layuiIcon="layui-icon layui-icon-read"> 
-      <item activity="mainTreePage" icon="wenjiangd.png" label="文档归档" process="/OA/docpigeonhole/process" url="/OA/docpigeonhole/mainTreePage.html"></item>  
       <item activity="PersonalDocNode" icon="myfiles.png" label="个人文件柜" process="/SA/docnode/process" url="/SA/docnode/PersonalDocNode.html"></item>  
       <item activity="PersonaList" icon="file.png" label="文件列表" process="/SA/docnode/process" url="/SA/docnode/PersonaList.html"></item> 
     </item> 
