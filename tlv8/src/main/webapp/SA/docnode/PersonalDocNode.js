@@ -67,11 +67,11 @@ $(function() {
 	maingrid.grid.seteditModel(false);
 	currentgrid = maingrid.grid;
 	doc_upload_item = currentgrid.insertSelfBar("上传文件", "30px", "",
-			cpath+"/comon/image/toolbar/doc/newfile.gif");
+			"../../comon/image/toolbar/doc/newfile.gif");
 	doc_dowload_item = currentgrid.insertSelfBar("下载文件", "30px", "dowload()",
-			cpath+"/comon/image/toolbar/doc/download.gif");
+			"../../comon/image/toolbar/doc/download.gif");
 	doc_delete_item = currentgrid.insertSelfBar("删除", "30px", "",
-			cpath+"/comon/image/toolbar/un_remove.gif");
+			"../../comon/image/toolbar/un_remove.gif");
 	doc_share_item = currentgrid.insertSelfBar("共享", "30px", "shareview()",
 			"image/browse.gif");
 });

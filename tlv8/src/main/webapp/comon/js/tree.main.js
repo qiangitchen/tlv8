@@ -256,7 +256,7 @@ tlv8.createTree = function(div, treeQueryAction, img, data, master,
 				+ "_tree_quick_position' type='text' style='width:100%'></input></td><td style='width:2px'/><td align='left'>"
 				+ "<a id='"
 				+ div.id
-				+ "_quick' href='javascript:void(0)' class='toobar_item' style='width:20px;height:20px;'><img src='"
+				+ "_quick' href='javascript:void(0)' class='toobar_item' style='width:35px;height:25px;'><img src='"
 				+ $dpimgpath
 				+ "toolbar/search.gif' title='查询' style='font-size:12px'/></a></td></tr>";
 		treeTable += "<tr><td valign='top' colspan='3'><div id='" + div.id

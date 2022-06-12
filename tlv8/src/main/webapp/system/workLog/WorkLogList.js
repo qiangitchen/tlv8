@@ -33,10 +33,10 @@ function callBackFn() {
 	currentgrid.refreshData();
 }
 function HANDLE() {
-	return "<a href='javascript:void(0)' class='toobar_item' style='width:20px;height:20px;float:left;margin-left:2px;'><img alt='查看' title='详细信息' src='../../comon/css/formDetail/img/mail_find.png' style='height:20px' onclick='YC()' /></a> &nbsp;"
-			+ "<a href='javascript:void(0)' class='toobar_item' style='width:20px;height:20px;float:left;margin-left:2px;'><img alt='编辑' title='修改内容' src='../../comon/css/formDetail/img/easymoblog.png' style='height:20px' onclick='ET()' /></a> &nbsp;"
-			+ "<a href='javascript:void(0)' class='toobar_item' style='width:20px;height:20px;float:left;margin-left:2px;'><img alt='跟踪' title='查看详细记录' src='../../comon/css/formDetail/img/toggle_log.png' style='height:20px' onclick='YC()' /></a> &nbsp;"
-			+ "<a href='javascript:void(0)' class='toobar_item' style='width:20px;height:20px;float:left;margin-left:2px;'><img alt='删除' title='删除信息' src='../../comon/css/formDetail/img/err.gif' style='height:20px' onclick='DL()' /></a>";
+	return "<a href='javascript:void(0)' class='toobar_item' style='height:27px;float:left;margin-left:2px;'><img alt='查看' title='详细信息' src='../../comon/css/formDetail/img/mail_find.png' style='height:20px' onclick='YC()' /></a> &nbsp;"
+			+ "<a href='javascript:void(0)' class='toobar_item' style='height:27px;float:left;margin-left:2px;'><img alt='编辑' title='修改内容' src='../../comon/css/formDetail/img/easymoblog.png' style='height:20px' onclick='ET()' /></a> &nbsp;"
+			+ "<a href='javascript:void(0)' class='toobar_item' style='height:27px;float:left;margin-left:2px;'><img alt='跟踪' title='查看详细记录' src='../../comon/css/formDetail/img/toggle_log.png' style='height:20px' onclick='YC()' /></a> &nbsp;"
+			+ "<a href='javascript:void(0)' class='toobar_item' style='height:27px;float:left;margin-left:2px;'><img alt='删除' title='删除信息' src='../../comon/css/formDetail/img/err.gif' style='height:20px' onclick='DL()' /></a>";
 }
 function YC() {
 	setTimeout("QueryDetailAction()", 100);

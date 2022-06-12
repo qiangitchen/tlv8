@@ -6,6 +6,8 @@
     <item activity="mainActivity" icon="rc.png" label="日程安排" layuiIcon="fa fa-calendar" process="/SA/personal/schedule/process" url="/SA/personal/schedule/mainActivity.html"></item>  
     <item activity="mainActivity" icon="email.png" label="电子邮件" layuiIcon="fa fa-envelope-o" process="/OA/email/process" url="/OA/email/mainActivity.html"></item>  
     <item activity="mainActivity" icon="shenpi.png" label="审批意见设置" layuiIcon="fa fa-check-square-o" process="/OA/flowset/myOpinion/process" url="/OA/flowset/myOpinion/mainActivity.html"></item>  
+    <item activity="mainActivity" icon="shenpi.png" label="个人文件柜" layuiIcon="fa fa-check-square-o" process="/SA/docnode/PersonalDocNode/process" url="/SA/docnode/PersonalDocNode.html"></item>  
+    <item activity="listActivity" icon="shenpi.png" label="文件列表" layuiIcon="fa fa-check-square-o" process="/SA/docnode/PersonalDocNode/process" url="/SA/docnode/PersonaList.html"></item>  
     <item activity="mainActivity" icon="jisuanqi.png" label="计算器" layuiIcon="fa fa-fax" process="/system/accessory/process" url="/system/accessory/counter.html"></item>  
     <item label="工作日志" layuiIcon="fa fa-building-o"> 
       <item activity="WorkLog" icon="notboke.png" label="写日志" process="/system/workLog/process" url="/system/workLog/WorkLog.html"></item>  
