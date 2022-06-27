@@ -11,7 +11,7 @@
    <a href="LICENSE" rel="nofollow">
       <img src="https://img.shields.io/github/license/qiangitchen/tl">
    </a>
-   <a href="releases" rel="nofollow">
+   <a href="https://gitee.com/qianpou/tl/releases" rel="nofollow">
       <img src="https://img.shields.io/github/v/release/qiangitchen/tl?display_name=tag&sort=semver">
    </a>
 </p>
