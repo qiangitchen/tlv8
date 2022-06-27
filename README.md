@@ -4,6 +4,18 @@
 </a>
 </p>
 
+<p align="center">
+   <a href="https://www.oracle.com/java/technologies/downloads/#java8">
+      <img src='https://img.shields.io/badge/jdk-1.8+-redviolet.svg'>
+   </a>
+   <a href="LICENSE" rel="nofollow">
+      <img src="https://img.shields.io/github/license/qiangitchen/tl">
+   </a>
+   <a href="https://github.com/qiangitchen/tl/releases" rel="nofollow">
+      <img src="https://img.shields.io/github/v/release/qiangitchen/tl?display_name=tag&sort=semver">
+   </a>
+</p>
+
 #### 介绍
 
 - 项目集成了工作流引擎、报表引擎和组织机构权限管理后台，可以应用于OA、HR、CRM、PM等系统开发。配合使用[tlv8 ide](https://gitee.com/qianpou/tlv8ide)可以快速实现业务系统开发、测试、部署。
