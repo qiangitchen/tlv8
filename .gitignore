@@ -18,8 +18,7 @@
 */bin/*
 
 # Maven
-target/*
-*/target/*
+target
 
 ### IntelliJ IDEA ###
 .idea
