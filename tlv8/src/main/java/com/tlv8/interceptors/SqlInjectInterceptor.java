@@ -130,7 +130,7 @@ public class SqlInjectInterceptor implements HandlerInterceptor {
 				|| requestPath.endsWith("/TreeSelectAction") || requestPath.endsWith("/QuickTreeAction")
 				|| requestPath.endsWith("/getOrgGridInfo") || requestPath.endsWith("/saveOrgGridInfo")
 				|| requestPath.endsWith("/deleteOrgGridInfo") || requestPath.endsWith("/saveGridAction")
-				|| requestPath.endsWith("/getExecutorTree");
+				|| requestPath.endsWith("/getExecutorTree") || requestPath.endsWith("/saveFlowDrawLGAction");
 	}
 
 }
