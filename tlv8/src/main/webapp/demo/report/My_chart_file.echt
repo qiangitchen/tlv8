@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+  <data>
+    <sql dbkey="oa">select * from look_month_work_plan</sql>
+  </data>
+  <script><![CDATA[]]></script>
+  <chart type="Line" modle="linesimple" theme="">
+    <yAxis type="value"></yAxis>
+    <xAxis data="['Mon','Tue','Wed','Thu','Fri','Sat','Sun']" type="category"></xAxis>
+    <series data="[820,932,901,934,1290,1330,1320]" type="line"></series>
+  </chart>
+</root>
