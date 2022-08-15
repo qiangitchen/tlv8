@@ -40,9 +40,6 @@ $.X.createFunc = function(func) {
 // 把符号全部换成"_"
 $.X.getFuncID = function(func) {
 	var p = $.X.parseFunc(func);
-	if (p.id && p.id != "") {
-		return p.id;
-	}
 	return hex_md5(p.url);
 };
 $.X.runparentFunc = {};
