@@ -52,6 +52,12 @@
 			<version>1.6.2</version>
 		</dependency>
 
+		<!-- 国标加密 -->
+		<dependency>
+		    <groupId>org.bouncycastle</groupId>
+		    <artifactId>bcprov-jdk15on</artifactId>
+		</dependency>
+
 		<!-- 核心包 -->
 		<dependency>
 			<groupId>com.tlv8</groupId>

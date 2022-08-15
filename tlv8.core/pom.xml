@@ -24,6 +24,12 @@
 			<artifactId>jxl</artifactId>
 		</dependency>
 
+		<!-- 国标加密 -->
+		<dependency>
+		    <groupId>org.bouncycastle</groupId>
+		    <artifactId>bcprov-jdk15on</artifactId>
+		</dependency>
+
 		<!-- 基础包 -->
 		<dependency>
 			<groupId>com.tlv8</groupId>

@@ -286,6 +286,13 @@
 				<version>${lucene.version}</version>
 			</dependency>
 
+			<!-- 国标加密 -->
+			<dependency>
+			    <groupId>org.bouncycastle</groupId>
+			    <artifactId>bcprov-jdk15on</artifactId>
+			    <version>1.69</version>
+			</dependency>
+
 			<!-- 基础包 -->
 			<dependency>
 				<groupId>com.tlv8</groupId>
