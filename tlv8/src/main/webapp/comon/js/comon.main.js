@@ -3945,8 +3945,12 @@ tlv8.System.Date = {
 var $dpjspath = null;
 var scripts = document.getElementsByTagName("script");
 for (i = 0; i < scripts.length; i++) {
-	if (scripts[i].src.substring(scripts[i].src.length - 13).toLowerCase() == 'comon.main.js') {
-		$dpjspath = scripts[i].src.substring(0, scripts[i].src.length - 13);
+	var src = scripts[i].src;
+	if(src.indexOf("?")>0){
+		src = src.substring(0,src.indexOf("?"));
+	}
+	if (src.substring(src.length - 13).toLowerCase() == 'comon.main.js') {
+		$dpjspath = src.substring(0, src.length - 13);
 		break;
 	}
 }
