@@ -10,7 +10,7 @@ function getData() {
 	var d = document.getElementById("main-grid-view");
 	var labelid = "No,SNAME,smobilephone,SFNAME,SLOGINIP,SSERVICEIP,SLOGINDATE,STITLE";// 设置字段
 	var labels = "No.,姓名,电话,单位名,登陆IP,服务器IP,登陆时间,职务";// 设置标题
-	var labelwidth = "40,180,180,280,100,100,120,100";// 设置宽度
+	var labelwidth = "40,180,180,280,140,140,150,0";// 设置宽度
 	var datatype = "ro,string,string,string,string,string,datetime,string";// 设置字段类型
 	var dataAction = {
 			"queryAction" : "getGridAction",// 查询动作
