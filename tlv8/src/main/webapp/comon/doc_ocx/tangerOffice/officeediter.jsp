@@ -1,9 +1,8 @@
-<%@page import="com.alibaba.fastjson.JSON"%>
-<%@page import="com.alibaba.fastjson.JSONArray"%>
 <%@page import="com.tlv8.doc.clt.doc.DocUtils"%>
 <%@page import="com.tlv8.system.bean.ContextBean"%>
 <%@page import="com.tlv8.system.controller.UserController"%>
 <%@page import="com.tlv8.base.db.DBUtils"%>
+<%@page import="org.json.JSONArray"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.Map"%>
@@ -25,11 +24,12 @@
 	String option = request.getParameter("option");
 	/*非IE浏览器跳转*/
 	String browser = request.getHeader( "USER-AGENT" );
-	if (browser.indexOf( "Chrome" ) > 0 || browser.indexOf( "Firefox") > 0 || browser.indexOf("AppleWebKit")>0) {
-		if(browser.contains("Windows") && "view".equals(option)){//windows系统非IE环境自动转换pdf查看
-			response.sendRedirect("pspdfview.jsp?fileid="+fileID);
-			return;
+	if(browser.contains("Windows")){
+		//Windows将文件转换成pdf查看
+		if (browser.indexOf( "Chrome" ) > 0 || browser.indexOf( "Firefox") > 0 || browser.indexOf("AppleWebKit")>0) {
+			response.sendRedirect("pspdfview.jsp?fileid="+fileID+"&fileName="+fileName+"&option="+option);
 		}
+	}else {
 		String nodeName = fileName;
 		try{
 			nodeName = URLDecoder.decode(nodeName,"UTF-8");
@@ -204,16 +204,6 @@
 				}
 				issetRedHead = true;
 			}
-		
-			function setserver() {
-				//签章
-				try {
-					var obj = document.getElementById("DMakeSealV61");
-					obj.ServerAddr("http://59.216.39.25:8089/inc/seal_interface/");//签章服务器地址
-				} catch (e) {
-					alert(e.message());
-				}
-			}
 		</script>
 		<style>
 			button.op {
@@ -350,7 +340,7 @@
 										Map<String,String> readModel_Map = readModelList.get(i); 
 										try{
 											String fileInfo = readModel_Map.get(readModelRealPath).toString();
-											JSONArray json = JSON.parseArray(fileInfo);
+											JSONArray json = new JSONArray(fileInfo);
 											String hfileID = json.getJSONObject(0).getString("fileID");
 									  %>
 									    case <%=i%>:
@@ -698,22 +688,6 @@
 					</td>
 				</tr>
 			</table>
-			<!--以下是签章控件-->
-			<!-- 
-			<div>
-				<object id="DES1" height="586" width="100%" style="LEFT: 0px; TOP: 0px"  classid="clsid:E009118F-0E86-494D-B7FF-027F342B45CE" codebase="DESSeal.cab#Version=4,3,0,2">
-		   			<param name="_ExtentX" value="6350"><param name="_ExtentY" value="6350">
-				</OBJECT>
-			</div>
-			<div>
-				<OBJECT id="DMakeSealV61" classid="clsid:3F1A0364-AD32-4E2F-B550-14B878E2ECB1" codebase='MakeSealV6.ocx#version=4,1,0,0' width="0" height="0">
-					<PARAM NAME="_Version" VALUE="65536">
-					<PARAM NAME="_ExtentX" VALUE="2646">
-					<PARAM NAME="_ExtentY" VALUE="1323">
-					<PARAM NAME="_StockProps" VALUE="0">
-				</OBJECT>
-			</div>
-			 -->
 		</form>
 	</body>
 </html>
