@@ -1,8 +1,9 @@
+<%@page import="com.alibaba.fastjson.JSON"%>
+<%@page import="com.alibaba.fastjson.JSONArray"%>
 <%@page import="com.tlv8.doc.clt.doc.DocUtils"%>
 <%@page import="com.tlv8.system.bean.ContextBean"%>
 <%@page import="com.tlv8.system.controller.UserController"%>
 <%@page import="com.tlv8.base.db.DBUtils"%>
-<%@page import="org.json.JSONArray"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.Map"%>
@@ -340,7 +341,7 @@
 										Map<String,String> readModel_Map = readModelList.get(i); 
 										try{
 											String fileInfo = readModel_Map.get(readModelRealPath).toString();
-											JSONArray json = new JSONArray(fileInfo);
+											JSONArray json = JSON.parseArray(fileInfo);
 											String hfileID = json.getJSONObject(0).getString("fileID");
 									  %>
 									    case <%=i%>:
