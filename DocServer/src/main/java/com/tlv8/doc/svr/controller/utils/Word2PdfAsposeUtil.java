@@ -1,6 +1,7 @@
 package com.tlv8.doc.svr.controller.utils;
 
 import com.aspose.words.Document;
+import com.aspose.words.FontSettings;
 import com.aspose.words.License;
 import com.aspose.words.SaveFormat;
 import org.springframework.core.io.ClassPathResource;
@@ -37,11 +38,22 @@ public class Word2PdfAsposeUtil {
 		return result;
 	}
 
+	public static boolean isLinux() {
+		return System.getProperty("os.name").toLowerCase().contains("linux");
+	}
+
+	public static boolean isWindows() {
+		return System.getProperty("os.name").toLowerCase().contains("windows");
+	}
+
 	public static boolean doc2pdf(InputStream in, OutputStream out) {
 		if (!getLicense()) { // 验证License 若不验证则转化出的pdf文档会有水印产生
 			return false;
 		}
 		try {
+			if (isLinux()) {
+				FontSettings.setFontsFolder("/usr/share/fonts/chinese", true);
+			}
 			Document doc = new Document(in); // Address是将要被转化的word文档
 			doc.save(out, SaveFormat.PDF);// 全面支持DOC, DOCX, OOXML, RTF HTML, OpenDocument, PDF,
 			// EPUB, XPS, SWF 相互转换
@@ -59,6 +71,9 @@ public class Word2PdfAsposeUtil {
 		try {
 			File file = new File(outPath); // 新建一个空白pdf文档
 			os = new FileOutputStream(file);
+			if (isLinux()) {
+				FontSettings.setFontsFolder("/usr/share/fonts/chinese", true);
+			}
 			Document doc = new Document(inPath); // Address是将要被转化的word文档
 			doc.save(os, SaveFormat.PDF);// 全面支持DOC, DOCX, OOXML, RTF HTML, OpenDocument, PDF,
 			// EPUB, XPS, SWF 相互转换
@@ -73,6 +88,39 @@ public class Word2PdfAsposeUtil {
 					e.printStackTrace();
 				}
 			}
+		}
+		return true;
+	}
+
+	public static boolean doc2html(InputStream in, String tempath) {
+		if (!getLicense()) { // 验证License 若不验证则转化出的pdf文档会有水印产生
+			return false;
+		}
+		try {
+			if (isLinux()) {
+				FontSettings.setFontsFolder("/usr/share/fonts/chinese", true);
+			}
+			Document doc = new Document(in);
+			doc.save(tempath, SaveFormat.HTML);// 全面支持DOC, DOCX, OOXML, RTF HTML, OpenDocument, PDF,
+			// EPUB, XPS, SWF 相互转换
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	public static boolean pdf2html(InputStream in, String tempath) {
+		if (!getLicense()) { // 验证License 若不验证则转化出的pdf文档会有水印产生
+			return false;
+		}
+		try {
+			if (isLinux()) {
+				FontSettings.setFontsFolder("/usr/share/fonts/chinese", true);
+			}
+			com.aspose.pdf.Document pdf = new com.aspose.pdf.Document(in);
+			pdf.save(tempath, com.aspose.pdf.SaveFormat.Html);
+		} catch (Exception e) {
+			return false;
 		}
 		return true;
 	}

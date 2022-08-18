@@ -24,6 +24,12 @@
 
 	<dependencies>
 
+		<!-- servlet包 -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+
 		<!-- PostgreSql 驱动 -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -51,6 +57,15 @@
 			<version>15.8.0</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/aspose-words-15.8.0-jdk16.jar</systemPath>
+		</dependency>
+
+		<!--word文件读取-添加本地的jar包 -->
+		<dependency>
+			<groupId>com.aspose</groupId>
+			<artifactId>aspose-pdf</artifactId>
+			<version>17.8.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/aspose.pdf-17.8.jar</systemPath>
 		</dependency>
 
 		<!-- spring -->
