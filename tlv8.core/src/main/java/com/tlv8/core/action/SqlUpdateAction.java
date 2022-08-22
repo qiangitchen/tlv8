@@ -42,7 +42,7 @@ public class SqlUpdateAction extends ActionSupport {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/sqlUpdateAction", produces = "application/json;charset=UTF-8",method = RequestMethod.POST)
+	@RequestMapping(value = "/sqlUpdateAction", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
 	public Object execute() throws Exception {
 		data = new Data();
 		String userid = ContextBean.getContext(request).getCurrentPersonID();
@@ -57,7 +57,7 @@ public class SqlUpdateAction extends ActionSupport {
 		try {
 			r = exeUpdateAction();
 			String sIP = IPUtils.getRemoteAddr(request);
-			LogUtils.WriteActionLogs("sqlUpdateAction", "公共Action", "数据操作", sIP, "执行SQL：" + querys, "WEB");
+			LogUtils.WriteActionLogs("sqlUpdateAction", "公共Action", "数据操作", sIP, "执行SQL：" + querys, "WEB", null);
 			f = "true";
 		} catch (Exception e) {
 			m = "操作失败：" + e.getMessage();

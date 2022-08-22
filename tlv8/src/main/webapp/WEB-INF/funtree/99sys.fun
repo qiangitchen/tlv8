@@ -32,18 +32,18 @@
       <item activity="mainActivity" icon="wdpz.png" label="文档配置" process="/SA/doc/docSetting/docSettingProcess" url="/SA/doc/docSetting/mainActivity.html"></item> 
     </item>  
     <item label="系统工具" layuiIcon="layui-icon layui-icon-util"> 
+      <item activity="LoginLog" label="登录日志" process="/SA/log/LoginLogProcess" url="/SA/log/Login-Log.html"></item>
       <item activity="mainActivity" icon="jkc.png" icon32="/UI/SA/log/images/icon32.png" icon64="/UI/SA/log/images/icon64.png" label="操作日志" process="/SA/log/logProcess" url="/SA/log/mainActivity.html"></item>  
       <item activity="mainActivity" icon="zxyh.png" icon32="/UI/SA/online/images/icon32.png" icon64="/UI/SA/online/images/icon64.png" label="在线用户" process="/SA/online/onlineProcess" url="/SA/online/MySampleListPage.html"></item>  
       <item activity="gradeOnlineUserActivity" icon="zxyh.png" icon32="/UI/SA/online/images/icon32.png" icon64="/UI/SA/online/images/icon64.png" label="在线用户-分级" process="/SA/online/onlineProcess" url="/SA/online/gradeOnlineUserActivity.html"></item>  
-      <item activity="LoginLog" icon="yhdl.png" label="用户登录统计" process="/SA/log/LoginLogProcess" url="/SA/log/LoginLog.html"></item>  
-      <item activity="mobileAppLog" icon="sjyh.png" label="手机用户统计" process="/SA/log/mobileAppLogProcess" url="/SA/log/mobileAppLog.html"></item>  
-      <item activity="VPNLog" icon="vpnuser.png" label="VPN用户统计" process="/SA/log/VPNLogProcess" url="/SA/log/VPNLog.html"></item>  
       <item activity="mainActivity" icon="fwqjk.png" label="服务器监控" process="SA/services/pcProcess" url="/SA/services/servicesInfo.html"></item>  
       <item activity="cockpitActivity" icon="jiankongc.png" label="服务器监控舱" process="SA/services/pcProcess" url="/SA/cockpit/show.html"></item> 
     </item>  
     <item label="基础配置" layuiIcon="layui-icon layui-icon-util"> 
       <item activity="mailsetMain" display="" icon="" label="邮箱配置" process="/SA/mail/process" url="/SA/mail/mailsetMain.html"></item>
     </item>  
-    <item activity="mainActivity" icon="baobiaosheji.png" label="报表设计" layuiIcon="layui-icon layui-icon-layouts" process="/ureport/designerProcess" url="/ureport/designer"></item> 
+    <item label="报表工具" layuiIcon="fa fa-bar-chart"> 
+    	<item activity="mainActivity" icon="baobiaosheji.png" label="报表设计" layuiIcon="layui-icon layui-icon-layouts" process="/ureport/designerProcess" url="/ureport/designer"></item>
+    </item> 
   </item> 
 </root>

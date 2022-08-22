@@ -52,7 +52,7 @@ public class DeleteSystemAction extends ActionSupport{
 		try {
 			r = exeUpdateAction();
 			String sIP = IPUtils.getRemoteAddr(request);
-			LogUtils.WriteActionLogs("deleteSystemAction", "公共Action", "数据操作", sIP, "执行SQL：" + sql, "WEB");
+			LogUtils.WriteActionLogs("deleteSystemAction", "公共Action", "数据操作", sIP, "执行SQL：" + sql, "WEB",null);
 			f = "true";
 		} catch (Exception e) {
 			m = "操作失败：" + e.getMessage();

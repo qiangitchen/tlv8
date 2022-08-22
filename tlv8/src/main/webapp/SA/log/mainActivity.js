@@ -3,13 +3,13 @@ var currentgrid = null;
 var data = new tlv8.Data();
 data.setTable("SA_Log");
 data.setDbkey("system");
-//data.setOrderby("sCreateTime desc");
+data.setOrderby("sCreateTime desc");
 /*====*/
 function getData() {
 	var d = document.getElementById("maingridview");
 	var labelid = "No,sActivityName,sProcessName,sCreatorPersonName,sActionName,sCreateTime,sTypeName,sIP,sDescription";
 	var labels = "No.,功能,功能模块,操作者,操作,操作时间,类别,IP地址,描述";
-	var labelwidth = "40,120,260,60,60,120,0,110,220";
+	var labelwidth = "40,120,260,80,100,150,80,140,220";
 	var datatype = "ro,string,string,string,string,datetime,string,string,textarea";//设置字段类型
 	var dataAction = {
 		"queryAction" : "getGridAction",

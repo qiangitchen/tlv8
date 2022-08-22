@@ -28,7 +28,7 @@ public class UpdateCeaseOrganAction extends ActionSupport {
 	private String sql;
 
 	@ResponseBody
-	@RequestMapping(value="/updateCeaseOrganAction", produces = "application/json;charset=UTF-8",method = RequestMethod.POST)
+	@RequestMapping(value = "/updateCeaseOrganAction", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
 	public Object execute() throws Exception {
 		data = new Data();
 		String userid = new BaseController().getContext().getCurrentPersonID();
@@ -43,7 +43,7 @@ public class UpdateCeaseOrganAction extends ActionSupport {
 		try {
 			exeUpdateCeaseOrgAction();
 			String sIP = IPUtils.getRemoteAddr(request);
-			LogUtils.WriteActionLogs("updateCeaseOrganAction", "公共Action", "数据操作", sIP, "执行SQL：" + sql, "WEB");
+			LogUtils.WriteActionLogs("updateCeaseOrganAction", "公共Action", "数据操作", sIP, "执行SQL：" + sql, "WEB", null);
 			f = "true";
 		} catch (Exception e) {
 			m = "error" + e.getMessage();

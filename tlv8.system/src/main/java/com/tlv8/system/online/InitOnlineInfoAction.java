@@ -13,9 +13,9 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.base.utils.IDUtils;
+import com.tlv8.base.utils.IPUtils;
 import com.tlv8.mac.License;
 import com.tlv8.system.BaseController;
-import com.tlv8.system.action.WriteLoginLog;
 import com.tlv8.system.bean.ContextBean;
 
 @SuppressWarnings("rawtypes")
@@ -51,7 +51,7 @@ public class InitOnlineInfoAction {
 			ps.setString(5, context.getIp());
 			ps.setTimestamp(6, new Timestamp(new Date().getTime()));
 			ps.setString(7, context.getSessionID());
-			ps.setString(8, WriteLoginLog.getPermisServerIP(request));
+			ps.setString(8, IPUtils.getPermisServerIP(request));
 			ps.setString(9, MachineCode);
 			ps.executeUpdate();
 			conn.commit();

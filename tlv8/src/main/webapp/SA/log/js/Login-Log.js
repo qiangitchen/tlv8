@@ -7,10 +7,10 @@ data.setOrderby("SLOGINTIME desc");
 /*====*/
 function getData() {
 	var d = document.getElementById("maingridview");
-	var labelid = "No,SUSERNAME,SLOGINTIME,SLOGINIP";
-	var labels = "No.,登录名,登录时间,登录IP";
-	var labelwidth = "40,80,120,100";
-	var datatype = "ro,string,datetime,string";//设置字段类型
+	var labelid = "No,SUSERNAME,SLOGINIP,SSERVICEIP,SDAY,SLOGINTIME";
+	var labels = "No.,登录名,登录IP,服务器IP,星期,登录时间";
+	var labelwidth = "40,100,140,140,100,150";
+	var datatype = "ro,string,string,string,string,datetime";//设置字段类型
 	var dataAction = {
 		"queryAction" : "getGridAction",
 		"savAction" : "",
