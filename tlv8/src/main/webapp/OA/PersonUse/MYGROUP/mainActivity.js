@@ -2,26 +2,26 @@
 var toolbarItem;
 function init_toolbar() {
 	var bardiv = J$("stander_bar");
-	var toobar = new justep.yn.toolbar(bardiv, false, "readonly", false, true);
+	var toobar = new tlv8.toolbar(bardiv, false, "readonly", false, true);
 	toolbarItem = toobar.items;
 }
 
 /* =======主表配置====== */
-var MainData = new justep.yn.Data();
+var MainData = new tlv8.Data();
 function getData() {
 	MainData.setDbkey("oa");// 指定使用数据库连接
 	MainData.setTable("OA_ADM_MYGROUPMAIN");
 	MainData.setFormId("MAIN_DATA_FORM");// 主表关联form
-	$("#FCREATORID").val(justep.yn.Context.getCurrentPersonID());
-	$("#FCREATOR").val(justep.yn.Context.getCurrentPersonName());
-	$("#FCREATEDEPTID").val(justep.yn.Context.getCurrentDeptID());
-	$("#FCREATEDEPT").val(justep.yn.Context.getCurrentDeptName());
-	$("#FCREATEDATE").val(justep.yn.System.Date.sysDateTime());
+	$("#FCREATORID").val(tlv8.Context.getCurrentPersonID());
+	$("#FCREATOR").val(tlv8.Context.getCurrentPersonName());
+	$("#FCREATEDEPTID").val(tlv8.Context.getCurrentDeptID());
+	$("#FCREATEDEPT").val(tlv8.Context.getCurrentDeptName());
+	$("#FCREATEDATE").val(tlv8.System.Date.sysDateTime());
 	getData2();
 }
 
 /* ======从表配置====== */
-var SubData = new justep.yn.Data();
+var SubData = new tlv8.Data();
 var Maingridperson;
 function getData2() {
 	SubData.setDbkey("oa");// 指定使用数据库连接
@@ -36,7 +36,7 @@ function getData2() {
 		"savAction" : "saveAction",
 		"deleteAction" : "deleteAction"
 	};
-	var maingrid = new justep.yn.createGrid(d, labelid, labels, labelwidth,
+	var maingrid = new tlv8.createGrid(d, labelid, labels, labelwidth,
 			dataAction, "100%", "100%", SubData, 20, "", "MAIN_DATA_FORM",
 			"FOUTKEY", datatype, "false", "true");
 	maingrid.grid.settoolbar(true, false, true, true);// 设置按钮显示{新增、保存、刷新、删除}
@@ -46,7 +46,7 @@ function getData2() {
 	// 重写新建按钮
 	J$("direct_from_subgrid_insertItem").onclick = function() {
 		// 你的自定义新增事件写在这里
-		justep.yn.portal.dailog.openDailog("选择人员",
+		tlv8.portal.dailog.openDailog("选择人员",
 				"/comon/SelectDialogPsn/SelectChPsm.html", 600, 500,
 				initPersonlist);
 	};
@@ -99,15 +99,15 @@ function initPersonlist(data) {
 	for (var curindex = 0; curindex < curpersonids.length; curindex++) {
 		var newid = Maingridperson.insertData();
 		Maingridperson.setValueByName("FCREATORID", newid,
-				justep.yn.Context.getCurrentPersonID());
-		Maingridperson.setValueByName("FCREATOR", newid, justep.yn.Context
+				tlv8.Context.getCurrentPersonID());
+		Maingridperson.setValueByName("FCREATOR", newid, tlv8.Context
 				.getCurrentPersonName());
 		Maingridperson.setValueByName("FCREATEDEPTID", newid,
-				justep.yn.Context.getCurrentDeptID());
+				tlv8.Context.getCurrentDeptID());
 		Maingridperson.setValueByName("FCREATEDEPT", newid,
-				justep.yn.Context.getCurrentDeptName());
+				tlv8.Context.getCurrentDeptName());
 		Maingridperson.setValueByName("FCREATEDATE", newid,
-				justep.yn.System.Date.sysDateTime());
+				tlv8.System.Date.sysDateTime());
 
 		Maingridperson.setValueByName("FPERSONID", newid,
 				curpersonids[curindex]);

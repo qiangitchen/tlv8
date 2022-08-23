@@ -29,13 +29,13 @@ var setting = {
 var datamian;
 var rowid = "";
 function initDocumentPage() {
-	datamian = new justep.yn.Data();
+	datamian = new tlv8.Data();
 	datamian.setDbkey("oa");
 	datamian.setTable("OA_PULICNOTICE");
 	datamian.setFormId("MAIN_DATA_FORM");
-	// flwCompent = new justep.yn.flw("flowToolbar", datamian, setting);
-	rowid = justep.yn.RequestURLParam.getParam("rowid"); // 获取url参数
-	readonly = justep.yn.RequestURLParam.getParam("readonly"); // 获取url参数
+	// flwCompent = new tlv8.flw("flowToolbar", datamian, setting);
+	rowid = tlv8.RequestURLParam.getParam("rowid"); // 获取url参数
+	readonly = tlv8.RequestURLParam.getParam("readonly"); // 获取url参数
 	document.getElementById("MAIN_DATA_FORM").rowid = rowid;
 	J$("MAIN_DATA_FORM").setAttribute("rowid", rowid);
 	if (readonly != "true") {
@@ -43,7 +43,7 @@ function initDocumentPage() {
 	}
 	datamian.refreshData();
 	showSelectPersonInfo(rowid, true);
-	var fileComp = new justep.yn.fileComponent(document
+	var fileComp = new tlv8.fileComponent(document
 			.getElementById("fileCompDiv"), datamian, "FATTFILE",
 			"/root/通知公告/附件/" + (new Date().getFullYear()) + "/"
 					+ (new Date().getMonth() + 1), false, false, false);

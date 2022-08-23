@@ -4,7 +4,6 @@
   <item icon="xt.gif" label="任务中心" layuiIcon="layui-icon layui-icon-auz"> 
     <item activity="mainActivity" icon="workflow.png" label="任务列表" layuiIcon="fa fa-tasks" process="/SA/task/taskCenter/process" url="/SA/task/taskCenter/mainActivity.html"></item>  
     <item activity="monitorActivity" icon="lcjk.png" label="流程监控" layuiIcon="fa fa-desktop" process="/SA/task/taskCenter/process" url="/SA/process/monitor/mainActivity.html"></item>  
-    <item activity="unFlowmanaActivity" icon="rwcl.png" label="任务处理" layuiIcon="fa fa-edit" process="/SA/task/taskCenter/process" url="/SA/task/unFlowmana/mainActivity.html"></item>  
     <item activity="vml-dwr-editer" icon="lcsj.png" label="流程设计" layuiIcon="fa fa-dashboard" process="/flw/dwr/process" url="/flw/dwr/vml-dwr-editer.html"></item>  
     <item activity="reminActivity" icon="tixing.png" label="系统提醒" layuiIcon="fa fa-leaf" process="/SA/task/taskCenter/process" url="/SA/remind/mainActivity.html"></item>  
     <item activity="mainActivity" icon="tixing.png" label="任务时限配置" layuiIcon="layui-icon layui-icon-about" process="/SA/task/timeLimitset/process" url="/SA/task/timeLimitset/mainActivity.html"></item> 

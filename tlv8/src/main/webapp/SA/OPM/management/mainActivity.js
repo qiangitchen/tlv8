@@ -130,17 +130,16 @@ function new_permition_back(dataMap) {
 function cancelStFunc() {
 	if (!confirm("确定删除所选数据吗？"))
 		return;
-	var checkedID = currentgrid.getCheckedRowIds().split(",");
-	var dRowId = "";
-	for (var i = 0; i < checkedID.length; i++) {
-		dRowId += ",'" + checkedID[i] + "'";
-	}
-	dRowId = dRowId.replaceFirst(",", "");
-	var sql = "delete from SA_OPMANAGEMENT where sID in(" + dRowId + ")";
-	var r = tlv8.sqlUpdateAction("system", sql, function(r) {
+	var param = new tlv8.RequestParam();
+	param.set("checkedIDs", currentgrid.getCheckedRowIds());
+	var r = tlv8.XMLHttpRequest("deleteManagement", param, "post", false);
+	if (r.flag == "false") {
+		alert(r.message);
+	} else {
 		currentgrid.refreshData();
-	});
+	}
 }
+
 // 拖动分隔线事件
 function standardPartitionResize(event) {
 	$("#main-grid-view_grid_label").fixTable({

@@ -4,7 +4,7 @@
 
 	<groupId>com.tlv8</groupId>
 	<artifactId>tlv8-root</artifactId>
-	<version>2.4.0</version>
+	<version>2.4.1</version>
 	<packaging>pom</packaging>
 
 	<name>tlv8-root</name>
@@ -12,7 +12,7 @@
 	<description>TLv8 平台</description>
 
 	<properties>
-		<tlv8.version>2.4.0</tlv8.version>
+		<tlv8.version>2.4.1</tlv8.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>

@@ -1,6 +1,6 @@
 var currentgrid;
 function getData() {
-	var data = new justep.yn.Data();
+	var data = new tlv8.Data();
 	data.setDbkey("oa");
 	data.setTable("SHOW_OA_RE_MONTHREPORT");
 	data.setOrderby("FPUSHDATETIME desc");
@@ -14,8 +14,8 @@ function getData() {
 		"savAction" : "saveAction",// 保存动作
 		"deleteAction" : "deleteAction"// 删除动作
 	};
-	var createid = justep.yn.Context.getCurrentPersonID();
-	var maingrid = new justep.yn.createGrid(d, labelid, labels, labelwidth,
+	var createid = tlv8.Context.getCurrentPersonID();
+	var maingrid = new tlv8.createGrid(d, labelid, labels, labelwidth,
 			dataAction, "100%", "100%", data, 20, "FPERSONID = '" + createid
 					+ "' and FPUSHDATETIME is not null", "", "", datatype,
 			"false", "true");
@@ -29,7 +29,7 @@ function lookviewf(event) {
 			+ event.rowid + "')\" >" + event.value + "</a></div>";
 }
 function lookview(id) {
-	justep.yn.portal.openWindow('月报详细',
+	tlv8.portal.openWindow('月报详细',
 			'/OA/Report/MonthReport/reportAdd.html?temp='
 					+ new Date().getMilliseconds() + "&sData1=" + id
 					+ "&readonly=true", 'newwindow');

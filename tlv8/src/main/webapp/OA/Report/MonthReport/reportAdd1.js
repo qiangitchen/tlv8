@@ -1,7 +1,7 @@
 var flwCompent;// 流程组件
 function init_toolbar() {
 	var bardiv = J$("stander_bar");
-	new justep.yn.toolbar(bardiv, false, true, false, true);
+	new tlv8.toolbar(bardiv, false, true, false, true);
 }
 
 // 流程配置
@@ -35,11 +35,11 @@ var datamian;
 var rowid = "";
 function initDocumentPage() {
 	init_toolbar();
-	datamian = new justep.yn.Data();
+	datamian = new tlv8.Data();
 	datamian.setDbkey("oa");
 	datamian.setTable("OA_RE_MONTHREPORT");
 	datamian.setFormId("MAIN_DATA_FORM");
-	rowid = justep.yn.RequestURLParam.getParam("sData1");
+	rowid = tlv8.RequestURLParam.getParam("sData1");
 	if (rowid == "" || rowid == null) {
 		alert("数据传输失败");
 	} else {
@@ -80,11 +80,11 @@ function addPerson() {
 	}
 }
 function initPersonlist(data) {
-	var param = new justep.yn.RequestParam();
+	var param = new tlv8.RequestParam();
 	param.set("sdata1", rowid);
 	param.set("fids", data.id);
 	param.set("names", data.name);
-	var result = justep.yn.XMLHttpRequest("insertNoticePersonAction?temp="
+	var result = tlv8.XMLHttpRequest("insertNoticePersonAction?temp="
 			+ new Date().getMilliseconds(), param);
 	if (result.data.flag == "true") {
 		showSelectPersonInfo(rowid);
@@ -95,9 +95,9 @@ function initPersonlist(data) {
 
 function delPerson(fid) {
 	if (confirm("你确定要删除当前选择人员吗?")) {
-		var param = new justep.yn.RequestParam();
+		var param = new tlv8.RequestParam();
 		param.set("fid", fid);
-		var result = justep.yn.XMLHttpRequest("deleteNoticePersonAction?temp="
+		var result = tlv8.XMLHttpRequest("deleteNoticePersonAction?temp="
 				+ new Date().getMilliseconds(), param);
 		if (result.data.flag == "true") {
 			showSelectPersonInfo(rowid);
@@ -108,15 +108,15 @@ function delPerson(fid) {
 }
 
 function afterDatarefresh() {
-	new justep.yn.fileComponent(document.getElementById("fileCompDiv"),
+	new tlv8.fileComponent(document.getElementById("fileCompDiv"),
 			datamian, "FFILE", "/root/报表管理/月报/" + getCurentYearandMonth());
 	showSelectPersonInfo(rowid);
-	flwCompent = new justep.yn.flw("flowToolbar", datamian, setting);
+	flwCompent = new tlv8.flw("flowToolbar", datamian, setting);
 }
 
 // 流程结束
 function onAdvanceCommitDef(event) {
-	datamian.setValueByName("FPUSHDATETIME", justep.yn.System.Date
+	datamian.setValueByName("FPUSHDATETIME", tlv8.System.Date
 			.sysDateTime());
 	datamian.saveData();
 }

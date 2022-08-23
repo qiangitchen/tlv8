@@ -59,26 +59,39 @@ function affairsUpdate(){
 	var newSdateB = statertime.toString().substring(11, 19);
 	var newEdateA = endtime.toString().substring(0, 10);
 	var newEdateB = endtime.toString().substring(11, 19);
-	var sqlUP="update sa_psnmytask set SCAPTION='"+caption+"',SPRIORITY='"+priority+
-			"',SSTARTDATE='"+newSdateA+" "+newSdateB+"',SENDDATE='"+newEdateA+" "+newEdateB+"'"+
-			",SCONTENT='"+content+"',SSTARTDATE_AXIS="+stime_a+",SSENDDATE_AXIS="+etime_a+" where SID='"+affairsID+"' ";
-	var result=tlv8.sqlUpdateAction("system",sqlUP);
-	if(true==result.data||"true"==result.data){
+	var param = new tlv8.RequestParam();
+	param.set("caption", caption);
+	param.set("priority", priority);
+	param.set("newSdateA", newSdateA);
+	param.set("newSdateB", newSdateB);
+	param.set("newEdateA", newEdateA);
+	param.set("newEdateB", newEdateB);
+	param.set("content", content);
+	param.set("stime_a", stime_a);
+	param.set("etime_a", etime_a);
+	param.set("affairsID", affairsID);
+	var r = tlv8.XMLHttpRequest("schedule/updateScheduleData", param, "post", false);
+	if(!r.sate){
 		alert("不明错误，修改失败");
+	}else{
+		alert("修改成功！");
 	}
-	else{alert("修改成功！");}
 }
+
 //已完成按钮
 function affairsCompleted(){
-	var sqlUP = "update sa_psnmytask set SSTATUS='已完成',SCOMPLETERATE='100' where SID='"+affairsID+"' ";
-	var result=tlv8.sqlUpdateAction("system",sqlUP);
-	if(true==result.data||"true"==result.data){
+	var param = new tlv8.RequestParam();
+	param.set("affairsID", affairsID);
+	var r = tlv8.XMLHttpRequest("schedule/finishSchedule", param, "post", false);
+	if(!r.sate){
 		alert("不明错误，修改失败");
-	}
-	else{alert("终于结束了！");
+	}else{
+		alert("终于结束了！");
 		document.getElementById("sstatus").value ="已完成";
-		document.getElementById("SCOMPLETERATE").value = "100"}
+		document.getElementById("SCOMPLETERATE").value = "100";
+	}
 }
+
 //删除按钮
 function affairsDelete(){
 	var dataDelete = new tlv8.Data();

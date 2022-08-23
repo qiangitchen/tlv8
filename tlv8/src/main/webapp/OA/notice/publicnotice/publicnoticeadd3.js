@@ -2,7 +2,7 @@
 var toolbarItem, flwCompent;
 function init_toolbar() {
 	var bardiv = J$("stander_bar");
-	var toobar = new justep.yn.toolbar(bardiv, false, true, false, true);
+	var toobar = new tlv8.toolbar(bardiv, false, true, false, true);
 	toolbarItem = toobar.items;
 }
 
@@ -37,12 +37,12 @@ var setting = {
 var datamian;
 var rowid = "";
 function initDocumentPage() {
-	datamian = new justep.yn.Data();
+	datamian = new tlv8.Data();
 	datamian.setDbkey("oa");
 	datamian.setTable("OA_PULICNOTICE");
 	datamian.setFormId("MAIN_DATA_FORM");
-	flwCompent = new justep.yn.flw("flowToolbar", datamian, setting);
-	var sData1 = justep.yn.RequestURLParam.getParam("sData1");
+	flwCompent = new tlv8.flw("flowToolbar", datamian, setting);
+	var sData1 = tlv8.RequestURLParam.getParam("sData1");
 	document.getElementById("MAIN_DATA_FORM").rowid = sData1;
 	J$("MAIN_DATA_FORM").setAttribute("rowid", sData1);
 	datamian.refreshData();
@@ -64,7 +64,7 @@ function dataRefresh() {
 // 流程结束
 function onAdvanceCommitDef(event) {
 //	datamian.setValueByName("FSTATE", 1);
-	datamian.setValueByName("FPUSHDATETIME", justep.yn.System.Date
+	datamian.setValueByName("FPUSHDATETIME", tlv8.System.Date
 			.sysDateTime());
 	datamian.saveData();
 }

@@ -731,61 +731,30 @@ tlv8.sqlQueryActionforJson = function(dbkey, sql, callBack, ayn) {
 		}
 	}
 };
+
+/**
+ * @description 执行sql更新动作【已弃用】
+ */
 tlv8.sqlUpdateAction = function(dbkey, sql, callBack, ayn) {
-	ayn = (ayn == true) ? true : false;
-	var param = new tlv8.RequestParam();
-	param.set("dbkey", CryptoJS.AESEncrypt(dbkey));
-	param.set("querys", CryptoJS.AESEncrypt(sql));
-	var recallback = function(r) {
-		if (callBack) {
-			callBack(r.data);
-		}
-	};
-	var r = tlv8.XMLHttpRequest("sqlUpdateAction", param, "POST", ayn,
-			recallback);
-	if (ayn == false) {
-		var res = r.data;
-		return res;
-	}
+	throw new "方法弃用!";
 };
+
+/**
+ * @description 【已弃用】
+ */
 tlv8.callProcedureAction = function(dbkey, ProduceName, Param, callBack,
 		ayn) {
-	ayn = (ayn == true) ? true : false;
-	var param = new tlv8.RequestParam();
-	param.set("dbkey", dbkey);
-	param.set("ProduceName", ProduceName);
-	param.set("Param", Param);
-	var recallback = function(r) {
-		if (callBack) {
-			callBack(r.data);
-		}
-	};
-	var r = tlv8.XMLHttpRequest("callProcedureAction", param, "POST", ayn,
-			recallback);
-	if (ayn == false) {
-		var res = r.data;
-		return res;
-	}
+	throw new "方法弃用!";
 };
+
+/**
+ * @description 【已弃用】
+ */
 tlv8.callFunctionAction = function(dbkey, ProduceName, Param, callBack,
 		ayn) {
-	ayn = (ayn == true) ? true : false;
-	var param = new tlv8.RequestParam();
-	param.set("dbkey", dbkey);
-	param.set("ProduceName", ProduceName);
-	param.set("Param", Param);
-	var recallback = function(r) {
-		if (callBack) {
-			callBack(r.data);
-		}
-	};
-	var r = tlv8.XMLHttpRequest("callFunctionAction", param, "POST", ayn,
-			recallback);
-	if (ayn == false) {
-		var res = r.data;
-		return res;
-	}
+	throw new "方法弃用!";
 };
+
 function getNevType() {
 	try {
 		if ((navigator.userAgent.indexOf('MSIE') >= 0)

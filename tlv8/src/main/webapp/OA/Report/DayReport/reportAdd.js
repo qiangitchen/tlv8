@@ -1,17 +1,17 @@
 function init_toolbar() {
 	var bardiv = J$("stander_bar");
-	new justep.yn.toolbar(bardiv, false, true, false, true);
+	new tlv8.toolbar(bardiv, false, true, false, true);
 }
 //数据配置
 var datamian;
 var rowid = "";
 function initDocumentPage() {
-	datamian = new justep.yn.Data();
+	datamian = new tlv8.Data();
 	datamian.setDbkey("oa");
 	datamian.setTable("OA_RE_DAYREPORT");
 	datamian.setFormId("MAIN_DATA_FORM");
-	rowid = justep.yn.RequestURLParam.getParam("rowid");
-	readonly = justep.yn.RequestURLParam.getParam("readonly");
+	rowid = tlv8.RequestURLParam.getParam("rowid");
+	readonly = tlv8.RequestURLParam.getParam("readonly");
 	if (readonly == null || readonly == "") {
 		if (rowid == "" || rowid == null) {
 			dataInsert();
@@ -21,7 +21,7 @@ function initDocumentPage() {
 			J$("MAIN_DATA_FORM").setAttribute("rowid", rowid);
 			datamian.refreshData();
 		}
-		new justep.yn.fileComponent(document.getElementById("fileCompDiv"),
+		new tlv8.fileComponent(document.getElementById("fileCompDiv"),
 				datamian, "FFILE", "/root/报表管理/日报/" + getCurentYearandMonth());
 		changePushState();
 		showSelectPersonInfo(rowid);
@@ -33,7 +33,7 @@ function initDocumentPage() {
 			document.getElementById("MAIN_DATA_FORM").rowid = rowid;
 			J$("MAIN_DATA_FORM").setAttribute("rowid", rowid);
 			datamian.refreshData();
-			new justep.yn.fileComponent(document.getElementById("fileCompDiv"),
+			new tlv8.fileComponent(document.getElementById("fileCompDiv"),
 					datamian, "FFILE", "/root/报表管理/日报/"
 					+ getCurentYearandMonth(), false, false, false,
 					false, false);
@@ -66,7 +66,7 @@ function dataSave() {
 	J$("MAIN_DATA_FORM").rowid = rowid;
 	J$("MAIN_DATA_FORM").setAttribute("rowid", rowid);
 	$("#MAIN_DATA_FORM").attr("rowid", rowid);
-	justep.yn.portal.callBack(justep.yn.RequestURLParam.getParam("tabID"),
+	tlv8.portal.callBack(tlv8.RequestURLParam.getParam("tabID"),
 	"defRefreshData");
 	return true;
 }
@@ -85,11 +85,11 @@ function initPersonlist(data) {
 	if(data.id==""){
 		alert("未选中人员！");
 	}else{
-		var param = new justep.yn.RequestParam();
+		var param = new tlv8.RequestParam();
 		param.set("sdata1", rowid);
 		param.set("fids", data.id);
 		param.set("names", data.name);
-		var result = justep.yn.XMLHttpRequest("insertNoticePersonAction?temp="
+		var result = tlv8.XMLHttpRequest("insertNoticePersonAction?temp="
 				+ new Date().getMilliseconds(), param);
 		if (result.data.flag == "true") {
 			showSelectPersonInfo(rowid);
@@ -101,9 +101,9 @@ function initPersonlist(data) {
 
 function delPerson(fid) {
 	if (confirm("你确定要删除当前选择人员吗?")) {
-		var param = new justep.yn.RequestParam();
+		var param = new tlv8.RequestParam();
 		param.set("fid", fid);
-		var result = justep.yn.XMLHttpRequest("deleteNoticePersonAction?temp="
+		var result = tlv8.XMLHttpRequest("deleteNoticePersonAction?temp="
 				+ new Date().getMilliseconds(), param);
 		if (result.data.flag == "true") {
 			showSelectPersonInfo(rowid);
@@ -128,11 +128,11 @@ function changePushState() {
 //发布
 function pushData() {
 	if (dataSave()) {
-		datamian.setValueByName("FPUSHDATETIME", justep.yn.System.Date
+		datamian.setValueByName("FPUSHDATETIME", tlv8.System.Date
 				.sysDateTime());
 		datamian.saveData();
 		changePushState();
-		justep.yn.portal.callBack(justep.yn.RequestURLParam.getParam("tabID"),
+		tlv8.portal.callBack(tlv8.RequestURLParam.getParam("tabID"),
 				"defRefreshData", "ok");
 	}
 }
@@ -142,6 +142,6 @@ function unpushData(id) {
 	datamian.setValueByName("FPUSHDATETIME", "");
 	datamian.saveData();
 	changePushState();
-	justep.yn.portal.callBack(justep.yn.RequestURLParam.getParam("tabID"),
+	tlv8.portal.callBack(tlv8.RequestURLParam.getParam("tabID"),
 			"defRefreshData", "ok");
 }

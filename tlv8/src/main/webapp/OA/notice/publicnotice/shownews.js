@@ -1,6 +1,6 @@
 function show_news() {
-	var param = new justep.yn.RequestParam();
-	var res = justep.yn.XMLHttpRequest("getPortalNotesAction", param, "post",
+	var param = new tlv8.RequestParam();
+	var res = tlv8.XMLHttpRequest("getPortalNotesAction", param, "post",
 			false);
 	if (res.data.flag != "true") {
 		$("#addnewsload").html(res.data.message);
@@ -22,11 +22,11 @@ function show_news() {
 			html += "<td style='white-space:nowrap;overflow:hidden;line-height:22px;'>"
 					+ "<img src='symbol.png'> <a href='javascript:void(0);' title='"
 					+ cells[n].FTITLE
-					+ "' onClick='justep.yn.portal.openWindow(\"通知详细\",\"/OA/notice/publicnotice/publicnoticeview1.html?rowid="
+					+ "' onClick='tlv8.portal.openWindow(\"通知详细\",\"/OA/notice/publicnotice/publicnoticeview1.html?rowid="
 					+ cells[n].FID + "\")'>" + cells[n].FTITLE;
 			html += "&nbsp;</td>";
 			html += "<td width='70px;' style='text-align:center;'>"
-					+ (justep.yn.System.Date.strToDate(cells[n].FPUSHDATETIME)
+					+ (tlv8.System.Date.strToDate(cells[n].FPUSHDATETIME)
 							.format("yyyy-MM-dd"));
 			html += "</td>";
 			html += "</tr>";
@@ -37,6 +37,6 @@ function show_news() {
 }
 // 更多
 function onhistory() {
-	justep.yn.portal.openWindow('通知列表',
+	tlv8.portal.openWindow('通知列表',
 			'/OA/notice/publicnotice/looknoticepushlist.html');
 }

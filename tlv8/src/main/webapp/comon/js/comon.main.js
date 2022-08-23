@@ -691,93 +691,26 @@ tlv8.sqlQueryActionforJson = function(dbkey, sql, callBack, ayn) {
 };
 
 /**
- * @name tlv8.sqlUpdateAction
- * @function
- * @description 执行sql更新动作
- * @param dbkey
- * @param sql
- * @param callBack
- * @param ayn
- * @returns {JSON}
+ * @description 执行sql更新动作【已弃用】
  */
 tlv8.sqlUpdateAction = function(dbkey, sql, callBack, ayn) {
-	ayn = (ayn == true) ? true : false;
-	var param = new tlv8.RequestParam();
-	param.set("dbkey", CryptoJS.AESEncrypt(dbkey));
-	param.set("querys", CryptoJS.AESEncrypt(sql));
-	var recallback = function(r) {
-		if (callBack) {
-			callBack(r.data);
-		}
-	};
-	var r = tlv8.XMLHttpRequest("sqlUpdateAction", param, "POST", ayn,
-			recallback);
-	if (ayn == false) {
-		var res = r.data;
-		return res;
-	}
+	throw new "方法弃用!";
 };
 
 /**
- * @name tlv8.callProcedureAction
- * @function
- * @description 调用存储过程
- * @param dbkey
- * @param ProduceName
- * @param Param
- * @param callBack
- * @param ayn
- * @returns {JSON}
+ * @description 【已弃用】
  */
 tlv8.callProcedureAction = function(dbkey, ProduceName, Param, callBack,
 		ayn) {
-	ayn = (ayn == true) ? true : false;
-	var param = new tlv8.RequestParam();
-	param.set("dbkey", dbkey);
-	param.set("ProduceName", ProduceName);
-	param.set("Param", Param);
-	var recallback = function(r) {
-		if (callBack) {
-			callBack(r.data);
-		}
-	};
-	var r = tlv8.XMLHttpRequest("callProcedureAction", param, "POST", ayn,
-			recallback);
-	if (ayn == false) {
-		var res = r.data;
-		return res;
-	}
+	throw new "方法弃用!";
 };
 
 /**
- * @name tlv8.callFunctionAction
- * @function
- * @description 调用数据库函数
- * @param dbkey
- * @param ProduceName
- * @param Param
- * @param callBack
- * @param ayn
- * @returns {JSON}
+ * @description 【已弃用】
  */
 tlv8.callFunctionAction = function(dbkey, ProduceName, Param, callBack,
 		ayn) {
-	ayn = (ayn == true) ? true : false;
-	var param = new tlv8.RequestParam();
-	param.set("dbkey", dbkey);
-	param.set("ProduceName", ProduceName);
-	param.set("Param", Param);
-	var recallback = function(r) {
-		if (callBack) {
-			callBack(r.data);
-		}
-	};
-	var r = tlv8.XMLHttpRequest("callFunctionAction", param, "POST", ayn,
-			recallback);
-	if (ayn == false) {
-		var res = r.data;
-		return res;
-	}
+	throw new "方法弃用!";
 };
 
 /*
@@ -6492,102 +6425,6 @@ tlv8.docpigeonhole = function(folder, title, table, billid, surl) {
 	tlv8.XMLHttpRequest("docpigeonholeAction", param, "POST", false);
 };
 
-/**
- * @title 标题
- * @table 业务数据表
- * @billid 单据主键
- * @surl 查看页面地址
- */
-tlv8.Mydocpigeonhole = function(title, table, billid, surl) {
-	var newid = new UUID().toString();
-	var filename = "<a href=\"javascript:tlv8.docOpendeatail(''" + title
-			+ "'',''" + surl + "'',''" + billid + "'')\">" + title + "</a>";
-	tlv8.portal.dailog
-			.openDailog(
-					"选择归档目录",
-					"/SA/docnode/dialog/myFolderSelect.html",
-					300,
-					400,
-					function(rdata) {
-						var sql = "insert into PERSONAL_FILE(SID,SFILENAME,SCREATORID,SCREATORNAME,SMASTERID,VERSION)"
-								+ " select '"
-								+ newid
-								+ "','"
-								+ filename
-								+ "','"
-								+ tlv8.Context.getCurrentPersonID()
-								+ "',"
-								+ "'"
-								+ tlv8.Context.getCurrentPersonName()
-								+ "','" + rdata + "',0 from dual";
-						tlv8.sqlUpdateAction("system", sql, function(re) {
-							if (re.flag == "false") {
-								alert(re.message);
-							} else {
-								alert("归档成功!");
-							}
-						}, true);
-					});
-};
-
-/**
- * @title 标题
- * @table 业务数据表
- * @billid 单据主键
- * @surl 查看页面地址
- */
-tlv8.ognDocpigeonhole = function(title, table, billid, surl) {
-	var selsql = "select * from oa_dz_filecabinet where FMAINID='" + billid
-			+ "'";
-	var result = tlv8.sqlQueryActionforJson("oa", selsql);
-	if (result.data.length > 0) {
-		if (confirm("文件已归过档,是否更换文件夹")) {
-			tlv8.portal.dailog.openDailog("选择归档目录",
-					"/SA/docnode/dialog/ognFolderSelect.html", 300, 400,
-					function(rdata) {
-						var sql = "update oa_dz_filecabinet set FMASTERID='"
-								+ rdata + "' where FMAINID='" + billid + "'";
-						tlv8.sqlUpdateAction("oa", sql);
-						alert("归档成功!");
-					});
-		}
-	} else {
-		var newid = new UUID().toString();
-		var filename = "<a href=\"javascript:tlv8.docOpendeatail(''"
-				+ title + "'',''" + surl + "'',''" + billid + "'')\">" + title
-				+ "</a>";
-		tlv8.portal.dailog
-				.openDailog(
-						"选择归档目录",
-						"/SA/docnode/dialog/ognFolderSelect.html",
-						300,
-						400,
-						function(rdata) {
-							var sql = "insert into oa_dz_filecabinet(FID,FFILENAME,FCREATORID,FCREATORNAME,FMASTERID,FMAINID,VERSION)"
-									+ " select '"
-									+ newid
-									+ "','"
-									+ filename
-									+ "','"
-									+ tlv8.Context.getCurrentPersonID()
-									+ "',"
-									+ "'"
-									+ tlv8.Context.getCurrentPersonName()
-									+ "','"
-									+ rdata
-									+ "','"
-									+ billid
-									+ "',0 from dual";
-							tlv8.sqlUpdateAction("oa", sql, function(re) {
-								if (re.flag == "false") {
-									alert(re.message);
-								} else {
-									alert("归档成功!");
-								}
-							}, true);
-						});
-	}
-};
 /*
  * 查看归档文件详细
  */

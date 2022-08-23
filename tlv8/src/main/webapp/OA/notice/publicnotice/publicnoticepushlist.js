@@ -1,6 +1,6 @@
 /*==数据源===此项为必须定义==*/
 var currentgrid;
-var data = new justep.yn.Data();
+var data = new tlv8.Data();
 data.setDbkey("oa");// 指定使用数据库连接
 data.setTable("OA_PULICNOTICE");// 指定grid对应的表
 data.setOrderby(" FCREATEDATETIME desc");// 指定grid对应的表
@@ -19,19 +19,19 @@ function getData() {
 		"savAction" : "saveAction",// 保存动作
 		"deleteAction" : "deleteAction"// 删除动作
 	};
-	var maingrid = new justep.yn.createGrid(d, labelid, labels, labelwidth,
+	var maingrid = new tlv8.createGrid(d, labelid, labels, labelwidth,
 			dataAction, "100%", "100%", data, 20, "FCREATEID = '"
-					+ justep.yn.Context.getCurrentPersonID() + "'", "", "",
+					+ tlv8.Context.getCurrentPersonID() + "'", "", "",
 			datatype, "false", "true");
 	// 设置按钮显示{新增、保存、刷新、删除}
 	maingrid.grid.settoolbar(true, false, true, true);
 	currentgrid = maingrid.grid;
 	currentgrid.refreshData();// 刷新数据
 	document.getElementById("main-grid-view_insertItem").onclick = function() {
-		justep.yn.portal.openWindow('新增通知',
+		tlv8.portal.openWindow('新增通知',
 				'/OA/notice/publicnotice/publicnoticeadd.html?temp='
 						+ new Date().getMilliseconds() + "&tabID="
-						+ justep.yn.portal.currentTabId(), 'newwindow');
+						+ tlv8.portal.currentTabId(), 'newwindow');
 	};
 }
 function opef(event) {
@@ -56,8 +56,8 @@ function lookviewf(event) {
 			+ event.rowid + "')\" >" + event.value + "</a></div>";
 }
 function lookview(id) {
-	var tabID = justep.yn.portal.currentTabId();
-	justep.yn.portal.openWindow('编辑通知',
+	var tabID = tlv8.portal.currentTabId();
+	tlv8.portal.openWindow('编辑通知',
 			'/OA/notice/publicnotice/publicnoticeadd.html?&sData1=' + id
 					+ "&readonly=true&tabID="+tabID, 'newwindow');
 }

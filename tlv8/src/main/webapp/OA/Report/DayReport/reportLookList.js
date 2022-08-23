@@ -1,6 +1,6 @@
 var currentgrid;
 function getData() {
-	var data = new justep.yn.Data();
+	var data = new tlv8.Data();
 	data.setDbkey("oa");
 	data.setTable("SHOW_OA_RE_DAYREPORT");
 	data.setOrderby("FPUSHDATETIME desc");
@@ -14,8 +14,8 @@ function getData() {
 		"savAction" : "saveAction",// 保存动作
 		"deleteAction" : "deleteAction"// 删除动作
 	};
-	var createid = justep.yn.Context.getCurrentPersonID();
-	var maingrid = new justep.yn.createGrid(d, labelid, labels, labelwidth,
+	var createid = tlv8.Context.getCurrentPersonID();
+	var maingrid = new tlv8.createGrid(d, labelid, labels, labelwidth,
 			dataAction, "100%", "100%", data, 20, "FPERSONID = '" + createid
 					+ "'", "", "", datatype, "false", "true");
 	// 设置按钮显示{新增、保存、刷新、删除}
@@ -28,7 +28,7 @@ function lookviewf(event) {
 			+ event.rowid + "')\" >" + event.value + "</a></div>";
 }
 function lookview(id) {
-	justep.yn.portal.openWindow('日报详细',
+	tlv8.portal.openWindow('日报详细',
 			'/OA/Report/DayReport/reportAdd.html?temp='
 					+ new Date().getMilliseconds() + "&rowid=" + id
 					+ "&readonly=true", 'newwindow');

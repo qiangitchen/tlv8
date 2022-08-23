@@ -1,6 +1,6 @@
 /*==数据源===此项为必须定义==*/
 var currentgrid;
-var data = new justep.yn.Data();
+var data = new tlv8.Data();
 data.setDbkey("oa");// 指定使用数据库连接
 data.setTable("OA_RE_MONTHREPORT");// 指定grid对应的表
 data.setOrderby("FCREATETIME desc");// 指定grid对应的表
@@ -18,8 +18,8 @@ function getData() {
 		"savAction" : "saveAction",// 保存动作
 		"deleteAction" : "deleteAction"// 删除动作
 	};
-	var createid = justep.yn.Context.getCurrentPersonID();
-	var maingrid = new justep.yn.createGrid(d, labelid, labels, labelwidth,
+	var createid = tlv8.Context.getCurrentPersonID();
+	var maingrid = new tlv8.createGrid(d, labelid, labels, labelwidth,
 			dataAction, "100%", "100%", data, 20, "FCREATEPERSONID = '"
 					+ createid + "'", "", "", datatype, "false", "true");
 	// 设置按钮显示{新增、保存、刷新、删除}
@@ -27,10 +27,10 @@ function getData() {
 	currentgrid = maingrid.grid;
 	currentgrid.refreshData();// 刷新数据
 	document.getElementById("main-grid-view_insertItem").onclick = function() {
-		justep.yn.portal.openWindow('月报登记',
+		tlv8.portal.openWindow('月报登记',
 				'/OA/Report/MonthReport/reportAdd.html?temp='
 						+ new Date().getMilliseconds() + "&tabID="
-						+ justep.yn.portal.currentTabId(), 'newwindow');
+						+ tlv8.portal.currentTabId(), 'newwindow');
 	};
 }
 function opef(event) {
@@ -55,14 +55,14 @@ function lookviewf(event) {
 			+ event.rowid + "')\" >" + event.value + "</a></div>";
 }
 function lookview(id) {
-	justep.yn.portal.openWindow('编辑计划',
+	tlv8.portal.openWindow('编辑计划',
 			'/OA/Report/MonthReport/reportAdd.html?temp='
 					+ new Date().getMilliseconds() + "&tabID="
-					+ justep.yn.portal.currentTabId() + "&rowid=" + id,
+					+ tlv8.portal.currentTabId() + "&rowid=" + id,
 			'newwindow');
 }
 function pushData(id) {
-	currentgrid.setValueByName("FPUSHDATETIME", id, justep.yn.System.Date
+	currentgrid.setValueByName("FPUSHDATETIME", id, tlv8.System.Date
 			.sysDateTime());
 	currentgrid.saveData();
 }

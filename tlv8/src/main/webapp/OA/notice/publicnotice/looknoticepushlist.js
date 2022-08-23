@@ -1,6 +1,6 @@
 /*==数据源===此项为必须定义==*/
 var currentgrid;
-var data = new justep.yn.Data();
+var data = new tlv8.Data();
 data.setDbkey("oa");// 指定使用数据库连接
 data.setTable("OA_PULICNOTICE");// 指定grid对应的表
 data.setOrderby("FPUSHDATETIME desc");// 指定grid对应的表
@@ -18,7 +18,7 @@ function getData() {
 		"savAction" : "saveAction",// 保存动作
 		"deleteAction" : "deleteAction"// 删除动作
 	};
-	var maingrid = new justep.yn.createGrid(d, labelid, labels, labelwidth,
+	var maingrid = new tlv8.createGrid(d, labelid, labels, labelwidth,
 			dataAction, "100%", "100%", data, 20, "FPUSHDATETIME is not null", "", "", datatype,
 			"false", "true");
 	maingrid.grid.settoolbar(false, false, true, false);
@@ -30,7 +30,7 @@ function lookviewf(event) {
 			+ event.rowid + "')\" >" + event.value + "</a></div>";
 }
 function lookview(id) {
-	justep.yn.portal.openWindow('查看通知',
+	tlv8.portal.openWindow('查看通知',
 			'/OA/notice/publicnotice/publicnoticeview1.html?&rowid=' + id,
 			'newwindow');
 }

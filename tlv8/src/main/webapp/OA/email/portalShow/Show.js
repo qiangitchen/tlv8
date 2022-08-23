@@ -1,6 +1,6 @@
 function init() {
-	var param = new justep.yn.RequestParam();
-	var res = justep.yn.XMLHttpRequest("loadMailPortalInfo", param, "post",
+	var param = new tlv8.RequestParam();
+	var res = tlv8.XMLHttpRequest("loadMailPortalInfo", param, "post",
 			false);
 	if (res.data.flag != "true") {
 		$("#addnewsload").html(res.data.message);
@@ -51,13 +51,13 @@ function init() {
 	setTimeout(init,60*1000);
 }
 function openWin() {
-	justep.yn.portal.openWindow('内部邮件', '/OA/email/mainActivity.html');
+	tlv8.portal.openWindow('内部邮件', '/OA/email/mainActivity.html');
 }
 
 function translateTime(date) {
-	var c_date = justep.yn.System.Date.strToDate(date);
+	var c_date = tlv8.System.Date.strToDate(date);
 	var c_f_date = c_date.format("yyyy/MM/dd");
-	var this_date = justep.yn.System.Date.strToDate(justep.yn.System.Date
+	var this_date = tlv8.System.Date.strToDate(tlv8.System.Date
 			.sysDate());
 	var this_f_date = this_date.format("yyyy/MM/dd");
 	var re = "";

@@ -21,9 +21,6 @@ function ensure() {
 			alert("数据读取错误,请重试");
 			return false;
 		}
-		var sql = "UPDATE OA_WORK_PLAN_PERSON T SET T.FOPINION = '" + op
-				+ "' WHERE T.FID='" + rowid + "'";
-		tlv8.sqlUpdateAction("oa", sql);
 		javascript: history.go(-1);
 	} catch (e) {
 		alert("保存意见出现错误，请重试");

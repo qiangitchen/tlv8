@@ -1,8 +1,8 @@
 function init() {
 	var sqlStr = "SELECT * FROM SHOW_OA_RE_MONTHREPORT T  WHERE T.FPERSONID='"
-			+ justep.yn.Context.getCurrentPersonID()
+			+ tlv8.Context.getCurrentPersonID()
 			+ "' and T.FPUSHDATETIME IS NOT NULL ORDER BY T.FPUSHDATETIME DESC";
-	var re = justep.yn.sqlQueryActionforJson("oa", sqlStr);
+	var re = tlv8.sqlQueryActionforJson("oa", sqlStr);
 	var html = "";
 	if (re.data.length > 0) {
 		for (var n = 0; n < re.data.length; n++) {
@@ -31,13 +31,13 @@ function init() {
 	}
 }
 function openWin(id) {
-	justep.yn.portal.openWindow('月报详细',
+	tlv8.portal.openWindow('月报详细',
 			'/OA/Report/MonthReport/reportAdd.html?temp='
 					+ new Date().getMilliseconds() + "&sData1=" + id
 					+ "&readonly=true", 'newwindow');
 }
 // 更多
 function more() {
-	justep.yn.portal.openWindow('月报查看',
+	tlv8.portal.openWindow('月报查看',
 			'/OA/Report/MonthReport/reportLookList.html');
 }

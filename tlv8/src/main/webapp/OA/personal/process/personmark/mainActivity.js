@@ -64,12 +64,12 @@ function doSearchbtn() {
 }
 
 function searchAllRecvFile() {
-	var param = new justep.yn.RequestParam();
-	param.set("userid", justep.yn.Context.getCurrentPersonID());
+	var param = new tlv8.RequestParam();
+	param.set("userid", tlv8.Context.getCurrentPersonID());
 	param.set("count", count);
 	param.set("pagenum", pagenum);
 	param.set("searchTitle", $("#kw").val());
-	justep.yn.XMLHttpRequest("getAllrecvFileInfoAction", param, "post", true,
+	tlv8.XMLHttpRequest("getAllrecvFileInfoAction", param, "post", true,
 			function(re) {
 				var data = re.data.data;
 				if (typeof data == "string") {
@@ -95,7 +95,7 @@ function init_sfileli_data(data) {
 			var fType = data[i].FTYPE;
 			var title = data[i].FTITLE.replace(/[\n\r]/gi, "");
 			var forname = data[i].FORMNAME;
-			var frecvdate = justep.yn.System.Date.strToDate(data[i].FRECVDATE)
+			var frecvdate = tlv8.System.Date.strToDate(data[i].FRECVDATE)
 					.format("yyyy-MM-dd");
 			var fcreatername = data[i].FCREATERNAME;
 			var templateid = data[i].TEMPLATEID;
@@ -104,7 +104,7 @@ function init_sfileli_data(data) {
 			var cont = parseInt(attachcount);
 			if (fType != "send" && fType != "receive") {
 				srtype = "外部来文";
-				if(parseInt(justep.yn.System.Date.strToDate(data[i].FRECVDATE)
+				if(parseInt(tlv8.System.Date.strToDate(data[i].FRECVDATE)
 						.format("yyyy"))<new Date().getFullYear()){
 					tiaction = "editDocHist('" + fid + "','" + forname + "','"
 					+ templateid + "')";
@@ -146,9 +146,9 @@ function init_sfileli_data(data) {
 
 // 改变对内发文的状态
 function changeState(fid) {
-	var param = new justep.yn.RequestParam();
+	var param = new tlv8.RequestParam();
 	param.set("fid", fid);
-	justep.yn.XMLHttpRequest("updateInnerRecv", param, "post", true, function(
+	tlv8.XMLHttpRequest("updateInnerRecv", param, "post", true, function(
 			re) {
 		var data = re.data.data;
 		if (typeof data == "string") {
@@ -162,10 +162,10 @@ function changeState(fid) {
 
 function auditWord(fmainid, fid) {
 	innerRecvFid = fid;
-	var param = new justep.yn.RequestParam();
+	var param = new tlv8.RequestParam();
 	param.set("fid", fmainid);
 	param.set("prms", "0");
-	justep.yn.XMLHttpRequest("getAttachJsonById", param, "post", true,
+	tlv8.XMLHttpRequest("getAttachJsonById", param, "post", true,
 			function(re) {
 				var data = re.data.data;
 				if (typeof data == "string") {
@@ -186,7 +186,7 @@ function openArchive(id, type, fid) {
 	var url = "/OA/docrs/process/dialog/openArchiveActivity.html?process="
 			+ process + "&activity=" + activity + "&rowID=" + id + "&type="
 			+ type;
-	justep.yn.portal.openWindow("阅办文件", url);
+	tlv8.portal.openWindow("阅办文件", url);
 	changeState(fid);
 }
 // 审阅文件
@@ -197,7 +197,7 @@ function editDoc(id, forname, templateid) {
 			+ ".html?process=" + process + "&activity=" + activity + "&rowID="
 			+ id + "&tId=" + templateid + "&callerName="
 			+ parent.justep.Portal.Tab.getCurrentId() + "&protype=wait";
-	justep.yn.portal.openWindow("阅办文件", url);
+	tlv8.portal.openWindow("阅办文件", url);
 }
 
 // 审阅文件(历史)
@@ -214,5 +214,5 @@ function editDocHist(id, forname, templateid) {
 			+ templateid
 			+ "&callerName="
 			+ parent.justep.Portal.Tab.getCurrentId() + "&protype=wait";
-	justep.yn.portal.openWindow("阅办文件", url);
+	tlv8.portal.openWindow("阅办文件", url);
 }

@@ -2,22 +2,22 @@
  * 设置当前用户信息
  */
 function setCreatorInfo() {
-	var deptid = justep.yn.Context.getCurrentDeptID() == "" ? justep.yn.Context
-			.getCurrentOgnID() : justep.yn.Context.getCurrentDeptID();
-	var deptname = justep.yn.Context.getCurrentDeptName() == "" ? justep.yn.Context
+	var deptid = tlv8.Context.getCurrentDeptID() == "" ? tlv8.Context
+			.getCurrentOgnID() : tlv8.Context.getCurrentDeptID();
+	var deptname = tlv8.Context.getCurrentDeptName() == "" ? tlv8.Context
 			.getCurrentOgnName()
-			: justep.yn.Context.getCurrentDeptName();
-	$("#FCREATEOGNID").val(justep.yn.Context.getCurrentOgnID());
-	$("#FCREATEOGNNAME").val(justep.yn.Context.getCurrentOgnName());
+			: tlv8.Context.getCurrentDeptName();
+	$("#FCREATEOGNID").val(tlv8.Context.getCurrentOgnID());
+	$("#FCREATEOGNNAME").val(tlv8.Context.getCurrentOgnName());
 	$("#FCREATEDEPTID").val(deptid);
 	$("#FCREATEDEPTNAME").val(deptname);
-	$("#FCREATEPOSID").val(justep.yn.Context.getCurrentPostID());
-	$("#FCREATEPOSNAME").val(justep.yn.Context.getCurrentPostName());
-	$("#FCREATEPERSONID").val(justep.yn.Context.getCurrentPersonID());
-	$("#FCREATEPERSONNAME").val(justep.yn.Context.getCurrentPersonName());
-	$("#FCREATEPERSONFID").val(justep.yn.Context.getCurrentPersonFID());
-	$("#FCREATEPERSONFNAME").val(justep.yn.Context.getCurrentPersonFName());
-	$("#FCREATETIME").val(justep.yn.System.Date.sysDateTime());
+	$("#FCREATEPOSID").val(tlv8.Context.getCurrentPostID());
+	$("#FCREATEPOSNAME").val(tlv8.Context.getCurrentPostName());
+	$("#FCREATEPERSONID").val(tlv8.Context.getCurrentPersonID());
+	$("#FCREATEPERSONNAME").val(tlv8.Context.getCurrentPersonName());
+	$("#FCREATEPERSONFID").val(tlv8.Context.getCurrentPersonFID());
+	$("#FCREATEPERSONFNAME").val(tlv8.Context.getCurrentPersonFName());
+	$("#FCREATETIME").val(tlv8.System.Date.sysDateTime());
 }
 
 /**
@@ -26,9 +26,9 @@ function setCreatorInfo() {
  * @param divID
  */
 function initOpinionCom(rowid, divID) {
-	var parm = new justep.yn.RequestParam();
+	var parm = new tlv8.RequestParam();
 	parm.set("sData1", rowid);
-	var re = justep.yn.XMLHttpRequest("UpdBrowseAction", parm);
+	var re = tlv8.XMLHttpRequest("UpdBrowseAction", parm);
 }
 /**
  * 去空格
@@ -45,7 +45,7 @@ function strTrim(v) {
 function canUnPush(fid) {
 	var sqlStr = "select count(0) as COUNT from OA_NOTICE_PERSON WHERE FMAINID = '"
 			+ fid + "' and fbrowse = '是'";
-	var news = justep.yn.sqlQueryActionforJson("app", sqlStr);
+	var news = tlv8.sqlQueryActionforJson("app", sqlStr);
 	if (news.data.length > 0) {
 		var co = news.data[0].COUNT;
 		if (co > 0) {
@@ -64,7 +64,7 @@ function canUnPush(fid) {
  * @returns {String} 2013/12
  */
 function getCurentYearandMonth() {
-	var date = justep.yn.System.Date.strToDate(justep.yn.System.Date.sysDate());
+	var date = tlv8.System.Date.strToDate(tlv8.System.Date.sysDate());
 	var year = date.getFullYear();
 	var month = date.getMonth() + 1;
 	return year + "/" + month;
@@ -75,7 +75,7 @@ function openSelectPersonDalog(callback, height, width) {
 		height = 450;
 	if (width == null || width == "")
 		width = 600;
-	justep.yn.portal.dailog.openDailog("选择人员",
+	tlv8.portal.dailog.openDailog("选择人员",
 			"/comon/SelectDialogPsn/SelectChPsm.html?temp="
 					+ new Date().getUTCMilliseconds(), width, height, callback);
 }
@@ -86,9 +86,9 @@ function showSelectPersonInfo(rowid, isRead) {
 	if (isRead == null || isRead == "")
 		isRead = false;
 	var personListtxt = "";
-	var parm = new justep.yn.RequestParam();
+	var parm = new tlv8.RequestParam();
 	parm.set("fid", rowid);
-	var result = justep.yn.XMLHttpRequest("getNoticePersonAction?temp="
+	var result = tlv8.XMLHttpRequest("getNoticePersonAction?temp="
 			+ new Date().getMilliseconds(), parm);
 	if (result.data.flag == "true") {
 		var Data = result.data.data;
@@ -154,8 +154,8 @@ function updateLookState(rowid, isnew) {
 	if (isnew == null || isnew == "") {
 		isnew = "true";
 	}
-	var parm = new justep.yn.RequestParam();
+	var parm = new tlv8.RequestParam();
 	parm.set("rowid", rowid);
 	parm.set("isnew", isnew);
-	justep.yn.XMLHttpRequest("updateNoticeBrowseAction", parm);
+	tlv8.XMLHttpRequest("updateNoticeBrowseAction", parm);
 }

@@ -230,8 +230,9 @@ function editview() {
 function deleteview() {
 	if (!confirm("删除文件夹，删除后不能恢复，确定删除吗?"))
 		return;
-	var sql = "DELETE FROM PERSONALDOCNODE WHERE SID='" + treeRowid + "'";
-	tlv8.sqlUpdateAction("system", sql);
+	var pam = new tlv8.RequestParam();
+	pam.set("treeRowid", treeRowid);
+	tlv8.XMLHttpRequest("persondocnode/deleteFolder", pam, "post", false);
 	sJtree.refreshJtree("maintree");
 }
 
@@ -254,11 +255,10 @@ function deleteCnOde() {
 	var SFILEID = currentgrid.getValueByName("SFILEID", rowid);
 	if (rowid) {
 		if (confirm("文件删除后不能撤销，确定删除文件吗?")) {
-			var dsql = "delete from PERSONAL_FILE where SID = '" + rowid + "'";
-			var dcsql = "delete from SA_DOCNODE where SFILEID = '" + SFILEID
-					+ "'";
-			tlv8.sqlUpdateAction("system", dsql);
-			tlv8.sqlUpdateAction("system", dcsql);
+			var pam = new tlv8.RequestParam();
+			pam.set("rowid", rowid);
+			pam.set("fileid", SFILEID);
+			tlv8.XMLHttpRequest("persondocnode/deleteFileData", pam, "post", false);
 			currentgrid.refreshData();
 		}
 	}

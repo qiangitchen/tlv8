@@ -122,7 +122,7 @@ createMailList = function(compent, json, mailType) {
 		});
 	};
 	this.translateDate = function(date) {
-		var c_date = justep.yn.System.Date.strToDate(date);
+		var c_date = tlv8.System.Date.strToDate(date);
 		var c_f_date = c_date.format("yyyy/MM/dd");
 		var this_f_date = this.date.format("yyyy/MM/dd");
 		var re = "";
@@ -307,9 +307,9 @@ createMailList = function(compent, json, mailType) {
  * 加载收信箱
  */
 function loadRecvMail() {
-	var param = new justep.yn.RequestParam();
+	var param = new tlv8.RequestParam();
 	param.set("limit", limit);
-	var re = justep.yn.XMLHttpRequest("LoadRecvMailAction", param);
+	var re = tlv8.XMLHttpRequest("LoadRecvMailAction", param);
 	if (re.data.flag == "true") {
 		var list = new createMailList("receiveListData", re.data.data, "收件箱");
 		list.init();
@@ -335,7 +335,7 @@ function loadRecvMail() {
 		$("#div_search").show();
 		current_page = 1;
 	} else {
-		justep.yn.showMessage("收信箱加载出错,请重试.");
+		tlv8.showMessage("收信箱加载出错,请重试.");
 	}
 }
 /**
@@ -382,9 +382,9 @@ function lastPage(type) {
  * 加载发信箱
  */
 function loadSendMail() {
-	var param = new justep.yn.RequestParam();
+	var param = new tlv8.RequestParam();
 	param.set("limit", limit);
-	var re = justep.yn.XMLHttpRequest("LoadSendMailAction", param, "post");
+	var re = tlv8.XMLHttpRequest("LoadSendMailAction", param, "post");
 	if (re.data.flag == "true") {
 		var list = new createMailList("sendListData", re.data.data, "发件箱");
 		list.init();
@@ -413,9 +413,9 @@ function loadSendMail() {
  * 加载收藏夹
  */
 function loadCollectMail() {
-	var param = new justep.yn.RequestParam();
+	var param = new tlv8.RequestParam();
 	param.set("limit", limit);
-	var re = justep.yn.XMLHttpRequest("LoadCollectMailAction", param, "post");
+	var re = tlv8.XMLHttpRequest("LoadCollectMailAction", param, "post");
 	if (re.data.flag == "true") {
 		var list = new createMailList("CollectListData", re.data.data, "收藏箱");
 		list.initCollect();
@@ -445,9 +445,9 @@ function loadCollectMail() {
  * 加载草稿箱
  */
 function loadTempletMail() {
-	var param = new justep.yn.RequestParam();
+	var param = new tlv8.RequestParam();
 	param.set("limit", limit);
-	var re = justep.yn.XMLHttpRequest("LoadTempletMailAction", param, "post");
+	var re = tlv8.XMLHttpRequest("LoadTempletMailAction", param, "post");
 	if (re.data.flag == "true") {
 		var list = new createMailList("templetListData", re.data.data, "草稿箱");
 		list.init();
@@ -485,7 +485,7 @@ function loadSearchMail() {
 			return;
 		}
 		searchValue = value;
-		var param = new justep.yn.RequestParam();
+		var param = new tlv8.RequestParam();
 		param.set("limit", limit);
 		param.set("value", searchValue);
 		var re = justep.yn
@@ -508,7 +508,7 @@ function loadSearchMail() {
 			checkedRow = new Map();
 			current_page = 1;
 		} else {
-			justep.yn.showMessage("邮件查找出错，请重试或重新打开邮件功能.");
+			tlv8.showMessage("邮件查找出错，请重试或重新打开邮件功能.");
 		}
 	} else {
 		searchValue = value;
@@ -595,13 +595,13 @@ function lookNoReadMailDetail(rowid, type) {
 }
 
 function updateLookState(rowid) {
-	var usql = "update OA_EM_ReceiveEmail set FQUREY = '已查看' where FID = '"
-			+ rowid + "'";
-	justep.yn.sqlUpdateAction("oa", usql);
+	var param = new tlv8.RequestParam();
+	param.set("rowid", rowid);
+	tlv8.XMLHttpRequest("receiveEmail/upQurey", param, "post");
 }
 
 function lookviewback() {
-	new justep.yn.fileComponent(document.getElementById("fj_view"), data_info,
+	new tlv8.fileComponent(document.getElementById("fj_view"), data_info,
 			"FFJID", "/root/邮箱/" + getCurentYearandMonth(), false, false,
 			false, false);
 	var bh = $(document.body).height();
@@ -625,7 +625,7 @@ function deleteCheckedRow(type) {
 		}
 		ids.join(",");
 		if (confirm("删除后将不能再回复，确定删除吗?")) {
-			var param = new justep.yn.RequestParam();
+			var param = new tlv8.RequestParam();
 			param.set("rowid", ids);
 			param.set("type", type);
 			var re = justep.yn
@@ -637,13 +637,13 @@ function deleteCheckedRow(type) {
 					loadTempletMail();// 加载草稿箱
 				else
 					loadRecvMail();// 加载收件
-				justep.yn.showMessage("邮件删除成功");
+				tlv8.showMessage("邮件删除成功");
 			} else {
 				alert("删除邮件出错");
 			}
 		}
 	} else {
-		justep.yn.showMessage("请勾选需要删除的邮件");
+		tlv8.showMessage("请勾选需要删除的邮件");
 	}
 }
 
@@ -758,26 +758,26 @@ function goback() {
 function loadMorePage(action, listdata, type, page, loadtype) {
 	var recv_begin, recv_end, currentpage;
 	if (loadtype == "next") {
-		var param = new justep.yn.RequestParam();
+		var param = new tlv8.RequestParam();
 		recv_begin = current_page * limit;
 		currentpage = ++current_page;
 		recv_end = current_page * limit;
 		param.set("limit", recv_end);
 		param.set("offerset", recv_begin);
-		var re = justep.yn.XMLHttpRequest(action, param);
+		var re = tlv8.XMLHttpRequest(action, param);
 		if (re.data.flag == "true") {
 			new createMailList(listdata, re.data.data, type).init();
 		}
 		var count = re.count == null ? "0" : re.count;
 		initnextPage(page, count, type, currentpage);
 	} else {
-		var param = new justep.yn.RequestParam();
+		var param = new tlv8.RequestParam();
 		currentpage = --current_page;
 		recv_end = current_page * limit;
 		recv_begin = (current_page - 1) * limit;
 		param.set("limit", recv_end);
 		param.set("offerset", recv_begin);
-		var re = justep.yn.XMLHttpRequest(action, param);
+		var re = tlv8.XMLHttpRequest(action, param);
 		if (re.data.flag == "true") {
 			new createMailList(listdata, re.data.data, type).init();
 		}
@@ -799,11 +799,11 @@ function loadSearchMorePage(loadtype) {
 		recv_end = current_page * limit;
 		recv_begin = (current_page - 1) * limit;
 	}
-	var param = new justep.yn.RequestParam();
+	var param = new tlv8.RequestParam();
 	param.set("value", searchValue);
 	param.set("limit", recv_end);
 	param.set("offerset", recv_begin);
-	var re = justep.yn.XMLHttpRequest("LoadSearchMailAction", param, "post");
+	var re = tlv8.XMLHttpRequest("LoadSearchMailAction", param, "post");
 	if (re.data.flag == "true") {
 		new createMailList("SearchListData", re.data.data, "搜索结果")
 				.initSearch(searchValue);

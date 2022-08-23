@@ -36,8 +36,14 @@ public class DeleteSystemAction extends ActionSupport{
 		this.data = data;
 	}
 	
+	/**
+	 * 方法弃用
+	 * 
+	 * @since 2.4.1
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/deleteSystemAction", produces = "application/json;charset=UTF-8",method = RequestMethod.POST)
+	@Deprecated
 	public Object execute() throws Exception {
 		data = new Data();
 		String userid = ContextBean.getContext(request).getCurrentPersonID();
@@ -50,10 +56,11 @@ public class DeleteSystemAction extends ActionSupport{
 		String m = "success";
 		String f = "";
 		try {
-			r = exeUpdateAction();
+//			r = exeUpdateAction();
 			String sIP = IPUtils.getRemoteAddr(request);
 			LogUtils.WriteActionLogs("deleteSystemAction", "公共Action", "数据操作", sIP, "执行SQL：" + sql, "WEB",null);
-			f = "true";
+			f = "false";
+			m = "方法已弃用~";
 		} catch (Exception e) {
 			m = "操作失败：" + e.getMessage();
 			f = "false";
@@ -66,7 +73,7 @@ public class DeleteSystemAction extends ActionSupport{
 	}
 	
 	@SuppressWarnings("deprecation")
-	private String exeUpdateAction() throws SQLException, NamingException {
+	String exeUpdateAction() throws SQLException, NamingException {
 		String result = "";
 		Connection conn = null;
 		Statement stm = null;

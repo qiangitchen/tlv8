@@ -56,18 +56,18 @@ function init() {
 			loadSearchMail();
 		}
 	});
-	
-	$(window).resize(function(){
+
+	$(window).resize(function() {
 		$("#mainlayout").layout('resize');
 		$("#panelview").panel('resize');
 	});
 };
 
 function initData() {
-	data_info = new justep.yn.Data();
+	data_info = new tlv8.Data();
 	data_info.setDbkey("oa");
 	data_info.setFormId("mail_look");
-	write_data = new justep.yn.Data();
+	write_data = new tlv8.Data();
 	write_data.setDbkey("oa");
 	write_data.setFormId("WRITE_DATA_FORM");
 	write_data.setTable("OA_EM_SENDEMAIL");
@@ -84,7 +84,7 @@ function writeMail(rowid, isnew) {
 	}
 	if (rowid == "" || rowid == null) {
 		wirtedataInsert();
-		$("#FSENDPERNAME").text(justep.yn.Context.getCurrentPersonName());
+		$("#FSENDPERNAME").text(tlv8.Context.getCurrentPersonName());
 		$("#fConsignee").val("");
 	} else {
 		if (!isnew)
@@ -107,9 +107,9 @@ function writeMail(rowid, isnew) {
 	current_send_page = 1;
 	current_temp_page = 1;
 	current_search_page = 1;
-	new justep.yn.fileComponent(document.getElementById("write_fj"),
-			write_data, "FFJID", "/root/邮箱/" + getCurentYearandMonth(), true,
-			true, false, false);
+	new tlv8.fileComponent(document.getElementById("write_fj"), write_data,
+			"FFJID", "/root/邮箱/" + getCurentYearandMonth(), true, true, false,
+			false);
 	$(".write_content")
 			.xheditor(
 					"{tools:'full',﻿﻿﻿﻿upImgUrl:'xhUpload',upImgExt:'jpg,jpeg,gif,png'}");
@@ -132,10 +132,10 @@ function deleteCurrentMail() {
 	var rowid = $("#mail_look").attr("rowid");
 	var type = $("#mail_look").attr("mailType");
 	if (confirm("删除后将不能再回复，确定删除吗?")) {
-		var param = new justep.yn.RequestParam();
+		var param = new tlv8.RequestParam();
 		param.set("rowid", rowid);
 		param.set("type", type);
-		var re = justep.yn.XMLHttpRequest("DeleteMailAction", param, "post");
+		var re = tlv8.XMLHttpRequest("DeleteMailAction", param, "post");
 		if (re.data.flag == "true") {
 			if (type == "发件箱")
 				loadSendMail();// 加载发件
@@ -143,16 +143,16 @@ function deleteCurrentMail() {
 				loadTempletMail();// 加载草稿箱
 			else
 				loadRecvMail();// 加载收件
-			justep.yn.showMessage("邮件删除成功");
+			tlv8.showMessage("邮件删除成功");
 		} else {
-			$.messager.alert('警告','删除邮件出错','warning');    
+			$.messager.alert('警告', '删除邮件出错', 'warning');
 		}
 	}
 }
 
 // 保存到草稿箱
 function saveToTempletAction() {
-	var param = new justep.yn.RequestParam();
+	var param = new tlv8.RequestParam();
 	param.set("fconsigneeid", $("#FCONSIGNEEID").val());
 	param.set("fconsignee", $("#FCONSIGNEE").val());
 	param.set("femailname", $("#FEMAILNAME").val());
@@ -160,21 +160,21 @@ function saveToTempletAction() {
 	param.set("fjinfo", $(".FJINFO").val());
 	param.set("actype", "save");
 	param.set("rowid", write_rowid);
-	var re = justep.yn.XMLHttpRequest("sendMailAction", param, "post", false);
+	var re = tlv8.XMLHttpRequest("sendMailAction", param, "post", false);
 	if (re.data.flag == "true") {
 		write_rowid = re.rowid;
 		J$("WRITE_DATA_FORM").rowid = write_rowid;
 		J$("WRITE_DATA_FORM").setAttribute("rowid", write_rowid);
 		$("#WRITE_DATA_FORM").attr("rowid", write_rowid);
 		write_data.refreshData();
-		justep.yn.showMessage("保存草稿成功");
+		tlv8.showMessage("保存草稿成功");
 	} else {
-		$.messager.alert('错误',re.data.message,'error'); 
+		$.messager.alert('错误', re.data.message, 'error');
 	}
 	return write_rowid;
 }
 function afterWriteRefersh() {
-	// new justep.yn.fileComponent(document.getElementById("write_fj"),
+	// new tlv8.fileComponent(document.getElementById("write_fj"),
 	// write_data, "FFJID", "/root/邮箱/" + getCurentYearandMonth(), true,
 	// true, false, false);
 	// $(".write_content")
@@ -188,10 +188,10 @@ function afterWriteRefersh() {
 function sendMail() {
 	var fconsigneeid = $("#FCONSIGNEEID").val();
 	if (fconsigneeid == "" || fconsigneeid == null) {
-		$.messager.alert('警告','请先选择收件人后再发送','warning');    
+		$.messager.alert('警告', '请先选择收件人后再发送', 'warning');
 		return;
 	}
-	var param = new justep.yn.RequestParam();
+	var param = new tlv8.RequestParam();
 	param.set("fconsigneeid", fconsigneeid);
 	// param.set("fconsigneecode", "");
 	param.set("fconsignee", $("#FCONSIGNEE").val());
@@ -200,13 +200,13 @@ function sendMail() {
 	param.set("fjinfo", $(".FJINFO").val());
 	param.set("actype", "send");
 	param.set("rowid", write_rowid);
-	var re = justep.yn.XMLHttpRequest("sendMailAction", param);
+	var re = tlv8.XMLHttpRequest("sendMailAction", param);
 	if (re.data.flag == "true") {
 		write_rowid = re.rowid;
-		$.messager.alert('提示','邮件发送成功');    
+		$.messager.alert('提示', '邮件发送成功');
 		loadSendMail();
 	} else {
-		$.messager.alert('错误',re.data.message,'error');
+		$.messager.alert('错误', re.data.message, 'error');
 	}
 }
 
@@ -245,12 +245,12 @@ function transoutCheckedMail() {
 		$(".lookViewer").hide();
 		$("#lookMailView").hide();
 		$("#writeMailView").show();
-		$("#FSENDPERNAME").text(justep.yn.Context.getCurrentPersonName());
+		$("#FSENDPERNAME").text(tlv8.Context.getCurrentPersonName());
 		$("#fConsignee").val("");
 		// $("#fTitle").val(fEmailName);
 		// $("#fContent").val(fText);
 	} else {
-		justep.yn.showMessage("请勾选需要转发的邮件");
+		tlv8.showMessage("请勾选需要转发的邮件");
 	}
 }
 
@@ -266,7 +266,7 @@ function transoutCuurrentMail() {
 	$("#FEMAILNAME").val("转发：" + mailname);
 	$(".write_content").html(content);
 	$(".FJINFO").val(fj);
-	new justep.yn.fileComponent(document.getElementById("write_fj"), data_info,
+	new tlv8.fileComponent(document.getElementById("write_fj"), data_info,
 			"FFJID", "/root/邮箱/" + getCurentYearandMonth(), false, false,
 			false, false);
 	$(".write_content")
@@ -288,14 +288,14 @@ function collectMail() {
 	if (confirm("确认要收藏此邮件吗?")) {
 		data_info.setValueByName("FCOLLECT", "1");
 		data_info.saveData();
-		$.messager.alert('提示','收藏成功!');    
+		$.messager.alert('提示', '收藏成功!');
 	}
 	checkCollectState();
 }
 function unCollectMail() {
 	data_info.setValueByName("FCOLLECT", "0");
 	data_info.saveData();
-	$.messager.alert('提示','取消收藏成功!');  
+	$.messager.alert('提示', '取消收藏成功!');
 	checkCollectState();
 }
 
@@ -303,12 +303,12 @@ function unCollectMail() {
 function sendTempMail() {
 	var keyset = checkedRow.keySet();
 	if (keyset.length > 1) {
-		justep.yn.showMessage("请只选择一封邮件进行发送.");
+		tlv8.showMessage("请只选择一封邮件进行发送.");
 	} else if (keyset.length == 1) {
 		var rowid = keyset[0];
 		writeMail(rowid);
 	} else {
-		justep.yn.showMessage("请选择一封邮件进行发送.");
+		tlv8.showMessage("请选择一封邮件进行发送.");
 	}
 }
 
@@ -316,14 +316,14 @@ function sendTempMail() {
 function martAlltoRead() {
 	if (!confirm("确定将所有的未读邮件都标记为已查看吗?"))
 		return;
-	var usql = "update OA_EM_ReceiveEmail set FQUREY = '已查看' where fConsigneeID = '"
-			+ justep.yn.Context.getCurrentPersonID() + "' and FQUREY = '未查看'";
-	justep.yn.sqlUpdateAction("oa", usql);
+	var param = new tlv8.RequestParam();
+	param.set("consigneeid", tlv8.Context.getCurrentPersonID());
+	tlv8.XMLHttpRequest("receiveEmail/martAlltoRead", param, "post", false);
 	loadRecvMail();// 加载收件
 }
 
 function selectReceivePsm() {
-	justep.yn.portal.dailog.openDailog("选择人员",
+	tlv8.portal.dailog.openDailog("选择人员",
 			"/comon/SelectDialogPsn/SelectChPsm.html?temp="
 					+ new Date().getUTCMilliseconds(), 650, 420,
 			selectReceivePsmCallback, null);
@@ -339,10 +339,10 @@ function selectReceivePsmCallback(data) {
 function replyCurrentMail() {
 	var rowid = $("#mail_look").attr("rowid");
 	var type = $("#mail_look").attr("mailType");
-	var param = new justep.yn.RequestParam();
+	var param = new tlv8.RequestParam();
 	param.set("rowid", rowid);
 	param.set("type", type);
-	var re = justep.yn.XMLHttpRequest("getMailDeatailAction", param);
+	var re = tlv8.XMLHttpRequest("getMailDeatailAction", param);
 	if (re.data.flag == "true") {
 		writeMail();
 		var data = re.data.data;
@@ -361,12 +361,12 @@ function replySendMail(type) {
 	if (type == "all") {
 		var keyset = checkedRow.keySet();
 		if (keyset.length > 1) {
-			justep.yn.showMessage("请只选择一封邮件进行编辑.");
+			tlv8.showMessage("请只选择一封邮件进行编辑.");
 		} else if (keyset.length == 1) {
 			var rowid = keyset[0];
 			writeMail(rowid, true);
 		} else {
-			justep.yn.showMessage("请选择一封邮件进行编辑.");
+			tlv8.showMessage("请选择一封邮件进行编辑.");
 		}
 	} else {
 		var rowid = $("#mail_look").attr("rowid");
