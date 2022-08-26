@@ -51,7 +51,7 @@ function init(tagID, w, h) {
     obj = document.getElementById("webwps_id");
     window.onbeforeunload = function () {
     	try{
-        obj.Application.Quit();
+    		obj.Application.Quit();
     	}catch (e) {
 		}
     };
@@ -77,6 +77,11 @@ function InitFrame() {
                 if (app && app.IsLoad()) {
                     clearInterval(Interval_control);
                     createDocument();
+                }
+                if (!app) {
+                	var fileid = tlv8.RequestURLParam.getParam("fileid");
+                	var fileName = tlv8.RequestURLParam.getParam("fileName");
+                	window.location.href = "../tangerOffice/pspdfview.jsp?fileid="+fileid+"&fileName="+fileName;
                 }
             }, 500);
     } else {
