@@ -324,8 +324,9 @@ function onBodyDown(event) {
 var BakData;
 function creat_dailogcallback(data) {
 	BakData = data;
-	MainJtree.refreshJtree("JtreeView");
-	setTimeout('int_tree()', 500);
+	MainJtree.refreshJtree("JtreeView",function(){
+		int_tree();
+	});
 }
 function int_tree() {
 	MainJtree.quickPosition(BakData);// 快速查询
@@ -401,15 +402,9 @@ function assign_dailogcallback(data) {
 }
 // 新增、编辑人员信息回调
 function creatPsm_dailogcallback(data) {
-	MainJtree.refreshJtree("JtreeView");
-	MainJtree.quickPosition(currenttreeID);
-	// var filter = "sParent = '" + currenttreeID + "'";
-	// if ($("#checkViewOrgBox").get(0).checked) {
-	// filter += " or sID = '" + currenttreeID + "'";
-	// }
-	// document.getElementById("main_org_trr").rowid = currenttreeID;
-	// currentgrid.setStaticFilter(filter);
-	// currentgrid.refreshData();
+	MainJtree.refreshJtree("JtreeView",function(){
+		MainJtree.quickPosition(currenttreeID);
+	});
 }
 // 双击grid
 function editOrgData(event) {
@@ -495,7 +490,6 @@ function refreshorgitem() {
 	MainJtree.refreshJtree("JtreeView", function() {
 		MainJtree.selectNode(currentNode, false);
 	});
-	// currentgrid.refreshData();
 }
 
 /*
@@ -530,10 +524,10 @@ function dailogcallback(data) {
 		alert(r.data.message);
 		return;
 	}
-	MainJtree.refreshJtree();
 	BakData = currenttreeName;
-	MainJtree.refreshJtree("JtreeView");
-	setTimeout('int_tree()', 500);
+	MainJtree.refreshJtree("JtreeView"，function(){
+		int_tree();
+	});
 }
 // 移动
 function moveOrg() {
