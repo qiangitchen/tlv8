@@ -481,7 +481,6 @@ String.prototype.decodeSpechars = function() {
 function drow_init(processID, processName, json) {
 	var g = new Group(processID, processName);
 	g.init(); // 初始化画布
-	g.setGroupArea();
 
 	// 加载流程图
 	if (json && typeof json == "string") {
@@ -492,4 +491,5 @@ function drow_init(processID, processName, json) {
 		g.jsonTo(json);
 	}
 	
+	g.setGroupArea();
 }
