@@ -13,76 +13,15 @@ var JBot = function() {
 	this.cell = 0;
 	this.botData;
 };
-/*
- * 创建波特图节点 @param {Object} title @param {Object} executor @param {Object}
- * excutordpt @param {Object} status @param {Object} creator @param {Object}
- * createTime @param {Object} auditeTime @return {TypeName}
- */
-JBot.prototype.creatBotItem = function(title, executor, excutordpt, status,
-		creator, createTime, auditeTime) {
-	var itemid = new UUID().createUUID();
-	var itemHTML = '<div id="'
-			+ itemid
-			+ '" style="width:210px;height:210px; border:2px solid #eee; background: #D2E9FF; float:left; '
-			+ ((this.butlenth > 0) ? ('margin-left:60px;') : '')
-			+ 'cursor:normal;">' // position:absolute;
-			// left:'+100+'px;top:'+100+'px;"
-			+ '<table style="width:100%;height:27px; border-collapse: collapse; table-layout: fixed;">'
-			+ '<tr style="height:27px;"><td width="60px" height="25px"><span style="font-weight: bold;font-size:12px;">标题:</span></td>'
-			+ '<td><span id="Activity1_title" style="font-size:12px; line-height:25px;" title="'
-			+ title
-			+ '">'
-			+ title
-			+ '</span></td></tr></table>'
-			+ '<div id="Activity1_body" style="border-top:1px solid #000;">'
-			+ '<table style="width:100%;height:100%; border-collapse: collapse; table-layout: fixed;"><tr style="height:22px;">'
-			+ '<td width="80px" height="22px"><span style="font-weight: bold;font-size:12px;">执行者:</span></td>'
-			+ '<td><span style="font-size:12px;" title="'
-			+ executor
-			+ '">'
-			+ executor
-			+ '</span></td></tr><tr style="height:22px;">'
-			+ '<td height="22px"><span style="font-weight: bold;font-size:12px;">所属部门:</span></td>'
-			+ '<td><span style="font-size:12px;" title="'
-			+ excutordpt
-			+ '">'
-			+ excutordpt
-			+ '</span></td></tr>'
-			+ '<tr style="height:22px;"><td width="60px">'
-			+ '<span style="font-weight: bold;font-size:12px;">状态:</span></td>'
-			+ '<td><span style="font-size:12px;" title="'
-			+ status
-			+ '">'
-			+ status
-			+ '</span></td></tr>'
-			+ '<tr style="height:22px;">'
-			+ '<td width="60px"><span style="font-weight: bold;font-size:12px;">提交人:</span></td>'
-			+ '<td><span style="font-size:12px;" title="'
-			+ creator
-			+ '">'
-			+ creator
-			+ '</span></td></tr>'
-			+ '<tr style="height:22px;">'
-			+ '<td width="60px"><span style="font-weight: bold;font-size:12px;">提交时间:</span></td>'
-			+ '<td><span style="font-size:12px;" title="'
-			+ createTime
-			+ '">'
-			+ createTime
-			+ '</span></td></tr>'
-			+ '<tr style="height:22px;">'
-			+ '<td width="60px"><span style="font-weight: bold;font-size:12px;">处理时间:</span></td>'
-			+ '<td><span style="font-size:12px;" title="' + auditeTime + '">'
-			+ auditeTime + '</span></td>' + '</tr></table></div></div>';
-	this.map.put(itemid, itemHTML); // 记住创建过的botItem
-	this.bots.push(itemid);
-	this.cell++;
-	this.itemID = itemid;
-	this.butlenth += 210;
-	return itemHTML;
-};
 
-JBot.prototype.creatTilItem = function(title, executor, excutordpt, status,
-		creator, createTime, auditeTime) {
+JBot.prototype.creatTilItem = function(Itdata) {
+	var title=Itdata.title;
+	var executor=Itdata.executor;
+	var excutordpt=Itdata.excutordpt;
+	var status=Itdata.status;
+	var creator=Itdata.creator;
+	var createTime=Itdata.createTime;
+	var auditeTime=Itdata.auditeTime;
 	var itemid = new UUID().createUUID();
 	var itemHTML = '标题:' + title + '\n';
 	var len = (title.length / 2 > 7) ? (title.length / 2) : 7;
@@ -93,19 +32,6 @@ JBot.prototype.creatTilItem = function(title, executor, excutordpt, status,
 			+ '状态: ' + status + '\n' + '提交人: ' + creator + '\n' + '提交时间: '
 			+ createTime + '\n' + '处理时间: ' + auditeTime;
 	return itemHTML;
-};
-
-/*
- * 创建连接线 @param {Object} startX @param {Object} startY @param {Object} endX
- * @param {Object} endY @return {TypeName}
- */
-JBot.prototype.createStockline = function(startX, startY, endX, endY) {
-	var str = "<v:line  style='position:absolute;z-index:2;" + "left:"
-			+ (startX) + ";top:" + (startY) + "' \n" + " to='" + (endX) + ","
-			+ (endY) + "' \n" + "strokecolor='#555'> \n"
-			+ "<v:stroke dashstyle='solid' endarrow='classic'/> \n"
-			+ "</v:line> \n";
-	return str;
 };
 
 /*
@@ -135,6 +61,7 @@ JBot.prototype.drawBot = function(botBody, botData) {
 			if (!cuActivity) {
 				continue;
 			}
+			cuActivity.title = this.creatTilItem(Itdata);
 			if (Itdata.status == "已完成") {
 				if (SVG.supported) {
 					cuActivity.style.background = "green";

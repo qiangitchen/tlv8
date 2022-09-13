@@ -32,6 +32,19 @@ function Group(id, name) {
 		if (!SVG.supported) {
 			$("#svgdotview").remove();
 		}
+		$(obj).unbind("mousedown");
+		$(obj).bind("mousedown", function(event) {
+			GroupEvent.mouseDown(event);
+		});
+		$(obj).unbind("mouseover");
+		$(obj).bind("mouseover", function(event) {
+			GroupEvent.mouseOver(event);
+		});
+		$(obj).unbind("mousemove");
+		$(obj).bind("mousemove", function(event) {
+			GroupEvent.mouseOver(event);
+			GroupEvent.mouseMove(event);
+		});
 	};
 	this.getObjectNum = function() {
 		this.count++;
@@ -161,7 +174,7 @@ function Group(id, name) {
 		var num = this.selectedLineTo.length;
 		if (selNode != null) {
 			for (var i = 0; i < num; i++) {
-				if (this.fuckyou(this.selectedLineTo[i].fromObj, selNode)) {
+				if (this.connect(this.selectedLineTo[i].fromObj, selNode)) {
 					this.selectedLineTo[i].setTo(this.mouseEndX,
 							this.mouseEndY, selNode);
 					this.selectedLineTo[i].relink();
@@ -178,7 +191,7 @@ function Group(id, name) {
 		num = this.selectedLineFrom.length;
 		if (selNode != null) {
 			for (var i = 0; i < num; i++) {
-				if (this.fuckyou(selNode, this.selectedLineFrom[i].toObj)) {
+				if (this.connect(selNode, this.selectedLineFrom[i].toObj)) {
 					this.selectedLineFrom[i].setFrom(this.mouseEndX,
 							this.mouseEndY, selNode);
 					this.selectedLineFrom[i].relink();
@@ -196,7 +209,7 @@ function Group(id, name) {
 	this.drawLineEnd = function(selNode) {
 		if (selNode != null) {
 			this.drawMirrorLineTo(selNode);
-			if (this.fuckyou(this.lineMirror.fromObj, this.lineMirror.toObj)) {
+			if (this.connect(this.lineMirror.fromObj, this.lineMirror.toObj)) {
 				var line = new PolyLine();
 				line.init();
 				line.setShape(this.lineFlag);
@@ -281,7 +294,7 @@ function Group(id, name) {
 		}
 		return res;
 	};
-	this.fuckyou = function(fromObj, toObj) {
+	this.connect = function(fromObj, toObj) {
 		var res = true;// 展示时不限制连线数
 		return res;
 	};
@@ -453,6 +466,124 @@ function Group(id, name) {
 			}
 		}
 	};
+	this.eventStart = function(event) {
+		if (this.ctrlKey) {
+			this.multiSelect = true;
+		}
+		var selNode = this.getEventNode('down');
+		var selLine = this.getEventLine();
+		if (!this.multiSelect) {
+			this.clearSelected();
+		}
+	};
+	this.eventOver = function(event) {
+		var selNode = this.getEventNode('down');
+		if (selNode != null) {
+			event.currentTarget.title = selNode.obj.title;
+		}
+	};
+};
+
+var GroupEvent = {
+	mouseOver : function(event) {
+		var group = document.getElementById('group');
+		var Love = group.bindClass;
+		Love.point('down', event);
+		Love.eventOver(event);
+		return true;
+	},
+	mouseDown : function(event) {
+		var group = document.getElementById('group');
+		var Love = group.bindClass;
+		Love.point('down', event);
+		Love.eventStart(event);
+		return false;
+	},
+	mouseMove : function(event) {
+		var group = document.getElementById('group');
+		var Love = group.bindClass;
+		if (Love.action != null) {
+			switch (Love.action) {
+			case "nodedown":
+				Love.moveSelectedObj(event);
+				break;
+			case "linedown":
+				Love.moveSelectedLine(event);
+				break;
+			case "drawline":
+				Love.drawMirrorLineTo(null, event);
+				break;
+			case "moveline":
+				Love.moveLine(event);
+				break;
+			case "blankdown":
+				Love.drawMirrorNode(event);
+				break;
+			default:
+			}
+		}
+		return false;
+	},
+	mouseUp : function(event) {
+		var group = document.getElementById('group');
+		var Love = group.bindClass;
+		if (Love.action != null) {
+			Love.point('up');
+			var selNode = Love.getEventNode('up');
+			switch (Love.action) {
+			case "nodedown":
+				Love.moveSelectedObjEnd();
+				break;
+			case "linedown":
+				Love.moveSelectedLineEnd(event);
+				break;
+			case "drawline":
+				Love.drawLineEnd(selNode, event);
+				break;
+			case "moveline":
+				Love.moveLineEnd(selNode);
+				break;
+			case "blankdown":
+				Love.drawMirrorNodeEnd();
+				break;
+			default:
+			}
+		}
+		Love.setGroupArea();
+		Love.action = null;
+		editModelchange();// 记录变化
+		return false;
+	},
+	getX : function(x) {
+		return (x + document.body.scrollLeft);
+	},
+	getY : function(y) {
+		return (y + document.body.scrollTop);
+	},
+	getMouseX : function(event) {
+		var e = event || window.event;
+		if (e.pageX) {
+			return e.pageX + $("#group").parent().scrollLeft()
+					- $("#group").parent().offset().left;
+		} else {
+			return e.clientX + document.body.scrollLeft
+					- document.body.clientLeft
+					+ $("#group").parent().scrollLeft()
+					- $("#group").parent().offset().left;
+		}
+	},
+	getMouseY : function(event) {
+		var e = event || window.event;
+		if (e.pageY) {
+			return e.pageY + $("#group").parent().scrollTop()
+					- $("#group").parent().offset().top;
+		} else {
+			return e.clientY + document.body.scrollTop
+					- document.body.clientTop
+					+ $("#group").parent().scrollTop()
+					- $("#group").parent().offset().top;
+		}
+	}
 };
 
 /*
@@ -490,6 +621,6 @@ function drow_init(processID, processName, json) {
 	} else if (json) {
 		g.jsonTo(json);
 	}
-	
+
 	g.setGroupArea();
 }
