@@ -2,6 +2,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <title>流程处理选择执行人</title>
+    <link type="text/css" rel="stylesheet" href="../../../resources/layui/css/layui.css" media="all">
     <link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/default/easyui.css" />
 	<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/icon.css" />
   	<link type="text/css" rel="stylesheet" href="../zTree/css/zTreeStyle/zTreeStyle.css"></link>
@@ -14,6 +15,7 @@
   	<script type="text/javascript" src="../../../comon/StaticGrid/StaticGrid.js"></script>
   	<script type="text/javascript" src="../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../../resources/layui/layui.js" charset="utf-8"></script>
   	<script type="text/javascript" src="Select_executor.js"></script>
     <script type="text/javascript">
     	window.isWriteLog = false;
@@ -22,17 +24,35 @@
   
   <body style="overflow:hidden;">
 	  <div class="easyui-layout" data-options="fit:true,border:false">
-	  	<div data-options="region:'west',title:'下一步',split:true" style="width:280px;padding: 3px;">
-	  		<div id="activityList" style="cursor:default;"></div>
+	  	<div data-options="region:'west',title:'下一步',split:true" style="width:300px;padding: 3px;">
+	  		<div class="easyui-layout" data-options="fit:true,border:false">
+		  		<div data-options="region:'north',border:false" style="height: 35px; padding: 2px;">
+		  			<input type="text" placeholder="输入关键字搜索下一环节名称" class="layui-input" style="float: left; width: 80%; height:25px;" id="activequicktext" onkeyup="activateText(event)"/>
+		  			<a onclick="searchActivite()" class='toobar_item' style='margin-left: 5px; width:40px;height:24px;float:left;text-align:center;'>
+		  				<img src='../../../comon/image/toolbar/search.gif' title='查询' style='font-size:12px;'/>
+		  			</a>
+		  		</div>
+		  		<div data-options="region:'center',border:false" style="border-top: 1px solid #ddd;">
+	  				<div id="activityList" style="cursor:default;"></div>
+		  		</div>
+	  		</div>
 	  	</div> 
 	  	<div data-options="region:'center'" data-options="border:false" border="false">
 	  		<div class="easyui-layout" data-options="fit:true,border:false">
 	  			<div data-options="region:'west',title:'选择经办人',split:true" style="width:260px;">
-	  				<div id="OrgCheckTree" class="zTreeDemoBackground left" style="width:100%;height:100%;overflow:auto;cursor:default;">
-						<ul id="treeDemo" class="ztree"></ul>
+	  				<div class="easyui-layout" data-options="fit:true,border:false">
+				  		<div data-options="region:'north',border:false" style="height: 35px; padding: 5px;">
+				  			<input type="text" placeholder="输入关键字搜索办理人姓名" class="layui-input" style="float: left; width: 80%; height:25px;" id="executorquicktext" onkeyup="executorText(event)"/>
+				  			<a onclick="searchExecutor()" class='toobar_item' style='margin-left: 5px; width:40px;height:24px;float:left;text-align:center;'>
+				  				<img src='../../../comon/image/toolbar/search.gif' title='查询' style='font-size:12px;'/>
+				  			</a>
+				  		</div>
+				  		<div data-options="region:'center',border:false" style="border-top: 1px solid #ddd;">
+							<ul id="treeDemo" class="ztree"></ul>
+						</div>
 					</div>
 	  			</div>
-	  			<div data-options="region:'center',title:'已选人员'" style="overflow: hidden;">
+	  			<div data-options="region:'center',title:'已选人员' " style="overflow: hidden;">
 	  				<div id="executorList" style="width:100%;height:100%;cursor:default;"></div>
 	  			</div>
 	  		</div>

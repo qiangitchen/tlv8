@@ -52,7 +52,7 @@ SelectExecutor.creatActivList = function(activityListStr) {
 	var listHtml = "";
 	for (var i = 0; i < JsonArray.length; i++) {
 		var acty = JsonArray[i];
-		listHtml += "<span id='"
+		listHtml += "<div class='activate' id='"
 				+ acty.id
 				+ "' name='"
 				+ acty.name
@@ -74,7 +74,7 @@ SelectExecutor.creatActivList = function(activityListStr) {
 				+ "'/>"
 				+ "<img src='../../../comon/image/toolbar/flow/flowdata_activity.png'/>"
 				+ "<a name='" + acty.id + "' href='javascript:void(0)' title='"
-				+ acty.name + "'>" + acty.name + "</a>" + "</span><br/>";
+				+ acty.name + "'>" + acty.name + "</a>" + "</div>";
 	}
 	$("#activityList").html(listHtml);
 	try {
@@ -331,4 +331,77 @@ function dailogEngin() {
 		sData1 : SelectExecutor.sData1,
 		type : SelectExecutor.checkedAct.type
 	};
+}
+
+function activateText(event) {
+	if (event.keyCode == 13) {
+		searchActivite();
+	}
+}
+
+function searchActivite() {
+	var str = $("#activequicktext").val();
+	$("#activityList").find(".activate").each(function() {
+		var tx = $(this).text();
+		if (!str || str == "") {
+			$(this).css("background", "#fff");
+			$(this).show();
+		} else if (tx.indexOf(str) > -1) {
+			$(this).css("background", "yellow");
+			$(this).show();
+		} else {
+			$(this).css("background", "#fff");
+			$(this).hide();
+		}
+	});
+	var cua = $("#activityList").find(".activate:visible").get(0);
+	if (cua) {
+		$(cua).find("input").click();
+	}
+}
+
+function executorText(event) {
+	if (event.keyCode == 13) {
+		searchExecutor();
+	}
+}
+
+function searchExecutor() {
+	var str = $("#executorquicktext").val();
+	$("#treeDemo").find("a").each(function() {
+		var oid = $(this).attr("id");
+		if (oid.indexOf("@") > 0) {
+			var tx = $(this).text();
+			if (!str || str == "") {
+				$(this).css("background", "#fff");
+				$(this).show();
+				changShowState($(this), true);
+			} else if (tx.indexOf(str) > -1) {
+				$(this).css("background", "yellow");
+				$(this).show();
+				$(this).attr("search", true);
+				changShowState($(this), true);
+			} else {
+				$(this).css("background", "#fff");
+				$(this).hide();
+				$(this).attr("search", false);
+				changShowState($(this), false);
+			}
+		}
+	});
+	$("#treeDemo").find("a[search='true']").each(function() {
+		changShowState($(this), true);
+	});
+}
+
+function changShowState(jobj, state) {
+	var p = $("#treeDemo");
+	if (jobj.parent() != p && jobj.parent().attr("id") != "treeDemo") {
+		if (state) {
+			jobj.show();
+		} else {
+			jobj.hide();
+		}
+		changShowState(jobj.parent(), state);
+	}
 }
