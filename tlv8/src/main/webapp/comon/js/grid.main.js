@@ -3640,8 +3640,8 @@ try{
             });
 		}
 		$("#"+fixet_id+"_fixTableMain").css({
-			"width":$("#"+grid_id).width()+"px",
-			"height":defaults["height"],
+			"width": "100%",
+			"height": "100%",
 			"overflow":"auto",
 			"position":"relative"
 		});
@@ -3652,8 +3652,8 @@ try{
             });
 		}
 		$("#"+fixet_id+"_fixTableBody").css({
-			"width": defaults["width"],
-			"height":defaults["height"],
+			"width": "100%",
+			"height": "100%",
 			"overflow":"hidden",
 			"position":"relative"
 		});
