@@ -525,7 +525,7 @@ function dailogcallback(data) {
 		return;
 	}
 	BakData = currenttreeName;
-	MainJtree.refreshJtree("JtreeView"，function(){
+	MainJtree.refreshJtree("JtreeView",function(){
 		int_tree();
 	});
 }
