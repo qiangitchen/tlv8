@@ -52,16 +52,15 @@ public class AbstractDoc {
 		return getsDocPath() + "/" + getsID();
 	}
 
-	public void download(Boolean isHttps, OutputStream outputStream,
-			String versionID, String partType) throws Exception {
+	public void download(Boolean isHttps, OutputStream outputStream, String versionID, String partType)
+			throws Exception {
 		InputStream inputStream = null;
 		versionID = Utils.isEmptyString(versionID) ? "last" : versionID;
 		partType = Utils.isEmptyString(partType) ? "content" : partType;
-		String url = getHost(isHttps) + "/repository/file/download/"
-				+ getsFileID() + "/" + versionID + "/" + partType + "?"
-				+ DocUtils.getBizSecureParams();
-		HttpClient client = new HttpClient(new HttpClientParams(),
-				new SimpleHttpConnectionManager(true));
+		String url = getHost(isHttps) + "/repository/file/download/" + getsFileID() + "/" + versionID + "/" + partType
+				+ "?" + DocUtils.getBizSecureParams();
+		DocUtils.registHttps(url);
+		HttpClient client = new HttpClient(new HttpClientParams(), new SimpleHttpConnectionManager(true));
 		HttpMethod method = new GetMethod(url);
 		try {
 			client.executeMethod(method);
@@ -77,61 +76,48 @@ public class AbstractDoc {
 			inputStream.close();
 
 		} catch (Exception e) {
-			throw new DocRTException("Failed to send request to DocServer: "
-					+ method.getStatusLine(), new Exception());
+			throw new DocRTException("Failed to send request to DocServer: " + method.getStatusLine(), new Exception());
 		} finally {
 			method.releaseConnection();
 		}
 	}
 
-	public String getdownloadURL(Boolean isHttps, String versionID,
-			String partType) throws Exception {
+	public String getdownloadURL(Boolean isHttps, String versionID, String partType) throws Exception {
 		versionID = Utils.isEmptyString(versionID) ? "last" : versionID;
 		partType = Utils.isEmptyString(partType) ? "content" : partType;
-		String url = getHost(isHttps) + "/repository/file/download/"
-				+ getsFileID() + "/" + versionID + "/" + partType + "?"
-				+ DocUtils.getBizSecureParams();
+		String url = getHost(isHttps) + "/repository/file/download/" + getsFileID() + "/" + versionID + "/" + partType
+				+ "?" + DocUtils.getBizSecureParams();
 		return url;
 	}
 
-	public InputStream download(Boolean isHttps, String versionID,
-			String partType) throws Exception {
+	public InputStream download(Boolean isHttps, String versionID, String partType) throws Exception {
 		InputStream inputStream = null;
 		versionID = Utils.isEmptyString(versionID) ? "last" : versionID;
 		partType = Utils.isEmptyString(partType) ? "content" : partType;
-		String url = getHost(isHttps) + "/repository/file/download/"
-				+ getsFileID() + "/" + versionID + "/" + partType + "?"
-				+ DocUtils.getBizSecureParams();
-		HttpClient client = new HttpClient(new HttpClientParams(),
-				new SimpleHttpConnectionManager(true));
+		String url = getHost(isHttps) + "/repository/file/download/" + getsFileID() + "/" + versionID + "/" + partType
+				+ "?" + DocUtils.getBizSecureParams();
+		DocUtils.registHttps(url);
+		HttpClient client = new HttpClient(new HttpClientParams(), new SimpleHttpConnectionManager(true));
 		HttpMethod method = new GetMethod(url);
 		try {
 			client.executeMethod(method);
 			inputStream = method.getResponseBodyAsStream();
 		} catch (Exception e) {
-			throw new DocRTException("Failed to send request to DocServer: "
-					+ method.getStatusLine(), new Exception());
+			throw new DocRTException("Failed to send request to DocServer: " + method.getStatusLine(), new Exception());
 		}
 		return inputStream;
 	}
 
 	private void upload(String host, Part[] parts) throws Exception {
-		// if (this.getsID() != null
-		// && DocDBHelper.checkLocker(this.getsID()) != 1) {
-		// throw new DocRTException("lockFailure: [" + this.getsID() + "]");
-		// }
-		String url = host + "/repository/file/cache/upload" + "?"
-				+ DocUtils.getBizSecureParams();
+		String url = host + "/repository/file/cache/upload" + "?" + DocUtils.getBizSecureParams();
+		DocUtils.registHttps(url);
 		HttpClient httpClient = new HttpClient();
-		PostMethod postMethod = new PostMethod(DocUtils.addBsessionId(DocUtils
-				.getUrlAssign(url)));
-		MultipartRequestEntity multipartRequestEntity = new MultipartRequestEntity(
-				parts, postMethod.getParams());
+		PostMethod postMethod = new PostMethod(DocUtils.addBsessionId(DocUtils.getUrlAssign(url)));
+		MultipartRequestEntity multipartRequestEntity = new MultipartRequestEntity(parts, postMethod.getParams());
 		postMethod.setRequestEntity(multipartRequestEntity);
 		int statusCode = httpClient.executeMethod(postMethod);
 		if (statusCode != HttpStatus.SC_OK) {
-			throw new DocRTException("Failed to send request to DocServer: "
-					+ postMethod.getStatusLine());
+			throw new DocRTException("Failed to send request to DocServer: " + postMethod.getStatusLine());
 		} else {
 			InputStream is = postMethod.getResponseBodyAsStream();
 			SAXReader reader = new SAXReader();
@@ -154,8 +140,7 @@ public class AbstractDoc {
 
 	private void upload(String host, InputStream inputStream) throws Exception {
 		String sDocName = getsDocName();
-		InputStreamPartSource bps = new InputStreamPartSource(inputStream,
-				sDocName);
+		InputStreamPartSource bps = new InputStreamPartSource(inputStream, sDocName);
 		Part[] parts = { new FilePart(sDocName, bps) };
 		upload(host, parts);
 	}
@@ -167,8 +152,7 @@ public class AbstractDoc {
 		upload(host, parts);
 	}
 
-	public void upload(boolean isHttps, InputStream inputStream)
-			throws Exception {
+	public void upload(boolean isHttps, InputStream inputStream) throws Exception {
 		upload(getHost(isHttps), inputStream);
 	}
 
@@ -221,8 +205,7 @@ public class AbstractDoc {
 	}
 
 	public Float getsSize() {
-		return Utils.isNull(info.getFloatObject("sSize")) ? 0 : info
-				.getFloat("sSize");
+		return Utils.isNull(info.getFloatObject("sSize")) ? 0 : info.getFloat("sSize");
 	}
 
 	public void setsSize(Float sSize) {
@@ -376,31 +359,27 @@ public class AbstractDoc {
 	}
 
 	@SuppressWarnings({ "rawtypes" })
-	public void commitFile() throws UnsupportedEncodingException,
-			DocumentException, Exception {
+	public void commitFile() throws UnsupportedEncodingException, DocumentException, Exception {
 		StringBuffer sb = new StringBuffer();
 		sb.append("<data>");
 		sb.append(createChangeLogItem());
 		sb.append("</data>");
 		String host = DocDBHelper.queryDocHost();
 		String url = host + "/repository/file/cache/commit";
-		Document result = DocUtils.excutePostAction(url,
-				new ByteArrayInputStream(sb.toString().getBytes("UTF-8")));
+		Document result = DocUtils.excutePostAction(url, new ByteArrayInputStream(sb.toString().getBytes("UTF-8")));
 		List itemList = result.selectNodes("//item");
-		for (Iterator localIterator2 = itemList.iterator(); localIterator2
-				.hasNext();) {
+		for (Iterator localIterator2 = itemList.iterator(); localIterator2.hasNext();) {
 			Object litem = localIterator2.next();
 			Element item = (Element) litem;
 			String docID = item.selectSingleNode("doc-id").getText();
 			String fileID = item.selectSingleNode("file-id").getText();
-			String docVersionID = item.selectSingleNode("doc-version-id")
-					.getText();
+			String docVersionID = item.selectSingleNode("doc-version-id").getText();
 			this.setsID(docID);
 			this.setsFileID(fileID);
 			this.setSrevisionCacheName(docVersionID);
 		}
 	}
-	
+
 	public boolean deleteFile() {
 		StringBuffer sb = new StringBuffer();
 		sb.append("<data>");
@@ -409,8 +388,7 @@ public class AbstractDoc {
 		String host = DocDBHelper.queryDocHost();
 		String url = host + "/repository/file/cache/commit";
 		try {
-			DocUtils.excutePostAction(url, new ByteArrayInputStream(sb
-					.toString().getBytes("UTF-8")));
+			DocUtils.excutePostAction(url, new ByteArrayInputStream(sb.toString().getBytes("UTF-8")));
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -424,82 +402,59 @@ public class AbstractDoc {
 		result.append("<operation-type>new</operation-type>");
 		result.append("<process></process>");
 		result.append("<activity></activity>");
-		result.append("<person>" + this.getRelation("sLastWriterFID")
-				+ "</person>");
-		result.append("<person-name>" + this.getRelation("sLastWriterName")
-				+ "</person-name>");
-		result.append("<dept-name>"
-				+ DocUtils.getValue(this.getRelation("sLastWriterDeptName"), "")
-				+ "</dept-name>");
+		result.append("<person>" + this.getRelation("sLastWriterFID") + "</person>");
+		result.append("<person-name>" + this.getRelation("sLastWriterName") + "</person-name>");
+		result.append("<dept-name>" + DocUtils.getValue(this.getRelation("sLastWriterDeptName"), "") + "</dept-name>");
 		result.append("<bill-id></bill-id>");
 		result.append("<doc-id>" + this.getsID() + "</doc-id>");
-		result.append("<version>" + String.valueOf(this.getVersion())
-				+ "</version>");
-		result.append("<file-id>" + DocUtils.getValue(this.getsFileID(), "")
-				+ "</file-id>");
-		result.append("<doc-version-id>"
-				+ String.valueOf(this.getsDocLiveVersionID())
-				+ "</doc-version-id>");
+		result.append("<version>" + String.valueOf(this.getVersion()) + "</version>");
+		result.append("<file-id>" + DocUtils.getValue(this.getsFileID(), "") + "</file-id>");
+		result.append("<doc-version-id>" + String.valueOf(this.getsDocLiveVersionID()) + "</doc-version-id>");
 		result.append("<doc-name><![CDATA[" + this.getsDocName() + "]]></doc-name>");
 		result.append("<kind>" + this.getsKind() + "</kind>");
 		result.append("<size>" + String.valueOf(this.getsSize()) + "</size>");
 		result.append("<parent-id>" + this.getsParentID() + "</parent-id>");
 		result.append("<doc-path>/root</doc-path>");
 		result.append("<doc-display-path>/文档中心</doc-display-path>");
-		result.append("<description>"
-				+ DocUtils.getValue(this.getRelation("sDescription"), "")
-				+ "</description>");
-		result.append("<classification>"
-				+ DocUtils.getValue(this.getRelation("sClassification"), "")
-				+ "</classification>");
+		result.append("<description>" + DocUtils.getValue(this.getRelation("sDescription"), "") + "</description>");
+		result.append(
+				"<classification>" + DocUtils.getValue(this.getRelation("sClassification"), "") + "</classification>");
 		result.append("<keywords><![CDATA[" + DocUtils.getValue(this.getRelation("sKeywords"), "") + "]]></keywords>");
 		result.append("<finish-time></finish-time>");
 		result.append("<serial-number></serial-number>");
 		result.append("<doc-type>document</doc-type>");
 		result.append("<cache-name>" + this.getCacheName() + "</cache-name>");
-		result.append("<revision-cache-name>" + this.getRevisionCacheName()
-				+ "</revision-cache-name>");
+		result.append("<revision-cache-name>" + this.getRevisionCacheName() + "</revision-cache-name>");
 		result.append("<comment-file-content><![CDATA[" + this.getCommentFileContent() + "]]></comment-file-content>");
 		result.append("<link-id></link-id>");
 		result.append("<access-record-id></access-record-id>");
 		result.append("</item>");
 		return result;
 	}
-	
+
 	public StringBuffer createDeleteLogItem() {
 		StringBuffer result = new StringBuffer();
 		result.append("<item>");
 		result.append("<operation-type>delete</operation-type>");
 		result.append("<process></process>");
 		result.append("<activity></activity>");
-		result.append("<person>" + this.getRelation("sLastWriterFID")
-				+ "</person>");
-		result.append("<person-name>" + this.getRelation("sLastWriterName")
-				+ "</person-name>");
-		result.append("<dept-name>"
-				+ DocUtils.getValue(this.getRelation("sLastWriterDeptName"), "")
-				+ "</dept-name>");
+		result.append("<person>" + this.getRelation("sLastWriterFID") + "</person>");
+		result.append("<person-name>" + this.getRelation("sLastWriterName") + "</person-name>");
+		result.append("<dept-name>" + DocUtils.getValue(this.getRelation("sLastWriterDeptName"), "") + "</dept-name>");
 		result.append("<bill-id></bill-id>");
 		result.append("<doc-id>" + this.getsID() + "</doc-id>");
-		result.append("<version>" + String.valueOf(this.getVersion())
-				+ "</version>");
-		result.append("<file-id>" + DocUtils.getValue(this.getsFileID(), "")
-				+ "</file-id>");
-		result.append("<doc-version-id>"
-				+ String.valueOf(this.getsDocLiveVersionID())
-				+ "</doc-version-id>");
+		result.append("<version>" + String.valueOf(this.getVersion()) + "</version>");
+		result.append("<file-id>" + DocUtils.getValue(this.getsFileID(), "") + "</file-id>");
+		result.append("<doc-version-id>" + String.valueOf(this.getsDocLiveVersionID()) + "</doc-version-id>");
 		result.append("<doc-name><![CDATA[" + this.getsDocName() + "]]></doc-name>");
 		result.append("<kind>" + this.getsKind() + "</kind>");
 		result.append("<size>" + String.valueOf(this.getsSize()) + "</size>");
 		result.append("<parent-id>" + this.getsParentID() + "</parent-id>");
 		result.append("<doc-path>/root</doc-path>");
 		result.append("<doc-display-path>/文档中心</doc-display-path>");
-		result.append("<description>"
-				+ DocUtils.getValue(this.getRelation("sDescription"), "")
-				+ "</description>");
-		result.append("<classification>"
-				+ DocUtils.getValue(this.getRelation("sClassification"), "")
-				+ "</classification>");
+		result.append("<description>" + DocUtils.getValue(this.getRelation("sDescription"), "") + "</description>");
+		result.append(
+				"<classification>" + DocUtils.getValue(this.getRelation("sClassification"), "") + "</classification>");
 		result.append("<keywords><![CDATA[" + DocUtils.getValue(this.getRelation("sKeywords"), "") + "]]></keywords>");
 		result.append("<finish-time></finish-time>");
 		result.append("<serial-number></serial-number>");
