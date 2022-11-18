@@ -1348,14 +1348,8 @@ if (!this.OV) this.OV = (function() {
 		
 		function DisableFileCommand(isPrint){
 			if (this.CheckViewer()) {
-				this.EnableFileCommand(0) = true;
-				this.EnableFileCommand(1) = true;
-				this.EnableFileCommand(2) = true;
-				this.EnableFileCommand(3) = true;
-				this.EnableFileCommand(4) = true;
 				if(!OV.isClear(isPrint)){
-					this.EnableFileCommand(5) = isPrint;
-					this.EnableFileCommand(8) = isPrint;
+					//TODO empty
 				}
 			}	
 		}

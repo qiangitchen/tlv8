@@ -5,21 +5,6 @@ var TANGER_OCX_OBJ; // The Control
 var TANGER_OCX_str;
 var TANGER_OCX_obj;
 
-// 打开文件的函数。调用控件的BeginOpenFromURL函数
-function TANGER_OCX_OpenDoc(fileName, savefile) {
-	TANGER_OCX_actionURL = document.forms[0].action;
-	TANGER_OCX_OBJ = document.all.item("TANGER_OCX");
-	TANGER_OCX_OBJ.EnableFileCommand(3) = false;
-	TANGER_OCX_OBJ.EnableFileCommand(4) = false;
-	if (fileName != "") {
-		TANGER_OCX_OBJ.BeginOpenFromURL(
-				cpath+"/markreservation/readdoc2.jsp?filename=" + fileName
-						+ "&savefile=" + savefile, true);
-	} else {
-		TANGER_OCX_OBJ.CreateNew("Word.Document");
-	}
-}
-
 function TANGER_OCX_Scanner() {
 	if (TANGER_OCX_OBJ.ActiveDocument.ProtectionType == 2) {
 
@@ -348,31 +333,31 @@ function TANGER_OCX_SetNoCopy(boolvalue) {
 
 // 允许或禁止文件－>新建菜单
 function TANGER_OCX_EnableFileNewMenu(boolvalue) {
-	TANGER_OCX_OBJ.EnableFileCommand(0) = boolvalue;
+	TANGER_OCX_OBJ.EnableFileCommand[0] = boolvalue;
 }
 // 允许或禁止文件－>打开菜单
 function TANGER_OCX_EnableFileOpenMenu(boolvalue) {
-	TANGER_OCX_OBJ.EnableFileCommand(1) = boolvalue;
+	TANGER_OCX_OBJ.EnableFileCommand[1] = boolvalue;
 }
 // 允许或禁止文件－>关闭菜单
 function TANGER_OCX_EnableFileCloseMenu(boolvalue) {
-	TANGER_OCX_OBJ.EnableFileCommand(2) = boolvalue;
+	TANGER_OCX_OBJ.EnableFileCommand[2] = boolvalue;
 }
 // 允许或禁止文件－>保存菜单
 function TANGER_OCX_EnableFileSaveMenu(boolvalue) {
-	TANGER_OCX_OBJ.EnableFileCommand(3) = boolvalue;
+	TANGER_OCX_OBJ.EnableFileCommand[3] = boolvalue;
 }
 // 允许或禁止文件－>另存为菜单
 function TANGER_OCX_EnableFileSaveAsMenu(boolvalue) {
-	TANGER_OCX_OBJ.EnableFileCommand(4) = boolvalue;
+	TANGER_OCX_OBJ.EnableFileCommand[4] = boolvalue;
 }
 // 允许或禁止文件－>打印菜单
 function TANGER_OCX_EnableFilePrintMenu(boolvalue) {
-	TANGER_OCX_OBJ.EnableFileCommand(5) = boolvalue;
+	TANGER_OCX_OBJ.EnableFileCommand[5] = boolvalue;
 }
 // 允许或禁止文件－>打印预览菜单
 function TANGER_OCX_EnableFilePrintPreviewMenu(boolvalue) {
-	TANGER_OCX_OBJ.EnableFileCommand(6) = boolvalue;
+	TANGER_OCX_OBJ.EnableFileCommand[6] = boolvalue;
 }
 
 function TANGER_OCX_OnDocumentOpened(str, obj) {

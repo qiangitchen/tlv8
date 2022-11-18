@@ -1,3 +1,5 @@
+<%@page import="com.alibaba.fastjson.JSONObject"%>
+<%@page import="com.alibaba.fastjson.JSONArray"%>
 <%@page import="oshi.util.FormatUtil"%>
 <%@page import="com.tlv8.doc.clt.doc.DocDBHelper"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -54,8 +56,8 @@
 	      		ps.setString(1, fid);
 	      		rs = ps.executeQuery();
 	      		if(rs.next()){
-	      			JSONArray jsona = new JSONArray(rs.getString(1));
-	      			for(int i =0; i<jsona.length(); i++){
+	      			JSONArray jsona = JSONArray.parseArray(rs.getString(1));
+	      			for(int i =0; i<jsona.size(); i++){
 	      				JSONObject json = jsona.getJSONObject(i);
 	      				String fileid = json.getString("fileID");
 	      				String filename = json.getString("filename");
