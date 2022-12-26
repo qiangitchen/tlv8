@@ -72,7 +72,7 @@ public class SetMemberOrgAction extends ActionSupport {
 					ps.setString(4, rs.getString("SFCODE") + "/" + rs.getString("SCODE"));
 					ps.setString(5, rs.getString("SFNAME") + "/" + rs.getString("SNAME"));
 					ps.setString(6, rowid);
-					ps.executeLargeUpdate();
+					ps.executeUpdate();
 					// 更新其他部门下的人员为（分配）
 					DBUtils.excuteUpdate(session, "update SA_OPOrg set SNODEKIND='nkLimb' where SPERSONID='" + personid
 							+ "' and SID !='" + neworgid + "' and SORGKINDID = 'psm'");

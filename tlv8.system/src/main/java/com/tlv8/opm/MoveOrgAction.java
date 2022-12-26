@@ -94,7 +94,7 @@ public class MoveOrgAction extends ActionSupport {
 				ps.setString(4, rs.getString("SFCODE") + "/" + rs.getString("SCODE"));
 				ps.setString(5, rs.getString("SFNAME") + "/" + rs.getString("SNAME"));
 				ps.setString(6, rowid);
-				ps.executeLargeUpdate();
+				ps.executeUpdate();
 				if (isperson) {// 人员类型数据更新主机构ID
 					String upPsm = "update SA_OPPERSON set SMAINORGID = '" + orgID + "' where SID ='" + personid + "'";
 					DBUtils.excuteUpdate(session, upPsm);
