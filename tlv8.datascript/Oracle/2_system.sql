@@ -659,6 +659,22 @@ CREATE TABLE sa_links (
 );
 alter table sa_links add primary key (SID);
 
+CREATE TABLE sa_docauth (
+  SID varchar2(36) NOT NULL,
+  SDOCPATH clob,
+  SAUTHORIZERFID varchar2(512),
+  SAUTHORIZERNAME varchar2(64),
+  SAUTHORIZERDEPTNAME varchar2(64),
+  SAUTHORIZEEFID varchar2(512),
+  SAUTHORIZEENAME varchar2(64),
+  SGRANTTIME date,
+  SACCESS INTEGER,
+  SSCOPE varchar2(16),
+  SAUTHORIZEEDEPTNAME varchar2(64),
+  VERSION INTEGER
+);
+alter table SA_DocNameSpace add primary key (sID);
+
 CREATE TABLE SA_DocNameSpace
 (
   sID          VARCHAR2(128) NOT NULL,
