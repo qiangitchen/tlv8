@@ -25,7 +25,7 @@ public class FlowBotXBean {
 
 	public FlowBotXBean(String flowID) throws Exception {
 		String sql = null;
-		if (DBUtils.IsOracleDB("system")) {
+		if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 			sql = "select SID,SPARENTID,SNAME,SEPERSONNAME,SEDEPTNAME,SEOGNNAME,SSTATUSNAME,"
 					+ "to_char(SCREATETIME,'yyyy-MM-dd hh24:mi:ss')SCREATETIME,"
 					+ "to_char(SEXECUTETIME,'yyyy-MM-dd hh24:mi:ss')SEXECUTETIME,"

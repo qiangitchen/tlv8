@@ -28,7 +28,7 @@ public class DataTypeHelper {
 	public static String getColumnDataType(String dbkey, String table, String column) {
 		String result = "";
 		String sql = "";
-		if (DBUtils.IsOracleDB(dbkey)) {
+		if (DBUtils.IsOracleDB(dbkey) || DBUtils.IsDMDB(dbkey)) {
 			sql = "select TABLE_NAME,COLUMN_NAME,DATA_TYPE from USER_TAB_COLS t where t.table_name = '"
 					+ table.toUpperCase() + "' and COLUMN_NAME = '" + column.toUpperCase() + "'";
 		} else if (DBUtils.IsMySQLDB(dbkey)) {

@@ -51,7 +51,7 @@ public class GetTaskList extends ActionSupport {
 					+ " and (STYPEID is null or (STYPEID is not null and SLOCK is null))"
 					// + " and screatetime >= date_sub(curdate(),interval 100 day) "
 					+ " order by SCREATETIME desc limit 0,5";
-		} else if (DBUtils.IsOracleDB("system")) {
+		} else if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 			sql = "select SID,SNAME,SCDEPTNAME,SCPERSONNAME,SCREATETIME,SLOCK,SWARNINGTIME,SLIMITTIME from "
 					+ "(select SID,SNAME,SCDEPTNAME,SCPERSONNAME,"
 					+ "SCREATETIME,SLOCK,SWARNINGTIME,SLIMITTIME from SA_TASK where (SEPERSONID = '" + personID

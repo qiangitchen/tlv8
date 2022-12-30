@@ -70,7 +70,7 @@ public class MobileListLoadAction extends ActionSupport {
 				Map m = (Map) cl.get(0);
 				setCount(String.valueOf(m.get("COUNT")));
 			}
-			if (DBUtils.IsOracleDB(databaseName)) {
+			if (DBUtils.IsOracleDB(databaseName) || DBUtils.IsDMDB(databaseName)) {
 				if (limit != null && !"".equals(limit)) {
 					sql = "select a.* from (select rownum srownu,r.* from (" + sql + ")r where rownum<=" + limit
 							+ ") a where a.srownu >" + offerset;

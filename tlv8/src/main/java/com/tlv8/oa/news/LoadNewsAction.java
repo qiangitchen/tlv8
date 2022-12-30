@@ -35,7 +35,7 @@ public class LoadNewsAction extends ActionSupport {
 		String sql = "select TOP 5 sID FID, FNEWSTITLE FTITLE, FPEOPLE, FTIME FPEOPLEDATE,FOPENSCOPEID from cyea_news_release where "
 				+ "  FSTATE='已发布' and (" + "EXISTS(select 1 from SA_OPORG o where FOPENSCOPEID like '%'+o.SID+'%' and '"
 				+ context.getCurrentPersonFullID() + "' like o.SFID+'%' )" + ") order by FSETTOPTIME desc";
-		if (DBUtils.IsOracleDB("system")) {
+		if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 			sql = "select * from(select sID FID, FNEWSTITLE FTITLE, FPEOPLE, FTIME FPEOPLEDATE,FOPENSCOPEID from cyea_news_release where "
 					+ "  FSTATE='已发布' and ("
 					+ "EXISTS(select 1 from SA_OPORG o where FOPENSCOPEID like '%'||o.SID||'%' and '"

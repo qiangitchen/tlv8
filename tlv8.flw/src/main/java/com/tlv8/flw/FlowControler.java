@@ -137,7 +137,7 @@ public class FlowControler extends FlowDataBean {
 				if (lis.size() > 0) {
 					String sql = "update SA_TASK set SSTATUSID='tesFinished' ,SSTATUSNAME='已完成',SEXECUTETIME=CURRENTDATE1,sAFinishTime=CURRENTDATE2, VERSION=VERSION+1 where SID = '"
 							+ taskID + "' and SSTATUSID != 'tesExecuting'";
-					if (DBUtils.IsOracleDB("system")) {
+					if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 						sql = sql.replace("CURRENTDATE1", "sysdate");
 						sql = sql.replace("CURRENTDATE2", "sysdate");
 					} else if (DBUtils.IsMySQLDB("system")) {

@@ -74,7 +74,7 @@ public class getSelfReport extends ActionSupport {
 					sql = "select * from (select rownum srownu,r.* from (" + sql + ")r where rownum<=" + limit
 							+ ")a where a.srownu >" + offerset;
 				}
-			} else if (DBUtils.IsOracleDB("oa")) {
+			} else if (DBUtils.IsOracleDB("oa") || DBUtils.IsDMDB("oa")) {
 				sql = "select * from(" + sql + ") AS A where rownum <=10";
 			} else if (DBUtils.IsMySQLDB("oa")) {
 				sql = "select * from(" + sql + ") AS A limit 0,10";

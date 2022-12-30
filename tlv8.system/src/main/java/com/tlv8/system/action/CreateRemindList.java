@@ -52,7 +52,7 @@ public class CreateRemindList {
 			filter = "and" + filter;
 		}
 		OrgUtils orgu = new OrgUtils(request);
-		if (DBUtils.IsOracleDB("system")) {
+		if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 			sql = "select STITLE,SCONTEXT,SDATETIME,SSTATE from SA_REMINDINFO t " + " where SPERSONID = '"
 					+ orgu.getPersonID() + "' and rownum <=" + count + " " + filter
 					+ " order by SSTATE asc, SDATETIME asc";

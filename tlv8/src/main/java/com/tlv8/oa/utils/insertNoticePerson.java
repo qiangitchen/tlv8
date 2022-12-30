@@ -88,7 +88,7 @@ public class insertNoticePerson extends ActionSupport {
 							+ context.getCurrentDeptID() + "','" + context.getCurrentDeptName() + "','"
 							+ context.getCurrentPersonID() + "','" + context.getCurrentPersonName() + "',getdate(),'"
 							+ sdata1 + "','" + pid + "','" + pname + "','否')";
-				if (DBUtils.IsOracleDB("oa")) {
+				if (DBUtils.IsOracleDB("oa") || DBUtils.IsDMDB("oa")) {
 					sqlTxt = "insert into OA_NOTICE_PERSON"
 							+ "(fid,version,FOGNID,FOGNNAME,FORGID,FORGNAME,FDEPTID,FDEPTNAME,FCREATEID,"
 							+ "FCREATENAME,FCREATEDATETIME,FMAINID,FPERSONID,FPERSONNAME,FBROWSE)"

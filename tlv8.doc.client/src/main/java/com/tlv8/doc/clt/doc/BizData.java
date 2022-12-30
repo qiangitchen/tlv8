@@ -36,7 +36,7 @@ public class BizData {
 				sql = String.format(sql, row.getString("SA_DocNode"), row.getString("sKind"),
 						row.getString("sCreatorFID"), row.getString("sCreatorName"), row.getString("sLastWriterFID"),
 						row.getString("sLastWriterName"));
-				if (DBUtils.IsOracleDB("system")) {
+				if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 					sql = sql.replace(":sCreateTime", "sysdate");
 					sql = sql.replace(":sLastWriteTime", "sysdate");
 				} else if (DBUtils.IsMySQLDB("system")) {

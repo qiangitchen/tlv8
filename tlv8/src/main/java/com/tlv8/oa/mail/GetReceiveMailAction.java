@@ -63,7 +63,7 @@ public class GetReceiveMailAction extends ActionSupport {
 				Map m = (Map) cl.get(0);
 				count = yd + "/共" + String.valueOf(m.get("COUNT"));
 			}
-			if (DBUtils.IsOracleDB("oa")) {
+			if (DBUtils.IsOracleDB("oa") || DBUtils.IsDMDB("oa")) {
 				if (limit != null && !"".equals(limit)) {
 					sql = "select * from (select rownum srownu,r.* from (" + sql + ")r where rownum<=" + limit
 							+ ")a where a.srownu >" + offerset;

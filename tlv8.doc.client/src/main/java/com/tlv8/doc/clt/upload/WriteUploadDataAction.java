@@ -140,31 +140,6 @@ public class WriteUploadDataAction extends ActionSupport {
 						} catch (Exception e) {
 						}
 					}
-//				    String sql;
-//					if (DBUtils.IsOracleDB(dbkey)) {
-//						sql = "update " + tablename + " set " + cellname
-//								+ " = nvl(" + cellname + ",'')||'{filename:"
-//								+ docName + ";fileID:" + fileID
-//								+ "}' where FID = '" + rowid + "'";
-//					} else if (DBUtils.IsMySQLDB(dbkey)) {
-//						sql = "update " + tablename + " set " + cellname
-//								+ " = concat(ifNull(" + cellname
-//								+ ",''),'{filename:" + docName + ";fileID:"
-//								+ fileID + "}') where FID = '" + rowid + "'";
-//					} else {
-//						sql = "update " + tablename + " set " + cellname
-//								+ " = isNull(" + cellname + ",'')+'{filename:"
-//								+ docName + ";fileID:" + fileID
-//								+ "}' where FID = '" + rowid + "'";
-//					}
-//					if ("system".equals(dbkey) || dbkey == null)
-//						sql = sql.replace("FID", "SID");
-//					try {
-//						DBUtils.execUpdateQuery(dbkey, sql);
-//					} catch (Exception e) {
-//						Sys.printMsg(sql);
-//						e.printStackTrace();
-//					}
 				}
 			} else {
 				return false;

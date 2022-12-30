@@ -51,12 +51,12 @@ create table SA_OPAgent
   sOrgFName   VARCHAR2(2048) not null,
   sAgentID    VARCHAR2(32) not null,
   sValidState INTEGER,
-  sStartTime  DATE,
-  sFinishTime DATE,
+  sStartTime  datetime,
+  sFinishTime datetime,
   sProcess	  CLOB,
   sCreatorID  VARCHAR2(32),
   sCreatorName VARCHAR2(64),
-  sCreateTime DATE,
+  sCreateTime datetime,
   sCanTranAgent INTEGER,
   version     INTEGER not null
 );
@@ -73,7 +73,7 @@ CREATE TABLE sa_opauthorize (
   SDESCRIPTION varchar2(1024),
   SCREATORFID varchar2(2048),
   SCREATORFNAME varchar2(2048),
-  SCREATETIME date,
+  SCREATETIME datetime,
   VERSION int,
   SROLELEVEL varchar2(100)
 );
@@ -94,7 +94,7 @@ create table SA_OPManagement
   sManageTypeID   VARCHAR2(32) not null,
   sCreatorFID     VARCHAR2(2048),
   sCreatorFName   VARCHAR2(2048),
-  sCreateTime     DATE,
+  sCreateTime     datetime,
   version         INTEGER not null
 );
 
@@ -204,7 +204,7 @@ create table SA_OPRoleManagement
   sRoleID       VARCHAR2(32) not null,
   sCreatorFID    VARCHAR2(2048),
   sCreatorFName VARCHAR2(2048),
-  sCreateTime   DATE,
+  sCreateTime   datetime,
   version       INTEGER not null
 );
 alter table SA_OPRoleManagement
@@ -234,15 +234,15 @@ CREATE TABLE sa_opperson (
   SLOGINNAME varchar2(64),
   SPASSWORD varchar2(64),
   SPASSWORDTIMELIMIT int,
-  SPASSWORDMODIFYTIME date,
+  SPASSWORDMODIFYTIME datetime,
   SMAINORGID varchar2(36) NOT NULL,
   SSAFELEVELID varchar2(36),
   SSEQUENCE int,
   SVALIDSTATE int,
   SDESCRIPTION varchar2(2048),
   SSEX varchar2(8),
-  SBIRTHDAY date,
-  SJOINDATE date,
+  SBIRTHDAY datetime,
+  SJOINDATE datetime,
   SHOMEPLACE varchar2(64),
   SDEGREE varchar2(16),
   SGRADUATESCHOOL varchar2(128),
@@ -292,16 +292,16 @@ CREATE TABLE sa_task (
   SEMERGENCYNAME varchar2(64) ,
   SPROCESS varchar2(255) ,
   SACTIVITY varchar2(255) ,
-  SCREATETIME date ,
-  SDISTRIBUTETIME date ,
-  SLASTMODIFYTIME date ,
-  SWARNINGTIME date ,
-  SLIMITTIME date ,
-  SESTARTTIME date ,
-  SEFINISHTIME date ,
-  SASTARTTIME date ,
-  SAFINISHTIME date ,
-  SEXECUTETIME date ,
+  SCREATETIME datetime ,
+  SDISTRIBUTETIME datetime ,
+  SLASTMODIFYTIME datetime ,
+  SWARNINGTIME datetime ,
+  SLIMITTIME datetime ,
+  SESTARTTIME datetime ,
+  SEFINISHTIME datetime ,
+  SASTARTTIME datetime ,
+  SAFINISHTIME datetime ,
+  SEXECUTETIME datetime ,
   SCPERSONID varchar2(36) ,
   SCPERSONNAME varchar2(255) ,
   SCDEPTID varchar2(36) ,
@@ -391,7 +391,7 @@ CREATE TABLE sa_log (
   SACTION varchar2(100) ,
   SACTIONNAME varchar2(2048) ,
   SSTATUSNAME varchar2(64) ,
-  SCREATETIME date NULL ,
+  SCREATETIME datetime NULL ,
   SCREATORFID varchar2(2048) ,
   SCREATORFNAME varchar2(2048) ,
   SCREATORPERSONID varchar2(36) ,
@@ -414,7 +414,7 @@ CREATE TABLE sa_loginlog (
   SUSERID varchar2(36) ,
   SUSERNAME varchar2(100) ,
   SLOGINIP varchar2(100) ,
-  SLOGINTIME date ,
+  SLOGINTIME datetime ,
   PASSWORD varchar2(100) ,
   VERSION int ,
   SSERVICEIP varchar2(100) ,
@@ -433,8 +433,8 @@ CREATE TABLE sa_msnalert(
   SBILTABLE varchar2(100),
   SRPERSONID varchar2(100),
   SSPERSONID varchar2(100),
-  SSDATE date,
-  SRDATE date,
+  SSDATE datetime,
+  SRDATE datetime,
   VERSION int DEFAULT 0,
   SMURL varchar2(1024),
   SMSTATE int DEFAULT 0,
@@ -454,8 +454,8 @@ CREATE TABLE sa_online_log (
   SUSERFID varchar2(1024),
   SUSERFNAME varchar2(1024),
   SLOGINIP varchar2(100),
-  SLOGINDATE date,
-  SLOGOUTDATE date,
+  SLOGINDATE datetime,
+  SLOGOUTDATE datetime,
   SSESSIONID varchar2(100),
   SSERVICEIP varchar2(100),
   VERSION int,
@@ -476,7 +476,7 @@ CREATE TABLE sa_opperson_deatail (
   SNAME varchar2(500),
   SREMARK varchar2(500),
   SCLASS varchar2(500),
-  SUPDATEDATE date,
+  SUPDATEDATE datetime,
   SUPDATORID varchar2(36),
   SUPDATORNAME varchar2(255),
   VERSION int
@@ -491,7 +491,7 @@ create table SA_PORTALLETS
   SPANLES      clob,
   SCREATORID   VARCHAR2(100),
   SCREATORNAME VARCHAR2(100),
-  SCREATEDATE  DATE
+  SCREATEDATE  datetime
 );
 alter table SA_PORTALLETS add primary key (SPERSONID);
 
@@ -535,7 +535,7 @@ alter table sa_portelinfo add primary key (SID);
 CREATE TABLE sa_project (
   SID varchar2(36) NOT NULL,
   SNAME varchar2(50) NOT NULL,
-  CREATE_DATE date,
+  CREATE_DATE datetime,
   CREATOR decimal(10,0),
   CREATE_DEPARTMENT decimal(10,0) NOT NULL,
   STARTDATE varchar2(50),
@@ -550,8 +550,8 @@ alter table sa_project add primary key (SID);
 CREATE TABLE sa_psnmytask (
   SID varchar2(64) NOT NULL,
   SCAPTION varchar2(100),
-  SSTARTDATE date,
-  SENDDATE date,
+  SSTARTDATE datetime,
+  SENDDATE datetime,
   SPRIORITY integer,
   SCONTENT varchar2(1000),
   SSTATUS varchar2(30),
@@ -568,8 +568,8 @@ alter table sa_psnmytask add primary key (SID);
 CREATE TABLE sa_psnschedule (
   SID varchar2(100) NOT NULL,
   SCAPTION varchar2(100),
-  SSTARTDATE date,
-  SENDDATE date,
+  SSTARTDATE datetime,
+  SENDDATE datetime,
   SCONTENT varchar2(4000),
   SPRIORITY integer,
   SSTATUS varchar2(50),
@@ -601,11 +601,11 @@ CREATE TABLE sa_worklog (
   SPLANNAME varchar2(100),
   SPROJECTNAME varchar2(100),
   SEMERGENCYNAME varchar2(100),
-  SLIMITTIME date,
+  SLIMITTIME datetime,
   SCONTENT clob,
   SCREATORFID varchar2(1024),
   SCREATOFNAME varchar2(1024),
-  SCREATETIME date,
+  SCREATETIME datetime,
   FEXTEND01 varchar2(100),
   VERSION int
 );
@@ -637,8 +637,8 @@ CREATE TABLE sa_flowdrawlg (
   SCREATORNAME varchar2(100),
   SUPDATORID varchar2(100),
   SUPDATORNAME varchar2(100),
-  SCREATETIME date,
-  SUPDATETIME date,
+  SCREATETIME datetime,
+  SUPDATETIME datetime,
   FENABLED int DEFAULT 1,
   SFOLDERID varchar2(32)
 );
@@ -671,8 +671,8 @@ CREATE TABLE sa_flowdrawlg_ipo (
   SCREATORNAME varchar2(100),
   SUPDATORID varchar2(100),
   SUPDATORNAME varchar2(100),
-  SCREATETIME date,
-  SUPDATETIME date,
+  SCREATETIME datetime,
+  SUPDATETIME datetime,
   FENABLED int DEFAULT 1
 );
 alter table sa_flowdrawlg_ipo add primary key (sID);
@@ -685,10 +685,10 @@ CREATE TABLE sa_flowinfo (
   SFROMACTIVITYINSTANCEID varchar2(500),
   STASKNAME varchar2(500),
   STASKCONTENT varchar2(500),
-  STASKCREATETIME date,
+  STASKCREATETIME datetime,
   STASKEMERGENCYID number,
-  STASKWARNINGTIME date,
-  STASKLIMITTIME date
+  STASKWARNINGTIME datetime,
+  STASKLIMITTIME datetime
 );
 alter table sa_flowinfo add primary key (ID);
 
@@ -710,7 +710,7 @@ CREATE TABLE sa_remindinfo (
   SID varchar2(32) NOT NULL,
   STITLE varchar2(100),
   SCONTEXT varchar2(1000),
-  SDATETIME date,
+  SDATETIME datetime,
   SSTATE varchar2(100),
   SACTION varchar2(100),
   SPERSONID varchar2(32),
@@ -740,7 +740,7 @@ CREATE TABLE sa_links (
   SOPENTYPE varchar2(20),
   SCREATID varchar2(100),
   SCREATER varchar2(100),
-  SCREATEDATE date,
+  SCREATEDATE datetime,
   VERSION int DEFAULT 0
 );
 alter table sa_links add primary key (SID);
@@ -753,7 +753,7 @@ CREATE TABLE sa_docauth (
   SAUTHORIZERDEPTNAME varchar2(64),
   SAUTHORIZEEFID varchar2(512),
   SAUTHORIZEENAME varchar2(64),
-  SGRANTTIME date,
+  SGRANTTIME datetime,
   SACCESS INTEGER,
   SSCOPE varchar2(16),
   SAUTHORIZEEDEPTNAME varchar2(64),
@@ -786,14 +786,14 @@ CREATE TABLE sa_docnode (
   SCREATORFID varchar2(2048),
   SCREATORNAME varchar2(64),
   SCREATORDEPTNAME varchar2(64),
-  SCREATETIME date,
+  SCREATETIME datetime,
   SEDITORFID varchar2(2048),
   SEDITORNAME varchar2(64),
   SEDITORDEPTNAME varchar2(64),
   SLASTWRITERFID varchar2(2048),
   SLASTWRITERNAME varchar2(64),
   SLASTWRITERDEPTNAME varchar2(64),
-  SLASTWRITETIME date,
+  SLASTWRITETIME datetime,
   SFILEID varchar2(128),
   SDESCRIPTION clob,
   SDOCLIVEVERSIONID int,
@@ -801,7 +801,7 @@ CREATE TABLE sa_docnode (
   SCLASSIFICATION varchar2(128),
   SKEYWORDS varchar2(256),
   SDOCSERIALNUMBER varchar2(128),
-  SFINISHTIME date,
+  SFINISHTIME datetime,
   SNAMESPACE varchar2(256),
   SCACHENAME varchar2(100),
   SREVISIONCACHENAME varchar2(100),
@@ -830,13 +830,13 @@ CREATE TABLE cyea_news_release (
   FNEWSTITLE varchar2(200) DEFAULT NULL,
   FRELEASEDEPARTMENT varchar2(100) DEFAULT NULL,
   FPEOPLE varchar2(50) DEFAULT NULL,
-  FTIME date,
+  FTIME datetime,
   FNEWSNUMBER varchar2(100),
   FRELEASECONNEXT clob,
   FSTATE varchar2(20),
   FSETTOPWHETHER varchar2(10),
-  FSETTOPTIME date,
-  FSETENDTIME date,
+  FSETTOPTIME datetime,
+  FSETENDTIME datetime,
   FACCESSORIES varchar2(1024),
   FCOLUMNNAME varchar2(100),
   FOPENSCOPE varchar2(4000),
@@ -850,11 +850,11 @@ CREATE TABLE sa_opmobilelog (
   SUSERID varchar2(100),
   SUSERNAME varchar2(100),
   SIP varchar2(100),
-  SDATE date,
+  SDATE datetime,
   SMODE varchar2(100) DEFAULT NULL,
   VERSION int DEFAULT 0,
   SSESSIONID varchar2(100),
-  SLOGOUTDATE date
+  SLOGOUTDATE datetime
 );
 alter table sa_opmobilelog add primary key (sID);
 
@@ -881,7 +881,7 @@ create table SA_MAILSET
   FCREATEOGNNAME  VARCHAR2(200),
   FCREATEORGID    VARCHAR2(36),
   FCREATEORGNAME  VARCHAR2(200),
-  FCREATETIME     DATE,
+  FCREATETIME     datetime,
   VERSION         INTEGER
 );
 alter table SA_MAILSET add primary key (SID);
@@ -922,7 +922,7 @@ CREATE TABLE im_message (
   tusername varchar2(100),
   groupname varchar2(100),
   state integer,
-  stime date,
+  stime datetime,
   VERSION integer
 );
 alter table im_message

@@ -364,7 +364,7 @@ public class DocAdapter {
 				+ "',sLastWriterFID='" + sEditorFID + "',sLastWriterName='" + sEDITORNAME + "',sLastWriterDeptName='"
 				+ sEDITORDEPTNAME + "',SLASTWRITETIME=getDate(),version=version+1"
 				+ ",sDocLiveVersionID=sDocLiveVersionID+1 " + " where SA_DocNode.sID='" + docID + "'";
-		if (DBUtils.IsOracleDB("system")) {
+		if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 			updateKSql = updateKSql.replace("getDate()", "sysdate");
 		} else if (DBUtils.IsMySQLDB("system")) {
 			updateKSql = updateKSql.replace("getDate()", "now()");

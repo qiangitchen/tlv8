@@ -161,7 +161,7 @@ public class TaskData {
 					+ euser.getPersonFullID() + "','" + euser.getPersonFullName() + "'");
 			sqlStr.append(",'" + sData1 + "','" + SSTATUSID + "','" + SSTATUSNAME + "',CURRENTDATE1,CURRENTDATE2,'0')");
 			String sql = sqlStr.toString();
-			if (DBUtils.IsOracleDB("system")) {
+			if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 				sql = sql.replace("CURRENTDATE1", "sysdate");
 				sql = sql.replace("CURRENTDATE2", "sysdate");
 			} else if (DBUtils.IsMySQLDB("system")) {
@@ -195,7 +195,7 @@ public class TaskData {
 						+ " set SSTATUSID='tesCanceled' ,SSTATUSNAME='已取消',SEXECUTETIME=CURRENTDATE1,sAFinishTime=CURRENTDATE2, VERSION=VERSION+1 where (SID != '"
 						+ taskID + "' and SPARENTID = '" + ptaskID + "') and (SACTIVITY = '" + beforeActivity
 						+ "' and SFLOWID ='" + flowID + "' and SSTATUSID = 'tesReady')";
-				if (DBUtils.IsOracleDB("system")) {
+				if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 					sql = sql.replace("CURRENTDATE1", "sysdate");
 					sql_1 = sql_1.replace("CURRENTDATE1", "sysdate");
 					sql = sql.replace("CURRENTDATE2", "sysdate");
@@ -222,7 +222,7 @@ public class TaskData {
 				String sql = "update " + task_table
 						+ " set SSTATUSID='tesFinished' ,SSTATUSNAME='已完成',SEXECUTETIME=CURRENTDATE1, VERSION=VERSION+1 where SFLOWID = '"
 						+ flowID + "' and (SSTATUSID = 'tesReady' or SSTATUSID = 'tesExecuting')";
-				if (DBUtils.IsOracleDB("system")) {
+				if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 					sql = sql.replace("CURRENTDATE1", "sysdate");
 				} else if (DBUtils.IsMySQLDB("system")) {
 					sql = sql.replace("CURRENTDATE1", "now()");
@@ -308,7 +308,7 @@ public class TaskData {
 			sqlStr.append(",'" + sData1 + "','tesReady','尚未处理',CURRENTDATE1,CURRENTDATE2,'0')");
 
 			String isql = sqlStr.toString();
-			if (DBUtils.IsOracleDB("system")) {
+			if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 				isql = isql.replace("CURRENTDATE1", "sysdate");
 				isql = isql.replace("CURRENTDATE2", "sysdate");
 			} else if (DBUtils.IsMySQLDB("system")) {
@@ -325,7 +325,7 @@ public class TaskData {
 			String sql = "update " + task_table
 					+ " set SSTATUSID='tesTransmit' ,SSTATUSNAME='已转发',SEXECUTETIME=CURRENTDATE1, VERSION=VERSION+1 where SID = '"
 					+ taskID + "'";
-			if (DBUtils.IsOracleDB("system")) {
+			if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 				sql = sql.replace("CURRENTDATE1", "sysdate");
 			} else if (DBUtils.IsMySQLDB("system")) {
 				sql = sql.replace("CURRENTDATE1", "now()");
@@ -388,7 +388,7 @@ public class TaskData {
 					+ euser.getPersonFullID() + "','" + euser.getPersonFullName() + "'");
 			sqlStr.append(",'" + sData1 + "','tesReady','尚未处理',CURRENTDATE1,CURRENTDATE2,'0')");
 			String isql = sqlStr.toString();
-			if (DBUtils.IsOracleDB("system")) {
+			if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 				isql = isql.replace("CURRENTDATE1", "sysdate");
 				isql = isql.replace("CURRENTDATE2", "sysdate");
 			} else if (DBUtils.IsMySQLDB("system")) {
@@ -409,7 +409,7 @@ public class TaskData {
 					+ " set SSTATUSID='tesCanceled' ,SSTATUSNAME='已取消',SEXECUTETIME=CURRENTDATE1, VERSION=VERSION+1 where (SID != '"
 					+ taskID + "' and SPARENTID = '" + ptaskID + "') and (SACTIVITY ='" + cuActivity
 					+ "' and SFLOWID ='" + flowID + "' and SSTATUSID = 'tesReady')";
-			if (DBUtils.IsOracleDB("system")) {
+			if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 				sql = sql.replace("CURRENTDATE1", "sysdate");
 				sql_2 = sql_2.replace("CURRENTDATE1", "sysdate");
 			} else if (DBUtils.IsMySQLDB("system")) {
@@ -432,7 +432,7 @@ public class TaskData {
 		String sql = "update " + task_table
 				+ " set SSTATUSID='tesCanceled' ,SSTATUSNAME='已取消', SEXECUTETIME=CURRENTDATE1 ,VERSION=VERSION+1 where SID = '"
 				+ taskID + "' and SSTATUSID = 'tesReady'";
-		if (DBUtils.IsOracleDB("system")) {
+		if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 			sql = sql.replace("CURRENTDATE1", "sysdate");
 		} else if (DBUtils.IsMySQLDB("system")) {
 			sql = sql.replace("CURRENTDATE1", "now()");
@@ -452,7 +452,7 @@ public class TaskData {
 		String msql = "update " + task_table
 				+ " set SSTATUSID='tesAborted' ,SSTATUSNAME='已终止', SEXECUTETIME=CURRENTDATE1 ,VERSION=VERSION+1 where SID = '"
 				+ flowID + "'";
-		if (DBUtils.IsOracleDB("system")) {
+		if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 			sql = sql.replace("CURRENTDATE1", "sysdate");
 			msql = msql.replace("CURRENTDATE1", "sysdate");
 		} else if (DBUtils.IsMySQLDB("system")) {

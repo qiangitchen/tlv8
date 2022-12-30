@@ -26,7 +26,7 @@ public class GetPortalBofoAction extends ActionSupport {
 		String personname = ContextBean.getContext(request).getCurrentPersonName();
 		String sqlStr = "select SID,TITLE,ONESELF,CREATED_TIME FROM BO_ENTRY where ONESELF LIKE '%" + personname
 				+ "%' order by CREATED_TIME desc";
-		if (DBUtils.IsOracleDB("system")) {
+		if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 			sqlStr = "select SID,TITLE,ONESELF,CREATED_TIME FROM BO_ENTRY where ONESELF LIKE '%" + personname
 					+ "%' order by CREATED_TIME desc";
 		} else if (DBUtils.IsMSSQLDB("system")) {

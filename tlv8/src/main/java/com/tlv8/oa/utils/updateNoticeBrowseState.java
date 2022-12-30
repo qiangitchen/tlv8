@@ -55,7 +55,7 @@ public class updateNoticeBrowseState extends ActionSupport {
 				if (li.size() > 0) {
 					String sql = "UPDATE OA_NOTICE_PERSON SET FBROWSE = '是',FREADDATE = GETDATE() WHERE FMAINID='"
 							+ rowid + "' AND FPERSONID='" + fpersonid + "' AND FBROWSE != '是'";
-					if (DBUtils.IsOracleDB("oa")) {
+					if (DBUtils.IsOracleDB("oa") || DBUtils.IsDMDB("oa")) {
 						sql = "UPDATE OA_NOTICE_PERSON SET FBROWSE = '是',FREADDATE = sysdate WHERE FMAINID='" + rowid
 								+ "' AND FPERSONID='" + fpersonid + "' AND FBROWSE != '是'";
 					} else if (DBUtils.IsMySQLDB("oa")) {
@@ -77,7 +77,7 @@ public class updateNoticeBrowseState extends ActionSupport {
 				}
 			} else {
 				String sql = "";
-				if (DBUtils.IsOracleDB("oa")) {
+				if (DBUtils.IsOracleDB("oa") || DBUtils.IsDMDB("oa")) {
 					sql = "UPDATE OA_NOTICE_PERSON T SET T.FBROWSE = '是',T.FREADDATE = SYSDATE WHERE T.FMAINID='"
 							+ rowid + "' AND T.FPERSONID='" + fpersonid + "' AND T.FBROWSE != '是'";
 				} else if (DBUtils.IsMySQLDB("oa")) {

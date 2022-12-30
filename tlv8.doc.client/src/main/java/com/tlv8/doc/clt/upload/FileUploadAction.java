@@ -104,7 +104,7 @@ public class FileUploadAction extends ActionSupport {
 				.toUpperCase();
 		String sID = UUID.randomUUID().toString().toUpperCase()
 				.replaceAll("-", "");
-		if (DBUtils.IsOracleDB("system")) {
+		if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 			sql += " select '" + sID + "',t.SID,'" + getUploadFileName()
 					+ "','" + getSize() + "','" + getUploadContentType()
 					+ "',SDOCPATH||'/" + sID + "'" + ",SDOCDISPLAYPATH||'/"
@@ -156,7 +156,7 @@ public class FileUploadAction extends ActionSupport {
 			e.printStackTrace();
 		}
 		if (rowid != null && !"".equals(rowid) && !"undefined".equals(rowid)) {
-			if (DBUtils.IsOracleDB("system")) {
+			if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 				sql = "update " + tablename + " set " + cellname + " = nvl("
 						+ cellname + ",'')||'{filename:" + getUploadFileName()
 						+ ";fileID:" + fileID + "}' where FID = '" + rowid
