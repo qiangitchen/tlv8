@@ -23,7 +23,7 @@ public class FlowBotBean {
 
 	public FlowBotBean(String flowID) throws Exception {
 		String sql = null;
-		if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
+		if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system") || DBUtils.IsPostgreSQL("system")) {
 			sql = "select SID,SNAME,SEPERSONNAME,SEDEPTNAME,SEOGNNAME,SSTATUSNAME,"
 					+ "to_char(SCREATETIME,'yyyy-MM-dd hh24:mi:ss')SCREATETIME,"
 					+ "to_char(SEXECUTETIME,'yyyy-MM-dd hh24:mi:ss')SEXECUTETIME,"

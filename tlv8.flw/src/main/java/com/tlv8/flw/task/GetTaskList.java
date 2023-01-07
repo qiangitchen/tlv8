@@ -63,7 +63,18 @@ public class GetTaskList extends ActionSupport {
 					+ " and (STYPEID is null or (STYPEID is not null and SLOCK is null))"
 					// + " and screatetime >= sysdate - 100"
 					+ " order by SCREATETIME desc ) where  rownum<=20";
-		} else {
+		} else if (DBUtils.IsPostgreSQL("system")) {
+			sql = "select SID,SNAME,SCDEPTNAME,SCPERSONNAME,"
+					+ "SCREATETIME,SLOCK,SWARNINGTIME,SLIMITTIME from SA_TASK where (SEPERSONID = '" + personID
+					+ "' or ('" + personFID + "' like concat(COALESCE(SEFID,'TASKTEMP/'),'%') and STYPEID is null) "
+					+ " or EXISTS(select t.SCREATORID " + "	from sa_opagent t " + " where t.sagentid = '" + personID
+					+ "'" + " and t.SVALIDSTATE = 1 and t.SCREATORID = SA_TASK.SEPERSONID "
+					+ " and to_char(t.sstarttime,'yyyy-mm-dd') <= to_char(now(),'yyyy-mm-dd') "
+					+ " and to_char(t.sfinishtime,'yyyy-mm-dd') >= to_char(now(),'yyyy-mm-dd') )"
+					+ ") and SSTATUSID = 'tesReady' "
+					+ " and (STYPEID is null or (STYPEID is not null and SLOCK is null))"
+					+ " order by SCREATETIME desc limit 5";
+		}else {
 			sql = "select TOP 5 SID,SNAME,SCDEPTNAME,SCPERSONNAME,"
 					+ "SCREATETIME,SLOCK,SWARNINGTIME,SLIMITTIME from SA_TASK where (SEPERSONID = '" + personID
 					+ "' or ('" + personFID + "' like ISNULL(SEFID,'TASKTEMP/')+'%' and STYPEID is null) "

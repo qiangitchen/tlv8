@@ -140,7 +140,7 @@ public class FlowControler extends FlowDataBean {
 					if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 						sql = sql.replace("CURRENTDATE1", "sysdate");
 						sql = sql.replace("CURRENTDATE2", "sysdate");
-					} else if (DBUtils.IsMySQLDB("system")) {
+					} else if (DBUtils.IsMySQLDB("system") || DBUtils.IsPostgreSQL("system")) {
 						sql = sql.replace("CURRENTDATE1", "now()");
 						sql = sql.replace("CURRENTDATE2", "now()");
 					} else {

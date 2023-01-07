@@ -164,7 +164,7 @@ public class TaskData {
 			if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 				sql = sql.replace("CURRENTDATE1", "sysdate");
 				sql = sql.replace("CURRENTDATE2", "sysdate");
-			} else if (DBUtils.IsMySQLDB("system")) {
+			} else if (DBUtils.IsMySQLDB("system") || DBUtils.IsPostgreSQL("system")) {
 				sql = sql.replace("CURRENTDATE1", "now()");
 				sql = sql.replace("CURRENTDATE2", "now()");
 			} else {
@@ -200,7 +200,7 @@ public class TaskData {
 					sql_1 = sql_1.replace("CURRENTDATE1", "sysdate");
 					sql = sql.replace("CURRENTDATE2", "sysdate");
 					sql_1 = sql_1.replace("CURRENTDATE2", "sysdate");
-				} else if (DBUtils.IsMySQLDB("system")) {
+				} else if (DBUtils.IsMySQLDB("system") || DBUtils.IsPostgreSQL("system")) {
 					sql = sql.replace("CURRENTDATE1", "now()");
 					sql_1 = sql_1.replace("CURRENTDATE1", "now()");
 					sql = sql.replace("CURRENTDATE2", "now()");
@@ -224,7 +224,7 @@ public class TaskData {
 						+ flowID + "' and (SSTATUSID = 'tesReady' or SSTATUSID = 'tesExecuting')";
 				if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 					sql = sql.replace("CURRENTDATE1", "sysdate");
-				} else if (DBUtils.IsMySQLDB("system")) {
+				} else if (DBUtils.IsMySQLDB("system") || DBUtils.IsPostgreSQL("system")) {
 					sql = sql.replace("CURRENTDATE1", "now()");
 				} else {
 					sql = sql.replace("CURRENTDATE1", "getdate()");
@@ -311,7 +311,7 @@ public class TaskData {
 			if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 				isql = isql.replace("CURRENTDATE1", "sysdate");
 				isql = isql.replace("CURRENTDATE2", "sysdate");
-			} else if (DBUtils.IsMySQLDB("system")) {
+			} else if (DBUtils.IsMySQLDB("system") || DBUtils.IsPostgreSQL("system")) {
 				isql = isql.replace("CURRENTDATE1", "now()");
 				isql = isql.replace("CURRENTDATE2", "now()");
 			} else {
@@ -391,7 +391,7 @@ public class TaskData {
 			if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 				isql = isql.replace("CURRENTDATE1", "sysdate");
 				isql = isql.replace("CURRENTDATE2", "sysdate");
-			} else if (DBUtils.IsMySQLDB("system")) {
+			} else if (DBUtils.IsMySQLDB("system") || DBUtils.IsPostgreSQL("system")) {
 				isql = isql.replace("CURRENTDATE1", "now()");
 				isql = isql.replace("CURRENTDATE2", "now()");
 			} else {
@@ -434,7 +434,7 @@ public class TaskData {
 				+ taskID + "' and SSTATUSID = 'tesReady'";
 		if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 			sql = sql.replace("CURRENTDATE1", "sysdate");
-		} else if (DBUtils.IsMySQLDB("system")) {
+		} else if (DBUtils.IsMySQLDB("system") || DBUtils.IsPostgreSQL("system")) {
 			sql = sql.replace("CURRENTDATE1", "now()");
 		} else {
 			sql = sql.replace("CURRENTDATE1", "getdate()");
@@ -455,7 +455,7 @@ public class TaskData {
 		if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system")) {
 			sql = sql.replace("CURRENTDATE1", "sysdate");
 			msql = msql.replace("CURRENTDATE1", "sysdate");
-		} else if (DBUtils.IsMySQLDB("system")) {
+		} else if (DBUtils.IsMySQLDB("system") || DBUtils.IsPostgreSQL("system")) {
 			sql = sql.replace("CURRENTDATE1", "now()");
 			msql = msql.replace("CURRENTDATE1", "now()");
 		} else {
