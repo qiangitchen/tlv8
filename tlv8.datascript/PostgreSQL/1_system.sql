@@ -952,6 +952,39 @@ COMMENT ON COLUMN im_message.stime IS '时间';
 COMMENT ON COLUMN im_message.groupname IS '群组名称';
 COMMENT ON COLUMN im_message.tid IS '目标ID';
 
+CREATE TABLE personaldocnode
+(
+    sid                         VARCHAR(32) NOT NULL,
+    sparentid                   VARCHAR(100),
+    sparentname                 VARCHAR(100),
+    screatorid                  VARCHAR(100),
+    screatorname                VARCHAR(100),
+    spath                       VARCHAR(100),
+    description                 VARCHAR(1024),
+    saccesscurrentid            VARCHAR(1024),
+    saccesscurrentname          VARCHAR(1024),
+    version                     INT4,
+    CONSTRAINT personaldocnode_pkey PRIMARY KEY (sid)
+);
+
+CREATE TABLE personal_file
+(
+    sid                         VARCHAR(32) NOT NULL,
+    sfilename                   VARCHAR(1024),
+    sfilesize                   VARCHAR(100),
+    sdocpath                    TEXT,
+    sfileid                     VARCHAR(100),
+    docid                       VARCHAR(100),
+    screatorid                  VARCHAR(100),
+    screatorname                VARCHAR(100),
+    smasterid                   VARCHAR(32),
+    saccessory                  TEXT,
+    saccesscurrentid            VARCHAR(1024),
+    saccesscurrentname          VARCHAR(1024),
+    version                     INT4,
+    CONSTRAINT personal_file_pkey PRIMARY KEY (sid)
+);
+
 CREATE OR REPLACE VIEW news_tables AS 
 select a.SID AS SID,a.VERSION AS VERSION,a.FNEWSTITLE AS FNEWSTITLE,a.FSTATE AS FSTATE,a.FPEOPLE AS FPEOPLE,
 a.FTIME AS FTIME,a.FOPENSCOPE AS FOPENSCOPE,b.NEWS_NUMBER AS NEWS_NUMBER,b.NEWS_PERSON AS NEWS_PERSON,
