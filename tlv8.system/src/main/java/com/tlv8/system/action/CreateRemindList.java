@@ -56,7 +56,7 @@ public class CreateRemindList {
 			sql = "select STITLE,SCONTEXT,SDATETIME,SSTATE from SA_REMINDINFO t " + " where SPERSONID = '"
 					+ orgu.getPersonID() + "' and rownum <=" + count + " " + filter
 					+ " order by SSTATE asc, SDATETIME asc";
-		} else if (DBUtils.IsMySQLDB("system")) {
+		} else if (DBUtils.IsMySQLDB("system") || DBUtils.IsPostgreSQL("system")) {
 			sql = "select STITLE,SCONTEXT,SDATETIME,SSTATE from SA_REMINDINFO t" + " where SPERSONID = '"
 					+ orgu.getPersonID() + "' " + filter + " order by SSTATE asc, SDATETIME asc limit " + count;
 		} else {

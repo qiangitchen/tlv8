@@ -21,7 +21,7 @@ public class DayTrafficTrendController {
 	public Object execute() throws Exception {
 		List<String> xdata = new ArrayList<String>();
 		List<Long> ydata = new ArrayList<Long>();
-		if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system") || DBUtils.IsKingDB("system")) {
+		if (DBUtils.IsOracleDB("system") || DBUtils.IsDMDB("system") || DBUtils.IsKingDB("system") || DBUtils.IsPostgreSQL("system")) {
 			for (int t = 8; t < 21; t++) {
 				String sql = "select count(*) AMOUNT from SA_LOG where to_char(SCREATETIME,'hh24') >=" + t
 						+ " and to_char(SCREATETIME,'hh24') <" + (t + 1);

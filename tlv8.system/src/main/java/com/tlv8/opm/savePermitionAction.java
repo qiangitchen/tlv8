@@ -123,7 +123,7 @@ public class savePermitionAction extends ActionSupport {
 					DateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd");
 					try {
 						dataFormat.parse(cell.get(key));
-						if (DBUtils.IsOracleDB("system")) {
+						if (DBUtils.IsOracleDB("system") || DBUtils.IsPostgreSQL("system")) {
 							columns += "," + key + "=to_date('" + dataFormat.format(dataFormat.parse(cell.get(key)))
 									+ "','yyyy-MM-dd')";
 						} else {
@@ -157,7 +157,7 @@ public class savePermitionAction extends ActionSupport {
 					DateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd");
 					try {
 						dataFormat.parse(cell.get(key));
-						if (DBUtils.IsOracleDB("system")) {
+						if (DBUtils.IsOracleDB("system") || DBUtils.IsPostgreSQL("system")) {
 							values += ",to_date('" + dataFormat.format(dataFormat.parse(cell.get(key)))
 									+ "','yyyy-MM-dd')";
 						} else {

@@ -86,11 +86,11 @@ public class FunctreeControl {
 					+ "left join sa_oppermission m on m.SPERMISSIONROLEID = a.SAUTHORIZEROLEID "
 					+ " where upper(m.SPROCESS) = upper('" + url + "') " + " and upper('" + personfID
 					+ "') like upper('%' || sOrgID || '%') and rownum=1";
-		} else if (DBUtils.IsMySQLDB("system")) {
-			sql = "select TOP1 * from sa_opauthorize a "
+		} else if (DBUtils.IsMySQLDB("system") || DBUtils.IsPostgreSQL("system")) {
+			sql = "select * from sa_opauthorize a "
 					+ "left join sa_oppermission m on m.SPERMISSIONROLEID = a.SAUTHORIZEROLEID "
 					+ " where upper(m.SPROCESS) = upper('" + url + "') " + " and upper('" + personfID
-					+ "') like upper(concat('%',sOrgID,'%'))";
+					+ "') like upper(concat('%',sOrgID,'%')) limit 1";
 		} else {
 			sql = "select TOP1 * from sa_opauthorize a "
 					+ "left join sa_oppermission m on m.SPERMISSIONROLEID = a.SAUTHORIZEROLEID "
