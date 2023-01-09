@@ -11,6 +11,11 @@
 	<description>TLv8 平台 流程引擎</description>
 
 	<dependencies>
+		<dependency>
+            <groupId>org.openjdk.nashorn</groupId>
+            <artifactId>nashorn-core</artifactId>
+            <version>15.3</version>
+        </dependency>
 
 		<!-- 核心包 -->
 		<dependency>
