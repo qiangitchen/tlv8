@@ -600,7 +600,7 @@ tlv8.sqlQueryAction = function(dbkey, sql, callBack, ayn) {
 			var index = 0;
 			var have = false;
 			for (var i = 0; i < colum.length; i++) {
-				if (colum[i] == columnName) {
+				if (colum[i].toUpperCase() == columnName.toUpperCase()) {
 					index = i;
 					have = true;
 					break;
