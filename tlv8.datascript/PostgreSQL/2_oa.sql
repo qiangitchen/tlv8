@@ -880,6 +880,34 @@ comment on column OA_HR_WARG.FBEIZHU
 alter table OA_HR_WARG
   add constraint OA_HR_WAGE_KEY primary key (FID);
   
+CREATE TABLE oa_test1  (
+  FID varchar(32) NOT NULL,
+  FMINGCHENG varchar(100) DEFAULT NULL,
+  VERSION int DEFAULT NULL,
+  CODE varchar(200) DEFAULT NULL,
+  SCODE varchar(20) DEFAULT NULL,
+  fdate timestamp DEFAULT NULL,
+  fbillid varchar(32) DEFAULT NULL,
+  PRIMARY KEY (FID)
+);
+
+CREATE TABLE oa_leave (
+  FID varchar(36) NOT NULL,
+  FCREATORNAME varchar(255) DEFAULT NULL,
+  FCREATORID varchar(36) DEFAULT NULL,
+  FCREATORFID varchar(500) DEFAULT NULl,
+  FCREATORFNAME varchar(1000) DEFAULT NULL,
+  FCREATEDATE timestamp DEFAULT NULL,
+  FSTARTDATE date DEFAULT NULL,
+  FENDDATE date DEFAULT NULL,
+  FDAY integer DEFAULT NULL,
+  FLEAVETYPE varchar(255) DEFAULT NULL,
+  FSTATE varchar(50) DEFAULT NULL,
+  FREASON varchar(500) DEFAULT NULL,
+  VERSION varchar(255) DEFAULT NULL,
+  PRIMARY KEY (FID)
+);
+  
 create or replace view oa_notice_person_view as
 select t.FID,
        t.VERSION,
