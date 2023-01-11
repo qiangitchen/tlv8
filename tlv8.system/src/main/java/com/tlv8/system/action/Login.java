@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import javax.naming.NamingException;
 
+import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 
 import com.tlv8.base.db.DBUtils;
@@ -14,8 +15,12 @@ import com.tlv8.base.db.DBUtils;
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class Login {
 	private String message;
-	private static String sql = "select p.sName username,p.sID personID,p.sName personName,p.sCode personCode,o.sID orgID,o.sName orgName,o.sFID orgPath,p.sID agentPersonID,p.sName agentPersonName,p.sCode agentPersonCode,o.sID agentOrgID,o.sName agentOrgName,o.sFID agentOrgPath , p.spassword,p.SMOBILEPHONE, case when (p.SVALIDSTATE=1) then o.SVALIDSTATE else p.SVALIDSTATE end SVALIDSTATE  from SA_OPPerson p left join SA_OPOrg o on p.SMAINORGID = o.SID "
-			.toUpperCase();
+	private static String sql = new SQL()
+			.SELECT("p.sName username,p.sID personID,p.sName personName,p.sCode personCode")
+			.SELECT("o.sID orgID,o.sName orgName,o.sFID orgPath,p.sID agentPersonID,p.sName agentPersonName,p.sCode agentPersonCode,o.sID agentOrgID,o.sName agentOrgName,o.sFID agentOrgPath, p.spassword,p.SMOBILEPHONE")
+			.SELECT("case when (p.SVALIDSTATE=1) then m.SVALIDSTATE else p.SVALIDSTATE end SVALIDSTATE")
+			.FROM("SA_OPPerson p").INNER_JOIN("SA_OPOrg m on p.sid=m.SPERSONID")
+			.LEFT_OUTER_JOIN("SA_OPOrg o on p.SMAINORGID=o.SID").toString().toUpperCase();
 
 	public void setMessage(String message) {
 		this.message = message;
