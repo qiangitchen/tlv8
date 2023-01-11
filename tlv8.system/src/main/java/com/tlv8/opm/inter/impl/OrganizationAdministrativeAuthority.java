@@ -170,6 +170,9 @@ public class OrganizationAdministrativeAuthority implements OrgAdmAuthority {
 	protected boolean isContains(Map map, String value) {
 		boolean res = false;
 		Set<String> keySet = getKeySet(havePerMap, value);
+		if (keySet == null) {
+			return res;
+		}
 		for (Object k : keySet) {
 			if (map.containsKey(k)) {
 				res = true;
