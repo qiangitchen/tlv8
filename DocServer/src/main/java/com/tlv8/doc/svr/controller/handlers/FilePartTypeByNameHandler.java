@@ -42,7 +42,6 @@ public class FilePartTypeByNameHandler extends AbstractRequestHandler {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	private Map<String, String> getParams(HttpServletRequest request) {
 		Map<String, String> rmap = new HashMap<String, String>();
 		String pathinfo = request.getPathInfo();
