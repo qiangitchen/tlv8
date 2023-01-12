@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -101,7 +102,7 @@ public class DBUtils {
 	public static SqlSession getSession(String dbkey) {
 		logger.debug(dbkey);
 		if (dbsource.containsKey(dbkey)) {
-			return dbsource.get(dbkey).openSession();
+			return dbsource.get(dbkey).openSession(ExecutorType.BATCH, false);
 		}
 		return null;
 	}
