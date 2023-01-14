@@ -33,8 +33,6 @@ public class Utils {
 		if (!paramBoolean) {
 			ModelException localModelException = new ModelException(""
 					+ paramObject);
-			jdField_a_of_type_OrgApacheLog4jLogger.error("check error!",
-					localModelException);
 			throw localModelException;
 		}
 
@@ -45,8 +43,6 @@ public class Utils {
 		if (paramObject == null) {
 			ModelException localModelException = new ModelException(String
 					.format("%s不能为空!", new Object[] { paramString }));
-			jdField_a_of_type_OrgApacheLog4jLogger.error("检查 " + paramString
-					+ " 时报错！", localModelException);
 			throw localModelException;
 		}
 
@@ -57,8 +53,6 @@ public class Utils {
 		if (paramObject == null) {
 			ModelException localModelException = new ModelException(String
 					.format("%s不存在!", new Object[] { paramString }));
-			jdField_a_of_type_OrgApacheLog4jLogger.error("检查 " + paramString
-					+ " 时报错！", localModelException);
 			throw localModelException;
 		}
 	}
@@ -73,9 +67,6 @@ public class Utils {
 		if (isEmptyString(paramString2)) {
 			ModelException localModelException = new ModelException(String
 					.format("%s不能为空!", new Object[] { paramString1 }));
-			if (!isNull(paramLogger))
-				jdField_a_of_type_OrgApacheLog4jLogger.error("检查 "
-						+ paramString1 + " 时报错！", localModelException);
 			try {
 				throw localModelException;
 			} catch (ModelException e) {
