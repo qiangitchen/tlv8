@@ -812,6 +812,8 @@ public class DocDBHelper {
 			throws Exception {
 		SqlSession session = DBUtils.getSession("system");
 		Connection conn = null;
+		Statement stm = null;
+		ResultSet di = null;
 		String docID = Utils.getID();
 		try {
 			conn = session.getConnection();
@@ -824,7 +826,8 @@ public class DocDBHelper {
 				dirsql = "select SID,SDOCPATH,SDOCDISPLAYPATH from SA_DOCNODE where SDOCPATH ='" + docPath
 						+ "' or to_char(SDOCDISPLAYPATH) = '" + docPath + "'";
 			}
-			ResultSet di = conn.createStatement().executeQuery(dirsql);
+			stm = conn.createStatement();
+			di = stm.executeQuery(dirsql);
 			String pdirpath = "";
 			String pdirpathID = "";
 			String dirpathID = "/root";
@@ -844,7 +847,8 @@ public class DocDBHelper {
 						queryDirSql = "select SID,SDOCPATH from SA_DOCNODE where to_char(SDOCDISPLAYPATH)='/文档中心"
 								+ pdirpath + "' or to_char(SDOCDISPLAYPATH)='/root" + pdirpath + "'";
 					}
-					ResultSet pli = conn.createStatement().executeQuery(queryDirSql);
+					Statement stms = conn.createStatement();
+					ResultSet pli = stms.executeQuery(queryDirSql);
 					if (pli.next()) {
 						dirID = pli.getString("SID");
 						pdirpathID = pli.getString("SDOCPATH");
@@ -856,6 +860,7 @@ public class DocDBHelper {
 								+ "',0 from SA_DOCNODE where SDOCPATH = '" + dirpathID + "'";
 						conn.createStatement().executeUpdate(sql);
 					}
+					DBUtils.CloseConn(null, null, stms, pli);
 					dirpathID += "/" + dirID;
 				}
 			}
@@ -880,9 +885,10 @@ public class DocDBHelper {
 			ps.executeUpdate();
 			session.commit(true);
 		} catch (Exception e) {
+			session.rollback(true);
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, null, null);
+			DBUtils.CloseConn(session, conn, stm, di);
 		}
 		return docID;
 	}

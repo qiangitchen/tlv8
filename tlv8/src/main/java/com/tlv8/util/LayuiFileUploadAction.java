@@ -5,6 +5,7 @@ import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -70,12 +71,14 @@ public class LayuiFileUploadAction {
 				}
 				SqlSession session = DBUtils.getSession(dbkey);
 				Connection conn = null;
+				Statement stm = null;
 				PreparedStatement ps = null;
 				ResultSet rs = null;
 				try {
 					conn = session.getConnection();
 					JSONArray jsona = new JSONArray();
-					rs = conn.createStatement().executeQuery(querySql);
+					stm = conn.createStatement();
+					rs = stm.executeQuery(querySql);
 					if (rs.next()) {
 						String fileinfo = rs.getString(1);
 						try {
@@ -101,7 +104,8 @@ public class LayuiFileUploadAction {
 					session.rollback(true);
 					e.printStackTrace();
 				} finally {
-					DBUtils.CloseConn(session, conn, ps, rs);
+					DBUtils.CloseConn(null, null, stm, rs);
+					DBUtils.CloseConn(session, conn, ps, null);
 				}
 			}
 			res.put("code", 0);

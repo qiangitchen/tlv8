@@ -3,6 +3,7 @@ package com.tlv8.system.online;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -21,18 +22,20 @@ public class OnlineUtils {
 		int r = -1;
 		SqlSession session = DBUtils.getSession("system");
 		Connection conn = null;
+		Statement stm = null;
 		ResultSet rs = null;
 		try {
 			conn = session.getConnection();
 			String sql = "select count(*) CON from SA_ONLINEINFO";
-			rs = conn.createStatement().executeQuery(sql);
+			stm = conn.createStatement();
+			rs = stm.executeQuery(sql);
 			if (rs.next()) {
 				r = rs.getInt(1);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, null, rs);
+			DBUtils.CloseConn(session, conn, stm, rs);
 		}
 		return r;
 	}

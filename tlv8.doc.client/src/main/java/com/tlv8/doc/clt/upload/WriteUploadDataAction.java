@@ -4,7 +4,9 @@ import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,7 +68,6 @@ public class WriteUploadDataAction extends ActionSupport {
 		return writelog;
 	}
 
-	@SuppressWarnings("deprecation")
 	public boolean writedata(String param) throws Exception {
 		JSONArray jarr = JSON.parseArray(param);
 		for (int i = 0; i < jarr.size(); i++) {
@@ -106,13 +107,16 @@ public class WriteUploadDataAction extends ActionSupport {
 						querySql = querySql.replace(":KEYCELL", "FID");
 						updateSql = updateSql.replace(":KEYCELL", "FID");
 					}
+					SqlSession session = DBUtils.getSession(dbkey);
 					Connection conn = null;
 					PreparedStatement ps = null;
+					Statement stm = null;
 					ResultSet rs = null;
 					try {
-						conn = DBUtils.getAppConn(dbkey);
+						conn = session.getConnection();
 						JSONArray jsona = new JSONArray();
-						rs = conn.createStatement().executeQuery(querySql);
+						stm = conn.createStatement();
+						rs = stm.executeQuery(querySql);
 						if (rs.next()) {
 							String fileinfo = rs.getString(1);
 							try {
@@ -132,13 +136,13 @@ public class WriteUploadDataAction extends ActionSupport {
 						ps = conn.prepareStatement(updateSql);
 						ps.setString(1, jsona.toString());
 						ps.executeUpdate();
+						session.commit(true);
 					} catch (Exception e) {
+						session.rollback(true);
 						e.printStackTrace();
 					} finally {
-						try {
-							DBUtils.CloseConn(conn, ps, rs);
-						} catch (Exception e) {
-						}
+						DBUtils.CloseConn(null, null, stm, rs);
+						DBUtils.CloseConn(session, conn, ps, null);
 					}
 				}
 			} else {

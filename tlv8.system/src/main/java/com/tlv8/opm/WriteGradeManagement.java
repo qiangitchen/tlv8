@@ -5,6 +5,7 @@ import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -45,6 +46,8 @@ public class WriteGradeManagement extends ActionSupport {
 		SqlSession session = DBUtils.getSession("system");
 		Connection conn = null;
 		PreparedStatement ps = null;
+		Statement stm = null;
+		ResultSet rs = null;
 		try {
 			String[] selorg = orgids.split(",");
 			OPMOrgUtils org = new OPMOrgUtils(orgid);
@@ -56,9 +59,10 @@ public class WriteGradeManagement extends ActionSupport {
 				String sorgid = selorg[i];
 				String query = "select SID from SA_OPManagement where SORGID = '" + orgid + "' and SMANAGEORGID='"
 						+ sorgid + "'";
-				ResultSet rs = conn.createStatement().executeQuery(query);
+				stm = conn.createStatement();
+				rs = conn.createStatement().executeQuery(query);
 				if (rs.next()) {
-					rs.close();
+					DBUtils.CloseConn(null, null, stm, rs);
 					continue;
 				}
 				OPMOrgUtils morg = new OPMOrgUtils(sorgid);
@@ -78,7 +82,6 @@ public class WriteGradeManagement extends ActionSupport {
 				ps.setTimestamp(13, new Timestamp(new Date().getTime()));
 				ps.setInt(14, 0);
 				ps.executeUpdate();
-				rs.close();
 			}
 			session.commit(true);
 			data.setFlag("true");

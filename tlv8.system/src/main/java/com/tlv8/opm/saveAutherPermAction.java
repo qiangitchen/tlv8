@@ -4,6 +4,7 @@ import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -76,12 +77,14 @@ public class saveAutherPermAction extends ActionSupport {
 			SqlSession session = DBUtils.getSession("system");
 			Connection conn = null;
 			PreparedStatement ps = null;
+			Statement stm = null;
 			ResultSet rs = null;
 			try {
 				String query = "select o.SNAME,o.SFID,o.SFNAME,r.SID ROLEID,r.SNAME ROLENAME FROM SA_OPROLE r, SA_OPORG o WHERE  r.SID in ("
 						+ addrole + ") and o.SID = '" + orgID + "'";
 				conn = session.getConnection();
-				rs = conn.createStatement().executeQuery(query);
+				stm = conn.createStatement();
+				rs = stm.executeQuery(query);
 				while (rs.next()) {
 					ps = conn.prepareStatement(sql);
 					ps.setString(1, IDUtils.getGUID());
@@ -102,7 +105,8 @@ public class saveAutherPermAction extends ActionSupport {
 				session.rollback(true);
 				throw e;
 			} finally {
-				DBUtils.CloseConn(session, conn, ps, rs);
+				DBUtils.CloseConn(null, null, stm, rs);
+				DBUtils.CloseConn(session, conn, ps, null);
 			}
 		}
 		return result;
