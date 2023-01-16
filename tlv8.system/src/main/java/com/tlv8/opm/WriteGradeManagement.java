@@ -91,6 +91,7 @@ public class WriteGradeManagement extends ActionSupport {
 			data.setMessage(e.getMessage());
 			e.printStackTrace();
 		} finally {
+			DBUtils.CloseConn(null, null, stm, rs);
 			DBUtils.CloseConn(session, conn, ps, null);
 		}
 		return this;
