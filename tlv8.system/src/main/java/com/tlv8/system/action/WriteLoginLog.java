@@ -1,5 +1,6 @@
 package com.tlv8.system.action;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -25,9 +26,11 @@ public class WriteLoginLog extends BaseController {
 		String serverip = IPUtils.getPermisServerIP(request);
 		String sql = "insert into SA_LOGINLOG(SID,SUSERID,SUSERNAME,SLOGINIP,SLOGINTIME,PASSWORD,VERSION,SSERVICEIP,SDAY,SDAYNUM)values(?,?,?,?,?,?,?,?,?,?)";
 		SqlSession session = DBUtils.getSession("system");
+		Connection conn = null;
 		PreparedStatement ps = null;
 		try {
-			ps = session.getConnection().prepareStatement(sql);
+			conn = session.getConnection();
+			ps = conn.prepareStatement(sql);
 			ps.setString(1, IDUtils.getGUID());
 			ps.setString(2, userID);
 			ps.setString(3, userName);
@@ -45,7 +48,7 @@ public class WriteLoginLog extends BaseController {
 			session.rollback(true);
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, null, ps, null);
+			DBUtils.CloseConn(session, conn, ps, null);
 		}
 	}
 

@@ -95,10 +95,9 @@ public class AppendPersonMembers extends ActionSupport {
 						ps2.setInt(11, level);
 						ps2.setInt(12, sequence);
 						ps2.executeUpdate();
-						ps2.close();
+						DBUtils.CloseConn(null, null, ps2, null);
 					}
-					rs1.close();
-					ps1.close();
+					DBUtils.CloseConn(null, null, ps1, rs1);
 				}
 			}
 			data.setFlag("true");

@@ -75,16 +75,15 @@ public class DeleteOrgGridInfo extends ActionSupport {
 		String result = "";
 		SqlSession session = DBUtils.getSession("system");
 		Connection conn = null;
+		PreparedStatement ps = null;
 		ResultSet rs = null;
 		String kiSQL = "select SORGKINDID,SID,SFID,SPERSONID from SA_OPOrg where SID = ?";
 		String sql = "update SA_OPOrg o set o.SVALIDSTATE = -1 where (o.SID = ?";
 		String pSQL = "update SA_OPPerson p set p.SVALIDSTATE = -1 where p.SID <> 'PSN01' and p.SID =?";
 		String cSQL = "select SID from SA_OPOrg o where o.SID <> ? and o.SPERSONID = ?";
-		// System.out.println(sql);
-		// System.out.println(kiSQL);
 		try {
 			conn = session.getConnection();
-			PreparedStatement ps = conn.prepareStatement(kiSQL);
+			ps = conn.prepareStatement(kiSQL);
 			ps.setString(1, getRowid());
 			rs = ps.executeQuery();
 			if (rs.next()) {
@@ -95,24 +94,25 @@ public class DeleteOrgGridInfo extends ActionSupport {
 					ps0.setString(2, rs.getString(4));
 					ResultSet rs0 = ps0.executeQuery();
 					if (!rs0.next()) {
-						// System.out.println(pSQL);
 						PreparedStatement ps1 = conn.prepareStatement(pSQL);
 						ps1.setString(1, rs.getString(4));
 						ps1.executeUpdate();
+						DBUtils.CloseConn(null, null, ps1, null);
 					}
+					DBUtils.CloseConn(null, null, ps0, rs0);
 				}
 				sql += " or SFID like '" + rs.getString(3) + "%') and o.SID <> 'ORG01' and o.SID <> 'PSN01@ORG01'";
 			}
-			// System.out.println(sql);
 			PreparedStatement ps2 = conn.prepareStatement(sql);
 			ps2.setString(1, getRowid());
 			ps2.executeUpdate();
+			DBUtils.CloseConn(null, null, ps2, null);
 			session.commit(true);
 		} catch (SQLException e) {
 			session.rollback(true);
 			throw new SQLException(e);
 		} finally {
-			DBUtils.CloseConn(session, conn, null, null);
+			DBUtils.CloseConn(session, conn, ps, rs);
 		}
 		return result;
 	}

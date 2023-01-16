@@ -76,7 +76,6 @@ public class saveAutherPermAction extends ActionSupport {
 		if (!"".equals(roleIDs) && !"".equals(orgID)) {
 			SqlSession session = DBUtils.getSession("system");
 			Connection conn = null;
-			PreparedStatement ps = null;
 			Statement stm = null;
 			ResultSet rs = null;
 			try {
@@ -86,7 +85,7 @@ public class saveAutherPermAction extends ActionSupport {
 				stm = conn.createStatement();
 				rs = stm.executeQuery(query);
 				while (rs.next()) {
-					ps = conn.prepareStatement(sql);
+					PreparedStatement ps = conn.prepareStatement(sql);
 					ps.setString(1, IDUtils.getGUID());
 					ps.setString(2, orgID);
 					ps.setString(3, rs.getString("SNAME"));
@@ -99,14 +98,14 @@ public class saveAutherPermAction extends ActionSupport {
 					ps.setTimestamp(10, new Timestamp(new Date().getTime()));
 					ps.setInt(11, 0);
 					ps.executeUpdate();
+					DBUtils.CloseConn(null, null, ps, null);
 				}
 				session.commit(true);
 			} catch (Exception e) {
 				session.rollback(true);
 				throw e;
 			} finally {
-				DBUtils.CloseConn(null, null, stm, rs);
-				DBUtils.CloseConn(session, conn, ps, null);
+				DBUtils.CloseConn(session, conn, stm, rs);
 			}
 		}
 		return result;

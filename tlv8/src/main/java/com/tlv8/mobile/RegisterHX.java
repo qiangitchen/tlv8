@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -157,19 +159,19 @@ public class RegisterHX {
 		return result;
 	}
 
-	@SuppressWarnings({ "deprecation", "rawtypes" })
+	@SuppressWarnings({ "rawtypes" })
 	public static void main(String[] args) throws Exception {
-
 		String result = doLogin("https://a1.easemob.com/justep-yn/wsoa/token",
 				"{\"grant_type\":\"client_credentials\",\"client_id\":\"YXA6HJYlUGj_EeaC8yESoYvNXA\",\"client_secret\":\"YXA6qFC0h20cirRC8NZBKmESttkoidw\"}");
-		System.out.println(result);
+		SqlSession session = DBUtils.getSession("oa");
 		Connection conn = null;
+		PreparedStatement ps = null;
 		try {
 			JSONObject tokenjson = JSON.parseObject(result);
 			String access_token = tokenjson.getString("access_token");
 			String sql = "select t.scode, t.sname,t.sid from SA_OPPERSON t where t.svalidstate='1' and t.sid not in(select fpersonid from mboa_app.REGISTERHX)";
 			List personlist = DBUtils.execQueryforList("system", sql);
-			conn = DBUtils.getAppConn("oa");
+			conn = session.getConnection();
 			for (int i = 0; i < personlist.size(); i++) {
 				Map m = (Map) personlist.get(i);
 				HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
@@ -180,7 +182,6 @@ public class RegisterHX {
 				nickname = nickname.trim();
 				String d = "{\"username\":\"" + username + "\",\"password\":\"123456\",\"nickname\":\"" + nickname
 						+ "\"}";
-				System.out.println(d);
 				String sr = sendPost("https://a1.easemob.com/justep-yn/wsoa/users", d, access_token);
 				JSONObject pesron = JSON.parseObject(sr);
 				JSONArray personjsona = JSON.parseArray(pesron.getString("entities").toString());
@@ -188,16 +189,14 @@ public class RegisterHX {
 				String insertsql = "insert into REGISTERHX values('" + p.get("uuid") + "'," + "'" + p.get("type") + "',"
 						+ "'" + p.get("created") + "'," + "'" + p.get("modified") + "'," + "'" + p.get("username")
 						+ "'," + "'123456',1,'" + m.get("SID").toString() + "')";
-				System.out.println(i + ":" + insertsql);
-
-				PreparedStatement ps = conn.prepareStatement(insertsql);
+				ps = conn.prepareStatement(insertsql);
 				ps.executeUpdate();
 				ps.close();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(conn, null, null);
+			DBUtils.CloseConn(session, conn, ps, null);
 		}
 	}
 

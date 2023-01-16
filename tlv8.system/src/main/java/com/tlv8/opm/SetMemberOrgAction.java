@@ -35,10 +35,11 @@ public class SetMemberOrgAction extends ActionSupport {
 	public Object execute() throws Exception {
 		data = new Data();
 		SqlSession session = DBUtils.getSession("system");
-		Connection conn = session.getConnection();
+		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
+			conn = session.getConnection();
 			List<Map<String, String>> list = DBUtils.selectStringList(session,
 					"select SPERSONID,SPARENT from SA_OPOrg where SID = '" + rowid + "' and SORGKINDID = 'psm'");
 			if (list.size() > 0) {
@@ -59,20 +60,21 @@ public class SetMemberOrgAction extends ActionSupport {
 						WHERE("o.sID = ?");
 					}
 				}.toString();
-				PreparedStatement ps1 = conn.prepareStatement(qsql);
-				ps1.setString(1, orgID);
-				ps1.setString(2, rowid);
-				rs = ps1.executeQuery();
+				ps = conn.prepareStatement(qsql);
+				ps.setString(1, orgID);
+				ps.setString(2, rowid);
+				rs = ps.executeQuery();
 				if (rs.next()) {
 					// 更新机构路径
-					ps = conn.prepareStatement(upSQL);
-					ps.setString(1, neworgid);
-					ps.setString(2, orgID);
-					ps.setString(3, rs.getString("SFID") + "/" + neworgid + "." + rs.getString("SORGKINDID"));
-					ps.setString(4, rs.getString("SFCODE") + "/" + rs.getString("SCODE"));
-					ps.setString(5, rs.getString("SFNAME") + "/" + rs.getString("SNAME"));
-					ps.setString(6, rowid);
-					ps.executeUpdate();
+					PreparedStatement ps1 = conn.prepareStatement(upSQL);
+					ps1.setString(1, neworgid);
+					ps1.setString(2, orgID);
+					ps1.setString(3, rs.getString("SFID") + "/" + neworgid + "." + rs.getString("SORGKINDID"));
+					ps1.setString(4, rs.getString("SFCODE") + "/" + rs.getString("SCODE"));
+					ps1.setString(5, rs.getString("SFNAME") + "/" + rs.getString("SNAME"));
+					ps1.setString(6, rowid);
+					ps1.executeUpdate();
+					DBUtils.CloseConn(null, null, ps1, null);
 					// 更新其他部门下的人员为（分配）
 					DBUtils.excuteUpdate(session, "update SA_OPOrg set SNODEKIND='nkLimb' where SPERSONID='" + personid
 							+ "' and SID !='" + neworgid + "' and SORGKINDID = 'psm'");
@@ -92,7 +94,7 @@ public class SetMemberOrgAction extends ActionSupport {
 			data.setMessage(e.getMessage());
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, null, null, null);
+			DBUtils.CloseConn(session, conn, ps, rs);
 		}
 		return this;
 	}

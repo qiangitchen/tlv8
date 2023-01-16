@@ -2,11 +2,10 @@ package com.tlv8.doc.clt.upload;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,40 +56,33 @@ public class ImageWriteAction extends ActionSupport {
 	}
 
 	@RequestMapping(value = "/ImageWriteAction", method = RequestMethod.POST)
-	@SuppressWarnings("deprecation")
 	public Object upload() throws Exception {
+		SqlSession session = DBUtils.getSession(dbkey);
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String rs = "/comon/picCompant/Imag-upload";
 		try {
 			if (dbkey == null || "".equals(dbkey))
 				dbkey = "system";
-			Connection conn = DBUtils.getAppConn(dbkey);
+			conn = session.getConnection();
 			FileInputStream fin = new FileInputStream(upload);
-			// System.out.println("file size = " + fin.available());
 			String uSQL = "update " + tablename + " set " + cellname + "=? where "
 					+ (("system".equals(dbkey)) ? "sID" : "fID") + "=?";
-			PreparedStatement pstmt = conn.prepareStatement(uSQL);
 			pstmt = conn.prepareStatement(uSQL);
-			// Sys.printMsg(uSQL);
+			pstmt = conn.prepareStatement(uSQL);
 			pstmt.setBinaryStream(1, fin, fin.available());
 			pstmt.setString(2, rowid);
 			pstmt.executeUpdate();
-			pstmt.close();
-			// conn.commit();
-			conn.close();
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
-			setCaption("错误:" + e.toString());
-			return "/comon/picCompant/Imag-upload";
-		} catch (IOException e) {
-			System.err.println(e.getMessage());
-			setCaption("错误:" + e.toString());
-			return "/comon/picCompant/Imag-upload";
+			session.commit(true);
+			rs = "/comon/picCompant/upload-success";
 		} catch (Exception e) {
+			session.rollback(true);
 			setCaption("错误:" + e.toString());
 			e.printStackTrace();
-			return "/comon/picCompant/Imag-upload";
+		} finally {
+			DBUtils.CloseConn(session, conn, pstmt, null);
 		}
-		return "/comon/picCompant/upload-success";
+		return rs;
 	}
 
 	public void setDbkey(String dbkey) {

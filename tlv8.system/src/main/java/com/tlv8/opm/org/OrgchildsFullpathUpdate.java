@@ -1,5 +1,8 @@
 package com.tlv8.opm.org;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 import java.util.Map;
 
@@ -18,9 +21,26 @@ public class OrgchildsFullpathUpdate {
 			List<Map<String, String>> chd = DBUtils.selectStringList(session, qySql);
 			for (int i = 0; i < chd.size(); i++) {
 				String orgid = chd.get(i).get("SID");
-				String upSql = "update SA_OPOrg o set (o.sfid,o.sfcode,o.sfname) =(select t.sFID||'/'||o.SID||'.'||o.SORGKINDID,t.sFCode||'/'||o.sCode,t.sFName||'/'||o.sName from SA_OPOrg t where t.sID = '"
-						+ parent + "') where sID  = '" + orgid + "'";
-				DBUtils.excuteUpdate(session, upSql);
+				Connection conn = null;
+				PreparedStatement ps = null;
+				ResultSet rs = null;
+				try {
+					conn = session.getConnection();
+					ps = session.getConnection().prepareStatement("select t.SFID,o.SID,o.SORGKINDID,t.SFCODE,o.SCODE,t.SFNAME,o.SNAME from SA_OPOrg t,SA_OPOrg o where t.sID=? and o.SID=?");
+					ps.setString(1, parent);
+					ps.setString(2, orgid);
+					rs = ps.executeQuery();
+					if(rs.next()) {
+						PreparedStatement ps1 = conn.prepareStatement("update SA_OPOrg set SFID=?,SFCODE=?,SFNAME=? where SID=?");
+						ps1.setString(1, rs.getString("SFID") + "/" + rs.getString("SID") + "." + rs.getString("SORGKINDID"));
+						ps1.setString(2, rs.getString("SFCODE") + "/" + rs.getString("SCODE"));
+						ps1.setString(3, rs.getString("SFNAME") + "/" + rs.getString("SNAME"));
+						ps1.setString(4, orgid);
+						DBUtils.CloseConn(null, null, ps1, null);
+					}
+				} finally {
+					DBUtils.CloseConn(null, null, ps, rs);
+				}
 				upOrgpath(session, orgid);
 			}
 		} catch (Exception e) {
@@ -32,12 +52,28 @@ public class OrgchildsFullpathUpdate {
 	 * 更新授权
 	 */
 	public static void upAutherPermOrgpath(SqlSession session, String oldorgid, String neworgid) {
-		String sql = "update SA_OPAUTHORIZE set (SORGID, SORGFID, SORGFNAME) = (select '" + neworgid
-				+ "',sFID,sFName from SA_OPOrg where sID = '" + neworgid + "') where SORGID  = '" + oldorgid + "'";
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
 		try {
-			DBUtils.excuteUpdate(session, sql);
+			conn = session.getConnection();
+			ps = conn.prepareStatement("select SFID,SFNAME from SA_OPOrg where SID=?");
+			ps.setString(1, neworgid);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				PreparedStatement ps1 = conn
+						.prepareStatement("update SA_OPAUTHORIZE set SORGID=?, SORGFID=?, SORGFNAME=? where SORGID=?");
+				ps1.setString(1, neworgid);
+				ps1.setString(2, rs.getString("SFID"));
+				ps1.setString(3, rs.getString("SFNAME"));
+				ps1.setString(4, oldorgid);
+				ps1.executeUpdate();
+				DBUtils.CloseConn(null, null, ps1, null);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			DBUtils.CloseConn(null, null, ps, rs);
 		}
 
 	}

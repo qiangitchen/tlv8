@@ -82,19 +82,20 @@ public class MoveOrgAction extends ActionSupport {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			PreparedStatement ps1 = conn.prepareStatement(qsql);
-			ps1.setString(1, orgID);
-			ps1.setString(2, rowid);
-			rs = ps1.executeQuery();
+			ps = conn.prepareStatement(qsql);
+			ps.setString(1, orgID);
+			ps.setString(2, rowid);
+			rs = ps.executeQuery();
 			if (rs.next()) {
-				ps = conn.prepareStatement(upSQL);
-				ps.setString(1, neworgid);
-				ps.setString(2, orgID);
-				ps.setString(3, rs.getString("SFID") + "/" + neworgid + "." + rs.getString("SORGKINDID"));
-				ps.setString(4, rs.getString("SFCODE") + "/" + rs.getString("SCODE"));
-				ps.setString(5, rs.getString("SFNAME") + "/" + rs.getString("SNAME"));
-				ps.setString(6, rowid);
-				ps.executeUpdate();
+				PreparedStatement ps1 = conn.prepareStatement(upSQL);
+				ps1.setString(1, neworgid);
+				ps1.setString(2, orgID);
+				ps1.setString(3, rs.getString("SFID") + "/" + neworgid + "." + rs.getString("SORGKINDID"));
+				ps1.setString(4, rs.getString("SFCODE") + "/" + rs.getString("SCODE"));
+				ps1.setString(5, rs.getString("SFNAME") + "/" + rs.getString("SNAME"));
+				ps1.setString(6, rowid);
+				ps1.executeUpdate();
+				DBUtils.CloseConn(null, null, ps1, null);
 				if (isperson) {// 人员类型数据更新主机构ID
 					String upPsm = "update SA_OPPERSON set SMAINORGID = '" + orgID + "' where SID ='" + personid + "'";
 					DBUtils.excuteUpdate(session, upPsm);

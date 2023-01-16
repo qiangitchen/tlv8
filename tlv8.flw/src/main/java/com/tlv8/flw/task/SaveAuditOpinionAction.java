@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,9 +53,11 @@ public class SaveAuditOpinionAction extends ActionSupport {
 
 	@ResponseBody
 	@RequestMapping("/SaveAuditOpinionAction")
-	@SuppressWarnings({ "rawtypes", "deprecation" })
+	@SuppressWarnings({ "rawtypes" })
 	public Object execute() throws Exception {
+		SqlSession session = DBUtils.getSession(this.dbkey);
 		Connection conn = null;
+		PreparedStatement ps = null;
 		try {
 			String FNODEID = "";
 			String FNODENAME = "";
@@ -85,12 +88,12 @@ public class SaveAuditOpinionAction extends ActionSupport {
 					+ "' and FCREATEPERID='" + currentpsnid + "' and FOPVIEWID='" + this.opviewID + "' and FTASKID = '"
 					+ this.taskID + "'";
 			List list = DBUtils.execQueryforList(this.dbkey, sql);
-			conn = DBUtils.getAppConn(this.dbkey);
+			conn = session.getConnection();
 			if (list.size() > 0) {
 				Map m = (Map) list.get(0);
 				sql = "update " + this.audittable + " set " + this.agreettextRe + "='" + this.opinion
 						+ "', FCREATETIME = ?,FOPVIEWID='" + this.opviewID + "' where fID='" + m.get("FID") + "'";
-				PreparedStatement ps = conn.prepareStatement(sql);
+				ps = conn.prepareStatement(sql);
 				ps.setTimestamp(1, new Timestamp(new Date().getTime()));
 				ps.executeUpdate();
 			} else {
@@ -112,17 +115,19 @@ public class SaveAuditOpinionAction extends ActionSupport {
 							+ "','" + currentpsnname + "',?,'" + FNODEID + "','" + FNODENAME + "','" + this.opviewID
 							+ "',0)";
 				}
-				PreparedStatement ps = conn.prepareStatement(sql);
+				ps = conn.prepareStatement(sql);
 				ps.setTimestamp(1, new Timestamp(new Date().getTime()));
 				ps.executeUpdate();
 			}
+			session.commit(true);
 			this.data.setFlag("true");
 		} catch (Exception e) {
+			session.rollback(true);
 			this.data.setFlag("false");
 			this.data.setMessage(e.toString());
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(conn, null, null);
+			DBUtils.CloseConn(session, conn, ps, null);
 		}
 		return this;
 	}

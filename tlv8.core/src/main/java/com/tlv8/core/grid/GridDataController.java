@@ -242,6 +242,7 @@ public class GridDataController extends GridCoreController {
 					}
 					ps1.setString(refs.getLength() + 1, json.getString("rowid"));
 					ps1.executeUpdate();
+					DBUtils.CloseConn(null, null, ps1, null);
 				} else {
 					SQL addsql = new SQL();
 					addsql.INSERT_INTO(table);
@@ -271,6 +272,7 @@ public class GridDataController extends GridCoreController {
 					}
 					ps2.setString(refs.getLength() + 1, json.getString("rowid"));
 					ps2.executeUpdate();
+					DBUtils.CloseConn(null, null, ps2, null);
 				}
 			}
 			session.commit(true);

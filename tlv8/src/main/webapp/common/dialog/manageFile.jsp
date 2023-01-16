@@ -1,3 +1,4 @@
+<%@page import="java.sql.Connection"%>
 <%@page import="com.alibaba.fastjson.JSONObject"%>
 <%@page import="com.alibaba.fastjson.JSONArray"%>
 <%@page import="oshi.util.FormatUtil"%>
@@ -48,11 +49,13 @@
 	      <tbody id="demoList">
 	      <%
 	      	SqlSession sqlsession = DBUtils.getSession(dbkey);
+	      	Connection conn = null;
 	        PreparedStatement ps = null;
 	      	ResultSet rs = null;
 	      	try{
 	      		String sql = "select " + cellname + " from " + table + " where " + cell + "=?";
-	      		ps = sqlsession.getConnection().prepareStatement(sql);
+	      		conn = sqlsession.getConnection();
+	      		ps = conn.prepareStatement(sql);
 	      		ps.setString(1, fid);
 	      		rs = ps.executeQuery();
 	      		if(rs.next()){
@@ -81,7 +84,7 @@
 	      	}catch(Exception e){
 	      		e.printStackTrace();
 	      	}finally{
-	      		
+	      		DBUtils.CloseConn(sqlsession, conn, ps, rs);
 	      	}
 	      %>
 	      </tbody>

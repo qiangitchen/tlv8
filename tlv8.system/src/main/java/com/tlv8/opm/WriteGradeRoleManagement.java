@@ -45,9 +45,6 @@ public class WriteGradeRoleManagement extends ActionSupport {
 		}
 		SqlSession session = DBUtils.getSession("system");
 		Connection conn = null;
-		PreparedStatement ps = null;
-		Statement stm = null;
-		ResultSet rs = null;
 		try {
 			String[] role = roleids.split(",");
 			OPMOrgUtils org = new OPMOrgUtils(orgid);
@@ -59,13 +56,14 @@ public class WriteGradeRoleManagement extends ActionSupport {
 				String roleid = role[i];
 				String query = "select SID from SA_OPRoleManagement where SORGID = '" + orgid + "' and SROLEID='"
 						+ roleid + "'";
-				stm = conn.createStatement();
-				rs = stm.executeQuery(query);
+				Statement stm = conn.createStatement();
+				ResultSet rs = stm.executeQuery(query);
 				if (rs.next()) {
 					DBUtils.CloseConn(null, null, stm, rs);
 					continue;
 				}
-				ps = conn.prepareStatement(sql);
+				DBUtils.CloseConn(null, null, stm, rs);
+				PreparedStatement ps = conn.prepareStatement(sql);
 				ps.setString(1, IDUtils.getGUID());
 				ps.setString(2, roleid);
 				ps.setString(3, org.getOrgid());
@@ -77,6 +75,7 @@ public class WriteGradeRoleManagement extends ActionSupport {
 				ps.setTimestamp(9, new Timestamp(new Date().getTime()));
 				ps.setInt(10, 0);
 				ps.executeUpdate();
+				DBUtils.CloseConn(null, null, ps, null);
 			}
 			session.commit(true);
 			data.setFlag("true");
@@ -86,8 +85,7 @@ public class WriteGradeRoleManagement extends ActionSupport {
 			data.setMessage(e.getMessage());
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(null, null, stm, rs);
-			DBUtils.CloseConn(session, conn, ps, null);
+			DBUtils.CloseConn(session, conn, null, null);
 		}
 		return this;
 	}

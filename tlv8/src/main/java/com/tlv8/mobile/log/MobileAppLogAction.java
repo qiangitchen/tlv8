@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +25,8 @@ public class MobileAppLogAction extends ActionSupport {
 
 	@ResponseBody
 	@RequestMapping("/mobileAppLogAction")
-	@SuppressWarnings("deprecation")
 	public Object execute() throws Exception {
+		SqlSession session = DBUtils.getSession("system");
 		Connection conn = null;
 		PreparedStatement ps = null;
 		String sql = "insert into SA_OPMOBILELOG(SID,SUSERID,SUSERNAME,SIP,SDATE,SMODE,VERSION)"
@@ -33,17 +34,19 @@ public class MobileAppLogAction extends ActionSupport {
 		ContextBean context = ContextBean.getContext(request);
 		try {
 			String sIP = getRemoteAddr(request);
-			conn = DBUtils.getAppConn("system");
+			conn = session.getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, context.getCurrentPersonID());
 			ps.setString(2, context.getCurrentPersonName());
 			ps.setString(3, sIP);
 			ps.setString(4, "手机页面访问");
 			ps.executeUpdate();
+			session.commit(true);
 		} catch (Exception e) {
+			session.rollback(true);
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(conn, ps, null);
+			DBUtils.CloseConn(session, conn, ps, null);
 		}
 		return this;
 	}

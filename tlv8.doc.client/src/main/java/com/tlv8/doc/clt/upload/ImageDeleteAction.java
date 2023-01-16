@@ -2,8 +2,8 @@ package com.tlv8.doc.clt.upload;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,30 +39,26 @@ public class ImageDeleteAction extends ActionSupport {
 	@ResponseBody
 	@RequestMapping("/ImageDeleteAction")
 	@Override
-	@SuppressWarnings("deprecation")
 	public Object execute() throws Exception {
+		SqlSession session = DBUtils.getSession(dbkey);
+		Connection conn = null;
+		PreparedStatement pstmt = null;
 		try {
-			Connection conn = DBUtils.getAppConn(dbkey);
-			String uSQL = "update " + tablename + " set " + cellname
-					+ "=null where "
+			conn = session.getConnection();
+			String uSQL = "update " + tablename + " set " + cellname + "=null where "
 					+ (("system".equals(dbkey)) ? "sID" : "fID") + "=?";
-			PreparedStatement pstmt = conn.prepareStatement(uSQL);
 			pstmt = conn.prepareStatement(uSQL);
-			// Sys.printMsg(uSQL);
+			pstmt = conn.prepareStatement(uSQL);
 			pstmt.setString(1, rowid);
 			pstmt.executeUpdate();
-			pstmt.close();
-			//conn.commit();
-			conn.close();
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
-			setCaption("错误:" + e.toString());
-			setFlag("false");
+			session.commit(true);
 		} catch (Exception e) {
+			session.rollback(true);
 			setCaption("错误:" + e.toString());
 			e.printStackTrace();
 			setFlag("false");
+		} finally {
+			DBUtils.CloseConn(session, conn, pstmt, null);
 		}
 		setFlag("true");
 		return this;

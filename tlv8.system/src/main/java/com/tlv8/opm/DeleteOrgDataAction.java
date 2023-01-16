@@ -61,10 +61,13 @@ public class DeleteOrgDataAction extends ActionSupport {
 					PreparedStatement ps2 = conn.prepareStatement(sqlp);
 					ps2.setString(1, rs.getString(1));
 					ps2.executeUpdate();
+					DBUtils.CloseConn(null, null, ps2, null);
 				}
+				DBUtils.CloseConn(null, null, ps1, rs);
 				PreparedStatement ps3 = conn.prepareStatement(sqlo);
 				ps3.setString(1, rowids[i]);
 				ps3.executeUpdate();
+				DBUtils.CloseConn(null, null, ps3, null);
 			}
 			session.commit(true);
 			data.setFlag("true");

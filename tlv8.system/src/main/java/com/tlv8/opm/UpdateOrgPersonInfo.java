@@ -38,9 +38,9 @@ public class UpdateOrgPersonInfo extends ActionSupport {
 		try {
 			conn = session.getConnection();
 			String qsql = "select SID,SCODE,SNAME,SMOBILEPHONE,SFAMILYADDRESS,SZIP from SA_OPPERSON where SID = ?";
-			PreparedStatement ps1 = conn.prepareStatement(qsql);
-			ps1.setString(1, personid);
-			rs = ps1.executeQuery();
+			ps = conn.prepareStatement(qsql);
+			ps.setString(1, personid);
+			rs = ps.executeQuery();
 			if (rs.next()) {
 				String chSql = "select SID,SFID,SFCODE,SFNAME from SA_OPORG where SPERSONID = ? and SPARENT = ?";
 				PreparedStatement ps2 = conn.prepareStatement(chSql);
@@ -64,37 +64,41 @@ public class UpdateOrgPersonInfo extends ActionSupport {
 					String level = rs3.getString("SLEVEL");
 					if (rs2.next()) {
 						String upSql = "update SA_OPORG set SCODE=?,SNAME=?,SFID=?,SFCODE=?,SFNAME=?,SLEVEL=?,VERSION=VERSION+1 where SPERSONID = ? and SPARENT = ?";
-						ps = conn.prepareStatement(upSql);
-						ps.setString(1, scode);
-						ps.setString(2, sname);
-						ps.setString(3, sfid + "/" + newid + ".psm");
-						ps.setString(4, sfcode + "/" + scode);
-						ps.setString(5, sfname + "/" + sname);
-						ps.setInt(6, Integer.valueOf(level) + 1);
-						ps.setString(7, personid);
-						ps.setString(8, orgid);
-						ps.executeUpdate();
+						PreparedStatement ps1 = conn.prepareStatement(upSql);
+						ps1.setString(1, scode);
+						ps1.setString(2, sname);
+						ps1.setString(3, sfid + "/" + newid + ".psm");
+						ps1.setString(4, sfcode + "/" + scode);
+						ps1.setString(5, sfname + "/" + sname);
+						ps1.setInt(6, Integer.valueOf(level) + 1);
+						ps1.setString(7, personid);
+						ps1.setString(8, orgid);
+						ps1.executeUpdate();
+						DBUtils.CloseConn(null, null, ps1, null);
 					} else {
 						String sql = "insert into SA_OPORG(SID,SPARENT,SCODE,SNAME,SPHONE,SADDRESS,SZIP,SFID,SFCODE,SFNAME,SORGKINDID,SPERSONID,SVALIDSTATE,SLEVEL,VERSION)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-						ps = conn.prepareStatement(sql);
-						ps.setString(1, newid);
-						ps.setString(2, orgid);
-						ps.setString(3, scode);
-						ps.setString(4, sname);
-						ps.setString(5, SPHONE);
-						ps.setString(6, SADDRESS);
-						ps.setString(7, SZIP);
-						ps.setString(8, sfid + "/" + newid + ".psm");
-						ps.setString(9, sfcode + "/" + scode);
-						ps.setString(10, sfname + "/" + sname);
-						ps.setString(11, "psm");
-						ps.setString(12, personid);
-						ps.setInt(13, 1);
-						ps.setInt(14, Integer.valueOf(level) + 1);
-						ps.setInt(15, 0);
-						ps.executeUpdate();
+						PreparedStatement ps1 = conn.prepareStatement(sql);
+						ps1.setString(1, newid);
+						ps1.setString(2, orgid);
+						ps1.setString(3, scode);
+						ps1.setString(4, sname);
+						ps1.setString(5, SPHONE);
+						ps1.setString(6, SADDRESS);
+						ps1.setString(7, SZIP);
+						ps1.setString(8, sfid + "/" + newid + ".psm");
+						ps1.setString(9, sfcode + "/" + scode);
+						ps1.setString(10, sfname + "/" + sname);
+						ps1.setString(11, "psm");
+						ps1.setString(12, personid);
+						ps1.setInt(13, 1);
+						ps1.setInt(14, Integer.valueOf(level) + 1);
+						ps1.setInt(15, 0);
+						ps1.executeUpdate();
+						DBUtils.CloseConn(null, null, ps1, null);
 					}
 				}
+				DBUtils.CloseConn(null, null, ps2, rs2);
+				DBUtils.CloseConn(null, null, ps3, rs3);
 			}
 			session.commit(true);
 		} catch (Exception e) {

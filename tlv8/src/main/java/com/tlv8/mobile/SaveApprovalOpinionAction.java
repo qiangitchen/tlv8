@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +35,7 @@ public class SaveApprovalOpinionAction extends ActionSupport {
 
 	@ResponseBody
 	@RequestMapping("/saveApprovalOpinionAction")
-	@SuppressWarnings({ "rawtypes", "deprecation" })
+	@SuppressWarnings({ "rawtypes" })
 	public Object execute() throws Exception {
 		String ProcessID = TaskData.getCurrentProcessID(taskID);
 		String ACTIVITY = TaskData.getCurrentActivity(taskID);
@@ -47,7 +48,6 @@ public class SaveApprovalOpinionAction extends ActionSupport {
 		String sql = "";
 		try {
 			List cl = DBUtils.execQueryforList("oa", sql_check);
-//			System.out.println(cl.size());
 			if (cl.size() > 0) {
 				sql = "update OA_PUB_EXECUTE set FOPINION = ? where FTASKID = '" + taskID + "'";
 			} else {
@@ -64,24 +64,20 @@ public class SaveApprovalOpinionAction extends ActionSupport {
 						+ context.getCurrentPersonFullID() + "','" + context.getCurrentPersonFullName() + "',sysdate,'"
 						+ context.getCurrentPersonID() + "','" + context.getCurrentPersonName() + "',sysdate,0)";
 			}
+			SqlSession session = DBUtils.getSession("oa");
 			Connection conn = null;
 			PreparedStatement ps = null;
 			try {
-				conn = DBUtils.getAppConn("oa");
-				conn.setAutoCommit(false);
+				conn = session.getConnection();
 				ps = conn.prepareStatement(sql);
 				ps.setString(1, opinion);
 				ps.executeUpdate();
-				conn.commit();
+				session.commit(true);
 			} catch (Exception e) {
-				conn.rollback();
+				session.rollback(true);
 				e.printStackTrace();
 			} finally {
-				conn.setAutoCommit(true);
-				try {
-					DBUtils.CloseConn(conn, ps, null);
-				} catch (Exception e) {
-				}
+				DBUtils.CloseConn(session, conn, ps, null);
 			}
 		} catch (Exception e) {
 		}

@@ -3,6 +3,8 @@ package com.tlv8.doc.clt.doc;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+import org.apache.ibatis.session.SqlSession;
+
 import com.tlv8.base.db.DBUtils;
 
 public class Doc extends AbstractDoc {
@@ -27,30 +29,24 @@ public class Doc extends AbstractDoc {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	public void commitData() {
+		SqlSession session = DBUtils.getSession("system");
 		Connection conn = null;
 		PreparedStatement ps = null;
-		String docSql = "update SA_DOCNODE set SFILEID = ?, SKIND = ?, SSIZE=?, SCACHENAME=? where SID = '"
-				+ this.getsID() + "'";
+		String docSql = "update SA_DOCNODE set SFILEID = ?, SKIND = ?, SSIZE=?, SCACHENAME=? where SID = ?";
 		try {
-			conn = DBUtils.getAppConn("system");
+			conn = session.getConnection();
 			ps = conn.prepareStatement(docSql);
 			ps.setString(1, this.getsFileID());
 			ps.setString(2, this.getsKind());
 			ps.setFloat(3, this.getsSize());
 			ps.setString(4, this.getScacheName());
+			ps.setString(5, this.getsID());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				if (ps != null) {
-					ps.close();
-				}
-				DBUtils.CloseConn(conn, null, null);
-			} catch (Exception se) {
-			}
+			DBUtils.CloseConn(session,conn, ps, null);
 		}
 	}
 

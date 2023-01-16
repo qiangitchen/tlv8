@@ -74,7 +74,6 @@ public class SendMailAction extends ActionSupport {
 				cuID = rowid;
 			}
 			setRowid(cuID);
-			conn.setAutoCommit(false);
 			if (ishave) {
 				ps = conn.prepareStatement(uSql);
 				ps.setString(1, femailname);
@@ -101,11 +100,9 @@ public class SendMailAction extends ActionSupport {
 			}
 			ps.executeUpdate();
 			conn.commit();
-
 			if ("send".equals(actype)) {
 				String[] revicePerID = fconsigneeid.split(",");
 				String[] revicePerName = fconsignee.split(",");
-				// String[] revicePerCode = fconsigneecode.split(",");
 				String sSql = "";
 				if (ishave) {
 					sSql = "insert into OA_EM_ReceiveEmail(" + "FID,VERSION,FSENDTIME,"
@@ -128,15 +125,14 @@ public class SendMailAction extends ActionSupport {
 					ps.setString(4, revicePerID[i]);
 					ps.setString(5, "");
 					ps.setString(6, revicePerName[i]);
-					// ps.setString(4, revicePerCode[i]);
 					ps.setString(7, ftext);
-
 					ps.setString(8, personid);
 					ps.setString(9, personcode);
 					ps.setString(10, personname);
 					ps.setString(11, ognname);
 					ps.setString(12, deptname);
 					ps.executeUpdate();
+					DBUtils.CloseConn(null, null, ps, null);
 				}
 				String sendSql = "update OA_EM_SendEmail set FSENDTIME=? ,FSTATE='已发送' where FID =?";
 				PreparedStatement ps1 = conn.prepareStatement(sendSql);
@@ -153,13 +149,7 @@ public class SendMailAction extends ActionSupport {
 			conn.rollback();
 			e.printStackTrace();
 		} finally {
-			conn.setAutoCommit(true);
-			try {
-				if (ps != null)
-					ps.close();
-				DBUtils.CloseConn(session, conn, st, rs);
-			} catch (Exception e) {
-			}
+			DBUtils.CloseConn(session, conn, st, rs);
 		}
 		return super.execute();
 	}

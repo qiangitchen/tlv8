@@ -45,9 +45,6 @@ public class WriteGradeManagement extends ActionSupport {
 		}
 		SqlSession session = DBUtils.getSession("system");
 		Connection conn = null;
-		PreparedStatement ps = null;
-		Statement stm = null;
-		ResultSet rs = null;
 		try {
 			String[] selorg = orgids.split(",");
 			OPMOrgUtils org = new OPMOrgUtils(orgid);
@@ -59,14 +56,15 @@ public class WriteGradeManagement extends ActionSupport {
 				String sorgid = selorg[i];
 				String query = "select SID from SA_OPManagement where SORGID = '" + orgid + "' and SMANAGEORGID='"
 						+ sorgid + "'";
-				stm = conn.createStatement();
-				rs = conn.createStatement().executeQuery(query);
+				Statement stm = conn.createStatement();
+				ResultSet rs = conn.createStatement().executeQuery(query);
 				if (rs.next()) {
 					DBUtils.CloseConn(null, null, stm, rs);
 					continue;
 				}
+				DBUtils.CloseConn(null, null, stm, rs);
 				OPMOrgUtils morg = new OPMOrgUtils(sorgid);
-				ps = conn.prepareStatement(sql);
+				PreparedStatement ps = conn.prepareStatement(sql);
 				ps.setString(1, IDUtils.getGUID());
 				ps.setString(2, org.getOrgid());
 				ps.setString(3, org.getOgnname());
@@ -82,6 +80,7 @@ public class WriteGradeManagement extends ActionSupport {
 				ps.setTimestamp(13, new Timestamp(new Date().getTime()));
 				ps.setInt(14, 0);
 				ps.executeUpdate();
+				DBUtils.CloseConn(null, null, ps, null);
 			}
 			session.commit(true);
 			data.setFlag("true");
@@ -91,8 +90,7 @@ public class WriteGradeManagement extends ActionSupport {
 			data.setMessage(e.getMessage());
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(null, null, stm, rs);
-			DBUtils.CloseConn(session, conn, ps, null);
+			DBUtils.CloseConn(session, conn, null, null);
 		}
 		return this;
 	}

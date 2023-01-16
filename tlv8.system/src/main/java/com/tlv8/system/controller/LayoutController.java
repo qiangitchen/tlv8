@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.UUID;
 
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -30,7 +29,7 @@ public class LayoutController extends BaseController {
 	final String profiles_key_theme = "THEME";
 	final String profiles_key_shortcuts = "SHORTCUTS";
 	final String profiles_key_customFuncTree = "CUSTOMFUNCTREE";
-	
+
 	private void save(String key, String value) {
 		String personID = this.getContext().getPersonID();
 		SqlSession session = DBUtils.getSession("system");
@@ -39,28 +38,20 @@ public class LayoutController extends BaseController {
 		ResultSet rs = null;
 		try {
 			cn = session.getConnection();
-			Boolean autoCommit = cn.getAutoCommit();
-			try {
-				cn.setAutoCommit(false);
-				ps = cn.prepareStatement(profiles_select);
-				ps.setString(1, key);
-				ps.setString(2, personID);
-				rs = ps.executeQuery();
-				PreparedStatement ps1 = cn.prepareStatement(rs.next() ? profiles_update : profiles_insert);
-				ps1.setString(1, value);
-				ps1.setString(2, key);
-				ps1.setString(3, personID);
-				ps1.executeUpdate();
-				cn.commit();
-			} catch (Exception e) {
-				cn.rollback();
-				e.printStackTrace();
-			} finally {
-				cn.setAutoCommit(autoCommit);
-			}
-
+			ps = cn.prepareStatement(profiles_select);
+			ps.setString(1, key);
+			ps.setString(2, personID);
+			rs = ps.executeQuery();
+			PreparedStatement ps1 = cn.prepareStatement(rs.next() ? profiles_update : profiles_insert);
+			ps1.setString(1, value);
+			ps1.setString(2, key);
+			ps1.setString(3, personID);
+			ps1.executeUpdate();
+			DBUtils.CloseConn(null, null, ps1, null);
+			session.commit(true);
 			this.renderData(true);
 		} catch (SQLException e) {
+			session.rollback(true);
 			e.printStackTrace();
 		} finally {
 			DBUtils.CloseConn(session, cn, ps, null);
@@ -72,12 +63,13 @@ public class LayoutController extends BaseController {
 		SqlSession session = DBUtils.getSession("system");
 		Connection cn = null;
 		PreparedStatement ps = null;
+		ResultSet rs = null;
 		try {
 			cn = session.getConnection();
 			ps = cn.prepareStatement(profiles_select);
 			ps.setString(1, key);
 			ps.setString(2, personID);
-			ResultSet rs = ps.executeQuery();
+			rs = ps.executeQuery();
 			if (rs.next()) {
 				this.renderData(true, rs.getString(1));
 			} else {
@@ -87,7 +79,7 @@ public class LayoutController extends BaseController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, cn, ps, null);
+			DBUtils.CloseConn(session, cn, ps, rs);
 		}
 
 	}
@@ -103,8 +95,10 @@ public class LayoutController extends BaseController {
 			ps.setString(1, key);
 			ps.setString(2, personID);
 			ps.executeUpdate();
+			session.commit(true);
 			this.renderData(true);
 		} catch (SQLException e) {
+			session.rollback(true);
 			e.printStackTrace();
 		} finally {
 			DBUtils.CloseConn(session, cn, ps, null);

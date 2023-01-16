@@ -40,7 +40,6 @@ public class InitOnlineInfoAction {
 						+ context.getSessionID() + "'";
 			}
 			conn = session.getConnection();
-			conn.setAutoCommit(false);
 			String MachineCode = License.getMachineCode();
 			sql = sql.replace(":JFID", IDUtils.getGUID());
 			ps = conn.prepareStatement(sql);
@@ -54,11 +53,11 @@ public class InitOnlineInfoAction {
 			ps.setString(8, IPUtils.getPermisServerIP(request));
 			ps.setString(9, MachineCode);
 			ps.executeUpdate();
-			conn.commit();
+			session.commit(true);
 		} catch (Exception e) {
+			session.rollback(true);
 			e.printStackTrace();
 		} finally {
-			conn.setAutoCommit(true);
 			DBUtils.CloseConn(session, conn, ps, null);
 		}
 	}
