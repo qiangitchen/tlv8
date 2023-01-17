@@ -985,6 +985,40 @@ CREATE TABLE personal_file
     CONSTRAINT personal_file_pkey PRIMARY KEY (sid)
 );
 
+CREATE TABLE sa_psnschedule (
+  SID varchar(100) NOT NULL,
+  SCAPTION varchar(100),
+  SSTARTDATE TIMESTAMP,
+  SENDDATE TIMESTAMP,
+  SCONTENT varchar(4000),
+  SPRIORITY integer,
+  SSTATUS varchar(50),
+  SSTARTDATE_AXIS integer,
+  SSENDDATE_AXIS integer,
+  SAFFAIRSTYPE integer,
+  SWHOUSER varchar(100),
+  VERSION integer
+);
+alter table sa_psnschedule add primary key (SID);
+
+CREATE TABLE sa_psnmytask (
+  SID varchar(64) NOT NULL,
+  SCAPTION varchar(100),
+  SSTARTDATE TIMESTAMP,
+  SENDDATE TIMESTAMP,
+  SPRIORITY integer,
+  SCONTENT varchar(1000),
+  SSTATUS varchar(30),
+  SAFFAIRSTYPE integer,
+  SCOMPLETERATE integer,
+  SSTARTDATE_AXIS integer,
+  SSENDDATE integer,
+  SWHOUSER varchar(100),
+  SSENDDATE_AXIS integer,
+  VERSION integer
+);
+alter table sa_psnmytask add primary key (SID);
+
 CREATE OR REPLACE VIEW news_tables AS 
 select a.SID AS SID,a.VERSION AS VERSION,a.FNEWSTITLE AS FNEWSTITLE,a.FSTATE AS FSTATE,a.FPEOPLE AS FPEOPLE,
 a.FTIME AS FTIME,a.FOPENSCOPE AS FOPENSCOPE,b.NEWS_NUMBER AS NEWS_NUMBER,b.NEWS_PERSON AS NEWS_PERSON,
