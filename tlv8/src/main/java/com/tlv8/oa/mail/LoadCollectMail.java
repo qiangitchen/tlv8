@@ -179,6 +179,30 @@ public class LoadCollectMail extends ActionSupport {
 					+ "' AND FSENDTIME <= DATEADD(DAY, -"
 					+ (c_day + 7)
 					+ ", GETDATE()) ORDER BY FSENDTIME DESC";
+		} else if(DBUtils.IsPostgreSQL("oa")) {
+			sql = "SELECT FID,'收件箱' MAILIN,FQUREY FQUREY,FSENDDEPT,FEMAILNAME,FSENDPERNAME,FSENDTIME,'this_week' WEEK FROM OA_EM_RECEIVEEMAIL  WHERE FCOLLECT='1' AND FCONSIGNEEID = '"
+					+ con.getCurrentPersonID()
+					+ "' AND FSENDTIME > NOW()::TIMESTAMP+ '-"+(c_day)+" day' "
+					+ "UNION ALL "
+					+ "SELECT FID,CASE(FSTATE) WHEN '已保存' THEN '草稿箱' WHEN '已发送' THEN '发件箱' ELSE '' END MAILIN,FSTATE FQUREY ,FSENDDEPT,FEMAILNAME,FCONSIGNEE as FSENDPERNAME,FSENDTIME,'this_week' WEEK FROM OA_EM_SENDEMAIL  WHERE FCOLLECT='1' AND FSENDPERID = '"
+					+ con.getCurrentPersonID()
+					+ "' AND FSENDTIME > NOW()::TIMESTAMP+ '-"+(c_day)+" day'";
+			sql += " UNION ";
+			sql += "SELECT FID,'收件箱' MAILIN,FQUREY FQUREY,FSENDDEPT,FEMAILNAME,FSENDPERNAME,FSENDTIME,'last_week' WEEK FROM OA_EM_RECEIVEEMAIL  WHERE FCOLLECT='1' AND FCONSIGNEEID = '"
+					+ con.getCurrentPersonID()
+					+ "' AND FSENDTIME <= NOW()::TIMESTAMP+ '-"+(c_day)+" day'  AND FSENDTIME > NOW()::TIMESTAMP+ '-"+(c_day + 7)+" day' "
+					+ " UNION ALL "
+					+ "SELECT FID,CASE(FSTATE) WHEN '已保存' THEN '草稿箱' WHEN '已发送' THEN '发件箱' ELSE '' END MAILIN,FSTATE FQUREY ,FSENDDEPT,FEMAILNAME,FCONSIGNEE as FSENDPERNAME,FSENDTIME,'last_week' WEEK FROM OA_EM_SENDEMAIL  WHERE FCOLLECT='1' AND FSENDPERID = '"
+					+ con.getCurrentPersonID()
+					+ "' AND FSENDTIME <= NOW()::TIMESTAMP+ '-"+(c_day)+" day'  AND FSENDTIME > NOW()::TIMESTAMP+ '-"+(c_day + 7)+" day'";
+			sql += " UNION ";
+			sql += "SELECT FID,'收件箱' MAILIN,FQUREY FQUREY,FSENDDEPT,FEMAILNAME,FSENDPERNAME,FSENDTIME,'earlier' WEEK FROM OA_EM_RECEIVEEMAIL  WHERE FCOLLECT='1' AND FCONSIGNEEID = '"
+					+ con.getCurrentPersonID()
+					+ "' AND FSENDTIME <= NOW()::TIMESTAMP+ '-"+(c_day + 7)+" day' "
+					+ "UNION ALL "
+					+ "SELECT FID,CASE(FSTATE) WHEN '已保存' THEN '草稿箱' WHEN '已发送' THEN '发件箱' ELSE '' END MAILIN,FSTATE FQUREY ,FSENDDEPT,FEMAILNAME,FCONSIGNEE as FSENDPERNAME,FSENDTIME,'earlier' WEEK FROM OA_EM_SENDEMAIL  WHERE FCOLLECT='1' AND FSENDPERID = '"
+					+ con.getCurrentPersonID()
+					+ "' AND FSENDTIME <= NOW()::TIMESTAMP+ '-"+(c_day + 7)+" day' ORDER BY FSENDTIME DESC";
 		}
 		try {
 			long bdate = new Date().getTime();

@@ -110,6 +110,18 @@ public class LoadSendMail extends ActionSupport {
 					+ "' AND FSENDTIME <= DATEADD(DAY, -"
 					+ (c_day + 7)
 					+ ", GETDATE()) ORDER BY FSENDTIME DESC";
+		} else if(DBUtils.IsPostgreSQL("oa")) {
+			sql = "SELECT FID,'已发送' FQUREY,FSENDDEPT,FEMAILNAME,FCONSIGNEE as FSENDPERNAME,FSENDTIME,'this_week' AS WEEK,FCOLLECT FROM OA_EM_SENDEMAIL  WHERE FSENDPERID = '"
+					+ con.getCurrentPersonID()
+					+ "' AND FSENDTIME > NOW()::TIMESTAMP+ '-"+(c_day)+" day'";
+			sql += " UNION ";
+			sql += "SELECT FID,'已发送' FQUREY,FSENDDEPT,FEMAILNAME,FCONSIGNEE as FSENDPERNAME,FSENDTIME,'last_week' AS WEEK,FCOLLECT FROM OA_EM_SENDEMAIL  WHERE FSENDPERID = '"
+					+ con.getCurrentPersonID()
+					+ "' AND FSENDTIME <= NOW()::TIMESTAMP+ '-"+(c_day)+" day'  AND FSENDTIME > NOW()::TIMESTAMP+ '-"+(c_day + 7)+" day'";
+			sql += " UNION ";
+			sql += "SELECT FID,'已发送' FQUREY,FSENDDEPT,FEMAILNAME,FCONSIGNEE as FSENDPERNAME,FSENDTIME,'earlier' AS WEEK,FCOLLECT FROM OA_EM_SENDEMAIL  WHERE FSENDPERID = '"
+					+ con.getCurrentPersonID()
+					+ "' AND FSENDTIME <= NOW()::TIMESTAMP+ '-"+(c_day + 7)+" day' ORDER BY FSENDTIME DESC";
 		}
 		try {
 			String csql = "SELECT FID from OA_EM_SENDEMAIL  WHERE FSENDPERID ='"

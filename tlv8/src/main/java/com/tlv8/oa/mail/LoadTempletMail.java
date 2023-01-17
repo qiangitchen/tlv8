@@ -92,6 +92,15 @@ public class LoadTempletMail extends ActionSupport {
 			sql += "SELECT FID,'草稿' FQUREY,FSENDDEPT,FEMAILNAME,CONVERT(varchar(4000),FCONSIGNEE) FSENDPERNAME,FCREATTIME FSENDTIME,'earlier' AS WEEK FROM OA_EM_SENDEMAIL  WHERE FSENDPERID = '"
 					+ con.getCurrentPersonID() + "' AND FCREATTIME <= DATEADD(DAY,-" + (c_day + 7)
 					+ ",GETDATE())  AND FSTATE='已保存' ORDER BY FSENDTIME DESC";
+		} else if(DBUtils.IsPostgreSQL("oa")) {
+			sql = "SELECT FID,'草稿' FQUREY,FSENDDEPT,FEMAILNAME,FCONSIGNEE as FSENDPERNAME,FCREATTIME FSENDTIME,'this_week' AS WEEK FROM OA_EM_SENDEMAIL  WHERE FSENDPERID = '"
+					+ con.getCurrentPersonID() + "' AND FCREATTIME > NOW()::TIMESTAMP+ '-"+(c_day)+" day' AND FSTATE='已保存'";
+			sql += " UNION ";
+			sql += "SELECT FID,'草稿' FQUREY,FSENDDEPT,FEMAILNAME,FCONSIGNEE as FSENDPERNAME,FCREATTIME FSENDTIME,'last_week' AS WEEK FROM OA_EM_SENDEMAIL  WHERE FSENDPERID = '"
+					+ con.getCurrentPersonID() + "' AND FCREATTIME <= NOW()::TIMESTAMP+ '-"+(c_day)+" day'  AND FCREATTIME > NOW()::TIMESTAMP+ '-"+(c_day + 7)+" day'  AND FSTATE='已保存'";
+			sql += " UNION ";
+			sql += "SELECT FID,'草稿' FQUREY,FSENDDEPT,FEMAILNAME,FCONSIGNEE as FSENDPERNAME,FCREATTIME FSENDTIME,'earlier' AS WEEK FROM OA_EM_SENDEMAIL  WHERE FSENDPERID = '"
+					+ con.getCurrentPersonID() + "' AND FCREATTIME <= NOW()::TIMESTAMP+ '-"+(c_day + 7)+" day'  AND FSTATE='已保存' ORDER BY FSENDTIME DESC";
 		}
 		// System.out.println(sql);earlier
 		try {

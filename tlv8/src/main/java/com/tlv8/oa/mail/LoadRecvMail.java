@@ -89,6 +89,15 @@ public class LoadRecvMail extends ActionSupport {
 			sql += "SELECT FID,FQUREY,FSENDDEPT,FEMAILNAME,FSENDPERNAME,FSENDTIME,'earlier' AS WEEK,FCOLLECT FROM OA_EM_RECEIVEEMAIL  WHERE FCONSIGNEEID = '"
 					+ con.getCurrentPersonID() + "' AND FSENDTIME <= DATEADD(DAY,-" + (c_day + 7)
 					+ ",GETDATE()) ORDER BY FSENDTIME DESC";
+		}else if(DBUtils.IsPostgreSQL("oa")) {
+			sql = "SELECT FID,FQUREY,FSENDDEPT,FEMAILNAME,FSENDPERNAME,FSENDTIME,'this_week' AS WEEK,FCOLLECT FROM OA_EM_RECEIVEEMAIL  WHERE FCONSIGNEEID = '"
+					+ con.getCurrentPersonID() + "' AND FSENDTIME > NOW()::TIMESTAMP+ '-"+(c_day)+" day' ";
+			sql += " UNION ";
+			sql += "SELECT FID,FQUREY,FSENDDEPT,FEMAILNAME,FSENDPERNAME,FSENDTIME,'last_week' AS WEEK,FCOLLECT FROM OA_EM_RECEIVEEMAIL  WHERE FCONSIGNEEID = '"
+					+ con.getCurrentPersonID() + "' AND FSENDTIME <= NOW()::TIMESTAMP+ '-"+(c_day)+" day'  AND FSENDTIME > NOW()::TIMESTAMP+ '-"+(c_day + 7)+" day' ";
+			sql += " UNION ";
+			sql += "SELECT FID,FQUREY,FSENDDEPT,FEMAILNAME,FSENDPERNAME,FSENDTIME,'earlier' AS WEEK,FCOLLECT FROM OA_EM_RECEIVEEMAIL  WHERE FCONSIGNEEID = '"
+					+ con.getCurrentPersonID() + "' AND FSENDTIME <= NOW()::TIMESTAMP+ '-"+(c_day + 7)+" day' ORDER BY FSENDTIME DESC";
 		}
 		// System.out.println(sql);
 		try {

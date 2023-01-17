@@ -36,15 +36,17 @@ public class Utils {
 				result = sql + " limit " + offerset + "," + limit;
 			} else if (DBUtils.IsMSSQLDB("oa")) {
 				result = sql.replaceFirst("SELECT ", "select top " + limit + " ");
-				// result = "select TOP " + limit + " * from (" + sql + ")";
+			} else if(DBUtils.IsPostgreSQL("oa")) {
+				result = sql + " limit " + limit + " offset " + offerset;
 			}
 		} else {
 			result = "select * from (" + sql + ") where rownum <= 20";
 			if (DBUtils.IsMySQLDB("oa")) {
 				result = sql + " limit 0,20";
 			} else if (DBUtils.IsMSSQLDB("oa")) {
-				// result = "select TOP 20 * from (" + sql + ")";
 				result = sql.replaceFirst("SELECT ", "select top 20 ");
+			}else if(DBUtils.IsPostgreSQL("oa")) {
+				result = sql + " limit 20";
 			}
 		}
 		return result;
