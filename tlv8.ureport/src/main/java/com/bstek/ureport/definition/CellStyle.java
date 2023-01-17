@@ -196,7 +196,7 @@ public class CellStyle implements Serializable{
 			if(StringUtils.isBlank(fontName)){
 				fontName="宋体";
 			}
-			this.font=FontBuilder.getAwtFont(fontName, fontStyle, new Float(fontSize));
+			this.font=FontBuilder.getAwtFont(fontName, fontStyle, Float.valueOf(fontSize));
 		}
 		return this.font;
 	}

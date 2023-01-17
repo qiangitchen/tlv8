@@ -16,6 +16,7 @@
 package com.bstek.ureport.expression.function.math;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 import com.bstek.ureport.build.Context;
@@ -56,7 +57,7 @@ public class ChnMoneyFunction extends MathFunction {
 		if (signum == 0) {
 			return CN_ZEOR;
 		}
-		long number = numberData.movePointRight(NUMBER_PRECISION).setScale(0, BigDecimal.ROUND_HALF_UP).abs().longValue();
+		long number = numberData.movePointRight(NUMBER_PRECISION).setScale(0, RoundingMode.HALF_UP).abs().longValue();
 		long scale = number % 100;
 		int numUnit = 0;
 		int numIndex = 0;

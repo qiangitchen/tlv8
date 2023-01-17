@@ -16,6 +16,7 @@
 package com.bstek.ureport.build.aggregate;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,7 +100,7 @@ public class AvgAggregate extends Aggregate {
 				}
 			}
 			if(count>0){
-				result=result.divide(new BigDecimal(count),8,BigDecimal.ROUND_HALF_UP);				
+				result=result.divide(new BigDecimal(count),8,RoundingMode.HALF_UP);				
 			}
 		}
 		List<BindData> list=new ArrayList<BindData>();
@@ -128,7 +129,7 @@ public class AvgAggregate extends Aggregate {
 			result=result.add(Utils.toBigDecimal(value));
 			size++;
 		}
-		result=result.divide(new BigDecimal(size),8,BigDecimal.ROUND_HALF_UP);
+		result=result.divide(new BigDecimal(size),8,RoundingMode.HALF_UP);
 		return result;
 	}
 }

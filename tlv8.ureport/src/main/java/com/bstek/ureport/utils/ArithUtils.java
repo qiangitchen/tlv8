@@ -16,6 +16,7 @@
 package com.bstek.ureport.utils;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import com.bstek.ureport.Utils;
 
@@ -70,7 +71,7 @@ public class ArithUtils {
 	public static Object div(Object first,Object second) {
 		BigDecimal a=Utils.toBigDecimal(first);
 		BigDecimal b=Utils.toBigDecimal(second);
-		BigDecimal c=a.divide(b,8,BigDecimal.ROUND_HALF_UP);
+		BigDecimal c=a.divide(b,8,RoundingMode.HALF_UP);
 		return c.doubleValue();
 	}
 	/**

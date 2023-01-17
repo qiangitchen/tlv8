@@ -16,6 +16,7 @@
 package com.bstek.ureport.expression.function.math;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 import com.bstek.ureport.Utils;
@@ -46,7 +47,7 @@ public class RoundFunction extends MathFunction {
 				pos=Utils.toBigDecimal(obj).intValue();
 			}
 		}
-		return data.setScale(pos, BigDecimal.ROUND_HALF_UP);
+		return data.setScale(pos, RoundingMode.HALF_UP);
 	}
 
 	@Override

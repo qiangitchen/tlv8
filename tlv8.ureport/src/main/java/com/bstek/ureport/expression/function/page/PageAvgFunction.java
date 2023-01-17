@@ -16,6 +16,7 @@
 package com.bstek.ureport.expression.function.page;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 import com.bstek.ureport.Utils;
@@ -51,7 +52,7 @@ public class PageAvgFunction extends PageFunction {
 				}
 			}
 		}
-		return total.divide(new BigDecimal(size), 8, BigDecimal.ROUND_HALF_UP);
+		return total.divide(new BigDecimal(size), 8, RoundingMode.HALF_UP);
 	}
 
 	@Override

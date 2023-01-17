@@ -16,6 +16,7 @@
 package com.bstek.ureport.chart.dataset.impl.category;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -168,7 +169,7 @@ public abstract class CategoryDataset extends BaseDataset {
 			for(Object data:list){
 				total+=Utils.toBigDecimal(data).doubleValue();
 			}
-			result=Utils.toBigDecimal(total).divide(Utils.toBigDecimal(list.size()),8,BigDecimal.ROUND_HALF_UP).doubleValue();
+			result=Utils.toBigDecimal(total).divide(Utils.toBigDecimal(list.size()),8,RoundingMode.HALF_UP).doubleValue();
 			break;
 		case count:
 			result=list.size();
