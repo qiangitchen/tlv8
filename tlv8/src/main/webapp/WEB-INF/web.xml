@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee"
-	xsi:schemaLocation="http://JAVA.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-	version="3.0">
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	version="4.0">
 	<display-name>tlv8</display-name>
-	
+
 	<!-- Spring和mybatis的配置文件 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:spring-mybatis.xml</param-value>
 	</context-param>
-	
+
 	<!-- Spring监听器 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -26,10 +26,10 @@
 		<listener-class>com.tlv8.system.online.OnlineInitServerlet</listener-class>
 	</listener>
 	<!-- 任务时限监听 -->
-    <listener>
+	<listener>
 		<listener-class>com.tlv8.sa.TaskLimitListener</listener-class>
 	</listener>
-	
+
 	<!-- Spring MVC servlet -->
 	<servlet>
 		<servlet-name>SpringMVC</servlet-name>
@@ -46,34 +46,34 @@
 		<!-- 此处可以可以配置成*.do，对应struts的后缀习惯 -->
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
+
 	<!-- UReport Support -->
 	<servlet>
-	    <servlet-name>ureportServlet</servlet-name>
-	    <servlet-class>com.bstek.ureport.console.UReportServlet</servlet-class>
+		<servlet-name>ureportServlet</servlet-name>
+		<servlet-class>com.bstek.ureport.console.UReportServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	    <servlet-name>ureportServlet</servlet-name>
-	    <url-pattern>/ureport/*</url-pattern>
+		<servlet-name>ureportServlet</servlet-name>
+		<url-pattern>/ureport/*</url-pattern>
 	</servlet-mapping>
-	
+
 	<!-- 编码过滤器 -->
-	<filter>  
-        <filter-name>characterEncodingFilter</filter-name>
-        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>  
-        <init-param>  
-            <param-name>encoding</param-name>  
-            <param-value>UTF-8</param-value>  
-        </init-param>  
-		<init-param>  
-            <param-name>forceEncoding</param-name>  
-            <param-value>true</param-value>  
-        </init-param>  
-    </filter>  
-    <filter-mapping>  
-        <filter-name>characterEncodingFilter</filter-name>  
-        <url-pattern>/*</url-pattern>  
-    </filter-mapping>  
+	<filter>
+		<filter-name>characterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>characterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 	<!-- HTTP请求Header过滤 -->
 	<filter>
@@ -93,7 +93,7 @@
 		<url-pattern>/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
-	
+
 	<!-- 登录、权限过滤 -->
 	<filter>
 		<filter-name>Jurisdiction</filter-name>
@@ -103,7 +103,7 @@
 		<filter-name>Jurisdiction</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+
 	<!-- 配置错误指向页 -->
 	<error-page>
 		<error-code>404</error-code>
@@ -124,9 +124,9 @@
 		<exception-type>javax.servlet.ServletException</exception-type>
 		<location>/error.jsp</location>
 	</error-page>
-	
+
 	<!-- 配置欢迎页 -->
-	<welcome-file-list> 
+	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
@@ -134,13 +134,13 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
-	
+
 	<!-- 配置SESSION超时，单位是分钟 -->
 	<session-config>
 		<session-timeout>30</session-timeout>
 		<cookie-config>
-		  <http-only>true</http-only>
+			<http-only>true</http-only>
 		</cookie-config>
 	</session-config>
-	
+
 </web-app>

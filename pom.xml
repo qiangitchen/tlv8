@@ -20,6 +20,7 @@
 		<log4j.version>1.2.17</log4j.version>
 		<dom4j.version>2.1.1</dom4j.version>
 		<mybatis.version>3.5.6</mybatis.version>
+		<mybatis-plus.version>3.5.1</mybatis-plus.version>
 		<fastjson.version>1.2.83</fastjson.version>
 		<spring.version>5.3.24</spring.version>
 		<servlet.version>4.0.1</servlet.version>
@@ -76,6 +77,11 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-websocket</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
@@ -225,6 +231,13 @@
 				<groupId>org.mybatis</groupId>
 				<artifactId>mybatis</artifactId>
 				<version>${mybatis.version}</version>
+			</dependency>
+			
+			<!-- mybatis-plus -->
+			<dependency>
+			    <groupId>com.baomidou</groupId>
+			    <artifactId>mybatis-plus</artifactId>
+			    <version>${mybatis-plus.version}</version>
 			</dependency>
 
 			<!-- 阿里JSON解析器 -->

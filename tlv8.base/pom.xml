@@ -40,6 +40,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 		</dependency>
 
@@ -55,12 +59,6 @@
 			<artifactId>commons-io</artifactId>
 		</dependency>
 
-		<!-- long3 -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-		</dependency>
-		
 		<!-- commons-collections4 -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -129,6 +127,12 @@
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
+		</dependency>
+		
+		<!-- mybatis-plus -->
+		<dependency>
+		    <groupId>com.baomidou</groupId>
+		    <artifactId>mybatis-plus</artifactId>
 		</dependency>
 
 	</dependencies>
