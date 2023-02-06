@@ -59,6 +59,13 @@
 			<version>2.6.7</version>
 			<scope>test</scope>
 		</dependency>
+		<!--spring boot - webSocket-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+            <version>2.6.7</version>
+            <scope>provided</scope>
+        </dependency>
 
 		<!-- PostgreSql 驱动 -->
 		<dependency>
