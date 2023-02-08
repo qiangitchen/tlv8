@@ -13,9 +13,9 @@
      	<transactionManager type="JDBC"/>
       	<dataSource type="POOLED"> 
           <property name="driver" value="com.mysql.cj.jdbc.Driver"/> 
-          <property name="url" value="jdbc:mysql://127.0.0.1:3306/v8oa?characterEncoding=utf8&amp;useUnicode=true&amp;useSSL=false"/> 
+          <property name="url" value="jdbc:mysql://148.70.157.67:13306/v8oa?characterEncoding=utf8&amp;useUnicode=true&amp;useSSL=false"/> 
           <property name="username" value="root"/> 
-          <property name="password" value="TLv8MySQL"/> 
+          <property name="password" value="Mima,123"/> 
           <property name="poolPingEnabled" value="true"/> 
           <property name="poolPingQuery" value="select 1"/> 
           <property name="poolPingConnectionsNotUsedFor" value="3600000"/> 
