@@ -90,6 +90,9 @@ public class LayuiFileUploadAction {
 							}
 						}
 					}
+					if(jsona == null) {
+						jsona = new JSONArray();
+					}
 					JSONObject jsono = new JSONObject();
 					jsono.put("fileID", fileID);
 					jsono.put("filename", doc.getsDocName());

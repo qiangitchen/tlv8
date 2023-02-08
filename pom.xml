@@ -225,6 +225,13 @@
 				<artifactId>dom4j</artifactId>
 				<version>${dom4j.version}</version>
 			</dependency>
+			
+			<!-- jaxen-->
+			<dependency>
+			  <groupId>jaxen</groupId>
+			  <artifactId>jaxen</artifactId>
+			  <version>2.0.0</version>
+			</dependency>
 
 			<!-- mybatis 包 -->
 			<dependency>
