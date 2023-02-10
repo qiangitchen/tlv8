@@ -17,6 +17,7 @@ import org.apache.lucene.util.Version;
 
 import com.tlv8.doc.svr.core.FileReader;
 import com.tlv8.doc.svr.core.TransePath;
+import com.tlv8.doc.svr.core.io.FileDownloader;
 import com.tlv8.doc.svr.core.io.atr.FileAttribute;
 
 public class IndexUpdater {
@@ -25,8 +26,7 @@ public class IndexUpdater {
 	 */
 	public static void update(FileAttribute fatr) throws Exception {
 		/* 指明要索引文件 */
-		File file = new File(TransePath.getFileAbsolutePath(fatr.getFileID(),
-				fatr.getFilePath()));
+		File file = FileDownloader.getFile(fatr.getFileID(), fatr.getFilePath());
 		/* 这里放索引文件的位置 */
 		File indexDir = new File(TransePath.getIndexPath());
 		Directory dir = FSDirectory.open(indexDir);// 将索引存放在磁盘上

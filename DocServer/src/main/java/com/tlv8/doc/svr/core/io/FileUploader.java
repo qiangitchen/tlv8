@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URI;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -21,45 +22,69 @@ import com.tlv8.doc.svr.core.io.centent.FileIOContent;
 import com.tlv8.doc.svr.core.utils.FileExtArray;
 import com.tlv8.doc.svr.core.utils.MD5Util;
 
+import jcifs.smb.SmbFile;
+import jcifs.smb.SmbFileOutputStream;
+
 public class FileUploader {
 	/*
 	 * 文件上传{将文件流写入指定的位置}
 	 */
-	public static void upload(InputStream inputstream, String fileID,
-			String docPath) throws Exception {
+	public static void upload(InputStream inputstream, String fileID, String docPath) throws Exception {
 		String dirPath = TransePath.docPath2FilePath(docPath);
-		File fileDir = new File(dirPath);
-		if (!fileDir.exists()) {
-			fileDir.mkdirs();
+		if (dirPath.indexOf("smb://") == 0) {
+			SmbFile remoteFile = new SmbFile(dirPath);
+			remoteFile.connect();
+			if (!remoteFile.exists()) {
+				remoteFile.mkdirs();
+			}
+			SmbFile ufile = new SmbFile(dirPath + "/" + MD5Util.encode(fileID));
+			ufile.connect();
+			if (!ufile.exists()) {
+				ufile.createNewFile();
+			}
+			SmbFileOutputStream ous = new SmbFileOutputStream(ufile);
+			byte[] b = new byte[1024];
+			int n = 0;
+			while ((n = inputstream.read(b)) != -1) {
+				ous.write(b, 0, n);
+			}
+			ous.close();
+			inputstream.close();
+		} else {
+			File fileDir = new File(dirPath);
+			if (dirPath.indexOf("file:/") == 0) {
+				fileDir = new File(new URI(dirPath).getPath());
+			}
+			if (!fileDir.exists()) {
+				fileDir.mkdirs();
+			}
+			File file = new File(fileDir.getAbsoluteFile(), MD5Util.encode(fileID));
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+			FileOutputStream fos = new FileOutputStream(file);
+			byte[] b = new byte[1024];
+			int n = 0;
+			while ((n = inputstream.read(b)) != -1) {
+				fos.write(b, 0, n);
+			}
+			fos.close();
+			inputstream.close();
 		}
-		File file = new File(dirPath, MD5Util.encode(fileID));
-		if (!file.exists()) {
-			file.createNewFile();
-		}
-		FileOutputStream fos = new FileOutputStream(file);
-		byte[] b = new byte[1024];
-		int n = 0;
-		while ((n = inputstream.read(b)) != -1) {
-			fos.write(b, 0, n);
-		}
-		fos.close();
-		inputstream.close();
 	}
 
-	public static FileIOContent fileUpload(HttpServletRequest request, IDoc doc)
-			throws ServletException, IOException {
+	public static FileIOContent fileUpload(HttpServletRequest request, IDoc doc) throws ServletException, IOException {
 		FileIOContent content = new FileIOContent();
 		/**
 		 * 
-		 * @author Administrator 文件上传 具体步骤： 1）获得磁盘文件条目工厂 DiskFileItemFactory 要导包
-		 *         2） 利用 request 获取 真实路径 ，供临时文件存储，和 最终文件存储 ，这两个存储位置可不同，也可相同 3）对
-		 *         DiskFileItemFactory 对象设置一些 属性 4）高水平的API文件上传处理
-		 *         ServletFileUpload upload = new ServletFileUpload(factory);
-		 *         目的是调用 parseRequest（request）方法 获得 FileItem 集合list ，
+		 * @author Administrator 文件上传 具体步骤： 1）获得磁盘文件条目工厂 DiskFileItemFactory 要导包 2） 利用
+		 *         request 获取 真实路径 ，供临时文件存储，和 最终文件存储 ，这两个存储位置可不同，也可相同 3）对
+		 *         DiskFileItemFactory 对象设置一些 属性 4）高水平的API文件上传处理 ServletFileUpload
+		 *         upload = new ServletFileUpload(factory); 目的是调用
+		 *         parseRequest（request）方法 获得 FileItem 集合list ，
 		 * 
-		 *         5）在 FileItem 对象中 获取信息， 遍历， 判断 表单提交过来的信息 是否是 普通文本信息 另做处理 6）
-		 *         第一种. 用第三方 提供的 item.write( new File(path,filename) ); 直接写到磁盘上
-		 *         第二种. 手动处理
+		 *         5）在 FileItem 对象中 获取信息， 遍历， 判断 表单提交过来的信息 是否是 普通文本信息 另做处理 6） 第一种. 用第三方
+		 *         提供的 item.write( new File(path,filename) ); 直接写到磁盘上 第二种. 手动处理
 		 * 
 		 */
 		request.setCharacterEncoding("utf-8"); // 设置编码
@@ -78,8 +103,8 @@ public class FileUploader {
 		// 如果没以下两行设置的话，上传大的 文件 会占用 很多内存，
 		// 设置暂时存放的 存储室 , 这个存储室，可以和 最终存储文件 的目录不同
 		/**
-		 * 原理 它是先存到 暂时存储室，然后在真正写到 对应目录的硬盘上， 按理来说 当上传一个文件时，其实是上传了两份，第一个是以 .tem
-		 * 格式的 然后再将其真正写到 对应目录的硬盘上
+		 * 原理 它是先存到 暂时存储室，然后在真正写到 对应目录的硬盘上， 按理来说 当上传一个文件时，其实是上传了两份，第一个是以 .tem 格式的
+		 * 然后再将其真正写到 对应目录的硬盘上
 		 */
 		factory.setRepository(new File(path));
 		// 设置 缓存的大小，当上传文件的容量超过该缓存时，直接放到 暂时存储室
@@ -119,8 +144,7 @@ public class FileUploader {
 					String contentType = item.getContentType();
 					request.setAttribute(name + "ContentType", contentType);
 					if (contentType.indexOf(";") > 0) {
-						contentType = contentType.substring(0,
-								contentType.indexOf(";"));
+						contentType = contentType.substring(0, contentType.indexOf(";"));
 					}
 					content.setFileType(contentType);
 					content.setExtName(FileExtArray.getExtName(filename));
@@ -149,8 +173,7 @@ public class FileUploader {
 		return content;
 	}
 
-	public static void ChangeFileID(String nfileID, String ofileID,
-			String docPath) {
+	public static void ChangeFileID(String nfileID, String ofileID, String docPath) {
 		String dirPath = TransePath.docPath2FilePath(docPath);
 		File file = new File(dirPath, MD5Util.encode(ofileID));
 		File nfile = new File(dirPath, MD5Util.encode(nfileID));
