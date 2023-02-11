@@ -36,6 +36,9 @@ public class ServerConfigInit {
 		if (docDir.startsWith("/")) {
 			docDir = DOC_HOME + docDir;
 		}
+		if (docDir.toLowerCase().indexOf("file://") == 0) {
+			docDir = docDir.substring(7);
+		}
 		TransePath.setBaseDocPath(docDir);
 	}
 }

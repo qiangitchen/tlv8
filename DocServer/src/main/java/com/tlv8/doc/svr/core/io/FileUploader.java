@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.URI;
 import java.util.List;
 
@@ -75,38 +74,10 @@ public class FileUploader {
 
 	public static FileIOContent fileUpload(HttpServletRequest request, IDoc doc) throws ServletException, IOException {
 		FileIOContent content = new FileIOContent();
-		/**
-		 * 
-		 * @author Administrator 文件上传 具体步骤： 1）获得磁盘文件条目工厂 DiskFileItemFactory 要导包 2） 利用
-		 *         request 获取 真实路径 ，供临时文件存储，和 最终文件存储 ，这两个存储位置可不同，也可相同 3）对
-		 *         DiskFileItemFactory 对象设置一些 属性 4）高水平的API文件上传处理 ServletFileUpload
-		 *         upload = new ServletFileUpload(factory); 目的是调用
-		 *         parseRequest（request）方法 获得 FileItem 集合list ，
-		 * 
-		 *         5）在 FileItem 对象中 获取信息， 遍历， 判断 表单提交过来的信息 是否是 普通文本信息 另做处理 6） 第一种. 用第三方
-		 *         提供的 item.write( new File(path,filename) ); 直接写到磁盘上 第二种. 手动处理
-		 * 
-		 */
 		request.setCharacterEncoding("utf-8"); // 设置编码
 		// 获得磁盘文件条目工厂
 		DiskFileItemFactory factory = new DiskFileItemFactory();
-		String fileID = doc.getNewDocID();
-		String docPath = doc.getNewDocPath();
-		content.setFileID(fileID);
-		content.setFilePath(docPath);
-		// 获取文件需要上传到的路径
-		String path = TransePath.docPath2FilePath(docPath);
-		File fileDir = new File(path);
-		if (!fileDir.exists()) {
-			fileDir.mkdirs();
-		}
-		// 如果没以下两行设置的话，上传大的 文件 会占用 很多内存，
-		// 设置暂时存放的 存储室 , 这个存储室，可以和 最终存储文件 的目录不同
-		/**
-		 * 原理 它是先存到 暂时存储室，然后在真正写到 对应目录的硬盘上， 按理来说 当上传一个文件时，其实是上传了两份，第一个是以 .tem 格式的
-		 * 然后再将其真正写到 对应目录的硬盘上
-		 */
-		factory.setRepository(new File(path));
+		factory.setRepository(new File(TransePath.getSavePath()));
 		// 设置 缓存的大小，当上传文件的容量超过该缓存时，直接放到 暂时存储室
 		factory.setSizeThreshold(1024 * 1024);
 		// 高水平的API文件上传处理
@@ -148,22 +119,12 @@ public class FileUploader {
 					}
 					content.setFileType(contentType);
 					content.setExtName(FileExtArray.getExtName(filename));
-					// 手动写的
-					File ofile = new File(path, MD5Util.encode(fileID));
-					if (!ofile.exists()) {
-						ofile.createNewFile();
-					}
-					OutputStream out = new FileOutputStream(ofile);
+					String fileID = doc.getNewDocID();
+					String docPath = doc.getNewDocPath();
+					content.setFileID(fileID);
+					content.setFilePath(docPath);
 					InputStream in = item.getInputStream();
-					int length = 0;
-					byte[] buf = new byte[1024];
-					// in.read(buf) 每次读到的数据存放在 buf 数组中
-					while ((length = in.read(buf)) != -1) {
-						// 在 buf 数组中 取出数据 写到 （输出流）磁盘上
-						out.write(buf, 0, length);
-					}
-					in.close();
-					out.close();
+					upload(in, fileID, docPath);
 				}
 			}
 		} catch (FileUploadException e) {
