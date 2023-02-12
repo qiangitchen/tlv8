@@ -52,20 +52,15 @@
 
 		<!--word文件读取-添加本地的jar包 -->
 		<dependency>
-			<groupId>com.aspose</groupId>
+			<groupId>com.luhuiguo</groupId>
 			<artifactId>aspose-words</artifactId>
-			<version>15.8.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/aspose-words-15.8.0-jdk16.jar</systemPath>
+			<version>22.12</version>
 		</dependency>
-
 		<!--word文件读取-添加本地的jar包 -->
 		<dependency>
-			<groupId>com.aspose</groupId>
+			<groupId>com.luhuiguo</groupId>
 			<artifactId>aspose-pdf</artifactId>
-			<version>17.8.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/aspose.pdf-17.8.jar</systemPath>
+			<version>22.12</version>
 		</dependency>
 
 		<!-- spring -->
@@ -185,6 +180,12 @@
 		<dependency>
 			<groupId>org.dom4j</groupId>
 			<artifactId>dom4j</artifactId>
+		</dependency>
+		
+		<!-- jaxen-->
+		<dependency>
+		  <groupId>jaxen</groupId>
+		  <artifactId>jaxen</artifactId>
 		</dependency>
 
 		<!-- 共享文件 -->
