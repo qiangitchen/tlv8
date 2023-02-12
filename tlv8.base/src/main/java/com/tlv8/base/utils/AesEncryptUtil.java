@@ -33,8 +33,6 @@ public class AesEncryptUtil {
 	 * 加密方法
 	 * 
 	 * @param data 要加密的数据
-	 * @param key  加密key
-	 * @param iv   加密iv
 	 * @return 加密的结果
 	 * @throws Exception
 	 */

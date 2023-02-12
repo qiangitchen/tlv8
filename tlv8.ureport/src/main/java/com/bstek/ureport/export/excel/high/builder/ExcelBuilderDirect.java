@@ -170,13 +170,13 @@ public class ExcelBuilderDirect extends ExcelBuilder {
 		    				int leftMargin=0,topMargin=0;
 		    				int wholeWidth=getWholeWidth(columns, i, cellInfo.getColSpan());
 		    				int wholeHeight=getWholeHeight(rows, rowNumber, cellInfo.getRowSpan());
-		    				HorizontalAlignment align=style.getAlignmentEnum();
+		    				HorizontalAlignment align=style.getAlignment();
 		    				if(align.equals(HorizontalAlignment.CENTER)){
 		    					leftMargin=(wholeWidth-width)/2;
 		    				}else if(align.equals(HorizontalAlignment.RIGHT)){
 		    					leftMargin=wholeWidth-width;
 		    				}
-		    				VerticalAlignment valign=style.getVerticalAlignmentEnum();
+		    				VerticalAlignment valign=style.getVerticalAlignment();
 		    				if(valign.equals(VerticalAlignment.CENTER)){
 		    					topMargin=(wholeHeight-height)/2;
 		    				}else if(valign.equals(VerticalAlignment.BOTTOM)){
@@ -192,10 +192,10 @@ public class ExcelBuilderDirect extends ExcelBuilder {
 		        				anchor.setCol2(i+colSpan);
 		        				anchor.setRow1(rowNumber);
 		        				anchor.setRow2(rowNumber+rowSpan);
-		        				anchor.setDx1(leftMargin * XSSFShape.EMU_PER_PIXEL);
-		        				anchor.setDx2(width * XSSFShape.EMU_PER_PIXEL);
-		        				anchor.setDy1(topMargin * XSSFShape.EMU_PER_PIXEL);
-		        				anchor.setDy2(height * XSSFShape.EMU_PER_PIXEL);
+		        				anchor.setDx1(leftMargin );
+		        				anchor.setDx2(width );
+		        				anchor.setDy1(topMargin );
+		        				anchor.setDy2(height );
 		        				drawing.createPicture(anchor, pictureIndex);
 		        			}finally{
 		        				IOUtils.closeQuietly(inputStream);
@@ -216,13 +216,13 @@ public class ExcelBuilderDirect extends ExcelBuilder {
 			    				int leftMargin=0,topMargin=0;
 			    				int wholeWidth=getWholeWidth(columns, i, cellInfo.getColSpan());
 			    				int wholeHeight=getWholeHeight(rows, rowNumber, cellInfo.getRowSpan());
-			    				HorizontalAlignment align=style.getAlignmentEnum();
+			    				HorizontalAlignment align=style.getAlignment();
 			    				if(align.equals(HorizontalAlignment.CENTER)){
 			    					leftMargin=(wholeWidth-width)/2;
 			    				}else if(align.equals(HorizontalAlignment.RIGHT)){
 			    					leftMargin=wholeWidth-width;
 			    				}
-			    				VerticalAlignment valign=style.getVerticalAlignmentEnum();
+			    				VerticalAlignment valign=style.getVerticalAlignment();
 			    				if(valign.equals(VerticalAlignment.CENTER)){
 			    					topMargin=(wholeHeight-height)/2;
 			    				}else if(valign.equals(VerticalAlignment.BOTTOM)){
@@ -238,10 +238,10 @@ public class ExcelBuilderDirect extends ExcelBuilder {
 		        					anchor.setCol2(i+colSpan);
 		        					anchor.setRow1(rowNumber);
 		        					anchor.setRow2(rowNumber+rowSpan);
-		        					anchor.setDx1(leftMargin * XSSFShape.EMU_PER_PIXEL);
-		        					anchor.setDx2(width * XSSFShape.EMU_PER_PIXEL);
-		        					anchor.setDy1(topMargin * XSSFShape.EMU_PER_PIXEL);
-		        					anchor.setDy2(height * XSSFShape.EMU_PER_PIXEL);
+		        					anchor.setDx1(leftMargin );
+		        					anchor.setDx2(width );
+		        					anchor.setDy1(topMargin );
+		        					anchor.setDy2(height );
 		        					drawing.createPicture(anchor, pictureIndex);
 		        				}finally{
 		        					IOUtils.closeQuietly(inputStream);

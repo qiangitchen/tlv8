@@ -183,10 +183,10 @@ public class Excel97Producer {
 				        				anchor.setCol2(i+colSpan);
 				        				anchor.setRow1(rowNumber);
 				        				anchor.setRow2(rowNumber+rowSpan);
-				        				anchor.setDx1(0 * XSSFShape.EMU_PER_PIXEL);
-				        				anchor.setDx2(width * XSSFShape.EMU_PER_PIXEL);
-				        				anchor.setDy1(0 * XSSFShape.EMU_PER_PIXEL);
-				        				anchor.setDy2(height * XSSFShape.EMU_PER_PIXEL);
+				        				anchor.setDx1(0);
+				        				anchor.setDx2(width);
+				        				anchor.setDy1(0);
+				        				anchor.setDy2(height);
 				        				drawing.createPicture(anchor, pictureIndex);
 				        			}finally{
 				        				IOUtils.closeQuietly(inputStream);
@@ -211,10 +211,10 @@ public class Excel97Producer {
 				        					anchor.setCol2(i+colSpan);
 				        					anchor.setRow1(rowNumber);
 				        					anchor.setRow2(rowNumber+rowSpan);
-				        					anchor.setDx1(0 * XSSFShape.EMU_PER_PIXEL);
-				        					anchor.setDx2(width * XSSFShape.EMU_PER_PIXEL);
-				        					anchor.setDy1(0 * XSSFShape.EMU_PER_PIXEL);
-				        					anchor.setDy2(height * XSSFShape.EMU_PER_PIXEL);
+				        					anchor.setDx1(0 );
+				        					anchor.setDx2(width );
+				        					anchor.setDy1(0 );
+				        					anchor.setDy2(height );
 				        					drawing.createPicture(anchor, pictureIndex);
 				        				}finally{
 				        					IOUtils.closeQuietly(inputStream);
@@ -335,10 +335,10 @@ public class Excel97Producer {
 			        				anchor.setCol2(i+colSpan);
 			        				anchor.setRow1(rowNumber);
 			        				anchor.setRow2(rowNumber+rowSpan);
-			        				anchor.setDx1(0 * XSSFShape.EMU_PER_PIXEL);
-			        				anchor.setDx2(width * XSSFShape.EMU_PER_PIXEL);
-			        				anchor.setDy1(0 * XSSFShape.EMU_PER_PIXEL);
-			        				anchor.setDy2(height * XSSFShape.EMU_PER_PIXEL);
+			        				anchor.setDx1(0 );
+			        				anchor.setDx2(width );
+			        				anchor.setDy1(0 );
+			        				anchor.setDy2(height );
 			        				drawing.createPicture(anchor, pictureIndex);
 			        			}finally{
 			        				IOUtils.closeQuietly(inputStream);
@@ -363,10 +363,10 @@ public class Excel97Producer {
 			        					anchor.setCol2(i+colSpan);
 			        					anchor.setRow1(rowNumber);
 			        					anchor.setRow2(rowNumber+rowSpan);
-			        					anchor.setDx1(0 * XSSFShape.EMU_PER_PIXEL);
-			        					anchor.setDx2(width * XSSFShape.EMU_PER_PIXEL);
-			        					anchor.setDy1(0 * XSSFShape.EMU_PER_PIXEL);
-			        					anchor.setDy2(height * XSSFShape.EMU_PER_PIXEL);
+			        					anchor.setDx1(0 );
+			        					anchor.setDx2(width );
+			        					anchor.setDy1(0 );
+			        					anchor.setDy2(height );
 			        					drawing.createPicture(anchor, pictureIndex);
 			        				}finally{
 			        					IOUtils.closeQuietly(inputStream);

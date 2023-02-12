@@ -168,7 +168,7 @@ public class SqlQueryAction extends ActionSupport {
 		} catch (SQLException e) {
 			throw new SQLException(e + "dblink:" + db + " :" + sql);
 		} finally {
-			DBUtils.CloseConn(session, conn, stm, rs);
+			DBUtils.closeConn(session, conn, stm, rs);
 		}
 		return result.toString();
 	}

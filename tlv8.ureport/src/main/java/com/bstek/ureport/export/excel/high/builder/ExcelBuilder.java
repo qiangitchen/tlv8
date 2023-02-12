@@ -17,6 +17,7 @@ package com.bstek.ureport.export.excel.high.builder;
 
 import java.util.List;
 
+import org.apache.poi.ss.usermodel.PageMargin;
 import org.apache.poi.ss.usermodel.PaperSize;
 import org.apache.poi.ss.usermodel.PrintOrientation;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -80,10 +81,10 @@ public abstract class ExcelBuilder {
 		int rightMargin=paper.getRightMargin();
 		int topMargin=paper.getTopMargin();
 		int bottomMargin=paper.getBottomMargin();
-		sheet.setMargin(Sheet.LeftMargin, UnitUtils.pointToInche(leftMargin));
-		sheet.setMargin(Sheet.RightMargin, UnitUtils.pointToInche(rightMargin));
-		sheet.setMargin(Sheet.TopMargin, UnitUtils.pointToInche(topMargin));
-		sheet.setMargin(Sheet.BottomMargin, UnitUtils.pointToInche(bottomMargin));
+		sheet.setMargin(PageMargin.getByShortValue(Sheet.LeftMargin), UnitUtils.pointToInche(leftMargin));
+		sheet.setMargin(PageMargin.getByShortValue(Sheet.RightMargin), UnitUtils.pointToInche(rightMargin));
+		sheet.setMargin(PageMargin.getByShortValue(Sheet.TopMargin), UnitUtils.pointToInche(topMargin));
+		sheet.setMargin(PageMargin.getByShortValue(Sheet.BottomMargin), UnitUtils.pointToInche(bottomMargin));
 		return sheet;
 	}
 

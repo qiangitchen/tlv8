@@ -92,7 +92,7 @@ public class SqlUpdateAction extends ActionSupport {
 			throw new SQLException(e + "dblink:" + db + " :" + sql);
 		} finally {
 			try {
-				DBUtils.CloseConn(conn, stm, null);
+				DBUtils.closeConn(conn, stm, null);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

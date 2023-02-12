@@ -14,6 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellType;
 
 import com.tlv8.doc.svr.core.text.TextReader;
 
@@ -89,7 +90,6 @@ public class ExcelReader extends TextReader {
 		return result.toString();
 	}
 
-	@SuppressWarnings("deprecation")
 	private String convertCell(Cell cell) {
 		NumberFormat formater = NumberFormat.getInstance();
 		formater.setGroupingUsed(false);
@@ -97,23 +97,18 @@ public class ExcelReader extends TextReader {
 		if (cell == null) {
 			return cellValue;
 		}
-		switch (cell.getCellType()) {
-		case HSSFCell.CELL_TYPE_NUMERIC:
+		CellType cellType = cell.getCellType();
+		if(cellType == CellType.NUMERIC) {
 			cellValue = formater.format(cell.getNumericCellValue());
-			break;
-		case HSSFCell.CELL_TYPE_STRING:
+		}else if(cellType == CellType.STRING) {
 			cellValue = cell.getStringCellValue();
-			break;
-		case HSSFCell.CELL_TYPE_BLANK:
+		}else if(cellType == CellType.BLANK){
 			cellValue = cell.getStringCellValue();
-			break;
-		case HSSFCell.CELL_TYPE_BOOLEAN:
+		}else if(cellType == CellType.BOOLEAN){
 			cellValue = Boolean.valueOf(cell.getBooleanCellValue()).toString();
-			break;
-		case HSSFCell.CELL_TYPE_ERROR:
+		}else if(cellType == CellType.ERROR) {
 			cellValue = String.valueOf(cell.getErrorCellValue());
-			break;
-		default:
+		}else{
 			cellValue = "";
 		}
 		return cellValue.trim();

@@ -10,7 +10,7 @@ public class HtmlUtil {
 
 	/**
 	 * @param args
-	 * @throws URISyntaxException
+	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
 		URL url = new URL("http://www.baidu.com/");

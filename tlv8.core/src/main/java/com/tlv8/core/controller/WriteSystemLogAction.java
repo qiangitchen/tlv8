@@ -120,7 +120,7 @@ public class WriteSystemLogAction extends ActionSupport {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, null);
+			DBUtils.closeConn(session, conn, ps, null);
 		}
 		data.setFlag("true");
 		return data;

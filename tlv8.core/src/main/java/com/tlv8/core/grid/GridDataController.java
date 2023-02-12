@@ -161,7 +161,7 @@ public class GridDataController extends GridCoreController {
 		} catch (Exception e) {
 			Sys.printErr(e);
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, rs);
+			DBUtils.closeConn(session, conn, ps, rs);
 		}
 		return map;
 	}

@@ -95,7 +95,7 @@ public class DBUtils {
 	/**
 	 * 获取数据库连接 Session
 	 * 
-	 * @param dbname
+	 * @param dbkey
 	 * @return SqlSession
 	 * @see org.apache.ibatis.session.SqlSession
 	 */
@@ -519,15 +519,9 @@ public class DBUtils {
 		return result;
 	}
 
-	/**
-	 * 关闭数据库连接
-	 * 
-	 * @param conn
-	 * @param stm
-	 * @param rs
-	 * @throws SQLException
-	 */
-	public static void CloseConn(Connection conn, Statement stm, ResultSet rs) throws SQLException {
+
+
+	public static void closeConn(Connection conn, Statement stm, ResultSet rs) throws SQLException {
 		try {
 			if (rs != null)
 				rs.close();
@@ -550,6 +544,19 @@ public class DBUtils {
 
 	/**
 	 * 关闭数据库连接
+	 *
+	 * @param conn
+	 * @param stm
+	 * @param rs
+	 * @throws SQLException
+	 */
+	@Deprecated
+	public static void CloseConn(Connection conn, Statement stm, ResultSet rs) throws SQLException {
+		closeConn(conn, stm, rs);
+	}
+
+	/**
+	 * 关闭数据库连接
 	 * 
 	 * @param session
 	 * @param conn
@@ -560,7 +567,7 @@ public class DBUtils {
 	 * @see java.sql.Statement
 	 * @see java.sql.ResultSet
 	 */
-	public static void CloseConn(SqlSession session, Connection conn, Statement stm, ResultSet rs) {
+	public static void closeConn(SqlSession session, Connection conn, Statement stm, ResultSet rs) {
 		try {
 			if (session != null) {
 				session.commit(true);
@@ -587,6 +594,18 @@ public class DBUtils {
 				session.close();
 		} catch (Exception e) {
 		}
+	}
+
+	/**
+	 * 关闭数据库连接
+	 * @param session
+	 * @param conn
+	 * @param stm
+	 * @param rs
+	 */
+	@Deprecated
+	public static void CloseConn(SqlSession session, Connection conn, Statement stm, ResultSet rs) {
+		closeConn(session, conn, stm, rs);
 	}
 
 	/**
@@ -647,7 +666,7 @@ public class DBUtils {
 	/**
 	 * 查询数据
 	 * 
-	 * @param dbname
+	 * @param session
 	 * @param sql
 	 * @return List&lt;Map&lt;String, Object&gt;&gt;
 	 */
@@ -659,7 +678,7 @@ public class DBUtils {
 	/**
 	 * 查询数据 -带参数
 	 * 
-	 * @param dbname
+	 * @param session
 	 * @param sql
 	 * @param params
 	 * @return List&lt;Map&lt;String, Object&gt;&gt;
@@ -721,7 +740,6 @@ public class DBUtils {
 	 * 
 	 * @param dbname
 	 * @param sql
-	 * @param params
 	 * @return List&lt;Map&lt;String, Object&gt;&gt;
 	 * @throws Exception
 	 */
@@ -878,7 +896,7 @@ public class DBUtils {
 	/**
 	 * 插入数据
 	 * 
-	 * @param dbname
+	 * @param session
 	 * @param sql
 	 * @return int
 	 */
@@ -929,7 +947,7 @@ public class DBUtils {
 	/**
 	 * 删除数据
 	 * 
-	 * @param dbname
+	 * @param session
 	 * @param sql
 	 * @return int
 	 */
@@ -968,7 +986,7 @@ public class DBUtils {
 	/**
 	 * 更新数据
 	 * 
-	 * @param dbname
+	 * @param session
 	 * @param sql
 	 * @return int
 	 */
@@ -1047,8 +1065,7 @@ public class DBUtils {
 	 * 调用存储过程; aParams为分号分割的字符串参数值列表, 所有参数只能是字符串类型, 且只能是in类型
 	 * 
 	 * @param dbkey
-	 * @param aProcName
-	 * @param aParamValues
+	 * @param sql
 	 * @return String
 	 */
 	public static String executeCommand(String dbkey, String sql) throws Exception {

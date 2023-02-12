@@ -155,7 +155,7 @@ public class GridImportController extends GridCoreController {
 			session.rollback(true);
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, null);
+			DBUtils.closeConn(session, conn, ps, null);
 		}
 		// System.out.println(okcout);
 		request.setAttribute("fokCount", okcout);

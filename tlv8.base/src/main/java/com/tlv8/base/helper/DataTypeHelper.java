@@ -84,7 +84,7 @@ public class DataTypeHelper {
 
 	/**
 	 * @since 获取表字段数据类型
-	 * @param dbkey
+	 * @param conn
 	 * @param table
 	 * @param columns
 	 * @return Map<String, String>

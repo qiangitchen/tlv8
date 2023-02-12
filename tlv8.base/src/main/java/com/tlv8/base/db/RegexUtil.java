@@ -10,6 +10,7 @@ public class RegexUtil {
 	 * 正则表达式匹配两个指定字符串中间的内容
 	 * 
 	 * @param soap
+	 * @param rgex
 	 * @return
 	 */
 	public static List<String> getSubUtil(String soap, String rgex) {

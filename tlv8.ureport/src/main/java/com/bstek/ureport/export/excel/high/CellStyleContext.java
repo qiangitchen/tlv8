@@ -257,7 +257,7 @@ public class CellStyleContext {
 	private XSSFColor buildXSSFColor(String colorStr){
 		String[] color=colorStr.split(",");
 		Color c=new Color(Integer.valueOf(color[0]),Integer.valueOf(color[1]),Integer.valueOf(color[2]));
-		XSSFColor xssfColor=new XSSFColor(c);
+		XSSFColor xssfColor=new XSSFColor(c,null);
 		return xssfColor;
 	}
 	
