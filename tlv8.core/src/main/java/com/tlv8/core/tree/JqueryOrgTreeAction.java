@@ -54,7 +54,7 @@ public class JqueryOrgTreeAction extends ActionSupport {
 			}
 		} catch (Exception e) {
 		} finally {
-			DBUtils.CloseConn(session, conn, stm, rs);
+			DBUtils.closeConn(session, conn, stm, rs);
 		}
 		PrintWriter writer = response.getWriter();
 		writer.write(jsonar.toString());
@@ -81,7 +81,7 @@ public class JqueryOrgTreeAction extends ActionSupport {
 		} catch (Exception e) {
 		} finally {
 			try {
-				DBUtils.CloseConn(null, stm, rs);
+				DBUtils.closeConn(null, stm, rs);
 			} catch (SQLException e) {
 			}
 		}

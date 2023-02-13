@@ -242,7 +242,7 @@ public class GridDataController extends GridCoreController {
 					}
 					ps1.setString(refs.getLength() + 1, json.getString("rowid"));
 					ps1.executeUpdate();
-					DBUtils.CloseConn(null, null, ps1, null);
+					DBUtils.closeConn(null, null, ps1, null);
 				} else {
 					SQL addsql = new SQL();
 					addsql.INSERT_INTO(table);
@@ -272,7 +272,7 @@ public class GridDataController extends GridCoreController {
 					}
 					ps2.setString(refs.getLength() + 1, json.getString("rowid"));
 					ps2.executeUpdate();
-					DBUtils.CloseConn(null, null, ps2, null);
+					DBUtils.closeConn(null, null, ps2, null);
 				}
 			}
 			session.commit(true);
@@ -284,7 +284,7 @@ public class GridDataController extends GridCoreController {
 			Sys.printErr(e);
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, rs);
+			DBUtils.closeConn(session, conn, ps, rs);
 		}
 		return map;
 	}
@@ -337,7 +337,7 @@ public class GridDataController extends GridCoreController {
 			Sys.printErr(e);
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, null);
+			DBUtils.closeConn(session, conn, ps, null);
 		}
 		return map;
 	}

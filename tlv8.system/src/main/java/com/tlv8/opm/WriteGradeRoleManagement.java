@@ -59,10 +59,10 @@ public class WriteGradeRoleManagement extends ActionSupport {
 				Statement stm = conn.createStatement();
 				ResultSet rs = stm.executeQuery(query);
 				if (rs.next()) {
-					DBUtils.CloseConn(null, null, stm, rs);
+					DBUtils.closeConn(null, null, stm, rs);
 					continue;
 				}
-				DBUtils.CloseConn(null, null, stm, rs);
+				DBUtils.closeConn(null, null, stm, rs);
 				PreparedStatement ps = conn.prepareStatement(sql);
 				ps.setString(1, IDUtils.getGUID());
 				ps.setString(2, roleid);
@@ -75,7 +75,7 @@ public class WriteGradeRoleManagement extends ActionSupport {
 				ps.setTimestamp(9, new Timestamp(new Date().getTime()));
 				ps.setInt(10, 0);
 				ps.executeUpdate();
-				DBUtils.CloseConn(null, null, ps, null);
+				DBUtils.closeConn(null, null, ps, null);
 			}
 			session.commit(true);
 			data.setFlag("true");
@@ -85,7 +85,7 @@ public class WriteGradeRoleManagement extends ActionSupport {
 			data.setMessage(e.getMessage());
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, null, null);
+			DBUtils.closeConn(session, conn, null, null);
 		}
 		return this;
 	}

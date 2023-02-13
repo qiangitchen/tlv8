@@ -56,7 +56,7 @@ public class IMDBUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, null);
+			DBUtils.closeConn(session, conn, ps, null);
 		}
 	}
 
@@ -79,7 +79,7 @@ public class IMDBUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, null);
+			DBUtils.closeConn(session, conn, ps, null);
 		}
 	}
 
@@ -114,7 +114,7 @@ public class IMDBUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, stm, rs);
+			DBUtils.closeConn(session, conn, stm, rs);
 		}
 		return res;
 	}
@@ -157,7 +157,7 @@ public class IMDBUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, stm, rs);
+			DBUtils.closeConn(session, conn, stm, rs);
 		}
 		return data;
 	}

@@ -74,7 +74,7 @@ public class SetMemberOrgAction extends ActionSupport {
 					ps1.setString(5, rs.getString("SFNAME") + "/" + rs.getString("SNAME"));
 					ps1.setString(6, rowid);
 					ps1.executeUpdate();
-					DBUtils.CloseConn(null, null, ps1, null);
+					DBUtils.closeConn(null, null, ps1, null);
 					// 更新其他部门下的人员为（分配）
 					DBUtils.excuteUpdate(session, "update SA_OPOrg set SNODEKIND='nkLimb' where SPERSONID='" + personid
 							+ "' and SID !='" + neworgid + "' and SORGKINDID = 'psm'");
@@ -94,7 +94,7 @@ public class SetMemberOrgAction extends ActionSupport {
 			data.setMessage(e.getMessage());
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, rs);
+			DBUtils.closeConn(session, conn, ps, rs);
 		}
 		return this;
 	}

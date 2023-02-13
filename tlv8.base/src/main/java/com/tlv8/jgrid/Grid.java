@@ -242,7 +242,7 @@ public class Grid {
 			throw new SQLException(e.getMessage());
 		} finally {
 			try {
-				DBUtils.CloseConn(conn, stm, rs);
+				DBUtils.closeConn(conn, stm, rs);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

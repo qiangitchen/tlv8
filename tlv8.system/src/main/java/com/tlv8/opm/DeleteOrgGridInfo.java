@@ -97,22 +97,22 @@ public class DeleteOrgGridInfo extends ActionSupport {
 						PreparedStatement ps1 = conn.prepareStatement(pSQL);
 						ps1.setString(1, rs.getString(4));
 						ps1.executeUpdate();
-						DBUtils.CloseConn(null, null, ps1, null);
+						DBUtils.closeConn(null, null, ps1, null);
 					}
-					DBUtils.CloseConn(null, null, ps0, rs0);
+					DBUtils.closeConn(null, null, ps0, rs0);
 				}
 				sql += " or SFID like '" + rs.getString(3) + "%') and o.SID <> 'ORG01' and o.SID <> 'PSN01@ORG01'";
 			}
 			PreparedStatement ps2 = conn.prepareStatement(sql);
 			ps2.setString(1, getRowid());
 			ps2.executeUpdate();
-			DBUtils.CloseConn(null, null, ps2, null);
+			DBUtils.closeConn(null, null, ps2, null);
 			session.commit(true);
 		} catch (SQLException e) {
 			session.rollback(true);
 			throw new SQLException(e);
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, rs);
+			DBUtils.closeConn(session, conn, ps, rs);
 		}
 		return result;
 	}

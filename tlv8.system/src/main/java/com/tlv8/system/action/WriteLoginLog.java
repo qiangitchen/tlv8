@@ -48,7 +48,7 @@ public class WriteLoginLog extends BaseController {
 			session.rollback(true);
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, null);
+			DBUtils.closeConn(session, conn, ps, null);
 		}
 	}
 

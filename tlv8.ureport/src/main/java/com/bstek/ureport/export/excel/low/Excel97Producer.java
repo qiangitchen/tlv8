@@ -34,11 +34,11 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Drawing;
+import org.apache.poi.ss.usermodel.PageMargin;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFClientAnchor;
-import org.apache.poi.xssf.usermodel.XSSFShape;
 
 import com.bstek.ureport.Utils;
 import com.bstek.ureport.build.paging.Page;
@@ -69,6 +69,7 @@ public class Excel97Producer {
 		doProduce(report, outputStream, true,true);
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void doProduce(Report report, OutputStream outputStream,boolean withPaging,boolean withSheet) {
 		CellStyleContext cellStyleContext=new CellStyleContext();
 		HSSFWorkbook wb = new HSSFWorkbook();
@@ -412,10 +413,10 @@ public class Excel97Producer {
 		int rightMargin=paper.getRightMargin();
 		int topMargin=paper.getTopMargin();
 		int bottomMargin=paper.getBottomMargin();
-		sheet.setMargin(Sheet.LeftMargin, UnitUtils.pointToInche(leftMargin));
-		sheet.setMargin(Sheet.RightMargin, UnitUtils.pointToInche(rightMargin));
-		sheet.setMargin(Sheet.TopMargin, UnitUtils.pointToInche(topMargin));
-		sheet.setMargin(Sheet.BottomMargin, UnitUtils.pointToInche(bottomMargin));
+		sheet.setMargin(PageMargin.getByShortValue(Sheet.LeftMargin), UnitUtils.pointToInche(leftMargin));
+		sheet.setMargin(PageMargin.getByShortValue(Sheet.RightMargin), UnitUtils.pointToInche(rightMargin));
+		sheet.setMargin(PageMargin.getByShortValue(Sheet.TopMargin), UnitUtils.pointToInche(topMargin));
+		sheet.setMargin(PageMargin.getByShortValue(Sheet.BottomMargin), UnitUtils.pointToInche(bottomMargin));
 		return sheet;
 	}
 

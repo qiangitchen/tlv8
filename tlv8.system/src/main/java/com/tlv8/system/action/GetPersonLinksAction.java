@@ -84,7 +84,7 @@ public class GetPersonLinksAction {
 			e.printStackTrace();
 		} finally {
 			try {
-				DBUtils.CloseConn(session, conn, stm, rs);
+				DBUtils.closeConn(session, conn, stm, rs);
 			} catch (Exception e) {
 			}
 		}

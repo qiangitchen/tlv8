@@ -134,7 +134,7 @@ public class GetGridSelectDataAction extends ActionSupport {
 			throw new SQLException(e + "dbkey:" + dbkey + ",sql:" + sql);
 		} finally {
 			try {
-				DBUtils.CloseConn(conn, stm, rs);
+				DBUtils.closeConn(conn, stm, rs);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

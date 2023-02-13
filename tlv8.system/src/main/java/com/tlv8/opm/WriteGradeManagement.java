@@ -59,10 +59,10 @@ public class WriteGradeManagement extends ActionSupport {
 				Statement stm = conn.createStatement();
 				ResultSet rs = conn.createStatement().executeQuery(query);
 				if (rs.next()) {
-					DBUtils.CloseConn(null, null, stm, rs);
+					DBUtils.closeConn(null, null, stm, rs);
 					continue;
 				}
-				DBUtils.CloseConn(null, null, stm, rs);
+				DBUtils.closeConn(null, null, stm, rs);
 				OPMOrgUtils morg = new OPMOrgUtils(sorgid);
 				PreparedStatement ps = conn.prepareStatement(sql);
 				ps.setString(1, IDUtils.getGUID());
@@ -80,7 +80,7 @@ public class WriteGradeManagement extends ActionSupport {
 				ps.setTimestamp(13, new Timestamp(new Date().getTime()));
 				ps.setInt(14, 0);
 				ps.executeUpdate();
-				DBUtils.CloseConn(null, null, ps, null);
+				DBUtils.closeConn(null, null, ps, null);
 			}
 			session.commit(true);
 			data.setFlag("true");
@@ -90,7 +90,7 @@ public class WriteGradeManagement extends ActionSupport {
 			data.setMessage(e.getMessage());
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, null, null);
+			DBUtils.closeConn(session, conn, null, null);
 		}
 		return this;
 	}

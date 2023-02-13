@@ -124,11 +124,11 @@ public class Update_Flowbillinfo extends ActionSupport {
 						System.out.println(result);
 						return result;
 					} finally {
-						DBUtils.CloseConn(null, stmt2, null);
+						DBUtils.closeConn(null, stmt2, null);
 					}
 				}
 			} finally {
-				DBUtils.CloseConn(null, stmt, rs);
+				DBUtils.closeConn(null, stmt, rs);
 			}
 
 		} catch (Exception e) {
@@ -136,7 +136,7 @@ public class Update_Flowbillinfo extends ActionSupport {
 			System.out.println(result);
 			return result;
 		} finally {
-			DBUtils.CloseConn(conn, null, null);
+			DBUtils.closeConn(conn, null, null);
 		}
 		return result;
 	}

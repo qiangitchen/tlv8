@@ -36,7 +36,7 @@ public class CodeUtils {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			DBUtils.CloseConn(session,connection, null, null);
+			DBUtils.closeConn(session,connection, null, null);
 		}
 		return key + formatNumber("0000", square);
 	}

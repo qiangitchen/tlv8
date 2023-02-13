@@ -91,7 +91,7 @@ public class GetUserList {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, null, null);
+			DBUtils.closeConn(session, conn, null, null);
 		}
 		data.put("friend", friend);
 
@@ -123,7 +123,7 @@ public class GetUserList {
 			e.printStackTrace();
 		} finally {
 			try {
-				DBUtils.CloseConn(null, stm, rs);
+				DBUtils.closeConn(null, stm, rs);
 			} catch (SQLException e) {
 			}
 		}
@@ -150,7 +150,7 @@ public class GetUserList {
 			e.printStackTrace();
 		} finally {
 			try {
-				DBUtils.CloseConn(null, stm, rs);
+				DBUtils.closeConn(null, stm, rs);
 			} catch (SQLException e) {
 			}
 		}
@@ -177,7 +177,7 @@ public class GetUserList {
 			e.printStackTrace();
 		} finally {
 			try {
-				DBUtils.CloseConn(null, stm, rs);
+				DBUtils.closeConn(null, stm, rs);
 			} catch (SQLException e) {
 			}
 		}
@@ -208,7 +208,7 @@ public class GetUserList {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, stm, rs);
+			DBUtils.closeConn(session, conn, stm, rs);
 		}
 	}
 
@@ -226,7 +226,7 @@ public class GetUserList {
 		} catch (Exception e) {
 		} finally {
 			try {
-				DBUtils.CloseConn(null, stm, rs);
+				DBUtils.closeConn(null, stm, rs);
 			} catch (SQLException e) {
 			}
 		}

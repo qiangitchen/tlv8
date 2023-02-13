@@ -95,7 +95,7 @@ public class MoveOrgAction extends ActionSupport {
 				ps1.setString(5, rs.getString("SFNAME") + "/" + rs.getString("SNAME"));
 				ps1.setString(6, rowid);
 				ps1.executeUpdate();
-				DBUtils.CloseConn(null, null, ps1, null);
+				DBUtils.closeConn(null, null, ps1, null);
 				if (isperson) {// 人员类型数据更新主机构ID
 					String upPsm = "update SA_OPPERSON set SMAINORGID = '" + orgID + "' where SID ='" + personid + "'";
 					DBUtils.excuteUpdate(session, upPsm);
@@ -115,7 +115,7 @@ public class MoveOrgAction extends ActionSupport {
 			f = "false";
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, rs);
+			DBUtils.closeConn(session, conn, ps, rs);
 		}
 		data.setData(r);
 		data.setFlag(f);

@@ -47,14 +47,14 @@ public class LayoutController extends BaseController {
 			ps1.setString(2, key);
 			ps1.setString(3, personID);
 			ps1.executeUpdate();
-			DBUtils.CloseConn(null, null, ps1, null);
+			DBUtils.closeConn(null, null, ps1, null);
 			session.commit(true);
 			this.renderData(true);
 		} catch (SQLException e) {
 			session.rollback(true);
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, cn, ps, null);
+			DBUtils.closeConn(session, cn, ps, null);
 		}
 	}
 
@@ -79,7 +79,7 @@ public class LayoutController extends BaseController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, cn, ps, rs);
+			DBUtils.closeConn(session, cn, ps, rs);
 		}
 
 	}
@@ -101,7 +101,7 @@ public class LayoutController extends BaseController {
 			session.rollback(true);
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, cn, ps, null);
+			DBUtils.closeConn(session, cn, ps, null);
 		}
 	}
 
@@ -127,7 +127,7 @@ public class LayoutController extends BaseController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, cn, st, null);
+			DBUtils.closeConn(session, cn, st, null);
 		}
 	}
 

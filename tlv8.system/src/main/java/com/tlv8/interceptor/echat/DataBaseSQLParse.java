@@ -133,7 +133,7 @@ public class DataBaseSQLParse {
 			Sys.printMsg(e.getMessage());
 			throw new SQLException(e.getMessage() + ">>\n sql:" + sql);
 		} finally {
-			DBUtils.CloseConn(aConn, ps, rs);
+			DBUtils.closeConn(aConn, ps, rs);
 		}
 		return li;
 	}

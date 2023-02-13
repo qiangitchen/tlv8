@@ -98,14 +98,14 @@ public class saveAutherPermAction extends ActionSupport {
 					ps.setTimestamp(10, new Timestamp(new Date().getTime()));
 					ps.setInt(11, 0);
 					ps.executeUpdate();
-					DBUtils.CloseConn(null, null, ps, null);
+					DBUtils.closeConn(null, null, ps, null);
 				}
 				session.commit(true);
 			} catch (Exception e) {
 				session.rollback(true);
 				throw e;
 			} finally {
-				DBUtils.CloseConn(session, conn, stm, rs);
+				DBUtils.closeConn(session, conn, stm, rs);
 			}
 		}
 		return result;

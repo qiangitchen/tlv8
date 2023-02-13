@@ -42,7 +42,7 @@ public class PersonDocNodeController {
 			session.rollback(true);
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, null);
+			DBUtils.closeConn(session, conn, ps, null);
 		}
 		return res;
 	}
@@ -71,7 +71,7 @@ public class PersonDocNodeController {
 			ps1 = conn.prepareStatement(sql2);
 			ps1.setString(1, rowid);
 			ps1.executeUpdate();
-			DBUtils.CloseConn(null, null, ps1, null);
+			DBUtils.closeConn(null, null, ps1, null);
 			session.commit(true);
 			res.put("state", true);
 		} catch (Exception e) {
@@ -79,7 +79,7 @@ public class PersonDocNodeController {
 			session.rollback(true);
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, null);
+			DBUtils.closeConn(session, conn, ps, null);
 		}
 		return res;
 	}

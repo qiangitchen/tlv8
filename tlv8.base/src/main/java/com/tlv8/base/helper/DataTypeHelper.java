@@ -75,7 +75,7 @@ public class DataTypeHelper {
 		} catch (Exception e) {
 		} finally {
 			try {
-				DBUtils.CloseConn(null, stm, rs);
+				DBUtils.closeConn(null, stm, rs);
 			} catch (SQLException e) {
 			}
 		}

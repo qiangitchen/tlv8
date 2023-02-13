@@ -127,7 +127,7 @@ public class SaveAuditOpinionAction extends ActionSupport {
 			this.data.setMessage(e.toString());
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, null);
+			DBUtils.closeConn(session, conn, ps, null);
 		}
 		return this;
 	}

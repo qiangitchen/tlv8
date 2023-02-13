@@ -132,7 +132,7 @@ public class SendMailAction extends ActionSupport {
 					ps.setString(11, ognname);
 					ps.setString(12, deptname);
 					ps.executeUpdate();
-					DBUtils.CloseConn(null, null, ps, null);
+					DBUtils.closeConn(null, null, ps, null);
 				}
 				String sendSql = "update OA_EM_SendEmail set FSENDTIME=? ,FSTATE='已发送' where FID =?";
 				PreparedStatement ps1 = conn.prepareStatement(sendSql);
@@ -149,7 +149,7 @@ public class SendMailAction extends ActionSupport {
 			conn.rollback();
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, st, rs);
+			DBUtils.closeConn(session, conn, st, rs);
 		}
 		return super.execute();
 	}

@@ -209,7 +209,7 @@ public class GridExportController extends ActionSupport {
 			e.printStackTrace();
 			throw new SQLException(e + ":" + sql);
 		} finally {
-			DBUtils.CloseConn(session, conn, stm, rs);
+			DBUtils.closeConn(session, conn, stm, rs);
 		}
 	}
 }

@@ -37,7 +37,6 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFClientAnchor;
-import org.apache.poi.xssf.usermodel.XSSFShape;
 
 import com.bstek.ureport.Utils;
 import com.bstek.ureport.build.paging.Page;
@@ -57,6 +56,7 @@ import com.bstek.ureport.utils.UnitUtils;
  * @since 2017年8月10日
  */
 public class ExcelBuilderWithPaging extends ExcelBuilder{
+	@SuppressWarnings("deprecation")
 	public void build(Report report, OutputStream outputStream,boolean withSheet) {
 		CellStyleContext cellStyleContext=new CellStyleContext();
 		SXSSFWorkbook wb = new SXSSFWorkbook(1000);

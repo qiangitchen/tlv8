@@ -37,7 +37,7 @@ public class GetSysParams {
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, null, null);
+			DBUtils.closeConn(session, conn, null, null);
 		}
 		HashMap m = params;
 		return m;
@@ -76,7 +76,7 @@ public class GetSysParams {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(null, stm, rs);
+			DBUtils.closeConn(null, stm, rs);
 		}
 	}
 
@@ -123,7 +123,7 @@ public class GetSysParams {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(null, stm, rs);
+			DBUtils.closeConn(null, stm, rs);
 		}
 	}
 
@@ -164,7 +164,7 @@ public class GetSysParams {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(null, stm, rs);
+			DBUtils.closeConn(null, stm, rs);
 		}
 	}
 
@@ -208,7 +208,7 @@ public class GetSysParams {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(null, stm, rs);
+			DBUtils.closeConn(null, stm, rs);
 		}
 	}
 
@@ -257,7 +257,7 @@ public class GetSysParams {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(null, stm, rs);
+			DBUtils.closeConn(null, stm, rs);
 		}
 	}
 
@@ -303,7 +303,7 @@ public class GetSysParams {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(null, stm, rs);
+			DBUtils.closeConn(null, stm, rs);
 		}
 	}
 }

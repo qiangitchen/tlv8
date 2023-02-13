@@ -82,7 +82,7 @@ public class TaskLimitListener implements ServletContextListener {
 		} catch (Exception e) {
 			session.rollback(true);
 		}finally {
-			DBUtils.CloseConn(session, conn, ps, null);
+			DBUtils.closeConn(session, conn, ps, null);
 		}
 	}
 }

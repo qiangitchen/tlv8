@@ -82,7 +82,7 @@ public class LayuiPersonalDocUpload {
 			res.put("msg", "上传失败！");
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, null);
+			DBUtils.closeConn(session, conn, ps, null);
 		}
 		return res;
 	}

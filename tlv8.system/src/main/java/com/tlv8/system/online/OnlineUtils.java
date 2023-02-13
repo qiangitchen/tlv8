@@ -35,7 +35,7 @@ public class OnlineUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, stm, rs);
+			DBUtils.closeConn(session, conn, stm, rs);
 		}
 		return r;
 	}

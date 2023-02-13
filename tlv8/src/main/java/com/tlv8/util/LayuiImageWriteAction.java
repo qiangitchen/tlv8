@@ -52,7 +52,7 @@ public class LayuiImageWriteAction {
 			res.put("msg", "错误:" + e.toString());
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, pstmt, null);
+			DBUtils.closeConn(session, conn, pstmt, null);
 		}
 		return res;
 	}

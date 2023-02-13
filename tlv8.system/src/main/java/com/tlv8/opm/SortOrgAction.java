@@ -49,7 +49,7 @@ public class SortOrgAction extends ActionSupport {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, stm, null);
+			DBUtils.closeConn(session, conn, stm, null);
 		}
 		return this;
 	}

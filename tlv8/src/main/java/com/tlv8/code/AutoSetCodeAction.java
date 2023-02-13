@@ -45,7 +45,7 @@ public class AutoSetCodeAction extends ActionSupport {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			DBUtils.CloseConn(connection, null, null);
+			DBUtils.closeConn(connection, null, null);
 		}
 		return this;
 	}

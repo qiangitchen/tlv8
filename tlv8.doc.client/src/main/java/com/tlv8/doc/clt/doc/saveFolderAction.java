@@ -242,7 +242,7 @@ public class saveFolderAction extends ActionSupport {
 			throw new SQLException(e + ":" + sql + ":" + upSQL);
 		} finally {
 			try {
-				DBUtils.CloseConn(conn, stm, null);
+				DBUtils.closeConn(conn, stm, null);
 			} catch (SQLException e) {
 				throw new SQLException(e);
 			}

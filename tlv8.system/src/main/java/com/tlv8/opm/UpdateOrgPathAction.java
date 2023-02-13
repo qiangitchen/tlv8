@@ -49,7 +49,7 @@ public class UpdateOrgPathAction extends ActionSupport {
 					fcode = rs.getString(2);
 					fname = rs.getString(3);
 				}
-				DBUtils.CloseConn(null, null, ps, rs);
+				DBUtils.closeConn(null, null, ps, rs);
 			}
 			String sql1 = "select SID,SCODE,SNAME,SORGKINDID from SA_OPORG where SID = ?";
 			PreparedStatement ps1 = conn.prepareStatement(sql1);
@@ -60,21 +60,21 @@ public class UpdateOrgPathAction extends ActionSupport {
 				fcode += "/" + rs1.getString(2);
 				fname += "/" + rs1.getString(3);
 			}
-			DBUtils.CloseConn(null, null, ps1, rs1);
+			DBUtils.closeConn(null, null, ps1, rs1);
 			PreparedStatement ps2 = conn.prepareStatement(upSQL);
 			ps2.setString(1, fid);
 			ps2.setString(2, fcode);
 			ps2.setString(3, fname);
 			ps2.setString(4, rowid);
 			ps2.executeUpdate();
-			DBUtils.CloseConn(null, null, ps2, null);
+			DBUtils.closeConn(null, null, ps2, null);
 			updataChild(session, rowid, fid, fcode, fname);
 			session.commit(true);
 		} catch (Exception e) {
 			session.rollback(true);
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, null, null);
+			DBUtils.closeConn(session, conn, null, null);
 		}
 		return this;
 	}
@@ -97,10 +97,10 @@ public class UpdateOrgPathAction extends ActionSupport {
 			ps2.setString(3, sfname);
 			ps2.setString(4, id);
 			ps2.executeUpdate();
-			DBUtils.CloseConn(null, null, ps2, null);
+			DBUtils.closeConn(null, null, ps2, null);
 			updataChild(session, id, sfid, sfcode, sfname);
 		}
-		DBUtils.CloseConn(null, null, ps, rs);
+		DBUtils.closeConn(null, null, ps, rs);
 	}
 
 	public void setRowid(String rowid) {

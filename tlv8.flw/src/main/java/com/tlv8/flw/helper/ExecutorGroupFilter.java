@@ -66,7 +66,7 @@ public class ExecutorGroupFilter {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, null, null);
+			DBUtils.closeConn(session, conn, null, null);
 		}
 		return pps.join(",");
 	}

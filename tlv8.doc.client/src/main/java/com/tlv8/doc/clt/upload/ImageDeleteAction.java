@@ -58,7 +58,7 @@ public class ImageDeleteAction extends ActionSupport {
 			e.printStackTrace();
 			setFlag("false");
 		} finally {
-			DBUtils.CloseConn(session, conn, pstmt, null);
+			DBUtils.closeConn(session, conn, pstmt, null);
 		}
 		setFlag("true");
 		return this;

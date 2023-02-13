@@ -161,7 +161,7 @@ public class TreeSelectAction extends ActionSupport {
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
-				DBUtils.CloseConn(session, conn, stm, rs);
+				DBUtils.closeConn(session, conn, stm, rs);
 			}
 			this.jsonResult = jsonArray.toString();
 		} catch (Exception e) {

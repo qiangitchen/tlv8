@@ -190,7 +190,7 @@ public class savePermitionAction extends ActionSupport {
 			result = "false";
 			throw new SQLException(e + ":" + chSQL + ":" + sql);
 		} finally {
-			DBUtils.CloseConn(session, conn, stm, rs);
+			DBUtils.closeConn(session, conn, stm, rs);
 		}
 		return result;
 	}

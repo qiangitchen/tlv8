@@ -793,7 +793,7 @@ public class DocDBHelper {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, null);
+			DBUtils.closeConn(session, conn, ps, null);
 		}
 	}
 
@@ -860,7 +860,7 @@ public class DocDBHelper {
 								+ "',0 from SA_DOCNODE where SDOCPATH = '" + dirpathID + "'";
 						conn.createStatement().executeUpdate(sql);
 					}
-					DBUtils.CloseConn(null, null, stms, pli);
+					DBUtils.closeConn(null, null, stms, pli);
 					dirpathID += "/" + dirID;
 				}
 			}
@@ -888,7 +888,7 @@ public class DocDBHelper {
 			session.rollback(true);
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, stm, di);
+			DBUtils.closeConn(session, conn, stm, di);
 		}
 		return docID;
 	}

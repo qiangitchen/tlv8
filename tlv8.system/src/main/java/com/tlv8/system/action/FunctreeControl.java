@@ -62,7 +62,7 @@ public class FunctreeControl {
 			Sys.printMsg(sql);
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, stm, rs);
+			DBUtils.closeConn(session, conn, stm, rs);
 		}
 		haveAutherMaps.put(personfID, have);
 	}
@@ -113,7 +113,7 @@ public class FunctreeControl {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, stm, rs);
+			DBUtils.closeConn(session, conn, stm, rs);
 		}
 		return have;
 	}

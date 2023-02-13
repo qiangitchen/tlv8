@@ -75,7 +75,7 @@ public class DisassignPsmAction extends ActionSupport {
 			f = "false";
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, rs);
+			DBUtils.closeConn(session, conn, ps, rs);
 		}
 		data.setData(r);
 		data.setFlag(f);

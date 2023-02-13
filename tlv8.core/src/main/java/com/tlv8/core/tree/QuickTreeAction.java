@@ -74,7 +74,7 @@ public class QuickTreeAction extends ActionSupport {
 			}
 		} catch (Exception e) {
 		} finally {
-			DBUtils.CloseConn(null, null, stm, rs);
+			DBUtils.closeConn(null, null, stm, rs);
 		}
 		sql = "select " + id + "," + parent + "," + name + "," + this.cloums + " from " + tableName + " where (upper("
 				+ name + ") like upper('%" + text + "%') or " + id + " = '" + text + "' ";
@@ -116,7 +116,7 @@ public class QuickTreeAction extends ActionSupport {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, stm, rs);
+			DBUtils.closeConn(session, conn, stm, rs);
 		}
 		return this.jsonResult;
 	}

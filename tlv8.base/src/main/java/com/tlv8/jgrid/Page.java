@@ -67,7 +67,7 @@ public class Page {
 			e.printStackTrace();
 		} finally {
 			try {
-				DBUtils.CloseConn(null, stm, rs);
+				DBUtils.closeConn(null, stm, rs);
 			} catch (SQLException e) {
 			}
 		}

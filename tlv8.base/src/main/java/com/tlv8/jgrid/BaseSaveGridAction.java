@@ -192,7 +192,7 @@ public class BaseSaveGridAction extends ActionSupport {
 			throw new SQLException(RegexUtil.getSubOraex(e.getMessage()));
 		} finally {
 			try {
-				DBUtils.CloseConn(session, conn, ps, null);
+				DBUtils.closeConn(session, conn, ps, null);
 			} catch (Exception e) {
 			}
 		}

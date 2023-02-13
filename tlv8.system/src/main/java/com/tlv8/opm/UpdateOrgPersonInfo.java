@@ -74,7 +74,7 @@ public class UpdateOrgPersonInfo extends ActionSupport {
 						ps1.setString(7, personid);
 						ps1.setString(8, orgid);
 						ps1.executeUpdate();
-						DBUtils.CloseConn(null, null, ps1, null);
+						DBUtils.closeConn(null, null, ps1, null);
 					} else {
 						String sql = "insert into SA_OPORG(SID,SPARENT,SCODE,SNAME,SPHONE,SADDRESS,SZIP,SFID,SFCODE,SFNAME,SORGKINDID,SPERSONID,SVALIDSTATE,SLEVEL,VERSION)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 						PreparedStatement ps1 = conn.prepareStatement(sql);
@@ -94,18 +94,18 @@ public class UpdateOrgPersonInfo extends ActionSupport {
 						ps1.setInt(14, Integer.valueOf(level) + 1);
 						ps1.setInt(15, 0);
 						ps1.executeUpdate();
-						DBUtils.CloseConn(null, null, ps1, null);
+						DBUtils.closeConn(null, null, ps1, null);
 					}
 				}
-				DBUtils.CloseConn(null, null, ps2, rs2);
-				DBUtils.CloseConn(null, null, ps3, rs3);
+				DBUtils.closeConn(null, null, ps2, rs2);
+				DBUtils.closeConn(null, null, ps3, rs3);
 			}
 			session.commit(true);
 		} catch (Exception e) {
 			session.rollback(true);
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, rs);
+			DBUtils.closeConn(session, conn, ps, rs);
 		}
 		return this;
 	}

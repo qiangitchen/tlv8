@@ -246,7 +246,7 @@ public class ExpportAction extends ActionSupport {
 			throw new SQLException(e + ":" + sql);
 		} finally {
 			try {
-				DBUtils.CloseConn(conn, stm, rs);
+				DBUtils.closeConn(conn, stm, rs);
 			} catch (SQLException e) {
 				throw new SQLException(e);
 			}

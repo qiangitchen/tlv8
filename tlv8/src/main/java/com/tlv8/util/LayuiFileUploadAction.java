@@ -107,8 +107,8 @@ public class LayuiFileUploadAction {
 					session.rollback(true);
 					e.printStackTrace();
 				} finally {
-					DBUtils.CloseConn(null, null, stm, rs);
-					DBUtils.CloseConn(session, conn, ps, null);
+					DBUtils.closeConn(null, null, stm, rs);
+					DBUtils.closeConn(session, conn, ps, null);
 				}
 			}
 			res.put("code", 0);

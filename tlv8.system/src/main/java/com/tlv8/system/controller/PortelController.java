@@ -312,7 +312,7 @@ public class PortelController extends BaseController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, cn, ps, null);
+			DBUtils.closeConn(session, cn, ps, null);
 		}
 	}
 

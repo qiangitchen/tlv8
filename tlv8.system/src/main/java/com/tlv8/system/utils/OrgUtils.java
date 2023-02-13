@@ -261,7 +261,7 @@ public class OrgUtils {
 			e.printStackTrace();
 		} finally {
 			try {
-				DBUtils.CloseConn(conn, stm, rs);
+				DBUtils.closeConn(conn, stm, rs);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

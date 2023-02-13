@@ -119,6 +119,7 @@ public class Word2PdfAsposeUtil {
 			}
 			com.aspose.pdf.Document pdf = new com.aspose.pdf.Document(in);
 			pdf.save(tempath, com.aspose.pdf.SaveFormat.Html);
+			pdf.close();
 		} catch (Exception e) {
 			return false;
 		}

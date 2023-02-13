@@ -95,9 +95,9 @@ public class AppendPersonMembers extends ActionSupport {
 						ps2.setInt(11, level);
 						ps2.setInt(12, sequence);
 						ps2.executeUpdate();
-						DBUtils.CloseConn(null, null, ps2, null);
+						DBUtils.closeConn(null, null, ps2, null);
 					}
-					DBUtils.CloseConn(null, null, ps1, rs1);
+					DBUtils.closeConn(null, null, ps1, rs1);
 				}
 			}
 			data.setFlag("true");
@@ -105,7 +105,7 @@ public class AppendPersonMembers extends ActionSupport {
 			data.setFlag("false");
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, rs);
+			DBUtils.closeConn(session, conn, ps, rs);
 		}
 		return this;
 	}

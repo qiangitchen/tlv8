@@ -79,7 +79,7 @@ public class Login {
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, rs);
+			DBUtils.closeConn(session, conn, ps, rs);
 		}
 		return m;
 	}
@@ -127,7 +127,7 @@ public class Login {
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, rs);
+			DBUtils.closeConn(session, conn, ps, rs);
 		}
 
 		return m;
@@ -171,7 +171,7 @@ public class Login {
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, rs);
+			DBUtils.closeConn(session, conn, ps, rs);
 		}
 		return m;
 	}
@@ -214,9 +214,9 @@ public class Login {
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, ps, rs);
+			DBUtils.closeConn(session, conn, ps, rs);
 		}
-		DBUtils.CloseConn(session, conn, ps, rs);
+		DBUtils.closeConn(session, conn, ps, rs);
 		return m;
 	}
 }

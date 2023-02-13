@@ -71,7 +71,7 @@ public class GetStaticListDataAction extends ActionSupport {
 			throw new SQLException(e + "dblink:" + dbkey + ",sql:" + sql);
 		} finally {
 			try {
-				DBUtils.CloseConn(conn, stm, rs);
+				DBUtils.closeConn(conn, stm, rs);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

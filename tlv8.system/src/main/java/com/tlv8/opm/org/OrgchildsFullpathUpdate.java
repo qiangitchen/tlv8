@@ -36,10 +36,10 @@ public class OrgchildsFullpathUpdate {
 						ps1.setString(2, rs.getString("SFCODE") + "/" + rs.getString("SCODE"));
 						ps1.setString(3, rs.getString("SFNAME") + "/" + rs.getString("SNAME"));
 						ps1.setString(4, orgid);
-						DBUtils.CloseConn(null, null, ps1, null);
+						DBUtils.closeConn(null, null, ps1, null);
 					}
 				} finally {
-					DBUtils.CloseConn(null, null, ps, rs);
+					DBUtils.closeConn(null, null, ps, rs);
 				}
 				upOrgpath(session, orgid);
 			}
@@ -68,12 +68,12 @@ public class OrgchildsFullpathUpdate {
 				ps1.setString(3, rs.getString("SFNAME"));
 				ps1.setString(4, oldorgid);
 				ps1.executeUpdate();
-				DBUtils.CloseConn(null, null, ps1, null);
+				DBUtils.closeConn(null, null, ps1, null);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(null, null, ps, rs);
+			DBUtils.closeConn(null, null, ps, rs);
 		}
 
 	}
