@@ -46,7 +46,7 @@ StaticGrid.prototype.init = function(LabArray) {
 //	this.Dom.style.border = "1px solid #ddd";
 	this.Dom.style.cursor = "default";
 	var gridTable = "<table id='" + this.id
-			+ "_Table' class='grid' width='100%'>";
+			+ "_Table' class='grid'>";
 	gridTable += "<tr class='scrollColThead' id='" + this.id + "_title_tr'>";
 	for (var i = 0; i < LabArray.length; i++) {
 		var celom = LabArray[i];
