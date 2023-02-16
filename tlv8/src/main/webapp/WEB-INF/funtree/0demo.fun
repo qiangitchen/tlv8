@@ -3,7 +3,8 @@
 <root> 
   <item display="solid" icon="" label="DEMO展示"> 
     <item display="" icon="" label="组件例子" layuiIcon="layui-icon layui-icon-cols"> 
-      <item activity="Date-main" display="" icon="" label="日期选择" process="/demo/date-picker/process" url="/demo/date-picker/Date-main.htm"></item> 
+      <item activity="Date-main" display="" icon="" label="日期选择" process="/demo/date-picker/process" url="/demo/date-picker/Date-main.htm"></item>  
+      <item activity="TreeGridPage" display="" icon="" label="树形列表" layuiIcon="layui-icon layui-icon-file" process="/demo/treegrid/process" url="/demo/treegrid/TreeGridPage.html"></item>
     </item>  
     <item display="" icon="" label="列表表格" layuiIcon="fa fa-list-alt"> 
       <item activity="MySampleListPage" display="" icon="" label="平台grid" process="/demo/list/process" url="/demo/list/MySampleListPage.html"></item>  

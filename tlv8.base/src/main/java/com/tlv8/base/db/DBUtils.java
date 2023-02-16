@@ -282,7 +282,7 @@ public class DBUtils {
 			session.close();
 			throw new SQLException(e.toString() + ">>\n sql:" + sql);
 		} finally {
-			CloseConn(session, aConn, qry, rs);
+			closeConn(session, aConn, qry, rs);
 		}
 		return li;
 	}
@@ -391,7 +391,7 @@ public class DBUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			CloseConn(session, connection, ps, rs);
+			closeConn(session, connection, ps, rs);
 		}
 		return result;
 	}
@@ -468,7 +468,7 @@ public class DBUtils {
 			Sys.printErr(e);
 			throw new SQLException(RegexUtil.getSubOraex(e.getMessage()));
 		} finally {
-			CloseConn(session, connection, ps, null);
+			closeConn(session, connection, ps, null);
 		}
 		return result;
 	}
@@ -655,7 +655,7 @@ public class DBUtils {
 				result += "->" + proc.getString(3);
 				logger.debug(result);
 			} finally {
-				CloseConn(session, conn, proc, null);
+				closeConn(session, conn, proc, null);
 			}
 		} catch (Exception e) {
 			throw new Exception(e);
@@ -823,7 +823,7 @@ public class DBUtils {
 			logger.error(e);
 			throw e;
 		} finally {
-			CloseConn(null, ps, rs);
+			closeConn(null, ps, rs);
 		}
 		return rlist;
 	}
@@ -866,7 +866,7 @@ public class DBUtils {
 			logger.error(e);
 			e.printStackTrace();
 		} finally {
-			CloseConn(session, conn, ps, rs);
+			closeConn(session, conn, ps, rs);
 		}
 		return rlist;
 	}
@@ -1028,7 +1028,7 @@ public class DBUtils {
 			logger.error(e);
 			throw new SQLException(RegexUtil.getSubOraex(e.getMessage()));
 		} finally {
-			CloseConn(session, conn, ps, null);
+			closeConn(session, conn, ps, null);
 		}
 		return r;
 	}
@@ -1083,23 +1083,12 @@ public class DBUtils {
 				result += "->" + proc.getString(3);
 				logger.debug(result);
 			} finally {
-				CloseConn(session, conn, proc, null);
+				closeConn(session, conn, proc, null);
 			}
 		} catch (Exception e) {
 			throw new Exception(e);
 		}
 		return result;
-	}
-
-	public static void main(String[] args) {
-		try {
-			Connection conn = getAppConn("system");
-			System.out.println(openedconn);
-			CloseConn(conn, null, null);
-			System.out.println(openedconn);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 
 }

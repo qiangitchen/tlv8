@@ -25,8 +25,6 @@ public class FuncTreeController {
 	private static final String FILE_POSTFIX = ".fun.xml";
 	private static final String FILE_POSTFIXF = ".fun";
 	private static int init = 0;
-	private String ParentID = "";
-	private String tempParentID = "";
 
 	public static String getFunctionTreeFilePath(String filePathDir) {
 		try {
@@ -75,7 +73,7 @@ public class FuncTreeController {
 		Element root = doc.getRootElement();
 		// String funmenu = readElement(root); JSON
 		transRowData(root, "");
-		String funmenu = "<ul id='tree'>" + readElementUI(root); // UL
+		String funmenu = "<ul id='tree'>" + readElementUI(root, ""); // UL
 		return funmenu;
 	}
 
@@ -91,8 +89,7 @@ public class FuncTreeController {
 	/**
 	 * 创建临时菜单集合
 	 * 
-	 * @param filePath
-	 *            菜单文件
+	 * @param filePath 菜单文件
 	 * @return
 	 */
 	public List generateNewByFile(String filePath) {
@@ -169,7 +166,7 @@ public class FuncTreeController {
 	/*
 	 * 构建树:UL
 	 */
-	private String readElementUI(Element ele) {
+	private String readElementUI(Element ele, String ParentID) {
 		StringBuffer str = new StringBuffer();
 		List attrs = ele.attributes();
 		int atsz = attrs.size();
@@ -199,7 +196,6 @@ public class FuncTreeController {
 			str.append(">" + La);
 			str.append("</a>");
 		} else {
-			tempParentID = ParentID;
 			if (0 != init) {
 				str.append("</li>");
 			}
@@ -217,9 +213,8 @@ public class FuncTreeController {
 					str.append("</li>");
 				}
 				init++;
-				str.append(readElementUI(e));
+				str.append(readElementUI(e, ParentID));
 			}
-			ParentID = tempParentID;
 			if (init != 0) {
 				str.append("</li></ul>");
 			}

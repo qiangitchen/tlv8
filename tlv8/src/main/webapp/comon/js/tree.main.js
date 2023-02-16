@@ -138,13 +138,20 @@ tlv8.createTree = function(div, treeQueryAction, img, data, master,
 		childNode : new Array(),
 		getCildNode : function(cuID) {
 			var curret_tree = document.getElementById(div.id + "_tree_view");
-			var Elm = curret_tree.getElementsByTagName("A");
-			for (var i = 0; i < Elm.length; i++) {
-				if (Elm[i].getAttribute("parentID") == cuID) {
-					tree.childNode.push(Elm[i].id);
+//			var Elm = curret_tree.getElementsByTagName("A");
+//			for (var i = 0; i < Elm.length; i++) {
+//				if (Elm[i].getAttribute("parentID") == cuID) {
+//					tree.childNode.push(Elm[i].id);
+//				}
+//			}
+			var childNode = [];
+			$(curret_tree).find("a[id='"+cuID+"']").parent().find("a").each(function(){
+				var Elm = this;
+				if (Elm.getAttribute("parentID") == cuID) {
+					childNode.push(Elm.id);
 				}
-			}
-			return tree.childNode;
+			});
+			return childNode;
 		},
 		checkedID : new Array(),
 		reMoveCheckedID : function(rId) {
@@ -174,7 +181,7 @@ tlv8.createTree = function(div, treeQueryAction, img, data, master,
 					tree.checkedValue = reMoveStr(tree.checkedValue, document
 							.getElementById(scID).innerHTML);
 			}
-			tree.childNode = new Array();
+			var childNode = new Array();
 			var cilList = tree.getCildNode(scID);
 			for (var i = 0; i < cilList.length; i++) {
 				document.getElementById(cilList[i] + "_check").checked = scOL.checked;
@@ -209,6 +216,9 @@ tlv8.createTree = function(div, treeQueryAction, img, data, master,
 				if (!checked)
 					tree.checkedValue = reMoveStr(tree.checkedValue, ","
 							+ document.getElementById(cilList[i]).innerHTML);
+				if (tree.getCildNode(cilList[i]).length > 0) {
+					tree.treemasterCheck(cilList[i], checked);
+				}
 			}
 		},
 		onchecked : function() {

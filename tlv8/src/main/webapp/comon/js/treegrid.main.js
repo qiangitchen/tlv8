@@ -69,15 +69,14 @@ tlv8.treeGrid = function(teger, idField, treeField, parentField, columns,
 		param.set("parentField", parentField);
 		param.set("columns", JSON.stringify(columns));
 		param.set("filter", where || "");
-		tlv8.XMLHttpRequest("queryTreegridDataAction", param, "post",
-				true, function(redata) {
-					redata = JSON.parse(redata);
+		tlv8.XMLHttpRequest("queryTreegridDataAction", param, "post", true,
+				function(redata) {
 					$(teger).treegrid('loadData', redata);
 				});
 	};
 };
 
 /**
-*以下为了兼容云捷代码
-*/
+ * 以下为了兼容云捷代码
+ */
 justep.yn = tlv8;
