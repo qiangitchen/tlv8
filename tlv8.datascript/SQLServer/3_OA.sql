@@ -157,7 +157,8 @@ create table [dbo].[OA_FLOWRECORD]
   FOPVIEWID       NVARCHAR(100),
   FTASKID         NVARCHAR(100),
   FFLOWID         NVARCHAR(100),
-  FSIGN           text
+  FSIGN           text,
+  fremark         VARCHAR(255)
 )ON [PRIMARY]
 
 alter table [dbo].[OA_FLOWRECORD] ADD 

@@ -173,7 +173,8 @@ create table OA_FLOWRECORD
   FOPVIEWID       VARCHAR(100),
   FTASKID         VARCHAR(100),
   FFLOWID         VARCHAR(100),
-  FSIGN           text
+  FSIGN           text,
+  fremark         VARCHAR(255)
 );
 -- Add comments to the columns 
 comment on column OA_FLOWRECORD.FNODENAME

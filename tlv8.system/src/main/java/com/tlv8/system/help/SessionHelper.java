@@ -75,4 +75,14 @@ public final class SessionHelper {
 		return req.getSession().getAttribute(key) != null ? req.getSession()
 				.getAttribute(key).toString() : "";
 	}
+	
+	public static String getPadId(HttpServletRequest req) {
+		return req.getSession().getAttribute("tlv8_key_padid") != null
+				? req.getSession().getAttribute("tlv8_key_padid").toString()
+				: "";
+	}
+
+	public static void setPadId(HttpServletRequest req, String padid) {
+		req.getSession().setAttribute("tlv8_key_padid", padid);
+	}
 }

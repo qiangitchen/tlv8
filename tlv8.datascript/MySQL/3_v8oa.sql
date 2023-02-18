@@ -177,7 +177,8 @@ create table OA_FLOWRECORD
   FOPVIEWID       VARCHAR(100) comment '显示位置div id',
   FTASKID         VARCHAR(100) comment '任务id',
   FFLOWID         VARCHAR(100) comment '流程id',
-  FSIGN           text comment '签名'
+  FSIGN           text comment '签名',
+  fremark         VARCHAR(255) comment '备注'
 );
 
 alter table OA_FLOWRECORD add primary key (FID);
