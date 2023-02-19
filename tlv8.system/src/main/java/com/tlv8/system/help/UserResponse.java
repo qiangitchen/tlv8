@@ -26,8 +26,17 @@ public class UserResponse {
 				json.put("title", title);
 			if ((text != null) && (text != ""))
 				json.put("text", text);
-			if ((data != null) && (data != ""))
+			if ((data != null) && (data != "")) {
 				json.put("data", data);
+				try {
+					JSONObject djson = JSONObject.parseObject(data);
+					for (String key : djson.keySet()) {
+						json.put(key, djson.get(key));
+					}
+				} catch (Exception e) {
+
+				}
+			}
 		} catch (Exception e) {
 			logger.debug(e);
 		}

@@ -12,20 +12,12 @@ if (!$.jpolite.Data)
 				async : async ? async : false,
 				url : cpath + '/' + action,
 				data : data,
+				dataType : "json",
 				success : function(data, textStatus) {
-					try {
-						data = window.eval("(" + data + ")");
-						data = data[0];
-						var status = data.status;
-						if (data.data) {
-							data = window["eval"]("(" + data.data + ")");
-						} else {
-							data = {};
-						}
-						data.status = status == "SUCCESS";
-					} catch (e) {
-					}
-					callback(data);
+					data = data[0];
+					var rdata = data;
+					rdata.status = (data.status=="SUCCESS");
+					callback(rdata);
 				},
 				bean : bean,
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
