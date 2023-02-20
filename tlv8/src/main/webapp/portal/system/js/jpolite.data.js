@@ -21,7 +21,7 @@ if (!$.jpolite.Data)
 				},
 				bean : bean,
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
-					{status:false,msg:"请求异常!"}
+					callback({status:false,msg:"请求异常!"});
 				}
 			});
 		}

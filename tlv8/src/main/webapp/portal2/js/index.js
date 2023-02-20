@@ -30,7 +30,11 @@ $(function() {
 	 */
 	$.initFunctionTree = function() {
 		$.jpolite.Data.system.FuncTree2(function(data) {
-			initFunctionNav(data);
+			var funs = data.data;
+			if(typeof funs=="string"){
+				funs = window.eval("("+funs+")");
+			}
+			initFunctionNav(funs);
 		});
 	};
 	$.initFunctionTree();
