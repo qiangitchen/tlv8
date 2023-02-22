@@ -1,9 +1,12 @@
 /**
  * @class tlv8.flw
  * @description 流程组件
- * @param {HTMLDivElement} div
- * @param {object} data tlv8.Data
- * @param {object} setting
+ * @param {HTMLDivElement}
+ *            div
+ * @param {object}
+ *            data tlv8.Data
+ * @param {object}
+ *            setting
  */
 tlv8.flw = function(div, data, setting) {
 	if (typeof div == "string") {
@@ -55,29 +58,29 @@ tlv8.flw = function(div, data, setting) {
 	this.Dom = div;
 	this.setting = setting;
 	/**
-	@name data
-	@description 流程对应的数据组件 tlv8.Data
-	*/
+	 * @name data
+	 * @description 流程对应的数据组件 tlv8.Data
+	 */
 	this.data = data;
 	/**
-	@name processID
-	@description 流程标识(流程图ID)
-	*/
+	 * @name processID
+	 * @description 流程标识(流程图ID)
+	 */
 	this.processID = "";
 	/**
-	@name flowID
-	@description 流程ID
-	*/
+	 * @name flowID
+	 * @description 流程ID
+	 */
 	this.flowID = tlv8.RequestURLParam.getParam("flowID");
 	/**
-	@name taskID
-	@description 任务ID
-	*/
+	 * @name taskID
+	 * @description 任务ID
+	 */
 	this.taskID = tlv8.RequestURLParam.getParam("taskID");
 	/**
-	@name sData1
-	@description 流程关联的数据主键
-	*/
+	 * @name sData1
+	 * @description 流程关联的数据主键
+	 */
 	this.sData1 = tlv8.RequestURLParam.getParam("sData1");
 	div.flw = this;
 	if (!checkPathisHave($dpcsspath + "toolbar.main.css"))
@@ -86,22 +89,17 @@ tlv8.flw = function(div, data, setting) {
 	return this;
 };
 /**
-@name setItemStatus
-@description 设置流程组件按钮状态
-@param {object} item -{
-           back : true,//回退按钮
-           out : true,//流转按钮
-           transmit : false,//转发按钮
-           pause : true,//暂停按钮
-           stop : "readonly" //终止按钮
-         }
-*/
+ * @name setItemStatus
+ * @description 设置流程组件按钮状态
+ * @param {object}
+ *            item -{ back : true,//回退按钮 out : true,//流转按钮 transmit :
+ *            false,//转发按钮 pause : true,//暂停按钮 stop : "readonly" //终止按钮 }
+ */
 tlv8.flw.prototype.setItemStatus = function(item) {
 	var setting = this.setting;
 	if (!item)
 		item = setting.item;
-	var activity_pattern = tlv8.RequestURLParam
-			.getParam("activity-pattern");
+	var activity_pattern = tlv8.RequestURLParam.getParam("activity-pattern");
 	if (activity_pattern == "detail") {
 		item.audit = false;
 		item.back = false;
@@ -112,140 +110,145 @@ tlv8.flw.prototype.setItemStatus = function(item) {
 	}
 	var div = document.getElementById(this.id);
 	var itemHTML = "<table style='height:25px; boder:1px solid #eee;'><tr style='width'>";
-	itemHTML += "<td style='boder:1px solid #eee;'>"
-			+ "<a class='toobar_item' href='javascript:void(0)'><img id='"
-			+ this.id
-			+ "_groupItem' src='"
-			+ $dpimgpath
-			+ "toolbar/flw/group.gif' title='流程工具条' onclick='return false;'/></a></td>";
+//	itemHTML += "<td style='boder:1px solid #eee;'>"
+//			+ "<a class='toobar_item' href='javascript:void(0)'><img id='"
+//			+ this.id
+//			+ "_groupItem' src='"
+//			+ $dpimgpath
+//			+ "toolbar/flw/group.gif' title='流程工具条' onclick='return false;'/></a></td>";
 	if (item.audit == false) {
 	} else if ((item.audit && item.audit == true)
 			|| (!item.audit && setting.item.audit == true && item != setting.item)) {
 		itemHTML += "<td style='boder:1px solid #eee;' id='" + this.id
 				+ "_auditItem_Td'>"
-				+ "<a class='toobar_item' href='javascript:void(0)'><img id='"
+				+ "<button class='easyui-linkbutton layui-btn layui-btn-sm layui-btn-primary' href='javascript:void(0)' id='"
 				+ this.id + "_auditItem' src='" + $dpimgpath
 				+ "toolbar/flw/audit.gif' title='审批' "
 				+ "onclick='document.getElementById(\"" + div.id
-				+ "\").flw.flowAudit();return false;'/></a></td>";
+				+ "\").flw.flowAudit();return false;' style=' margin-right:5px;'>审批</button></td>";
 	} else if (item.audit == "readonly"
 			|| (!item.audit && setting.item.audit == "readonly" && item != setting.item)) {
 		itemHTML += "<td style='boder:1px solid #eee;' id='" + this.id
 				+ "_auditItem_Td'>"
-				+ "<a class='toobar_item' href='javascript:void(0)'><img id='"
-				+ this.id + "_auditItem' src='" + $dpimgpath
+				+ "<button class='easyui-linkbutton layui-btn layui-btn-sm layui-btn-disabled' href='javascript:void(0)' id='"
+				+ this.id + "_auditItem' disabled='true'  src='" + $dpimgpath
 				+ "toolbar/flw/un_audit.gif' title='审批' "
-				+ "onclick='return false;'/></a></td>";
+				+ "onclick='return false;' style='margin-right:5px;'>审批</button></td>";
 	}
 	if (item.back == false) {
 	} else if ((item.back && item.back == true && setting.auditParam.isRequired == false)
 			|| (!item.back && setting.item.back == true && item != setting.item && setting.auditParam.isRequired == false)) {
 		itemHTML += "<td style='boder:1px solid #eee;'>"
-				+ "<a class='toobar_item' href='javascript:void(0)'><img id='"
+				+ "<button class='easyui-linkbutton layui-btn layui-btn-sm layui-btn-warm' href='javascript:void(0)' id='"
 				+ this.id
 				+ "_backItem' src='"
 				+ $dpimgpath
 				+ "toolbar/flw/back.gif' title='回退' onclick='document.getElementById(\""
-				+ div.id + "\").flw.flowback()'/></a></td>";
+				+ div.id + "\").flw.flowback()' style='margin-right:5px;'>回退</button></td>";
 	} else if (item.back == "readonly"
 			|| setting.auditParam.isRequired == true
 			|| (!item.back && setting.item.back == "readonly" && item != setting.item)) {
 		itemHTML += "<td style='boder:1px solid #eee;'>"
-				+ "<a class='toobar_item' href='javascript:void(0)'><img id='"
-				+ this.id + "_backItem' src='" + $dpimgpath
-				+ "toolbar/flw/un_back.gif' title='回退' /></a></td>";
+				+ "<button class='easyui-linkbutton layui-btn layui-btn-sm layui-btn-disabled' href='javascript:void(0)' id='"
+				+ this.id + "_backItem' disabled='true' src='" + $dpimgpath
+				+ "toolbar/flw/un_back.gif' title='回退' style='margin-right:5px;'>回退</button></td>";
 	}
 	if (item.out == false) {
 	} else if ((item.out == true && setting.auditParam.isRequired == false)
 			|| (!item.out && setting.item.out == true && item != setting.item && setting.auditParam.isRequired == false)) {
-		itemHTML += "<td><a class='toobar_item' href='javascript:void(0)'><img id='"
+		itemHTML += "<td><button class='easyui-linkbutton layui-btn layui-btn-sm layui-btn-normal' href='javascript:void(0)' id='"
 				+ this.id
 				+ "_outItem' src='"
 				+ $dpimgpath
 				+ "toolbar/flw/turn.gif' title='流转' onclick='document.getElementById(\""
-				+ div.id + "\").flw.flowout()'/></a></td>";
+				+ div.id + "\").flw.flowout()' style='margin-right:5px;'>提交</button></td>";
 	} else if (item.out == "readonly"
 			|| setting.auditParam.isRequired == true
 			|| (item.out && setting.item.out == "readonly" && item != setting.item)) {
-		itemHTML += "<td><a class='toobar_item' href='javascript:void(0)'><img id='"
+		itemHTML += "<td><button class='easyui-linkbutton layui-btn layui-btn-sm layui-btn-disabled' href='javascript:void(0)' id='"
 				+ this.id
-				+ "_outItem' src='"
+				+ "_outItem' disabled='true' src='"
 				+ $dpimgpath
-				+ "toolbar/flw/un_turn.gif' title='流转'/></a></td>";
+				+ "toolbar/flw/un_turn.gif' title='流转' style='margin-right:5px;'>提交</button></td>";
 	}
 	if (item.transmit == false) {
 	} else if ((item.transmit == true && setting.auditParam.isRequired == false)
 			|| (!item.transmit && setting.item.transmit == true
 					&& item != setting.item && setting.auditParam.isRequired == false)) {
-		itemHTML += "<td><a class='toobar_item' href='javascript:void(0)'><img id='"
+		itemHTML += "<td><button class='easyui-linkbutton layui-btn layui-btn-sm layui-btn-primary' href='javascript:void(0)' id='"
 				+ this.id
 				+ "_transmitItem' src='"
 				+ $dpimgpath
 				+ "toolbar/flw/redirect.gif' title='转发' onclick='document.getElementById(\""
-				+ div.id + "\").flw.flowtransmit()'/></a></td>";
+				+ div.id + "\").flw.flowtransmit()' style='margin-right:5px;'>转发</button></td>";
 	} else if (item.transmit == "readonly"
 			|| setting.auditParam.isRequired == true
 			|| (!item.transmit && setting.item.transmit == "readonly" && item != setting.item)) {
-		itemHTML += "<td><a class='toobar_item' href='javascript:void(0)'><img id='"
+		itemHTML += "<td><button class='easyui-linkbutton layui-btn layui-btn-sm layui-btn-disabled' href='javascript:void(0)' id='"
 				+ this.id
-				+ "_transmitItem' src='"
+				+ "_transmitItem' disabled='true' src='"
 				+ $dpimgpath
-				+ "toolbar/flw/un_redirect.gif' title='转发'/></a></td>";
+				+ "toolbar/flw/un_redirect.gif' title='转发' style='margin-right:5px;'>转发</button></td>";
 	}
 	if (item.pause == false) {
 	} else if ((item.pause == true && setting.auditParam.isRequired == false)
 			|| (!item.pause && setting.item.pause == true
 					&& item != setting.item && setting.auditParam.isRequired == false)) {
-		itemHTML += "<td><a class='toobar_item' href='javascript:void(0)'><img id='"
+		itemHTML += "<td><a class='easyui-linkbutton layui-btn layui-btn-sm layui-btn-warm' href='javascript:void(0)' id='"
 				+ this.id
 				+ "_pauseItem' src='"
 				+ $dpimgpath
 				+ "toolbar/flw/pause.gif' title='暂停' onclick='document.getElementById(\""
-				+ div.id + "\").flw.flowpause()'/></a></td>";
+				+ div.id + "\").flw.flowpause()' style='height:100%;margin-right:5px;'>暂停</a></td>";
 	} else if (item.pause == "readonly"
 			|| setting.auditParam.isRequired == true
 			|| (!item.pause && setting.item.pause == "readonly" && item != setting.item)) {
-		itemHTML += "<td><a class='toobar_item' href='javascript:void(0)'><img id='"
+		itemHTML += "<td><a class='easyui-linkbutton layui-btn layui-btn-sm layui-btn-disabled' href='javascript:void(0)' id='"
 				+ this.id
-				+ "_pauseItem' src='"
+				+ "_pauseItem' disabled='true' src='"
 				+ $dpimgpath
-				+ "toolbar/flw/un_pause.gif' title='暂停'/></a></td>";
+				+ "toolbar/flw/un_pause.gif' title='暂停' style='height:100%;margin-right:5px;'>暂停</a></td>";
 	}
 	if (item.stop == false) {
 	} else if ((item.stop == true && setting.auditParam.isRequired == false)
 			|| (!item.stop && setting.item.stop == true && item != setting.item && setting.auditParam.isRequired == false)) {
-		itemHTML += "<td><a class='toobar_item' href='javascript:void(0)'><img id='"
+		itemHTML += "<td><a class='easyui-linkbutton layui-btn layui-btn-sm layui-btn-danger'  href='javascript:void(0)' id='"
 				+ this.id
 				+ "_stopItem' src='"
 				+ $dpimgpath
 				+ "toolbar/flw/stop.gif' title='终止' onclick='document.getElementById(\""
-				+ div.id + "\").flw.flowstop()'/></a></td>";
+				+ div.id + "\").flw.flowstop()' style='height:100%;margin-right:5px;'>终止</a></td>";
 	} else if (item.stop == "readonly"
 			|| setting.auditParam.isRequired == true
 			|| (!item.stop && setting.item.stop == "readonly" && item != setting.item)) {
-		itemHTML += "<td><a class='toobar_item' href='javascript:void(0)'><img id='"
+		itemHTML += "<td><button class='easyui-linkbutton layui-btn layui-btn-sm layui-btn-disabled' href='javascript:void(0)' id='"
 				+ this.id
-				+ "_stopItem' src='"
+				+ "_stopItem' disabled='true' src='"
 				+ $dpimgpath
-				+ "toolbar/flw/un_stop.gif' title='终止'/></a></td>";
+				+ "toolbar/flw/un_stop.gif' title='终止' style='height:100%;margin-right:5px;'>终止</button></td>";
 	}
-	itemHTML += "<td><a class='toobar_item' href='javascript:void(0)'><img id='"
+	itemHTML += "<td><button class='easyui-linkbutton layui-btn layui-btn-sm' href='javascript:void(0)' id='"
 			+ this.id
 			+ "_chartItem' src='"
 			+ $dpimgpath
 			+ "toolbar/flw/chart.gif' title='查看流程图' onclick='document.getElementById(\""
-			+ div.id + "\").flw.viewChart()' style='height:100%;'/></a></td>";
+			+ div.id + "\").flw.viewChart()' style='height:100%;margin-right:5px;'>审批流程</button></td>";
 	itemHTML += "</tr></table>";
 	div.innerHTML = itemHTML;
+//	$.parser.parse(div);
 };
 /**
-@name flowAudit
-@description 流程审批
-@param {string} flowID
-@param {string} taskID
-@param {string} ePersonID -执行人ID，多个执行人用逗号(,)分隔
-@param {string} sData1
-*/
+ * @name flowAudit
+ * @description 流程审批
+ * @param {string}
+ *            flowID
+ * @param {string}
+ *            taskID
+ * @param {string}
+ *            ePersonID -执行人ID，多个执行人用逗号(,)分隔
+ * @param {string}
+ *            sData1
+ */
 tlv8.flw.prototype.flowAudit = function(flowID, taskID, ePersonID, sData1) {
 	if (this.setting.autosaveData) {
 		this.sData1 = this.data.saveData();
@@ -313,10 +316,11 @@ tlv8.flw.prototype.flowAudit = function(flowID, taskID, ePersonID, sData1) {
 	}, false);
 };
 /**
-@name flowstart
-@description 启动流程
-@param {string} billid -业务表单主键的值
-*/
+ * @name flowstart
+ * @description 启动流程
+ * @param {string}
+ *            billid -业务表单主键的值
+ */
 tlv8.flw.prototype.flowstart = function(billid) {
 	var flowCompent = this;
 	var sData1 = billid || this.sData1;
@@ -367,8 +371,7 @@ tlv8.flw.prototype.flowstart = function(billid) {
 		}
 	}
 	tlv8.showModelState(true);
-	tlv8.XMLHttpRequest("flowstartAction", param, "post", false, function(
-			r) {
+	tlv8.XMLHttpRequest("flowstartAction", param, "post", false, function(r) {
 		tlv8.showModelState(false);
 		if (r.data.flag == "false") {
 			alert("操作失败:" + r.data.message);
@@ -404,6 +407,15 @@ tlv8.flw.prototype.flowstart = function(billid) {
 					inFn(rEvent);
 				}
 			}
+			var aurl = window.location.href;
+			if(aurl.indexOf("?")<0){
+				aurl += "?t=1";
+			}
+			aurl += "&pattern=do";
+			aurl += "&flowID=" + flowCompent.flowID;
+			aurl += "&taskID=" + flowCompent.taskID;
+			aurl += "&sData1=" + sData1;
+			window.location.href = aurl;
 		}
 		var onAfterStart = flowCompent.Dom.getAttribute("onAfterStart");
 		if (onAfterStart) {
@@ -435,13 +447,16 @@ tlv8.flw.prototype.flowstart = function(billid) {
 	});
 };
 /**
-@name flowback
-@description 流程回退
-@param {string} flowID 
-@param {string} taskID 
-*/
+ * @name flowback
+ * @description 流程回退
+ * @param {string}
+ *            flowID
+ * @param {string}
+ *            taskID
+ */
 tlv8.flw.prototype.flowback = function(flowID, taskID) {
-	if(!confirm("确定回退流程吗？"))return;
+	if (!confirm("确定回退流程吗？"))
+		return;
 	var flowCompent = this;
 	if (this.setting.autosaveData) {
 		this.sData1 = this.data.saveData();
@@ -528,6 +543,7 @@ tlv8.flw.prototype.flowback = function(flowID, taskID) {
 							}
 						}
 						if (flowCompent.setting.autoclose == true) {
+							tlv8.portal.dailog.dailogEngin();
 							tlv8.portal.closeWindow();
 						}
 					}
@@ -604,6 +620,7 @@ tlv8.flw.prototype.flowback = function(flowID, taskID) {
 							}
 						}
 						if (flowCompent.setting.autoclose == true) {
+							tlv8.portal.dailog.dailogEngin();
 							tlv8.portal.closeWindow();
 						}
 					}
@@ -641,16 +658,52 @@ tlv8.flw.prototype.flowback = function(flowID, taskID) {
 		mAlert("未指定任务.");
 	}
 };
+
 /**
-@name flowout
-@description 流程流转
-@param {string} flowID
-@param {string} taskID
-@param {string} ePersonID -执行人ID，多个执行人用逗号(,)分隔
-@param {string} sData1 
-*/
+ * 检测处理意见必填
+ * 
+ * @returns
+ */
+tlv8.flw.prototype.checkOp = function() {
+	var flowCompent = this;
+	if (!flowCompent.taskID || flowCompent.taskID == "") {
+		return true;
+	}
+	if (flowCompent.setting.auditParam.ignore == true) {
+		return true;
+	}
+	if (flowCompent.setting.auditParam.isRequired == true) {
+	    var param = new tlv8.RequestParam();
+	    param.set("flowID", flowCompent.flowID);
+	    param.set("taskID", flowCompent.taskID);
+	    var re = tlv8.XMLHttpRequest("checkAuditOpinionAction", param, "POST", false);
+	    var redata = re.data;
+	    if (redata.length < 1) {
+		    layui.layer.alert("请先填写处理意见!");
+		    $(".wrtieop").focus();
+		    return false;
+	    }
+	}
+	return true;
+};
+
+/**
+ * @name flowout
+ * @description 流程流转
+ * @param {string}
+ *            flowID
+ * @param {string}
+ *            taskID
+ * @param {string}
+ *            ePersonID -执行人ID，多个执行人用逗号(,)分隔
+ * @param {string}
+ *            sData1
+ */
 tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 	var flowCompent = this;
+	if (!flowCompent.checkOp()) {
+		return;
+	}
 	if (this.setting.autosaveData) {
 		this.sData1 = this.data.saveData();
 	}
@@ -715,6 +768,7 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 								alert(r.data.message);
 								if (flowCompent.setting.autoclose == true) {
 									tlv8.showSate(false);
+									tlv8.portal.dailog.dailogEngin();
 									tlv8.portal.closeWindow();
 								}
 							} else if (r.data.flag == "select") {
@@ -771,6 +825,7 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 									}
 								}
 								if (flowCompent.setting.autoclose == true) {
+									tlv8.portal.dailog.dailogEngin();
 									tlv8.portal.closeWindow();
 								}
 							}
@@ -823,6 +878,7 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 								alert(r.data.message);
 								if (flowCompent.setting.autoclose == true) {
 									tlv8.showSate(false);
+									tlv8.portal.dailog.dailogEngin();
 									tlv8.portal.closeWindow();
 								}
 							} else if (r.data.flag == "select") {
@@ -896,6 +952,7 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 									}
 								}
 								if (flowCompent.setting.autoclose == true) {
+									tlv8.portal.dailog.dailogEngin();
 									tlv8.portal.closeWindow();
 								}
 							}
@@ -950,6 +1007,7 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 								alert(r.data.message);
 								if (flowCompent.setting.autoclose == true) {
 									tlv8.showSate(false);
+									tlv8.portal.dailog.dailogEngin();
 									tlv8.portal.closeWindow();
 								}
 							} else if (r.data.flag == "select") {
@@ -1010,6 +1068,7 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 							}
 							if (window.flwquery
 									&& flowCompent.setting.autoclose == true) {
+								tlv8.portal.dailog.dailogEngin();
 								tlv8.portal.closeWindow();
 							}
 						});
@@ -1020,70 +1079,73 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 		param.set("taskID", backData.taskID);
 		param.set("afterActivity", backData.activity);
 		param.set("epersonids", backData.epersonids);
-		tlv8.XMLHttpRequest("flowoutAction", param, "post", true,
-				function(r) {
-					if (r.data.flag == "false") {
-						alert(r.data.message);
-						return false;
+		tlv8.XMLHttpRequest("flowoutAction", param, "post", true, function(r) {
+			if (r.data.flag == "false") {
+				alert(r.data.message);
+				return false;
+			}
+			var onAdvanceCommit = flowCompent.Dom
+					.getAttribute("onAdvanceCommit");
+			if (onAdvanceCommit) {
+				var inFn = eval(onAdvanceCommit);
+				if (typeof (inFn) == "function") {
+					var rEvent = {
+						source : flowCompent,
+						taskID : flowCompent.taskID,
+						flowID : flowCompent.flowID,
+						cancel : false
+					};
+					inFn(rEvent);
+				}
+			}
+			var onFlowActionCommit = flowCompent.Dom
+					.getAttribute("onFlowActionCommit");
+			if (onFlowActionCommit) {
+				var inFn = eval(onFlowActionCommit);
+				if (typeof (inFn) == "function") {
+					var rEvent = {
+						source : flowCompent,
+						taskID : flowCompent.taskID,
+						flowID : flowCompent.flowID,
+						cancel : false
+					};
+					inFn(rEvent);
+				}
+			}
+			if (backData.type == "end") {
+				var onFlowEndCommit = flowCompent.Dom
+						.getAttribute("onFlowEndCommit");
+				if (onFlowEndCommit) {
+					var inFnend = eval(onFlowEndCommit);
+					if (typeof (inFnend) == "function") {
+						var rEvent = {
+							source : flowCompent,
+							taskID : flowCompent.taskID,
+							flowID : flowCompent.flowID,
+							cancel : false
+						};
+						inFnend(rEvent);
 					}
-					var onAdvanceCommit = flowCompent.Dom
-							.getAttribute("onAdvanceCommit");
-					if (onAdvanceCommit) {
-						var inFn = eval(onAdvanceCommit);
-						if (typeof (inFn) == "function") {
-							var rEvent = {
-								source : flowCompent,
-								taskID : flowCompent.taskID,
-								flowID : flowCompent.flowID,
-								cancel : false
-							};
-							inFn(rEvent);
-						}
-					}
-					var onFlowActionCommit = flowCompent.Dom
-							.getAttribute("onFlowActionCommit");
-					if (onFlowActionCommit) {
-						var inFn = eval(onFlowActionCommit);
-						if (typeof (inFn) == "function") {
-							var rEvent = {
-								source : flowCompent,
-								taskID : flowCompent.taskID,
-								flowID : flowCompent.flowID,
-								cancel : false
-							};
-							inFn(rEvent);
-						}
-					}
-					if (backData.type == "end") {
-						var onFlowEndCommit = flowCompent.Dom
-								.getAttribute("onFlowEndCommit");
-						if (onFlowEndCommit) {
-							var inFnend = eval(onFlowEndCommit);
-							if (typeof (inFnend) == "function") {
-								var rEvent = {
-									source : flowCompent,
-									taskID : flowCompent.taskID,
-									flowID : flowCompent.flowID,
-									cancel : false
-								};
-								inFnend(rEvent);
-							}
-						}
-					}
-					if (flowCompent.setting.autoclose == true) {
-						tlv8.showSate(false);
-						tlv8.portal.closeWindow();
-					}
-				});
+				}
+			}
+			if (flowCompent.setting.autoclose == true) {
+				tlv8.showSate(false);
+				tlv8.portal.dailog.dailogEngin();
+				tlv8.portal.closeWindow();
+			}
+		});
 	};
 };
 /**
-@name flowtransmit
-@description 流程转发
-@param {string} flowID
-@param {string} taskID
-@param {string} ePersonID -执行人ID，多个执行人用逗号(,)分隔
-*/
+ * @name flowtransmit
+ * @description 流程转发
+ * @param {string}
+ *            flowID
+ * @param {string}
+ *            taskID
+ * @param {string}
+ *            ePersonID -执行人ID，多个执行人用逗号(,)分隔
+ */
 tlv8.flw.prototype.flowtransmit = function(flowID, taskID, ePersonID) {
 	var flowCompent = this;
 	if (this.setting.autosaveData) {
@@ -1198,6 +1260,7 @@ tlv8.flw.prototype.flowtransmit = function(flowID, taskID, ePersonID) {
 								}
 								if (flowCompent.setting.autoclose == true) {
 									tlv8.showSate(false);
+									tlv8.portal.dailog.dailogEngin();
 									tlv8.portal.closeWindow();
 								}
 							}
@@ -1254,10 +1317,9 @@ tlv8.flw.prototype.flowtransmit = function(flowID, taskID, ePersonID) {
 														}
 													}
 													if (flowCompent.setting.autoclose == true) {
-														tlv8
-																.showSate(false);
-														tlv8.portal
-																.closeWindow();
+														tlv8.showSate(false);
+														tlv8.portal.dailog.dailogEngin();
+														tlv8.portal.closeWindow();
 													}
 												}
 											});
@@ -1332,11 +1394,13 @@ tlv8.flw.prototype.flowtransmit = function(flowID, taskID, ePersonID) {
 	};
 };
 /**
-@name flowpause
-@description 流程暂停
-@param {string} flowID
-@param {string} taskID
-*/
+ * @name flowpause
+ * @description 流程暂停
+ * @param {string}
+ *            flowID
+ * @param {string}
+ *            taskID
+ */
 tlv8.flw.prototype.flowpause = function(flowID, taskID) {
 	var flowCompent = this;
 	if (this.setting.autosaveData) {
@@ -1421,8 +1485,10 @@ tlv8.flw.prototype.flowpause = function(flowID, taskID) {
 								inFn(rEvent);
 							}
 						}
-						if (flowCompent.setting.autoclose)
+						if (flowCompent.setting.autoclose){
+							tlv8.portal.dailog.dailogEngin();
 							tlv8.portal.closeWindow();
+						}
 					}
 					var onAfterSuspend = flowCompent.Dom
 							.getAttribute("onAfterSuspend");
@@ -1492,8 +1558,10 @@ tlv8.flw.prototype.flowpause = function(flowID, taskID) {
 								inFn(rEvent);
 							}
 						}
-						if (flowCompent.setting.autoclose)
+						if (flowCompent.setting.autoclose){
+							tlv8.portal.dailog.dailogEngin();
 							tlv8.portal.closeWindow();
+						}
 					}
 					var onAfterSuspend = flowCompent.Dom
 							.getAttribute("onAfterSuspend");
@@ -1530,11 +1598,13 @@ tlv8.flw.prototype.flowpause = function(flowID, taskID) {
 	}
 };
 /**
-@name flowstop
-@description 流程终止
-@param {string} flowID
-@param {string} taskID
-*/
+ * @name flowstop
+ * @description 流程终止
+ * @param {string}
+ *            flowID
+ * @param {string}
+ *            taskID
+ */
 tlv8.flw.prototype.flowstop = function(flowID, taskID) {
 	var flowCompent = this;
 	if (this.setting.autosaveData) {
@@ -1585,152 +1655,154 @@ tlv8.flw.prototype.flowstop = function(flowID, taskID) {
 	if (flowID && taskID) {
 		param.set("flowID", flowID);
 		param.set("taskID", taskID);
-		tlv8.XMLHttpRequest("flowstopAction", param, "post", true,
-				function(r) {
-					tlv8.showModelState(false);
-					if (r.data.flag == "false") {
-						alert("操作失败:" + r.data.message);
-					} else {
-						var onAbortCommit = flowCompent.Dom
-								.getAttribute("onAbortCommit");
-						if (onAbortCommit) {
-							var inFn = eval(onAbortCommit);
-							if (typeof (inFn) == "function") {
-								var rEvent = {
-									source : flowCompent,
-									taskID : flowCompent.taskID,
-									flowID : flowCompent.flowID,
-									cancel : false
-								};
-								inFn(rEvent);
-							}
-						}
-						var onFlowActionCommit = flowCompent.Dom
-								.getAttribute("onFlowActionCommit");
-						if (onFlowActionCommit) {
-							var inFn = eval(onFlowActionCommit);
-							if (typeof (inFn) == "function") {
-								var rEvent = {
-									source : flowCompent,
-									taskID : flowCompent.taskID,
-									flowID : flowCompent.flowID,
-									cancel : false
-								};
-								inFn(rEvent);
-							}
-						}
-						if (flowCompent.setting.autoclose)
-							tlv8.portal.closeWindow();
+		tlv8.XMLHttpRequest("flowstopAction", param, "post", true, function(r) {
+			tlv8.showModelState(false);
+			if (r.data.flag == "false") {
+				alert("操作失败:" + r.data.message);
+			} else {
+				var onAbortCommit = flowCompent.Dom
+						.getAttribute("onAbortCommit");
+				if (onAbortCommit) {
+					var inFn = eval(onAbortCommit);
+					if (typeof (inFn) == "function") {
+						var rEvent = {
+							source : flowCompent,
+							taskID : flowCompent.taskID,
+							flowID : flowCompent.flowID,
+							cancel : false
+						};
+						inFn(rEvent);
 					}
-					var onAfterAbort = flowCompent.Dom
-							.getAttribute("onAfterAbort");
-					if (onAfterAbort) {
-						var inFn = eval(onAfterAbort);
-						if (typeof (inFn) == "function") {
-							var rEvent = {
-								source : flowCompent,
-								taskID : flowCompent.taskID,
-								flowID : flowCompent.flowID,
-								cancel : false
-							};
-							inFn(rEvent);
-						}
+				}
+				var onFlowActionCommit = flowCompent.Dom
+						.getAttribute("onFlowActionCommit");
+				if (onFlowActionCommit) {
+					var inFn = eval(onFlowActionCommit);
+					if (typeof (inFn) == "function") {
+						var rEvent = {
+							source : flowCompent,
+							taskID : flowCompent.taskID,
+							flowID : flowCompent.flowID,
+							cancel : false
+						};
+						inFn(rEvent);
 					}
-					var onAfterFlowAction = flowCompents.Dom
-							.getAttribute("onAfterFlowAction");
-					if (onAfterFlowAction) {
-						var inFn = eval(onAfterFlowAction);
-						if (typeof (inFn) == "function") {
-							var rEvent = {
-								source : flowCompent,
-								taskID : flowCompent.taskID,
-								flowID : flowCompent.flowID,
-								cancel : false
-							};
-							inFn(rEvent);
-						}
-					}
-				});
+				}
+				if (flowCompent.setting.autoclose){
+					tlv8.portal.dailog.dailogEngin();
+					tlv8.portal.closeWindow();
+				}
+			}
+			var onAfterAbort = flowCompent.Dom.getAttribute("onAfterAbort");
+			if (onAfterAbort) {
+				var inFn = eval(onAfterAbort);
+				if (typeof (inFn) == "function") {
+					var rEvent = {
+						source : flowCompent,
+						taskID : flowCompent.taskID,
+						flowID : flowCompent.flowID,
+						cancel : false
+					};
+					inFn(rEvent);
+				}
+			}
+			var onAfterFlowAction = flowCompents.Dom
+					.getAttribute("onAfterFlowAction");
+			if (onAfterFlowAction) {
+				var inFn = eval(onAfterFlowAction);
+				if (typeof (inFn) == "function") {
+					var rEvent = {
+						source : flowCompent,
+						taskID : flowCompent.taskID,
+						flowID : flowCompent.flowID,
+						cancel : false
+					};
+					inFn(rEvent);
+				}
+			}
+		});
 		tlv8.showModelState(true);
 	} else if (this.flowID && this.flowID != "" && this.taskID
 			&& this.taskID != "") {
 		param.set("flowID", this.flowID);
 		param.set("taskID", this.taskID);
-		tlv8.XMLHttpRequest("flowstopAction", param, "post", true,
-				function(r) {
-					if (r.data.flag == "false") {
-						alert("操作失败:" + r.data.message);
-					} else {
-						var onAbortCommit = flowCompent.Dom
-								.getAttribute("onAbortCommit");
-						if (onAbortCommit) {
-							var inFn = eval(onAbortCommit);
-							if (typeof (inFn) == "function") {
-								var rEvent = {
-									source : flowCompent,
-									taskID : flowCompent.taskID,
-									flowID : flowCompent.flowID,
-									cancel : false
-								};
-								inFn(rEvent);
-							}
-						}
-						var onFlowActionCommit = flowCompent.Dom
-								.getAttribute("onFlowActionCommit");
-						if (onFlowActionCommit) {
-							var inFn = eval(onFlowActionCommit);
-							if (typeof (inFn) == "function") {
-								var rEvent = {
-									source : flowCompent,
-									taskID : flowCompent.taskID,
-									flowID : flowCompent.flowID,
-									cancel : false
-								};
-								inFn(rEvent);
-							}
-						}
-						if (flowCompent.setting.autoclose)
-							tlv8.portal.closeWindow();
+		tlv8.XMLHttpRequest("flowstopAction", param, "post", true, function(r) {
+			if (r.data.flag == "false") {
+				alert("操作失败:" + r.data.message);
+			} else {
+				var onAbortCommit = flowCompent.Dom
+						.getAttribute("onAbortCommit");
+				if (onAbortCommit) {
+					var inFn = eval(onAbortCommit);
+					if (typeof (inFn) == "function") {
+						var rEvent = {
+							source : flowCompent,
+							taskID : flowCompent.taskID,
+							flowID : flowCompent.flowID,
+							cancel : false
+						};
+						inFn(rEvent);
 					}
-					var onAfterAbort = flowCompent.Dom
-							.getAttribute("onAfterAbort");
-					if (onAfterAbort) {
-						var inFn = eval(onAfterAbort);
-						if (typeof (inFn) == "function") {
-							var rEvent = {
-								source : flowCompent,
-								taskID : flowCompent.taskID,
-								flowID : flowCompent.flowID,
-								cancel : false
-							};
-							inFn(rEvent);
-						}
+				}
+				var onFlowActionCommit = flowCompent.Dom
+						.getAttribute("onFlowActionCommit");
+				if (onFlowActionCommit) {
+					var inFn = eval(onFlowActionCommit);
+					if (typeof (inFn) == "function") {
+						var rEvent = {
+							source : flowCompent,
+							taskID : flowCompent.taskID,
+							flowID : flowCompent.flowID,
+							cancel : false
+						};
+						inFn(rEvent);
 					}
-					var onAfterFlowAction = flowCompent.Dom
-							.getAttribute("onAfterFlowAction");
-					if (onAfterFlowAction) {
-						var inFn = eval(onAfterFlowAction);
-						if (typeof (inFn) == "function") {
-							var rEvent = {
-								source : flowCompent,
-								taskID : flowCompent.taskID,
-								flowID : flowCompent.flowID,
-								cancel : false
-							};
-							inFn(rEvent);
-						}
-					}
-				});
+				}
+				if (flowCompent.setting.autoclose){
+					tlv8.portal.dailog.dailogEngin();
+					tlv8.portal.closeWindow();
+				}
+			}
+			var onAfterAbort = flowCompent.Dom.getAttribute("onAfterAbort");
+			if (onAfterAbort) {
+				var inFn = eval(onAfterAbort);
+				if (typeof (inFn) == "function") {
+					var rEvent = {
+						source : flowCompent,
+						taskID : flowCompent.taskID,
+						flowID : flowCompent.flowID,
+						cancel : false
+					};
+					inFn(rEvent);
+				}
+			}
+			var onAfterFlowAction = flowCompent.Dom
+					.getAttribute("onAfterFlowAction");
+			if (onAfterFlowAction) {
+				var inFn = eval(onAfterFlowAction);
+				if (typeof (inFn) == "function") {
+					var rEvent = {
+						source : flowCompent,
+						taskID : flowCompent.taskID,
+						flowID : flowCompent.flowID,
+						cancel : false
+					};
+					inFn(rEvent);
+				}
+			}
+		});
 	} else {
 		mAlert("未指定任务.");
 	}
 };
 /**
-@name viewChart
-@description 查看流程流转图
-@param {string} flowID
-@param {string} taskID
-*/
+ * @name viewChart
+ * @description 查看流程流转图
+ * @param {string}
+ *            flowID
+ * @param {string}
+ *            taskID
+ */
 tlv8.flw.prototype.viewChart = function(flowID, taskID) {
 	if (!flowID)
 		flowID = this.flowID;
@@ -1744,30 +1816,43 @@ tlv8.flw.prototype.viewChart = function(flowID, taskID) {
 		var sData1 = document.getElementById(this.data.formid).rowid;
 	}
 	if (flowID && flowID != "" && taskID && taskID != "") {
-		tlv8.portal.openWindow("流程图",
+		// tlv8.portal.openWindow("流程图",
+		// "/flw/viewiocusbot/yj_iocus_bot.html?flowID=" + flowID
+		// + "&taskID=" + taskID + "&currentUrl=" + currentUrl);
+		tlv8.portal.dailog.openDailog("流程图",
 				"/flw/viewiocusbot/yj_iocus_bot.html?flowID=" + flowID
-						+ "&taskID=" + taskID + "&currentUrl=" + currentUrl);
+						+ "&taskID=" + taskID + "&currentUrl=" + currentUrl,
+				1000, 800);
 	} else if (this.processID && this.processID != "") {
-		tlv8.portal.openWindow("流程图",
+		// tlv8.portal.openWindow("流程图",
+		// "/flw/viewiocusbot/yj_iocus_bot.html?processID="
+		// + this.processID);
+		tlv8.portal.dailog.openDailog("流程图",
 				"/flw/viewiocusbot/yj_iocus_bot.html?processID="
-						+ this.processID);
+						+ this.processID, 1000, 800);
 	} else if (sData1 && sData1 != "") {
 		tlv8.task.viewChart(sData1);
 	} else {
-		tlv8.portal.openWindow("流程图",
-				"/flw/viewiocusbot/yj_iocus_bot.html?currentUrl="
-						+ currentUrl);
+		// tlv8.portal.openWindow("流程图",
+		// "/flw/viewiocusbot/yj_iocus_bot.html?currentUrl="
+		// + currentUrl);
+		tlv8.portal.dailog.openDailog("流程图",
+				"/flw/viewiocusbot/yj_iocus_bot.html?currentUrl=" + currentUrl,
+				1000, 800);
 	}
 };
 tlv8.task = {
 	/**
-	@function 
-	@name tlv8.task.openTask
-	@description 打开任务页面
-	@param {string} taskID
-	@param {string} url
-	@param {string} executor
-	*/
+	 * @function
+	 * @name tlv8.task.openTask
+	 * @description 打开任务页面
+	 * @param {string}
+	 *            taskID
+	 * @param {string}
+	 *            url
+	 * @param {string}
+	 *            executor
+	 */
 	openTask : function(taskID, url, executor) {
 		var param = new tlv8.RequestParam();
 		if (taskID) {
@@ -1789,7 +1874,9 @@ tlv8.task = {
 									+ taskID + "&sData1=" + sData1 + "&task="
 									+ taskID + "&activity-pattern=do";
 							var cid = tlv8.portal.currentTabId();
-							tlv8.portal.openWindow(name, sURL);
+							// tlv8.portal.openWindow(name, sURL);
+							tlv8.portal.dailog
+									.openDailog(name, sURL, 1200, 800);
 							writeLog(event, "处理任务");
 							tlv8.portal.closeWindow(cid);
 						}
@@ -1800,13 +1887,16 @@ tlv8.task = {
 	flowID : "",
 	taskID : "",
 	/**
-	@function 
-	@name tlv8.task.flowback
-	@description 回退流程
-	@param {string} flowID
-	@param {string} taskID
-	@param {string} calback
-	*/
+	 * @function
+	 * @name tlv8.task.flowback
+	 * @description 回退流程
+	 * @param {string}
+	 *            flowID
+	 * @param {string}
+	 *            taskID
+	 * @param {string}
+	 *            calback
+	 */
 	flowback : function(flowID, taskID, calback) {
 		var param = new tlv8.RequestParam();
 		if (flowID && taskID) {
@@ -1841,15 +1931,20 @@ tlv8.task = {
 		}
 	},
 	/**
-	@function 
-	@name tlv8.task.flowout
-	@description 流转流程
-	@param {string} flowID
-	@param {string} taskID
-	@param {string} ePersonID
-	@param {string} sData1
-	@param {function} calback
-	*/
+	 * @function
+	 * @name tlv8.task.flowout
+	 * @description 流转流程
+	 * @param {string}
+	 *            flowID
+	 * @param {string}
+	 *            taskID
+	 * @param {string}
+	 *            ePersonID
+	 * @param {string}
+	 *            sData1
+	 * @param {function}
+	 *            calback
+	 */
 	flowout : function(flowID, taskID, ePersonID, sData1, calback) {
 		var param = new tlv8.RequestParam();
 		var srcPath = window.location.pathname;
@@ -1865,52 +1960,58 @@ tlv8.task = {
 			param.set("ePersonID", ePersonID);
 			if (sData1)
 				param.set("sdata1", sData1);
-			tlv8.XMLHttpRequest("flowoutAction", param, "post", true,
-					function(r) {
-						tlv8.showModelState(false);
-						if (r.data.flag == "false") {
-							alert("操作失败:" + r.data.message);
-							return false;
-						} else {
-							var flwData = eval("(" + r.data.data + ")");
-							this.processID = flwData.processID;
-							this.flowID = flwData.flowID;
-							this.taskID = flwData.taskID;
-							sAlert("操作成功！");
-						}
-						if (calback && typeof calback == "function") {
+			tlv8.XMLHttpRequest("flowoutAction", param, "post", true, function(
+					r) {
+				tlv8.showModelState(false);
+				if (r.data.flag == "false") {
+					alert("操作失败:" + r.data.message);
+					return false;
+				} else {
+					var flwData = eval("(" + r.data.data + ")");
+					this.processID = flwData.processID;
+					this.flowID = flwData.flowID;
+					this.taskID = flwData.taskID;
+					sAlert("操作成功！");
+				}
+				if (calback && typeof calback == "function") {
+					calback();
+				} else if (calback && calback != "") {
+					try {
+						calback = eval(calback);
+						if (typeof calback == "function")
 							calback();
-						} else if (calback && calback != "") {
-							try {
-								calback = eval(calback);
-								if (typeof calback == "function")
-									calback();
-							} catch (e) {
-								alert("给定的回调函数不存在：" + e);
-							}
-						}
-					});
+					} catch (e) {
+						alert("给定的回调函数不存在：" + e);
+					}
+				}
+			});
 			tlv8.showModelState(true);
 		}
 	},
 	/**
-	@function 
-	@name tlv8.task.flowtransmit
-	@description 转发流程
-	@param {string} flowID
-	@param {string} taskID
-	@param {string} ePersonID
-	*/
+	 * @function
+	 * @name tlv8.task.flowtransmit
+	 * @description 转发流程
+	 * @param {string}
+	 *            flowID
+	 * @param {string}
+	 *            taskID
+	 * @param {string}
+	 *            ePersonID
+	 */
 	flowtransmit : function(flowID, taskID, ePersonID) {
 	},
 	/**
-	@function 
-	@name tlv8.task.flowpause
-	@description 暂停流程
-	@param {string} flowID
-	@param {string} taskID
-	@param {function} calback
-	*/
+	 * @function
+	 * @name tlv8.task.flowpause
+	 * @description 暂停流程
+	 * @param {string}
+	 *            flowID
+	 * @param {string}
+	 *            taskID
+	 * @param {function}
+	 *            calback
+	 */
 	flowpause : function(flowID, taskID, calback) {
 		if (!confirm("流程暂停后只能到任务中心激活.\n  确定暂停吗?"))
 			return false;
@@ -1945,13 +2046,16 @@ tlv8.task = {
 		return true;
 	},
 	/**
-	@function 
-	@name tlv8.task.flowrestart
-	@description 启动已暂停流程
-	@param {string} flowID
-	@param {string} taskID
-	@param {function} calback
-	*/
+	 * @function
+	 * @name tlv8.task.flowrestart
+	 * @description 启动已暂停流程
+	 * @param {string}
+	 *            flowID
+	 * @param {string}
+	 *            taskID
+	 * @param {function}
+	 *            calback
+	 */
 	flowrestart : function(flowID, taskID, calback) {
 		var param = new tlv8.RequestParam();
 		if (flowID && taskID) {
@@ -1984,13 +2088,16 @@ tlv8.task = {
 		return true;
 	},
 	/**
-	@function 
-	@name tlv8.task.flowstop
-	@description 终止流程
-	@param {string} flowID
-	@param {string} taskID
-	@param {function} calback
-	*/
+	 * @function
+	 * @name tlv8.task.flowstop
+	 * @description 终止流程
+	 * @param {string}
+	 *            flowID
+	 * @param {string}
+	 *            taskID
+	 * @param {function}
+	 *            calback
+	 */
 	flowstop : function(flowID, taskID, calback) {
 		if (!confirm("终止流程,流程将彻底作废.\n  确定终止吗?"))
 			return false;
@@ -2025,13 +2132,16 @@ tlv8.task = {
 		return true;
 	},
 	/**
-	@function 
-	@name tlv8.task.flowstart
-	@description 启动流程
-	@param {string} flowID
-	@param {string} sData1
-	@param {function} calback
-	*/
+	 * @function
+	 * @name tlv8.task.flowstart
+	 * @description 启动流程
+	 * @param {string}
+	 *            flowID
+	 * @param {string}
+	 *            sData1
+	 * @param {function}
+	 *            calback
+	 */
 	flowstart : function(sEurl, sData1, calback) {
 		var flowCompent = this;
 		var param = new tlv8.RequestParam();
@@ -2066,16 +2176,17 @@ tlv8.task = {
 				});
 	},
 	/**
-	@function 
-	@name tlv8.task.viewChart
-	@description 查看流程图
-	@param {string} sData1
-	*/
+	 * @function
+	 * @name tlv8.task.viewChart
+	 * @description 查看流程图
+	 * @param {string}
+	 *            sData1
+	 */
 	viewChart : function(sData1) {
 		var param = new tlv8.RequestParam();
 		param.set("sdata1", sData1);
-		var result = tlv8.XMLHttpRequest("getProcessByBillIDAction",
-				param, "POST", false);
+		var result = tlv8.XMLHttpRequest("getProcessByBillIDAction", param,
+				"POST", false);
 		var rdata = [];
 		try {
 			rdata = window.eval("(" + result.data.data + ")");
@@ -2084,29 +2195,40 @@ tlv8.task = {
 		if (rdata.length > 0) {
 			var flowID = rdata[0].SFLOWID;
 			var taskID = rdata[0].SID;
-			tlv8.portal.openWindow("流程图",
+			// tlv8.portal.openWindow("流程图",
+			// "/flw/viewiocusbot/yj_iocus_bot.html?flowID=" + flowID
+			// + "&taskID=" + taskID);
+			tlv8.portal.dailog.openDailog("流程图",
 					"/flw/viewiocusbot/yj_iocus_bot.html?flowID=" + flowID
-							+ "&taskID=" + taskID);
+							+ "&taskID=" + taskID, 1000, 800);
 		} else {
 			var currentUrl = window.location.pathname;
 			if (currentUrl.indexOf("?") > 0)
 				currentUrl = currentUrl.substring(0, currentUrl.indexOf("?"));
 			var flowID, taskID;
-			tlv8.portal
-					.openWindow("流程图",
+			// tlv8.portal
+			// .openWindow("流程图",
+			// "/flw/viewiocusbot/yj_iocus_bot.html?flowID="
+			// + flowID + "&taskID=" + taskID
+			// + "&currentUrl=" + currentUrl);
+			tlv8.portal.dailog
+					.openDailog("流程图",
 							"/flw/viewiocusbot/yj_iocus_bot.html?flowID="
 									+ flowID + "&taskID=" + taskID
-									+ "&currentUrl=" + currentUrl);
+									+ "&currentUrl=" + currentUrl, 1000, 800);
 		}
 	},
 	/**
-	@function 
-	@name tlv8.task.Update_Flowbillinfo
-	@description 更新流程业务数据信息
-	@param {string} tablename
-	@param {string} fid
-	@param {string} billitem
-	*/
+	 * @function
+	 * @name tlv8.task.Update_Flowbillinfo
+	 * @description 更新流程业务数据信息
+	 * @param {string}
+	 *            tablename
+	 * @param {string}
+	 *            fid
+	 * @param {string}
+	 *            billitem
+	 */
 	Update_Flowbillinfo : function(tablename, fid, billitem) {
 		var param = new tlv8.RequestParam();
 		param.set("tablename", tablename);
@@ -2123,6 +2245,6 @@ tlv8.task = {
 };
 
 /**
-*以下为了兼容云捷代码
-*/
+ * 以下为了兼容云捷代码
+ */
 justep.yn = tlv8;

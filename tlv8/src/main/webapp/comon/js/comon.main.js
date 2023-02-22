@@ -344,12 +344,12 @@ addEvent(window, "load", writeLog, false);
 
 tlv8.RequestURLParam = {
     /**
-     * @name tlv8.RequestURLParam.getParam
-     * @description 获取URL参数
-     * @param {string}
-     *            paramName
-     * @returns {string}
-     */
+	 * @name tlv8.RequestURLParam.getParam
+	 * @description 获取URL参数
+	 * @param {string}
+	 *            paramName
+	 * @returns {string}
+	 */
     getParam: function (name) {
         var lurl = window.location.href;
         if (lurl.indexOf(name) < 0)
@@ -816,11 +816,11 @@ tlv8.Data = function () {
         this.version = vi;
     };
     /**
-     * @name setReadonly
-     * @description 设置表单只读状态
-     * @param {boolean}
-     *            sta
-     */
+	 * @name setReadonly
+	 * @description 设置表单只读状态
+	 * @param {boolean}
+	 *            sta
+	 */
     this.setReadonly = function (sta) {
         try {
             this.readonly = sta;
@@ -870,12 +870,12 @@ tlv8.Data = function () {
         }
     };
     /**
-     * @name setOrderby
-     * @description 设置数据排序
-     * @param {string}
-     *            ob
-     * @example data.setOrderby("FCODE asc,fNAME desc");
-     */
+	 * @name setOrderby
+	 * @description 设置数据排序
+	 * @param {string}
+	 *            ob
+	 * @example data.setOrderby("FCODE asc,fNAME desc");
+	 */
     this.setOrderby = function (ob) {
         if (typeof (ob) == "string")
             this.orderby = ob;
@@ -883,12 +883,12 @@ tlv8.Data = function () {
             this.orderby = ob.toString();
     };
     /**
-     * @name setFilter
-     * @description 设置过滤条件
-     * @param {string}
-     *            fil
-     * @example data.setFilter("FCODE = '123'");
-     */
+	 * @name setFilter
+	 * @description 设置过滤条件
+	 * @param {string}
+	 *            fil
+	 * @example data.setFilter("FCODE = '123'");
+	 */
     this.setFilter = function (fil) {
         if (typeof (fil) == "string")
             this.filter = fil;
@@ -896,13 +896,13 @@ tlv8.Data = function () {
             this.filter = fil.toString();
     };
     /**
-     * @name setCascade
-     * @description 设置级联删除{表名:外键,表名:外键,...}
-     * @param {string}
-     *            cas
-     * @example data.setCascade("OA_ALREADYBUY:fBillID");
-     * @example data.setCascade("OA_ALREADYBUY:fBillID,OA_ALREADYBUY1:fBillID1");
-     */
+	 * @name setCascade
+	 * @description 设置级联删除{表名:外键,表名:外键,...}
+	 * @param {string}
+	 *            cas
+	 * @example data.setCascade("OA_ALREADYBUY:fBillID");
+	 * @example data.setCascade("OA_ALREADYBUY:fBillID,OA_ALREADYBUY1:fBillID1");
+	 */
     this.setCascade = function (cas) {
         if (typeof (cas) == "string")
             this.Cascade = cas;
@@ -910,11 +910,11 @@ tlv8.Data = function () {
             this.Cascade = cas.toString();
     };
     /**
-     * @name setRowId
-     * @description 设置主键，记录表单当前正在编辑的数据主键。
-     * @param {string}
-     *            rowid
-     */
+	 * @name setRowId
+	 * @description 设置主键，记录表单当前正在编辑的数据主键。
+	 * @param {string}
+	 *            rowid
+	 */
     this.setRowId = function (id) {
         try {
             if (typeof (id) == "string")
@@ -931,12 +931,12 @@ tlv8.Data = function () {
         }
     };
     /**
-     * @name setDbkey
-     * @description 设置关联数据库
-     * @param {string}
-     *            dbkey
-     * @example data.setDbkey("oa");
-     */
+	 * @name setDbkey
+	 * @description 设置关联数据库
+	 * @param {string}
+	 *            dbkey
+	 * @example data.setDbkey("oa");
+	 */
     this.setDbkey = function (k) {
         if (typeof (k) == "string")
             this.dbkay = k;
@@ -954,12 +954,12 @@ tlv8.Data = function () {
             this.savAction = a.toString();
     };
     /**
-     * @name setFormId
-     * @description 设置数据对应的FORM表单ID
-     * @param {string}
-     *            s
-     * @example data.setFormId("main_form");
-     */
+	 * @name setFormId
+	 * @description 设置数据对应的FORM表单ID
+	 * @param {string}
+	 *            s
+	 * @example data.setFormId("main_form");
+	 */
     this.setFormId = function (s) {
         if (typeof (s) == "string")
             this.formid = s;
@@ -973,24 +973,24 @@ tlv8.Data = function () {
     var onDataValueChanged;
     var isEdited = false;
     /**
-     * @name setonDataValueChanged
-     * @description 设置表单值改变事件回调函数
-     * @param {function}
-     *            fn
-     * @example data.setonDataValueChanged(function(event){});
-     */
+	 * @name setonDataValueChanged
+	 * @description 设置表单值改变事件回调函数
+	 * @param {function}
+	 *            fn
+	 * @example data.setonDataValueChanged(function(event){});
+	 */
     this.setonDataValueChanged = function (fn) {
         onDataValueChanged = fn;
         this.registerChangeEvent();
         document.getElementById(this.formid).data = this;
     };
     /**
-     * @name registerChangeEvent
-     * @description 注册表单值改变事件,一般不需要主动调用
-     * @param {string}
-     *            formid
-     * @example data.registerChangeEvent();
-     */
+	 * @name registerChangeEvent
+	 * @description 注册表单值改变事件,一般不需要主动调用
+	 * @param {string}
+	 *            formid
+	 * @example data.registerChangeEvent();
+	 */
     this.registerChangeEvent = function (formid) {
         var dataform = formid || this.formid;
         var mainform = document.getElementById(dataform);
@@ -1099,12 +1099,12 @@ tlv8.Data = function () {
         }
     };
     /**
-     * @name setTable
-     * @description 设置表单关联数据库表名
-     * @param {string}
-     *            tablename
-     * @example data.setTable("SA_OPPERSON");
-     */
+	 * @name setTable
+	 * @description 设置表单关联数据库表名
+	 * @param {string}
+	 *            tablename
+	 * @example data.setTable("SA_OPPERSON");
+	 */
     this.setTable = function (t) {
         if (typeof (t) == "string")
             this.table = t;
@@ -1116,13 +1116,13 @@ tlv8.Data = function () {
         }
     };
     /**
-     * @name setCells
-     * @description 设置列的值
-     * @param {Map}
-     *            cells
-     * @example var cell=new Map(); cell.put("a","a"); cell.put("b","b");
-     *          data.setCells(cell);
-     */
+	 * @name setCells
+	 * @description 设置列的值
+	 * @param {Map}
+	 *            cells
+	 * @example var cell=new Map(); cell.put("a","a"); cell.put("b","b");
+	 *          data.setCells(cell);
+	 */
     this.setCells = function (cell) {
         if (cell && typeof (cell) == "object") {
             var keys = cell.keySet();
@@ -1149,11 +1149,11 @@ tlv8.Data = function () {
         }
     };
     /**
-     * @name saveData
-     * @description 保存数据
-     * @returns {string}
-     * @example var rowid = data.saveData();
-     */
+	 * @name saveData
+	 * @description 保存数据
+	 * @returns {string}
+	 * @example var rowid = data.saveData();
+	 */
     this.saveData = function (formfield) {
         if (!this.formid || this.formid == "") {
             alert("未指定保存内容！");
@@ -1282,12 +1282,12 @@ tlv8.Data = function () {
             this.deleteAction = del.toString();
     };
     /**
-     * @name deleteData
-     * @description 删除数据
-     * @param {boolean}
-     *            isconfirm -是否提示确认[默认是]
-     * @example data.deleteData();
-     */
+	 * @name deleteData
+	 * @description 删除数据
+	 * @param {boolean}
+	 *            isconfirm -是否提示确认[默认是]
+	 * @example data.deleteData();
+	 */
     this.deleteData = function (isconfirm) {
         var bfDelete = document.getElementById(this.formid).getAttribute(
             "beforeDelete");
@@ -1343,15 +1343,15 @@ tlv8.Data = function () {
         }
     };
     /**
-     * @name refreshData
-     * @param {boolean}
-     *            isconfirm -是否提示确认
-     * @param {boolean}
-     *            isrefreshSub -是否刷新关联的子表数据
-     * @description 刷新数据
-     * @description 只是重加载表单的数据，不刷新页面
-     * @example data.refreshData();
-     */
+	 * @name refreshData
+	 * @param {boolean}
+	 *            isconfirm -是否提示确认
+	 * @param {boolean}
+	 *            isrefreshSub -是否刷新关联的子表数据
+	 * @description 刷新数据
+	 * @description 只是重加载表单的数据，不刷新页面
+	 * @example data.refreshData();
+	 */
     this.refreshData = function (isconfirm, isrefreshSub) {
         if (isEdited == true) {
             if (isconfirm != false)
@@ -1406,8 +1406,8 @@ tlv8.Data = function () {
                     || inputs[i].type == "hidden") && inputs[i].id.indexOf('_easyui_') < 0
                 &&
                 /**
-                 * 查询字段的时候，排除有忽略标识的字段
-                 */
+				 * 查询字段的时候，排除有忽略标识的字段
+				 */
                 !inputs[i].dataset.ignore) {
                 var $rid = inputs[i].name||inputs[i].id;
                 if ($rid && $rid != ""
@@ -1657,13 +1657,13 @@ tlv8.Data = function () {
         sAlert(message, 500);
     };
     /**
-     * @name getValueByName
-     * @param {string}
-     *            cellname -字段名（表单中INPUT、TEXTAREA等字段id）
-     * @description 获取指定字段的值
-     * @returns {string}
-     * @example var nmv = data.getValueByName("FNAME");
-     */
+	 * @name getValueByName
+	 * @param {string}
+	 *            cellname -字段名（表单中INPUT、TEXTAREA等字段id）
+	 * @description 获取指定字段的值
+	 * @returns {string}
+	 * @example var nmv = data.getValueByName("FNAME");
+	 */
     this.getValueByName = function (name) {
         try {
             var revalueEl = document.getElementById(this.formid)[name]
@@ -1710,14 +1710,14 @@ tlv8.Data = function () {
         return "";
     };
     /**
-     * @name setValueByName
-     * @param {string}
-     *            cellname -字段名（表单中INPUT、TEXTAREA等字段id）
-     * @param {string}
-     *            value -需要给的值
-     * @description 给指定字段赋值
-     * @example data.setValueByName("FNAME","test");
-     */
+	 * @name setValueByName
+	 * @param {string}
+	 *            cellname -字段名（表单中INPUT、TEXTAREA等字段id）
+	 * @param {string}
+	 *            value -需要给的值
+	 * @description 给指定字段赋值
+	 * @example data.setValueByName("FNAME","test");
+	 */
     this.setValueByName = function (name, value) {
         try {
             var revalueEl = document.getElementById(this.formid)[name]
@@ -1811,6 +1811,8 @@ function getOs() {
  */
 tlv8.toolbar = function (div, insertitem, saveitem, deleteitem, refreshitem) {
     if (!div) return;
+    if (!checkPathisHave($dpcsspath + "toolbar.main.css"))
+		createStyleSheet($dpcsspath + "toolbar.main.css");
     var items = {
         insertAction: function () {
             if (div.getAttribute("insertAction")) {
@@ -1833,78 +1835,74 @@ tlv8.toolbar = function (div, insertitem, saveitem, deleteitem, refreshitem) {
             }
         },
         /**
-         * @name setItemStatus
-         * @description 工具栏组件设置按钮状态
-         * @param {string}
-         *            insertitem -("readonly":只读,true：可操作,false：不可见)
-         * @param {string}
-         *            saveitem -("readonly":只读,true：可操作,false：不可见)
-         * @param {string}
-         *            deleteitem -("readonly":只读,true：可操作,false：不可见)
-         * @param {string}
-         *            refreshitem -("readonly":只读,true：可操作,false：不可见)
-         */
+		 * @name setItemStatus
+		 * @description 工具栏组件设置按钮状态
+		 * @param {string}
+		 *            insertitem -("readonly":只读,true：可操作,false：不可见)
+		 * @param {string}
+		 *            saveitem -("readonly":只读,true：可操作,false：不可见)
+		 * @param {string}
+		 *            deleteitem -("readonly":只读,true：可操作,false：不可见)
+		 * @param {string}
+		 *            refreshitem -("readonly":只读,true：可操作,false：不可见)
+		 */
         setItemStatus: function (insertitem, saveitem, deleteitem, refreshitem) {
             var taptt = tlv8.RequestURLParam.getParam("activity-pattern");
             var isTasksub = (taptt == "detail");
             var insert_item = document.getElementById(div.id + "insert-item");
-            var insert_item_img = document.getElementById(div.id
-                + "insert-item-img");
             var save_item = document.getElementById(div.id + "save-item");
-            var save_item_img = document.getElementById(div.id
-                + "save-item-img");
             var delete_item = document.getElementById(div.id + "delete-item");
-            var delete_item_img = document.getElementById(div.id
-                + "delete-item-img");
             var refresh_item = document.getElementById(div.id + "refresh-item");
-            var refresh_item_img = document.getElementById(div.id
-                + "refresh-item-img");
-            var ienable = $dpimgpath + "toolbar/insert.gif";
-            var iread = $dpimgpath + "toolbar/un_insert.gif";
-            var senable = $dpimgpath + "toolbar/save.gif";
-            var sread = $dpimgpath + "toolbar/un_save.gif";
-            var denable = $dpimgpath + "toolbar/remove.gif";
-            var dread = $dpimgpath + "toolbar/un_remove.gif";
-            var renable = $dpimgpath + "toolbar/refreshbill.png";
-            var rread = $dpimgpath + "toolbar/un_refreshbill.png";
             if (insertitem == false) {
-                document.getElementById(div.id + "insert-item-tr").style.display = "none";
+                $(insert_item).hide();
             } else if (insertitem == "readonly" || isTasksub) {
-                insert_item_img.src = iread;
+                $(insert_item).show();
+				$(insert_item).addClass("disabled");
+				$(insert_item).attr("disabled", true);
                 insert_item.onclick = null;
             } else if (insertitem == true) {
-                document.getElementById(div.id + "insert-item-tr").style.display = "";
-                insert_item_img.src = ienable;
+            	$(insert_item).removeClass("disabled");
+            	$(insert_item).removeAttr("disabled");
+            	$(insert_item).show();
                 insert_item.onclick = items.insertAction;
             }
             if (saveitem == false) {
-                document.getElementById(div.id + "save-item-tr").style.display = "none";
+            	$(save_item).hide();
             } else if (saveitem == "readonly" || isTasksub) {
-                save_item_img.src = sread;
+            	$(save_item).show();
+ 				$(save_item).addClass("disabled");
+ 				$(save_item).attr("disabled", true);
                 save_item.onclick = null;
             } else if (saveitem == true) {
-                document.getElementById(div.id + "save-item-tr").style.display = "";
-                save_item_img.src = senable;
+            	$(save_item).removeClass("disabled");
+            	$(save_item).removeAttr("disabled");
+            	$(save_item).show();
                 save_item.onclick = items.saveAction;
             }
             if (deleteitem == false) {
-                document.getElementById(div.id + "delete-item-tr").style.display = "none";
+            	$(delete_item).hide();
             } else if (deleteitem == "readonly" || isTasksub) {
-                delete_item_img.src = dread;
+            	$(delete_item).show();
+ 				$(delete_item).addClass("disabled");
+ 				$(delete_item).attr("disabled", true);
                 delete_item.onclick = null;
             } else if (deleteitem == true) {
-                document.getElementById(div.id + "delete-item-tr").style.display = "";
-                delete_item_img.src = denable;
+            	$(delete_item).removeClass("disabled");
+            	$(delete_item).removeAttr("disabled");
+            	$(delete_item).show();
                 delete_item.onclick = items.deleteAction;
             }
             if (refreshitem == false) {
-                document.getElementById(div.id + "refresh-item-tr").style.display = "none";
+            	$(refresh_item).hide();
             } else if (refreshitem == "readonly" || isTasksub) {
-                refresh_item_img.src = rread;
+            	$(refresh_item).show();
+ 				$(refresh_item).addClass("disabled");
+ 				$(refresh_item).attr("disabled", true);
                 refresh_item.onclick = null;
             } else if (refreshitem == true) {
-                document.getElementById(div.id + "refresh-item-tr").style.display = "";
-                refresh_item_img.src = renable;
+            	$(refresh_item).removeClass("disabled");
+            	$(refresh_item).removeAttr("disabled");
+            	$(refresh_item).show();
                 refresh_item.onclick = items.refreshAction;
             }
         }
@@ -1914,42 +1912,26 @@ tlv8.toolbar = function (div, insertitem, saveitem, deleteitem, refreshitem) {
         createStyleSheet($dpcsspath + "toolbar.main.css");
     div.style.overflow = "hidden";
     var Stander = "<table style='align:left;' class='standard_toolbar' border='0' id='toolbar'><tr>"
-        + "<td width='75px' align='left' id='"
+        + "<td id='"
         + div.id
-        + "insert-item-tr'><button class='btn btn-default btn-sm' style='float:left;margin-right:5px;' id='"
+        + "insert-item-tr'><button class='btn btn-primary btn-sm' style='float:left;margin-right:5px;' id='"
         + div.id
-        + "insert-item' title='新增'><span class='glyphicon'><img id='"
+        + "insert-item' title='新增'><span class='glyphicon glyphicon-plus'></span> 新增</button></td>"
+        + "<td id='"
         + div.id
-        + "insert-item-img'  src='"
-        + $dpimgpath
-        + "toolbar/insert.gif' style='height:20px;margin-top:-2px;'/></span></button></td>"
-        + "<td width='75px' align='left' id='"
+        + "save-item-tr'><button class='btn btn-info btn-sm' style='float:left;margin-right:5px;' id='"
         + div.id
-        + "save-item-tr'><button class='btn btn-default btn-sm' style='float:left;margin-right:5px;' id='"
+        + "save-item' title='保存'><span class='glyphicon glyphicon-floppy-disk'></span> 保存</button></td>"
+        + "<td id='"
         + div.id
-        + "save-item' title='保存'><span class='glyphicon'><img id='"
+        + "delete-item-tr'><button class='btn btn-danger btn-sm' style='float:left;margin-right:5px;' id='"
         + div.id
-        + "save-item-img'  src='"
-        + $dpimgpath
-        + "toolbar/save.gif' style='height:20px;margin-top:-2px;'/></span></button></td>"
-        + "<td width='75px' align='left' id='"
+        + "delete-item' title='删除'><span class='glyphicon glyphicon-trash'></span> 删除</button></td>"
+        + "<td id='"
         + div.id
-        + "delete-item-tr'><button class='btn btn-default btn-sm' style='float:left;margin-right:5px;' id='"
+        + "refresh-item-tr'><button class='btn btn-success btn-sm' style='float:left;margin-right:5px;' id='"
         + div.id
-        + "delete-item' title='删除'><span class='glyphicon'><img id='"
-        + div.id
-        + "delete-item-img'  src='"
-        + $dpimgpath
-        + "toolbar/remove.gif' style='height:20px;margin-top:-2px;'/></span></button></td>"
-        + "<td width='75px' align='left' id='"
-        + div.id
-        + "refresh-item-tr'><button class='btn btn-default btn-sm' style='float:left;margin-right:5px;' id='"
-        + div.id
-        + "refresh-item' title='刷新'><span class='glyphicon'><img id='"
-        + div.id
-        + "refresh-item-img' src='"
-        + $dpimgpath
-        + "toolbar/refreshbill.png' style='height:20px;margin-top:-2px;'/></span></button></td></tr></table>";
+        + "refresh-item' title='刷新'><span class='glyphicon glyphicon-repeat'></span> 刷新</button></td></tr></table>";
     div.innerHTML = Stander;
     div.items = items;
     this.items.setItemStatus(insertitem, saveitem, deleteitem, refreshitem);
@@ -2305,25 +2287,25 @@ tlv8.portal.dailog = {
         return url;
     },
     /**
-     * @name tlv8.portal.dailog.openDailog
-     * @description 打开对话框
-     * @param {string}
-     *            name
-     * @param {string}
-     *            url
-     * @param {number}
-     *            width
-     * @param {number}
-     *            height
-     * @param {function}
-     *            callback
-     * @param {object}
-     *            itemSetInit -{refreshItem:true,enginItem:true,CanclItem:true}
-     * @param {boolean}
-     *            titleItem -为false时掩藏标题栏
-     * @param {object}
-     *            urlParam -JS任意类型可以直接传递到对话框页面 对话框页面通过函数getUrlParam获取
-     */
+	 * @name tlv8.portal.dailog.openDailog
+	 * @description 打开对话框
+	 * @param {string}
+	 *            name
+	 * @param {string}
+	 *            url
+	 * @param {number}
+	 *            width
+	 * @param {number}
+	 *            height
+	 * @param {function}
+	 *            callback
+	 * @param {object}
+	 *            itemSetInit -{refreshItem:true,enginItem:true,CanclItem:true}
+	 * @param {boolean}
+	 *            titleItem -为false时掩藏标题栏
+	 * @param {object}
+	 *            urlParam -JS任意类型可以直接传递到对话框页面 对话框页面通过函数getUrlParam获取
+	 */
     openDailog: function (name, url, width, height, callback, itemSetInit,
                           titleItem, urlParam) {
         url = this.transeUrl(url);
@@ -2833,11 +2815,11 @@ tlv8.portal.dailog = {
     sendData: null,
     returnData: null,
     /**
-     * @name tlv8.portal.dailog.dailogEngin
-     * @description 自定义对话框确定
-     * @param {object}
-     *            data
-     */
+	 * @name tlv8.portal.dailog.dailogEngin
+	 * @description 自定义对话框确定
+	 * @param {object}
+	 *            data
+	 */
     dailogEngin: function (data, b_g) {
         this.returnData = data ? data : this.returnData;
         var dwin = window.parent;
@@ -2937,9 +2919,9 @@ tlv8.portal.dailog = {
         }
     },
     /**
-     * @name tlv8.portal.dailog.dailogReload
-     * @description 自定义对话框刷新
-     */
+	 * @name tlv8.portal.dailog.dailogReload
+	 * @description 自定义对话框刷新
+	 */
     dailogReload: function () {
         try {
             var dialogview = parent.document.getElementById("dailogmsgDiv");
@@ -2954,9 +2936,9 @@ tlv8.portal.dailog = {
                 .reload();
     },
     /**
-     * @name tlv8.portal.dailog.dailogReload
-     * @description 自定义对话框取消
-     */
+	 * @name tlv8.portal.dailog.dailogReload
+	 * @description 自定义对话框取消
+	 */
     dailogCancel: function () {
         if ($('<div></div>').dialog || parent.$('<div></div>').dialog) {
             try {
@@ -3017,311 +2999,311 @@ function setTab(n) {
 tlv8.Context = {
     userInfo: {},
     /**
-     * @name tlv8.Context.getPath
-     * @function
-     * @description 当前系统路径
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getPath
+	 * @function
+	 * @description 当前系统路径
+	 * @returns {string}
+	 */
     getPath: function () {
         this.checklogin();
         return this.userInfo.uiserverremoteurl;
     },
     /**
-     * @name tlv8.Context.getCurrentPersonID
-     * @function
-     * @description 当前登录人ID
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentPersonID
+	 * @function
+	 * @description 当前登录人ID
+	 * @returns {string}
+	 */
     getCurrentPersonID: function () {
         this.checklogin();
         return this.userInfo.personid;
     },
     /**
-     * @name tlv8.Context.getCurrentPersonCode
-     * @function
-     * @description 当前登录人SCODE
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentPersonCode
+	 * @function
+	 * @description 当前登录人SCODE
+	 * @returns {string}
+	 */
     getCurrentPersonCode: function () {
         this.checklogin();
         return this.userInfo.personcode;
     },
     /**
-     * @name tlv8.Context.getCurrentPersonName
-     * @function
-     * @description 当前登录人姓名
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentPersonName
+	 * @function
+	 * @description 当前登录人姓名
+	 * @returns {string}
+	 */
     getCurrentPersonName: function () {
         this.checklogin();
         return this.userInfo.personName;
     },
     /**
-     * @name tlv8.Context.getCurrentPersonFID
-     * @function
-     * @description 当前登录人SFID
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentPersonFID
+	 * @function
+	 * @description 当前登录人SFID
+	 * @returns {string}
+	 */
     getCurrentPersonFID: function () {
         this.checklogin();
         return this.userInfo.personfid;
     },
     /**
-     * @name tlv8.Context.getCurrentPersonFCode
-     * @function
-     * @description 当前登录人SFCODE
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentPersonFCode
+	 * @function
+	 * @description 当前登录人SFCODE
+	 * @returns {string}
+	 */
     getCurrentPersonFCode: function () {
         this.checklogin();
         return this.userInfo.personfcode;
     },
     /**
-     * @name tlv8.Context.getCurrentPersonFName
-     * @function
-     * @description 当前登录人全名称
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentPersonFName
+	 * @function
+	 * @description 当前登录人全名称
+	 * @returns {string}
+	 */
     getCurrentPersonFName: function () {
         this.checklogin();
         return this.userInfo.personfname;
     },
     /**
-     * @name tlv8.Context.getCurrentPostID
-     * @function
-     * @description 当前登录人岗位ID
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentPostID
+	 * @function
+	 * @description 当前登录人岗位ID
+	 * @returns {string}
+	 */
     getCurrentPostID: function () {
         this.checklogin();
         return this.userInfo.positionid;
     },
     /**
-     * @name tlv8.Context.getCurrentPostCode
-     * @function
-     * @description 当前登录人岗位编号
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentPostCode
+	 * @function
+	 * @description 当前登录人岗位编号
+	 * @returns {string}
+	 */
     getCurrentPostCode: function () {
         this.checklogin();
         return this.userInfo.positioncode;
     },
     /**
-     * @name tlv8.Context.getCurrentPostName
-     * @function
-     * @description 当前登录人岗位名称
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentPostName
+	 * @function
+	 * @description 当前登录人岗位名称
+	 * @returns {string}
+	 */
     getCurrentPostName: function () {
         this.checklogin();
         return this.userInfo.positionname;
     },
     /**
-     * @name tlv8.Context.getCurrentPostFID
-     * @function
-     * @description 当前登录人岗位ID路径
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentPostFID
+	 * @function
+	 * @description 当前登录人岗位ID路径
+	 * @returns {string}
+	 */
     getCurrentPostFID: function () {
         this.checklogin();
         return this.userInfo.positionfid;
     },
     /**
-     * @name tlv8.Context.getCurrentPostFCode
-     * @function
-     * @description 当前登录人岗位编号路径
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentPostFCode
+	 * @function
+	 * @description 当前登录人岗位编号路径
+	 * @returns {string}
+	 */
     getCurrentPostFCode: function () {
         this.checklogin();
         return this.userInfo.positionfcode;
     },
     /**
-     * @name tlv8.Context.getCurrentPostFName
-     * @function
-     * @description 当前登录人岗位名称路径
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentPostFName
+	 * @function
+	 * @description 当前登录人岗位名称路径
+	 * @returns {string}
+	 */
     getCurrentPostFName: function () {
         this.checklogin();
         return this.userInfo.positionfname;
     },
     /**
-     * @name tlv8.Context.getCurrentDeptID
-     * @function
-     * @description 当前登录人部门ID
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentDeptID
+	 * @function
+	 * @description 当前登录人部门ID
+	 * @returns {string}
+	 */
     getCurrentDeptID: function () {
         this.checklogin();
         return this.userInfo.deptid;
     },
     /**
-     * @name tlv8.Context.getCurrentDeptCode
-     * @function
-     * @description 当前登录人部门编号
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentDeptCode
+	 * @function
+	 * @description 当前登录人部门编号
+	 * @returns {string}
+	 */
     getCurrentDeptCode: function () {
         this.checklogin();
         return this.userInfo.deptcode;
     },
     /**
-     * @name tlv8.Context.getCurrentDeptName
-     * @function
-     * @description 当前登录人部门名称
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentDeptName
+	 * @function
+	 * @description 当前登录人部门名称
+	 * @returns {string}
+	 */
     getCurrentDeptName: function () {
         this.checklogin();
         return this.userInfo.deptname;
     },
     /**
-     * @name tlv8.Context.getCurrentDeptFID
-     * @function
-     * @description 当前登录人部门ID路径
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentDeptFID
+	 * @function
+	 * @description 当前登录人部门ID路径
+	 * @returns {string}
+	 */
     getCurrentDeptFID: function () {
         this.checklogin();
         return this.userInfo.deptfid;
     },
     /**
-     * @name tlv8.Context.getCurrentDeptFCode
-     * @function
-     * @description 当前登录人部门编号路径
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentDeptFCode
+	 * @function
+	 * @description 当前登录人部门编号路径
+	 * @returns {string}
+	 */
     getCurrentDeptFCode: function () {
         this.checklogin();
         return this.userInfo.deptfcode;
     },
     /**
-     * @name tlv8.Context.getCurrentDeptFName
-     * @function
-     * @description 当前登录人部门名称路径
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentDeptFName
+	 * @function
+	 * @description 当前登录人部门名称路径
+	 * @returns {string}
+	 */
     getCurrentDeptFName: function () {
         this.checklogin();
         return this.userInfo.deptfname;
     },
     /**
-     * @name tlv8.Context.getCurrentOgnID
-     * @function
-     * @description 当前登录人机构ID
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentOgnID
+	 * @function
+	 * @description 当前登录人机构ID
+	 * @returns {string}
+	 */
     getCurrentOgnID: function () {
         this.checklogin();
         return this.userInfo.ognid;
     },
     /**
-     * @name tlv8.Context.getCurrentOgnCode
-     * @function
-     * @description 当前登录人机构编号
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentOgnCode
+	 * @function
+	 * @description 当前登录人机构编号
+	 * @returns {string}
+	 */
     getCurrentOgnCode: function () {
         this.checklogin();
         return this.userInfo.ogncode;
     },
     /**
-     * @name tlv8.Context.getCurrentOgnName
-     * @function
-     * @description 当前登录人机构名称
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentOgnName
+	 * @function
+	 * @description 当前登录人机构名称
+	 * @returns {string}
+	 */
     getCurrentOgnName: function () {
         this.checklogin();
         return this.userInfo.ognname;
     },
     /**
-     * @name tlv8.Context.getCurrentOgnFID
-     * @function
-     * @description 当前登录人机构ID路径
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentOgnFID
+	 * @function
+	 * @description 当前登录人机构ID路径
+	 * @returns {string}
+	 */
     getCurrentOgnFID: function () {
         this.checklogin();
         return this.userInfo.ognfid;
     },
     /**
-     * @name tlv8.Context.getCurrentOgnFCode
-     * @function
-     * @description 当前登录人机构编号路径
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentOgnFCode
+	 * @function
+	 * @description 当前登录人机构编号路径
+	 * @returns {string}
+	 */
     getCurrentOgnFCode: function () {
         this.checklogin();
         return this.userInfo.ognfcode;
     },
     /**
-     * @name tlv8.Context.getCurrentOgnFName
-     * @function
-     * @description 当前登录人机构名称路径
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentOgnFName
+	 * @function
+	 * @description 当前登录人机构名称路径
+	 * @returns {string}
+	 */
     getCurrentOgnFName: function () {
         this.checklogin();
         return this.userInfo.ognfname;
     },
     /**
-     * @name tlv8.Context.getCurrentOrgID
-     * @function
-     * @description 当前登录人组织ID
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentOrgID
+	 * @function
+	 * @description 当前登录人组织ID
+	 * @returns {string}
+	 */
     getCurrentOrgID: function () {
         this.checklogin();
         return this.userInfo.orgid;
     },
     /**
-     * @name tlv8.Context.getCurrentOrgCode
-     * @function
-     * @description 当前登录人组织编号
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentOrgCode
+	 * @function
+	 * @description 当前登录人组织编号
+	 * @returns {string}
+	 */
     getCurrentOrgCode: function () {
         this.checklogin();
         return this.userInfo.orgcode;
     },
     /**
-     * @name tlv8.Context.getCurrentOrgName
-     * @function
-     * @description 当前登录人组织名称
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentOrgName
+	 * @function
+	 * @description 当前登录人组织名称
+	 * @returns {string}
+	 */
     getCurrentOrgName: function () {
         this.checklogin();
         return this.userInfo.orgname;
     },
     /**
-     * @name tlv8.Context.getCurrentOrgFID
-     * @function
-     * @description 当前登录人组织ID路径
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentOrgFID
+	 * @function
+	 * @description 当前登录人组织ID路径
+	 * @returns {string}
+	 */
     getCurrentOrgFID: function () {
         this.checklogin();
         return this.userInfo.orgfid;
     },
     /**
-     * @name tlv8.Context.getCurrentOrgFCode
-     * @function
-     * @description 当前登录人组织编号路径
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentOrgFCode
+	 * @function
+	 * @description 当前登录人组织编号路径
+	 * @returns {string}
+	 */
     getCurrentOrgFCode: function () {
         this.checklogin();
         return this.userInfo.orgfcode;
     },
     /**
-     * @name tlv8.Context.getCurrentOrgFName
-     * @function
-     * @description 当前登录人组织名称路径
-     * @returns {string}
-     */
+	 * @name tlv8.Context.getCurrentOrgFName
+	 * @function
+	 * @description 当前登录人组织名称路径
+	 * @returns {string}
+	 */
     getCurrentOrgFName: function () {
         this.checklogin();
         return this.userInfo.orgfname;
@@ -3885,10 +3867,10 @@ if (!tlv8.System)
     tlv8.System = {};
 tlv8.System.Date = {
     /**
-     * @name tlv8.System.Date.sysDate
-     * @description 获取服务时间（日期）
-     * @returns {string}
-     */
+	 * @name tlv8.System.Date.sysDate
+	 * @description 获取服务时间（日期）
+	 * @returns {string}
+	 */
     sysDate: function () {
         var param = new tlv8.RequestParam();
         var r = tlv8.XMLHttpRequest("getSystemDate", param, "post", false,
@@ -3897,10 +3879,10 @@ tlv8.System.Date = {
         return rdate.format("yyyy-MM-dd");
     },
     /**
-     * @name tlv8.System.Date.sysDateTime
-     * @description 获取服务时间（日期时间）
-     * @returns {string}
-     */
+	 * @name tlv8.System.Date.sysDateTime
+	 * @description 获取服务时间（日期时间）
+	 * @returns {string}
+	 */
     sysDateTime: function () {
         var param = new tlv8.RequestParam();
         var r = tlv8.XMLHttpRequest("getSystemDateTime", param, "post",
@@ -3908,12 +3890,12 @@ tlv8.System.Date = {
         return r.sysdate;
     },
     /**
-     * @name tlv8.System.Date.strToDate
-     * @description 日期字符串转日期对象
-     * @param {string}
-     *            datestr
-     * @returns {Date}
-     */
+	 * @name tlv8.System.Date.strToDate
+	 * @description 日期字符串转日期对象
+	 * @param {string}
+	 *            datestr
+	 * @returns {Date}
+	 */
     strToDate: function (str) {
         if (!str || str == "" || str.indexOf("-") < 0) {
             return;
@@ -5374,8 +5356,7 @@ var $sys_selectTab = function (stab, contectID, sConID) {
 };
 
 /**
- * 附件上传组件【HTML方式 弃用flash】
- *上传文件完成回调事件： onuploaded  定义为div的属性即可
+ * 附件上传组件【HTML方式 弃用flash】 上传文件完成回调事件： onuploaded 定义为div的属性即可
  */
 tlv8.fileComponent = function (div, data, cellname, docPath, canupload,
                                candelete, canedit, viewhistory, limit, download) {
@@ -5389,22 +5370,22 @@ tlv8.fileComponent = function (div, data, cellname, docPath, canupload,
         createJSSheet($rp + "resources/layui/layui.js");
     }
     var $commonpath = $dpjspath.replace("/js/", "/");
-//	if (!checkPathisHave(cpath+"/comon/doc_ocx/WindowDialog.js")
-//			&& !checkPathisHave($commonpath + "doc_ocx/WindowDialog.js")) {
-//		createJSSheet($commonpath + "doc_ocx/WindowDialog.js");
-//	}
-//	if (!checkPathisHave(cpath+"/comon/doc_ocx/common/base64.js")
-//			&& !checkPathisHave($commonpath + "doc_ocx/common/base64.js")) {
-//		createJSSheet($commonpath + "doc_ocx/common/base64.js");
-//	}
-//	if (!checkPathisHave(cpath+"/comon/doc_ocx/common/json.js")
-//			&& !checkPathisHave($commonpath + "doc_ocx/common/json.js")) {
-//		createJSSheet($commonpath + "doc_ocx/common/json.js");
-//	}
-//	if (!checkPathisHave(cpath+"/comon/doc_ocx/yahooUtil.js")
-//			&& !checkPathisHave($commonpath + "doc_ocx/yahooUtil.js")) {
-//		createJSSheet($commonpath + "doc_ocx/yahooUtil.js");
-//	}
+// if (!checkPathisHave(cpath+"/comon/doc_ocx/WindowDialog.js")
+// && !checkPathisHave($commonpath + "doc_ocx/WindowDialog.js")) {
+// createJSSheet($commonpath + "doc_ocx/WindowDialog.js");
+// }
+// if (!checkPathisHave(cpath+"/comon/doc_ocx/common/base64.js")
+// && !checkPathisHave($commonpath + "doc_ocx/common/base64.js")) {
+// createJSSheet($commonpath + "doc_ocx/common/base64.js");
+// }
+// if (!checkPathisHave(cpath+"/comon/doc_ocx/common/json.js")
+// && !checkPathisHave($commonpath + "doc_ocx/common/json.js")) {
+// createJSSheet($commonpath + "doc_ocx/common/json.js");
+// }
+// if (!checkPathisHave(cpath+"/comon/doc_ocx/yahooUtil.js")
+// && !checkPathisHave($commonpath + "doc_ocx/yahooUtil.js")) {
+// createJSSheet($commonpath + "doc_ocx/yahooUtil.js");
+// }
     if (!checkPathisHave(cpath + "/comon/doc_ocx/docUtil.js")
         && !checkPathisHave($commonpath + "doc_ocx/docUtil.js")) {
         createJSSheet($commonpath + "doc_ocx/docUtil.js");
@@ -5495,7 +5476,7 @@ tlv8.fileComponent = function (div, data, cellname, docPath, canupload,
                 layui.layer.msg('上传失败!', {icon: 2});
             },
             progress: function (n, elem, e) {
-                //layui.element.progress('正在上传:', n + '%'); //可配合 layui 进度条元素使用
+                // layui.element.progress('正在上传:', n + '%'); //可配合 layui 进度条元素使用
             }
         });
     };
@@ -5506,7 +5487,7 @@ tlv8.fileComponent = function (div, data, cellname, docPath, canupload,
                 div.createUploader();
             } else {
                 $('#' + div.id + '_uploadItem').click(function () {
-                    var rowid = data.rowid;//data.saveData();
+                    var rowid = data.rowid;// data.saveData();
                     if (!rowid || rowid == "") {
                         layui.layer.alert("请先保存数据!");
                     } else {
@@ -5674,7 +5655,7 @@ tlv8.trangereditfile = function (fileID, fileName, docPath, dbkey,
         + dbkey + "&tablename=" + tablename + "&billid=" + billid
         + "&cellname=" + cellname + "&callerName="
         + tlv8.portal.currentTabId() + "&option=edit";
-    //tlv8.portal.openWindow("文件" + fileName + "编辑",edurl);
+    // tlv8.portal.openWindow("文件" + fileName + "编辑",edurl);
     window.open(cpath + edurl);
 };
 tlv8.changeLog = {
@@ -6775,6 +6756,7 @@ try {
 
 /**
  * 自动单号
+ * 
  * @param key
  * @param formart
  * @returns
