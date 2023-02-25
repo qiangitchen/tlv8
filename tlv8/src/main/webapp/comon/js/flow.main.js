@@ -110,28 +110,36 @@ tlv8.flw.prototype.setItemStatus = function(item) {
 	}
 	var div = document.getElementById(this.id);
 	var itemHTML = "<table style='height:25px; boder:1px solid #eee;'><tr style='width'>";
-//	itemHTML += "<td style='boder:1px solid #eee;'>"
-//			+ "<a class='toobar_item' href='javascript:void(0)'><img id='"
-//			+ this.id
-//			+ "_groupItem' src='"
-//			+ $dpimgpath
-//			+ "toolbar/flw/group.gif' title='流程工具条' onclick='return false;'/></a></td>";
+	// itemHTML += "<td style='boder:1px solid #eee;'>"
+	// + "<a class='toobar_item' href='javascript:void(0)'><img id='"
+	// + this.id
+	// + "_groupItem' src='"
+	// + $dpimgpath
+	// + "toolbar/flw/group.gif' title='流程工具条' onclick='return
+	// false;'/></a></td>";
 	if (item.audit == false) {
 	} else if ((item.audit && item.audit == true)
 			|| (!item.audit && setting.item.audit == true && item != setting.item)) {
-		itemHTML += "<td style='boder:1px solid #eee;' id='" + this.id
+		itemHTML += "<td style='boder:1px solid #eee;' id='"
+				+ this.id
 				+ "_auditItem_Td'>"
 				+ "<button class='easyui-linkbutton layui-btn layui-btn-sm layui-btn-primary' href='javascript:void(0)' id='"
-				+ this.id + "_auditItem' src='" + $dpimgpath
+				+ this.id
+				+ "_auditItem' src='"
+				+ $dpimgpath
 				+ "toolbar/flw/audit.gif' title='审批' "
-				+ "onclick='document.getElementById(\"" + div.id
+				+ "onclick='document.getElementById(\""
+				+ div.id
 				+ "\").flw.flowAudit();return false;' style=' margin-right:5px;'>审批</button></td>";
 	} else if (item.audit == "readonly"
 			|| (!item.audit && setting.item.audit == "readonly" && item != setting.item)) {
-		itemHTML += "<td style='boder:1px solid #eee;' id='" + this.id
+		itemHTML += "<td style='boder:1px solid #eee;' id='"
+				+ this.id
 				+ "_auditItem_Td'>"
 				+ "<button class='easyui-linkbutton layui-btn layui-btn-sm layui-btn-disabled' href='javascript:void(0)' id='"
-				+ this.id + "_auditItem' disabled='true'  src='" + $dpimgpath
+				+ this.id
+				+ "_auditItem' disabled='true'  src='"
+				+ $dpimgpath
 				+ "toolbar/flw/un_audit.gif' title='审批' "
 				+ "onclick='return false;' style='margin-right:5px;'>审批</button></td>";
 	}
@@ -144,13 +152,16 @@ tlv8.flw.prototype.setItemStatus = function(item) {
 				+ "_backItem' src='"
 				+ $dpimgpath
 				+ "toolbar/flw/back.gif' title='回退' onclick='document.getElementById(\""
-				+ div.id + "\").flw.flowback()' style='margin-right:5px;'>回退</button></td>";
+				+ div.id
+				+ "\").flw.flowback()' style='margin-right:5px;'>回退</button></td>";
 	} else if (item.back == "readonly"
 			|| setting.auditParam.isRequired == true
 			|| (!item.back && setting.item.back == "readonly" && item != setting.item)) {
 		itemHTML += "<td style='boder:1px solid #eee;'>"
 				+ "<button class='easyui-linkbutton layui-btn layui-btn-sm layui-btn-disabled' href='javascript:void(0)' id='"
-				+ this.id + "_backItem' disabled='true' src='" + $dpimgpath
+				+ this.id
+				+ "_backItem' disabled='true' src='"
+				+ $dpimgpath
 				+ "toolbar/flw/un_back.gif' title='回退' style='margin-right:5px;'>回退</button></td>";
 	}
 	if (item.out == false) {
@@ -161,7 +172,8 @@ tlv8.flw.prototype.setItemStatus = function(item) {
 				+ "_outItem' src='"
 				+ $dpimgpath
 				+ "toolbar/flw/turn.gif' title='流转' onclick='document.getElementById(\""
-				+ div.id + "\").flw.flowout()' style='margin-right:5px;'>提交</button></td>";
+				+ div.id
+				+ "\").flw.flowout()' style='margin-right:5px;'>提交</button></td>";
 	} else if (item.out == "readonly"
 			|| setting.auditParam.isRequired == true
 			|| (item.out && setting.item.out == "readonly" && item != setting.item)) {
@@ -180,7 +192,8 @@ tlv8.flw.prototype.setItemStatus = function(item) {
 				+ "_transmitItem' src='"
 				+ $dpimgpath
 				+ "toolbar/flw/redirect.gif' title='转发' onclick='document.getElementById(\""
-				+ div.id + "\").flw.flowtransmit()' style='margin-right:5px;'>转发</button></td>";
+				+ div.id
+				+ "\").flw.flowtransmit()' style='margin-right:5px;'>转发</button></td>";
 	} else if (item.transmit == "readonly"
 			|| setting.auditParam.isRequired == true
 			|| (!item.transmit && setting.item.transmit == "readonly" && item != setting.item)) {
@@ -199,7 +212,8 @@ tlv8.flw.prototype.setItemStatus = function(item) {
 				+ "_pauseItem' src='"
 				+ $dpimgpath
 				+ "toolbar/flw/pause.gif' title='暂停' onclick='document.getElementById(\""
-				+ div.id + "\").flw.flowpause()' style='height:100%;margin-right:5px;'>暂停</a></td>";
+				+ div.id
+				+ "\").flw.flowpause()' style='height:100%;margin-right:5px;'>暂停</a></td>";
 	} else if (item.pause == "readonly"
 			|| setting.auditParam.isRequired == true
 			|| (!item.pause && setting.item.pause == "readonly" && item != setting.item)) {
@@ -217,7 +231,8 @@ tlv8.flw.prototype.setItemStatus = function(item) {
 				+ "_stopItem' src='"
 				+ $dpimgpath
 				+ "toolbar/flw/stop.gif' title='终止' onclick='document.getElementById(\""
-				+ div.id + "\").flw.flowstop()' style='height:100%;margin-right:5px;'>终止</a></td>";
+				+ div.id
+				+ "\").flw.flowstop()' style='height:100%;margin-right:5px;'>终止</a></td>";
 	} else if (item.stop == "readonly"
 			|| setting.auditParam.isRequired == true
 			|| (!item.stop && setting.item.stop == "readonly" && item != setting.item)) {
@@ -232,10 +247,11 @@ tlv8.flw.prototype.setItemStatus = function(item) {
 			+ "_chartItem' src='"
 			+ $dpimgpath
 			+ "toolbar/flw/chart.gif' title='查看流程图' onclick='document.getElementById(\""
-			+ div.id + "\").flw.viewChart()' style='height:100%;margin-right:5px;'>审批流程</button></td>";
+			+ div.id
+			+ "\").flw.viewChart()' style='height:100%;margin-right:5px;'>审批流程</button></td>";
 	itemHTML += "</tr></table>";
 	div.innerHTML = itemHTML;
-//	$.parser.parse(div);
+	// $.parser.parse(div);
 };
 /**
  * @name flowAudit
@@ -408,7 +424,7 @@ tlv8.flw.prototype.flowstart = function(billid) {
 				}
 			}
 			var aurl = window.location.href;
-			if(aurl.indexOf("?")<0){
+			if (aurl.indexOf("?") < 0) {
 				aurl += "?t=1";
 			}
 			aurl += "&pattern=do";
@@ -543,7 +559,6 @@ tlv8.flw.prototype.flowback = function(flowID, taskID) {
 							}
 						}
 						if (flowCompent.setting.autoclose == true) {
-							tlv8.portal.dailog.dailogEngin();
 							tlv8.portal.closeWindow();
 						}
 					}
@@ -620,7 +635,6 @@ tlv8.flw.prototype.flowback = function(flowID, taskID) {
 							}
 						}
 						if (flowCompent.setting.autoclose == true) {
-							tlv8.portal.dailog.dailogEngin();
 							tlv8.portal.closeWindow();
 						}
 					}
@@ -673,16 +687,17 @@ tlv8.flw.prototype.checkOp = function() {
 		return true;
 	}
 	if (flowCompent.setting.auditParam.isRequired == true) {
-	    var param = new tlv8.RequestParam();
-	    param.set("flowID", flowCompent.flowID);
-	    param.set("taskID", flowCompent.taskID);
-	    var re = tlv8.XMLHttpRequest("checkAuditOpinionAction", param, "POST", false);
-	    var redata = re.data;
-	    if (redata.length < 1) {
-		    layui.layer.alert("请先填写处理意见!");
-		    $(".wrtieop").focus();
-		    return false;
-	    }
+		var param = new tlv8.RequestParam();
+		param.set("flowID", flowCompent.flowID);
+		param.set("taskID", flowCompent.taskID);
+		var re = tlv8.XMLHttpRequest("checkAuditOpinionAction", param, "POST",
+				false);
+		var redata = re.data;
+		if (redata.length < 1) {
+			layui.layer.alert("请先填写处理意见!");
+			$(".wrtieop").focus();
+			return false;
+		}
 	}
 	return true;
 };
@@ -768,7 +783,6 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 								alert(r.data.message);
 								if (flowCompent.setting.autoclose == true) {
 									tlv8.showSate(false);
-									tlv8.portal.dailog.dailogEngin();
 									tlv8.portal.closeWindow();
 								}
 							} else if (r.data.flag == "select") {
@@ -825,7 +839,6 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 									}
 								}
 								if (flowCompent.setting.autoclose == true) {
-									tlv8.portal.dailog.dailogEngin();
 									tlv8.portal.closeWindow();
 								}
 							}
@@ -878,7 +891,6 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 								alert(r.data.message);
 								if (flowCompent.setting.autoclose == true) {
 									tlv8.showSate(false);
-									tlv8.portal.dailog.dailogEngin();
 									tlv8.portal.closeWindow();
 								}
 							} else if (r.data.flag == "select") {
@@ -952,7 +964,6 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 									}
 								}
 								if (flowCompent.setting.autoclose == true) {
-									tlv8.portal.dailog.dailogEngin();
 									tlv8.portal.closeWindow();
 								}
 							}
@@ -1007,7 +1018,6 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 								alert(r.data.message);
 								if (flowCompent.setting.autoclose == true) {
 									tlv8.showSate(false);
-									tlv8.portal.dailog.dailogEngin();
 									tlv8.portal.closeWindow();
 								}
 							} else if (r.data.flag == "select") {
@@ -1068,7 +1078,6 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 							}
 							if (window.flwquery
 									&& flowCompent.setting.autoclose == true) {
-								tlv8.portal.dailog.dailogEngin();
 								tlv8.portal.closeWindow();
 							}
 						});
@@ -1130,7 +1139,6 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 			}
 			if (flowCompent.setting.autoclose == true) {
 				tlv8.showSate(false);
-				tlv8.portal.dailog.dailogEngin();
 				tlv8.portal.closeWindow();
 			}
 		});
@@ -1260,7 +1268,6 @@ tlv8.flw.prototype.flowtransmit = function(flowID, taskID, ePersonID) {
 								}
 								if (flowCompent.setting.autoclose == true) {
 									tlv8.showSate(false);
-									tlv8.portal.dailog.dailogEngin();
 									tlv8.portal.closeWindow();
 								}
 							}
@@ -1318,8 +1325,8 @@ tlv8.flw.prototype.flowtransmit = function(flowID, taskID, ePersonID) {
 													}
 													if (flowCompent.setting.autoclose == true) {
 														tlv8.showSate(false);
-														tlv8.portal.dailog.dailogEngin();
-														tlv8.portal.closeWindow();
+														tlv8.portal
+																.closeWindow();
 													}
 												}
 											});
@@ -1485,8 +1492,7 @@ tlv8.flw.prototype.flowpause = function(flowID, taskID) {
 								inFn(rEvent);
 							}
 						}
-						if (flowCompent.setting.autoclose){
-							tlv8.portal.dailog.dailogEngin();
+						if (flowCompent.setting.autoclose) {
 							tlv8.portal.closeWindow();
 						}
 					}
@@ -1558,8 +1564,7 @@ tlv8.flw.prototype.flowpause = function(flowID, taskID) {
 								inFn(rEvent);
 							}
 						}
-						if (flowCompent.setting.autoclose){
-							tlv8.portal.dailog.dailogEngin();
+						if (flowCompent.setting.autoclose) {
 							tlv8.portal.closeWindow();
 						}
 					}
@@ -1688,8 +1693,7 @@ tlv8.flw.prototype.flowstop = function(flowID, taskID) {
 						inFn(rEvent);
 					}
 				}
-				if (flowCompent.setting.autoclose){
-					tlv8.portal.dailog.dailogEngin();
+				if (flowCompent.setting.autoclose) {
 					tlv8.portal.closeWindow();
 				}
 			}
@@ -1758,8 +1762,7 @@ tlv8.flw.prototype.flowstop = function(flowID, taskID) {
 						inFn(rEvent);
 					}
 				}
-				if (flowCompent.setting.autoclose){
-					tlv8.portal.dailog.dailogEngin();
+				if (flowCompent.setting.autoclose) {
 					tlv8.portal.closeWindow();
 				}
 			}
@@ -1816,29 +1819,18 @@ tlv8.flw.prototype.viewChart = function(flowID, taskID) {
 		var sData1 = document.getElementById(this.data.formid).rowid;
 	}
 	if (flowID && flowID != "" && taskID && taskID != "") {
-		// tlv8.portal.openWindow("流程图",
-		// "/flw/viewiocusbot/yj_iocus_bot.html?flowID=" + flowID
-		// + "&taskID=" + taskID + "&currentUrl=" + currentUrl);
-		tlv8.portal.dailog.openDailog("流程图",
+		tlv8.portal.openWindow("流程图",
 				"/flw/viewiocusbot/yj_iocus_bot.html?flowID=" + flowID
-						+ "&taskID=" + taskID + "&currentUrl=" + currentUrl,
-				1000, 800);
+						+ "&taskID=" + taskID + "&currentUrl=" + currentUrl);
 	} else if (this.processID && this.processID != "") {
-		// tlv8.portal.openWindow("流程图",
-		// "/flw/viewiocusbot/yj_iocus_bot.html?processID="
-		// + this.processID);
-		tlv8.portal.dailog.openDailog("流程图",
+		tlv8.portal.openWindow("流程图",
 				"/flw/viewiocusbot/yj_iocus_bot.html?processID="
-						+ this.processID, 1000, 800);
+						+ this.processID);
 	} else if (sData1 && sData1 != "") {
 		tlv8.task.viewChart(sData1);
 	} else {
-		// tlv8.portal.openWindow("流程图",
-		// "/flw/viewiocusbot/yj_iocus_bot.html?currentUrl="
-		// + currentUrl);
-		tlv8.portal.dailog.openDailog("流程图",
-				"/flw/viewiocusbot/yj_iocus_bot.html?currentUrl=" + currentUrl,
-				1000, 800);
+		tlv8.portal.openWindow("流程图",
+				"/flw/viewiocusbot/yj_iocus_bot.html?currentUrl=" + currentUrl);
 	}
 };
 tlv8.task = {
@@ -1874,9 +1866,7 @@ tlv8.task = {
 									+ taskID + "&sData1=" + sData1 + "&task="
 									+ taskID + "&activity-pattern=do";
 							var cid = tlv8.portal.currentTabId();
-							// tlv8.portal.openWindow(name, sURL);
-							tlv8.portal.dailog
-									.openDailog(name, sURL, 1200, 800);
+							tlv8.portal.openWindow(name, sURL);
 							writeLog(event, "处理任务");
 							tlv8.portal.closeWindow(cid);
 						}
@@ -2195,27 +2185,19 @@ tlv8.task = {
 		if (rdata.length > 0) {
 			var flowID = rdata[0].SFLOWID;
 			var taskID = rdata[0].SID;
-			// tlv8.portal.openWindow("流程图",
-			// "/flw/viewiocusbot/yj_iocus_bot.html?flowID=" + flowID
-			// + "&taskID=" + taskID);
-			tlv8.portal.dailog.openDailog("流程图",
+			tlv8.portal.openWindow("流程图",
 					"/flw/viewiocusbot/yj_iocus_bot.html?flowID=" + flowID
-							+ "&taskID=" + taskID, 1000, 800);
+							+ "&taskID=" + taskID);
 		} else {
 			var currentUrl = window.location.pathname;
 			if (currentUrl.indexOf("?") > 0)
 				currentUrl = currentUrl.substring(0, currentUrl.indexOf("?"));
 			var flowID, taskID;
-			// tlv8.portal
-			// .openWindow("流程图",
-			// "/flw/viewiocusbot/yj_iocus_bot.html?flowID="
-			// + flowID + "&taskID=" + taskID
-			// + "&currentUrl=" + currentUrl);
-			tlv8.portal.dailog
-					.openDailog("流程图",
+			tlv8.portal
+					.openWindow("流程图",
 							"/flw/viewiocusbot/yj_iocus_bot.html?flowID="
 									+ flowID + "&taskID=" + taskID
-									+ "&currentUrl=" + currentUrl, 1000, 800);
+									+ "&currentUrl=" + currentUrl);
 		}
 	},
 	/**

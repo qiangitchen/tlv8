@@ -5,9 +5,10 @@ function getData() {
 	var data = new tlv8.Data();
 	data.setTable("SA_OPROLE");
 	data.setDbkey("system");
+	data.setCascade("SA_OPPERMISSION:SPERMISSIONROLEID");
 	var d = document.getElementById("main-grid-view");
 	var labelid = "No,sName,sCode,SCATALOG,SDESCRIPTION";
-	var labels = "No.,名称,编码,类型,描述";
+	var labels = "序号,名称,编码,类型,描述";
 	var labelwidth = "40,120,100,100,120";
 	var datatype = "ro,string,string,string,string";
 	var dataAction = {
@@ -15,15 +16,35 @@ function getData() {
 		"savAction" : "saveAction",
 		"deleteAction" : "deleteAction"
 	};
-	maingrid = new tlv8.createGrid(d, labelid, labels, labelwidth,
-			dataAction, "100%", "100%", data, 20, "", "", "", datatype, false,
-			true);
-	maingrid.grid.settoolbar(true, "readonly", true, true);
-	maingrid.grid.seteditModel("dbclcik");
+	maingrid = new tlv8.createGrid(d, labelid, labels, labelwidth, dataAction,
+			"100%", "100%", data, 20, "", "", "", datatype, false, true);
+	maingrid.grid.settoolbar(true, false, true, true);
+	maingrid.grid.seteditModel(false);
 	currentgrid = maingrid.grid;
 	currentgrid.setExcelexpBar(true);// 导出
 	initAuthGrid();
 	currentgrid.refreshData();
+
+	// 重写新增事件
+	document.getElementById(d.id + "_insertItem").onclick = function() {
+		tlv8.portal.dailog.openDailog("新增角色",
+				"/SA/OPM/role/dialog/editRole.html", 600, 400, function() {
+					currentgrid.refreshData();// 刷新数据
+				});
+	};
+}
+
+/**
+ * @param {object}
+ *            event
+ */
+function dbselrow(event) {
+	var rowid = currentgrid.getCurrentRowId();
+	tlv8.portal.dailog.openDailog("编辑角色",
+			"/SA/OPM/role/dialog/editRole.html?rowid=" + rowid, 600, 400,
+			function() {
+				currentgrid.refreshData();// 刷新数据
+			});
 }
 
 var isnewDataFilter = "";
@@ -37,9 +58,9 @@ function afterRefreshFn(event) {
 }
 
 function initWeb() {
-	//$("#main-grid-view").height($("body").height() - 35);
-	//$("#auth-grid-view").height($("body").height() - 35);
-	//tlv8.standardPartition(document.getElementById("MyDiv"));
+	// $("#main-grid-view").height($("body").height() - 35);
+	// $("#auth-grid-view").height($("body").height() - 35);
+	// tlv8.standardPartition(document.getElementById("MyDiv"));
 	getData();
 }
 
@@ -51,7 +72,7 @@ function initAuthGrid() {
 	aTdata.setDbkey("system");
 	var div = document.getElementById("auth-grid-view");
 	var labelid = "master_check,No,SACTIVITYFNAME,SPROCESS,SACTIVITY";
-	var labels = "master_check,No.,功能名称,process,activity";
+	var labels = "master_check,序号,功能名称,process,activity";
 	var labelwidth = "20,40,150,280,100";
 	var datatype = "null,ro,ro,ro,ro";
 	var dataAction = {
@@ -88,7 +109,9 @@ function mainGridselected(g) {
 		g.settoolbar(true, "readonly", true, false);
 	}
 	document.getElementById("main-auther-form").rowid = g.CurrentRowId;
-	auTherGid.refreshData();
+	setTimeout(function() {
+		auTherGid.refreshData();
+	}, 500);
 }
 
 // 分配功能

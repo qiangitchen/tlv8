@@ -1,0 +1,70 @@
+<html>
+ <head> 
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+  <link type="text/css" rel="stylesheet" href="../../../../resources/bootstrap/css/bootstrap.min.css"> 
+  <link type="text/css" rel="stylesheet" href="../../../../resources/layui/css/layui.css"> 
+  <link type="text/css" rel="stylesheet" href="../../../../resources/jquery-easyui/themes/default/easyui.css"> 
+  <link type="text/css" rel="stylesheet" href="../../../../resources/jquery-easyui/themes/icon.css"> 
+  <script type="text/javascript" src="../../../../comon/js/jquery/jquery.min.js"></script> 
+  <script type="text/javascript" src="../../../../comon/js/comon.main.js"></script> 
+  <script type="text/javascript" src="../../../../comon/My97DatePicker/WdatePicker.js"></script> 
+  <script type="text/javascript" src="../../../../resources/jquery-easyui/jquery.easyui.min.js"></script> 
+  <script type="text/javascript" src="../../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script> 
+  <script type="text/javascript" src="../../../../resources/bootstrap/js/bootstrap.min.js"></script> 
+  <script type="text/javascript" src="../../../../resources/layui/layui.js"></script> 
+  <script type="text/javascript" src="editRole.js"></script> 
+ </head> 
+ <body style="overflow: hidden;" onload="initDocumentPage();"> 
+  <div class="easyui-layout" fit="true"> 
+   <div data-options="region:'north',split:false" style="height:40px; overflow: hidden; padding: 4px;"> 
+    <table> 
+     <tbody>
+      <tr> 
+       <td> 
+        <div id="stander_bar" insertAction="dataInsert()" saveAction="dataSave()" refreshAction="dataRefresh()" deleteAction="dataDeleted()" style="margin-left: 1px;"> 
+        </div> </td> 
+      </tr> 
+     </tbody>
+    </table> 
+   </div> 
+   <div data-options="region:'center',border:false"> 
+    <div class="layui-fluid"> 
+     <div class="layui-card"> 
+      <div class="layui-card-body"> 
+       <form id="MAIN_DATA_FORM" class="layui-form"> 
+       		<div class="layui-form-item">
+			    <label class="layui-form-label"><span style="color: red;">*</span>角色名称</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="SNAME" name="SNAME" required  lay-verify="required" placeholder="请填写角色名称" autocomplete="off" class="layui-input">
+			    </div>
+		   </div>
+       		<div class="layui-form-item">
+			    <label class="layui-form-label"><span style="color: red;">*</span>角色编号</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="SCODE" name="SCODE" required  lay-verify="required" placeholder="请填写角色编号" autocomplete="off" class="layui-input">
+			    </div>
+		   </div>
+       		<div class="layui-form-item">
+			    <label class="layui-form-label">角色分类</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="SCATALOG" name="SCATALOG" placeholder="" class="layui-input">
+			    </div>
+		   </div>
+       		<div class="layui-form-item">
+			    <label class="layui-form-label">角色描述</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="SDESCRIPTION" name="SDESCRIPTION" placeholder="" class="layui-input">
+			    </div>
+		   </div>
+        <div style="display: none;"> 
+         <button id="mainfsub" class="layui-btn" lay-submit lay-filter="mainform">立即提交</button> 
+         <button type="reset" class="layui-btn layui-btn-primary">重置</button> 
+        </div> 
+       </form> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div>  
+ </body>
+</html>

@@ -127,11 +127,12 @@ public class SqlInjectInterceptor implements HandlerInterceptor {
 				|| requestPath.endsWith("/sqlUpdateAction") || requestPath.endsWith("/deleteSystemAction")
 				|| requestPath.endsWith("/queryAction") || requestPath.endsWith("/saveAction")
 				|| requestPath.endsWith("/deleteAction") || requestPath.endsWith("/getGridAction")
-				|| requestPath.endsWith("/TreeSelectAction") || requestPath.endsWith("/QuickTreeAction")
-				|| requestPath.endsWith("/getOrgGridInfo") || requestPath.endsWith("/saveOrgGridInfo")
-				|| requestPath.endsWith("/deleteOrgGridInfo") || requestPath.endsWith("/saveGridAction")
-				|| requestPath.endsWith("/getExecutorTree") || requestPath.endsWith("/saveFlowDrawLGAction")
-				|| requestPath.endsWith("/core/loadGridData") || requestPath.endsWith("/core/saveGridDatas");
+				|| requestPath.endsWith("/getGridSelectDataAction") || requestPath.endsWith("/TreeSelectAction")
+				|| requestPath.endsWith("/QuickTreeAction") || requestPath.endsWith("/getOrgGridInfo")
+				|| requestPath.endsWith("/saveOrgGridInfo") || requestPath.endsWith("/deleteOrgGridInfo")
+				|| requestPath.endsWith("/saveGridAction") || requestPath.endsWith("/getExecutorTree")
+				|| requestPath.endsWith("/saveFlowDrawLGAction") || requestPath.endsWith("/core/loadGridData")
+				|| requestPath.endsWith("/core/saveGridDatas");
 	}
 
 }

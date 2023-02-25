@@ -21,7 +21,7 @@
 			    <div class="layui-card">
 		          <div class="layui-card-header">角色设置</div>
 		          <div class="layui-card-body" style="height: 90%; padding: 1px; min-height: 500px;">
-		          	<div component="dataGrid" id="main-grid-view" onselected="mainGridselected" afterInert="afterInertFn" 
+		          	<div component="dataGrid" id="main-grid-view" onselected="mainGridselected" afterInert="afterInertFn" ondbclick="dbselrow" 
 							afterRefresh="afterRefreshFn" style="width: 100%; height: 100%; align: left;">
 					</div>
 		    		<form id="main-auther-form" style="display: none;"></form>

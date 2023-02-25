@@ -174,6 +174,173 @@ tlv8.portal.callBack = function(tabID, FnName, param) {
 	}
 };
 
+
+/**
+ * dialog
+ */
+tlv8.portal.dailog = {
+	transeUrl : function(url) {
+		// 路径转换[utf-8编码]
+		if (url.indexOf("http://") < 0 && url.indexOf("https://") < 0
+				&& url.indexOf(cpath) != 0) {
+			url = cpath + url;
+		}
+		if (url.indexOf("?") > 0) {
+			var reUrl = url.substring(0, url.indexOf("?"));
+			var rePar = url.substring(url.indexOf("?") + 1);
+			var parPe = rePar.split("&");
+			for (var i = 0; i < parPe.length; i++) {
+				var perP = parPe[i];
+				parPe[i] = perP.split("=")[0] + "="
+						+ J_u_encode(J_u_decode(perP.split("=")[1]));
+			}
+			url = reUrl + "?" + parPe.join("&");
+		}
+		return url;
+	},
+	/**
+	 * @name tlv8.portal.dailog.openDailog
+	 * @description 打开对话框
+	 * @param {string}
+	 *            name
+	 * @param {string}
+	 *            url
+	 * @param {number}
+	 *            width
+	 * @param {number}
+	 *            height
+	 * @param {function}
+	 *            callback
+	 * @param {object}
+	 *            itemSetInit -{refreshItem:true,enginItem:true,CanclItem:true}
+	 * @param {boolean}
+	 *            titleItem -为false时掩藏标题栏
+	 * @param {object}
+	 *            urlParam -JS任意类型可以直接传递到对话框页面 对话框页面通过函数getUrlParam获取
+	 */
+	openDailog : function(name, url, width, height, callback, itemSetInit,
+			titleItem, urlParam) {
+		url = this.transeUrl(url);
+		tlv8.portal.dailog.callback = callback;
+		var dwin = window;
+		if (window.top.$("#windowdialogIframe").size() == 0) {
+			dwin = window.top;
+		}
+		dwin.$("#msgObjDiv").remove();
+		dwin.$("#dailogmsgDiv").remove();
+		if (dwin.$("<div></div>").dialog) {
+			dwin.$("#windowdialogIframe").remove();
+			dwin.$("#gldd").remove();
+			var dihtml = '<iframe id="windowdialogIframe" frameborder="0" style="width: 100%;height: 100%;"></iframe>';
+			var globaldialog = dwin
+					.$('<div id="gldd" style="width:0px;height:0px;overflow:hidden;">'
+							+ dihtml + '</div>');
+			dwin.$(dwin.document.body).append(globaldialog);
+			var dlwidth = parseInt(width);
+			var dlheight = parseInt(height);
+			if (dlwidth > dwin.$(dwin.document).width()) {
+				dlwidth = dwin.$(dwin.document).width() - 40;
+			}
+			if (dlheight > dwin.$(dwin.document).height()) {
+				dlheight = dwin.$(dwin.document).height() - 40;
+			}
+			var dlparam = {
+				title : name,
+				width : dlwidth,
+				height : dlheight,
+				closed : false,
+				cache : false,
+				modal : true,
+				collapsible : true,
+				minimizable : false,
+				maximizable : true,
+				resizable : true,
+				onResize : function(w, h) {
+					if ($.browser.msie) {
+						var fIEVersion = parseFloat($.browser.version);
+						if (fIEVersion < 9) {
+							var dlfram = dwin
+									.$("iframe[id='windowdialogIframe']");
+							dlfram.height(dlfram.parent().height());
+						}
+					}
+				},
+				onClose : function() {
+					dwin.$("#windowdialogIframe").remove();
+					dwin.$("#gldd").remove();
+				}
+			};
+			if (itemSetInit == false) {
+				dlparam.buttons = undefined;
+			} else {
+				dlparam.buttons = [
+						{
+							text : '确定',
+							handler : function() {
+								var dlw = dwin.document
+										.getElementById("windowdialogIframe").contentWindow;
+								if (dlw.dailogEngin) {
+									var re = dlw.dailogEngin();
+									if ((typeof re == "boolean") && re == false) {
+
+									} else {
+										if (callback) {
+											callback(re);
+										}
+										dwin.$('#gldd').dialog('close');
+										dwin.$("#windowdialogIframe").remove();
+										dwin.$("#gldd").remove();
+									}
+								} else {
+									if (callback) {
+										callback(re);
+									}
+									dwin.$('#gldd').dialog('close');
+									dwin.$("#windowdialogIframe").remove();
+									dwin.$("#gldd").remove();
+								}
+							}
+						}, {
+							text : '取消',
+							handler : function() {
+								dwin.$('#gldd').dialog('close');
+								dwin.$("#windowdialogIframe").remove();
+								dwin.$("#gldd").remove();
+							}
+						} ];
+			}
+			globaldialog.dialog(dlparam);
+			dwin.$("#windowdialogIframe").attr("src", url);
+			try {
+				var func_iframe = dwin.document
+						.getElementById("windowdialogIframe");
+				if (func_iframe.attachEvent) {
+					func_iframe.attachEvent("onload", function() {
+						try {
+							var dialogWin = func_iframe.contentWindow;
+							if (dialogWin.getUrlParam) {
+								dialogWin.getUrlParam(urlParam);
+							}
+						} catch (e) {
+						}
+					});
+				} else {
+					func_iframe.onload = function() {
+						try {
+							var dialogWin = func_iframe.contentWindow;
+							if (dialogWin.getUrlParam) {
+								dialogWin.getUrlParam(urlParam);
+							}
+						} catch (e) {
+						}
+					};
+				}
+			} catch (e) {
+			}
+		}
+	}
+};
+
 function sAlert(str, time){
 	layui.layer.msg(str);
 }

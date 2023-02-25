@@ -468,7 +468,7 @@ tlv8.createGrid = function(div, labelid, labels, labelwidth, dataAction,
 					+ label + "' >";
 			if(img){
 				tal = "<button title='"+label+"' class='btn btn-default btn-sm' style='float:left;margin-right:5px;'>";
-				tal += "<span class='glyphicon'><img src='" + img + "' id='" + barID + "' onclick='" + action + "' style='height:20px;margin-top:-4px;'/></span>";
+				tal += "<span class='glyphicon'><img id='" + barID + "' src='" + img + "' onclick='" + action + "' style='height:20px;margin-top:-4px;'/></span>";
 				if(showlab){
 					tal += label;
 				}else{
@@ -499,8 +499,8 @@ tlv8.createGrid = function(div, labelid, labels, labelwidth, dataAction,
 					+ grid.standImagePath+"imp-excel.gif";
 			if (flag) {
 				var mimportbar = grid
-						.insertSelfBar("Excel数据导入", "30px", "",
-								excelImgPath);
+						.insertSelfBar("Excel数据导入", "60px", "",
+								excelImgPath,true);
 				J$(mimportbar).onclick = function(){
 					tlv8.ExcelImp(data.dbkay,data.table,labelids,"",function(){
 						grid.refreshData();
@@ -520,8 +520,8 @@ tlv8.createGrid = function(div, labelid, labels, labelwidth, dataAction,
 			var excelImgPath = $dpimgpath
 					+ grid.standImagePath+"exp-excel.gif";
 			if (flag) {
-				var excelexpbarID = grid.insertSelfBar("导出Excel", "30px", "",
-						excelImgPath);
+				var excelexpbarID = grid.insertSelfBar("导出Excel", "50px", "",
+						excelImgPath,true);
 				J$(excelexpbarID).onclick = function() {
 					var cells = [];
 					var labelas = [];
@@ -2798,7 +2798,7 @@ tlv8.createGrid = function(div, labelid, labels, labelwidth, dataAction,
 			+ "_self_item_table'></td><td align='left' valign='middle' id='"
 			+ div.id
 			+ "-grid-item' style='width:auto;'></td>"
-			+ "<td><div class='input-group input-group-sm' style='float:left; width:280px;'><input type='text' class='form-control' value='' placeholder='快速查询... ...' id='"
+			+ "<td><div class='input-group input-group-sm' style='float:left; width:280px;'><input type='text' class='form-control' value='' placeholder='输入关键字查询... ...' id='"
 			+ div.id
 			+ "_quick_text'/><span class='input-group-btn'><button class='btn btn-default' id='"
 			+ div.id

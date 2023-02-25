@@ -66,7 +66,7 @@ function getData() {
 	MainJtree.init("JtreeView", setting, param);
 	var d = document.getElementById("main-grid-view");
 	var labelid = "No,SVALIDSTATE,SORGKINDID,SCODE,SNAME,SADDRESS,SDESCRIPTION,SFCODE,SFNAME,SPARENT,SPERSONID,SNODEKIND";
-	var labels = "No.,state,,编号,名称,地址,描述,全编号,全名称,SPARENT,spersonid,SNODEKIND";
+	var labels = "序号,state,,编号,名称,地址,描述,全编号,全名称,SPARENT,spersonid,SNODEKIND";
 	var labelwidth = "40,0,30,100,120,120,200,120,120,0,0,0";
 	var datatype = "ro,ro,html:readKindShow,string,html:org_name_html,string,string,string,string,ro,ro,ro";// 设置字段类型
 	var dataAction = {
@@ -85,21 +85,21 @@ function getData() {
 	currentgrid = maingrid.grid;
 	currentgrid.setExcelexpBar(true);// 导出
 	addOrgItem = currentgrid.insertSelfBar("新增", "42px", "addorgitem()",
-			"../image/insertMore.gif");
+			"../image/insertMore.gif", true);
 	deleteUserItem = currentgrid.insertSelfBar("删除", "30px", "deleteorgitem()",
-			"../image/delete.gif");
+			"../image/delete.gif", true);
 	refreshUserItem = currentgrid.insertSelfBar("刷新", "30px",
-			"refreshorgitem()", "../image/refresh.gif");
+			"refreshorgitem()", "../image/refresh.gif", true);
 	disableUserItem = currentgrid.insertSelfBar("禁用", "30px", "disabledUser()",
-			"../image/disable.gif");
+			"../image/disable.gif", true);
 	ableUserItem = currentgrid.insertSelfBar("启用", "30px", "abledUser()",
-			"../image/enable.gif");
+			"../image/enable.gif", true);
 	moveOrgItem = currentgrid.insertSelfBar("移动", "30px", "moveOrg()",
-			"../image/moveOrg.gif");
+			"../image/moveOrg.gif", true);
 	sortOrgItem = currentgrid.insertSelfBar("排序", "30px", "sortOrgAction()",
-			"../image/sort.gif");
+			"../image/sort.gif", true);
 	resetPassItem = currentgrid.insertSelfBar("重置密码", "30px", "",
-			"../../../comon/image/toolbar/action/un_enable.gif");
+			"../../../comon/image/toolbar/action/un_enable.gif", true);
 	var myItemH = "<table class='toolbar' style='width:290px;'><tr>";
 	myItemH += "<td width='90px' style='padding-right:5px;'>"
 			+ "<a href='javascript:void(0)' class='toobar_item' id='disassignPsmItem' title='取消分配' style='height:30px;padding:5px;border-radius: 3px;'>"
@@ -334,7 +334,7 @@ function onBodyDown(event) {
 var BakData;
 function creat_dailogcallback(data) {
 	BakData = data;
-	MainJtree.refreshJtree("JtreeView",function(){
+	MainJtree.refreshJtree("JtreeView", function() {
 		int_tree();
 	});
 }
@@ -412,7 +412,7 @@ function assign_dailogcallback(data) {
 }
 // 新增、编辑人员信息回调
 function creatPsm_dailogcallback(data) {
-	MainJtree.refreshJtree("JtreeView",function(){
+	MainJtree.refreshJtree("JtreeView", function() {
 		MainJtree.quickPosition(currenttreeID);
 	});
 }
@@ -483,7 +483,7 @@ function abledUser() {
 				currentgrid.refreshData();
 			}
 		});
-	}else {
+	} else {
 		alert("请在列表中选择要启用的组织！");
 	}
 }
@@ -535,7 +535,7 @@ function dailogcallback(data) {
 		return;
 	}
 	BakData = currenttreeName;
-	MainJtree.refreshJtree("JtreeView",function(){
+	MainJtree.refreshJtree("JtreeView", function() {
 		int_tree();
 	});
 }
