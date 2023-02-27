@@ -59,7 +59,7 @@ td.grid_td {
 	font-size: 11pt;
 	line-height: 28px;
 	height: 28px;
-	padding: 5px 0;
+	padding: 6px;
 }
 
 td.grid_label {
@@ -315,6 +315,7 @@ button {
 	line-height: 28px;
 	overflow: hidden;
 	color: #333333;
+	text-align: left;
 }
 
 .grid_underline{

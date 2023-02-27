@@ -66,6 +66,7 @@ tlv8.createGrid = function(div, labelid, labels, labelwidth, dataAction,
 		witdh, height, data, limit, where, billdataformid, billcell, datatype,
 		master, showindex, sql, fixColumn) {
 	var _this = $(div);
+	_this.css("padding","10px");
 	// 修正没有加单位的高度
 	if(height!="100%" && (height+"").indexOf("px")<0){
 		height = height+"px";
@@ -2766,7 +2767,7 @@ tlv8.createGrid = function(div, labelid, labels, labelwidth, dataAction,
 		sHeight = document.body.offsetHeight;
 	}
 	var parentH = $(div.parentNode).height();
-	var t_height = (parseInt(parentH) <= sHeight) ? parseInt(parentH) - 80 : sHeight - 155;
+	var t_height = (parseInt(parentH) <= sHeight) ? parseInt(parentH) - 90 : sHeight - 165;
 	if (!height || height == "100%") {
 		height = t_height + "px";
 	} else if (height.indexOf("%") > 0) {
