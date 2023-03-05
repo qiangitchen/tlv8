@@ -41,7 +41,7 @@
 		<mapper resource="com/tlv8/base/db/dao/UtilsMapper.xml"/>
 
 		<!-- 系统相关 -->
-		<mapper resource="com/tlv8/opm/sqlmap-opm.xml"/>
+		<mapper resource="com/tlv8/system/sqlmap.xml"/>
 
 		<!-- 自定义配置... -->
 		<!-- 

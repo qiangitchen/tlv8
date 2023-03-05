@@ -5,7 +5,7 @@ import javax.servlet.ServletContextListener;
 
 import com.tlv8.base.Sys;
 import com.tlv8.base.db.DBUtils;
-import com.tlv8.mac.License;
+import com.tlv8.base.mac.License;
 
 public class OnlineInitServerlet implements ServletContextListener {
 	/**

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tlv8.system">
+	
+	<select id="getPersonInfoList" resultType="java.util.HashMap">
+		select sID,sCode,sName,sSex,snumb,to_char(sbirthday,'yyyy-MM-dd'),sfamilyaddress,smobilephone,smail from SA_OPPerson where upper(sCode) != upper('system')
+ 	</select>
+ 	
+ 	<select id="getPsmAgnetInfo" resultType="com.tlv8.system.bean.SaOpAgent" parameterType="java.util.Map">
+ 	<![CDATA[ 
+		select * from SA_OPAGENT where SAGENTID = #{personid,jdbcType=VARCHAR} and SVALIDSTATE = 1 and SSTARTTIME <= #{starttime,jdbcType=DATE} and SFINISHTIME >= #{finishtime,jdbcType=DATE}
+ 	]]>
+ 	</select>
+ 	
+	<delete id="deletePersonInfo">
+		delete from SA_OPPerson where sID = #{rowid,jdbcType=VARCHAR}
+ 	</delete>
+ 	
+</mapper>

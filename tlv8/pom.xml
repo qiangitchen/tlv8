@@ -120,6 +120,12 @@
 			<groupId>com.tlv8</groupId>
 			<artifactId>tlv8.core</artifactId>
 		</dependency>
+		
+		<!-- 机构管理 -->
+		<dependency>
+			<groupId>com.tlv8</groupId>
+			<artifactId>tlv8.opm</artifactId>
+		</dependency>
 
 		<!-- 流程引擎 -->
 		<dependency>

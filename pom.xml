@@ -340,6 +340,13 @@
 				<artifactId>tlv8.system</artifactId>
 				<version>${tlv8.version}</version>
 			</dependency>
+			
+			<!-- 机构管理 -->
+			<dependency>
+				<groupId>com.tlv8</groupId>
+				<artifactId>tlv8.opm</artifactId>
+				<version>${tlv8.version}</version>
+			</dependency>
 
 			<!-- 流程引擎 -->
 			<dependency>

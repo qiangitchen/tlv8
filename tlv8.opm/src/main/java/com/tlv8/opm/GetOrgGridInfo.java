@@ -1,4 +1,4 @@
-package com.tlv8.core.jgrid.action;
+package com.tlv8.opm;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -6,18 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlv8.base.Data;
-import com.tlv8.base.Sys;
 import com.tlv8.core.jgrid.BasegetGridAction;
-import com.tlv8.system.bean.ContextBean;
 
 /**
- * @author ChenQian
- * @create 2011-11-11
- * @see 公用查询（grid） 支持Oracle、 SQL Server、 MySQL
+ * @author 陈乾
  */
 @Controller
 @Scope("prototype")
-public class GetGridAction extends BasegetGridAction {
+public class GetOrgGridInfo extends BasegetGridAction {
 
 	public Data getData() {
 		return this.data;
@@ -28,15 +24,9 @@ public class GetGridAction extends BasegetGridAction {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/getGridAction", produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/getOrgGridInfo", produces = "application/json;charset=UTF-8")
 	public Object execute() throws Exception {
 		data = new Data();
-		String userid = ContextBean.getContext(request).getCurrentPersonID();
-		if (userid == null || "".equals(userid)) {
-			data.setFlag("timeout");
-			Sys.packErrMsg("未登录或登录已超时，不允许操作!");
-			return this;
-		}
 		String r = "true";
 		String m = "success";
 		String f = "";
@@ -58,5 +48,4 @@ public class GetGridAction extends BasegetGridAction {
 		data.setGridid(gridid);
 		return this;
 	}
-
 }

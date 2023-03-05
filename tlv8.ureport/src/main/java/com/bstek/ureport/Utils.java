@@ -224,7 +224,7 @@ public class Utils implements ApplicationContextAware {
 		buildinDatasources.addAll(applicationContext.getBeansOfType(BuildinDatasource.class).values());
 		try {
 			// 自动添加tlv8平台配置的数据源
-			Set<String> keys = com.tlv8.datasource.Utils.getPermitionDatasourceKeys();
+			Set<String> keys = com.tlv8.base.datasource.Utils.getPermitionDatasourceKeys();
 			for (String k : keys) {
 				buildinDatasources.add(new BuildinDatasource() {
 					@Override
@@ -234,7 +234,7 @@ public class Utils implements ApplicationContextAware {
 
 					@Override
 					public Connection getConnection() {
-						return com.tlv8.datasource.Utils.getAppConn(k);
+						return com.tlv8.base.datasource.Utils.getAppConn(k);
 					}
 
 				});

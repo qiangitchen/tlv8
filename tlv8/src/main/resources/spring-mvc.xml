@@ -55,12 +55,6 @@
 
 	<!-- 拦截器  多个拦截器，顺序执行-->
 	<mvc:interceptors>
-		<!-- 
-		<mvc:interceptor>
-			<mvc:mapping path="/**" />
-			<bean class="com.tlv8.interceptor.TLv8HandlerInterceptor"></bean>
-		</mvc:interceptor>
-		-->
 		<mvc:interceptor>
 	    	<mvc:mapping path="/**" />
 	        <bean class="com.tlv8.interceptors.SqlInjectInterceptor"></bean>

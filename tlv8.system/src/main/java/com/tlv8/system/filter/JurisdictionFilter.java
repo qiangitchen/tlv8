@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.tlv8.base.db.DBUtils;
-import com.tlv8.interceptor.echat.EChatExecuteFilter;
-import com.tlv8.opm.inter.OrgAdmAuthority;
-import com.tlv8.opm.inter.impl.OrganizationAdministrativeAuthority;
 import com.tlv8.system.bean.ContextBean;
+import com.tlv8.system.echat.EChatExecuteFilter;
 import com.tlv8.system.help.SessionHelper;
+import com.tlv8.system.inter.OrgAdmAuthority;
+import com.tlv8.system.inter.impl.OrganizationAdministrativeAuthority;
 
 public class JurisdictionFilter implements Filter {
 	// 未登录时跳转页面

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlv8.base.Data;
-import com.tlv8.jgrid.BaseSaveGridAction;
+import com.tlv8.core.jgrid.BaseSaveGridAction;
 import com.tlv8.system.bean.ContextBean;
 
 /**
