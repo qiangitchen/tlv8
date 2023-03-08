@@ -36,7 +36,8 @@
 .grid_td {
 	margin: 0;
 	padding: 0;
-	border: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
 	font-size: 11pt;
 	line-height: 28px;
 }
@@ -44,7 +45,8 @@
 .grid_td_underline {
 	margin: 0;
 	padding: 0;
-	border: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
 	font-size: 11pt;
 	text-align: center;
 	background-color: #FAFAFA;
@@ -55,7 +57,8 @@
 td.grid_td {
 	margin: 0;
 	padding: 0;
-	border: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
 	font-size: 11pt;
 	line-height: 28px;
 	height: 28px;
@@ -67,7 +70,7 @@ td.grid_label {
 	Vertical-Align: Middle;
 	table-layout: fixed;
 	word-break: break-all;
-	border: 1px solid #ddd;
+	border-right: 1px solid #ddd;
 }
 
 td.sortASC {
@@ -256,7 +259,8 @@ a.toobar_item:active {
 
 .scrollColThead {
 	/*background-image: url(footer_bg_h.png);*/
-	
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd; 
 }
 
 .scrollColTheadBottom {

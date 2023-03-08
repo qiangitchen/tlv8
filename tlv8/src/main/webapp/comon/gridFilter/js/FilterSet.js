@@ -38,7 +38,7 @@ function initBody(event) {
 	$("#relation").html(relationSelectHtml);
 	$("#relation")[0].style.width = "100%";
 	base_line = $("#filter_select_data_tab").html();
-	normalFilterline = $("#filter_select_set").html();
+	normalFilterline = $("#filter_select_data_tab").html();
 	try {
 		selectLine = $("tr[id='filter_base_line']")[0];
 		$("#relationvalue")[0].focus();
@@ -49,7 +49,7 @@ function initBody(event) {
 // 回传
 function dailogEngin(event) {
 	try {
-		var filter_select_data = $("#filter_select_set").html();
+		var filter_select_data = $("#filter_select_data_tab").html();
 		if (!filter_select_data || filter_select_data == "") {
 			return "1=1";
 		}
@@ -73,12 +73,12 @@ function removeLine(event) {
 
 // 清空
 function clearFilter(event) {
-	$("#filter_select_set").html("");
+	$("#filter_select_data_tab").html("");
 }
 
 // 重置
 function filter_reset(event) {
-	$("#filter_select_set").html(normalFilterline);
+	$("#filter_select_data_tab").html(normalFilterline);
 }
 
 // 选中行

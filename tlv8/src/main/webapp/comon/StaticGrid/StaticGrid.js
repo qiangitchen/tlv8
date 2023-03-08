@@ -27,6 +27,7 @@ var StaticGrid = function(divDom) {
 	this.data = new Array();
 	this.selectedRow;
 	this.rowDbclick;
+	$(divDom).css("padding", "4px");
 };
 
 /*
@@ -43,11 +44,11 @@ StaticGrid.prototype.init = function(LabArray) {
 	}
 	this.LabArray = LabArray;
 	this.Dom.style.overflow = "auto";
-//	this.Dom.style.border = "1px solid #ddd";
+	// this.Dom.style.border = "1px solid #ddd";
 	this.Dom.style.cursor = "default";
-	var gridTable = "<table id='" + this.id
-			+ "_Table' class='grid'>";
-	gridTable += "<tr class='scrollColThead' id='" + this.id + "_title_tr'>";
+	var gridTable = "<table id='" + this.id + "_Table' class='grid'>";
+	gridTable += "<tr class='scrollColThead' id='" + this.id
+			+ "_title_tr' style='border-left:1px solid #ddd;'>";
 	for (var i = 0; i < LabArray.length; i++) {
 		var celom = LabArray[i];
 		var display = "";
@@ -198,8 +199,9 @@ StaticGrid.prototype.setValue = function(rowid, column, nvalue) {
 	}
 };
 
-StaticGrid.prototype.transeValue = function(svalue){
-	return "<div style='width:100%;height:22px;overflow:hidden;'>"+svalue+"";
+StaticGrid.prototype.transeValue = function(svalue) {
+	return "<div style='width:100%;height:22px;overflow:hidden;'>" + svalue
+			+ "";
 };
 
 /*
@@ -228,6 +230,7 @@ StaticGrid.prototype.colour = function() {
 				Docum.rowDbclick(this);
 			};
 		}
+		$(rows[i]).css("border-left","1px solid #ddd");
 	}
 };
 
@@ -581,10 +584,10 @@ function setReturnValueFalse(event) {
 	}
 }
 // ================================拖拽操作end======================================================\\
-try{
-	var $rp = $dpjspath.replace("/comon/js/","/");
+try {
+	var $rp = $dpjspath.replace("/comon/js/", "/");
 	if (!checkPathisHave($rp + "comon/css/grid.main.css")) {
-		createStyleSheet($rp+"comon/css/grid.main.css");
+		createStyleSheet($rp + "comon/css/grid.main.css");
 	}
-}catch (e) {
+} catch (e) {
 }
