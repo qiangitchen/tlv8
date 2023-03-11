@@ -37,12 +37,7 @@ function dailogEngin() {
 	maindata.setFormId("affairsdata");// 设置提交的表单
 	maindata.setDbkey("system");// 指定使用数据库连接
 
-	var rowid = maindata.saveData();
-//		var datas=new Array();
-//      return(datas);
-	//			if(rowid!="undefined"||rowid!=""||rowid!=null){
-	//			document.getElementById("SA_PSNSCHEDULE").rowid = rowid;// 记住当前rowid,避免重复创建
-	//			}
+	maindata.saveData();
 }
 //日期框失去焦点时执行
 function setTextdata() {

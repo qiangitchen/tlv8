@@ -25,10 +25,7 @@ function dataSave() {
 	datamian.setValueByName("SCREATER", tlv8.Context
 			.getCurrentPersonName());
 	datamian.setValueByName("SCREATEDATE", tlv8.System.Date.sysDateTime());
-	var rowid = datamian.saveData();
-	J$("MAIN_DATA_FORM").rowid = rowid;
-	J$("MAIN_DATA_FORM").setAttribute("rowid", rowid);
-	$("#MAIN_DATA_FORM").attr("rowid", rowid);
+	datamian.saveData();
 }
 
 // 数据刷新

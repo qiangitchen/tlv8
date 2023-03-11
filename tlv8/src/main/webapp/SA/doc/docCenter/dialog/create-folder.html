@@ -22,8 +22,9 @@
 			var maindata = new tlv8.Data();
 			function saveDatafn(formfield) {
 				var rowid = maindata.saveData(formfield);
-				document.getElementById("org_create_mng").rowid = rowid;//记住当前rowid 避免重复创建
-				$("#org_create_mng").attr("rowid", rowid);//记住当前rowid 避免重复创建
+				if(!rowid){
+					return false;
+				}
 				if(isnewdata){
 					var pdocpath = tlv8.RequestURLParam.getParam("pdocpath");
 					var pdocpathname = tlv8.RequestURLParam.getParam("pdocpathname");

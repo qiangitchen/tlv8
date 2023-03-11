@@ -32,7 +32,7 @@ function dailogEngin() {
 	maindata.setFormId("affairsdata");// 设置提交的表单
 	maindata.setDbkey("system");// 指定使用数据库连接
 
-	var rowid = maindata.saveData();
+	maindata.saveData();
 }
 //日期框失去焦点时执行
 function setTextdata() {

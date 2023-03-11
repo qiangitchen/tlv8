@@ -31,9 +31,9 @@ function dataInsert() {
 // 数据保存
 function dataSave() {
 	var rowid = datamian.saveData();
-	J$("MAIN_DATA_FORM").rowid = rowid;
-	J$("MAIN_DATA_FORM").setAttribute("rowid", rowid);
-	$("#MAIN_DATA_FORM").attr("rowid", rowid);
+	if(!rowid){
+		return false;
+	}
 	J$("sendBtn").disabled = false;
 	toolbarItem.setItemStatus("no", "readonly", true, "no");// 设置按钮状态
 }

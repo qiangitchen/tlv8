@@ -90,8 +90,9 @@ function saveDatafn() {
 		$("#SPASSWORD").val("E10ADC3949BA59ABBE56E057F20F883E");// 默认密码为123456
 	}
 	var rowid1 = maindata.saveData();
-	document.getElementById("psm_create_form").rowid = rowid1;// 记住当前rowid
-	$("#psm_create_form").attr("rowid", rowid1);// 记住当前rowid
+	if(!rowid1){
+		return false;
+	}
 	tlv8.picComponent(PICDiv, maindata, "SPHOTO", true, true);
 	var param = new tlv8.RequestParam();
 	param.set("personid", rowid1);

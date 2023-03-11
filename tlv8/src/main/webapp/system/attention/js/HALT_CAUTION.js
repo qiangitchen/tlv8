@@ -52,7 +52,7 @@ function enginAndPlush() {
 	if (!STITLE || STITLE == "") {
 		data.setValueByName("STITLE", sTitles);
 	}
-	document.getElementById("halt_caution_form").rowid = data.saveData();
+	data.saveData();
 	if (confirm("发布成功，是否关闭页面?")) {
 		tlv8.portal.closeWindow();
 	}
