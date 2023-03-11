@@ -19,7 +19,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-			<version>2.6.7</version>
+			<version>2.7.9</version>
 			<optional>true</optional>
 			<scope>provided</scope>
 		</dependency>
@@ -28,7 +28,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<version>2.6.7</version>
+			<version>2.7.9</version>
 			<scope>provided</scope>
 		</dependency>
 		<!--jsp页面使用jstl标签-->
@@ -43,7 +43,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
-            <version>2.6.7</version>
+            <version>2.7.9</version>
             <scope>provided</scope>
         </dependency>
         <!--用于编译jsp-->
@@ -56,14 +56,14 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<version>2.6.7</version>
+			<version>2.7.9</version>
 			<scope>test</scope>
 		</dependency>
 		<!--spring boot - webSocket-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>
-            <version>2.6.7</version>
+            <version>2.7.9</version>
             <scope>provided</scope>
         </dependency>
 
