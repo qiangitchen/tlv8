@@ -31,7 +31,9 @@ $(function() {
 function saveDatafn() {
 	if ($(".ReadOnly").val() != "") {
 		saverowid = maindata.saveData();
-		document.getElementById("org_create_form").rowid = saverowid;// 记住当前rowid
+		if(!saverowid){
+			return false;
+		}
 		if (!path || path == "undefined") {
 			path = "";
 		}

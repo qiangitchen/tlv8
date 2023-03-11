@@ -124,42 +124,42 @@ tlv8.flw.prototype.doAction = function() {
 	var html = [];
 	html
 			.push("<div data-role='content' class='ui-content ui-body-c' style='padding:10px;'>");
-	if (self.setting.item.audit && flowpaten!="detail") {
+	if (self.setting.item.audit && flowpaten != "detail") {
 		html
 				.push("<a href='#' onclick='document.getElementById(\""
 						+ self.Dom.id
 						+ "\").flw.flowAudit()' class='ui-btn ui-btn-up-b  ui-btn-corner-all mui-btn mui-btn-purple' style='width:110px; margin:2px;'>");
 		html.push("<span style='padding:0.5em;display:block'>填写意见</span></a>");
 	}
-	if (self.setting.item.out && flowpaten!="detail") {
+	if (self.setting.item.out && flowpaten != "detail") {
 		html
 				.push("<a href='#' onclick='document.getElementById(\""
 						+ self.Dom.id
 						+ "\").flw.flowout()' class='ui-btn ui-btn-up-b  ui-btn-corner-all mui-btn mui-btn-success' style='width:110px; margin:2px;'>");
 		html.push("<span style='padding:0.5em;display:block'>流转</span></a>");
 	}
-	if (self.setting.item.transmit && flowpaten!="detail") {
+	if (self.setting.item.transmit && flowpaten != "detail") {
 		html
 				.push("<a href='#' onclick='document.getElementById(\""
 						+ self.Dom.id
 						+ "\").flw.flowtransmit()' class='ui-btn ui-btn-up-b ui-btn-corner-all mui-btn mui-btn-primary' style='width:110px; margin:2px;'>");
 		html.push("<span style='padding:0.5em;display:block'>转发</span></a>");
 	}
-	if (self.setting.item.back && flowpaten!="detail") {
+	if (self.setting.item.back && flowpaten != "detail") {
 		html
 				.push("<a href='#' onclick='document.getElementById(\""
 						+ self.Dom.id
 						+ "\").flw.flowback()' class='ui-btn ui-btn-up-b ui-btn-corner-all mui-btn mui-btn-warning' style='width:110px; margin:2px;'>");
 		html.push("<span style='padding:0.5em;display:block'>回退</span></a>");
 	}
-	if (self.setting.item.pause && flowpaten!="detail") {
+	if (self.setting.item.pause && flowpaten != "detail") {
 		html
 				.push("<a href='#' onclick='document.getElementById(\""
 						+ self.Dom.id
 						+ "\").flw.flowpause()' class='ui-btn ui-btn-up-b ui-btn-corner-all mui-btn mui-btn-danger' style='width:110px; margin:2px;'>");
 		html.push("<span style='padding:0.5em;display:block'>暂停</span></a>");
 	}
-	if (self.setting.item.stop && flowpaten!="detail") {
+	if (self.setting.item.stop && flowpaten != "detail") {
 		html
 				.push("<a href='#' onclick='document.getElementById(\""
 						+ self.Dom.id
@@ -195,10 +195,14 @@ tlv8.flw.prototype.flowAudit = function() {
 tlv8.flw.prototype.flowstart = function(billid, callback) {
 	var flowCompent = this;
 	callback = callback || billid;
-	var sData1 = (typeof billid=="string")?billid:this.sData1;
-	if(!sData1||sData1==""){
+	var sData1 = (typeof billid == "string") ? billid : this.sData1;
+	if (!sData1 || sData1 == "") {
 		sData1 = flowCompent.data.saveData();
-		flowCompent.sData1 = sData1;
+		if (sData1) {
+			flowCompent.sData1 = sData1;
+		}else{
+			return false;
+		}
 	}
 	var param = new tlv8.RequestParam();
 	param.set("sdata1", sData1);
@@ -248,8 +252,7 @@ tlv8.flw.prototype.flowstart = function(billid, callback) {
 		}
 	}
 	tlv8.showModelState(true);
-	tlv8.XMLHttpRequest("flowstartAction", param, "post", false, function(
-			r) {
+	tlv8.XMLHttpRequest("flowstartAction", param, "post", false, function(r) {
 		tlv8.showModelState(false);
 		if (r.data.flag == "false") {
 			alert("操作失败:" + r.data.message);
@@ -285,7 +288,7 @@ tlv8.flw.prototype.flowstart = function(billid, callback) {
 					inFn(rEvent);
 				}
 			}
-			if(typeof callback=="function"){
+			if (typeof callback == "function") {
 				callback(flwData);
 			}
 		}
@@ -327,7 +330,11 @@ tlv8.flw.prototype.flowback = function(flowID, taskID) {
 	flowID = flowID || flowCompent.flowID;
 	taskID = taskID || flowCompent.taskID;
 	if (this.setting.autosaveData) {
-		this.sData1 = this.data.saveData();
+		var rowid = this.data.saveData();
+		if (!rowid) {
+			return;
+		}
+		this.sData1 = rowid;
 	}
 	var param = new tlv8.RequestParam();
 	var onBeforeBack = this.Dom.getAttribute("onBeforeBack");
@@ -372,7 +379,8 @@ tlv8.flw.prototype.flowback = function(flowID, taskID) {
 	if (flowID && taskID) {
 		var sData1 = getParamValueFromUrl("sData1") || flowCompent.data.rowid;
 		var activity = getParamValueFromUrl("activity");
-		var url = cpath+"/mobileUI/system/service/process/dialog/processExecuteDialog.html?executeMode=back";
+		var url = cpath
+				+ "/mobileUI/system/service/process/dialog/processExecuteDialog.html?executeMode=back";
 		url += "&flowID=" + flowID;
 		url += "&taskID=" + taskID;
 		url += "&sData1=" + sData1;
@@ -446,13 +454,13 @@ tlv8.flw.prototype.flowback = function(flowID, taskID) {
 								inFn(rEvent);
 							}
 						}
-						
-						if(flowCompent.setting.autoclose == true){
+
+						if (flowCompent.setting.autoclose == true) {
 							flowCompent.processComiitCallback();
 						}
 					}
 				});
-	}else{
+	} else {
 		mAlert("未指定任务!");
 	}
 };
@@ -465,7 +473,11 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 	flowID = flowID || flowCompent.flowID;
 	taskID = taskID || flowCompent.taskID;
 	if (this.setting.autosaveData) {
-		this.sData1 = this.data.saveData();
+		var rowid = this.data.saveData();
+		if (!rowid) {
+			return;
+		}
+		this.sData1 = rowid;
 	}
 	sData1 = sData1 || flowCompent.sData1 || flowCompent.data.rowid;
 	var onBeforeAdvance = this.Dom.getAttribute("onBeforeAdvance");
@@ -509,7 +521,8 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 	}
 	if (flowID && taskID) {
 		var activity = getParamValueFromUrl("activity");
-		var url = cpath+"/mobileUI/system/service/process/dialog/processExecuteDialog.html?executeMode=advance";
+		var url = cpath
+				+ "/mobileUI/system/service/process/dialog/processExecuteDialog.html?executeMode=advance";
 		url += "&flowID=" + flowID;
 		url += "&taskID=" + taskID;
 		url += "&sData1=" + sData1;
@@ -579,14 +592,14 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 						inFn(rEvent);
 					}
 				}
-				
-				if(flowCompent.setting.autoclose == true){
+
+				if (flowCompent.setting.autoclose == true) {
 					flowCompent.processComiitCallback();
 				}
 			}
 		});
-	}else{
-		flowCompent.flowstart(function(){
+	} else {
+		flowCompent.flowstart(function() {
 			flowCompent.flowout();
 		});
 	}
@@ -598,7 +611,11 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 tlv8.flw.prototype.flowtransmit = function(flowID, taskID, ePersonID) {
 	var flowCompent = this;
 	if (this.setting.autosaveData) {
-		this.sData1 = this.data.saveData();
+		var rowid = this.data.saveData();
+		if (!rowid) {
+			return;
+		}
+		this.sData1 = rowid;
 	}
 	flowID = flowID || flowCompent.flowID || getParamValueFromUrl("flowID");
 	taskID = flowID || flowCompent.taskID || getParamValueFromUrl("taskID");
@@ -644,7 +661,8 @@ tlv8.flw.prototype.flowtransmit = function(flowID, taskID, ePersonID) {
 		}
 	}
 	var activity = getParamValueFromUrl("activity");
-	var url = cpath+"/mobileUI/system/service/process/dialog/processExecuteDialog.html?executeMode=transfer";
+	var url = cpath
+			+ "/mobileUI/system/service/process/dialog/processExecuteDialog.html?executeMode=transfer";
 	url += "&flowID=" + flowID;
 	url += "&taskID=" + taskID;
 	url += "&sData1=" + sData1;
@@ -712,8 +730,8 @@ tlv8.flw.prototype.flowtransmit = function(flowID, taskID, ePersonID) {
 					inFn(rEvent);
 				}
 			}
-			
-			if(flowCompent.setting.autoclose == true){
+
+			if (flowCompent.setting.autoclose == true) {
 				flowCompent.processComiitCallback();
 			}
 		}
@@ -726,7 +744,11 @@ tlv8.flw.prototype.flowtransmit = function(flowID, taskID, ePersonID) {
 tlv8.flw.prototype.flowpause = function(flowID, taskID) {
 	var flowCompent = this;
 	if (this.setting.autosaveData) {
-		this.sData1 = this.data.saveData();
+		var rowid = this.data.saveData();
+		if (!rowid) {
+			return;
+		}
+		this.sData1 = rowid;
 	}
 	if (!confirm("流程暂停后只能到任务中心激活.\n  确定暂停吗?"))
 		return;
@@ -838,8 +860,8 @@ tlv8.flw.prototype.flowpause = function(flowID, taskID) {
 							inFn(rEvent);
 						}
 					}
-					
-					if(flowCompent.setting.autoclose == true){
+
+					if (flowCompent.setting.autoclose == true) {
 						flowCompent.processComiitCallback();
 					}
 				});
@@ -913,8 +935,8 @@ tlv8.flw.prototype.flowpause = function(flowID, taskID) {
 							inFn(rEvent);
 						}
 					}
-					
-					if(flowCompent.setting.autoclose == true){
+
+					if (flowCompent.setting.autoclose == true) {
 						flowCompent.processComiitCallback();
 					}
 				});
@@ -930,7 +952,11 @@ tlv8.flw.prototype.flowpause = function(flowID, taskID) {
 tlv8.flw.prototype.flowstop = function(flowID, taskID) {
 	var flowCompent = this;
 	if (this.setting.autosaveData) {
-		this.sData1 = this.data.saveData();
+		var rowid = this.data.saveData();
+		if (!rowid) {
+			return;
+		}
+		this.sData1 = rowid;
 	}
 	if (!confirm("终止流程,流程将彻底作废.\n  确定终止吗?"))
 		return;
@@ -977,150 +1003,146 @@ tlv8.flw.prototype.flowstop = function(flowID, taskID) {
 	if (flowID && taskID) {
 		param.set("flowID", flowID);
 		param.set("taskID", taskID);
-		tlv8.XMLHttpRequest("flowstopAction", param, "post", true,
-				function(r) {
-					tlv8.showModelState(false);
-					if (r.data.flag == "false") {
-						alert("操作失败:" + r.data.message);
-					} else {
-						var onAbortCommit = flowCompent.Dom
-								.getAttribute("onAbortCommit");
-						if (onAbortCommit) {
-							var inFn = eval(onAbortCommit);
-							if (typeof (inFn) == "function") {
-								var rEvent = {
-									source : flowCompent,
-									taskID : flowCompent.taskID,
-									flowID : flowCompent.flowID,
-									cancel : false
-								};
-								inFn(rEvent);
-							}
-						}
-						var onFlowActionCommit = flowCompent.Dom
-								.getAttribute("onFlowActionCommit");
-						if (onFlowActionCommit) {
-							var inFn = eval(onFlowActionCommit);
-							if (typeof (inFn) == "function") {
-								var rEvent = {
-									source : flowCompent,
-									taskID : flowCompent.taskID,
-									flowID : flowCompent.flowID,
-									cancel : false
-								};
-								inFn(rEvent);
-							}
-						}
-						if (flowCompent.setting.autoclose)
-							window.history.back();
+		tlv8.XMLHttpRequest("flowstopAction", param, "post", true, function(r) {
+			tlv8.showModelState(false);
+			if (r.data.flag == "false") {
+				alert("操作失败:" + r.data.message);
+			} else {
+				var onAbortCommit = flowCompent.Dom
+						.getAttribute("onAbortCommit");
+				if (onAbortCommit) {
+					var inFn = eval(onAbortCommit);
+					if (typeof (inFn) == "function") {
+						var rEvent = {
+							source : flowCompent,
+							taskID : flowCompent.taskID,
+							flowID : flowCompent.flowID,
+							cancel : false
+						};
+						inFn(rEvent);
 					}
-					var onAfterAbort = flowCompent.Dom
-							.getAttribute("onAfterAbort");
-					if (onAfterAbort) {
-						var inFn = eval(onAfterAbort);
-						if (typeof (inFn) == "function") {
-							var rEvent = {
-								source : flowCompent,
-								taskID : flowCompent.taskID,
-								flowID : flowCompent.flowID,
-								cancel : false
-							};
-							inFn(rEvent);
-						}
+				}
+				var onFlowActionCommit = flowCompent.Dom
+						.getAttribute("onFlowActionCommit");
+				if (onFlowActionCommit) {
+					var inFn = eval(onFlowActionCommit);
+					if (typeof (inFn) == "function") {
+						var rEvent = {
+							source : flowCompent,
+							taskID : flowCompent.taskID,
+							flowID : flowCompent.flowID,
+							cancel : false
+						};
+						inFn(rEvent);
 					}
-					var onAfterFlowAction = flowCompents.Dom
-							.getAttribute("onAfterFlowAction");
-					if (onAfterFlowAction) {
-						var inFn = eval(onAfterFlowAction);
-						if (typeof (inFn) == "function") {
-							var rEvent = {
-								source : flowCompent,
-								taskID : flowCompent.taskID,
-								flowID : flowCompent.flowID,
-								cancel : false
-							};
-							inFn(rEvent);
-						}
-					}
-					
-					if(flowCompent.setting.autoclose == true){
-						flowCompent.processComiitCallback();
-					}
-				});
+				}
+				if (flowCompent.setting.autoclose)
+					window.history.back();
+			}
+			var onAfterAbort = flowCompent.Dom.getAttribute("onAfterAbort");
+			if (onAfterAbort) {
+				var inFn = eval(onAfterAbort);
+				if (typeof (inFn) == "function") {
+					var rEvent = {
+						source : flowCompent,
+						taskID : flowCompent.taskID,
+						flowID : flowCompent.flowID,
+						cancel : false
+					};
+					inFn(rEvent);
+				}
+			}
+			var onAfterFlowAction = flowCompents.Dom
+					.getAttribute("onAfterFlowAction");
+			if (onAfterFlowAction) {
+				var inFn = eval(onAfterFlowAction);
+				if (typeof (inFn) == "function") {
+					var rEvent = {
+						source : flowCompent,
+						taskID : flowCompent.taskID,
+						flowID : flowCompent.flowID,
+						cancel : false
+					};
+					inFn(rEvent);
+				}
+			}
+
+			if (flowCompent.setting.autoclose == true) {
+				flowCompent.processComiitCallback();
+			}
+		});
 		tlv8.showModelState(true);
 	} else if (this.flowID && this.flowID != "" && this.taskID
 			&& this.taskID != "") {
 		param.set("flowID", this.flowID);
 		param.set("taskID", this.taskID);
-		tlv8.XMLHttpRequest("flowstopAction", param, "post", true,
-				function(r) {
-					if (r.data.flag == "false") {
-						alert("操作失败:" + r.data.message);
-					} else {
-						var onAbortCommit = flowCompent.Dom
-								.getAttribute("onAbortCommit");
-						if (onAbortCommit) {
-							var inFn = eval(onAbortCommit);
-							if (typeof (inFn) == "function") {
-								var rEvent = {
-									source : flowCompent,
-									taskID : flowCompent.taskID,
-									flowID : flowCompent.flowID,
-									cancel : false
-								};
-								inFn(rEvent);
-							}
-						}
-						var onFlowActionCommit = flowCompent.Dom
-								.getAttribute("onFlowActionCommit");
-						if (onFlowActionCommit) {
-							var inFn = eval(onFlowActionCommit);
-							if (typeof (inFn) == "function") {
-								var rEvent = {
-									source : flowCompent,
-									taskID : flowCompent.taskID,
-									flowID : flowCompent.flowID,
-									cancel : false
-								};
-								inFn(rEvent);
-							}
-						}
-						if (flowCompent.setting.autoclose)
-							window.history.back();
+		tlv8.XMLHttpRequest("flowstopAction", param, "post", true, function(r) {
+			if (r.data.flag == "false") {
+				alert("操作失败:" + r.data.message);
+			} else {
+				var onAbortCommit = flowCompent.Dom
+						.getAttribute("onAbortCommit");
+				if (onAbortCommit) {
+					var inFn = eval(onAbortCommit);
+					if (typeof (inFn) == "function") {
+						var rEvent = {
+							source : flowCompent,
+							taskID : flowCompent.taskID,
+							flowID : flowCompent.flowID,
+							cancel : false
+						};
+						inFn(rEvent);
 					}
-					var onAfterAbort = flowCompent.Dom
-							.getAttribute("onAfterAbort");
-					if (onAfterAbort) {
-						var inFn = eval(onAfterAbort);
-						if (typeof (inFn) == "function") {
-							var rEvent = {
-								source : flowCompent,
-								taskID : flowCompent.taskID,
-								flowID : flowCompent.flowID,
-								cancel : false
-							};
-							inFn(rEvent);
-						}
+				}
+				var onFlowActionCommit = flowCompent.Dom
+						.getAttribute("onFlowActionCommit");
+				if (onFlowActionCommit) {
+					var inFn = eval(onFlowActionCommit);
+					if (typeof (inFn) == "function") {
+						var rEvent = {
+							source : flowCompent,
+							taskID : flowCompent.taskID,
+							flowID : flowCompent.flowID,
+							cancel : false
+						};
+						inFn(rEvent);
 					}
-					var onAfterFlowAction = flowCompent.Dom
-							.getAttribute("onAfterFlowAction");
-					if (onAfterFlowAction) {
-						var inFn = eval(onAfterFlowAction);
-						if (typeof (inFn) == "function") {
-							var rEvent = {
-								source : flowCompent,
-								taskID : flowCompent.taskID,
-								flowID : flowCompent.flowID,
-								cancel : false
-							};
-							inFn(rEvent);
-						}
-					}
-					
-					if(flowCompent.setting.autoclose == true){
-						flowCompent.processComiitCallback();
-					}
-				});
+				}
+				if (flowCompent.setting.autoclose)
+					window.history.back();
+			}
+			var onAfterAbort = flowCompent.Dom.getAttribute("onAfterAbort");
+			if (onAfterAbort) {
+				var inFn = eval(onAfterAbort);
+				if (typeof (inFn) == "function") {
+					var rEvent = {
+						source : flowCompent,
+						taskID : flowCompent.taskID,
+						flowID : flowCompent.flowID,
+						cancel : false
+					};
+					inFn(rEvent);
+				}
+			}
+			var onAfterFlowAction = flowCompent.Dom
+					.getAttribute("onAfterFlowAction");
+			if (onAfterFlowAction) {
+				var inFn = eval(onAfterFlowAction);
+				if (typeof (inFn) == "function") {
+					var rEvent = {
+						source : flowCompent,
+						taskID : flowCompent.taskID,
+						flowID : flowCompent.flowID,
+						cancel : false
+					};
+					inFn(rEvent);
+				}
+			}
+
+			if (flowCompent.setting.autoclose == true) {
+				flowCompent.processComiitCallback();
+			}
+		});
 	} else {
 		mAlert("未指定任务.");
 	}
@@ -1142,7 +1164,8 @@ tlv8.flw.prototype.viewChart = function(flowID, taskID) {
 		var sData1 = document.getElementById(this.data.formid).rowid;
 	}
 	if ((flowID && taskID) || sData1 == null || !sData1) {
-		var url = cpath+"/mobileUI/system/service/process/flw/viewiocusbot/yj_iocus_bot.html?flowID="
+		var url = cpath
+				+ "/mobileUI/system/service/process/flw/viewiocusbot/yj_iocus_bot.html?flowID="
 				+ flowID + "&taskID=" + taskID;
 		window.open(url, "_self");
 	} else {
@@ -1150,11 +1173,11 @@ tlv8.flw.prototype.viewChart = function(flowID, taskID) {
 	}
 };
 
-tlv8.flw.prototype.processComiitCallback = function(){
+tlv8.flw.prototype.processComiitCallback = function() {
 	window.history.back();
-	setTimeout(function(){
-		window.history.back();//调用两次回退 防止页面停留
-	},100);
+	setTimeout(function() {
+		window.history.back();// 调用两次回退 防止页面停留
+	}, 100);
 };
 
 // ==========================================================分割=======================================================================================\\\\\
@@ -1239,30 +1262,30 @@ tlv8.task = {
 			param.set("epersonids", ePersonID);
 			param.set("afterActivity", activity);
 			param.set("sdata1", sData1);
-			tlv8.XMLHttpRequest("flowoutAction", param, "post", true,
-					function(r) {
-						if (r.data.flag == "false") {
-							alert("操作失败:" + r.data.message);
-							return false;
-						} else {
-							var flwData = eval("(" + r.data.data + ")");
-							this.processID = flwData.processID;
-							this.flowID = flwData.flowID;
-							this.taskID = flwData.taskID;
-							sAlert("操作成功！");
-							if (calback && typeof calback == "function") {
+			tlv8.XMLHttpRequest("flowoutAction", param, "post", true, function(
+					r) {
+				if (r.data.flag == "false") {
+					alert("操作失败:" + r.data.message);
+					return false;
+				} else {
+					var flwData = eval("(" + r.data.data + ")");
+					this.processID = flwData.processID;
+					this.flowID = flwData.flowID;
+					this.taskID = flwData.taskID;
+					sAlert("操作成功！");
+					if (calback && typeof calback == "function") {
+						calback(flwData);
+					} else if (calback && calback != "") {
+						try {
+							calback = eval(calback);
+							if (typeof calback == "function")
 								calback(flwData);
-							} else if (calback && calback != "") {
-								try {
-									calback = eval(calback);
-									if (typeof calback == "function")
-										calback(flwData);
-								} catch (e) {
-									alert("给定的回调函数不存在：" + e);
-								}
-							}
+						} catch (e) {
+							alert("给定的回调函数不存在：" + e);
 						}
-					});
+					}
+				}
+			});
 		}
 	},
 	flowtransmit : function(taskID, activity, ePersonID) {
@@ -1416,7 +1439,8 @@ tlv8.task = {
 		if (count > 0) {
 			var flowID = result.getValueByName("SFLOWID");
 			var taskID = result.getValueByName("SID");
-			var url = cpath+"/mobileUI/system/service/process/flw/viewiocusbot/yj_iocus_bot.html?flowID="
+			var url = cpath
+					+ "/mobileUI/system/service/process/flw/viewiocusbot/yj_iocus_bot.html?flowID="
 					+ flowID + "&taskID=" + taskID;
 			window.open(url, "_self");
 		} else {
@@ -1498,7 +1522,8 @@ tlv8.task = {
 														function() {
 															window
 																	.open(
-																			cpath+"/mobileUI/SA/task/taskView/waitActivity.html",
+																			cpath
+																					+ "/mobileUI/SA/task/taskView/waitActivity.html",
 																			"_self");
 														});
 										return false;
@@ -1609,6 +1634,6 @@ $(document).ready(function() {
 });
 
 /**
-*以下为了兼容云捷代码
-*/
+ * 以下为了兼容云捷代码
+ */
 justep.yn = tlv8;

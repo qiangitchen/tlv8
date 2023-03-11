@@ -89,9 +89,7 @@ function dataInsert(){
 
 //数据保存
 function dataSave() {
-	var rowid = MainData.saveData();
-	J$("MAIN_DATA_FORM").rowid = rowid;
-	J$("MAIN_DATA_FORM").setAttribute("rowid", rowid);
+	MainData.saveData();
 }
 
 //数据刷新

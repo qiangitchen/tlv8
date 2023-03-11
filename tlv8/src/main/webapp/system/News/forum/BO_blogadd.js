@@ -70,7 +70,7 @@ function savedata() {
 		alert("讨论名称不能为空");
 		return false;
 	}
-	var rowid = data.saveData();
+	data.saveData();
 	return true;
 }
 // 选择组织机构

@@ -158,7 +158,9 @@ function soonAnswer() {
 // 回复功能
 function BtnsaveData() {
 	var saveid = data.saveData();
-	// document.getElementById("bo_comment").rowid = ;
+	if(!saveid){
+		return false;
+	}
 	$("#bbsMain")
 			.after(
 					"<div id='"

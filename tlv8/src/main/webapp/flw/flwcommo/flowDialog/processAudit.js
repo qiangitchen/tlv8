@@ -80,9 +80,7 @@ function saveDatatoMyOp() {
 	$("#FCONCLUSIONNAME").val(opt);
 	$("#FCREATORID").val(tlv8.Context.getCurrentPersonID());
 	$("#FCREATOR").val(tlv8.Context.getCurrentPersonName());
-	var rowid = mainData.saveData();
-	J$("maindata_form").rowid = rowid;
-	$("#maindata_form").attr("rowid", rowid);
+	mainData.saveData();
 	dataInit();
 }
 
