@@ -1179,9 +1179,45 @@ tlv8.Data = function () {
         mainform.data = this;
         var cell = new Map();
         var fdata = formfield || $(mainform).serializeJSON();
+        var isRequired = function(field){
+        	if(field.attr('required')){
+        		return true;
+        	}
+        	var opd = field.attr('data-options');
+        	if(opd && opd.indexOf('required:true')>-1){
+        		return true;
+        	}
+        	var ver = field.attr('lay-verify');
+        	if(ver && ver.indexOf('required')>-1){
+        		return true;
+        	}
+        	return false;
+        };
+        var getEasyBox = function(field){
+        	var ptbx = field.parent().find(".textbox");
+        	if(ptbx.length>0){
+        		return ptbx;
+        	}
+        	return false;
+        };
         for (var cnm in fdata) {
             if (cnm == 'file') {
                 continue;
+            }
+            var field = $(mainform[cnm]);
+            if(isRequired(field)){
+            	if(!fdata[cnm]||fdata[cnm]==""){
+            		layui.layer.msg("必填项不能为空",{icon:5,shift:6,time:3000});
+            		var ptbx = getEasyBox(field);
+            		if(ptbx){
+            			ptbx.addClass("easyui-form-danger");
+            			ptbx.focus();
+            			return false;
+            		}
+            		field.addClass("layui-form-danger");
+            		field.focus();
+            		return false;
+            	}
             }
             cell.put(cnm, fdata[cnm]);
         }

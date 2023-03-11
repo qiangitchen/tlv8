@@ -3581,3 +3581,7 @@
 .sidemenu .tree-node-selected {
   border-right: 0;
 }
+span.combo{
+	border: 1px solid #eee;
+}
+.easyui-form-danger{border-color:#FF5722!important}

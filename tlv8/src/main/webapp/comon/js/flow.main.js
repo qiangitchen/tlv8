@@ -267,10 +267,14 @@ tlv8.flw.prototype.setItemStatus = function(item) {
  */
 tlv8.flw.prototype.flowAudit = function(flowID, taskID, ePersonID, sData1) {
 	if (this.setting.autosaveData) {
-		this.sData1 = this.data.saveData();
+		var rowid = this.data.saveData();
+		if (!rowid) {
+			return;
+		}
+		this.sData1 = rowid;
 	}
 	if (!this.setting.auditParam) {
-		alert("审批信息未配置！");
+		layui.layer.alert("审批信息未配置！");
 		return false;
 	}
 	var url = "/flw/flwcommo/flowDialog/flow_audit_opinion.html";
@@ -390,7 +394,7 @@ tlv8.flw.prototype.flowstart = function(billid) {
 	tlv8.XMLHttpRequest("flowstartAction", param, "post", false, function(r) {
 		tlv8.showModelState(false);
 		if (r.data.flag == "false") {
-			alert("操作失败:" + r.data.message);
+			layui.layer.alert("操作失败:" + r.data.message);
 		} else {
 			var flwData = eval("(" + r.data.data + ")");
 			flowCompent.processID = flwData.processID;
@@ -475,7 +479,11 @@ tlv8.flw.prototype.flowback = function(flowID, taskID) {
 		return;
 	var flowCompent = this;
 	if (this.setting.autosaveData) {
-		this.sData1 = this.data.saveData();
+		var rowid = this.data.saveData();
+		if (!rowid) {
+			return;
+		}
+		this.sData1 = rowid;
 	}
 	var param = new tlv8.RequestParam();
 	var onBeforeBack = this.Dom.getAttribute("onBeforeBack");
@@ -524,7 +532,7 @@ tlv8.flw.prototype.flowback = function(flowID, taskID) {
 				function(r) {
 					tlv8.showModelState(false);
 					if (r.data.flag == "false") {
-						alert("操作失败:" + r.data.message);
+						layui.layer.alert("操作失败:" + r.data.message);
 					} else {
 						var flwData = eval("(" + r.data.data + ")");
 						flowCompent.processID = flwData.processID;
@@ -600,7 +608,7 @@ tlv8.flw.prototype.flowback = function(flowID, taskID) {
 				function(r) {
 					tlv8.showModelState(false);
 					if (r.data.flag == "false") {
-						alert("操作失败:" + r.data.message);
+						layui.layer.alert("操作失败:" + r.data.message);
 					} else {
 						var flwData = eval("(" + r.data.data + ")");
 						flowCompent.processID = flwData.processID;
@@ -720,7 +728,11 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 		return;
 	}
 	if (this.setting.autosaveData) {
-		this.sData1 = this.data.saveData();
+		var rowid = this.data.saveData();
+		if (!rowid) {
+			return;
+		}
+		this.sData1 = rowid;
 	}
 	var onBeforeAdvance = this.Dom.getAttribute("onBeforeAdvance");
 	if (onBeforeAdvance) {
@@ -778,13 +790,14 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 						function(r) {
 							tlv8.showModelState(false);
 							if (r.data.flag == "false") {
-								alert("操作失败:" + r.data.message);
+								layui.layer.alert("操作失败:" + r.data.message);
 							} else if (r.data.flag == "msg") {
-								alert(r.data.message);
-								if (flowCompent.setting.autoclose == true) {
-									tlv8.showSate(false);
-									tlv8.portal.closeWindow();
-								}
+								layui.layer.alert(r.data.message, function() {
+									if (flowCompent.setting.autoclose == true) {
+										tlv8.showSate(false);
+										tlv8.portal.closeWindow();
+									}
+								});
 							} else if (r.data.flag == "select") {
 								try {
 									var reActData = eval("(" + r.data.data
@@ -803,7 +816,7 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 											flowEngion, null, null,
 											activityListStr);
 								} catch (e) {
-									alert("流转失败!m:" + e.message);
+									layui.layer.alert("流转失败!m:" + e.message);
 								}
 							} else {
 								var flwData = eval("(" + r.data.data + ")");
@@ -886,13 +899,14 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 						function(r) {
 							tlv8.showModelState(false);
 							if (r.data.flag == "false") {
-								alert("操作失败:" + r.data.message);
+								layui.layer.alert("操作失败:" + r.data.message);
 							} else if (r.data.flag == "msg") {
-								alert(r.data.message);
-								if (flowCompent.setting.autoclose == true) {
-									tlv8.showSate(false);
-									tlv8.portal.closeWindow();
-								}
+								layui.layer.alert(r.data.message, function() {
+									if (flowCompent.setting.autoclose == true) {
+										tlv8.showSate(false);
+										tlv8.portal.closeWindow();
+									}
+								});
 							} else if (r.data.flag == "select") {
 								try {
 									var reActData = eval("(" + r.data.data
@@ -911,7 +925,7 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 											flowEngion, null, null,
 											activityListStr);
 								} catch (e) {
-									alert("流转失败!m:" + e.message);
+									layui.layer.alert("流转失败!m:" + e.message);
 								}
 							} else {
 								var flwData = eval("(" + r.data.data + ")");
@@ -1013,13 +1027,14 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 						function(r) {
 							tlv8.showModelState(false);
 							if (r.data.flag == "false") {
-								alert("启动流程失败:" + r.data.message);
+								layui.layer.alert("启动流程失败:" + r.data.message);
 							} else if (r.data.flag == "msg") {
-								alert(r.data.message);
-								if (flowCompent.setting.autoclose == true) {
-									tlv8.showSate(false);
-									tlv8.portal.closeWindow();
-								}
+								layui.layer.alert(r.data.message, function() {
+									if (flowCompent.setting.autoclose == true) {
+										tlv8.showSate(false);
+										tlv8.portal.closeWindow();
+									}
+								});
 							} else if (r.data.flag == "select") {
 								try {
 									var reActData = eval("(" + r.data.data
@@ -1038,7 +1053,7 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 											flowEngion, null, null,
 											activityListStr);
 								} catch (e) {
-									alert("流转失败!m:" + e.message);
+									layui.layer.alert("流转失败!m:" + e.message);
 								}
 								window.flwquery = false;
 							} else {
@@ -1090,7 +1105,7 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 		param.set("epersonids", backData.epersonids);
 		tlv8.XMLHttpRequest("flowoutAction", param, "post", true, function(r) {
 			if (r.data.flag == "false") {
-				alert(r.data.message);
+				layui.layer.alert(r.data.message);
 				return false;
 			}
 			var onAdvanceCommit = flowCompent.Dom
@@ -1157,7 +1172,11 @@ tlv8.flw.prototype.flowout = function(flowID, taskID, ePersonID, sData1) {
 tlv8.flw.prototype.flowtransmit = function(flowID, taskID, ePersonID) {
 	var flowCompent = this;
 	if (this.setting.autosaveData) {
-		this.sData1 = this.data.saveData();
+		var rowid = this.data.saveData();
+		if (!rowid) {
+			return;
+		}
+		this.sData1 = rowid;
 	}
 	var onBeforeTransfer = this.Dom.getAttribute("onBeforeTransfer");
 	if (onBeforeTransfer) {
@@ -1215,7 +1234,7 @@ tlv8.flw.prototype.flowtransmit = function(flowID, taskID, ePersonID) {
 						function(r) {
 							tlv8.showModelState(false);
 							if (r.data.flag == "false") {
-								alert("操作失败:" + r.data.message);
+								layui.layer.alert("操作失败:" + r.data.message);
 							} else if (r.data.flag == "select") {
 								try {
 									var reActData = eval("(" + r.data.data
@@ -1231,7 +1250,7 @@ tlv8.flw.prototype.flowtransmit = function(flowID, taskID, ePersonID) {
 											flowTransEngion, null, null,
 											activityListStr);
 								} catch (e) {
-									alert("流转失败!m:" + e.message);
+									layui.layer.alert("流转失败!m:" + e.message);
 								}
 							} else {
 								var flwData = eval("(" + r.data.data + ")");
@@ -1293,7 +1312,7 @@ tlv8.flw.prototype.flowtransmit = function(flowID, taskID, ePersonID) {
 											true,
 											function(r) {
 												if (r.data.flag == "false") {
-													alert(r.data.message);
+													layui.layer.alert(r.data.message);
 												} else {
 													var onTransferCommit = flowCompent.Dom
 															.getAttribute("onTransferCommit");
@@ -1411,7 +1430,11 @@ tlv8.flw.prototype.flowtransmit = function(flowID, taskID, ePersonID) {
 tlv8.flw.prototype.flowpause = function(flowID, taskID) {
 	var flowCompent = this;
 	if (this.setting.autosaveData) {
-		this.sData1 = this.data.saveData();
+		var rowid = this.data.saveData();
+		if (!rowid) {
+			return;
+		}
+		this.sData1 = rowid;
 	}
 	if (!confirm("流程暂停后只能到任务中心激活.\n  确定暂停吗?"))
 		return;
@@ -1462,7 +1485,7 @@ tlv8.flw.prototype.flowpause = function(flowID, taskID) {
 				function(r) {
 					tlv8.showModelState(false);
 					if (r.data.flag == "false") {
-						alert("操作失败:" + r.data.message);
+						layui.layer.alert("操作失败:" + r.data.message);
 					} else {
 						var onSuspendCommit = flowCompent.Dom
 								.getAttribute("onSuspendCommit");
@@ -1534,7 +1557,7 @@ tlv8.flw.prototype.flowpause = function(flowID, taskID) {
 				function(r) {
 					tlv8.showModelState(false);
 					if (r.data.flag == "false") {
-						alert("操作失败:" + r.data.message);
+						layui.layer.alert("操作失败:" + r.data.message);
 					} else {
 						var onSuspendCommit = flowCompent.Dom
 								.getAttribute("onSuspendCommit");
@@ -1613,7 +1636,11 @@ tlv8.flw.prototype.flowpause = function(flowID, taskID) {
 tlv8.flw.prototype.flowstop = function(flowID, taskID) {
 	var flowCompent = this;
 	if (this.setting.autosaveData) {
-		this.sData1 = this.data.saveData();
+		var rowid = this.data.saveData();
+		if (!rowid) {
+			return;
+		}
+		this.sData1 = rowid;
 	}
 	if (!confirm("终止流程,流程将彻底作废.\n  确定终止吗?"))
 		return;
@@ -1663,7 +1690,7 @@ tlv8.flw.prototype.flowstop = function(flowID, taskID) {
 		tlv8.XMLHttpRequest("flowstopAction", param, "post", true, function(r) {
 			tlv8.showModelState(false);
 			if (r.data.flag == "false") {
-				alert("操作失败:" + r.data.message);
+				layui.layer.alert("操作失败:" + r.data.message);
 			} else {
 				var onAbortCommit = flowCompent.Dom
 						.getAttribute("onAbortCommit");
@@ -1732,7 +1759,7 @@ tlv8.flw.prototype.flowstop = function(flowID, taskID) {
 		param.set("taskID", this.taskID);
 		tlv8.XMLHttpRequest("flowstopAction", param, "post", true, function(r) {
 			if (r.data.flag == "false") {
-				alert("操作失败:" + r.data.message);
+				layui.layer.alert("操作失败:" + r.data.message);
 			} else {
 				var onAbortCommit = flowCompent.Dom
 						.getAttribute("onAbortCommit");
@@ -1853,7 +1880,7 @@ tlv8.task = {
 			tlv8.XMLHttpRequest("openTaskAction", param, "post", true,
 					function(r) {
 						if (r.data.flag == "false") {
-							alert("操作失败:" + r.data.message);
+							layui.layer.alert("操作失败:" + r.data.message);
 						} else {
 							var Data = eval("(" + r.data.data + ")");
 							var name = Data.name;
@@ -1896,7 +1923,7 @@ tlv8.task = {
 					function(r) {
 						tlv8.showModelState(false);
 						if (r.data.flag == "false") {
-							alert("操作失败:" + r.data.message);
+							layui.layer.alert("操作失败:" + r.data.message);
 							return false;
 						} else {
 							var flwData = eval("(" + r.data.data + ")");
@@ -1913,7 +1940,7 @@ tlv8.task = {
 								if (typeof calback == "function")
 									calback();
 							} catch (e) {
-								alert("给定的回调函数不存在：" + e);
+								layui.layer.alert("给定的回调函数不存在：" + e);
 							}
 						}
 					});
@@ -1954,7 +1981,7 @@ tlv8.task = {
 					r) {
 				tlv8.showModelState(false);
 				if (r.data.flag == "false") {
-					alert("操作失败:" + r.data.message);
+					layui.layer.alert("操作失败:" + r.data.message);
 					return false;
 				} else {
 					var flwData = eval("(" + r.data.data + ")");
@@ -1971,7 +1998,7 @@ tlv8.task = {
 						if (typeof calback == "function")
 							calback();
 					} catch (e) {
-						alert("给定的回调函数不存在：" + e);
+						layui.layer.alert("给定的回调函数不存在：" + e);
 					}
 				}
 			});
@@ -2013,7 +2040,7 @@ tlv8.task = {
 					function(r) {
 						tlv8.showModelState(false);
 						if (r.data.flag == "false") {
-							alert("操作失败:" + r.data.message);
+							layui.layer.alert("操作失败:" + r.data.message);
 							return false;
 						} else {
 							sAlert("操作成功！");
@@ -2027,7 +2054,7 @@ tlv8.task = {
 								if (typeof calback == "function")
 									calback();
 							} catch (e) {
-								alert("给定的回调函数不存在：" + e);
+								layui.layer.alert("给定的回调函数不存在：" + e);
 							}
 						}
 					});
@@ -2055,7 +2082,7 @@ tlv8.task = {
 					function(r) {
 						tlv8.showModelState(false);
 						if (r.data.flag == "false") {
-							alert("操作失败:" + r.data.message);
+							layui.layer.alert("操作失败:" + r.data.message);
 							return false;
 						} else {
 							sAlert("操作成功！");
@@ -2069,7 +2096,7 @@ tlv8.task = {
 								if (typeof calback == "function")
 									calback();
 							} catch (e) {
-								alert("给定的回调函数不存在：" + e);
+								layui.layer.alert("给定的回调函数不存在：" + e);
 							}
 						}
 					});
@@ -2099,7 +2126,7 @@ tlv8.task = {
 					function(r) {
 						tlv8.showModelState(false);
 						if (r.data.flag == "false") {
-							alert("操作失败:" + r.data.message);
+							layui.layer.alert("操作失败:" + r.data.message);
 							return false;
 						} else {
 							sAlert("操作成功！");
@@ -2113,7 +2140,7 @@ tlv8.task = {
 								if (typeof calback == "function")
 									calback();
 							} catch (e) {
-								alert("给定的回调函数不存在：" + e);
+								layui.layer.alert("给定的回调函数不存在：" + e);
 							}
 						}
 					});
@@ -2145,7 +2172,7 @@ tlv8.task = {
 				function(r) {
 					tlv8.showModelState(false);
 					if (r.data.flag == "false") {
-						alert("操作失败:" + r.data.message);
+						layui.layer.alert("操作失败:" + r.data.message);
 					} else {
 						var flwData = eval("(" + r.data.data + ")");
 						flowCompent.processID = flwData.processID;
@@ -2160,7 +2187,7 @@ tlv8.task = {
 							if (typeof calback == "function")
 								calback();
 						} catch (e) {
-							alert("给定的回调函数不存在：" + e);
+							layui.layer.alert("给定的回调函数不存在：" + e);
 						}
 					}
 				});
@@ -2219,7 +2246,7 @@ tlv8.task = {
 		var r = tlv8.XMLHttpRequest("Update_Flowbillinfo", param, "post",
 				false, null);
 		if (r.data.flag == "false") {
-			alert(r.data.message);
+			layui.layer.alert(r.data.message);
 			return false;
 		}
 		return r.data.data;
