@@ -383,6 +383,7 @@
 		<module>tlv8.base</module>
 		<module>tlv8.core</module>
 		<module>tlv8.system</module>
+		<module>tlv8.opm</module>
 		<module>tlv8.flw</module>
 		<module>tlv8.monitor</module>
 		<module>tlv8.ureport</module>
