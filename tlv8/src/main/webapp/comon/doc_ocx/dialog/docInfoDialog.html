@@ -1,6 +1,7 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link type="text/css" rel="stylesheet" href="../../../resources/layui/css/layui.css"> 
     <link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/default/easyui.css" />
 	<link type="text/css" rel="stylesheet" href="../../../resources/jquery-easyui/themes/icon.css" />
     <link rel="stylesheet" href="../../css/common.css" type="text/css"></link>
@@ -11,6 +12,7 @@
   	<script type="text/javascript" src="../common/json.js"></script>
   	<script type="text/javascript" src="../../../resources/jquery-easyui/jquery.easyui.min.js"></script>
   	<script type="text/javascript" src="../../../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+  	<script type="text/javascript" src="../../../resources/layui/layui.js"></script> 
   	<script type="text/javascript" src="docInfoDialog.js"></script>
     <script type="text/javascript">
     	window.isWriteLog = false;
@@ -19,13 +21,12 @@
   <body style="overflow: hidden;">
   	<div class="easyui-layout" data-options="fit:true,border:false">
   	 <div data-options="region:'center',border:false" style="overflow: hidden;"> 
-		<form id="docInfo_form">
+		<form id="docInfo_form" style="width: 100%; height: 100%;">
 	    	<div class="easyui-tabs" data-options="fit:true,border:false">
 		    	<div title="常规" >
-		    		 <table width="100%" style="table-layout: fixed;"> 
+		    		 <table width="100%" style="table-layout: fixed;" class="layui-table"> 
 		                  <tr style="height:28px"> 
-		                    <td style="width:8px;"></td>  
-		                    <td scope="row" style="width:100px;"> 
+		                    <td scope="row" style="width:130px;"> 
 		                      <div class="th">名称:</div> 
 		                    </td>  
 		                    <td style="width:320px;"> 
@@ -34,7 +35,6 @@
 		                    <td/> 
 		                  </tr>  
 		                  <tr style="height:28px"> 
-		                    <td></td>  
 		                    <td scope="row"> 
 		                      <div class="th">类型:</div> 
 		                    </td>  
@@ -44,7 +44,6 @@
 		                    <td/> 
 		                  </tr>  
 		                  <tr style="height:28px"> 
-		                    <td></td>  
 		                    <td> 
 		                      <div class="th">大小(字节):</div> 
 		                    </td>  
@@ -54,7 +53,6 @@
 		                    <td/> 
 		                  </tr>  
 		                  <tr style="height:28px"> 
-		                    <td></td>  
 		                    <td scope="row"> 
 		                      <div class="th">路径:</div> 
 		                    </td>  
@@ -63,15 +61,7 @@
 		                    </td>  
 		                    <td/> 
 		                  </tr>  
-		                  <tr style="height:3px"> 
-		                    <td></td>  
-		                    <td colspan="2"> 
-		                      <div style="overflow:hidden;display:block;background:silver; width:100%;height:1px"></div> 
-		                    </td>  
-		                    <td/> 
-		                  </tr>  
 		                  <tr style="height:28px"> 
-		                    <td></td>  
 		                    <td scope="row"> 
 		                      <div class="th">创建人:</div> 
 		                    </td>  
@@ -80,7 +70,6 @@
 		                    </td> 
 		                  </tr>  
 		                  <tr style="height:28px"> 
-		                    <td></td>  
 		                    <td> 
 		                      <div class="th">创建部门：</div> 
 		                    </td>  
@@ -89,7 +78,6 @@
 		                    </td> 
 		                  </tr>  
 		                  <tr style="height:28px"> 
-		                    <td></td>  
 		                    <td scope="row"> 
 		                      <div style="width:120px" class="th">创建时间:</div> 
 		                    </td>  
@@ -97,15 +85,11 @@
 		                      <input type="text" readonly="readonly"  id="sCreateTime" format="yyyy-MM-dd hh:mm:ss"/> 
 		                    </td> 
 		                  </tr>  
-		                  <tr style="height:3px"> 
-		                    <td></td>  
-		                    <td colspan="2"> 
-		                      <div style="overflow:hidden;display:block;background:silver; width:100%;height:1px"></div> 
-		                    </td>  
-		                    <td/> 
-		                  </tr>  
-		                  <tr style="height:28px"> 
-		                    <td></td>  
+		              </table> 
+		    	 </div>  
+		    	<div title="修改">
+		    		 <table width="100%" style="table-layout: fixed;" class="layui-table"> 
+		    		 	<tr style="height:28px"> 
 		                    <td scope="row"> 
 		                      <div class="th">编辑人:</div> 
 		                    </td>  
@@ -115,7 +99,6 @@
 		                    <td/> 
 		                  </tr>  
 		                  <tr style="height:28px"> 
-		                    <td></td>  
 		                    <td> 
 		                      <div class="th">编辑部门:</div> 
 		                    </td>  
@@ -124,15 +107,7 @@
 		                    </td>  
 		                    <td/> 
 		                  </tr>  
-		                  <tr style="height:3px"> 
-		                    <td></td>  
-		                    <td colspan="2"> 
-		                      <div style="overflow:hidden;display:block;background:silver; width:100%;height:1px"></div> 
-		                    </td>  
-		                    <td/> 
-		                  </tr>  
 		                  <tr style="height:28px"> 
-		                    <td></td>  
 		                    <td scope="row"> 
 		                      <div class="th">最后修改人:</div> 
 		                    </td>  
@@ -142,7 +117,6 @@
 		                    <td/> 
 		                  </tr>  
 		                  <tr style="height:28px"> 
-		                    <td></td>  
 		                    <td> 
 		                      <div class="th">最后修改部门:</div> 
 		                    </td>  
@@ -152,26 +126,19 @@
 		                    <td/> 
 		                  </tr>  
 		                  <tr style="height:28px"> 
-		                    <td></td>  
 		                    <td scope="row"> 
 		                      <div style="width:120px" class="th">最后修改时间:</div> 
 		                    </td>  
 		                    <td> 
 		                      <input type="text" readonly="readonly"  id="sLastWriteTime" format="yyyy-MM-dd hh:mm:ss"/> 
 		                    </td> 
-		                  </tr>  
-		                  <tr style="height:3px"> 
-		                    <td></td>  
-		                    <td colspan="2"></td>  
-		                    <td/> 
-		                  </tr> 
-		                </table> 
-		    	 </div>  
+		                  </tr>
+		    		 </table>
+		    	</div>
 		       <div class="dhtmlgoodies_aTab" title="摘要">
-		         <table width="100%" style="table-layout: fixed;"> 
+		         <table width="100%" style="table-layout: fixed;" class="layui-table"> 
 		             <tr style="height:28px;"> 
-		               <td style="width:8px;"></td>
-		               <td scope="row" style="width:100px;"> 
+		               <td scope="row" style="width:130px;"> 
 		                 <div class="th">文件编号：</div> 
 		               </td>  
 		               <td style="width:320px;"> 
@@ -180,7 +147,6 @@
 		               <td/> 
 		             </tr>  
 		             <tr style="height:28px;"> 
-		               <td></td>  
 		               <td> 
 		                 <div class="th">成文日期：</div> 
 		               </td>  
@@ -190,7 +156,6 @@
 		               <td/> 
 		             </tr>  
 		             <tr style="height:28px;"> 
-		               <td></td>  
 		               <td> 
 		                 <div class="th">关 键 字：</div> 
 		               </td>  
@@ -199,19 +164,15 @@
 		               </td>  
 		               <td/> 
 		             </tr>  
-		             <tr style="height:260px"> 
-		               <td></td>  
+		             <tr> 
 		               <td> 
 		                 <div class="th">文件描述：</div> 
 		               </td>  
 		               <td> 
-		                 <textarea id="sDescription" style="width:100%;height:280px;margin-top:10px"></textarea> 
+		                 <textarea id="sDescription" style="width:100%;height:180px;margin-top:10px"></textarea> 
 		               </td>  
 		               <td/> 
 		             </tr>  
-		             <tr style="height:38px"> 
-		               <td/> 
-		             </tr> 
 		           </table> 
 		        </div> 
 		     </div>

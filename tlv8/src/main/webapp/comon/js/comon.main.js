@@ -457,7 +457,7 @@ tlv8.Queryaction = function (actionName, post, callBack, data, where, ays) {
  */
 tlv8.Deleteaction = function (actionName, post, callBack, rowid, data, ays) {
     if (!rowid || rowid == "") {
-        alert("rowid不能为空！");
+    	layui.layer.alert("rowid不能为空！");
         return;
     }
     var table = data ? data.table : "";
@@ -612,7 +612,7 @@ tlv8.sqlQueryAction = function (dbkey, sql, callBack, ayn) {
                 }
             }
             if (have == false) {
-                alert("指定的列名无效，请注意大小写！");
+            	layui.layer.alert("指定的列名无效，请注意大小写！");
                 return false;
             }
             return $dval[index];
@@ -643,7 +643,7 @@ tlv8.sqlQueryAction = function (dbkey, sql, callBack, ayn) {
     param.set("querys", CryptoJS.AESEncrypt(sql));
     var recallback = function (r) {
         if (r.data.flag == "false") {
-            alert(r.data.message);
+        	layui.layer.alert(r.data.message);
         }
         if (callBack) {
             var res = new rsultData(r);
@@ -675,7 +675,7 @@ tlv8.sqlQueryActionforJson = function (dbkey, sql, callBack, ayn) {
     param.set("querys", CryptoJS.AESEncrypt(sql));
     var recallback = function (r) {
         if (r.data.flag == "false") {
-            alert(r.data.message);
+        	layui.layer.alert(r.data.message);
             return;
         }
         if (callBack) {
@@ -1141,7 +1141,7 @@ tlv8.Data = function () {
                     + ">";
             }
         } else if (typeof (cell) == "function") {
-            alert("传入的类型不能为：function");
+        	layui.layer.alert("传入的类型不能为：function");
         } else if (!cell) {
             this.cells = "";
         } else {
@@ -1156,7 +1156,7 @@ tlv8.Data = function () {
 	 */
     this.saveData = function (formfield) {
         if (!this.formid || this.formid == "") {
-            alert("未指定保存内容！");
+        	layui.layer.alert("未指定保存内容！");
             return false;
         }
         var bfSave = document.getElementById(this.formid).getAttribute(
@@ -1272,7 +1272,7 @@ tlv8.Data = function () {
                     msessage = msessage.substring(msessage
                         .indexOf("Exception:") + 10);
                 }
-                alert(msessage);
+                layui.layer.alert(msessage);
                 return false;
             } else {
                 this.version++;// 保存成功记录新的版本号
@@ -1493,14 +1493,14 @@ tlv8.Data = function () {
         if (isTasksub) {
             this.setReadonly(true);
         }
-        var message = "操作成功!";
+        var message = "";
         if (data.flag == "false") {
             msessage = r.data.message;
             if (msessage.indexOf("Exception:") > 0) {
                 msessage = msessage
                     .substring(msessage.indexOf("Exception:") + 10);
             }
-            alert(msessage);
+            layui.layer.alert(msessage);
         } else {
             try {
                 var xmlElem = tlv8.strToXML(data.data);
@@ -1627,7 +1627,6 @@ tlv8.Data = function () {
                                 // 单选框赋值
                                 var cellname = revalueEl.id || $(revalueEl).attr("name");
                                 $('input[name="' + cellname + '"][value="' + $dval + '"]').attr('checked', 'checked');
-                                layui.form.render('radio');
                             } catch (e) {
                             }
                             try {
@@ -1659,8 +1658,9 @@ tlv8.Data = function () {
                         }
                     }
                 }
+                layui.form.render('');// 统一渲染layui表单
             } catch (e) {
-                alert(e.name + ":" + e.message);
+                layui.layer.alert(e.name + ":" + e.message);
             }
         }
         isEdited = false;
@@ -1690,7 +1690,7 @@ tlv8.Data = function () {
                 }
             }
         }
-        sAlert(message, 500);
+        // sAlert(message, 500);
     };
     /**
 	 * @name getValueByName
@@ -1738,10 +1738,10 @@ tlv8.Data = function () {
                     return $dval;
                 }
             } else {
-                alert("指定的列名无效：" + name);
+            	layui.layer.alert("指定的列名无效：" + name);
             }
         } catch (e) {
-            alert("指定的列名无效：" + name);
+        	layui.layer.alert("指定的列名无效：" + name);
         }
         return "";
     };
@@ -1799,10 +1799,10 @@ tlv8.Data = function () {
                 }
                 isEdited = true;
             } else {
-                alert("指定的列名无效：" + name);
+            	layui.layer.alert("指定的列名无效：" + name);
             }
         } catch (e) {
-            alert("指定的列名无效：" + name);
+        	layui.layer.alert("指定的列名无效：" + name);
         }
     };
     return this;
@@ -2234,7 +2234,7 @@ tlv8.portal.currentTabId = function () {
     try {
         return topparent.$.jpolite.getTabID();
     } catch (e) {
-        alert("tlv8.portal.currentTabId: " + e.message);
+    	layui.layer.alert("tlv8.portal.currentTabId: " + e.message);
     }
 };
 
@@ -3694,7 +3694,7 @@ tlv8.CheckMail = function (mail) {
     if (filter.test(mail))
         return true;
     else {
-        alert('您的电子邮件格式不正确!');
+    	layui.layer.alert('您的电子邮件格式不正确!');
         return false;
     }
 };
@@ -3706,7 +3706,7 @@ tlv8.checkdate = function (date) {
     if (filter.test(date))
         return true;
     else {
-        alert('您的日期格式不正确!');
+    	layui.layer.alert('您的日期格式不正确!');
         return false;
     }
 };
@@ -3784,7 +3784,7 @@ tlv8.CheckNumber = {
                         window.clipboardData.setData("Text", str);
                 }
             } catch (e) {
-                alert("粘贴出现错误!");
+            	layui.layer.alert("粘贴出现错误!");
             }
         }
     }
@@ -3872,7 +3872,7 @@ tlv8.Telephone = function (date) {
     if (filter.test(date))
         return true;
     else {
-        alert('您输入的电话号码不正确，请重新输入！');
+    	layui.layer.alert('您输入的电话号码不正确，请重新输入！');
         return false;
     }
 };
@@ -4009,7 +4009,7 @@ var checkPathisHave = function (path) {
  */
 tlv8.GridSelect = function (div, dbkey, sql, master, caninput) {
     if (!div.id || div.id == "") {
-        alert("div的id不能为空！");
+    	layui.layer.alert("div的id不能为空！");
         return;
     }
     var disabled = "";
@@ -4513,7 +4513,7 @@ tlv8.Radio = function (div, item, splithtmlarray) {
     if (div.Radio)
         return;
     if (!div || !item) {
-        alert("参数无效：tlv8.Radio");
+    	layui.layer.alert("参数无效：tlv8.Radio");
         return;
     }
     var checkboxcompid = div.id;
@@ -4588,7 +4588,7 @@ tlv8.CheckBox = function (div, item, splithtmlarray) {
     if (div.Check)
         return;
     if (!div || !item) {
-        alert("参数无效：tlv8.CheckBox");
+    	layui.layer.alert("参数无效：tlv8.CheckBox");
         return;
     }
     var checkboxcompid = div.id;
@@ -4837,7 +4837,7 @@ tlv8.dowloadfile = function (fileID, filename) {
     } catch (e) {
     }
     if (!r) {
-        alert("获取文件信息失败!可能文档服务配置错误，请联系管理员");
+    	layui.layer.alert("获取文件信息失败!可能文档服务配置错误，请联系管理员");
         return;
     }
     if (r.url && r.url != "err")
@@ -4845,7 +4845,7 @@ tlv8.dowloadfile = function (fileID, filename) {
             + ",width=" + (screen.availWidth)
             + ",toolbar=no,menubar=no,status=no,location=no,top=0,left=0");
     else
-        alert("下载失败!");
+    	layui.layer.alert("下载失败!");
     return;
 };
 tlv8.deletefile = function (fileID, filename, dbkey, tablename, cellname,
@@ -5039,7 +5039,7 @@ tlv8.standardPartition = function (div) {
         }
     }
     if (!left || left.getAttribute("stpa") != "left") {
-        alert("未定义左边内容！At:tlv8.standardPartition");
+    	layui.layer.alert("未定义左边内容！At:tlv8.standardPartition");
         return;
     }
     spTable += "width:" + left.style.width + ";'>";
@@ -5053,7 +5053,7 @@ tlv8.standardPartition = function (div) {
         + "splitimg/left.gif' style='width:6px;height:56px;'/></a></td>";
     spTable += "<td valign='top' ";
     if (!right || right.getAttribute("stpa") != "right") {
-        alert("未定义右边内容！At:tlv8.standardPartition");
+    	layui.layer.alert("未定义右边内容！At:tlv8.standardPartition");
         return;
     }
     spTable += "style='width:" + right.style.width + ";'>";
@@ -5279,7 +5279,7 @@ tlv8.sTab = function (div) {
     }
     contectIDs.replaceFirst(",", "");
     if ($sLabs.length != $sContext.length) {
-        alert("标题和内容没有对应！At:tlv8.sTab");
+    	layui.layer.alert("标题和内容没有对应！At:tlv8.sTab");
         return;
     }
     for (i in $sLabs) {
@@ -5406,22 +5406,6 @@ tlv8.fileComponent = function (div, data, cellname, docPath, canupload,
         createJSSheet($rp + "resources/layui/layui.js");
     }
     var $commonpath = $dpjspath.replace("/js/", "/");
-// if (!checkPathisHave(cpath+"/comon/doc_ocx/WindowDialog.js")
-// && !checkPathisHave($commonpath + "doc_ocx/WindowDialog.js")) {
-// createJSSheet($commonpath + "doc_ocx/WindowDialog.js");
-// }
-// if (!checkPathisHave(cpath+"/comon/doc_ocx/common/base64.js")
-// && !checkPathisHave($commonpath + "doc_ocx/common/base64.js")) {
-// createJSSheet($commonpath + "doc_ocx/common/base64.js");
-// }
-// if (!checkPathisHave(cpath+"/comon/doc_ocx/common/json.js")
-// && !checkPathisHave($commonpath + "doc_ocx/common/json.js")) {
-// createJSSheet($commonpath + "doc_ocx/common/json.js");
-// }
-// if (!checkPathisHave(cpath+"/comon/doc_ocx/yahooUtil.js")
-// && !checkPathisHave($commonpath + "doc_ocx/yahooUtil.js")) {
-// createJSSheet($commonpath + "doc_ocx/yahooUtil.js");
-// }
     if (!checkPathisHave(cpath + "/comon/doc_ocx/docUtil.js")
         && !checkPathisHave($commonpath + "doc_ocx/docUtil.js")) {
         createJSSheet($commonpath + "doc_ocx/docUtil.js");
@@ -5488,7 +5472,7 @@ tlv8.fileComponent = function (div, data, cellname, docPath, canupload,
             dataType: 'json',
             data: {dbkey: data.dbkay, rowid: data.rowid, tablename: data.table, cellname: cellname, docPath: docPath},
             before: function (obj) {
-                layui.layer.load();
+            	layui.layer.load();
             },
             done: function (res, index, upload) {
                 layui.layer.closeAll('loading');
@@ -5518,21 +5502,16 @@ tlv8.fileComponent = function (div, data, cellname, docPath, canupload,
     };
     div.createUploader = this.createUploader;
     if (false != canupload && !isTasksub) {
-        setTimeout(function () {
-            if (data.rowid && data.rowid != "") {
-                div.createUploader();
+        $('#' + div.id + '_uploadItem').click(function () {
+            var rowid = data.saveData();
+            if (!rowid || rowid == "") {
+                layui.layer.alert("请先保存数据!");
             } else {
-                $('#' + div.id + '_uploadItem').click(function () {
-                    var rowid = data.rowid;// data.saveData();
-                    if (!rowid || rowid == "") {
-                        layui.layer.alert("请先保存数据!");
-                    } else {
-                        $('#' + div.id + '_uploadItem').unbind("click");
-                        div.createUploader();
-                    }
-                });
+                $('#' + div.id + '_uploadItem').unbind("click");
+                div.createUploader();
+                $('#' + div.id + '_uploadItem').click();
             }
-        }, 500);
+        });
     }
     this.$refreshFileComp = function () {
         var dbkey = data.dbkay;
@@ -5570,7 +5549,7 @@ tlv8.fileComponent = function (div, data, cellname, docPath, canupload,
                 }
             }
         } catch (e) {
-            alert(e.message);
+        	layui.layer.alert(e.message);
         }
         div.dilelist = dilelist;
         var fileIDs = new Array();
@@ -5606,9 +5585,9 @@ tlv8.fileComponent = function (div, data, cellname, docPath, canupload,
                     + "\")'>"
                     + filenames[i]
                     + "</a>&nbsp;&nbsp;</td>";
-                filetableBody += "<td width='80px;' style='border:0px none;'>"
-                    + "<a href='javascript:void(0)' style='font-size:12px;color:#0033FF;text-decoration: none;' title='文件属性' onclick='justep.Doc.openDocInfoDialog(\""
-                    + fileID + "\")'>属性</a></td>";
+				filetableBody += "<td width='80px;' style='border:0px none;'>";
+				filetableBody += "<a href='javascript:void(0)' style='font-size:12px;color:#0033FF;text-decoration: none;'";
+				filetableBody += " title='文件属性' onclick='justep.Doc.openDocInfoDialog(\"" + fileID + "\")'>属性</a></td>";
                 if (canedit == true && !isTasksub) {
                     filetableBody += "<td width='80px;' style='border:0px none;'><a href='javascript:void(0)' "
                         + "style='font-size:12px;color:#0033FF;text-decoration: none;' title='编辑文件' "
@@ -5627,14 +5606,10 @@ tlv8.fileComponent = function (div, data, cellname, docPath, canupload,
                         + "\",\""
                         + cellname
                         + "\",\"" + div.id + "\")'>编辑</a></td>";
-                } else {
-                    filetableBody += "<td style='border:0px none;'></td>";
-                }
+                } 
                 if (viewhistory == true) {
                     filetableBody += "<td width='80px;' style='border:0px none;'><a href='javascript:void(0)' style='font-size:12px;color:#0033FF;text-decoration: none;' title='历史版本' onclick='justep.Doc.openDocHistoryDialog(null,\""
                         + fileID + "\")'>历史</a></td>";
-                } else {
-                    filetableBody += "<td style='border:0px none;'></td>";
                 }
                 if (candelete != false && !isTasksub) {
                     filetableBody += "<td width='80px;' style='border:0px none;'><a href='javascript:void(0)' style='font-size:12px;color:#0033FF;text-decoration: none;' title='删除附件' onclick='tlv8.deletefile(\""
@@ -5651,14 +5626,10 @@ tlv8.fileComponent = function (div, data, cellname, docPath, canupload,
                         + rowid
                         + "\",function(){document.getElementById(\""
                         + div.id + "\").refreshFileComp()})'>删除</a></td>";
-                } else {
-                    filetableBody += "<td></td>";
-                }
+                } 
                 if (download != false) {
                     filetableBody += "<td width='80px;' style='border:0px none;'><a href='javascript:void(0)' style='font-size:12px;color:#0033FF;text-decoration: none;' title='下载附件' onclick='justep.Doc.downloadDocByFileID(\""
                         + docPath + "\",\"" + fileID + "\")'>下载</a></td>";
-                } else {
-                    filetableBody += "<td style='border:0px none;'></td>";
                 }
                 filetableBody += "</tr>";
             }
@@ -5683,7 +5654,7 @@ tlv8.trangereditfile = function (fileID, fileName, docPath, dbkey,
     editFilecoment = comentid;
     if ('.doc.docx.xls.xlsx.ppt.pptx.mpp.vsd.dps.wps.et.'
         .indexOf(String(/\.[^\.]+$/.exec(fileName)) + '.') < 0) {
-        alert("不支持非Office文件编辑");
+    	layui.layer.alert("不支持非Office文件编辑");
         return;
     }
     var edurl = "/comon/doc_ocx/tangerOffice/officeediter.jsp?fileID="
@@ -5755,7 +5726,7 @@ tlv8.createVersion = function (docID, fileID, docName, docPath) {
     if ('.doc.docx.xls.xlsx.ppt.mpp.vsd.'.indexOf(String(/\.[^\.]+$/
             .exec(docName))
         + '.') < 0) {
-        alert("不支持非Office文件成文");
+    	layui.layer.alert("不支持非Office文件成文");
         return;
     }
     var currentNode = justep.Doc.evalChangeLog(tlv8.changeLog, docID);
@@ -5899,7 +5870,7 @@ tlv8.picComponent = function (div, data, cellname, canEdit) {
                     if (xmlHttp.status == 200) {
                         var r = eval('(' + xmlHttp.responseText + ')');
                         if (r.flag == "false") {
-                            alert(r.caption);
+                        	layui.layer.alert(r.caption);
                         } else {
                             document.getElementById(div.id).lookPIC();
                         }
@@ -6251,7 +6222,7 @@ tlv8.isHaveAuthorization = function (url) {
     param.set("url", url);
     var callBackfn = function (r) {
         if (r.data.flag == "false") {
-            alert(r.data.message);
+        	layui.layer.alert(r.data.message);
         } else {
             if (r.data.data == "true")
                 return true;
@@ -6262,7 +6233,7 @@ tlv8.isHaveAuthorization = function (url) {
     var r = tlv8.XMLHttpRequest("HaveFunctionAuthority", param, "get",
         false, callBackfn);
     if (r.data.flag == "false") {
-        alert(r.data.message);
+    	layui.layer.alert(r.data.message);
     } else {
         if (r.data.data == "true")
             return true;
@@ -6303,14 +6274,14 @@ JSON.parse = function (jsonStr) {
     try {
         return eval("(" + jsonStr + ")");
     } catch (e) {
-        alert("JSON.parse: " + e);
+    	layui.layer.alert("JSON.parse: " + e);
     }
 };
 String.prototype.toJSON = function () {
     try {
         return eval("(" + this + ")");
     } catch (e) {
-        alert("toJSON: " + e);
+    	layui.layer.alert("toJSON: " + e);
     }
 };
 JSON.toString = function (jsonObj) {
@@ -6536,7 +6507,7 @@ tlv8.writeOpinion = function (view) {
     var taptt = tlv8.RequestURLParam.getParam("activity-pattern");
     var isTasksub = (taptt == "detail");
     if (isTasksub) {
-        alert("已办任务不能再填写意见!");
+    	layui.layer.alert("已办任务不能再填写意见!");
         return;
     }
     var sData1 = tlv8.RequestURLParam.getParam("sData1");
@@ -6677,7 +6648,7 @@ function DateDiff(startDate, endDate) {
     aDate = endDate.split("-");
     oDate2 = new Date(aDate[1] + '-' + aDate[2] + '-' + aDate[0]);
     if (oDate1 > oDate2) {
-        alert("开始日期大于结束日期！");
+    	layui.layer.alert("开始日期大于结束日期！");
         return 0;
     } else {
         iDays = parseInt(Math.abs(oDate1 - oDate2) / 1000 / 60 / 60 / 24); // 把相差的毫秒数转换为天数

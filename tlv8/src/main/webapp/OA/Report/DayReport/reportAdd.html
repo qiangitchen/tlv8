@@ -75,7 +75,7 @@
 								<div class="layui-form-item">
 						            <label class="layui-form-label">标题(<font color="red">*</font>)</label>
 						            <div class="layui-input-block">
-						              <input type="text" name="FTITLE" id="FTITLE" autocomplete="off" placeholder="请输入标题" class="layui-input">
+						              <input type="text" name="FTITLE" id="FTITLE" required  lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
 						            </div>
 						        </div>
 						        <div class="layui-form-item layui-form-text">
@@ -93,14 +93,15 @@
 					      	</div>
 					    </div>
 						<div style="display: none;">
-							<input type="text" id="FCREATEOGNID" /> <input
-								type="text" id="FCREATEDEPTID" /> <input type="text"
-							id="FCREATEOGNNAME" /> <input type="text" id="FCREATEPOSID" /><input
-							type="text" id="FCREATEPOSNAME" /> <input type="text"
-							id="FCREATEPERSONID" /> <input type="text"
-							id="FCREATEPERSONFID" /> <input type="text"
-							id="FCREATEPERSONFNAME" /><input type="text"
-							id="FPUSHDATETIME" />
+							<input type="text" id="FCREATEOGNID" name="FCREATEOGNID" /> 
+							<input type="text" id="FCREATEDEPTID" name="FCREATEDEPTID"/> 
+							<input type="text" id="FCREATEOGNNAME" name="FCREATEOGNNAME"/> 
+							<input type="text" id="FCREATEPOSID" name="FCREATEPOSID"/>
+							<input type="text" id="FCREATEPOSNAME" name="FCREATEPOSNAME"/> 
+							<input type="text" id="FCREATEPERSONID" name="FCREATEPERSONID"/> 
+							<input type="text" id="FCREATEPERSONFID" name="FCREATEPERSONFID"/> 
+							<input type="text" id="FCREATEPERSONFNAME" name="FCREATEPERSONFNAME"/>
+							<input type="text" id="FPUSHDATETIME" name="FPUSHDATETIME"/>
 						</div>
 					</form>
 					<div class="layui-card">

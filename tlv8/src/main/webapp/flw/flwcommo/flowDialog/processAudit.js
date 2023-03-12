@@ -3,7 +3,7 @@
 var flowID, taskID, sData1, opviewID;
 // 流程按钮配置
 
-var sn = "TTr", sign = "";
+var sn = "TTr", sign = "", myoplen = 0;
 var mainData = new tlv8.Data();
 function pageInit() {
 	mainData.setDbkey("oa");
@@ -16,34 +16,37 @@ function pageInit() {
 	sData1 = tlv8.RequestURLParam.getParam("sData1");
 	opviewID = tlv8.RequestURLParam.getParam("opviewID");
 
-	Send();
+	// Send();
+
 	loadOption();
-	
+
 	$("#opinionData").focus();
 }
 
 /**
- * 加载常用意见 2021-06-16 （陈乾-去除）
+ * 加载常用意见
  */
 function dataInit() {
-	var sql = "select t.FCONCLUSIONNAME from OA_FLOWCONCLUSION t where t.fcreatorid = '"
-			+ tlv8.Context.getCurrentPersonID() + "' order by t.forder asc";
-	var re = tlv8.sqlQueryActionforJson("oa", sql, null, false);
-	createSelectList(re.data);
+	var re = tlv8.XMLHttpRequest("loadMyComOption", null, "POST", false);
+	var redata = re.data;
+	if (typeof redata == "string") {
+		redata = JSON.parse(redata);
+	}
+	myoplen = redata.length;
+	createSelectList(redata);
 }
 
 function loadOption() {
-	var sql = "select t.FAGREETEXT from OA_FLOWRECORD t where FTASKID='"
-			+ taskID + "' and FBILLID='" + sData1 + "' and t.FCREATEPERID = '"
-			+ tlv8.Context.getCurrentPersonID() + "'";
-	var re = tlv8.sqlQueryAction("oa", sql, null, false);
-	if (re.getCount() > 0) {
-		$("#opinionData").val(re.getValueByName("FAGREETEXT"));
-	}
+	var param = new tlv8.RequestParam();
+	param.set("taskID", taskID);
+	param.set("sdata1", sData1);
+	var re = tlv8.XMLHttpRequest("loadOptionByTaskID", param, "POST", false);
+	var redata = re.data;
+	$("#opinionData").val(redata);
 }
 
 function createSelectList(data) {
-	var listHtml = "<table style='width:100%;'>";
+	var listHtml = "<table style='width:100%;' class='layui-table'>";
 	for (var i = 0; i < data.length; i++) {
 		listHtml += "<tr><td style='font-size:13px;cursor:pointer;border-bottom: 1px solid #ddd;padding-bottom:5px;' "
 				+ "onmouseover='mouseover(this)' onmouseout='mouseout(this)' onclick='selectList(this)'>"
@@ -74,12 +77,13 @@ function clearData() {
 function saveDatatoMyOp() {
 	var opt = $("#opinionData").val();
 	if (!opt || opt == "") {
-		alert("意见内容不能为空！");
+		layui.layer.alert("意见内容不能为空！");
 		return;
 	}
 	$("#FCONCLUSIONNAME").val(opt);
 	$("#FCREATORID").val(tlv8.Context.getCurrentPersonID());
 	$("#FCREATOR").val(tlv8.Context.getCurrentPersonName());
+	$("#FORDER").val(myoplen + 1);
 	mainData.saveData();
 	dataInit();
 }
@@ -90,7 +94,7 @@ function saveDatatoMyOp() {
 function saveAuditOpinion() {
 	var auditOp = $("#opinionData").val();
 	if (!auditOp || auditOp == "") {
-		alert("审核意见不能为空!");
+		layui.layer.alert("审核意见不能为空!");
 		return false;
 	}
 	var param = new tlv8.RequestParam();
@@ -107,7 +111,7 @@ function saveAuditOpinion() {
 	tlv8.XMLHttpRequest("SaveAuditOpinionSignAction", param, "post", false,
 			function(r) {
 				if (r.data.flag == "false") {
-					alert(r.data.message);
+					layui.layer.alert(r.data.message);
 					return false;
 				}
 			});
@@ -123,7 +127,6 @@ function Connect() {
 	try {
 		socket = new WebSocket("ws://127.0.0.1:17121/oes");
 	} catch (e) {
-		// alert('error');
 		return;
 	}
 	socket.onopen = sOpen;
@@ -132,7 +135,6 @@ function Connect() {
 	socket.onclose = sClose;
 }
 function sOpen() {
-	// alert('connect success!');
 	var requestJson = {
 		"function" : "getPersonalSeal",
 		"inParams" : {
@@ -142,16 +144,14 @@ function sOpen() {
 	socket.send(JSON.stringify(requestJson));
 }
 function sError(e) {
-	 console.log("error " + e);
+	console.log("error " + e);
 }
 function sMessage(msg) {
 	var t = typeof msg;
 	if (t == "object") {
-		// alert('server says:' + JSON.stringify(msg));
 		try {
 			var jo = JSON.parse(msg.data);
 			sign = jo.outParams.sealImageBase64;
-			// alert('server says:' + jo.outParams.sealImageBase64);
 			// var img = document.getElementById('sealimg');
 			// img.src = "data:image/png;base64," +
 			// jo.outParams.sealImageBase64;
@@ -178,6 +178,6 @@ function Close() {
 	socket.close();
 }
 
-function managemyop(){
+function managemyop() {
 	tlv8.portal.openWindow("审批意见设置", "/OA/flowset/myOpinion/mainActivity.html");
 }

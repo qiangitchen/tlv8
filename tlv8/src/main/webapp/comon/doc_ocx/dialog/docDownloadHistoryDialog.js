@@ -12,7 +12,7 @@ $(document).ready(function() {
 	var labs = [ {
 		id : 'SDOCVERSIONID',
 		name : '版本',
-		width : 30
+		width : 60
 	}, {
 		id : 'SDOCNAME',
 		name : '名称',
@@ -20,11 +20,11 @@ $(document).ready(function() {
 	}, {
 		id : 'SSIZE',
 		name : '大小(字节)',
-		width : 60
+		width : 100
 	}, {
 		id : 'SPERSONNAME',
 		name : '下载人',
-		width : 60
+		width : 90
 	}, {
 		id : 'SDEPTNAME',
 		name : '下载人部门',
@@ -32,7 +32,7 @@ $(document).ready(function() {
 	}, {
 		id : 'STIME',
 		name : '下载时间',
-		width : 120
+		width : 150
 	} ];
 	staticGrid.init(labs); // 初始化
 });
