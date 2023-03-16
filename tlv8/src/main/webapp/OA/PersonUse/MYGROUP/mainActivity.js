@@ -12,6 +12,7 @@ function getData() {
 	MainData.setDbkey("oa");// 指定使用数据库连接
 	MainData.setTable("OA_ADM_MYGROUPMAIN");
 	MainData.setFormId("MAIN_DATA_FORM");// 主表关联form
+	init_toolbar();
 	$("#FCREATORID").val(tlv8.Context.getCurrentPersonID());
 	$("#FCREATOR").val(tlv8.Context.getCurrentPersonName());
 	$("#FCREATEDEPTID").val(tlv8.Context.getCurrentDeptID());

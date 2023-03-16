@@ -1,4 +1,4 @@
-package com.tlv8.constant;
+package com.tlv8.base.constant;
 
 /**
  * 返回状态码

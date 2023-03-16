@@ -1,4 +1,4 @@
-package com.tlv8.utils;
+package com.tlv8.base.utils;
 
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
@@ -8,8 +8,7 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.tlv8.base.utils.StringUtils;
-import com.tlv8.text.Convert;
+import com.tlv8.base.text.Convert;
 
 /**
  * 客户端工具类

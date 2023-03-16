@@ -1,4 +1,4 @@
-package com.tlv8.text;
+package com.tlv8.base.text;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

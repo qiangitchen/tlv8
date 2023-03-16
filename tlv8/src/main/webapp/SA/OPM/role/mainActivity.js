@@ -5,12 +5,13 @@ function getData() {
 	var data = new tlv8.Data();
 	data.setTable("SA_OPROLE");
 	data.setDbkey("system");
+	data.setOrderby("SSEQUENCE asc");
 	data.setCascade("SA_OPPERMISSION:SPERMISSIONROLEID");
 	var d = document.getElementById("main-grid-view");
-	var labelid = "No,sName,sCode,SCATALOG,SDESCRIPTION";
-	var labels = "序号,名称,编码,类型,描述";
-	var labelwidth = "40,120,100,100,120";
-	var datatype = "ro,string,string,string,string";
+	var labelid = "No,sName,sCode,SCATALOG,SDESCRIPTION,SSEQUENCE";
+	var labels = "序号,名称,编码,类型,描述,排序";
+	var labelwidth = "40,120,100,100,120,100";
+	var datatype = "ro,string,string,string,string,number";
 	var dataAction = {
 		"queryAction" : "getGridAction",
 		"savAction" : "saveAction",
@@ -28,10 +29,15 @@ function getData() {
 	// 重写新增事件
 	document.getElementById(d.id + "_insertItem").onclick = function() {
 		tlv8.portal.dailog.openDailog("新增角色",
-				"/SA/OPM/role/dialog/editRole.html", 600, 400, function() {
+				"/SA/OPM/role/dialog/editRole.html", 600, 460, function() {
 					currentgrid.refreshData();// 刷新数据
 				});
 	};
+
+	currentgrid
+			.insertSelfBar(
+					"<i class=\"layui-icon layui-icon-edit\" style=\"font-size: 12px; color: blue;\"></i> 编辑",
+					70, "dbselrow()");
 }
 
 /**
@@ -41,7 +47,7 @@ function getData() {
 function dbselrow(event) {
 	var rowid = currentgrid.getCurrentRowId();
 	tlv8.portal.dailog.openDailog("编辑角色",
-			"/SA/OPM/role/dialog/editRole.html?rowid=" + rowid, 600, 400,
+			"/SA/OPM/role/dialog/editRole.html?rowid=" + rowid, 600, 460,
 			function() {
 				currentgrid.refreshData();// 刷新数据
 			});
@@ -73,7 +79,7 @@ function initAuthGrid() {
 	var div = document.getElementById("auth-grid-view");
 	var labelid = "master_check,No,SACTIVITYFNAME,SPROCESS,SACTIVITY";
 	var labels = "master_check,序号,功能名称,process,activity";
-	var labelwidth = "20,40,150,280,100";
+	var labelwidth = "40,40,150,280,100";
 	var datatype = "null,ro,ro,ro,ro";
 	var dataAction = {
 		"queryAction" : "getGridAction",

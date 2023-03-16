@@ -1,8 +1,8 @@
-package com.tlv8.mac;
+package com.tlv8.base.mac;
 
 import com.alibaba.fastjson.JSONObject;
-import com.tlv8.mac.info.SettingInfo;
-import com.tlv8.mac.utils.CryptUtils;
+import com.tlv8.base.mac.info.SettingInfo;
+import com.tlv8.base.mac.utils.CryptUtils;
 
 /**
  * 注册相关

@@ -1,4 +1,4 @@
-package com.tlv8.redis;
+package com.tlv8.base.redis;
 
 import org.springframework.data.redis.connection.RedisPassword;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;

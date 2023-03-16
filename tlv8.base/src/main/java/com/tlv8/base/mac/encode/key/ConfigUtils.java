@@ -1,4 +1,4 @@
-package com.tlv8.mac.encode.key;
+package com.tlv8.base.mac.encode.key;
 
 import java.security.Key;
 

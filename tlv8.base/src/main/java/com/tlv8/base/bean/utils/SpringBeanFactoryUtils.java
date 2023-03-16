@@ -1,4 +1,4 @@
-package com.tlv8.bean.utils;
+package com.tlv8.base.bean.utils;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;

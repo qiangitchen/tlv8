@@ -15,7 +15,7 @@
 		location="classpath:application.properties" ignore-unresolvable="true" />
 
 	<bean id="redisSentinelConfiguration"
-		class="com.tlv8.redis.MyRedisStandaloneConfiguration">
+		class="com.tlv8.base.redis.MyRedisStandaloneConfiguration">
 		<constructor-arg name="hostName"
 			value="${spring.redis.host}" />
 		<constructor-arg name="port"

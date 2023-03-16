@@ -5,6 +5,7 @@ function getData() {
 	var data = new tlv8.Data();
 	data.setTable("SA_OPROLE");
 	data.setDbkey("system");
+	data.setOrderby("SSEQUENCE asc");
 	var d = document.getElementById("main-grid-view");
 	var labelid = "master_check,No,sName,sCode,SCATALOG,SDESCRIPTION";
 	var labels = "master_check,No.,名称,编码,类型,描述";

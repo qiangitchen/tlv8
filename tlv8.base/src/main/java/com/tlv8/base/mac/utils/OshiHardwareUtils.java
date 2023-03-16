@@ -1,4 +1,4 @@
-package com.tlv8.mac.utils;
+package com.tlv8.base.mac.utils;
 
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;

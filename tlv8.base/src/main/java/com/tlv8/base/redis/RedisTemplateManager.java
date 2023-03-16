@@ -1,9 +1,9 @@
-package com.tlv8.redis;
+package com.tlv8.base.redis;
 
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
-import com.tlv8.bean.utils.SpringBeanFactoryUtils;
+import com.tlv8.base.bean.utils.SpringBeanFactoryUtils;
 
 public class RedisTemplateManager {
 

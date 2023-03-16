@@ -1,10 +1,10 @@
-package com.tlv8.domain;
+package com.tlv8.base.domain;
 
 import java.util.HashMap;
 
 import com.alibaba.fastjson.JSON;
+import com.tlv8.base.constant.HttpStatus;
 import com.tlv8.base.utils.StringUtils;
-import com.tlv8.constant.HttpStatus;
 
 /**
  * 操作消息提醒

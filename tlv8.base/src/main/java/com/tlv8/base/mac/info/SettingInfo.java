@@ -1,4 +1,4 @@
-package com.tlv8.mac.info;
+package com.tlv8.base.mac.info;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,8 +12,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.alibaba.fastjson.JSONObject;
-import com.tlv8.mac.encode.DesUtils;
-import com.tlv8.mac.utils.CryptUtils;
+import com.tlv8.base.mac.encode.DesUtils;
+import com.tlv8.base.mac.utils.CryptUtils;
 
 public class SettingInfo {
 

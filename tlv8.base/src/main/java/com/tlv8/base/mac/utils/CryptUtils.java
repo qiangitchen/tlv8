@@ -1,4 +1,4 @@
-package com.tlv8.mac.utils;
+package com.tlv8.base.mac.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

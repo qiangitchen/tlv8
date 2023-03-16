@@ -1,4 +1,4 @@
-package com.tlv8.text;
+package com.tlv8.base.text;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;

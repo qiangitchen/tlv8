@@ -1,10 +1,10 @@
-package com.tlv8.mac.encode;
+package com.tlv8.base.mac.encode;
 
 import java.util.Base64;
 
 import javax.crypto.Cipher;
 
-import com.tlv8.mac.encode.key.ConfigUtils;
+import com.tlv8.base.mac.encode.key.ConfigUtils;
 
 public class DesUtils extends ConfigUtils {
 	private Cipher decryptCipher = null;
