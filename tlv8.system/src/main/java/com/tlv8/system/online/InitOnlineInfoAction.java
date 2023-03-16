@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 
 import com.tlv8.base.db.DBUtils;
-import com.tlv8.base.mac.License;
 import com.tlv8.base.utils.IDUtils;
 import com.tlv8.base.utils.IPUtils;
+import com.tlv8.mac.License;
 import com.tlv8.system.BaseController;
 import com.tlv8.system.bean.ContextBean;
 

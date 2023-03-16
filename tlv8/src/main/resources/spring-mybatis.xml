@@ -10,6 +10,12 @@
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop.xsd">
        
+       <import resource="classpath:spring-redis.xml" />
+
+		<bean id="springBeanFactoryUtils"
+			class="com.tlv8.bean.utils.SpringBeanFactoryUtils">
+		</bean>
+       
        <!-- 多数据源单独配置 不做自动注入 -->
        <import resource="classpath:ureport-console-context.xml" />
        

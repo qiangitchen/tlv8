@@ -1,14 +1,13 @@
-package com.tlv8.base.mac.utils;
+package com.tlv8.mac.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Date;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSONObject;
 
 public class CryptUtils {
-	public static Map<String, String> devInfo = SerialNumberUtil.getAllSn();
+	public static Map<String, String> devInfo = null;
 
 	/**
 	 * MD5 加密
@@ -96,20 +95,14 @@ public class CryptUtils {
 	protected static String getDevicInfo() {
 		JSONObject strb = new JSONObject();
 		try {
+			if (devInfo == null) {
+				devInfo = SerialNumberUtil.getAllSn();
+			}
 			strb.put("cpuid", devInfo.get("cpuid")); // CPU
 			strb.put("mainboard", devInfo.get("mainboard")); // 主板
 			strb.put("diskid", devInfo.get("diskid")); // 硬盘
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
-
 		return strb.toString();
-	}
-
-	public static void main(String[] args) {
-		long st = new Date().getTime();
-		System.out.println(getMachineCode());
-		long et = new Date().getTime();
-		System.out.println("use time:" + (et - st) + "ms");
 	}
 }

@@ -1,4 +1,4 @@
-package com.tlv8.base.mac.utils;
+package com.tlv8.mac.utils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -40,7 +40,7 @@ public class SerialNumberUtil {
 			}
 			input.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			result = OshiHardwareUtils.getMotherboardSN();
 		}
 		return result.trim();
 	}
@@ -74,7 +74,7 @@ public class SerialNumberUtil {
 			}
 			input.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			result = OshiHardwareUtils.getHardDiskSN();
 		}
 		return result.trim();
 	}
@@ -108,7 +108,7 @@ public class SerialNumberUtil {
 			input.close();
 			file.delete();
 		} catch (Exception e) {
-			e.fillInStackTrace();
+			result = OshiHardwareUtils.getCPUSerial();
 		}
 		if ((result.trim().length() < 1) || (result == null)) {
 			result = "无CPU_ID被读取";
@@ -122,26 +122,21 @@ public class SerialNumberUtil {
 	 * @param cmd
 	 * @return
 	 */
-	public static String executeLinuxCmd(String cmd) {
-		try {
-			Runtime run = Runtime.getRuntime();
+	public static String executeLinuxCmd(String cmd) throws Exception {
+		Runtime run = Runtime.getRuntime();
 
-			Process process = run.exec(cmd);
-			InputStream in = process.getInputStream();
-			StringBuffer out = new StringBuffer();
-			byte[] b = new byte[8192];
-			int n;
-			while ((n = in.read(b)) != -1) {
-				out.append(new String(b, 0, n));
-			}
-
-			in.close();
-			process.destroy();
-			return out.toString();
-		} catch (Exception e) {
-			e.printStackTrace();
+		Process process = run.exec(cmd);
+		InputStream in = process.getInputStream();
+		StringBuffer out = new StringBuffer();
+		byte[] b = new byte[8192];
+		int n;
+		while ((n = in.read(b)) != -1) {
+			out.append(new String(b, 0, n));
 		}
-		return null;
+
+		in.close();
+		process.destroy();
+		return out.toString();
 	}
 
 	/**
@@ -153,15 +148,19 @@ public class SerialNumberUtil {
 	 * @return
 	 */
 	public static String getSerialNumber(String cmd, String record, String symbol) {
-		String execResult = executeLinuxCmd(cmd);
-		String[] infos = execResult.split("\n");
-		for (String info : infos) {
-			info = info.trim();
-			if (info.indexOf(record) != -1) {
-				info.replace(" ", "");
-				String[] sn = info.split(symbol);
-				return sn[1];
+		try {
+			String execResult = executeLinuxCmd(cmd);
+			String[] infos = execResult.split("\n");
+			for (String info : infos) {
+				info = info.trim();
+				if (info.indexOf(record) != -1) {
+					info.replace(" ", "");
+					String[] sn = info.split(symbol);
+					return sn[1];
+				}
 			}
+		} catch (Exception e) {
+			return OshiHardwareUtils.getMotherboardSN();
 		}
 		return null;
 	}
@@ -182,9 +181,13 @@ public class SerialNumberUtil {
 		if (("unknown".equalsIgnoreCase(cpuid)) || ("NONE".equalsIgnoreCase(cpuid))) {
 			if (os.contains("LINUX"))
 				cpuid = getSerialNumber("dmidecode -t processor | grep 'ID'", "ID", ":");
-			else if (os.contains("MAC OS"))
-				cpuid = executeLinuxCmd("sysctl -n machdep.cpu.brand_string");
-			else {
+			else if (os.contains("MAC OS")) {
+				try {
+					cpuid = executeLinuxCmd("sysctl -n machdep.cpu.brand_string");
+				} catch (Exception e) {
+					cpuid = OshiHardwareUtils.getCPUSerial();
+				}
+			} else {
 				cpuid = getCPUSerial();
 			}
 		}
