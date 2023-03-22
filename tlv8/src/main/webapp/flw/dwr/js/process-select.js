@@ -100,8 +100,8 @@ function addHoverDom(treeId, treeNode) {
 			param.set("sidpath", newSIDPATH);
 			param.set("scodepath", newSCODEPATH);
 			param.set("snamepath", newSNAMEPATH);
-			var r = tlv8.XMLHttpRequest("insertflwFolderAction", param,
-					"post", true, null);
+			var r = tlv8.XMLHttpRequest("insertflwFolderAction", param, "post",
+					true, null);
 			zTree.addNodes(treeNode, {
 				id : newid,
 				pId : treeNode.id,
@@ -144,8 +144,8 @@ function afterEditName(event, treeId, treeNode) {
 	param.set("sprocessid", treeNode.SPROCESSID);
 	param.set("sprocessname", treeNode.SPROCESSNAME);
 	param.set("snamepath", pathnames.join("/"));
-	var r = tlv8.XMLHttpRequest("editflwFolderAction", param, "post",
-			true, null);
+	var r = tlv8.XMLHttpRequest("editflwFolderAction", param, "post", true,
+			null);
 }
 
 function beforeRemove(treeId, treeNode) {
@@ -163,8 +163,8 @@ function onRemove(e, treeId, treeNode) {
 	param.set("name", treeNode.name);
 	param.set("sidpath", treeNode.SIDPATH);
 	param.set("sprocessid", treeNode.SPROCESSID);
-	var r = tlv8.XMLHttpRequest("deleteflwFolderAction", param, "post",
-			true, function() {
+	var r = tlv8.XMLHttpRequest("deleteflwFolderAction", param, "post", true,
+			function() {
 				clear_draw_board();
 			});
 }
@@ -172,12 +172,13 @@ function onRemove(e, treeId, treeNode) {
 /*
  * 初始化
  */
+var chanegEnable = "";
 function initBody() {
 	var det = document.getElementById("processListGrid_div");
 	var labelid = "No,SPROCESSNAME,SPROCESSID,FENABLED";
-	var labels = "No.,流程名称,流程ID,状态";
+	var labels = "序号,流程名称,流程ID,状态";
 	var datatype = "ro,string,string,html:getEnabledStatus";
-	var labelwidth = "40,120,240,80";
+	var labelwidth = "50,120,240,80";
 	var dataAction = {
 		"queryAction" : "getGridAction",
 		"savAction" : "saveAction",
@@ -189,21 +190,21 @@ function initBody() {
 	maingrid.grid.seteditModel(true);
 	maingrid.grid.settoolbar("readonly", "readonly", true, "readonly");
 	// maingrid.grid.refreshData();
-	var spsncode = tlv8.Context.getCurrentPersonCode();
-	if (spsncode == "SYSTEM") {
-		maingrid.grid.insertSelfBar("生效/失效", "64px",
-				"setEnabledStatus(this,1)",
-				cpath+"/comon/image/toolbar/enable.png");
-		maingrid.grid
-				.insertSelfBar("", "5px", "",
-						cpath+"/comon/image/toolbar/standard_toolbar/standard/compart.gif");
+	// var spsncode = tlv8.Context.getCurrentPersonCode();
+	// if (spsncode == "SYSTEM") {
+	chanegEnable = maingrid.grid.insertSelfBar("生效/失效", "60px",
+			"setEnabledStatus(this,1)", cpath
+					+ "/comon/image/toolbar/enable.png");
+	// maingrid.grid.insertSelfBar("", "5px", "", cpath
+	// + "/comon/image/toolbar/standard_toolbar/standard/compart.gif");
 
-	}
+	// }
 }
 
 function setEnabledStatus(obj, status) {
 	if (status == 1) {
-		obj.src = cpath+"/comon/image/toolbar/disable.png";
+		$("#" + chanegEnable + '_img').attr('src',
+				cpath + "/comon/image/toolbar/disable.png");
 		var actGrid = document.getElementById("processListGrid_div").grid;
 		actGrid.setValueByName("FENABLED", actGrid.CurrentRowId, 1);
 		actGrid.saveData();
@@ -211,7 +212,8 @@ function setEnabledStatus(obj, status) {
 			setEnabledStatus(this, 0);
 		};
 	} else {
-		obj.src = cpath+"/comon/image/toolbar/enable.png";
+		$("#" + chanegEnable + '_img').attr('src',
+				cpath + "/comon/image/toolbar/enable.png");
 		var actGrid = document.getElementById("processListGrid_div").grid;
 		actGrid.setValueByName("FENABLED", actGrid.CurrentRowId, 0);
 		actGrid.saveData();
@@ -244,9 +246,13 @@ function afterInertGrid(event) {
 function onselectedGrid(event) {
 	var status = event.getValueByName("FENABLED", event.CurrentRowId);
 	if (status == "1") {
+		$("#" + chanegEnable + '_img').attr('src',
+				cpath + "/comon/image/toolbar/disable.png");
 		event.settoolbar(true, "readonly", true, "readonly");
 		event.setrowState(event.CurrentRowId, "readonly");
 	} else {
+		$("#" + chanegEnable + '_img').attr('src',
+				cpath + "/comon/image/toolbar/enable.png");
 		event.settoolbar(true, true, true, true);
 	}
 }
