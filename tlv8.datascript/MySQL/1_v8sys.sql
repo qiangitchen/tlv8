@@ -2174,6 +2174,23 @@ LOCK TABLES `sa_task_history` WRITE;
 /*!40000 ALTER TABLE `sa_task_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
+-- ----------------------------
+-- Table structure for sa_handwr_signature
+-- ----------------------------
+
+DROP TABLE IF EXISTS `sa_handwr_signature`;
+CREATE TABLE `sa_handwr_signature`  (
+  `sid` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `SPERSONID` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `SPERSONNAME` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `SCREATERID` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `SCREATERNAME` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `SCREATETIME` datetime(0) NULL DEFAULT NULL,
+  `SHSPIC` blob NULL,
+  `version` int(0) NULL DEFAULT 0,
+  PRIMARY KEY (`sid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
 --
 -- Temporary view structure for view `sa_task_monitor`
 --
