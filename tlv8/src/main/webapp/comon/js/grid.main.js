@@ -3333,7 +3333,7 @@ tlv8.createGrid = function (div, labelid, labels, labelwidth, dataAction,
                     param.set("dbkay", data.dbkay);
                     param.set("table", data.table);
                     param.set("rowids", chrowids);
-                    param.set("Cascade", data.Cascade);
+                    param.set("cascade", data.Cascade);
                     tlv8.XMLHttpRequest("deleteMutiAction", param, "post", true, function (r) {
                         try {
                             var chrowidsary = chrowids.split(",");

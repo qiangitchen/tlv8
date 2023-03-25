@@ -467,7 +467,7 @@ tlv8.Deleteaction = function (actionName, post, callBack, rowid, data, ays) {
     param.set("dbkay", dbkay);
     param.set("table", table);
     param.set("rowid", rowid);
-    param.set("Cascade", Cascade);
+    param.set("cascade", Cascade);
     var isay = (ays == false) ? ays : true;
     var rscallBack = function (r) {
         if (callBack)
