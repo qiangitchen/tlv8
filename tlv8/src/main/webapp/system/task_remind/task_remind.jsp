@@ -1,5 +1,4 @@
 <%@page import="com.tlv8.base.db.DBUtils"%>
-<%@page import="com.tlv8.system.controller.UserController"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Map"%>
@@ -12,7 +11,7 @@
 	<%
 	String dataTableRead = "";
 	int count = 0;
-	ContextBean context = new UserController().getContext();
+	ContextBean context = ContextBean.getContext(request);
 	String personID = context.getCurrentPersonID();
 	String personFID = context.getCurrentPersonFullID();
 	String sql = "select SID,SNAME,SCDEPTNAME,SCPERSONNAME,SCREATETIME,SLOCK from " 

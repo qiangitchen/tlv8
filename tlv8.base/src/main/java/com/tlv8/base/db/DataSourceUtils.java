@@ -42,7 +42,7 @@ public class DataSourceUtils {
 	/**
 	 * 数据库连接检测监听
 	 */
-	protected static void startListener() {
+	public static void startListener() {
 		new Thread(new Runnable() {
 
 			@Override

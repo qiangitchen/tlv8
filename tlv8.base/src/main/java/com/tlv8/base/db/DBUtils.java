@@ -85,7 +85,6 @@ public class DBUtils {
 				e.printStackTrace();
 			}
 		}
-		DataSourceUtils.startListener();
 	}
 
 	public static Map<String, Map<String, String>> getDBConfig() {

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlv8.base.Data;
@@ -34,7 +35,7 @@ public class GetTaskList extends ActionSupport {
 
 	@ResponseBody
 	@RequestMapping("/GetTaskListAction")
-	public Object execute(int limit) throws Exception {
+	public Object execute(@RequestParam(name = "limit", defaultValue = "5") Integer limit) throws Exception {
 		String personID = (psmId != null && !"undefined".equals(psmId) && !"".equals(psmId)) ? psmId
 				: ContextBean.getContext(request).getCurrentPersonID();
 		String personFID = ContextBean.getContext(request).getCurrentPersonFullID();

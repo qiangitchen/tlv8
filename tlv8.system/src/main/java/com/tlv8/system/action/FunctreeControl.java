@@ -12,9 +12,6 @@ import org.apache.ibatis.session.SqlSession;
 import com.tlv8.base.Sys;
 import com.tlv8.base.CodeUtils;
 import com.tlv8.base.db.DBUtils;
-import com.tlv8.system.bean.ContextBean;
-import com.tlv8.system.help.OnlineHelper;
-import com.tlv8.system.help.SessionListener;
 
 public class FunctreeControl {
 	private static Map<String, Map<String, String>> haveAutherMaps = new HashMap<String, Map<String, String>>();
@@ -32,16 +29,14 @@ public class FunctreeControl {
 					+ " where EXISTS(select 1 from sa_opauthorize a where m.SPERMISSIONROLEID = a.SAUTHORIZEROLEID "
 					+ " and (upper('" + personfID + "') like upper(concat('%',a.sOrgID,'%'))  or a.sOrgID like '%"
 					+ psnid + "%'))";
-		}else if(DBUtils.IsPostgreSQL("system")) {
+		} else if (DBUtils.IsPostgreSQL("system")) {
 			sql = "select m.SPROCESS,COALESCE(m.SACTIVITY,'')SACTIVITY from sa_oppermission m "
 					+ " where EXISTS(select SID from sa_opauthorize a where m.SPERMISSIONROLEID = a.SAUTHORIZEROLEID "
-					+ " and ('" + personfID + "' like concat('%',a.sOrgID,'%')  or a.sOrgID like '%"
-					+ psnid + "%'))";
+					+ " and ('" + personfID + "' like concat('%',a.sOrgID,'%')  or a.sOrgID like '%" + psnid + "%'))";
 		} else {
 			sql = "select m.SPROCESS,isNull(m.SACTIVITY,'')SACTIVITY from sa_oppermission m "
 					+ " where EXISTS(select 1 from sa_opauthorize a where m.SPERMISSIONROLEID = a.SAUTHORIZEROLEID "
-					+ " and ('" + personfID + "' like concat('%',a.sOrgID,'%')  or a.sOrgID like '%" + psnid
-					+ "%'))";
+					+ " and ('" + personfID + "' like concat('%',a.sOrgID,'%')  or a.sOrgID like '%" + psnid + "%'))";
 		}
 		sql = sql.toUpperCase();
 		SqlSession session = DBUtils.getSession("system");
@@ -125,12 +120,4 @@ public class FunctreeControl {
 		return haveAutherMaps.get(personfID);
 	}
 
-	static {
-		OnlineHelper.addListener(new SessionListener() {
-			public void sessionDestroyed(ContextBean centext) {
-				remove(centext.getCurrentPersonFullID());
-				Sys.printMsg("授权信息已清除.sessionid:" + centext.getSessionID());
-			}
-		});
-	}
 }

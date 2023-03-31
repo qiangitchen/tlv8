@@ -8,13 +8,10 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.tlv8.base.Sys;
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.system.action.FunctreeControl;
 import com.tlv8.system.bean.ContextBean;
 import com.tlv8.system.bean.SaOpAgent;
-import com.tlv8.system.help.OnlineHelper;
-import com.tlv8.system.help.SessionListener;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class OpmAgent {
@@ -54,14 +51,5 @@ public class OpmAgent {
 			rmap.putAll(m);
 		}
 		return rmap;
-	}
-
-	static {
-		OnlineHelper.addListener(new SessionListener() {
-			public void sessionDestroyed(ContextBean centext) {
-				agentpslMap.remove(centext.getLoginID());
-				Sys.printMsg("代理信息已清除.sessionid:" + centext.getSessionID());
-			}
-		});
 	}
 }

@@ -1,5 +1,6 @@
 package com.tlv8.system.bean;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -8,12 +9,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.alibaba.fastjson.JSONObject;
 import com.tlv8.base.utils.IDUtils;
 import com.tlv8.system.action.FunctreeControl;
 import com.tlv8.system.help.Configuration;
-import com.tlv8.system.help.OnlineHelper;
 import com.tlv8.system.help.SessionHelper;
+import com.tlv8.system.service.TokenService;
 import com.tlv8.system.validator.ValidationError;
 
 /**
@@ -23,7 +23,8 @@ import com.tlv8.system.validator.ValidationError;
  *
  */
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class ContextBean {
+public class ContextBean implements Serializable{
+	private static final long serialVersionUID = -1829210822129794715L;
 	private Boolean isLogin = Boolean.valueOf(false);
 	private String uiServerURL;
 	private String businessServerURL;
@@ -93,6 +94,15 @@ public class ContextBean {
 	private String currentOrgName;
 	private String currentOrgID;
 	private String loginID;
+	
+	/**
+	 * 用户唯一标识
+	 */
+	private String token;
+
+	private long loginTime;
+
+	private long expireTime;
 
 	/**
 	 * 根据request获取
@@ -101,19 +111,17 @@ public class ContextBean {
 	 * @return
 	 */
 	public static ContextBean getContext(HttpServletRequest request) {
-		OnlineHelper.getOnlineUserMap();
-		return SessionHelper.getContext(request);
-	}
-
-	/**
-	 * 根据sessionid获取
-	 * 
-	 * @param sessionid
-	 * @return
-	 */
-	public static ContextBean getContext(String sessionid) {
-		ContextBean context = OnlineHelper.getOnlineUserMap(sessionid);
-		return context;
+		ContextBean contextBean = null;
+		try {
+			TokenService tokenService = TokenService.getTokenService();
+			contextBean = tokenService.getContextBean(request);
+		} catch (Exception e) {
+			contextBean = new ContextBean();
+		}
+		if (contextBean == null) {
+			contextBean = new ContextBean();
+		}
+		return contextBean;
 	}
 
 	private String getLocalFix(HttpServletRequest request, String path) {
@@ -594,70 +602,6 @@ public class ContextBean {
 		this.ip = ip;
 	}
 
-	public String toJSONString() throws Exception {
-		JSONObject json = new JSONObject();
-		json.put("username", this.username);
-		json.put("personID", this.personID);
-		json.put("personName", this.personName);
-		json.put("personCode", this.personCode);
-		json.put("orgID", this.orgID);
-		json.put("orgName", this.orgName);
-		json.put("orgPath", this.orgPath);
-		json.put("agentPersonID", this.agentPersonID);
-		json.put("agentPersonName", this.agentPersonName);
-		json.put("agentPersonCode", this.agentPersonCode);
-		json.put("agentOrgID", this.agentOrgID);
-		json.put("agentOrgName", this.agentOrgName);
-		json.put("agentOrgPath", this.agentOrgPath);
-
-		json.put("allMemberOfOrgFullID", this.allMemberOfOrgFullID);
-		json.put("currentActivityLabel", this.currentActivityLabel);
-		json.put("currentProcessLabel", this.currentProcessLabel);
-		json.put("currentAgentFullName", this.currentAgentFullName);
-		json.put("currentAgentName", this.currentAgentName);
-		json.put("currentPositionFullCode", this.currentPositionFullCode);
-		json.put("currentPositionCode", this.currentPositionCode);
-		json.put("currentPositionName", this.currentPositionName);
-		json.put("currentPositionFullName", this.currentPositionFullName);
-		json.put("currentPositionFullID", this.currentPositionFullID);
-		json.put("currentPositionID", this.currentPositionID);
-		json.put("currentDeptFullCode", this.currentDeptFullCode);
-		json.put("currentDeptCode", this.currentDeptCode);
-		json.put("currentDeptName", this.currentDeptName);
-		json.put("currentDeptFullName", this.currentDeptFullName);
-		json.put("currentDeptFullID", this.currentDeptFullID);
-		json.put("currentDeptID", this.currentDeptID);
-		json.put("currentPersonFullCode", this.currentPersonFullCode);
-		json.put("currentPersonFullName", this.currentPersonFullName);
-		json.put("currentPersonFullID", this.currentPersonFullID);
-		json.put("currentPersonName", this.currentPersonName);
-		json.put("currentPersonCode", this.currentPersonCode);
-		json.put("currentPersonID", this.currentPersonID);
-		json.put("currentUserFullCode", this.currentUserFullCode);
-		json.put("currentUserFullName", this.currentUserFullName);
-		json.put("currentUserFullID", this.currentUserFullID);
-		json.put("currentUserCode", this.currentUserCode);
-		json.put("currentUserName", this.currentUserName);
-		json.put("currentUserID", this.currentUserID);
-		json.put("currentOgnFullCode", this.currentOgnFullCode);
-		json.put("currentOgnFullID", this.currentOgnFullID);
-		json.put("currentOgnFullName", this.currentOgnFullName);
-		json.put("currentOgnCode", this.currentOgnCode);
-		json.put("currentOgnName", this.currentOgnName);
-		json.put("currentOgnID", this.currentOgnID);
-		json.put("currentOrgFullCode", this.currentOrgFullCode);
-		json.put("currentOrgFullName", this.currentOrgFullName);
-		json.put("currentOrgFullID", this.currentOrgFullID);
-		json.put("currentOrgCode", this.currentOrgCode);
-		json.put("currentOrgName", this.currentOrgName);
-		json.put("currentOrgID", this.currentOrgID);
-		json.put("loginDate", this.loginDate);
-
-		json.put("date", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-
-		return json.toString();
-	}
-
 	public Map toMap() throws Exception {
 		Map json = new HashMap();
 		json.put("username", this.username);
@@ -718,6 +662,8 @@ public class ContextBean {
 		json.put("loginDate", this.loginDate);
 
 		json.put("date", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+		
+		json.put("token", token);
 
 		return json;
 	}
@@ -728,6 +674,30 @@ public class ContextBean {
 
 	public void setLoginID(String loginID) {
 		this.loginID = loginID;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public long getLoginTime() {
+		return loginTime;
+	}
+
+	public void setLoginTime(long loginTime) {
+		this.loginTime = loginTime;
+	}
+
+	public long getExpireTime() {
+		return expireTime;
+	}
+
+	public void setExpireTime(long expireTime) {
+		this.expireTime = expireTime;
 	}
 
 }

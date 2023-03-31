@@ -4,7 +4,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.tlv8.system.filter.JurisdictionFilter;
+import com.tlv8.opm.filter.JurisdictionFilter;
 
 /**
  * Filter配置

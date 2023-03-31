@@ -5,20 +5,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.tlv8.sa.TaskLimitListener;
-import com.tlv8.system.help.OnlineHelper;
 import com.tlv8.system.online.OnlineInitServerlet;
 
 @Configuration
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class ListenerConfig {
 
-	@Bean
-	public ServletListenerRegistrationBean onlineLlistenerRegistrationBean() {
-		ServletListenerRegistrationBean srb = new ServletListenerRegistrationBean();
-		srb.setListener(new OnlineHelper());
-		return srb;
-	}
-	
 	@Bean
 	public ServletListenerRegistrationBean onlineInitLlistenerRegistrationBean() {
 		ServletListenerRegistrationBean srb = new ServletListenerRegistrationBean();

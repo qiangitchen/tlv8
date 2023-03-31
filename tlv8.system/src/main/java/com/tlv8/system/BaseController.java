@@ -2,7 +2,6 @@ package com.tlv8.system;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -10,12 +9,10 @@ import java.util.Iterator;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.HttpStatus;
-import org.apache.commons.httpclient.methods.PostMethod;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
@@ -23,26 +20,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.tlv8.base.utils.ServletUtils;
 import com.tlv8.system.action.GetSysParams;
 import com.tlv8.system.bean.ContextBean;
 import com.tlv8.system.bean.HttpBean;
 import com.tlv8.system.help.MessageResource;
 import com.tlv8.system.help.MsgStatus;
-import com.tlv8.system.help.OnlineHelper;
 import com.tlv8.system.help.RenderStatus;
 import com.tlv8.system.help.ResponseProcessor;
 import com.tlv8.system.help.SessionHelper;
 import com.tlv8.system.help.UserResponse;
+import com.tlv8.system.service.TokenService;
 
-/**
- * @author ChenQian
- * @category 2011-2-12
- */
 public class BaseController {
 	@Autowired
 	protected HttpServletRequest request;
 	@Autowired
 	protected HttpServletResponse response;
+
+	protected TokenService tokenService;
 
 	private UserResponse uesrResponse;
 
@@ -137,20 +133,19 @@ public class BaseController {
 	}
 
 	public ContextBean getContext() {
-		String sessionid = p("seesionid");
-		if (this.contextbean == null) {
-			this.contextbean = ContextBean.getContext(request);
+		if (request == null) {
+			request = ServletUtils.getRequest();
 		}
-		if (this.contextbean.getCurrentPersonID() == null) {
-			if (sessionid != null && !sessionid.equals("") && !sessionid.equals("undefined")) {
-				this.contextbean = this.getContext(sessionid);
+		if (this.contextbean == null) {
+			if (tokenService == null) {
+				tokenService = TokenService.getTokenService();
 			}
+			this.contextbean = tokenService.getContextBean(request);
+		}
+		if (this.contextbean == null) {
+			this.contextbean = new ContextBean();
 		}
 		return this.contextbean;
-	}
-
-	public ContextBean getContext(String sessionid) {
-		return OnlineHelper.getOnlineUserMap(sessionid);
 	}
 
 	/**
@@ -184,49 +179,6 @@ public class BaseController {
 
 	public Document executeMethodAsDocument(HttpMethod method) throws HttpException, IOException, DocumentException {
 		return executeMethodAsDocument("BusinessServer", method);
-	}
-
-	public void registerBusinessSession() throws HttpException, IOException, DocumentException {
-		String msg = "";
-		String title = "jpolite.res.system.BaseHttpController.registerBusinessSession.0";
-
-		PostMethod post = new PostMethod(
-				this.getContext().getBusinessServerURL(this.request, "register", "/register-session"));
-		try {
-			Document resultDoc = this.executeMethodAsDocument(post);
-			if (resultDoc != null) {
-				Header cookie = post.getResponseHeader("Set-Cookie");
-				if (cookie != null) {
-					this.getContext()
-							.setBusinessID(URLEncoder.encode(
-									cookie.getValue() + "; sessionId=" + resultDoc.getRootElement().elementText("data"),
-									"UTF-8"));
-				} else {
-					this.getContext().setBusinessID("");
-					msg = "jpolite.res.system.BaseHttpController.registerBusinessSession.2";
-					this.prepareMsg(MsgStatus.ERROR, "system.BaseHttpController.registerBusinessSession.2", title, msg);
-				}
-			} else {
-				this.getContext().setBusinessID("");
-				msg = "jpolite.res.system.BaseHttpController.registerBusinessSession.1";
-				this.prepareMsg(MsgStatus.ERROR, "system.BaseHttpController.registerBusinessSession.1", title, msg);
-			}
-		} finally {
-			post.releaseConnection();
-		}
-	}
-
-	public void unregisterBusinessSession() throws HttpException, IOException, DocumentException {
-		PostMethod post = new PostMethod(
-				this.getContext().getBusinessServerURL(this.request, "unregister", "/clean-session"));
-		if (post != null) {
-			try {
-				this.executeMethodAsDocument(post);
-				this.getContext().setBusinessID("");
-			} finally {
-				post.releaseConnection();
-			}
-		}
 	}
 
 	public String genAction(Hashtable<String, String> attributes, Hashtable<String, String> parameters) {
@@ -268,7 +220,7 @@ public class BaseController {
 		str.append("</action>\r\n");
 		return str.toString();
 	}
-	
+
 	protected String getRemoteAddr(HttpServletRequest req) {
 		String ip = req.getHeader("X-Forwarded-For");
 		if ((ip == null) || (ip.length() == 0) || ("unknown".equalsIgnoreCase(ip))) {

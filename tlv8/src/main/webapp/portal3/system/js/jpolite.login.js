@@ -204,6 +204,7 @@ if (!$.jpolite.Login) $.jpolite.Login = {
 				$.cookie("jpolite_username", CryptoJS.AESEncrypt(username), {expires:7,path:'/'});
 				$.cookie("jpolite_password", CryptoJS.AESEncrypt(password), {expires:7,path:'/'});
 				$.cookie("jpolite_language", language);
+				$.cookie("Authorization", data.token, {expires:7,path:'/'});
 				window.location.href = window.location.href.replace(/login.html.*/,"index.html?temp="+new Date().getTime());
 				//luoting 判断登录的portel的主题类型 
 				//var rebackFun=function(data){ 

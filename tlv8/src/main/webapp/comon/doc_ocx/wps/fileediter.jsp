@@ -16,7 +16,7 @@
 		Map docMap = dochostList.get(0);
 		docHost = docMap.get("SURL").toString();
 	}
-	ContextBean contextbean = new UserController().getContext(request.getSession().getId());
+	ContextBean contextbean = ContextBean.getContext(request);
 	String loginName = contextbean.getPersonName();
 	String titleName = "";
 	String fileID = request.getParameter("fileid");

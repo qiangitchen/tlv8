@@ -1,7 +1,7 @@
-package com.tlv8.system.filter;
+package com.tlv8.opm.filter;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,18 +14,32 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.jdbc.SQL;
+
 import com.tlv8.base.db.DBUtils;
+import com.tlv8.base.utils.StringUtils;
+import com.tlv8.opm.inter.OrgAdmAuthority;
+import com.tlv8.opm.inter.impl.OrganizationAdministrativeAuthority;
 import com.tlv8.system.bean.ContextBean;
 import com.tlv8.system.echat.EChatExecuteFilter;
-import com.tlv8.system.help.SessionHelper;
-import com.tlv8.system.inter.OrgAdmAuthority;
-import com.tlv8.system.inter.impl.OrganizationAdministrativeAuthority;
+import com.tlv8.system.service.TokenService;
 
+/**
+ * 登录、权限拦截器
+ * 
+ * @author chenqian
+ *
+ */
 public class JurisdictionFilter implements Filter {
 	// 未登录时跳转页面
 	public static String SessionerrPage = "/Sessionerr.jsp";
 	// 没有权限时跳转页面
 	public static String SessionauthorPage = "/Sessionauthor.jsp";
+
+	private TokenService tokenService = null;
+
+	public JurisdictionFilter() {
+	}
 
 	@Override
 	public void destroy() {
@@ -37,23 +51,27 @@ public class JurisdictionFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-
-		res.addHeader("x-frame-options", "SAMEORIGIN");
-		res.setHeader("Set-Cookie", "cookiename=value;Path=/;Domain=domainvalue;Max-Age=seconds;Secure;HTTPOnly");
-
 		// 获取请求的URL
 		String requestURI = req.getRequestURI();
 		String ContextPath = req.getContextPath();
 		String patex = requestURI.toLowerCase();
 
+		if (isSource(patex)) {// 静态资源js、css等不拦截
+			chain.doFilter(request, response);
+			return;
+		}
+
+		if (tokenService == null) {
+			tokenService = TokenService.getTokenService();
+		}
+		ContextBean context = tokenService.getContextBean(req);
+		if (StringUtils.isNotNull(context)) {
+			tokenService.verifyToken(context);
+		}
 		if (EChatExecuteFilter.doFilter(req, res)) {
 			// return false; // 返回false就是不需要再做处理
 		} else if (isPage(patex) && !isLoginPage(patex) && !isWelcomePage(ContextPath, requestURI)
-				&& !isIcoPage(requestURI)) {
-			/*
-			 * 页面访问登录控制
-			 */
-			ContextBean context = SessionHelper.getContext(req);
+				&& !isIcoPage(requestURI) && !isWXApp(requestURI)) {
 			// 判断是否已登录
 			if (context.isLogin()) {
 				OrgAdmAuthority author = new OrganizationAdministrativeAuthority(context, request.getServletContext());
@@ -101,6 +119,18 @@ public class JurisdictionFilter implements Filter {
 	}
 
 	/*
+	 * 判断是否为静态资源
+	 */
+	private boolean isSource(String patex) {
+		boolean rsps = false;
+		if (patex.endsWith(".css") || patex.endsWith(".js") || patex.endsWith(".jpg") || patex.endsWith(".png")
+				|| patex.endsWith(".gif") || patex.endsWith(".jpeg")) {
+			rsps = true;
+		}
+		return rsps;
+	}
+
+	/*
 	 * 判断是否为登录页面
 	 */
 	private boolean isLoginPage(String patex) {
@@ -129,17 +159,26 @@ public class JurisdictionFilter implements Filter {
 	}
 
 	/*
+	 * 判断是否为小程序前端请求
+	 */
+	private boolean isWXApp(String url) {
+		return url.contains("/api/wx/");
+	}
+
+	/*
 	 * 获取当前任务的执行人ID
 	 */
 	public static String getCurrentTaskExcutorID(String taskID) {
-		String sql = "select SEPERSONID from SA_TASK where SID = '" + taskID + "'";
 		String ptid = "";
 		try {
-			List<Map<String, String>> li = DBUtils.execQueryforList("system", sql);
+			SQL sql = new SQL().SELECT("SEPERSONID").FROM("SA_TASK").WHERE("SID = ?");
+			List<Object> param = new ArrayList<>();
+			param.add(taskID);
+			List<Map<String, Object>> li = DBUtils.selectList("system", sql.toString(), param);
 			if (li.size() > 0) {
-				ptid = li.get(0).get("SEPERSONID");
+				ptid = (String) li.get(0).get("SEPERSONID");
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return ptid;

@@ -1,4 +1,4 @@
-package com.tlv8.system.inter.impl;
+package com.tlv8.opm.inter.impl;
 
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -7,9 +7,9 @@ import java.util.Set;
 
 import javax.servlet.ServletContext;
 
+import com.tlv8.opm.inter.OrgAdmAuthority;
 import com.tlv8.system.action.FunctreeControl;
 import com.tlv8.system.bean.ContextBean;
-import com.tlv8.system.inter.OrgAdmAuthority;
 import com.tlv8.system.utils.FunTree;
 import com.tlv8.system.utils.OpmAgent;
 
@@ -22,10 +22,6 @@ public class OrganizationAdministrativeAuthority implements OrgAdmAuthority {
 	private ContextBean context;
 	protected Map haveAutherMap = new HashMap();
 	protected Map haveAgentAutherMap = new HashMap();
-
-	public OrganizationAdministrativeAuthority(String sessionid) {
-		initData(ContextBean.getContext(sessionid));
-	}
 
 	public OrganizationAdministrativeAuthority(ContextBean scontext, ServletContext sevContex) {
 		if (havePerMap.isEmpty()) {

@@ -106,6 +106,7 @@ if (typeof Login == "undefined") Login = {
 				if(res && res.status =="SUCCESS"){
 					$.cookie("tlv8-username", username, {expires:7,path:'/'});
 					//$.cookie("tlv8-password",password, {expires:7,path:'/'});
+					$.cookie("Authorization", data.token, {expires:7,path:'/'});
 					window.loginSuccess = true;
 					window.location.href = window.location.href.replace(/login.*\.html.*/,"index.html?timestamp="+ new Date().valueOf());
 				}else{

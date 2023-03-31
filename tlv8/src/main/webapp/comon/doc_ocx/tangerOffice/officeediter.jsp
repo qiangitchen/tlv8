@@ -2,7 +2,6 @@
 <%@page import="com.alibaba.fastjson.JSONArray"%>
 <%@page import="com.tlv8.doc.clt.doc.DocUtils"%>
 <%@page import="com.tlv8.system.bean.ContextBean"%>
-<%@page import="com.tlv8.system.controller.UserController"%>
 <%@page import="com.tlv8.base.db.DBUtils"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -17,7 +16,7 @@
 		Map<String,String> docMap = dochostList.get(0);
 		docHost = docMap.get("SURL");
 	}
-	ContextBean contextbean = new UserController().getContext(request.getSession().getId());
+	ContextBean contextbean = ContextBean.getContext(request);
 	String loginName = contextbean.getPersonName();
 	String titleName = "";
 	String fileID = request.getParameter("fileID");

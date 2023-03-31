@@ -15,15 +15,6 @@
 	<description>TLv8 平台</description>
 
 	<dependencies>
-		<!-- 热部署 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<version>2.7.9</version>
-			<optional>true</optional>
-			<scope>provided</scope>
-		</dependency>
-		
 		<!-- Web 项目所以添加Spring MVC Web模块支持-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
