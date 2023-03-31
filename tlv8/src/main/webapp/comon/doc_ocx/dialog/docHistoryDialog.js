@@ -11,13 +11,11 @@ var getUrlParam = function(data) {
 	docHostPath = data.docPath;
 	docID = data.docID;
 	if (staticGrid) {
-		var sql = "select SDOCVERSIONID,SDOCNAME,SSIZE,SPERSONNAME,SDEPTNAME,STIME from SA_DOCLOG where SDOCID='"
-				+ docID
-				+ "' and SACCESSTYPE != 'download' order by SDOCVERSIONID";
-		var r = tlv8.sqlQueryActionforJson("system", sql);
-		// var response = justep.Doc.getAccessRecord(docID, false, true, true);
-		var response = r.data;
-		if (r.flag == "false") {
+		var param = new tlv8.RequestParam();
+		param.set("docID",docID);
+		var r = tlv8.XMLHttpRequest("queryDocHistoryAction", param, "POST", false);
+		var response = r.data.data;
+		if (r.data.flag == "false") {
 			alert(r.messgae);
 			return;
 		}
@@ -94,7 +92,7 @@ $(document).ready(function() {
 	var labs = [ {
 		id : 'number',
 		name : '版本',
-		width : 30
+		width : 60
 	}, {
 		id : 'SDOCVERSIONID',
 		name : 'DocVersion',
@@ -106,11 +104,11 @@ $(document).ready(function() {
 	}, {
 		id : 'SSIZE',
 		name : '大小(字节)',
-		width : 60
+		width : 100
 	}, {
 		id : 'SPERSONNAME',
 		name : '提交人',
-		width : 60
+		width : 80
 	}, {
 		id : 'SDEPTNAME',
 		name : '提交人部门',
@@ -118,7 +116,7 @@ $(document).ready(function() {
 	}, {
 		id : 'STIME',
 		name : '提交时间',
-		width : 120
+		width : 140
 	} ];
 	staticGrid.init(labs); // 初始化
 });

@@ -21,6 +21,12 @@ import com.tlv8.base.utils.IPUtils;
 import com.tlv8.system.bean.ContextBean;
 import com.tlv8.system.utils.LogUtils;
 
+/**
+ * @see tlv8 v3.0 安全考虑-弃用
+ * @author chenqian
+ *
+ */
+@Deprecated 
 @Controller
 @Scope("prototype")
 public class DeleteSystemAction extends ActionSupport{
@@ -72,7 +78,6 @@ public class DeleteSystemAction extends ActionSupport{
 		return this;
 	}
 	
-	@SuppressWarnings("deprecation")
 	String exeUpdateAction() throws SQLException, NamingException {
 		String result = "";
 		Connection conn = null;

@@ -244,7 +244,7 @@ tlv8.createGrid = function (div, labelid, labels, labelwidth, dataAction,
             	  ,limits: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
             	  ,count: allrows
             	  ,curr: page //获取起始页
-            	  ,layout: ['prev', 'page', 'next', 'limit']
+            	  ,layout: ['prev', 'page', 'next', 'limit', 'count']
             	  ,jump: function(obj, first){
             		  if(!first){
             			  limit = obj.limit;

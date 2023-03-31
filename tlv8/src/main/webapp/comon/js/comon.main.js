@@ -722,68 +722,9 @@ tlv8.callFunctionAction = function (dbkey, ProduceName, Param, callBack,
  * 信息提示
  */
 function sAlert(str, time) {
-    if (topparent != window && topparent.sAlert) {
-        topparent.sAlert(str, time);
-        return;
-    }
-    var sAlertDiv = document.getElementById("msgDiv");
-    if (sAlertDiv && sAlertDiv.tagName == "DIV") {
-        document.body.removeChild(sAlertDiv);
-    }
-    var msgw, msgh, bordercolor;
-    msgw = 100;
-    msgh = 20;
-    titleheight = 20;
-    bordercolor = "#ffffff";
-    titlecolor = "#FFFF66";
-    var sWidth, sHeight;
-    sWidth = document.body.clientWidth;
-    sHeight = document.body.clientHeight;
-    if (window.innerHeight && window.scrollMaxY) {
-        sHeight = window.innerHeight + window.scrollMaxY;
-    } else if (document.body.scrollHeight > document.body.offsetHeight) {
-        sHeight = document.body.scrollHeight;
-    } else {
-        sHeight = document.body.offsetHeight;
-    }
-    var msgObj = document.createElement("div");
-    msgObj.setAttribute("id", "msgDiv");
-    msgObj.setAttribute("align", "center");
-    msgObj.style.background = titlecolor;
-    msgObj.style.border = "1px solid " + bordercolor;
-    msgObj.style.position = "absolute";
-    msgObj.style.left = "88%";
-    msgObj.style.top = "1%";
-    msgObj.style.font = "12px/1.6em Verdana, Geneva, Arial, Helvetica, sans-serif";
-    msgObj.style.width = msgw + "px";
-    msgObj.style.height = msgh + "px";
-    msgObj.style.textAlign = "center";
-    msgObj.style.lineHeight = "2px";
-    msgObj.style.zIndex = "101";
-    var title = document.createElement("h4");
-    title.setAttribute("id", "msgTitle");
-    title.setAttribute("align", "center");
-    title.style.margin = "0";
-    title.style.padding = "3px";
-    title.style.background = titlecolor;
-    title.style.filter = "progid:DXImageTransform.Microsoft.Alpha(startX=20, startY=20, finishX=100, finishY=100,style=1,opacity=75,finishOpacity=100);";
-    title.style.opacity = "0.75";
-    title.style.height = "20px";
-    title.style.font = "12px Verdana, Geneva, Arial, Helvetica, sans-serif";
-    title.style.color = "#000000";
-    title.innerHTML = str;
-    title.onclick = function () {
-        document.getElementById("msgDiv").removeChild(title);
-        document.body.removeChild(msgObj);
-    };
-    document.body.appendChild(msgObj);
-    document.getElementById("msgDiv").appendChild(title);
-    var txt = document.createElement("p");
-    txt.style.margin = "1em 0";
-    txt.setAttribute("id", "msgTxt");
-    txt.innerHTML = str;
-    time = time ? time : 500;
-    setTimeout('displayActionMessage()', time);
+    /**
+	 * 去掉提示
+	 */
 }
 
 var displayActionMessage = function () {
@@ -2858,12 +2799,13 @@ tlv8.portal.dailog = {
 	 */
     dailogEngin: function (data, b_g) {
         this.returnData = data ? data : this.returnData;
-        var dwin = window.parent;
-        if (window.top.$("#windowdialogIframe").size() > 0) {
+        var dwin = window;
+        if(window.parent.$("#windowdialogIframe").size() > 0){
+        	dwin = window.parent;
+        }else if (window.top.$("#windowdialogIframe").size() > 0) {
             dwin = window.top;
         }
-        if ($('<div></div>').dialog || dwin.$('<div></div>').dialog
-            || (topparent != parent && parent.$('<div></div>').dialog)) {
+        if (dwin.$('<div></div>').dialog) {
             try {
                 if (b_g) {
                     var callbackFn = tlv8.portal.dailog.callback;
@@ -2959,26 +2901,40 @@ tlv8.portal.dailog = {
 	 * @description 自定义对话框刷新
 	 */
     dailogReload: function () {
+    	var dwin = window;
+        if(window.parent.$("#windowdialogIframe").size() > 0){
+        	dwin = window.parent;
+        }else if (window.top.$("#windowdialogIframe").size() > 0) {
+            dwin = window.top;
+        }
         try {
-            var dialogview = parent.document.getElementById("dailogmsgDiv");
-            if (dialogview)
-                parent.document.getElementById("windowdialogIframe").contentWindow.location
-                    .reload();
+            var wfram = dwin.document.getElementById("windowdialogIframe");
+            if (wfram){
+            	wfram.contentWindow.location.reload();
+            	return true;
+            }
         } catch (e) {
         }
         var dialogview = document.getElementById("dailogmsgDiv");
-        if (dialogview)
+        if (dialogview){
             document.getElementById("windowdialogIframe").contentWindow.location
                 .reload();
+        }
     },
     /**
 	 * @name tlv8.portal.dailog.dailogReload
 	 * @description 自定义对话框取消
 	 */
     dailogCancel: function () {
-        if ($('<div></div>').dialog || parent.$('<div></div>').dialog) {
+    	var dwin = window;
+        if(window.parent.$("#windowdialogIframe").size() > 0){
+        	dwin = window.parent;
+        }else if (window.top.$("#windowdialogIframe").size() > 0) {
+            dwin = window.top;
+        }
+        if (dwin.$('<div></div>').dialog) {
             try {
-                parent.$('#gldd').dialog('close');
+            	dwin.$('#gldd').dialog('close');
             } catch (e) {
                 $('#gldd').dialog('close');
             }
@@ -5472,7 +5428,7 @@ tlv8.fileComponent = function (div, data, cellname, docPath, canupload,
             dataType: 'json',
             data: {dbkey: data.dbkay, rowid: data.rowid, tablename: data.table, cellname: cellname, docPath: docPath},
             before: function (obj) {
-            	layui.layer.load();
+                layui.layer.load();
             },
             done: function (res, index, upload) {
                 layui.layer.closeAll('loading');
@@ -5549,7 +5505,6 @@ tlv8.fileComponent = function (div, data, cellname, docPath, canupload,
                 }
             }
         } catch (e) {
-        	layui.layer.alert(e.message);
         }
         div.dilelist = dilelist;
         var fileIDs = new Array();
@@ -5585,9 +5540,13 @@ tlv8.fileComponent = function (div, data, cellname, docPath, canupload,
                     + "\")'>"
                     + filenames[i]
                     + "</a>&nbsp;&nbsp;</td>";
-				filetableBody += "<td width='80px;' style='border:0px none;'>";
-				filetableBody += "<a href='javascript:void(0)' style='font-size:12px;color:#0033FF;text-decoration: none;'";
-				filetableBody += " title='文件属性' onclick='justep.Doc.openDocInfoDialog(\"" + fileID + "\")'>属性</a></td>";
+				// filetableBody += "<td width='80px;' style='border:0px
+				// none;'>"
+				// + "<a href='javascript:void(0)'
+				// style='font-size:12px;color:#0033FF;text-decoration: none;'
+				// title='文件属性'
+				// onclick='justep.Doc.openDocInfoDialog(\""
+				// + fileID + "\")'>属性</a></td>";
                 if (canedit == true && !isTasksub) {
                     filetableBody += "<td width='80px;' style='border:0px none;'><a href='javascript:void(0)' "
                         + "style='font-size:12px;color:#0033FF;text-decoration: none;' title='编辑文件' "
@@ -5626,7 +5585,7 @@ tlv8.fileComponent = function (div, data, cellname, docPath, canupload,
                         + rowid
                         + "\",function(){document.getElementById(\""
                         + div.id + "\").refreshFileComp()})'>删除</a></td>";
-                } 
+                }
                 if (download != false) {
                     filetableBody += "<td width='80px;' style='border:0px none;'><a href='javascript:void(0)' style='font-size:12px;color:#0033FF;text-decoration: none;' title='下载附件' onclick='justep.Doc.downloadDocByFileID(\""
                         + docPath + "\",\"" + fileID + "\")'>下载</a></td>";
@@ -5843,7 +5802,7 @@ tlv8.picComponent = function (div, data, cellname, canEdit) {
         var upLcallback = function () {
             document.getElementById(div.id).lookPIC();
         };
-        tlv8.portal.dailog.openDailog('图片上传', url, 285, 225, upLcallback);
+        tlv8.portal.dailog.openDailog('图片上传', url, 285, 250, upLcallback);
     };
     div.uploadPIC = uploadPIC;
     var deletePIC = function () {
@@ -6274,14 +6233,16 @@ JSON.parse = function (jsonStr) {
     try {
         return eval("(" + jsonStr + ")");
     } catch (e) {
-    	layui.layer.alert("JSON.parse: " + e);
+    	//layui.layer.alert("JSON.parse: " + e);
+    	console.error("JSON.parse: " + e);
     }
 };
 String.prototype.toJSON = function () {
     try {
         return eval("(" + this + ")");
     } catch (e) {
-    	layui.layer.alert("toJSON: " + e);
+    	//layui.layer.alert("toJSON: " + e);
+    	console.error("JSON.parse: " + e);
     }
 };
 JSON.toString = function (jsonObj) {
@@ -6550,18 +6511,11 @@ tlv8.loadOption = function (viewID, sData1) {
         if (psign && psign != "") {
             writpsm = '<img src="data:image/png;base64,' + psign + '" style="height:30px;">&nbsp;&nbsp;';
         } else {
-            var param1 = new tlv8.RequestParam();
-            param1.set("personid", personid);
-            var pcre = tlv8.XMLHttpRequest("LoadAuditOpinionAction", param1, "POST", false);
-            var picID = "";
-            if (pcre.data.length > 0) {
-                picID = pcre.data[0].SID;
-            }
+            var picID = redata[i].SID;
             var url = cpath + "/comon/picCompant/Pic-read.jsp?dbkey=system"
                 + "&tablename=SA_HANDWR_SIGNATURE&cellname=SHSPIC&fID=" + picID
                 + "&Temp=" + new UUID().toString();
-            var image = "<img src='" + url
-                + "' style='width:100px;;height:30px;'></img>";
+            var image = "<img src='" + url + "' style='height:30px;'>&nbsp;&nbsp;";
             var writpsm = personname;
             if (picID && picID != "") {
                 writpsm = image;

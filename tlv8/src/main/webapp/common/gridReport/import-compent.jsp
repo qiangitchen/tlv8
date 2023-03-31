@@ -11,10 +11,12 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>grid import</title>
+		<link type="text/css" rel="stylesheet" href="<%=context%>/resources/layui/css/layui.css" />
 		<link rel="stylesheet" href="<%=context%>/resources/bootstrap/css/bootstrap.min.css" media="all">
 		<script type="text/javascript" src="<%=context%>/common/jQuery/jquery.min.js"></script>
 		<script type="text/javascript" src="<%=context%>/common/js/base.js" ></script>
 		<script type="text/javascript" src="<%=context%>/resources/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="<%=context%>/resources/layui/layui.js"></script>
 		<script type="text/javascript" src="<%=context%>/common/gridReport/js/imp.js"></script>
 		<script type="text/javascript">
 			var path = '<%=request.getRequestURI()%>'; 

@@ -31,10 +31,13 @@ import com.tlv8.base.utils.AesEncryptUtil;
 import com.tlv8.system.bean.ContextBean;
 
 /**
+ * @see tlv8 v3.0 安全考虑-弃用
  * @P SQL查询 返回类型为JSON
  * @author 陈乾
  * @C 2011-12-8
+ * @update 2023-03-31
  */
+@Deprecated 
 @Controller
 @Scope("prototype")
 public class SqlQueryActionforJson extends ActionSupport {

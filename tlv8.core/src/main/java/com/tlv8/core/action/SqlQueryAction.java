@@ -26,9 +26,11 @@ import com.tlv8.base.utils.AesEncryptUtil;
 import com.tlv8.system.bean.ContextBean;
 
 /**
+ * @see tlv8 v3.0 安全考虑-弃用
  * @author ChenQian 用于公共的sql查询
  * @参数 {dbkey：数据库连接标识(String)；sql：需要执行的sql语句(String)}
  */
+@Deprecated 
 @Controller
 @Scope("prototype")
 public class SqlQueryAction extends ActionSupport {

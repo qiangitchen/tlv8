@@ -30,7 +30,7 @@
 		                      <div class="th">名称:</div> 
 		                    </td>  
 		                    <td style="width:320px;"> 
-		                      <input type="text" style="width:100%" id="sDocName"/> 
+		                      <input type="text" style="width:100%" id="sDocName" class="layui-input"/> 
 		                    </td>  
 		                    <td/> 
 		                  </tr>  
@@ -39,7 +39,7 @@
 		                      <div class="th">类型:</div> 
 		                    </td>  
 		                    <td> 
-		                      <input type="text" readonly="readonly" style="width:100%" id="sKind"/> 
+		                      <input type="text" readonly="readonly" style="width:100%" id="sKind" class="layui-input"/> 
 		                    </td>  
 		                    <td/> 
 		                  </tr>  
@@ -48,7 +48,7 @@
 		                      <div class="th">大小(字节):</div> 
 		                    </td>  
 		                    <td> 
-		                      <input type="text" readonly="readonly" style="width:100%" id="sSize" format="0,000"/> 
+		                      <input type="text" readonly="readonly" style="width:100%" id="sSize" format="0,000" class="layui-input"/> 
 		                    </td>  
 		                    <td/> 
 		                  </tr>  
@@ -57,7 +57,7 @@
 		                      <div class="th">路径:</div> 
 		                    </td>  
 		                    <td> 
-		                      <input type="text" readonly="readonly" style="width:100%" id="sDocDisplayPath"/> 
+		                      <input type="text" readonly="readonly" style="width:100%" id="sDocDisplayPath" class="layui-input"/> 
 		                    </td>  
 		                    <td/> 
 		                  </tr>  
@@ -66,24 +66,27 @@
 		                      <div class="th">创建人:</div> 
 		                    </td>  
 		                    <td> 
-		                      <input type="text" readonly="readonly"  id="sCreatorName"/> 
+		                      <input type="text" readonly="readonly" style="width:100%" id="sCreatorName" class="layui-input"/> 
 		                    </td> 
+		                     <td/> 
 		                  </tr>  
 		                  <tr style="height:28px"> 
 		                    <td> 
 		                      <div class="th">创建部门：</div> 
 		                    </td>  
 		                    <td> 
-		                      <input type="text" readonly="readonly"  id="sCreatorDeptName"/> 
+		                      <input type="text" readonly="readonly" style="width:100%" id="sCreatorDeptName" class="layui-input"/> 
 		                    </td> 
+		                     <td/> 
 		                  </tr>  
 		                  <tr style="height:28px"> 
 		                    <td scope="row"> 
 		                      <div style="width:120px" class="th">创建时间:</div> 
 		                    </td>  
 		                    <td> 
-		                      <input type="text" readonly="readonly"  id="sCreateTime" format="yyyy-MM-dd hh:mm:ss"/> 
+		                      <input type="text" readonly="readonly" style="width:100%" id="sCreateTime" format="yyyy-MM-dd hh:mm:ss" class="layui-input"/> 
 		                    </td> 
+		                     <td/> 
 		                  </tr>  
 		              </table> 
 		    	 </div>  
@@ -94,7 +97,7 @@
 		                      <div class="th">编辑人:</div> 
 		                    </td>  
 		                    <td> 
-		                      <input type="text" readonly="readonly"  id="sEditorName"/> 
+		                      <input type="text" readonly="readonly"  id="sEditorName" class="layui-input"/> 
 		                    </td>  
 		                    <td/> 
 		                  </tr>  
@@ -103,7 +106,7 @@
 		                      <div class="th">编辑部门:</div> 
 		                    </td>  
 		                    <td> 
-		                      <input type="text" readonly="readonly"  id="sEditorDeptName"/> 
+		                      <input type="text" readonly="readonly"  id="sEditorDeptName" class="layui-input"/> 
 		                    </td>  
 		                    <td/> 
 		                  </tr>  
@@ -112,7 +115,7 @@
 		                      <div class="th">最后修改人:</div> 
 		                    </td>  
 		                    <td> 
-		                      <input type="text" readonly="readonly"  id="sLastWriterName"/> 
+		                      <input type="text" readonly="readonly"  id="sLastWriterName" class="layui-input"/> 
 		                    </td>  
 		                    <td/> 
 		                  </tr>  
@@ -121,7 +124,7 @@
 		                      <div class="th">最后修改部门:</div> 
 		                    </td>  
 		                    <td> 
-		                      <input type="text" readonly="readonly"  id="sLastWriterDeptName"/> 
+		                      <input type="text" readonly="readonly"  id="sLastWriterDeptName" class="layui-input"/> 
 		                    </td>  
 		                    <td/> 
 		                  </tr>  
@@ -130,7 +133,7 @@
 		                      <div style="width:120px" class="th">最后修改时间:</div> 
 		                    </td>  
 		                    <td> 
-		                      <input type="text" readonly="readonly"  id="sLastWriteTime" format="yyyy-MM-dd hh:mm:ss"/> 
+		                      <input type="text" readonly="readonly"  id="sLastWriteTime" format="yyyy-MM-dd hh:mm:ss" class="layui-input"/> 
 		                    </td> 
 		                  </tr>
 		    		 </table>
@@ -142,7 +145,7 @@
 		                 <div class="th">文件编号：</div> 
 		               </td>  
 		               <td style="width:320px;"> 
-		                 <input type="text" style="width:100%" id="sDocSerialNumber"/> 
+		                 <input type="text" style="width:100%" id="sDocSerialNumber" class="layui-input"/> 
 		               </td>  
 		               <td/> 
 		             </tr>  
@@ -151,7 +154,7 @@
 		                 <div class="th">成文日期：</div> 
 		               </td>  
 		               <td> 
-		                 <input type="text" format="yyyy-MM-dd hh:mm:ss" style="width:100%" id="sFinishTime" class="Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/> 
+		                 <input type="text" format="yyyy-MM-dd hh:mm:ss" style="width:100%" id="sFinishTime" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="layui-input Wdate"/> 
 		               </td>  
 		               <td/> 
 		             </tr>  
@@ -160,7 +163,7 @@
 		                 <div class="th">关 键 字：</div> 
 		               </td>  
 		               <td> 
-		                 <input type="text" id="sKeywords" style="width:100%"/> 
+		                 <input type="text" id="sKeywords" style="width:100%" class="layui-input"/> 
 		               </td>  
 		               <td/> 
 		             </tr>  
@@ -169,7 +172,7 @@
 		                 <div class="th">文件描述：</div> 
 		               </td>  
 		               <td> 
-		                 <textarea id="sDescription" style="width:100%;height:180px;margin-top:10px"></textarea> 
+		                 <textarea id="sDescription" style="width:100%;height:180px;margin-top:10px" class="layui-textarea"></textarea> 
 		               </td>  
 		               <td/> 
 		             </tr>  

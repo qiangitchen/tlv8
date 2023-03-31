@@ -6,10 +6,12 @@
 <html>
 	<head>
 		<title>导入成功</title>
+		<link type="text/css" rel="stylesheet" href="<%=context%>/resources/layui/css/layui.css" />
 		<link rel="stylesheet" href="<%=context%>/resources/bootstrap/css/bootstrap.min.css" media="all">
 		<script type="text/javascript" src="<%=context%>/common/jQuery/jquery.min.js"></script>
 		<script type="text/javascript" src="<%=context%>/common/js/base.js" ></script>
 		<script type="text/javascript" src="<%=context%>/resources/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="<%=context%>/resources/layui/layui.js"></script>
 	</head>
 	<body style="text-align: center">
 		<br />

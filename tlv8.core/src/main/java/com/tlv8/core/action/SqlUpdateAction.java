@@ -23,9 +23,11 @@ import com.tlv8.system.bean.ContextBean;
 import com.tlv8.system.utils.LogUtils;
 
 /**
+ * @see tlv8 v3.0 安全考虑-弃用
  * @author ChenQian 用于公共的sql跟新 @参数{dbkey：数据库连接标识(String)；
  *         sql：需要执行的sql语句(String)}
  */
+@Deprecated 
 @Controller
 @Scope("prototype")
 public class SqlUpdateAction extends ActionSupport {
@@ -77,7 +79,6 @@ public class SqlUpdateAction extends ActionSupport {
 		return this;
 	}
 
-	@SuppressWarnings("deprecation")
 	String exeUpdateAction() throws SQLException, NamingException {
 		String result = "";
 		Connection conn = null;
