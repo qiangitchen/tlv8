@@ -210,11 +210,6 @@
 			<artifactId>lucene-highlighter</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>commons-httpclient</groupId>
-			<artifactId>commons-httpclient</artifactId>
-		</dependency>
-
 		<!-- itextpdf -->
 		<dependency>
 			<groupId>com.itextpdf</groupId>

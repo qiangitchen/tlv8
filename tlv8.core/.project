@@ -3,6 +3,7 @@
 	<name>tlv8.core</name>
 	<comment></comment>
 	<projects>
+		<project>tlv8.system</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

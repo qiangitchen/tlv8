@@ -3,6 +3,8 @@
 	<name>tlv8.opm</name>
 	<comment></comment>
 	<projects>
+		<project>tlv8.base</project>
+		<project>tlv8.core</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

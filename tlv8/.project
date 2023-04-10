@@ -3,6 +3,14 @@
 	<name>tlv8</name>
 	<comment></comment>
 	<projects>
+		<project>tlv8.base</project>
+		<project>tlv8.core</project>
+		<project>tlv8.doc.client</project>
+		<project>tlv8.flw</project>
+		<project>tlv8.monitor</project>
+		<project>tlv8.opm</project>
+		<project>tlv8.system</project>
+		<project>tlv8.ureport</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

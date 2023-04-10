@@ -3,6 +3,7 @@
 	<name>tlv8.monitor</name>
 	<comment></comment>
 	<projects>
+		<project>tlv8.base</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

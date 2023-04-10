@@ -13,15 +13,40 @@
 	<name>tlv8</name>
 	<url>http://www.tlv8.com</url>
 	<description>TLv8 平台</description>
+	
+	<properties>
+		<spring-boot.version>2.7.10</spring-boot.version>
+	</properties>
 
 	<dependencies>
 		<!-- Web 项目所以添加Spring MVC Web模块支持-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<version>2.7.9</version>
+			<version>${spring-boot.version}</version>
 			<scope>provided</scope>
 		</dependency>
+        <!--Provided  start-->
+        <!--War包部署到外部的Tomcat中已经包含了这些， 所以需要添加以下依赖 否则会和内嵌的Tomcat 容器发生冲突-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <version>${spring-boot.version}</version>
+            <scope>provided</scope>
+        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<version>${spring-boot.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!--spring boot - webSocket-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+            <version>${spring-boot.version}</version>
+            <scope>provided</scope>
+        </dependency>
 		<!--jsp页面使用jstl标签-->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -29,32 +54,11 @@
             <version>1.2</version>
             <scope>provided</scope>
         </dependency>
-        <!--Provided  start-->
-        <!--War包部署到外部的Tomcat中已经包含了这些， 所以需要添加以下依赖 否则会和内嵌的Tomcat 容器发生冲突-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <version>2.7.9</version>
-            <scope>provided</scope>
-        </dependency>
         <!--用于编译jsp-->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
-            <version>9.0.68</version>
-            <scope>provided</scope>
-        </dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<version>2.7.9</version>
-			<scope>test</scope>
-		</dependency>
-		<!--spring boot - webSocket-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-websocket</artifactId>
-            <version>2.7.9</version>
+            <version>9.0.73</version>
             <scope>provided</scope>
         </dependency>
 
