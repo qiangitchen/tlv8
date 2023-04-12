@@ -4908,7 +4908,7 @@ tlv8.ExcelImp = function (dbkey, table, relation, confirmXmlName, callback) {
     url += "&table=" + table;
     url += "&relation=" + relation;
     url += "&confirmXmlName=" + confirmXmlName;
-    tlv8.portal.dailog.openDailog('Excel导入', url, 500, 500, callback,
+    tlv8.portal.dailog.openDailog('Excel导入', url, 350, 350, callback,
         false);
 };
 tlv8.ExcelExp = function (dbkey, table, relation, labels, where, orderby) {
@@ -4922,7 +4922,7 @@ tlv8.ExcelExp = function (dbkey, table, relation, labels, where, orderby) {
         where: where,
         orderby: orderby
     };
-    tlv8.portal.dailog.openDailog('导出Excel', url, 350, 400, null, false,
+    tlv8.portal.dailog.openDailog('导出Excel', url, 500, 500, null, false,
         null, params);
 };
 tlv8.encodeURIComponent = function (str) {
