@@ -452,17 +452,17 @@ tlv8.createGrid = function (div, labelid, labels, labelwidth, dataAction,
                     excelImgPath, true);
                 J$(excelexpbarID).onclick = function () {
                     var cells = [];
-                    var labelas = [];
+                    var exlabels = [];
                     var labelids = labelid.split(",");
                     var widths = labelwidth.split(",");
                     var labelas = labels.split(",");
                     for (var i = 0; i < labelids.length; i++) {
                         if (widths[i] != "0") {
                             cells.push(labelids[i]);
-                            labelas.push(labelas[i]);
+                            exlabels.push(labelas[i]);
                         }
                     }
-                    tlv8.ExcelExp(data.dbkay, data.table, cells.join(","), labelas.join(","),
+                    tlv8.ExcelExp(data.dbkay, data.table, cells.join(","), exlabels.join(","),
                         grid.billfilter, data.orderby);
                 };
             }

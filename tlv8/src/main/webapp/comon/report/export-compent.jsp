@@ -49,7 +49,7 @@
 				style="border:0; width:100%; height:100%; text-align: center">
 				<tr>
 					<td colspan="2" height="98%" valign="top">
-						<div style="width:100%;height:230px;overflow:auto;" id="selectCellView">
+						<div style="width:100%;height:100%;overflow:auto;" id="selectCellView">
 						</div>
 					</td>
 				</tr>
@@ -68,7 +68,7 @@
 		</div>
 		<div style="display: none;">
 			<form action="<%=context%>/expportAction" method="post" name="importform" id="importform">
-				<table align="center" style="border:0; width:100%; height:200px; text-align: center;">
+				<table align="center" style="border:0; text-align: center;">
 					<tr>
 						<td colspan="2">
 							<input type="text" value="" id="dbkey" name="dbkey" />
