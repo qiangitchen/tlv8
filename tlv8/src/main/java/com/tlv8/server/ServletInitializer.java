@@ -1,4 +1,4 @@
-package test.server;
+package com.tlv8.server;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

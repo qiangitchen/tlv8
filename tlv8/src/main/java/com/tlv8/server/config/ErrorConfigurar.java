@@ -1,4 +1,4 @@
-package test.server.config;
+package com.tlv8.server.config;
 
 import org.springframework.boot.web.server.ErrorPage;
 import org.springframework.boot.web.server.ErrorPageRegistrar;

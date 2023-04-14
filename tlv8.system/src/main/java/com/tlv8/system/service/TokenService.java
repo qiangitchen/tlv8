@@ -7,8 +7,10 @@ import java.util.concurrent.TimeUnit;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.tlv8.base.redis.RedisCache;
-import com.tlv8.base.redis.RedisTemplateManager;
 import com.tlv8.base.utils.IDUtils;
 import com.tlv8.base.utils.StringUtils;
 import com.tlv8.system.bean.ContextBean;
@@ -19,6 +21,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+@Component
 public class TokenService {
 	// 令牌自定义标识
 	private String header = "Authorization";
@@ -35,19 +38,13 @@ public class TokenService {
 
 	private static final Long MILLIS_MINUTE_TEN = 20 * 60 * 1000L;
 
-	RedisCache redisCache;
-
-	public TokenService() {
-		this.redisCache = new RedisCache(RedisTemplateManager.getRedisTemplate());
-	}
-
+	@Autowired
+	private RedisCache redisCache;
+	
 	private static TokenService instance;
-
-	public static TokenService getTokenService() {
-		if (instance == null) {
-			instance = new TokenService();
-		}
-		return instance;
+	
+	public TokenService() {
+		instance = this;
 	}
 
 	/**
@@ -187,6 +184,10 @@ public class TokenService {
 
 	private String getTokenKey(String uuid) {
 		return CacheConstants.LOGIN_TOKEN_KEY + uuid;
+	}
+
+	public static TokenService getTokenService() {
+		return instance;
 	}
 
 }

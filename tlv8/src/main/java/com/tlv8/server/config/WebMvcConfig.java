@@ -1,4 +1,4 @@
-package test.server.config;
+package com.tlv8.server.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

@@ -5,16 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.Filter;
 import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.jdbc.SQL;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.base.utils.StringUtils;
@@ -30,25 +29,20 @@ import com.tlv8.system.service.TokenService;
  * @author chenqian
  *
  */
-public class JurisdictionFilter implements Filter {
+@Component
+public class JurisdictionFilter extends OncePerRequestFilter {
 	// 未登录时跳转页面
 	public static String SessionerrPage = "/Sessionerr.jsp";
 	// 没有权限时跳转页面
 	public static String SessionauthorPage = "/Sessionauthor.jsp";
 
-	private TokenService tokenService = null;
-
-	public JurisdictionFilter() {
-	}
+	@Autowired
+	private TokenService tokenService;
 
 	@Override
-	public void destroy() {
-
-	}
-
-	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+            throws ServletException, IOException
+    {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		// 获取请求的URL
@@ -61,9 +55,6 @@ public class JurisdictionFilter implements Filter {
 			return;
 		}
 
-		if (tokenService == null) {
-			tokenService = TokenService.getTokenService();
-		}
 		ContextBean context = tokenService.getContextBean(req);
 		if (StringUtils.isNotNull(context)) {
 			tokenService.verifyToken(context);
@@ -99,11 +90,6 @@ public class JurisdictionFilter implements Filter {
 		} else {
 			chain.doFilter(request, response);
 		}
-	}
-
-	@Override
-	public void init(FilterConfig chain) throws ServletException {
-
 	}
 
 	/*

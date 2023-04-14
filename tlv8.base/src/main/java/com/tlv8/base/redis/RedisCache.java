@@ -7,25 +7,22 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.BoundSetOperations;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.stereotype.Component;
 
 /**
  * spring redis 工具类
  *
  **/
 @SuppressWarnings(value = { "unchecked", "rawtypes" })
+@Component
 public class RedisCache {
-	public RedisTemplate redisTemplate;
-
-	public RedisCache(RedisTemplate redisTemplate) {
-		this.redisTemplate = redisTemplate;
-	}
-
-	public RedisCache() {
-	}
+	@Autowired
+	private RedisTemplate redisTemplate;
 
 	/**
 	 * 缓存基本的对象，Integer、String、实体类等

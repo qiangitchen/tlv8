@@ -11,7 +11,12 @@
 	<description>TLv8 平台 报表模块</description>
 
 	<dependencies>
-
+		<!-- JDBC -->
+	    <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-jdbc</artifactId>
+	    </dependency>
+	    
 		<!-- 谷歌zxing二维码工具包 -->
 		<dependency>
 			<groupId>com.google.zxing</groupId>

@@ -1,4 +1,4 @@
-package test.server;
+package com.tlv8.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,8 +13,8 @@ import org.springframework.context.annotation.ImportResource;
  *
  */
 @SpringBootApplication
-@ComponentScans(value = { @ComponentScan(value = "com.tlv8"), @ComponentScan(value = "test.server") })
-@ImportResource("spring-mybatis.xml")
+@ComponentScans(value = { @ComponentScan(value = "com.tlv8") })
+@ImportResource("classpath:spring-mybatis.xml")
 public class TLv8Application {
 	public static void main(String[] args) {
 		SpringApplication.run(TLv8Application.class, args);
