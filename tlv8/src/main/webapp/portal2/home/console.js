@@ -4,11 +4,9 @@ function loadTopTip() {
 		type : "post",
 		async : true,
 		dataType : "json",
-		url : "/tlv8/getWaitTaskAction",//待办任务
+		url : "/tlv8/getWaitTaskCount",// 待办任务
 		success : function(result, textStatus) {
-			if (result.count) {
-				$("#taskCount").text(result.count);
-			}
+			$("#taskCount").text(result.data);
 			delete result;
 		},
 		error : function() {
