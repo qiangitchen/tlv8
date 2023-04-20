@@ -1766,6 +1766,7 @@ tlv8.createGrid = function (div, labelid, labels, labelwidth, dataAction,
                 try {
                     var grid_view_id = r.gridid;
                     var grid = document.getElementById(grid_view_id).grid;
+                    grid.setPageBar(r.page, r.allpage,r.allrows);
                     var griddataRows = r.data;
                     if (r.page > r.allpage) {
                         grid.toPage(1);
@@ -1782,7 +1783,6 @@ tlv8.createGrid = function (div, labelid, labels, labelwidth, dataAction,
                         $("#" + div.id + "_underline").remove();
                         $("#" + div.id + "_grid_label_fixTableMain").append(grid.gridFooterRow);
                     }
-                    grid.setPageBar(r.page, r.allpage,r.allrows);
                     try {
                         grid.RowId = new Array();
                         grid.Value = new Map();
