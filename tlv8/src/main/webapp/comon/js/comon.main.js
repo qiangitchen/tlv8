@@ -4551,7 +4551,8 @@ tlv8.CheckBox = function (div, item, splithtmlarray) {
     var divnid = checkboxcompid + "_compent";
     var check = "<input id='"
         + checkboxcompid
-        + "' name='" + checkboxcompid + "' style='display:none;' onpropertychange='document.getElementById(\""
+        + "' name='" + checkboxcompid + "' style='display:none;' "
+        + " onpropertychange='document.getElementById(\""
         + divnid + "\").Check.initData(this)'/>";
     div.innerHTML = check;
     var Check = {
@@ -4606,11 +4607,13 @@ tlv8.CheckBox = function (div, item, splithtmlarray) {
     if (div.disabled)
         disabled = "disabled=true";
     for (k in set) {
-        div.innerHTML += "<input type='checkbox' name='" + item.get(set[k])
-            + "' value='" + set[k]
-            + "' onclick='document.getElementById(\"" + divnid
-            + "\").Check.boxcheck(this)' " + disabled
-            + "/><a style='font-size:12px'>" + item.get(set[k]) + "</a>";
+    	div.innerHTML += "<input type='checkbox' lay-ignore value='" + set[k]
+        + "' onclick='document.getElementById(\"" + divnid + "\").Check.boxcheck(this)' " 
+        + disabled
+        + " style='width:16px;height:16px;float:left;'>"
+        + "<span style='font-size:14px;padding: 0 10px;float:left;'>" 
+        + item.get(set[k]) 
+        + "</span>";
         if (splithtmlarray && splithtmlarray.length == set.length
             && k < set.length - 1) {
             try {
