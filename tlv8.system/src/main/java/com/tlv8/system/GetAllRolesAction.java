@@ -13,6 +13,7 @@ import com.alibaba.fastjson.JSON;
 import com.tlv8.base.Data;
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.system.bean.ContextBean;
+import com.tlv8.system.utils.ContextUtils;
 
 /**
  * 获取当前登录人所有角色
@@ -34,7 +35,7 @@ public class GetAllRolesAction {
 	@ResponseBody
 	@RequestMapping("/getAllRolesAction")
 	public Object execute() throws Exception {
-		ContextBean context = new BaseController().getContext();
+		ContextBean context = ContextUtils.getContext();
 		String persinFID = context.getCurrentPersonFullID();
 		String sql = "select r.SID,r.SCODE,r.SNAME,t.SORGID,t.SORGNAME from "
 				+ "sa_opauthorize t left join sa_oprole r on r.sid = t.sauthorizeroleid ";

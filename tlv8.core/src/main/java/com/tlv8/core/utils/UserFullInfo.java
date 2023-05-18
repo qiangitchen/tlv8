@@ -2,8 +2,8 @@ package com.tlv8.core.utils;
 
 import java.util.HashMap;
 
-import com.tlv8.system.BaseController;
 import com.tlv8.system.bean.ContextBean;
+import com.tlv8.system.utils.ContextUtils;
 
 public class UserFullInfo {
 	/*
@@ -13,7 +13,7 @@ public class UserFullInfo {
 	public static HashMap<String, String> get(String personID) {
 		HashMap<String, String> m = new HashMap<String, String>();
 		try {
-			ContextBean context = new BaseController().getContext();
+			ContextBean context = ContextUtils.getContext();
 			m = (HashMap<String, String>) context.toMap();
 		} catch (Exception e) {
 		}
@@ -24,7 +24,7 @@ public class UserFullInfo {
 	public static HashMap<String, String> get() {
 		HashMap<String, String> m = new HashMap<String, String>();
 		try {
-			ContextBean context = new BaseController().getContext();
+			ContextBean context = ContextUtils.getContext();
 			m = (HashMap<String, String>) context.toMap();
 		} catch (Exception e) {
 		}

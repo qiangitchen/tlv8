@@ -1,6 +1,6 @@
+<%@page import="com.tlv8.system.utils.ContextUtils"%>
 <%@page import="com.tlv8.docs.DocSvrUtils"%>
 <%@page import="com.tlv8.base.db.DBUtils"%>
-<%@page import="com.tlv8.system.controller.UserController"%>
 <%@ page language="java" import="java.util.*"
 	contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page language="java" import="java.io.*"%>
@@ -16,7 +16,7 @@
 		<%
 			String psmid = request.getParameter("id");
 			if(psmid==null){
-				psmid = new UserController().getContext(request.getSession().getId()).getCurrentPersonID();
+				psmid = ContextUtils.getContext().getCurrentPersonID();
 			}else{
 				psmid = psmid.trim();
 			}

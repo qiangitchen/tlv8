@@ -37,7 +37,7 @@ public class BaseController {
 	protected HttpServletRequest request;
 	@Autowired
 	protected HttpServletResponse response;
-
+	@Autowired
 	protected TokenService tokenService;
 
 	private UserResponse uesrResponse;
@@ -137,9 +137,6 @@ public class BaseController {
 			request = ServletUtils.getRequest();
 		}
 		if (this.contextbean == null) {
-			if (tokenService == null) {
-				tokenService = TokenService.getTokenService();
-			}
 			this.contextbean = tokenService.getContextBean(request);
 		}
 		if (this.contextbean == null) {

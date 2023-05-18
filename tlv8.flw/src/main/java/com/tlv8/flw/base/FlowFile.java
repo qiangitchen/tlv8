@@ -16,6 +16,7 @@ import com.tlv8.base.Sys;
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.system.BaseController;
 import com.tlv8.system.bean.ContextBean;
+import com.tlv8.system.utils.ContextUtils;
 
 @SuppressWarnings({ "rawtypes" })
 public class FlowFile {
@@ -48,7 +49,7 @@ public class FlowFile {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		ContextBean context = new BaseController().getContext();
+		ContextBean context = ContextUtils.getContext();
 		String userID = context.getCurrentPersonID();
 		String userName = context.getCurrentPersonName();
 		try {

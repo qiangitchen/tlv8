@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.tlv8.base.ActionSupport;
 import com.tlv8.base.Data;
 import com.tlv8.base.db.DBUtils;
-import com.tlv8.system.BaseController;
+import com.tlv8.system.utils.ContextUtils;
 
 /**
  * @author ChenQian
@@ -44,7 +44,7 @@ public class DeleteOrgGridInfo extends ActionSupport {
 	@RequestMapping(value = "/deleteOrgGridInfo", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
 	public Object execute() throws Exception {
 		data = new Data();
-		String userfname = new BaseController().getContext().getCurrentPersonFullName();
+		String userfname = ContextUtils.getContext().getCurrentPersonFullName();
 		String r = "";
 		String m = "success";
 		String f = "";

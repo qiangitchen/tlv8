@@ -19,7 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.tlv8.base.Data;
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.base.ActionSupport;
-import com.tlv8.system.controller.UserController;
+import com.tlv8.system.bean.ContextBean;
+import com.tlv8.system.utils.ContextUtils;
 
 /**
  * 全文检索
@@ -89,9 +90,9 @@ public class queryDocSearch extends ActionSupport {
 					"<table style='width:100%;font-size:12px;'><tr style='background:#eee;font-weight: bold;'><td>文档ID</td><td>文档名称</td><td>文档位置</td><td>作者</td><td>关键字</td></tr>");
 			List<?> rowsNode = doc.getRootElement().selectNodes("rows");
 			int rows = rowsNode.size();
-			UserController user = new UserController();
-			String currentDptName = user.getContext().getCurrentDeptName();
-			String currentPsnName = user.getContext().getCurrentPersonName();
+			ContextBean user = ContextUtils.getContext();
+			String currentDptName = user.getCurrentDeptName();
+			String currentPsnName = user.getCurrentPersonName();
 			for (int i = 0; i < rows; i++) {
 				Element titles = (Element) rowsNode.get(i);
 				List<?> rowNode = titles.selectNodes("row");

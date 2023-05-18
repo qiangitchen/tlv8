@@ -17,7 +17,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.base.utils.IDUtils;
-import com.tlv8.system.controller.UserController;
+import com.tlv8.system.utils.ContextUtils;
 
 public class IMDBUtils {
 	/*
@@ -133,7 +133,7 @@ public class IMDBUtils {
 		ResultSet rs = null;
 		String sql = "";
 		try {
-			String psmid = new UserController().getContext().getCurrentPersonID();
+			String psmid = ContextUtils.getContext().getCurrentPersonID();
 			if ("group".equals(stype)) {
 				sql = "select FID,FUSERNAME,FAVATAR,CONTENT,STIME from IM_MESSAGE where tid = '" + talkid
 						+ "' and stype = 'group' order by stime";

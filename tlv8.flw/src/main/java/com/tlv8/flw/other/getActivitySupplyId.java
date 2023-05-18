@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.Map;
 
 import com.tlv8.base.db.DBUtils;
-import com.tlv8.system.BaseController;
+import com.tlv8.system.utils.ContextUtils;
 
 @SuppressWarnings({ "rawtypes" })
 public class getActivitySupplyId {
 	public static String getSupplyerActivity(String supplyercode) {
 		String fsuppliercode = "";
 		String result = "";
-		String forgid = new BaseController().getContext().getCurrentOrgID();
+		String forgid = ContextUtils.getContext().getCurrentOrgID();
 		String sqlsupplycode = "select fid,fsuppliercode,fsuppliername from dyscmapp.DYSCM_SUPPLIER where forgid='"
 				+ forgid + "' ";
 		try {

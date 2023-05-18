@@ -14,7 +14,7 @@ import com.tlv8.base.Sys;
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.base.utils.IPUtils;
 import com.tlv8.base.ActionSupport;
-import com.tlv8.system.BaseController;
+import com.tlv8.system.utils.ContextUtils;
 import com.tlv8.system.utils.LogUtils;
 
 /**
@@ -31,7 +31,7 @@ public class UpdateCeaseOrganAction extends ActionSupport {
 	@RequestMapping(value = "/updateCeaseOrganAction", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
 	public Object execute() throws Exception {
 		data = new Data();
-		String userid = new BaseController().getContext().getCurrentPersonID();
+		String userid = ContextUtils.getContext().getCurrentPersonID();
 		if (userid == null || "".equals(userid)) {
 			data.setFlag("timeout");
 			Sys.packErrMsg("未登录或登录已超时，不允许操作!");

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.tlv8.base.Data;
 import com.tlv8.base.db.DBUtils;
-import com.tlv8.system.BaseController;
+import com.tlv8.system.utils.ContextUtils;
 
 @Controller
 @Scope("prototype")
@@ -34,7 +34,7 @@ public class GetPortalReadAction {
 	@RequestMapping("/getPortalReadAction")
 	public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String querySql = "select * from SA_MSNALERT where SSTATE = 0 and SRPERSONID = '"
-				+ new BaseController().getContext().getCurrentPersonID() + "'";
+				+ ContextUtils.getContext().getCurrentPersonID() + "'";
 		try {
 			List<Map<String, String>> list = DBUtils.execQueryforList("system", querySql);
 			data.setData(JSON.toJSONString(list));

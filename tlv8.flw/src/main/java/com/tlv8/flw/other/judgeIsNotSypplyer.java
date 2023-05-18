@@ -3,13 +3,13 @@ package com.tlv8.flw.other;
 import java.util.List;
 
 import com.tlv8.base.db.DBUtils;
-import com.tlv8.system.BaseController;
+import com.tlv8.system.utils.ContextUtils;
 
 @SuppressWarnings({ "rawtypes" })
 public class judgeIsNotSypplyer {
 	public static String judgeIsNotSypplyerActivity() {
 		String result = "";
-		String forgid = new BaseController().getContext().getCurrentOrgID();
+		String forgid = ContextUtils.getContext().getCurrentOrgID();
 		String sqlsupplycode = "select fid,fsuppliercode,fsuppliername from dyscmapp.DYSCM_SUPPLIER where forgid='"
 			+ forgid + "' ";
 		try {

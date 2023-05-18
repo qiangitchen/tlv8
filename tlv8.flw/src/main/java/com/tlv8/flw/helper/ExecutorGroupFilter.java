@@ -8,8 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.base.utils.StringArray;
-import com.tlv8.system.BaseController;
 import com.tlv8.system.bean.ContextBean;
+import com.tlv8.system.utils.ContextUtils;
 
 public class ExecutorGroupFilter {
 	/**
@@ -39,7 +39,7 @@ public class ExecutorGroupFilter {
 	 */
 	public static String filterSubOgn(String orgids) {
 		StringArray pps = new StringArray();
-		ContextBean context = new BaseController().getContext();
+		ContextBean context = ContextUtils.getContext();
 		String ognfid = context.getCurrentOgnFullID();
 		SqlSession session = DBUtils.getSession("system");
 		Connection conn = null;

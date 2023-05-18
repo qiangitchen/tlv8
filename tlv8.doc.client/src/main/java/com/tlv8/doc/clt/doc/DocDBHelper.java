@@ -23,6 +23,7 @@ import org.dom4j.Element;
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.system.bean.ContextBean;
 import com.tlv8.system.controller.UserController;
+import com.tlv8.system.utils.ContextUtils;
 
 /**
  * 文档数据相关操作
@@ -768,7 +769,7 @@ public class DocDBHelper {
 				+ "SCREATORFID,SCREATORNAME,SCREATORDEPTNAME,SCREATETIME,SDOCPATH,SDOCDISPLAYPATH,"
 				+ "SEDITORFID,SEDITORNAME,SEDITORDEPTNAME,SDOCLIVEVERSIONID,SFLAG,VERSION)values(?,?,?,"
 				+ "?,?,?,?,?,?,?,?,?,1,1,1)";
-		ContextBean context = new UserController().getContext();
+		ContextBean context = ContextUtils.getContext();
 		SqlSession session = null;
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -868,7 +869,7 @@ public class DocDBHelper {
 					+ "SCREATORFID,SCREATORNAME,SCREATORDEPTNAME,SCREATETIME,SDOCPATH,SDOCDISPLAYPATH,"
 					+ "SEDITORFID,SEDITORNAME,SEDITORDEPTNAME,SKIND,SSIZE,SCACHENAME,SDOCLIVEVERSIONID,SFLAG,VERSION)values('"
 					+ docID + "','" + dirID + "','" + docName + "'," + "?,?,?,?,?,?,?,?,?,?,?,?,1,1,1)";
-			ContextBean context = new UserController().getContext();
+			ContextBean context = ContextUtils.getContext();
 			PreparedStatement ps = conn.prepareStatement(docSql);
 			ps.setString(1, context.getCurrentPersonFullID());
 			ps.setString(2, context.getCurrentPersonName());

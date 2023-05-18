@@ -41,12 +41,6 @@ public class TokenService {
 	@Autowired
 	private RedisCache redisCache;
 	
-	private static TokenService instance;
-	
-	public TokenService() {
-		instance = this;
-	}
-
 	/**
 	 * 获取用户身份信息
 	 *
@@ -64,7 +58,7 @@ public class TokenService {
 				String userKey = getTokenKey(uuid);
 				contextBean = redisCache.getCacheObject(userKey);
 			} catch (Exception e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 		if (contextBean == null) {
@@ -184,10 +178,6 @@ public class TokenService {
 
 	private String getTokenKey(String uuid) {
 		return CacheConstants.LOGIN_TOKEN_KEY + uuid;
-	}
-
-	public static TokenService getTokenService() {
-		return instance;
 	}
 
 }

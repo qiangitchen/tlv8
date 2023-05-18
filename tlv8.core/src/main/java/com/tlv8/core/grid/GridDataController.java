@@ -23,7 +23,7 @@ import com.tlv8.base.Sys;
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.base.helper.DataTypeHelper;
 import com.tlv8.base.utils.StringArray;
-import com.tlv8.system.BaseController;
+import com.tlv8.system.utils.ContextUtils;
 
 /**
  * grid数据相关操作
@@ -181,7 +181,7 @@ public class GridDataController extends GridCoreController {
 	@RequestMapping("saveGridData")
 	public Object saveData(String dbkey, String table, String datas, String billid, String billcell) {
 		Map<String, Object> map = new HashMap<>();
-		String userid = new BaseController().getContext().getCurrentPersonID();
+		String userid = ContextUtils.getContext().getCurrentPersonID();
 		if (userid == null || "".equals(userid)) {
 			String msg = "未登录或登录已超时，不允许操作!";
 			map.put("flag", "timeout");
@@ -301,7 +301,7 @@ public class GridDataController extends GridCoreController {
 	@RequestMapping("removeGridData")
 	public Object removeData(String dbkey, String table, String rowids) {
 		Map<String, Object> map = new HashMap<>();
-		String userid = new BaseController().getContext().getCurrentPersonID();
+		String userid = ContextUtils.getContext().getCurrentPersonID();
 		if (userid == null || "".equals(userid)) {
 			String msg = "未登录或登录已超时，不允许操作!";
 			map.put("flag", "timeout");

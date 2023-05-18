@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.tlv8.base.spring.SpringUtils;
 import com.tlv8.base.utils.IDUtils;
 import com.tlv8.system.action.FunctreeControl;
 import com.tlv8.system.help.Configuration;
@@ -113,7 +114,7 @@ public class ContextBean implements Serializable{
 	public static ContextBean getContext(HttpServletRequest request) {
 		ContextBean contextBean = null;
 		try {
-			TokenService tokenService = TokenService.getTokenService();
+			TokenService tokenService = SpringUtils.getBean(TokenService.class);
 			contextBean = tokenService.getContextBean(request);
 		} catch (Exception e) {
 			contextBean = new ContextBean();

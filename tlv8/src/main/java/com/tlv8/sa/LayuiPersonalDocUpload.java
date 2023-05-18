@@ -24,8 +24,8 @@ import com.tlv8.doc.clt.doc.DocDBHelper;
 import com.tlv8.doc.clt.doc.DocUtils;
 import com.tlv8.doc.clt.doc.Docinfo;
 import com.tlv8.doc.clt.doc.Docs;
-import com.tlv8.system.BaseController;
 import com.tlv8.system.bean.ContextBean;
+import com.tlv8.system.utils.ContextUtils;
 
 @Controller
 @RequestMapping("/sa")
@@ -61,7 +61,7 @@ public class LayuiPersonalDocUpload {
 					"update SA_docNode set SFILEID = '" + fileID + "',SCACHENAME='' where sID = '" + docID + "'");
 			String sql = "insert into PERSONAL_FILE(SID,SFILENAME,SFILESIZE,SDOCPATH,SFILEID,SCREATORID,SCREATORNAME,SMASTERID,version)"
 					+ "values(?,?,?,?,?,?,?,?,?)";
-			ContextBean context = new BaseController().getContext();
+			ContextBean context = ContextUtils.getContext();
 			conn = session.getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, IDUtils.getGUID());

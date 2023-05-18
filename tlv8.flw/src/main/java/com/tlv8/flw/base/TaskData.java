@@ -18,8 +18,8 @@ import com.tlv8.base.db.DBUtils;
 import com.tlv8.base.utils.IDUtils;
 import com.tlv8.flw.expression.BooleanExpression;
 import com.tlv8.flw.helper.FlowStringtoJSON;
-import com.tlv8.system.BaseController;
 import com.tlv8.system.bean.ContextBean;
+import com.tlv8.system.utils.ContextUtils;
 import com.tlv8.system.utils.OrgUtils;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -32,7 +32,7 @@ public class TaskData {
 	public static String startFlow(String processID, String processName, String sData1) throws SQLException {
 		String flowID = IDUtils.getGUID();
 		String taskID = flowID;
-		ContextBean context = new BaseController().getContext();// 获取当前登录人员信息
+		ContextBean context = ContextUtils.getContext();// 获取当前登录人员信息
 		OrgUtils euser = new OrgUtils(processID);// 构建执行人信息
 		StringBuilder sqlStr = new StringBuilder();
 		sqlStr.append("insert into ");
@@ -114,7 +114,7 @@ public class TaskData {
 		}
 		String eURL = act.getUrl();
 		String cURL = beforeAct.getUrl();
-		ContextBean context = new BaseController().getContext();
+		ContextBean context = ContextUtils.getContext();
 		String excutorIDs = "";
 		String excutorNames = "";
 		SqlSession session = DBUtils.getSession("system");
@@ -269,7 +269,7 @@ public class TaskData {
 		String eURL = act.getUrl();
 		String cURL = eURL;
 		String newtaskID = UUID.randomUUID().toString().toUpperCase().replaceAll("-", "");
-		ContextBean context = new BaseController().getContext();
+		ContextBean context = ContextUtils.getContext();
 		for (int i = 0; i < ePersonList.size(); i++) {
 			OrgUtils euser = ePersonList.get(i);
 			StringBuilder sqlStr = new StringBuilder();
@@ -350,7 +350,7 @@ public class TaskData {
 		FlowActivity Cuact = new FlowActivity(processID, cuActivity);
 		String cURL = Cuact.getUrl();
 		String newtaskID = UUID.randomUUID().toString().toUpperCase().replaceAll("-", "");
-		ContextBean context = new BaseController().getContext();
+		ContextBean context = ContextUtils.getContext();
 		for (int i = 0; i < ePersonList.size(); i++) {
 			OrgUtils euser = ePersonList.get(i);
 			StringBuilder sqlStr = new StringBuilder();
@@ -706,7 +706,7 @@ public class TaskData {
 
 	public static JSONObject getExcutor(String eUrl) {
 		String sql = "select SCHECKPSN from SA_FLOWTRACE where SOPERATORID = '"
-				+ new BaseController().getContext().getCurrentPersonID() + "' and SEURL ='" + eUrl + "'";
+				+ ContextUtils.getContext().getCurrentPersonID() + "' and SEURL ='" + eUrl + "'";
 		try {
 			List<Map<String, String>> li = DBUtils.execQueryforList("system", sql);
 			if (li.size() > 0) {

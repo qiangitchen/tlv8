@@ -1,141 +1,141 @@
 package com.tlv8.flw;
 
-import com.tlv8.system.BaseController;
+import com.tlv8.system.utils.ContextUtils;
 
 public class flwOrgUtils {
 	/*
 	 * 获取当前登录人信息
 	 */
 	public static String getCurrentPersonID() {
-		return new BaseController().getContext().getCurrentPersonID();
+		return ContextUtils.getContext().getCurrentPersonID();
 	}
 
 	public static String getCurrentPersonCode() {
-		return new BaseController().getContext().getCurrentPersonCode();
+		return ContextUtils.getContext().getCurrentPersonCode();
 	}
 
 	public static String getCurrentPersonName() {
-		return new BaseController().getContext().getCurrentPersonName();
+		return ContextUtils.getContext().getCurrentPersonName();
 	}
 
 	public static String getCurrentPersonFID() {
-		return new BaseController().getContext().getCurrentPersonFullID();
+		return ContextUtils.getContext().getCurrentPersonFullID();
 	}
 
 	public static String getCurrentPersonFCode() {
-		return new BaseController().getContext().getCurrentPersonFullCode();
+		return ContextUtils.getContext().getCurrentPersonFullCode();
 	}
 
 	public static String getCurrentPersonFName() {
-		return new BaseController().getContext().getCurrentPersonFullName();
+		return ContextUtils.getContext().getCurrentPersonFullName();
 	}
 
 	/*
 	 * 获取当前登录人岗位信息
 	 */
 	public static String getCurrentPosID() {
-		return new BaseController().getContext().getCurrentPositionID();
+		return ContextUtils.getContext().getCurrentPositionID();
 	}
 
 	public static String getCurrentPosCode() {
-		return new BaseController().getContext().getCurrentPositionCode();
+		return ContextUtils.getContext().getCurrentPositionCode();
 	}
 
 	public static String getCurrentPosName() {
-		return new BaseController().getContext().getCurrentPositionName();
+		return ContextUtils.getContext().getCurrentPositionName();
 	}
 
 	public static String getCurrentPosFID() {
-		return new BaseController().getContext().getCurrentPositionFullID();
+		return ContextUtils.getContext().getCurrentPositionFullID();
 	}
 
 	public static String getCurrentPosFCode() {
-		return new BaseController().getContext().getCurrentPositionFullCode();
+		return ContextUtils.getContext().getCurrentPositionFullCode();
 	}
 
 	public static String getCurrentPosFName() {
-		return new BaseController().getContext().getCurrentPositionFullName();
+		return ContextUtils.getContext().getCurrentPositionFullName();
 	}
 
 	/*
 	 * 获取当前登录人部门信息
 	 */
 	public static String getCurrentDeptID() {
-		return new BaseController().getContext().getCurrentDeptID();
+		return ContextUtils.getContext().getCurrentDeptID();
 	}
 
 	public static String getCurrentDeptCode() {
-		return new BaseController().getContext().getCurrentDeptCode();
+		return ContextUtils.getContext().getCurrentDeptCode();
 	}
 
 	public static String getCurrentDeptName() {
-		return new BaseController().getContext().getCurrentDeptName();
+		return ContextUtils.getContext().getCurrentDeptName();
 	}
 
 	public static String getCurrentDeptFID() {
-		return new BaseController().getContext().getCurrentDeptFullID();
+		return ContextUtils.getContext().getCurrentDeptFullID();
 	}
 
 	public static String getCurrentDeptFCode() {
-		return new BaseController().getContext().getCurrentDeptFullCode();
+		return ContextUtils.getContext().getCurrentDeptFullCode();
 	}
 
 	public static String getCurrentDeptFName() {
-		return new BaseController().getContext().getCurrentDeptFullName();
+		return ContextUtils.getContext().getCurrentDeptFullName();
 	}
 
 	/*
 	 * 获取当前登录人机构信息
 	 */
 	public static String getCurrentOgnID() {
-		return new BaseController().getContext().getCurrentOgnID();
+		return ContextUtils.getContext().getCurrentOgnID();
 	}
 
 	public static String getCurrentOgnCode() {
-		return new BaseController().getContext().getCurrentOgnCode();
+		return ContextUtils.getContext().getCurrentOgnCode();
 	}
 
 	public static String getCurrentOgnName() {
-		return new BaseController().getContext().getCurrentOgnName();
+		return ContextUtils.getContext().getCurrentOgnName();
 	}
 
 	public static String getCurrentOgnFID() {
-		return new BaseController().getContext().getCurrentOgnFullID();
+		return ContextUtils.getContext().getCurrentOgnFullID();
 	}
 
 	public static String getCurrentOgnFCode() {
-		return new BaseController().getContext().getCurrentOgnFullCode();
+		return ContextUtils.getContext().getCurrentOgnFullCode();
 	}
 
 	public static String getCurrentOgnFName() {
-		return new BaseController().getContext().getCurrentOgnFullName();
+		return ContextUtils.getContext().getCurrentOgnFullName();
 	}
 
 	/*
 	 * 获取当前登录人组织信息
 	 */
 	public static String getCurrentOrgID() {
-		return new BaseController().getContext().getCurrentOrgID();
+		return ContextUtils.getContext().getCurrentOrgID();
 	}
 
 	public static String getCurrentOrgCode() {
-		return new BaseController().getContext().getCurrentOrgCode();
+		return ContextUtils.getContext().getCurrentOrgCode();
 	}
 
 	public static String getCurrentOrgName() {
-		return new BaseController().getContext().getCurrentOrgName();
+		return ContextUtils.getContext().getCurrentOrgName();
 	}
 
 	public static String getCurrentOrgFID() {
-		return new BaseController().getContext().getCurrentOrgFullID();
+		return ContextUtils.getContext().getCurrentOrgFullID();
 	}
 
 	public static String getCurrentOrgFCode() {
-		return new BaseController().getContext().getCurrentOrgFullCode();
+		return ContextUtils.getContext().getCurrentOrgFullCode();
 	}
 
 	public static String getCurrentOrgFName() {
-		return new BaseController().getContext().getCurrentOrgFullName();
+		return ContextUtils.getContext().getCurrentOrgFullName();
 	}
 
 }

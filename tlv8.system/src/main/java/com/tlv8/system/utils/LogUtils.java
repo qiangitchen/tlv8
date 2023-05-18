@@ -9,7 +9,6 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.tlv8.base.Sys;
 import com.tlv8.base.db.DBUtils;
-import com.tlv8.system.BaseController;
 import com.tlv8.system.bean.ContextBean;
 
 public class LogUtils {
@@ -25,7 +24,7 @@ public class LogUtils {
 	 */
 	public static void WriteActionLogs(String sActivityName, String sProcessName, String sActionName, String sIP,
 			String sDescription, String customer, String typeName) {
-		ContextBean context = new BaseController().getContext();
+		ContextBean context = ContextUtils.getContext();
 		if (typeName == null) {
 			typeName = "功能";
 			if (!sActionName.startsWith("查看")) {

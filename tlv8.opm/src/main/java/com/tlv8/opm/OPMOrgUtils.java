@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.tlv8.base.db.DBUtils;
-import com.tlv8.system.BaseController;
 import com.tlv8.system.bean.ContextBean;
+import com.tlv8.system.utils.ContextUtils;
 
 public class OPMOrgUtils {
 	private String orgid;
@@ -36,7 +36,7 @@ public class OPMOrgUtils {
 	private String personid;
 
 	public OPMOrgUtils() {
-		ContextBean context = new BaseController().getContext();
+		ContextBean context = ContextUtils.getContext();
 		setPersonid(context.getPersonID());
 		setOrgid(context.getCurrentOrgID());
 		setOrgcode(context.getCurrentOrgCode());

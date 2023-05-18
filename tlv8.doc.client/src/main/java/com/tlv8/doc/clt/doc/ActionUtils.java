@@ -1,15 +1,15 @@
 package com.tlv8.doc.clt.doc;
 
-import com.tlv8.system.controller.UserController;
+import com.tlv8.system.utils.ContextUtils;
 
 public class ActionUtils {
 
 	public static Object getRequestContext() {
-		return new UserController().getContext();
+		return ContextUtils.getContext();
 	}
 
 	public static String getSessionID() {
-		return new UserController().getContext().getBusinessID();
+		return ContextUtils.getContext().getBusinessID();
 	}
 
 }

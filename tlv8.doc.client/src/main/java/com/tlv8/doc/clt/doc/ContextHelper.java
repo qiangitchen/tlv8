@@ -1,25 +1,19 @@
 package com.tlv8.doc.clt.doc;
 
 import com.tlv8.system.bean.ContextBean;
-import com.tlv8.system.controller.UserController;
+import com.tlv8.system.utils.ContextUtils;
 
 public class ContextHelper {
-	private UserController user;
-
-	public ContextHelper() {
-		user = new UserController();
-	}
 
 	public static ContextBean getPersonMember() {
-
-		return new UserController().getContext();
+		return ContextUtils.getContext();
 	}
 
 	public String getPersonFID() {
-		return user.getContext().getCurrentPersonFullID();
+		return ContextUtils.getContext().getCurrentPersonFullID();
 	}
 
 	public String getPersonName() {
-		return user.getContext().getCurrentPersonName();
+		return ContextUtils.getContext().getCurrentPersonName();
 	}
 }

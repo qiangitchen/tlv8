@@ -27,6 +27,7 @@ import com.tlv8.base.db.DBUtils;
 import com.tlv8.doc.clt.doc.transform.TransformConfig;
 import com.tlv8.system.bean.ContextBean;
 import com.tlv8.system.controller.UserController;
+import com.tlv8.system.utils.ContextUtils;
 
 @SuppressWarnings("rawtypes")
 public class Docs {
@@ -691,7 +692,7 @@ public class Docs {
 				+ "SCREATORFID,SCREATORNAME,SCREATORDEPTNAME,SCREATETIME,SDOCPATH,SDOCDISPLAYPATH,"
 				+ "SEDITORFID,SEDITORNAME,SEDITORDEPTNAME,SDOCLIVEVERSIONID,SFLAG,VERSION)values('" + docID + "','"
 				+ dirID + "','" + docName + "'," + "?,?,?,sysdate,?,?,?,?,?,1,1,1)";
-		ContextBean context = new UserController().getContext();
+		ContextBean context = ContextUtils.getContext();
 		SqlSession session = DBUtils.getSession("system");
 		Connection conn = null;
 		PreparedStatement ps = null;

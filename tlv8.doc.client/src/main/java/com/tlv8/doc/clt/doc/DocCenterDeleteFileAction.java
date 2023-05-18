@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.tlv8.base.Data;
 import com.tlv8.base.Sys;
 import com.tlv8.core.data.BaseDeleteAction;
-import com.tlv8.system.controller.UserController;
+import com.tlv8.system.utils.ContextUtils;
 
 @Controller
 @Scope("prototype")
@@ -26,7 +26,7 @@ public class DocCenterDeleteFileAction extends BaseDeleteAction {
 	@ResponseBody
 	@RequestMapping("/docCenterDeleteFileAction")
 	public Object execute() throws Exception {
-		String userid = new UserController().getContext().getCurrentPersonID();
+		String userid = ContextUtils.getContext().getCurrentPersonID();
 		if ((userid == null) || ("".equals(userid))) {
 			this.data.setFlag("timeout");
 			Sys.packErrMsg("未登录或登录已超时，不允许操作!");

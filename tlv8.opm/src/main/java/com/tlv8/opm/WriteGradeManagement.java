@@ -19,8 +19,8 @@ import com.tlv8.base.Data;
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.base.utils.IDUtils;
 import com.tlv8.base.ActionSupport;
-import com.tlv8.system.BaseController;
 import com.tlv8.system.bean.ContextBean;
+import com.tlv8.system.utils.ContextUtils;
 
 /**
  * 分级管理分配权限
@@ -37,7 +37,7 @@ public class WriteGradeManagement extends ActionSupport {
 	@ResponseBody
 	@RequestMapping("/writeGradeManagement")
 	public Object execute() throws Exception {
-		ContextBean context = new BaseController().getContext();
+		ContextBean context = ContextUtils.getContext();
 		if (context.getPersonID() == null || "".equals(context.getPersonID())) {
 			data.setFlag("false");
 			data.setMessage("未登录或登录已超时，不允许操作!");

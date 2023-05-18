@@ -29,7 +29,7 @@ import com.tlv8.doc.clt.doc.ModifyState;
 import com.tlv8.doc.clt.doc.Utils;
 import com.tlv8.doc.clt.doc.transform.TransformConfig;
 import com.tlv8.system.bean.ContextBean;
-import com.tlv8.system.controller.UserController;
+import com.tlv8.system.utils.ContextUtils;
 
 @SuppressWarnings("rawtypes")
 public class DocLinkAttachments {
@@ -108,7 +108,7 @@ public class DocLinkAttachments {
 		r.setString("sDocPath", sDocPath);
 		r.setString("sDocDisplayPath", sDocDisplayPath);
 
-		ContextBean ContextHelper = new UserController().getContext();
+		ContextBean ContextHelper = ContextUtils.getContext();
 		String currentPersionFID = ContextHelper.getCurrentPersonFullID();
 		String currentPersionFName = ContextHelper.getCurrentPersonFullName();
 		Timestamp currentTime = new Timestamp(new Date().getTime());

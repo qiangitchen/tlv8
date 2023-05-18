@@ -17,6 +17,7 @@ import com.tlv8.base.ActionSupport;
 import com.tlv8.base.Data;
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.system.BaseController;
+import com.tlv8.system.utils.ContextUtils;
 
 /**
  * 彻底删除组织数据
@@ -44,7 +45,7 @@ public class DeleteOrgDataAction extends ActionSupport {
 	@RequestMapping(value = "/deleteOrgDataAction", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
 	public Object execute() throws Exception {
 		data = new Data();
-		String userfname = new BaseController().getContext().getCurrentPersonFullName();
+		String userfname = ContextUtils.getContext().getCurrentPersonFullName();
 		String[] rowids = rowid.split(",");
 		String sqlo = "delete from SA_OPorg where SID = ? and SID != 'ORG01' and SID != 'PSN01@ORG01'";
 		String sqlp = "delete from SA_OPPerson where SID != 'PSN01' and SID = ?";

@@ -6,8 +6,8 @@ import java.util.Map;
 
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.flw.helper.ExecutorGroupFilter;
-import com.tlv8.system.BaseController;
 import com.tlv8.system.bean.ContextBean;
+import com.tlv8.system.utils.ContextUtils;
 
 @SuppressWarnings({ "rawtypes" })
 public class OrgExecutorExpression {
@@ -36,7 +36,7 @@ public class OrgExecutorExpression {
 					+ " on m.SPERMISSIONROLEID = a.SAUTHORIZEROLEID where m.SPROCESS = '" + process
 					+ "' and SACTIVITY = '" + activity + "')";
 		} else if ("FALSE".equals(inOrg) || "TRUE".equals(inOrg)) {// 为false或true时为当前机构下
-			ContextBean context = new BaseController().getContext();
+			ContextBean context = ContextUtils.getContext();
 			String ognfid = context.getCurrentOgnFullID();
 			sql = "select o.SID SORGID from " + org_table + " o where  o.SFID like '" + ognfid + "%' "
 					+ " and o.SID in(select SORGID from sa_opauthorize a inner join sa_oppermission m "
@@ -145,7 +145,7 @@ public class OrgExecutorExpression {
 		String result = "";
 		String orgUnit = "";
 		try {
-			ContextBean context = new BaseController().getContext();
+			ContextBean context = ContextUtils.getContext();
 			if ("FALSE".equalsIgnoreCase(inOrg) || "TRUE".equalsIgnoreCase(inOrg)) {// 为false或true时为当前机构下
 				inOrg = context.getCurrentOgnFullID();
 			}

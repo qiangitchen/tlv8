@@ -17,7 +17,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.tlv8.base.Data;
 import com.tlv8.base.db.DBUtils;
-import com.tlv8.system.BaseController;
+import com.tlv8.system.utils.ContextUtils;
 
 @Controller
 @Scope("prototype")
@@ -36,7 +36,7 @@ public class GetPersonLinksAction {
 	@RequestMapping("/getPersonLinksAction")
 	public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String sql = "select SID,STITLE,SURL,SUSERNAME,SPASSWORD,SEXPARAMS,SOPENTYPE from SA_LINKS where SCREATID='"
-				+ new BaseController().getContext().getCurrentPersonID() + "'";
+				+ ContextUtils.getContext().getCurrentPersonID() + "'";
 		Connection conn = null;
 		Statement stm = null;
 		ResultSet rs = null;
