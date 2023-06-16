@@ -80,7 +80,7 @@ public class ImageWriteAction extends ActionSupport {
 			setCaption("错误:" + e.toString());
 			e.printStackTrace();
 		} finally {
-			DBUtils.closeConn(session, conn, pstmt, null);
+			DBUtils.CloseConn(session, conn, pstmt, null);
 		}
 		return rs;
 	}

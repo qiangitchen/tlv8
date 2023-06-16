@@ -102,7 +102,7 @@ public class DocUtils {
 
 	public static void saveDocFlag(String docPath, String kind, String fileID, String cacheName, Boolean isHttps)
 			throws Exception {
-		String host = DocDBHelper.queryDocHost();
+		String host = DocDBHelper.getHost();
 		String url = host + "/repository/file/cache/commit";
 		if (Utils.isNotEmptyString(fileID)) {
 			StringBuffer sb = new StringBuffer();

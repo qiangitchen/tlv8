@@ -46,7 +46,7 @@ public class Doc extends AbstractDoc {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.closeConn(session,conn, ps, null);
+			DBUtils.CloseConn(session,conn, ps, null);
 		}
 	}
 

@@ -22,7 +22,6 @@ import org.dom4j.Element;
 
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.system.bean.ContextBean;
-import com.tlv8.system.controller.UserController;
 import com.tlv8.system.utils.ContextUtils;
 
 /**
@@ -510,6 +509,66 @@ public class DocDBHelper {
 	}
 
 	/**
+	 * 获取文档服务地址IP
+	 * 
+	 * @return String
+	 */
+	public static String queryDocHostIP() {
+		String sql = "select SHOST from SA_DocNameSpace where SFLAG = '1'";
+		String host = "";
+		Connection conn = null;
+		Statement stm = null;
+		ResultSet rs = null;
+		try {
+			conn = DBUtils.getSession("system").getConnection();
+			stm = conn.createStatement();
+			rs = stm.executeQuery(sql);
+			if (rs.next()) {
+				host = rs.getString(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return host;
+	}
+
+	/**
+	 * 获取文档服务地址端口
+	 * 
+	 * @return String
+	 */
+	public static String queryDocHostPort() {
+		String sql = "select SPORT from SA_DocNameSpace where SFLAG = '1'";
+		String port = "";
+		Connection conn = null;
+		Statement stm = null;
+		ResultSet rs = null;
+		try {
+			conn = DBUtils.getSession("system").getConnection();
+			stm = conn.createStatement();
+			rs = stm.executeQuery(sql);
+			if (rs.next()) {
+				port = rs.getString(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return port;
+	}
+
+	/**
+	 * 获取主机地址
+	 * 
+	 * @return
+	 */
+	public static String getHost() {
+		String pp = queryDocHost();
+		String host = queryDocHostIP();
+		String port = queryDocHostPort();
+		return pp.substring(0, pp.indexOf("://")) + "://" + host + ":" + port + "/DocServer";
+	}
+
+	/**
 	 * 根据文档路径获取文档服务地址
 	 * 
 	 * @param docPath
@@ -816,8 +875,11 @@ public class DocDBHelper {
 		Statement stm = null;
 		ResultSet di = null;
 		String docID = Utils.getID();
+		boolean bel = false;
 		try {
 			conn = session.getConnection();
+			bel = conn.getAutoCommit();
+			conn.setAutoCommit(true);
 			if ("/".equals(docPath)) {
 				docPath = "/root";
 			}
@@ -884,11 +946,12 @@ public class DocDBHelper {
 			ps.setFloat(11, Float.parseFloat(size));
 			ps.setString(12, cacheName);
 			ps.executeUpdate();
-			session.commit(true);
+			// session.commit(true); 自动提交单行
 		} catch (Exception e) {
-			session.rollback(true);
+			// session.rollback(true);
 			e.printStackTrace();
 		} finally {
+			conn.setAutoCommit(bel);
 			DBUtils.closeConn(session, conn, stm, di);
 		}
 		return docID;

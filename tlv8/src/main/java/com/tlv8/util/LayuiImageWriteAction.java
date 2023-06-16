@@ -22,7 +22,7 @@ import com.tlv8.base.db.DBUtils;
 public class LayuiImageWriteAction {
 	@ResponseBody
 	@RequestMapping(value = "/layuiImageWriteAction", method = RequestMethod.POST)
-	public Object execute(@RequestParam("file") MultipartFile file, String dbkey, String tablename, String cellname,
+	public synchronized Object execute(@RequestParam("file") MultipartFile file, String dbkey, String tablename, String cellname,
 			String rowid) throws Exception {
 		JSONObject res = new JSONObject();
 		if (dbkey == null || "".equals(dbkey))

@@ -262,7 +262,7 @@ public class DocEditAction extends ActionSupport {
 			e.printStackTrace();
 		} finally {
 			try {
-				DBUtils.closeConn(conn, stm, rs);
+				DBUtils.CloseConn(conn, stm, rs);
 			} catch (SQLException e) {
 			}
 		}

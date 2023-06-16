@@ -76,7 +76,7 @@ public class getDocTreeInfo extends ActionSupport {
 			throw new SQLException(e);
 		} finally {
 			try {
-				DBUtils.closeConn(conn, stm, rs);
+				DBUtils.CloseConn(conn, stm, rs);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

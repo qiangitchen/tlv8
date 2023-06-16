@@ -26,7 +26,6 @@ import com.tlv8.base.Sys;
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.doc.clt.doc.transform.TransformConfig;
 import com.tlv8.system.bean.ContextBean;
-import com.tlv8.system.controller.UserController;
 import com.tlv8.system.utils.ContextUtils;
 
 @SuppressWarnings("rawtypes")

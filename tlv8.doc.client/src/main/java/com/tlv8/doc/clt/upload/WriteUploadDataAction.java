@@ -141,8 +141,8 @@ public class WriteUploadDataAction extends ActionSupport {
 						session.rollback(true);
 						e.printStackTrace();
 					} finally {
-						DBUtils.closeConn(null, null, stm, rs);
-						DBUtils.closeConn(session, conn, ps, null);
+						DBUtils.CloseConn(null, null, stm, rs);
+						DBUtils.CloseConn(session, conn, ps, null);
 					}
 				}
 			} else {

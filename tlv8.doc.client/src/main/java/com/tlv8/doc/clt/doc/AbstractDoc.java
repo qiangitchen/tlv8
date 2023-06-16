@@ -128,6 +128,7 @@ public class AbstractDoc {
 			} catch (DocumentException e) {
 				e.printStackTrace();
 			}
+			System.out.println(responseDoc.asXML());
 			Element fe = responseDoc.getRootElement().element("file");
 			setsKind(fe.attributeValue("mediatype"));
 			setScacheName(fe.attributeValue("file-name"));
@@ -153,11 +154,11 @@ public class AbstractDoc {
 	}
 
 	public void upload(boolean isHttps, InputStream inputStream) throws Exception {
-		upload(getHost(isHttps), inputStream);
+		upload(DocDBHelper.getHost(), inputStream);
 	}
 
 	public void upload(boolean isHttps, File file) throws Exception {
-		upload(getHost(isHttps), file);
+		upload(DocDBHelper.getHost(), file);
 	}
 
 	public String getsID() {
@@ -364,7 +365,7 @@ public class AbstractDoc {
 		sb.append("<data>");
 		sb.append(createChangeLogItem());
 		sb.append("</data>");
-		String host = DocDBHelper.queryDocHost();
+		String host = DocDBHelper.getHost();
 		String url = host + "/repository/file/cache/commit";
 		Document result = DocUtils.excutePostAction(url, new ByteArrayInputStream(sb.toString().getBytes("UTF-8")));
 		List itemList = result.selectNodes("//item");
@@ -385,7 +386,7 @@ public class AbstractDoc {
 		sb.append("<data>");
 		sb.append(createDeleteLogItem());
 		sb.append("</data>");
-		String host = DocDBHelper.queryDocHost();
+		String host = DocDBHelper.getHost();
 		String url = host + "/repository/file/cache/commit";
 		try {
 			DocUtils.excutePostAction(url, new ByteArrayInputStream(sb.toString().getBytes("UTF-8")));

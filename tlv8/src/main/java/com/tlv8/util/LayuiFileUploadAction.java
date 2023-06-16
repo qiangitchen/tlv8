@@ -36,7 +36,7 @@ public class LayuiFileUploadAction {
 
 	@ResponseBody
 	@RequestMapping(value = "/layuiFileUploadAction", method = RequestMethod.POST)
-	public Object execute(@RequestParam("file") MultipartFile file, String docPath, String dbkey, String rowid,
+	public synchronized Object execute(@RequestParam("file") MultipartFile file, String docPath, String dbkey, String rowid,
 			String tablename, String cellname) throws Exception {
 		JSONObject res = new JSONObject();
 		if (docPath == null || "".equals(docPath)) {
