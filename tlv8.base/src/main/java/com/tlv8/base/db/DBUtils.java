@@ -36,6 +36,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import com.tlv8.base.Sys;
+import com.tlv8.base.datasource.TLv8DataSource;
 import com.tlv8.base.db.dao.UtilsMapper;
 import com.tlv8.base.utils.NumberUtils;
 
@@ -89,6 +90,29 @@ public class DBUtils {
 
 	public static Map<String, Map<String, String>> getDBConfig() {
 		return dbconfig;
+	}
+
+	/**
+	 * 获取数据源配置信息
+	 * 
+	 * @param dbkey
+	 * @return
+	 */
+	public static TLv8DataSource getTLv8DataSource(String dbkey) {
+		TLv8DataSource datasource = new TLv8DataSource();
+		Map<String, String> m = dbconfig.get(dbkey);
+		datasource.setDriver(m.get("driver"));
+		datasource.setUrl(m.get("url"));
+		datasource.setUsername(m.get("username"));
+		datasource.setPassword(m.get("password"));
+		datasource.setPoolPingEnabled(m.get("poolPingEnabled"));
+		datasource.setPoolPingQuery(m.get("poolPingQuery"));
+		datasource.setPoolPingConnectionsNotUsedFor(m.get("poolPingConnectionsNotUsedFor"));
+		return datasource;
+	}
+
+	public static SqlSessionFactory getSqlSessionFactory(String dbkey) {
+		return dbsource.get(dbkey);
 	}
 
 	/**
@@ -518,8 +542,6 @@ public class DBUtils {
 		return result;
 	}
 
-
-
 	public static void closeConn(Connection conn, Statement stm, ResultSet rs) throws SQLException {
 		try {
 			if (rs != null)
@@ -597,6 +619,7 @@ public class DBUtils {
 
 	/**
 	 * 关闭数据库连接
+	 * 
 	 * @param session
 	 * @param conn
 	 * @param stm
