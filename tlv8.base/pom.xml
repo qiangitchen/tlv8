@@ -94,16 +94,17 @@
 			<artifactId>fastjson</artifactId>
 		</dependency>
 
-		<!-- mybatis 包 -->
+		<!-- Lombok 简化pojo代码 可以省略 get和set方法-->
 		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
 		</dependency>
 		
-		<!-- mybatis-plus -->
+		<!-- mybatis plus 包 -->
 		<dependency>
-		    <groupId>com.baomidou</groupId>
-		    <artifactId>mybatis-plus</artifactId>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-boot-starter</artifactId>
 		</dependency>
 		
 		<!-- redis 缓存操作 -->
