@@ -39,6 +39,8 @@ import com.tlv8.base.Sys;
 import com.tlv8.base.datasource.TLv8DataSource;
 import com.tlv8.base.db.dao.UtilsMapper;
 import com.tlv8.base.utils.NumberUtils;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 
 /**
  * 数据库操作基础类
@@ -93,13 +95,13 @@ public class DBUtils {
 	}
 
 	/**
-	 * 获取数据源配置信息
+	 * 获取自定义数据源
 	 * 
 	 * @param dbkey
 	 * @return
 	 */
 	public static TLv8DataSource getTLv8DataSource(String dbkey) {
-		TLv8DataSource datasource = new TLv8DataSource();
+		TLv8DataSource datasource = new TLv8DataSource(getSqlSessionFactory(dbkey));
 		Map<String, String> m = dbconfig.get(dbkey);
 		datasource.setDriver(m.get("driver"));
 		datasource.setUrl(m.get("url"));
@@ -111,6 +113,40 @@ public class DBUtils {
 		return datasource;
 	}
 
+	/**
+	 * 获取Spring boot数据源
+	 * 
+	 * @param dbkey
+	 * @return
+	 */
+	public static HikariDataSource getHikariDataSource(String dbkey) {
+		HikariConfig hconfig = new HikariConfig();
+		Map<String, String> m = dbconfig.get(dbkey);
+		hconfig.setDriverClassName(m.get("driver"));
+		hconfig.setJdbcUrl(m.get("url"));
+		hconfig.setUsername(m.get("username"));
+		hconfig.setPassword(m.get("password"));
+		int poolMaximumIdleConnections = 5;
+		if (m.containsKey("poolMaximumIdleConnections")) {
+			poolMaximumIdleConnections = Integer.parseInt(m.get("poolMaximumIdleConnections"));
+		}
+		hconfig.setMinimumIdle(poolMaximumIdleConnections);
+		int poolMaximumActiveConnections = 20;
+		if (m.containsKey("poolMaximumActiveConnections")) {
+			poolMaximumActiveConnections = Integer.parseInt(m.get("poolMaximumActiveConnections"));
+		}
+		hconfig.setMaximumPoolSize(poolMaximumActiveConnections);
+		hconfig.setConnectionTestQuery(m.get("poolPingQuery"));
+		HikariDataSource dataSource = new HikariDataSource(hconfig);
+		return dataSource;
+	}
+
+	/**
+	 * 获取SqlSessionFactory
+	 * 
+	 * @param dbkey
+	 * @return
+	 */
 	public static SqlSessionFactory getSqlSessionFactory(String dbkey) {
 		return dbsource.get(dbkey);
 	}
