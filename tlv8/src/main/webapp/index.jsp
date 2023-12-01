@@ -1,11 +1,10 @@
-<%@page import="com.tlv8.system.bean.ContextBean"%>
+<%@page import="cn.dev33.satoken.stp.StpUtil"%>
 <%@ page language="java" import="java.util.*"
 	contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%
 	String context = request.getContextPath();
     String gopage = "login.html";
-	ContextBean contextbean = ContextBean.getContext(request);
-	if(contextbean!=null && contextbean.isLogin()){
+    if (StpUtil.isLogin()) {
 		gopage = "index.html";
 	}
 %>

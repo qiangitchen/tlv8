@@ -1,4 +1,4 @@
-package com.tlv8.opm.filter;
+package com.tlv8.system.filter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,11 +17,13 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.base.utils.StringUtils;
-import com.tlv8.opm.inter.OrgAdmAuthority;
-import com.tlv8.opm.inter.impl.OrganizationAdministrativeAuthority;
 import com.tlv8.system.bean.ContextBean;
 import com.tlv8.system.echat.EChatExecuteFilter;
+import com.tlv8.system.inter.OrgAdmAuthority;
+import com.tlv8.system.inter.impl.OrganizationAdministrativeAuthority;
 import com.tlv8.system.service.TokenService;
+
+import cn.dev33.satoken.stp.StpUtil;
 
 /**
  * 登录、权限拦截器
@@ -40,9 +42,8 @@ public class JurisdictionFilter extends OncePerRequestFilter {
 	private TokenService tokenService;
 
 	@Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
-            throws ServletException, IOException
-    {
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+			throws ServletException, IOException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		// 获取请求的URL
@@ -64,7 +65,7 @@ public class JurisdictionFilter extends OncePerRequestFilter {
 		} else if (isPage(patex) && !isLoginPage(patex) && !isWelcomePage(ContextPath, requestURI)
 				&& !isIcoPage(requestURI) && !isWXApp(requestURI)) {
 			// 判断是否已登录
-			if (context.isLogin()) {
+			if (StpUtil.isLogin()) {
 				OrgAdmAuthority author = new OrganizationAdministrativeAuthority(context, request.getServletContext());
 				String taskID = request.getParameter("taskID");
 				String epersonid = getCurrentTaskExcutorID(taskID);
@@ -121,6 +122,9 @@ public class JurisdictionFilter extends OncePerRequestFilter {
 	 */
 	private boolean isLoginPage(String patex) {
 		boolean isre = false;
+		if (patex.equals("/index.jsp")) {// 允许访问系统首页
+			return true;
+		}
 		if (isPage(patex) && patex.contains("login.")) {
 			isre = true;
 		}

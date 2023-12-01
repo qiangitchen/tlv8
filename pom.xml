@@ -48,6 +48,7 @@
 		<antlr.version>4.5.3</antlr.version>
 		<lucene.version>3.6.0</lucene.version>
 		<dynamic.version>4.2.0</dynamic.version>
+		<sa-token.version>1.37.0</sa-token.version>
 	</properties>
 
 	<!-- 依赖声明 -->
@@ -196,12 +197,12 @@
 				<artifactId>mybatis-plus-boot-starter</artifactId>
 				<version>${mybatis-plus.version}</version>
 			</dependency>
-			
+
 			<!-- 动态数据源切换 -->
 			<dependency>
-			    <groupId>com.baomidou</groupId>
-			    <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-			    <version>${dynamic.version}</version>
+				<groupId>com.baomidou</groupId>
+				<artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+				<version>${dynamic.version}</version>
 			</dependency>
 
 			<!-- 阿里JSON解析器 -->
@@ -275,6 +276,20 @@
 				<groupId>org.bouncycastle</groupId>
 				<artifactId>bcprov-jdk15on</artifactId>
 				<version>1.69</version>
+			</dependency>
+
+			<!-- SA-Token -->
+			<dependency>
+				<groupId>cn.dev33</groupId>
+				<artifactId>sa-token-spring-boot-starter</artifactId>
+				<version>${sa-token.version}</version>
+			</dependency>
+
+			<!-- Sa-Token 整合 Redis （使用 jdk 默认序列化方式） -->
+			<dependency>
+				<groupId>cn.dev33</groupId>
+				<artifactId>sa-token-redis</artifactId>
+				<version>${sa-token.version}</version>
 			</dependency>
 
 			<!-- 基础包 -->

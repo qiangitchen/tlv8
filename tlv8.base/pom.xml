@@ -127,6 +127,19 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-pool2</artifactId>
 		</dependency>
+		
+		<!-- SA-Token -->
+		<dependency>
+		    <groupId>cn.dev33</groupId>
+		    <artifactId>sa-token-spring-boot-starter</artifactId>
+		</dependency>
+		
+		<!-- Sa-Token 整合 Redis （使用 jdk 默认序列化方式） -->
+		<dependency>
+		    <groupId>cn.dev33</groupId>
+		    <artifactId>sa-token-redis</artifactId>
+		</dependency>
+
 
 		<!-- Token生成与解析 -->
 		<dependency>
@@ -134,7 +147,7 @@
 			<artifactId>jjwt</artifactId>
 			<version>0.9.1</version>
 		</dependency>
-
+		
 		<!-- Jaxb -->
 		<dependency>
 			<groupId>javax.xml.bind</groupId>

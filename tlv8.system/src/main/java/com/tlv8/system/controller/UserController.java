@@ -36,6 +36,8 @@ import com.tlv8.system.help.SessionHelper;
 import com.tlv8.system.online.InitOnlineInfoAction;
 import com.tlv8.system.online.OnlineUtils;
 
+import cn.dev33.satoken.stp.StpUtil;
+
 @Controller
 @Scope("prototype")
 @RequestMapping("/system/User")
@@ -112,7 +114,11 @@ public class UserController extends BaseController {
 			contextBean.setIsNTLogin(isNTLogin);
 			contextBean.setLoginDate(loginDate);
 			contextBean.setIp(ip);
-			token = tokenService.createToken(contextBean);
+			// 设置登录用户的ID
+			StpUtil.login(contextBean.getPersonID());
+			// 获取JWT Token
+			token = StpUtil.getTokenValue();
+			tokenService.refreshToken(contextBean);
 			success = true;
 			InitOnlineInfoAction.execute(contextBean);
 			WriteLoginLog.write(contextBean.getCurrentUserID(), username, getRemoteAddr(this.request), password,
@@ -200,7 +206,11 @@ public class UserController extends BaseController {
 			contextBean.setIsNTLogin(isNTLogin);
 			contextBean.setLoginDate(loginDate);
 			contextBean.setIp(ip);
-			token = tokenService.createToken(contextBean);
+			// 设置登录用户的ID
+			StpUtil.login(contextBean.getPersonID());
+			// 获取JWT Token
+			token = StpUtil.getTokenValue();
+			tokenService.refreshToken(contextBean);
 			success = true;
 			InitOnlineInfoAction.execute(contextBean);
 			WriteLoginLog.write(contextBean.getCurrentUserID(), username, getRemoteAddr(this.request), password,
@@ -246,7 +256,11 @@ public class UserController extends BaseController {
 			contextBean.setIsNTLogin(false);
 			contextBean.setLoginDate(p("loginDate"));
 			contextBean.setIp(getRemoteAddr(this.request));
-			token = tokenService.createToken(contextBean);
+			// 设置登录用户的ID
+			StpUtil.login(contextBean.getPersonID());
+			// 获取JWT Token
+			token = StpUtil.getTokenValue();
+			tokenService.refreshToken(contextBean);
 			success = true;
 			InitOnlineInfoAction.execute(contextBean);
 			WriteLoginLog.write(contextBean.getCurrentUserID(), (String) params.get("username"),

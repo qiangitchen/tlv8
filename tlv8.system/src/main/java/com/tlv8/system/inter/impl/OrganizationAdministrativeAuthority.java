@@ -1,4 +1,4 @@
-package com.tlv8.opm.inter.impl;
+package com.tlv8.system.inter.impl;
 
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -7,9 +7,9 @@ import java.util.Set;
 
 import javax.servlet.ServletContext;
 
-import com.tlv8.opm.inter.OrgAdmAuthority;
 import com.tlv8.system.action.FunctreeControl;
 import com.tlv8.system.bean.ContextBean;
+import com.tlv8.system.inter.OrgAdmAuthority;
 import com.tlv8.system.utils.FunTree;
 import com.tlv8.system.utils.OpmAgent;
 

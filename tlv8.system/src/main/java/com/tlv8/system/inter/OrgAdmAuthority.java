@@ -1,4 +1,4 @@
-package com.tlv8.opm.inter;
+package com.tlv8.system.inter;
 
 /*
  * 判断当前登录人是否有系统管理相关权限
