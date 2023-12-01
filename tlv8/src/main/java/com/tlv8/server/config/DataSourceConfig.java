@@ -1,11 +1,13 @@
 package com.tlv8.server.config;
 
-import javax.sql.DataSource;
+import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 
+import com.baomidou.dynamic.datasource.DynamicRoutingDataSource;
+import com.baomidou.dynamic.datasource.provider.DynamicDataSourceProvider;
 import com.tlv8.base.db.DBUtils;
 
 /**
@@ -14,15 +16,28 @@ import com.tlv8.base.db.DBUtils;
 @Configuration
 public class DataSourceConfig {
 
+//	@Bean(name = "oa")
+//	@Primary
+//	DataSource dataSource() {
+//		return DBUtils.getHikariDataSource("oa");
+//	}
+//
+//	@Bean(name = "system")
+//	DataSource systemDataSource() {
+//		return DBUtils.getTLv8DataSource("system");
+//	}
+
+	/**
+	 * 动态数据源
+	 */
 	@Bean
-	@Primary
-	DataSource dataSource() {
-		return DBUtils.getHikariDataSource("oa");
+	DynamicRoutingDataSource dynamicRoutingDataSource() throws SQLException {
+		List<DynamicDataSourceProvider> prList = DBUtils.getDynamicDataSourceProviderList();
+		DynamicRoutingDataSource dynamicRoutingDataSource = new DynamicRoutingDataSource(prList);
+		// 指定主数据源（没有注释@DS时默认的数据源）
+		dynamicRoutingDataSource.addDataSource("master", DBUtils.getHikariDataSource("oa"));
+		dynamicRoutingDataSource.afterPropertiesSet();
+		return dynamicRoutingDataSource;
 	}
 
-	@Bean("systemDataSource")
-	DataSource systemDataSource() {
-		return DBUtils.getTLv8DataSource("system");
-	}
-	
 }

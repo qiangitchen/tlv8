@@ -47,6 +47,7 @@
 		<codehaus.version>1.9.1</codehaus.version>
 		<antlr.version>4.5.3</antlr.version>
 		<lucene.version>3.6.0</lucene.version>
+		<dynamic.version>4.2.0</dynamic.version>
 	</properties>
 
 	<!-- 依赖声明 -->
@@ -194,6 +195,13 @@
 				<groupId>com.baomidou</groupId>
 				<artifactId>mybatis-plus-boot-starter</artifactId>
 				<version>${mybatis-plus.version}</version>
+			</dependency>
+			
+			<!-- 动态数据源切换 -->
+			<dependency>
+			    <groupId>com.baomidou</groupId>
+			    <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+			    <version>${dynamic.version}</version>
 			</dependency>
 
 			<!-- 阿里JSON解析器 -->

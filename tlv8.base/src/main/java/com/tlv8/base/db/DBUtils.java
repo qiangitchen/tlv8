@@ -35,9 +35,11 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
+import com.baomidou.dynamic.datasource.provider.DynamicDataSourceProvider;
 import com.tlv8.base.Sys;
 import com.tlv8.base.datasource.TLv8DataSource;
 import com.tlv8.base.db.dao.UtilsMapper;
+import com.tlv8.base.db.dynamic.TLv8DataSourceProvider;
 import com.tlv8.base.utils.NumberUtils;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -139,6 +141,21 @@ public class DBUtils {
 		hconfig.setConnectionTestQuery(m.get("poolPingQuery"));
 		HikariDataSource dataSource = new HikariDataSource(hconfig);
 		return dataSource;
+	}
+
+	/**
+	 * 获取动态数据源配置列表
+	 * 
+	 * @return
+	 */
+	public static List<DynamicDataSourceProvider> getDynamicDataSourceProviderList() {
+		TLv8DataSourceProvider p = new TLv8DataSourceProvider();
+		for (String name : dbsource.keySet()) {
+			p.addDataSource(name, getHikariDataSource(name));
+		}
+		List<DynamicDataSourceProvider> res = new ArrayList<>();
+		res.add(p);
+		return res;
 	}
 
 	/**
