@@ -45,7 +45,7 @@ var getUrlParam = function(data) {
 };
 
 function refreshData() {
-	var response = justep.Doc.getAccessRecord(docID, false, true, true);
+	var response = tlv8.Doc.getAccessRecord(docID, false, true, true);
 	if (response) {
 		staticGrid.clearData();
 		for (var i = 0; i < response.length; i++) {
@@ -76,7 +76,7 @@ function browseDocByType(type) {
 		var rowId = historyRecord.selectedRow.id;
 		var docVersion = historyRecord.getValue(rowId, "SDOCVERSIONID");
 		var docName = historyRecord.getValue(rowId, "SDOCNAME");
-		justep.Doc.browseDocByFileID("/root", docName, fileID, docVersion,
+		tlv8.Doc.browseDocByFileID("/root", docName, fileID, docVersion,
 				type, 'History', isPrintDoc);
 	} catch (e) {
 		alert("没有选中版本!" + e.message);
@@ -141,14 +141,14 @@ function browseRevisionDoc() {
 function deleteVersion() {
 	var historyRecord = staticGrid;
 	var rowId = historyRecord.selectedRow.id;
-	justep.Doc.deleteVersion(docHostPath, fileID, rowId, '-1');
+	tlv8.Doc.deleteVersion(docHostPath, fileID, rowId, '-1');
 	refreshData();
 }
 function deleteCurrentVersion() {
 	var historyRecord = staticGrid;
 	var rowId = historyRecord.selectedRow.id;
 	var docVersion = historyRecord.getValue(rowId, "sDocVersionID");
-	justep.Doc.deleteVersion(docHostPath, fileID, rowId, docVersion);
+	tlv8.Doc.deleteVersion(docHostPath, fileID, rowId, docVersion);
 	refreshData();
 }
 
@@ -157,7 +157,7 @@ function downloadDoc() {
 		var historyRecord = staticGrid;
 		var rowId = historyRecord.selectedRow.id;
 		var docVersion = historyRecord.getValue(rowId, "sDocVersionID");
-		justep.Doc.downloadDocByFileID(docHostPath, fileID, docVersion);
+		tlv8.Doc.downloadDocByFileID(docHostPath, fileID, docVersion);
 	} catch (e) {
 		alert("没有选中版本!");
 	}
@@ -180,7 +180,7 @@ function tabPage1Select() {
 	}
 	var a = "";
 	try {
-		var arr = justep.Doc.browseFileComment("/root", fileID, docVersion);
+		var arr = tlv8.Doc.browseFileComment("/root", fileID, docVersion);
 		arr = JSON.parse(arr);
 		for (var i = 0; i < arr.length; i++) {
 			var item = arr[i];

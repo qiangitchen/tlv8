@@ -109,7 +109,7 @@ function createUploadElement() {
 //		var uploadMenuItem = J$(doc_upload_item);
 //		uploadMenuItem.parentElement.insertBefore(uploadDocItemDiv,
 //				uploadMenuItem);
-//		uploader = justep.Doc.getUploader("uploadDocItemDiv", "/root", -1,
+//		uploader = tlv8.Doc.getUploader("uploadDocItemDiv", "/root", -1,
 //				CimitDataParam, function() {
 //				}, 60, 22, 1, undefined, true);
 //		$('#uploadDocItemDiv').css('height', '22px');
@@ -246,7 +246,7 @@ function dowload() {
 	var SFILEID = currentgrid.getValueByName("SFILEID", rowid);
 	if (!SFILEID || SFILEID == "")
 		return;
-	justep.Doc.downloadDocByFileID("/root", SFILEID);
+	tlv8.Doc.downloadDocByFileID("/root", SFILEID);
 }
 
 // 删除

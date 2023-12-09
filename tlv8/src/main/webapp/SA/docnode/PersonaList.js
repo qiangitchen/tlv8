@@ -53,7 +53,7 @@ function downloadFile() {
 	var SFILEID = currentgrid.getValueByName("SFILEID", rowid);
 	if (!SFILEID || SFILEID == "")
 		return;
-	justep.Doc.downloadDocByFileID("/root", SFILEID);
+	tlv8.Doc.downloadDocByFileID("/root", SFILEID);
 }
 
 // 查询

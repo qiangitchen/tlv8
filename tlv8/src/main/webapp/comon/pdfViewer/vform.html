@@ -15,7 +15,7 @@
 			var fileid = tlv8.RequestURLParam.getParam("fileid");
 			var filename = tlv8.RequestURLParam.getParam("filename");
 			$("title").text(filename);
-			$("#pdfform").attr("src",justep.Doc.getdocServerAction("/root","/repository/file/view/"+fileid+"/last/content"));
+			$("#pdfform").attr("src",tlv8.Doc.getdocServerAction("/root","/repository/file/view/"+fileid+"/last/content"));
 		}
 		</script>
 	</head>

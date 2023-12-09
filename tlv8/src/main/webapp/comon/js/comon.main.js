@@ -5536,7 +5536,7 @@ tlv8.fileComponent = function (div, data, cellname, docPath, canupload,
                     + div.id
                     + "_titleItem\" title='"
                     + filenames[i]
-                    + "' onclick='justep.Doc.browseDocByID(\""
+                    + "' onclick='tlv8.Doc.browseDocByID(\""
                     + fileID
                     + "\",\""
                     + filenames[i]
@@ -5548,7 +5548,7 @@ tlv8.fileComponent = function (div, data, cellname, docPath, canupload,
 				// + "<a href='javascript:void(0)'
 				// style='font-size:12px;color:#0033FF;text-decoration: none;'
 				// title='文件属性'
-				// onclick='justep.Doc.openDocInfoDialog(\""
+				// onclick='tlv8.Doc.openDocInfoDialog(\""
 				// + fileID + "\")'>属性</a></td>";
                 if (canedit == true && !isTasksub) {
                     filetableBody += "<td width='80px;' style='border:0px none;'><a href='javascript:void(0)' "
@@ -5570,7 +5570,7 @@ tlv8.fileComponent = function (div, data, cellname, docPath, canupload,
                         + "\",\"" + div.id + "\")'>编辑</a></td>";
                 } 
                 if (viewhistory == true) {
-                    filetableBody += "<td width='80px;' style='border:0px none;'><a href='javascript:void(0)' style='font-size:12px;color:#0033FF;text-decoration: none;' title='历史版本' onclick='justep.Doc.openDocHistoryDialog(null,\""
+                    filetableBody += "<td width='80px;' style='border:0px none;'><a href='javascript:void(0)' style='font-size:12px;color:#0033FF;text-decoration: none;' title='历史版本' onclick='tlv8.Doc.openDocHistoryDialog(null,\""
                         + fileID + "\")'>历史</a></td>";
                 }
                 if (candelete != false && !isTasksub) {
@@ -5590,7 +5590,7 @@ tlv8.fileComponent = function (div, data, cellname, docPath, canupload,
                         + div.id + "\").refreshFileComp()})'>删除</a></td>";
                 }
                 if (download != false) {
-                    filetableBody += "<td width='80px;' style='border:0px none;'><a href='javascript:void(0)' style='font-size:12px;color:#0033FF;text-decoration: none;' title='下载附件' onclick='justep.Doc.downloadDocByFileID(\""
+                    filetableBody += "<td width='80px;' style='border:0px none;'><a href='javascript:void(0)' style='font-size:12px;color:#0033FF;text-decoration: none;' title='下载附件' onclick='tlv8.Doc.downloadDocByFileID(\""
                         + docPath + "\",\"" + fileID + "\")'>下载</a></td>";
                 }
                 filetableBody += "</tr>";
@@ -5638,7 +5638,7 @@ tlv8.changeLog = {
 };
 tlv8.updateDoc = function (docID, fileID, docPath, docName, kind, size,
                            cacheName, revisionCacheName, commentFileContent, createVersion) {
-    var node = justep.Doc.evalChangeLog(tlv8.changeLog, docID);
+    var node = tlv8.Doc.evalChangeLog(tlv8.changeLog, docID);
     if (node) {
         var version = node.version;
         var parentID = node.parent_id;
@@ -5649,13 +5649,13 @@ tlv8.updateDoc = function (docID, fileID, docPath, docName, kind, size,
         var keywords = node.keywords;
         var finishTime = node.finish_time;
         var serialNumber = node.serial_number;
-        justep.Doc.modifyChangeLog(node,
+        tlv8.Doc.modifyChangeLog(node,
             [version, fileID, docVersionID, docName, kind, size, parentID,
                 docPath, displayPath, description, classification,
                 keywords, finishTime, serialNumber], ["attachment",
                 cacheName, revisionCacheName, commentFileContent]);
     } else {
-        var row = justep.Doc.queryDoc(docID, undefined, ["VERSION",
+        var row = tlv8.Doc.queryDoc(docID, undefined, ["VERSION",
             "SPARENTID", "SDOCDISPLAYPATH", "SDOCLIVEVERSIONID",
             "SDESCRIPTION", "SCLASSIFICATION", "SKEYWORDS", "SFINISHTIME",
             "SDOCSERIALNUMBER"], undefined, undefined, "single");
@@ -5668,14 +5668,14 @@ tlv8.updateDoc = function (docID, fileID, docPath, docName, kind, size,
         var keywords = row.SKEYWORDS;
         var finishTime = !row.SFINISHTIME ? "" : row.SFINISHTIME;
         var serialNumber = row.SDOCSERIALNUMBER;
-        justep.Doc.addChangeLog(tlv8.changeLog, "edit", [docID, version,
+        tlv8.Doc.addChangeLog(tlv8.changeLog, "edit", [docID, version,
             fileID, docVersionID, docName, kind, size, parentID, docPath,
             displayPath, description, classification, keywords, finishTime,
             serialNumber], ["attachment", cacheName, revisionCacheName,
             commentFileContent]);
     }
     if (fileID) {
-        justep.Doc.commitDocCache(docID, tlv8.changeLog);
+        tlv8.Doc.commitDocCache(docID, tlv8.changeLog);
     }
     if (createVersion && fileID) {
         tlv8.createVersion(docID, fileID, docName, docPath);
@@ -5691,11 +5691,11 @@ tlv8.createVersion = function (docID, fileID, docName, docPath) {
     	layui.layer.alert("不支持非Office文件成文");
         return;
     }
-    var currentNode = justep.Doc.evalChangeLog(tlv8.changeLog, docID);
+    var currentNode = tlv8.Doc.evalChangeLog(tlv8.changeLog, docID);
     if (currentNode != null) {
-        justep.Doc.removeChangeLog(tlv8.changeLog, docID);
+        tlv8.Doc.removeChangeLog(tlv8.changeLog, docID);
     }
-    justep.Doc.createVersion(docID);
+    tlv8.Doc.createVersion(docID);
 };
 tlv8.getDocIdByFileId = function (fileID) {
     var r = tlv8.sqlQueryAction("system",

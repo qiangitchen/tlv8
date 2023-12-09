@@ -39,7 +39,7 @@ $(document).ready(function() {
 
 function refresh() {
 	if (staticGrid) {
-		var response = justep.Doc.getAccessRecord(docID, true, false, false);
+		var response = tlv8.Doc.getAccessRecord(docID, true, false, false);
 		if (response) {
 			staticGrid.clearData();
 			for (var i = 0; i < response.length; i++) {

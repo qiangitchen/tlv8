@@ -3306,7 +3306,7 @@ tlv8.fileComponent = function(div, data, cellname, docPath, canupload,
 						+ div.id
 						+ "_titleItem\" title='"
 						+ filenames[i]
-						+ "' onclick='justep.Doc.browseDocByID(\""
+						+ "' onclick='tlv8.Doc.browseDocByID(\""
 						+ fileID
 						+ "\",\""
 						+ filenames[i]
@@ -3314,7 +3314,7 @@ tlv8.fileComponent = function(div, data, cellname, docPath, canupload,
 						+ filenames[i]
 						+ "</a>&nbsp;&nbsp;</td>";
 				filetableBody += "<td width='40px;' style='border:0px none;'>"
-						+ "<a href='javascript:void(0)' style='font-size:12px;color:#0033FF;text-decoration: none;' title='文件属性' onclick='justep.Doc.openDocInfoDialog(\""
+						+ "<a href='javascript:void(0)' style='font-size:12px;color:#0033FF;text-decoration: none;' title='文件属性' onclick='tlv8.Doc.openDocInfoDialog(\""
 						+ fileID + "\")'>属性</a></td>";
 				if (canedit == true && !isTasksub) {
 					// filetableBody += "<td width='40px;' style='border:0px
@@ -3347,7 +3347,7 @@ tlv8.fileComponent = function(div, data, cellname, docPath, canupload,
 					filetableBody += "<td style='border:0px none;'></td>";
 				}
 				if (viewhistory == true) {
-					filetableBody += "<td width='40px;' style='border:0px none;'><a href='javascript:void(0)' style='font-size:12px;color:#0033FF;text-decoration: none;' title='历史版本' onclick='justep.Doc.openDocHistoryDialog(null,\""
+					filetableBody += "<td width='40px;' style='border:0px none;'><a href='javascript:void(0)' style='font-size:12px;color:#0033FF;text-decoration: none;' title='历史版本' onclick='tlv8.Doc.openDocHistoryDialog(null,\""
 							+ fileID + "\")'>历史</a></td>";
 				} else {
 					filetableBody += "<td style='border:0px none;'></td>";
@@ -3371,7 +3371,7 @@ tlv8.fileComponent = function(div, data, cellname, docPath, canupload,
 					filetableBody += "<td></td>";
 				}
 				if (download != false) {
-					filetableBody += "<td width='40px;' style='border:0px none;'><a href='javascript:void(0)' style='font-size:12px;color:#0033FF;text-decoration: none;' title='下载附件' onclick='justep.Doc.downloadDocByFileID(\""
+					filetableBody += "<td width='40px;' style='border:0px none;'><a href='javascript:void(0)' style='font-size:12px;color:#0033FF;text-decoration: none;' title='下载附件' onclick='tlv8.Doc.downloadDocByFileID(\""
 							+ docPath + "\",\"" + fileID + "\")'>下载</a></td>";
 				} else {
 					filetableBody += "<td style='border:0px none;'></td>";

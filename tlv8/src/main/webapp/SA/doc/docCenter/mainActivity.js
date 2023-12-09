@@ -178,7 +178,7 @@ function doc_dowload() {
 	if (!SFILEID || SFILEID == "")
 		return;
 	// tlv8.dowloadfile(SFILEID, SDOCNAME);
-	justep.Doc.downloadDocByFileID(docPath, SFILEID);
+	tlv8.Doc.downloadDocByFileID(docPath, SFILEID);
 }
 
 function newFolderData() {
@@ -339,7 +339,7 @@ function can_docDownloadRecord_m(flag) {
 		J$(docDownloadRecord_item).src = "../../../comon/image/doc/download_record.gif";
 		J$(docDownloadRecord_item).onclick = function() {
 			var docID = currentgrid.getCurrentRowId();
-			justep.Doc.openDocDownloadHistoryDialog(docID);
+			tlv8.Doc.openDocDownloadHistoryDialog(docID);
 		};
 	} else {
 		J$(docDownloadRecord_item).src = "../../../comon/image/doc/download_record_g.gif";
@@ -357,9 +357,9 @@ function can_docHistory_m(flag) {
 			var fileID = currentgrid.getValueByName("SFILEID", docID);
 			var docPath = currentgrid.getValueByName("SDOCPATH", docID);
 
-			var docFullPath = justep.Doc.getDocFullPath(docID, docPath);
+			var docFullPath = tlv8.Doc.getDocFullPath(docID, docPath);
 			var access = getAccessBysDocPath(docFullPath, currentRootAccess);
-			justep.Doc.openDocHistoryDialog(docID, fileID, docPath, access,
+			tlv8.Doc.openDocHistoryDialog(docID, fileID, docPath, access,
 					NotifyPrintEvent());
 		};
 	} else {
@@ -402,7 +402,7 @@ function can_browseDoc_m(flag) {
 		J$(browseDoc_item).onclick = function() {
 			var rowId = currentgrid.getCurrentRowId();
 			var docPath = currentgrid.getValueByName("SDOCPATH", rowId);
-			var docFullPath = justep.Doc.getDocFullPath(rowId, docPath);
+			var docFullPath = tlv8.Doc.getDocFullPath(rowId, docPath);
 			var access = getAccessBysDocPath(docFullPath, currentRootAccess);
 			if (!((access % 4) >= 2)) {
 				// return;
@@ -410,7 +410,7 @@ function can_browseDoc_m(flag) {
 
 			var filename = currentgrid.getValueByName("SDOCNAME", rowId);
 			var fileID = currentgrid.getValueByName("SFILEID", rowId);
-			justep.Doc.browseDocByFileID(docPath, filename, fileID, "last",
+			tlv8.Doc.browseDocByFileID(docPath, filename, fileID, "last",
 					"content", 'OpenOffice', NotifyPrintEvent());
 		};
 	} else {
@@ -454,9 +454,9 @@ function select_file(event) {
 function griddbclickFN(event) {
 	var docID = event.getCurrentRowId();
 	var afterEnsureFun = function(event) {
-		justep.Doc.syncCustomFileds(currentgrid.getCurrentRowId());
+		tlv8.Doc.syncCustomFileds(currentgrid.getCurrentRowId());
 	};
-	justep.Doc.openDocInfoDialog(docID, afterEnsureFun);
+	tlv8.Doc.openDocInfoDialog(docID, afterEnsureFun);
 }
 
 // 获取权限标识
@@ -540,17 +540,17 @@ function update(docName, kind, size, cacheName, revisionCacheName,
 		"operate" : "",
 		"url" : ""
 	};
-	justep.Doc.addChangeLog(changeLog, "edit", [ docID, version, fileID,
+	tlv8.Doc.addChangeLog(changeLog, "edit", [ docID, version, fileID,
 			docVersionID, docName, kind, size, parentID, docPath, displayPath,
 			description, classification, keywords, finishTime, serialNumber ],
 			[ "document", cacheName, revisionCacheName, commentFileContent ]);
 	if ('W10=' != commentFileContent) {
-		justep.Doc.commitDocCache(docID, changeLog);
+		tlv8.Doc.commitDocCache(docID, changeLog);
 		currentgrid.refreshData();
 	}
 	if (!!createVersion) {
 		// ocx控件挡住了成文状态的提示信息，所以不提示原因
-		justep.Doc.createVersion(docID);
+		tlv8.Doc.createVersion(docID);
 		currentgrid.refreshData();
 	}
 }
@@ -575,7 +575,7 @@ function getAccessBysDocPath(docFullPath, defaultAccess) {
 }
 
 function getDocAuthList() {
-	docAuthList = justep.Doc.getDocAuthList();
+	docAuthList = tlv8.Doc.getDocAuthList();
 	if (!docAuthListArr)
 		docAuthListArr = {};
 	for ( var deptFID in docAuthList) {

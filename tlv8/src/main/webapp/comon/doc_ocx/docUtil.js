@@ -1806,7 +1806,7 @@ if(!justep){
 	justep = {};
 }
 
-justep.Doc = {
+tlv8.Doc = {
 	/*
 	 * 附件权限枚举值 列表(list) : l ; 读取(read) : r ; 下载(download) : d ; 下载上传 (download
 	 * upload) : du ; 下载上传修改(download upload update) : duu ; 下载上传修改删除(download
@@ -1948,7 +1948,7 @@ justep.Doc = {
 
 	getDocServerByDocPath : function(fullPath) {
 		if (!fullPath) {
-			alert("justep.Doc.getDocServerByDocPath Error : 文档信息全路径不正确");
+			alert("tlv8.Doc.getDocServerByDocPath Error : 文档信息全路径不正确");
 			return;
 		}
 		fullPath = fullPath.substring(1);
@@ -2168,7 +2168,7 @@ justep.Doc = {
 			for ( var p in uploader.fileList) {
 				var file = uploader.fileList[p];
 				if ((file.size > limitSize) && (limitSize > 0)) {
-					alert("上传的附件不允许大于 " + justep.Doc.formatSize(limitSize));
+					alert("上传的附件不允许大于 " + tlv8.Doc.formatSize(limitSize));
 					uploader.removeFile(file.id);
 					continue;
 				}
@@ -2187,10 +2187,10 @@ justep.Doc = {
 			this.currentUploader = uploader;
 
 			try {
-				var host = justep.Doc.getdocServerAction(uploader.docPath,
+				var host = tlv8.Doc.getdocServerAction(uploader.docPath,
 						"/repository/file/cache/upload");
 			} catch (e) {
-				alert("justep.Doc.getUploader.uploader.fileSelect：获取文档服务器host失败！");
+				alert("tlv8.Doc.getUploader.uploader.fileSelect：获取文档服务器host失败！");
 				throw e;
 			}
 			try {
@@ -2205,7 +2205,7 @@ justep.Doc = {
 				uploader.uploadAll(cpath+"/docUploadAction", "POST",
 						"uploadInfo", "Filedata");
 			} catch (e) {
-				alert("justep.Doc.getUploader.uploader.fileSelect：上传文件超时！");
+				alert("tlv8.Doc.getUploader.uploader.fileSelect：上传文件超时！");
 				throw e;
 			}
 
@@ -2640,7 +2640,7 @@ justep.Doc = {
 //				docExtDiv.id = "docExtDiv";
 //				$(document.body).append(docExtDiv);
 //			}
-//			justep.Doc.openOfficeDialog("docExtDiv", "docExt", OVP);
+//			tlv8.Doc.openOfficeDialog("docExtDiv", "docExt", OVP);
 //		} else if ($.browser.msie
 //				&& _read_file_type
 //				&& _read_file_type.indexOf((String(/\.[^\.]+$/.exec(docName))
@@ -2793,8 +2793,8 @@ justep.Doc = {
 
 	openOfficeDialog : function(docExtDivID, docExtObjID, OVP,
 			afterOfficeViewerDialogSelect, caller) {
-		justep.Doc.afterOfficeViewerDialogSelect = afterOfficeViewerDialogSelect;
-		justep.Doc.caller = caller;
+		tlv8.Doc.afterOfficeViewerDialogSelect = afterOfficeViewerDialogSelect;
+		tlv8.Doc.caller = caller;
 		if (!document.getElementById(docExtObjID)) {
 			var docExtDiv = document.getElementById(docExtDivID);
 			docExtDiv.outerHTML = '<object id="'
@@ -2806,7 +2806,7 @@ justep.Doc = {
 					+ ' style="display:none;" >'
 					+ '</object><SCRIPT LANGUAGE=javascript FOR='
 					+ docExtObjID
-					+ ' EVENT=OnExcuteJS(id,param)> justep.Doc.execOfficeAction(id,param);</SCRIPT>';
+					+ ' EVENT=OnExcuteJS(id,param)> tlv8.Doc.execOfficeAction(id,param);</SCRIPT>';
 		}
 		var docOcx = document.getElementById(docExtObjID);
 		OVP.filename = escape(OVP.filename);
@@ -2819,12 +2819,12 @@ justep.Doc = {
 		if (id == 'officeAction') {
 			if (param) {
 				var data = OV.JSON.parse(param);
-				justep.Doc.afterOfficeViewerDialogSelect.call(
-						justep.Doc.caller, data);
+				tlv8.Doc.afterOfficeViewerDialogSelect.call(
+						tlv8.Doc.caller, data);
 			} else {
 				// 点编辑进去，点关闭出来需要解锁
-				justep.Doc.afterOfficeViewerDialogSelect.call(
-						justep.Doc.caller, "");
+				tlv8.Doc.afterOfficeViewerDialogSelect.call(
+						tlv8.Doc.caller, "");
 			}
 		}
 	},
@@ -2946,7 +2946,7 @@ justep.Doc = {
 
 						J$("docUploadProgressDialog_msgTxt").innerHTML = str;
 
-						self.uploadPprogressTable = new justep.Doc.ProgressTable(
+						self.uploadPprogressTable = new tlv8.Doc.ProgressTable(
 								{
 									renderTo : "progressTable",
 									width : "550px",
@@ -3011,7 +3011,7 @@ justep.Doc = {
 						this.uploadPprogressTable.deleteByField("id",
 								this.uploadPprogressTable.deleteQueue.shift());
 					}
-					record.cancal = justep.Doc.ProgressTable
+					record.cancal = tlv8.Doc.ProgressTable
 							.createCancalButton(record.id);
 					this.uploadPprogressTable.dm.push(record);
 					this.uploadPprogressTable.appendRow(record);
@@ -3078,7 +3078,7 @@ justep.Doc = {
 
 	},
 	commitDocCache : function(docID, changeLog) {
-		var node = justep.Doc.evalChangeLog(changeLog, docID);
+		var node = tlv8.Doc.evalChangeLog(changeLog, docID);
 
 		var sendParam = new tlv8.RequestParam();
 		sendParam.set('changeLog', JSON.stringify(node));
@@ -3189,7 +3189,7 @@ justep.Doc = {
 	}
 };
 
-justep.Doc.ProgressTable = function(config) {
+tlv8.Doc.ProgressTable = function(config) {
 	this.columns = config.columns;
 	this.tbObj = document.createElement("table");
 	this.tbObj.border = "1px";
@@ -3212,7 +3212,7 @@ justep.Doc.ProgressTable = function(config) {
 	}
 };
 
-justep.Doc.ProgressTable.prototype.appendRow = function(record) {
+tlv8.Doc.ProgressTable.prototype.appendRow = function(record) {
 	var rIdx = this.tbObj.rows.length;
 	var r = this.tbObj.insertRow(rIdx);
 	r.style.backgroundColor = "#FAFAFA";
@@ -3232,7 +3232,7 @@ justep.Doc.ProgressTable.prototype.appendRow = function(record) {
 	}
 };
 
-justep.Doc.ProgressTable.prototype.loadData = function(dm) {
+tlv8.Doc.ProgressTable.prototype.loadData = function(dm) {
 	if (!dm)
 		return;
 	this.deleteAllRow();
@@ -3242,11 +3242,11 @@ justep.Doc.ProgressTable.prototype.loadData = function(dm) {
 	}
 };
 
-justep.Doc.ProgressTable.prototype.reload = function() {
+tlv8.Doc.ProgressTable.prototype.reload = function() {
 	this.loadData(this.dm);
 };
 
-justep.Doc.ProgressTable.prototype.find = function(fieldName, value) {
+tlv8.Doc.ProgressTable.prototype.find = function(fieldName, value) {
 	for (var i = 0; i < this.dm.length; i++) {
 		if (this.dm[i][fieldName] == value) {
 			return i;
@@ -3255,7 +3255,7 @@ justep.Doc.ProgressTable.prototype.find = function(fieldName, value) {
 	return -1;
 };
 
-justep.Doc.ProgressTable.prototype.setValue = function(idx, fieldName, value) {
+tlv8.Doc.ProgressTable.prototype.setValue = function(idx, fieldName, value) {
 	var cRow = this.tbObj.rows[idx];
 	var cellIdx = -1;
 	for (var i = 0; i < this.columns.length; i++) {
@@ -3270,7 +3270,7 @@ justep.Doc.ProgressTable.prototype.setValue = function(idx, fieldName, value) {
 	}
 };
 
-justep.Doc.ProgressTable.prototype.deleteAllRow = function() {
+tlv8.Doc.ProgressTable.prototype.deleteAllRow = function() {
 	var length = this.tbObj.rows.length;
 	for (i = 1; i < length; i++) {
 		this.tbObj.deleteRow(1);
@@ -3278,7 +3278,7 @@ justep.Doc.ProgressTable.prototype.deleteAllRow = function() {
 	this.dm = [];
 };
 
-justep.Doc.ProgressTable.prototype.deleteByField = function(fieldName, value) {
+tlv8.Doc.ProgressTable.prototype.deleteByField = function(fieldName, value) {
 	var idx = -1;
 	for (var i = 0; i < this.dm.length; i++) {
 		if (this.dm[i][fieldName] == value) {
@@ -3292,22 +3292,22 @@ justep.Doc.ProgressTable.prototype.deleteByField = function(fieldName, value) {
 	}
 };
 
-justep.Doc.ProgressTable.createCancalButton = function(id) {
+tlv8.Doc.ProgressTable.createCancalButton = function(id) {
 	return "<img id="
 			+ id
 			+ " src='"+cpath+"/comon/image/doc/deletefile.gif'"
-			+ " onclick='justep.Doc.ProgressTable.cancal(this.id);' alt='取消上传'/>";
+			+ " onclick='tlv8.Doc.ProgressTable.cancal(this.id);' alt='取消上传'/>";
 };
 
-justep.Doc.ProgressTable.cancal = function(id) {
-	if (justep.Doc.uploadPprogressTable) {
-		var uploader = justep.Doc.currentUploader;
+tlv8.Doc.ProgressTable.cancal = function(id) {
+	if (tlv8.Doc.uploadPprogressTable) {
+		var uploader = tlv8.Doc.currentUploader;
 		uploader.cancel(id);
 		uploader.removeFile(id);
 		--uploader.allCount;
 		if (uploader.allCount == 0)
-			justep.Doc.getUploadProgressDialog().close();
-		justep.Doc.uploadPprogressTable.deleteByField("id", id);
+			tlv8.Doc.getUploadProgressDialog().close();
+		tlv8.Doc.uploadPprogressTable.deleteByField("id", id);
 	}
 };
 

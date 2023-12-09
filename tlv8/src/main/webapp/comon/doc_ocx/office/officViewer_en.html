@@ -48,7 +48,7 @@
 		  TANGER_OCX_OBJ.EnableFileCommand(4) =true;
 		  var docPath = tlv8.RequestURLParam.getParam("docPath");
 		  var fileID = tlv8.RequestURLParam.getParam("fileID");
-		  var url = justep.Doc.getURLByFileID(docPath, fileID);
+		  var url = tlv8.Doc.getURLByFileID(docPath, fileID);
 		  AddMyMenuItems();
 		  TANGER_OCX_OBJ.BeginOpenFromURL(url,true);
 	}

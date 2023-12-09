@@ -139,10 +139,10 @@
             officeUpdateSeal: function() {
             	var docNodeSID = _seal_doc_node_sid;
             	if(!docNodeSID) return;
-            	var res = justep.Doc.queryDoc("", "", ["sFileID","sDocName","sDocPath"], "", "sParentID='" + docNodeSID + "'");
+            	var res = tlv8.Doc.queryDoc("", "", ["sFileID","sDocName","sDocPath"], "", "sParentID='" + docNodeSID + "'");
             	var sealJSON = [];
             	var resRow = justep.XML.eval(res.responseXML, "//row");
-            	var docAuthList = justep.Doc.getAuthList();
+            	var docAuthList = tlv8.Doc.getAuthList();
             	for(var i=0;i<resRow.length;i++){
             		var resCell = justep.XML.eval(resRow[i], './cell');
             		var rowId = resRow[i].getAttribute("id");
@@ -162,8 +162,8 @@
             		var sFileID = resCell[0].text;
             		var sDocName = resCell[1].text;
             		var resCell_t = sDocName.replace(_OV("ov").resCellRegExp_t,"");
-            		var docServer = justep.Doc.getDocServerByDocPath(sDocPath);
-            		var resCell_f = docServer.url + "/repository/file/view/" + sFileID + "/last/content?" + justep.Doc.getBSessionIDParam() + "&fileExt=" + String(_OV("ov").resCellRegExp_f.exec(sDocName));
+            		var docServer = tlv8.Doc.getDocServerByDocPath(sDocPath);
+            		var resCell_f = docServer.url + "/repository/file/view/" + sFileID + "/last/content?" + tlv8.Doc.getBSessionIDParam() + "&fileExt=" + String(_OV("ov").resCellRegExp_f.exec(sDocName));
             		sealJSON.push({t:resCell_t,f:resCell_f});
             	}
             	
@@ -197,9 +197,9 @@
             getHost: function(docPath,fileID){
             	var u="";
             	if(fileID){
-            		u =justep.Doc.getdocServerAction(docPath, "/repository/file/cache/office/"+fileID);
+            		u =tlv8.Doc.getdocServerAction(docPath, "/repository/file/cache/office/"+fileID);
             	}else{
-					u = justep.Doc.getdocServerAction(docPath, "/repository/file/cache/office/new");
+					u = tlv8.Doc.getdocServerAction(docPath, "/repository/file/cache/office/new");
             	}
             	
           		this.docUrl = u.indexOf(window.location.protocol) < 1 ? u : window.location.protocol+"//"+ window.location.host + u;
@@ -269,7 +269,7 @@
 	    					_OV("ov").HttpAddpostString("FileExt", this.OVP.fileExt);
 	    					
 	    					if (_word_all_history){
-	    						var fileinfo = justep.Doc.queryDocByFileId(this.OVP.host,this.OVP.fileID ,this.OVP.filename);
+	    						var fileinfo = tlv8.Doc.queryDocByFileId(this.OVP.host,this.OVP.fileID ,this.OVP.filename);
 		   						
 		   						var partType = !fileinfo.parts.part_3 ? "content" : "revision";
 		   						_OV("ov").HttpAddpostString("PartType", partType);	
@@ -477,7 +477,7 @@
            }
            
            function openOfficeFieldDialog(){
-           	justep.Doc.openOfficeFieldDialog(OP.OVFP, afterOfficeFieldDialogEnsure);
+           	tlv8.Doc.openOfficeFieldDialog(OP.OVFP, afterOfficeFieldDialogEnsure);
            }
        </script>
 	   <script language="JavaScript" type="text/javascript" for="ov" event="OnFileCommand(item, cancel)">
