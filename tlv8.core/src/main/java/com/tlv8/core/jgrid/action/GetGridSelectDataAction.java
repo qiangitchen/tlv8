@@ -27,6 +27,7 @@ import com.tlv8.base.Data;
 import com.tlv8.base.Sys;
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.base.utils.StringArray;
+import com.tlv8.common.domain.AjaxResult;
 import com.tlv8.system.bean.ContextBean;
 
 /**
@@ -63,7 +64,7 @@ public class GetGridSelectDataAction extends ActionSupport {
 		data.setData(r);
 		data.setFlag(f);
 		data.setMessage(m);
-		return this;
+		return AjaxResult.success(data);
 	}
 
 	@SuppressWarnings("deprecation")

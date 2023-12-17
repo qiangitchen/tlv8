@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlv8.base.Data;
 import com.tlv8.base.Sys;
+import com.tlv8.common.domain.AjaxResult;
 import com.tlv8.core.jgrid.BasegetGridAction;
 import com.tlv8.system.bean.ContextBean;
 
@@ -56,7 +57,7 @@ public class GetGridAction extends BasegetGridAction {
 		data.setPage(page);
 		data.setAllpage(allpage);
 		data.setGridid(gridid);
-		return this;
+		return AjaxResult.success(data);
 	}
 
 }

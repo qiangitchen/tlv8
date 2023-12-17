@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlv8.base.Data;
 import com.tlv8.base.Sys;
+import com.tlv8.common.domain.AjaxResult;
 import com.tlv8.core.data.BaseDeleteAction;
 import com.tlv8.system.bean.ContextBean;
 
@@ -52,6 +53,6 @@ public class DeleteAction extends BaseDeleteAction {
 		data.setData(r);
 		data.setFlag(f);
 		data.setMessage(m);
-		return this;
+		return AjaxResult.success(data);
 	}
 }

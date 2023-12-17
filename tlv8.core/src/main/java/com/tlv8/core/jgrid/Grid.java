@@ -23,7 +23,6 @@ import javax.naming.NamingException;
 import com.tlv8.base.Sys;
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.base.CodeUtils;
-import com.tlv8.base.utils.NumberUtils;
 
 /**
  * 
@@ -67,10 +66,11 @@ public class Grid {
 							+ "<div class='gridValue'>" + Cellvalue + "</div></td>");
 				} else if ("NUMBER".equals(type.toUpperCase()) || "FLOAT".equals(type.toUpperCase())
 						|| "DECIMAL".equals(type.toUpperCase()) || "DOUBLE".equals(type.toUpperCase())) {
-					String Cellvalue = rs.getString(i) != null ? NumberUtils.d2s(rs.getDouble(i)) : "";
+					String Cellvalue = rs.getString(i) != null ? rs.getBigDecimal(i).toString() : "";
 					result.append("<td class='grid_td' title='" + Cellvalue + "' align='right'>"
 							+ "<div class='gridValue'>" + Cellvalue + "</div></td>");
-				} else if ("DATE".equals(type.toUpperCase()) || "DATETIME".equals(type.toUpperCase()) || "TIMESTAMP".equals(type.toUpperCase())) {
+				} else if ("DATE".equals(type.toUpperCase()) || "DATETIME".equals(type.toUpperCase())
+						|| "TIMESTAMP".equals(type.toUpperCase())) {
 					String Cellvalue = rs.getString(i) != null ? rs.getString(i) : "";
 					try {
 						Cellvalue = dateTimeFormat(Cellvalue);
@@ -143,7 +143,7 @@ public class Grid {
 		}
 		return result.toString();
 	}
-	
+
 	/*
 	 * 格式化为日期时间字符串{yyyy-MM-dd HH:mm:ss}
 	 */

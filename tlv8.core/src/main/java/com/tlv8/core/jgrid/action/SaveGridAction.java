@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlv8.base.Data;
+import com.tlv8.common.domain.AjaxResult;
 import com.tlv8.core.jgrid.BaseSaveGridAction;
 import com.tlv8.system.bean.ContextBean;
 
@@ -28,7 +29,7 @@ public class SaveGridAction extends BaseSaveGridAction {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/saveGridAction", produces = "application/json;charset=UTF-8",method = RequestMethod.POST)
+	@RequestMapping(value = "/saveGridAction", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
 	public Object execute() throws Exception {
 		data = new Data();
 		String userid = ContextBean.getContext(request).getCurrentPersonID();
@@ -51,7 +52,7 @@ public class SaveGridAction extends BaseSaveGridAction {
 		data.setData(r);
 		data.setFlag(f);
 		data.setMessage(m);
-		return this;
+		return AjaxResult.success(data);
 	}
 
 }

@@ -40,7 +40,6 @@ import com.tlv8.base.Sys;
 import com.tlv8.base.datasource.TLv8DataSource;
 import com.tlv8.base.db.dao.UtilsMapper;
 import com.tlv8.base.db.dynamic.TLv8DataSourceProvider;
-import com.tlv8.base.utils.NumberUtils;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -346,7 +345,7 @@ public class DBUtils {
 						sm.put(columnName, (rs.getString(i) == null) ? "" : String.valueOf(rs.getLong(i)));
 					} else if ("NUMBER".equals(cellType) || "FLOAT".equals(cellType) || "DECIMAL".equals(cellType)
 							|| "DOUBLE".equals(cellType)) {
-						sm.put(columnName, (rs.getString(i) == null) ? "" : NumberUtils.d2s(rs.getDouble(i)));
+						sm.put(columnName, (rs.getString(i) == null) ? "" : rs.getBigDecimal(i).toString());
 					} else {
 						sm.put(columnName, (rs.getString(i) == null) ? "" : String.valueOf(rs.getString(i)));
 					}
