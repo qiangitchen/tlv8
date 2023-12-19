@@ -5,7 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.tlv8.base.utils.StringArray;
 
@@ -18,7 +19,7 @@ public class Sys {
 	public static boolean testing = false;
 	public static boolean allowPrintDebugMsg = true;
 
-	static Logger logger = Logger.getLogger(Sys.class);
+	static Logger logger = LoggerFactory.getLogger(Sys.class);
 
 	/**
 	 * 获取32位大写主键
@@ -50,25 +51,25 @@ public class Sys {
 	public static void printMsg(int aMsg) {
 		if (allowPrintDebugMsg)
 			System.out.println(getCurrentDateTime() + "  " + aMsg);
-		logger.debug(aMsg);
+		logger.debug(aMsg + "");
 	}
 
 	public static void printMsg(Float aMsg) {
 		if (allowPrintDebugMsg)
 			System.out.println(getCurrentDateTime() + "  " + aMsg);
-		logger.debug(aMsg);
+		logger.debug(aMsg + "");
 	}
 
 	public static void printMsg(Date aMsg) {
 		if (allowPrintDebugMsg)
 			System.out.println(getCurrentDateTime() + "  " + aMsg);
-		logger.debug(aMsg);
+		logger.debug(aMsg.toString());
 	}
 
 	public static void printMsg(Object aMsg) {
 		if (allowPrintDebugMsg)
 			System.out.println(getCurrentDateTime() + "  " + aMsg);
-		logger.debug(aMsg);
+		logger.debug(aMsg.toString());
 	}
 
 	public static void printResult(String aMethodName, Object aResult) {
@@ -88,7 +89,7 @@ public class Sys {
 
 	public static void printErr(Object msg) {
 		System.err.println(getCurrentDateTime() + "  " + msg);
-		logger.error(msg);
+		logger.error(msg.toString());
 	}
 
 	/**

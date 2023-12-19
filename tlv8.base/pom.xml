@@ -79,12 +79,6 @@
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
 
-		<!-- Log4j -->
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-		</dependency>
-
 		<!-- Dom4j xml解析 -->
 		<dependency>
 			<groupId>org.dom4j</groupId>

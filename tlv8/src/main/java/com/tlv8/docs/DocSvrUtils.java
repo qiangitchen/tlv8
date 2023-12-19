@@ -6,10 +6,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import org.apache.ibatis.jdbc.SQL;
+import org.apache.ibatis.session.SqlSession;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -17,7 +22,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.docs.utils.ClientUtils;
 
-@SuppressWarnings({ "rawtypes" })
 public class DocSvrUtils {
 
 	/**
@@ -54,6 +58,31 @@ public class DocSvrUtils {
 		return "[" + str + "]";
 	}
 
+	public static String getDocServerUrl() {
+		SQL sql = new SQL();
+		sql.SELECT("SURL");
+		sql.FROM("SA_DOCNAMESPACE");
+		sql.WHERE("SID = 'defaultDocNameSpace'");
+		String docHost = "";
+		SqlSession session = DBUtils.getSession("system");
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = session.getConnection();
+			ps = conn.prepareStatement(sql.toString());
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				docHost = rs.getString("SURL");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtils.closeConn(session, conn, ps, rs);
+		}
+		return docHost;
+	}
+
 	/**
 	 * 根据fileID获取下载路径
 	 * 
@@ -61,19 +90,8 @@ public class DocSvrUtils {
 	 * @return
 	 */
 	public static String getDownloadUrl(String fileID) {
-		String docHostSql = "select SURL from SA_DOCNAMESPACE where SID = 'defaultDocNameSpace'";
-		String docHost = "";
 		String urlPattern = "/repository/file/download/" + fileID + "/last/content";
-		try {
-			List<Map<String, String>> dochostList = DBUtils.execQueryforList("system", docHostSql);
-			if (dochostList.size() > 0) {
-				Map docMap = dochostList.get(0);
-				docHost = docMap.get("SURL").toString();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return docHost + urlPattern;
+		return getDocServerUrl() + urlPattern;
 	}
 
 	/**
@@ -83,19 +101,8 @@ public class DocSvrUtils {
 	 * @return
 	 */
 	public static String getViewUrl(String fileID) {
-		String docHostSql = "select SURL from SA_DOCNAMESPACE where SID = 'defaultDocNameSpace'";
-		String docHost = "";
 		String urlPattern = "/repository/file/view/" + fileID + "/last/content";
-		try {
-			List<Map<String, String>> dochostList = DBUtils.execQueryforList("system", docHostSql);
-			if (dochostList.size() > 0) {
-				Map docMap = dochostList.get(0);
-				docHost = docMap.get("SURL").toString();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return docHost + urlPattern;
+		return getDocServerUrl() + urlPattern;
 	}
 
 	/**

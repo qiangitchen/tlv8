@@ -3,14 +3,16 @@ package com.tlv8.system.help;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class UserResponse {
-	private static Logger logger = Logger.getLogger(UserResponse.class);
+	private static Logger logger = LoggerFactory.getLogger(UserResponse.class);
 
 	private HttpServletRequest request;
 	private ArrayList<JSONObject> jsonList = new ArrayList();
@@ -38,7 +40,7 @@ public class UserResponse {
 				}
 			}
 		} catch (Exception e) {
-			logger.debug(e);
+			logger.debug(e.toString());
 		}
 		return json;
 	}

@@ -36,89 +36,92 @@ public class LayuiFileUploadAction {
 
 	@ResponseBody
 	@RequestMapping(value = "/layuiFileUploadAction", method = RequestMethod.POST)
-	public synchronized Object execute(@RequestParam("file") MultipartFile file, String docPath, String dbkey, String rowid,
+	public Object execute(@RequestParam("file") MultipartFile file, String docPath, String dbkey, String rowid,
 			String tablename, String cellname) throws Exception {
-		JSONObject res = new JSONObject();
-		if (docPath == null || "".equals(docPath)) {
-			docPath = "/root";
-		} else {
-			try {
-				docPath = URLDecoder.decode(docPath, "UTF-8");
-			} catch (Exception e) {
-			}
-		}
-		try {
-			String fileName = file.getOriginalFilename();
-			Map<String, String> m = upLoadFiletoDaisy("/", fileName, file.getInputStream());
-			String docID = DocDBHelper.addDocData(docPath, fileName, file.getContentType(),
-					String.valueOf(m.get("Size")), m.get("cacheName"));
-			String fileID = m.get("cacheName");
-			Doc doc = Docs.queryDocById(docID);
-			doc.commitFile();
-			DocUtils.saveDocFlag(docPath, doc.getsKind(), doc.getScacheName(), doc.getScacheName(), false);
-			fileID = doc.getsFileID();
-			DBUtils.execUpdateQuery("system",
-					"update SA_docNode set SFILEID = '" + fileID + "',SCACHENAME='' where sID = '" + docID + "'");
-			if (rowid != null && !"".equals(rowid) && !"undefined".equals(rowid)) {
-				String querySql = "select " + cellname + " from " + tablename + " where :KEYCELL = '" + rowid + "'";
-				String updateSql = "update " + tablename + " set " + cellname + " = ? where :KEYCELL = '" + rowid + "'";
-				if ("system".equals(dbkey)) {
-					querySql = querySql.replace(":KEYCELL", "SID");
-					updateSql = updateSql.replace(":KEYCELL", "SID");
-				} else {
-					querySql = querySql.replace(":KEYCELL", "FID");
-					updateSql = updateSql.replace(":KEYCELL", "FID");
-				}
-				SqlSession session = DBUtils.getSession(dbkey);
-				Connection conn = null;
-				Statement stm = null;
-				PreparedStatement ps = null;
-				ResultSet rs = null;
+		synchronized (tablename + cellname + rowid) {
+			JSONObject res = new JSONObject();
+			if (docPath == null || "".equals(docPath)) {
+				docPath = "/root";
+			} else {
 				try {
-					conn = session.getConnection();
-					JSONArray jsona = new JSONArray();
-					stm = conn.createStatement();
-					rs = stm.executeQuery(querySql);
-					if (rs.next()) {
-						String fileinfo = rs.getString(1);
-						try {
-							jsona = JSON.parseArray(fileinfo);
-						} catch (Exception e) {
+					docPath = URLDecoder.decode(docPath, "UTF-8");
+				} catch (Exception e) {
+				}
+			}
+			try {
+				String fileName = file.getOriginalFilename();
+				Map<String, String> m = upLoadFiletoDaisy("/", fileName, file.getInputStream());
+				String docID = DocDBHelper.addDocData(docPath, fileName, file.getContentType(),
+						String.valueOf(m.get("Size")), m.get("cacheName"));
+				String fileID = m.get("cacheName");
+				Doc doc = Docs.queryDocById(docID);
+				doc.commitFile();
+				DocUtils.saveDocFlag(docPath, doc.getsKind(), doc.getScacheName(), doc.getScacheName(), false);
+				fileID = doc.getsFileID();
+				DBUtils.execUpdateQuery("system",
+						"update SA_docNode set SFILEID = '" + fileID + "',SCACHENAME='' where sID = '" + docID + "'");
+				if (rowid != null && !"".equals(rowid) && !"undefined".equals(rowid)) {
+					String querySql = "select " + cellname + " from " + tablename + " where :KEYCELL = '" + rowid + "'";
+					String updateSql = "update " + tablename + " set " + cellname + " = ? where :KEYCELL = '" + rowid
+							+ "'";
+					if ("system".equals(dbkey)) {
+						querySql = querySql.replace(":KEYCELL", "SID");
+						updateSql = updateSql.replace(":KEYCELL", "SID");
+					} else {
+						querySql = querySql.replace(":KEYCELL", "FID");
+						updateSql = updateSql.replace(":KEYCELL", "FID");
+					}
+					SqlSession session = DBUtils.getSession(dbkey);
+					Connection conn = null;
+					Statement stm = null;
+					PreparedStatement ps = null;
+					ResultSet rs = null;
+					try {
+						conn = session.getConnection();
+						JSONArray jsona = new JSONArray();
+						stm = conn.createStatement();
+						rs = stm.executeQuery(querySql);
+						if (rs.next()) {
+							String fileinfo = rs.getString(1);
 							try {
-								jsona = JSON.parseArray(transeJson(fileinfo));
-							} catch (Exception er) {
+								jsona = JSON.parseArray(fileinfo);
+							} catch (Exception e) {
+								try {
+									jsona = JSON.parseArray(transeJson(fileinfo));
+								} catch (Exception er) {
+								}
 							}
 						}
+						if (jsona == null) {
+							jsona = new JSONArray();
+						}
+						JSONObject jsono = new JSONObject();
+						jsono.put("fileID", fileID);
+						jsono.put("filename", doc.getsDocName());
+						jsono.put("filesize", doc.getsSize());
+						jsono.put("md5", DigestUtils.md5Hex(file.getBytes()));
+						jsona.add(jsono);
+						ps = conn.prepareStatement(updateSql);
+						ps.setString(1, jsona.toString());
+						ps.executeUpdate();
+						session.commit(true);
+					} catch (Exception e) {
+						session.rollback(true);
+						e.printStackTrace();
+					} finally {
+						DBUtils.closeConn(null, null, stm, rs);
+						DBUtils.closeConn(session, conn, ps, null);
 					}
-					if(jsona == null) {
-						jsona = new JSONArray();
-					}
-					JSONObject jsono = new JSONObject();
-					jsono.put("fileID", fileID);
-					jsono.put("filename", doc.getsDocName());
-					jsono.put("filesize", doc.getsSize());
-					jsono.put("md5", DigestUtils.md5Hex(file.getBytes()));
-					jsona.add(jsono);
-					ps = conn.prepareStatement(updateSql);
-					ps.setString(1, jsona.toString());
-					ps.executeUpdate();
-					session.commit(true);
-				} catch (Exception e) {
-					session.rollback(true);
-					e.printStackTrace();
-				} finally {
-					DBUtils.closeConn(null, null, stm, rs);
-					DBUtils.closeConn(session, conn, ps, null);
 				}
+				res.put("code", 0);
+				res.put("msg", "上传成功！");
+			} catch (Exception e) {
+				res.put("code", -1);
+				res.put("msg", "上传失败！");
+				e.printStackTrace();
 			}
-			res.put("code", 0);
-			res.put("msg", "上传成功！");
-		} catch (Exception e) {
-			res.put("code", -1);
-			res.put("msg", "上传失败！");
-			e.printStackTrace();
+			return res;
 		}
-		return res;
 	}
 
 	public static String transeJson(String str) {

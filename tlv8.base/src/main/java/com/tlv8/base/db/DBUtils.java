@@ -30,11 +30,14 @@ import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.baomidou.dynamic.datasource.provider.DynamicDataSourceProvider;
 import com.tlv8.base.Sys;
 import com.tlv8.base.datasource.TLv8DataSource;
@@ -59,7 +62,7 @@ public class DBUtils {
 
 	private static Map<Connection, SqlSession> openedconn = new HashMap<Connection, SqlSession>();
 
-	private static Logger logger = Logger.getLogger(DBUtils.class);
+	private static Logger logger = LoggerFactory.getLogger(DBUtils.class);
 
 	static {
 		String path = DBUtils.class.getClassLoader().getResource("").getFile();
@@ -790,7 +793,7 @@ public class DBUtils {
 			for (int i = 0; i < params.size(); i++) {
 				ps.setObject(i + 1, params.get(i));
 			}
-			logger.debug(params);
+			logger.debug(new JSONArray(params).toJSONString());
 			rs = ps.executeQuery();
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int cns = rsmd.getColumnCount();
@@ -801,9 +804,9 @@ public class DBUtils {
 				}
 				rlist.add(map);
 			}
-			logger.debug(rlist);
+			logger.debug(JSON.toJSONString(rlist));
 		} catch (Exception e) {
-			logger.error(e);
+			logger.error(e.toString());
 			throw e;
 		}
 		return rlist;
@@ -850,7 +853,7 @@ public class DBUtils {
 			logger.debug(dbname);
 			rlist = selectStringList(session, sql, params);
 		} catch (Exception e) {
-			logger.error(e);
+			logger.error(e.toString());
 			throw e;
 		} finally {
 			session.close();
@@ -881,7 +884,7 @@ public class DBUtils {
 					ps.setObject(i + 1, params.get(i));
 				}
 			}
-			logger.debug(params);
+			logger.debug(JSON.toJSONString(params));
 			rs = ps.executeQuery();
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int cns = rsmd.getColumnCount();
@@ -892,9 +895,9 @@ public class DBUtils {
 				}
 				rlist.add(map);
 			}
-			logger.debug(rlist);
+			logger.debug(JSON.toJSONString(rlist));
 		} catch (Exception e) {
-			logger.error(e);
+			logger.error(e.toString());
 			throw e;
 		} finally {
 			closeConn(null, ps, rs);
@@ -924,7 +927,7 @@ public class DBUtils {
 			for (int i = 0; i < params.size(); i++) {
 				ps.setObject(i + 1, params.get(i));
 			}
-			logger.debug(params);
+			logger.debug(JSON.toJSONString(params));
 			rs = ps.executeQuery();
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int cns = rsmd.getColumnCount();
@@ -935,9 +938,9 @@ public class DBUtils {
 				}
 				rlist.add(map);
 			}
-			logger.debug(rlist);
+			logger.debug(JSON.toJSONString(rlist));
 		} catch (Exception e) {
-			logger.error(e);
+			logger.error(e.toString());
 			e.printStackTrace();
 		} finally {
 			closeConn(session, conn, ps, rs);
@@ -1095,11 +1098,11 @@ public class DBUtils {
 			for (int i = 0; i < params.size(); i++) {
 				ps.setObject(i + 1, params.get(i));
 			}
-			logger.debug(params);
+			logger.debug(JSON.toJSONString(params));
 			r = ps.executeUpdate();
 			conn.commit();
 		} catch (Exception e) {
-			logger.error(e);
+			logger.error(e.toString());
 			throw new SQLException(RegexUtil.getSubOraex(e.getMessage()));
 		} finally {
 			closeConn(session, conn, ps, null);
@@ -1126,10 +1129,10 @@ public class DBUtils {
 			for (int i = 0; i < params.size(); i++) {
 				ps.setObject(i + 1, params.get(i));
 			}
-			logger.debug(params);
+			logger.debug(JSON.toJSONString(params));
 			r = ps.executeUpdate();
 		} catch (Exception e) {
-			logger.error(e);
+			logger.error(e.toString());
 			throw new SQLException(RegexUtil.getSubOraex(e.getMessage()));
 		}
 		return r;

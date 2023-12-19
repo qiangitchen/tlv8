@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -64,12 +65,14 @@ public class ImageWriteAction extends ActionSupport {
 		try {
 			if (dbkey == null || "".equals(dbkey))
 				dbkey = "system";
+			String keyfield = (("system".equals(dbkey)) ? "sID" : "fID");
 			conn = session.getConnection();
 			FileInputStream fin = new FileInputStream(upload);
-			String uSQL = "update " + tablename + " set " + cellname + "=? where "
-					+ (("system".equals(dbkey)) ? "sID" : "fID") + "=?";
-			pstmt = conn.prepareStatement(uSQL);
-			pstmt = conn.prepareStatement(uSQL);
+			SQL sql = new SQL();
+			sql.UPDATE(tablename);
+			sql.SET(cellname + "=?");
+			sql.WHERE(keyfield + "=?");
+			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setBinaryStream(1, fin, fin.available());
 			pstmt.setString(2, rowid);
 			pstmt.executeUpdate();
@@ -80,7 +83,7 @@ public class ImageWriteAction extends ActionSupport {
 			setCaption("错误:" + e.toString());
 			e.printStackTrace();
 		} finally {
-			DBUtils.CloseConn(session, conn, pstmt, null);
+			DBUtils.closeConn(session, conn, pstmt, null);
 		}
 		return rs;
 	}

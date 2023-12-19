@@ -4,8 +4,10 @@ import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -82,41 +84,38 @@ public class WriteUploadDataAction extends ActionSupport {
 				String kind = json.getString("kind");
 				String size = json.getString("size");
 				String cacheName = json.getString("cacheName");
-
 				String docID = DocDBHelper.addDocData(docPath, docName, kind, size, cacheName);
-
 				String fileID = cacheName;
+				SqlSession session = DBUtils.getSession(dbkey);
+				Connection conn = null;
+				PreparedStatement ps1 = null;
+				PreparedStatement ps2 = null;
+				ResultSet rs = null;
 				try {
+					conn = session.getConnection();
 					Doc doc = Docs.queryDocById(docID);
 					doc.commitFile();
 					DocUtils.saveDocFlag(docPath, doc.getsKind(), doc.getsFileID(), doc.getScacheName(), false);
 					fileID = doc.getsFileID();
-					DBUtils.execUpdateQuery("system", "update SA_docNode set SFILEID = '" + fileID
-							+ "',SCACHENAME='' where sID = '" + docID + "'");
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				if (rowid != null && !"".equals(rowid) && !"undefined".equals(rowid)) {
-					String querySql = "select " + cellname + " from " + tablename + " where :KEYCELL = '" + rowid + "'";
-					String updateSql = "update " + tablename + " set " + cellname + " = ? where :KEYCELL = '" + rowid
-							+ "'";
-					if ("system".equals(dbkey)) {
-						querySql = querySql.replace(":KEYCELL", "SID");
-						updateSql = updateSql.replace(":KEYCELL", "SID");
-					} else {
-						querySql = querySql.replace(":KEYCELL", "FID");
-						updateSql = updateSql.replace(":KEYCELL", "FID");
-					}
-					SqlSession session = DBUtils.getSession(dbkey);
-					Connection conn = null;
-					PreparedStatement ps = null;
-					Statement stm = null;
-					ResultSet rs = null;
-					try {
-						conn = session.getConnection();
+					SQL sql1 = new SQL();
+					sql1.UPDATE("SA_docNode");
+					sql1.SET("SFILEID=?");
+					sql1.SET("SCACHENAME=''");
+					sql1.WHERE("sID=?");
+					List<String> upparam = new ArrayList<>();
+					upparam.add(fileID);
+					upparam.add(docID);
+					DBUtils.execUpdate("system", sql1.toString(), upparam);
+					String keyfield = (("system".equals(dbkey)) ? "sID" : "fID");
+					if (rowid != null && !"".equals(rowid) && !"undefined".equals(rowid)) {
+						SQL querySql = new SQL();
+						querySql.SELECT(cellname);
+						querySql.FROM(tablename);
+						querySql.WHERE(keyfield + "=?");
 						JSONArray jsona = new JSONArray();
-						stm = conn.createStatement();
-						rs = stm.executeQuery(querySql);
+						ps1 = conn.prepareStatement(querySql.toString());
+						ps1.setString(1, rowid);
+						rs = ps1.executeQuery();
 						if (rs.next()) {
 							String fileinfo = rs.getString(1);
 							try {
@@ -133,17 +132,22 @@ public class WriteUploadDataAction extends ActionSupport {
 						jsono.put("filename", docName);
 						jsono.put("filesize", size);
 						jsona.add(jsono);
-						ps = conn.prepareStatement(updateSql);
-						ps.setString(1, jsona.toString());
-						ps.executeUpdate();
+						SQL updateSql = new SQL();
+						updateSql.UPDATE(tablename);
+						updateSql.SET(cellname + "=?");
+						updateSql.WHERE(keyfield + "=?");
+						ps2 = conn.prepareStatement(updateSql.toString());
+						ps2.setString(1, jsona.toString());
+						ps2.setString(2, rowid);
+						ps2.executeUpdate();
 						session.commit(true);
-					} catch (Exception e) {
-						session.rollback(true);
-						e.printStackTrace();
-					} finally {
-						DBUtils.CloseConn(null, null, stm, rs);
-						DBUtils.CloseConn(session, conn, ps, null);
 					}
+				} catch (Exception e) {
+					session.rollback(true);
+					e.printStackTrace();
+				} finally {
+					DBUtils.closeConn(null, null, ps1, rs);
+					DBUtils.closeConn(session, conn, ps2, null);
 				}
 			} else {
 				return false;

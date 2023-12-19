@@ -64,9 +64,16 @@ public class FileDownloader {
 			File file = new File(fileID);
 			FileOutputStream ous = new FileOutputStream(file);
 			BufferedInputStream ins = new BufferedInputStream(new SmbFileInputStream(remoteFile));
-			ous.write(ins.readAllBytes());
-			ins.close();
-			ous.close();
+			byte[] arrayOfByte = new byte[2048];
+			try {
+				int i;
+				while ((i = ins.read(arrayOfByte)) != -1) {
+					ous.write(arrayOfByte, 0, i);
+				}
+			} finally {
+				ins.close();
+				ous.close();
+			}
 			return file;
 		}
 		if (fileabspath.indexOf("file:/") == 0) {

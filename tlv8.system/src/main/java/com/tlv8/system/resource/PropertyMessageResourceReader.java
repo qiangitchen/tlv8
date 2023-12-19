@@ -5,11 +5,13 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
-import org.apache.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class PropertyMessageResourceReader extends MessageResourceReader {
-	protected static final Logger logger = Logger.getLogger(PropertyMessageResourceReader.class);
+	protected static final Logger logger = LoggerFactory.getLogger(PropertyMessageResourceReader.class);
 
 	private Map<String, Properties> messages = new HashMap();
 
@@ -30,7 +32,7 @@ public class PropertyMessageResourceReader extends MessageResourceReader {
 				this.messages.put(locale.toString(), properties);
 			}
 		} catch (Exception e) {
-			logger.debug(e);
+			logger.debug(e.toString());
 		}
 	}
 

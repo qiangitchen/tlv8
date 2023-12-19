@@ -13,13 +13,6 @@ public class OnlineInitServerlet implements ServletContextListener {
 	}
 
 	public void contextInitialized(ServletContextEvent event) {
-		System.out.println("");
-		System.out.println("======  =    ===   ===     =========");
-		System.out.println("  ||    ||    \\\\    //     ||     ||");
-		System.out.println("  ||    ||     \\\\  //       =======");
-		System.out.println("  ||    ||      \\\\//       ||     ||");
-		System.out.println("  ||    ======   \\/        =========");
-		System.out.println("");
 		DataSourceUtils.startListener();// 数据库监听
 	}
 }

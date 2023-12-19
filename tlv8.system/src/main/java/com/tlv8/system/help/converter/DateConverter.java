@@ -3,11 +3,12 @@ package com.tlv8.system.help.converter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.apache.commons.beanutils.Converter;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DateConverter implements Converter {
 	private String format;
-	private static Logger logger = Logger.getLogger(DateConverter.class);
+	private static Logger logger = LoggerFactory.getLogger(DateConverter.class);
 
 	public DateConverter(String format) {
 		this.format = format;
@@ -25,7 +26,7 @@ public class DateConverter implements Converter {
 			return date;
 		} catch (Exception e) {
 			if (logger.isDebugEnabled())
-				logger.debug(e);
+				logger.debug(e.toString());
 		}
 		return null;
 	}

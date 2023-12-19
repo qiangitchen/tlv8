@@ -3,6 +3,7 @@ package com.tlv8.doc.clt.upload;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -44,11 +45,13 @@ public class ImageDeleteAction extends ActionSupport {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
+			String keyfield = (("system".equals(dbkey)) ? "sID" : "fID");
 			conn = session.getConnection();
-			String uSQL = "update " + tablename + " set " + cellname + "=null where "
-					+ (("system".equals(dbkey)) ? "sID" : "fID") + "=?";
-			pstmt = conn.prepareStatement(uSQL);
-			pstmt = conn.prepareStatement(uSQL);
+			SQL sql = new SQL();
+			sql.UPDATE(tablename);
+			sql.SET(cellname + "=null");
+			sql.WHERE(keyfield + "=?");
+			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, rowid);
 			pstmt.executeUpdate();
 			session.commit(true);
@@ -58,7 +61,7 @@ public class ImageDeleteAction extends ActionSupport {
 			e.printStackTrace();
 			setFlag("false");
 		} finally {
-			DBUtils.CloseConn(session, conn, pstmt, null);
+			DBUtils.closeConn(session, conn, pstmt, null);
 		}
 		setFlag("true");
 		return this;

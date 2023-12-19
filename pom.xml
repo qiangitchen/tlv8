@@ -24,8 +24,7 @@
 		<tlv8.version>2.6.0</tlv8.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>11</java.version>
-		<log4j.version>1.2.17</log4j.version>
+		<java.version>1.8</java.version>
 		<dom4j.version>2.1.1</dom4j.version>
 		<mybatis-plus.version>3.5.3.1</mybatis-plus.version>
 		<fastjson.version>1.2.83</fastjson.version>
@@ -168,13 +167,6 @@
 				<groupId>jcifs</groupId>
 				<artifactId>jcifs</artifactId>
 				<version>${jcifs.version}</version>
-			</dependency>
-
-			<!-- Log4j -->
-			<dependency>
-				<groupId>log4j</groupId>
-				<artifactId>log4j</artifactId>
-				<version>${log4j.version}</version>
 			</dependency>
 
 			<!-- Dom4j xml解析 -->

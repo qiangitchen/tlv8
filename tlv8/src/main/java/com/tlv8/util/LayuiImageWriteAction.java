@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,38 +23,43 @@ import com.tlv8.base.db.DBUtils;
 public class LayuiImageWriteAction {
 	@ResponseBody
 	@RequestMapping(value = "/layuiImageWriteAction", method = RequestMethod.POST)
-	public synchronized Object execute(@RequestParam("file") MultipartFile file, String dbkey, String tablename, String cellname,
-			String rowid) throws Exception {
-		JSONObject res = new JSONObject();
-		if (dbkey == null || "".equals(dbkey))
-			dbkey = "system";
-		SqlSession session = DBUtils.getSession(dbkey);
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		try {
-			conn = session.getConnection();
-			InputStream fin = file.getInputStream();
-			String uSQL = "update " + tablename + " set " + cellname + "=? where "
-					+ (("system".equals(dbkey)) ? "sID" : "fID") + "=?";
-			pstmt = conn.prepareStatement(uSQL);
-			pstmt.setBinaryStream(1, fin, fin.available());
-			pstmt.setString(2, rowid);
-			pstmt.executeUpdate();
-			conn.commit();
-		} catch (SQLException e) {
-			res.put("code", -1);
-			res.put("msg", "错误:" + e.toString());
-			e.printStackTrace();
-		} catch (IOException e) {
-			res.put("code", -1);
-			res.put("msg", "错误:" + e.toString());
-		} catch (Exception e) {
-			res.put("code", -1);
-			res.put("msg", "错误:" + e.toString());
-			e.printStackTrace();
-		} finally {
-			DBUtils.closeConn(session, conn, pstmt, null);
+	public synchronized Object execute(@RequestParam("file") MultipartFile file, String dbkey, String tablename,
+			String cellname, String rowid) throws Exception {
+		synchronized (tablename + cellname + rowid) {
+			JSONObject res = new JSONObject();
+			if (dbkey == null || "".equals(dbkey))
+				dbkey = "system";
+			SqlSession session = DBUtils.getSession(dbkey);
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			try {
+				conn = session.getConnection();
+				InputStream fin = file.getInputStream();
+				String keyfield = "fid";
+				if ("system".equals(dbkey)) {
+					keyfield = "sid";
+				}
+				SQL upsql = new SQL().UPDATE(tablename).SET(cellname + "=?").WHERE(keyfield + "=?");
+				pstmt = conn.prepareStatement(upsql.toString());
+				pstmt.setBinaryStream(1, fin, fin.available());
+				pstmt.setString(2, rowid);
+				pstmt.executeUpdate();
+				conn.commit();
+			} catch (SQLException e) {
+				res.put("code", -1);
+				res.put("msg", "错误:" + e.toString());
+				e.printStackTrace();
+			} catch (IOException e) {
+				res.put("code", -1);
+				res.put("msg", "错误:" + e.toString());
+			} catch (Exception e) {
+				res.put("code", -1);
+				res.put("msg", "错误:" + e.toString());
+				e.printStackTrace();
+			} finally {
+				DBUtils.closeConn(session, conn, pstmt, null);
+			}
+			return res;
 		}
-		return res;
 	}
 }

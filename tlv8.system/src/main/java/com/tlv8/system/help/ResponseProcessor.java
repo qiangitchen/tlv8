@@ -1,10 +1,12 @@
 package com.tlv8.system.help;
 
 import javax.servlet.http.HttpServletResponse;
-import org.apache.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class ResponseProcessor {
-	private static Logger logger = Logger.getLogger(ResponseProcessor.class);
+	private static Logger logger = LoggerFactory.getLogger(ResponseProcessor.class);
 
 	public static void renderText(HttpServletResponse res, String text) {
 		try {
@@ -13,7 +15,7 @@ public final class ResponseProcessor {
 			res.getWriter().close();
 		} catch (Exception e) {
 			//e.printStackTrace();
-			logger.debug(e);
+			logger.debug(e.toString());
 		}
 	}
 }
