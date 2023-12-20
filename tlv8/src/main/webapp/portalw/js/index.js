@@ -1,17 +1,25 @@
-/**
- * 
- */
-/*
- * 注销函数
- */
-$.logout = function() {
-	$.jpolite.Data.system.User.logout(function() {
-		var loginPage = "login.html?temp=" + new Date().getTime();
-		window.location.href = loginPage;
-	});
-};
-
 $(function() {
+	/*
+	 * 验证登陆
+	 */
+	$.jpolite.Data.system.User.check(function(data) {
+		if (data && !data.status) {
+			alert("连接中断，请重新登录.");
+			window.location.href = "login.html?temp=" + new Date().getTime();;
+			return false;
+		}
+	});
+	
+	/*
+	 * 注销函数
+	 */
+	$.logout = function() {
+		$.jpolite.Data.system.User.logout(function() {
+			var loginPage = "login.html?temp=" + new Date().getTime();
+			window.location.href = loginPage;
+		});
+	};
+	
 	// 初始化登录人员信息
 	$.jpolite.clientInfo.init();
 	$.jpolite.clientInfo.initClientInfo();

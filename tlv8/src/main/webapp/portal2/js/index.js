@@ -5,7 +5,7 @@ $(function() {
 	$.jpolite.Data.system.User.check(function(data) {
 		if (data && !data.status) {
 			alert("连接中断，请重新登录.");
-			window.location.href = cpath+"/";
+			window.location.href = "login.html?temp=" + new Date().getTime();
 			return false;
 		}
 	});
@@ -15,8 +15,7 @@ $(function() {
 	 */
 	$.logout = function() {
 		$.jpolite.Data.system.User.logout(function() {
-			var loginPage = "login.html?temp="
-					+ new Date().getTime();
+			var loginPage = "login.html?temp=" + new Date().getTime();
 			window.location.href = loginPage;
 		});
 	};
