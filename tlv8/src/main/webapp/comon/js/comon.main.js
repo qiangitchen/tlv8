@@ -2990,6 +2990,19 @@ function setTab(n) {
  */
 tlv8.Context = {
     userInfo: {},
+    getAllRoles : function() {
+		var result = justep.yn.XMLHttpRequest("getAllRolesAction", null,
+				"post", false);
+		if (result.flag == "false") {
+			alert(result.message);
+		} else {
+			var data = result.data;
+			if (typeof data == "string") {
+				data = window.eval("(" + data + ")");
+			}
+			return data;
+		}
+	},
     /**
 	 * @name tlv8.Context.getPath
 	 * @function
