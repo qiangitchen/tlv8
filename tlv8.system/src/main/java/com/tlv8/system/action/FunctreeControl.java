@@ -13,6 +13,13 @@ import com.tlv8.base.Sys;
 import com.tlv8.base.CodeUtils;
 import com.tlv8.base.db.DBUtils;
 
+/**
+ * 系统菜单权限控制
+ * 
+ * @author chenqian
+ * @update 2023-12-20
+ *
+ */
 public class FunctreeControl {
 	private static Map<String, Map<String, String>> haveAutherMaps = new HashMap<String, Map<String, String>>();
 
@@ -114,9 +121,7 @@ public class FunctreeControl {
 	}
 
 	public static Map<String, String> gethaveAuther(String personfID, String psnid) {
-		if (haveAutherMaps.get(personfID) == null) {
-			initData(personfID, psnid);
-		}
+		initData(personfID, psnid);
 		return haveAutherMaps.get(personfID);
 	}
 
