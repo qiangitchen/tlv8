@@ -7,7 +7,7 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import javax.servlet.http.HttpServletRequest;
 
-import org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory;
+//import org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory;
 
 import com.tlv8.base.CodeUtils;
 import com.tlv8.base.Sys;
@@ -20,8 +20,9 @@ public class BooleanExpression {
 	 */
 	public static boolean verdict(String express) {
 		ScriptEngineManager engineManager = new ScriptEngineManager();
-		engineManager.registerEngineName("customScriptEngineFactory", new NashornScriptEngineFactory());
-		ScriptEngine engine = engineManager.getEngineByName("JavaScript"); // 得到脚本引擎
+//		engineManager.registerEngineName("customScriptEngineFactory", new NashornScriptEngineFactory());
+//		ScriptEngine engine = engineManager.getEngineByName("JavaScript"); // 得到脚本引擎
+		ScriptEngine engine = engineManager.getEngineByName("nashorn");
 		try {
 			express = express.toLowerCase().replace(" or ", " || ");
 			express = express.toLowerCase().replace(" and ", " && ");
@@ -45,8 +46,9 @@ public class BooleanExpression {
 	 */
 	public static String getScriptExpressionVal(String expression) {
 		ScriptEngineManager engineManager = new ScriptEngineManager();
-		engineManager.registerEngineName("customScriptEngineFactory", new NashornScriptEngineFactory());
-		ScriptEngine engine = engineManager.getEngineByName("JavaScript"); // 得到脚本引擎
+//		engineManager.registerEngineName("customScriptEngineFactory", new NashornScriptEngineFactory());
+//		ScriptEngine engine = engineManager.getEngineByName("JavaScript"); // 得到脚本引擎
+		ScriptEngine engine = engineManager.getEngineByName("nashorn");
 		try {
 			expression = expression.replace("\n", "");
 			return String.valueOf(engine.eval(expression));
@@ -63,8 +65,9 @@ public class BooleanExpression {
 	 */
 	public static String getScriptExpressionVal(Object resolutionExpression) {
 		ScriptEngineManager engineManager = new ScriptEngineManager();
-		engineManager.registerEngineName("customScriptEngineFactory", new NashornScriptEngineFactory());
-		ScriptEngine engine = engineManager.getEngineByName("JavaScript"); // 得到脚本引擎
+//		engineManager.registerEngineName("customScriptEngineFactory", new NashornScriptEngineFactory());
+//		ScriptEngine engine = engineManager.getEngineByName("JavaScript"); // 得到脚本引擎
+		ScriptEngine engine = engineManager.getEngineByName("nashorn");
 		try {
 			resolutionExpression = resolutionExpression.toString().replace("\n", "");
 			return String.valueOf(engine.eval(resolutionExpression.toString()));
