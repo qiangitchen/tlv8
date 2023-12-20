@@ -1,22 +1,25 @@
 package com.tlv8.interceptors;
 
 import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tlv8.base.utils.IPUtils;
-import com.tlv8.system.bean.ContextBean;
-import com.tlv8.system.help.SessionHelper;
+
+import cn.dev33.satoken.stp.StpUtil;
 
 /**
  * 防止SQL注入的拦截器
  *
  */
 public class SqlInjectInterceptor implements HandlerInterceptor {
-	private static final Logger logger = Logger.getLogger(SqlInjectInterceptor.class);
+	private static final Logger logger = LoggerFactory.getLogger(SqlInjectInterceptor.class);
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object arg2, Exception arg3)
@@ -34,16 +37,14 @@ public class SqlInjectInterceptor implements HandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
-
 		// 1.后台功能（有SQL值情况），针对数据库SQL操作，进行开发者权限控制，防止SQL注入
 		String requestPath = request.getRequestURI();
 		if (isBackAction(requestPath)) {
 			/*
 			 * 后台登录控制
 			 */
-			ContextBean context = SessionHelper.getContext(request);
 			// 判断是否已登录
-			if (context.isLogin()) {
+			if (StpUtil.isLogin()) {
 				return true;
 			} else {
 				logger.info(" ---操作失败，当前用户未授权开发权限-------- 请求IP ---------+" + IPUtils.getRemoteAddr(request));

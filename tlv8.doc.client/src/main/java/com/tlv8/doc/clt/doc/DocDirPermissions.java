@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.tlv8.base.db.DBUtils;
 
@@ -16,7 +17,7 @@ public class DocDirPermissions {
 	private List container;
 	private Map<String, DocPermission> pers = new ConcurrentHashMap<String, DocPermission>();
 
-	public static Logger logger = Logger.getLogger(Docs.class);
+	public static Logger logger = LoggerFactory.getLogger(Docs.class);
 
 	public DocDirPermissions() {
 	}
@@ -25,30 +26,22 @@ public class DocDirPermissions {
 		this.container = table;
 	}
 
-	public DocDirPermissions query(String concept, String idColumn, String select, String from, String condition, List<DataPermission> range,
-			String filter, Boolean distinct, int offset, int limit, String columns, String orderBy, String aggregate, String aggregateColumns,
-			Map<String, Object> variables, String dataModel, String fnModel) {
-		container = BizData.query(concept, idColumn, select, from, condition, range, filter, distinct, offset, limit, columns, orderBy, aggregate,
-				aggregateColumns, variables, dataModel, fnModel);
-		for (int i=0; i<container.size();i++) {
-			Docinfo r = new Docinfo((Map)container.get(i));
+	public DocDirPermissions query(String concept, String idColumn, String select, String from, String condition,
+			List<DataPermission> range, String filter, Boolean distinct, int offset, int limit, String columns,
+			String orderBy, String aggregate, String aggregateColumns, Map<String, Object> variables, String dataModel,
+			String fnModel) {
+		container = BizData.query(concept, idColumn, select, from, condition, range, filter, distinct, offset, limit,
+				columns, orderBy, aggregate, aggregateColumns, variables, dataModel, fnModel);
+		for (int i = 0; i < container.size(); i++) {
+			Docinfo r = new Docinfo((Map) container.get(i));
 			pers.put(r.getString("SA_DocAuth"), new DocPermission(r, this));
 		}
 		return this;
 	}
 
 	public DocDirPermissions queryByPath(String docPath) {
-		return query(
-				"SA_DocAuth",
-				"SA_DocAuth",
-				"SA_DocAuth.*",
-				"SA_DocAuth SA_DocAuth",
-				null,
-				null,
-				"(SA_DocAuth.sDocPath='" + docPath + "')",
-				false,
-				0,
-				-1,
+		return query("SA_DocAuth", "SA_DocAuth", "SA_DocAuth.*", "SA_DocAuth SA_DocAuth", null, null,
+				"(SA_DocAuth.sDocPath='" + docPath + "')", false, 0, -1,
 				"sDocPath,sAuthorizerFID,sAuthorizerName,sAuthorizerDeptName,sAuthorizeeFID,sAuthorizeeName,sAuthorizeeDeptName,sGrantTime,sAccess,sScope,version,SA_DocAuth",
 				null, null, null, null, "/SA/doc/data", null);
 	}
@@ -60,7 +53,7 @@ public class DocDirPermissions {
 		if (Utils.isNotEmptyString(sID))
 			sID = CommonUtils.createGUID();
 
-		Docinfo r =  new Docinfo((Map) container.get(0));
+		Docinfo r = new Docinfo((Map) container.get(0));
 		r.setString("SA_DocAuth", sID);
 		r.setString("sDocPath", sDocPath);
 		r.setInt("sAccess", sAccess);
@@ -73,8 +66,8 @@ public class DocDirPermissions {
 	}
 
 	public int save() {
-		for (int i=0; i<container.size();i++) {
-			Docinfo row = new Docinfo((Map)container.get(i));
+		for (int i = 0; i < container.size(); i++) {
+			Docinfo row = new Docinfo((Map) container.get(i));
 			String str = row.getString("sDocPath");
 			if (str.equals("/")) {
 				if (Integer.parseInt(row.getValue("sAccess").toString()) % 32768 < 16384

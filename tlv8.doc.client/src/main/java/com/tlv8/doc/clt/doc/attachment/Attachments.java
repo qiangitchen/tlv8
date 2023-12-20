@@ -12,10 +12,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -37,13 +38,14 @@ import com.tlv8.system.utils.ContextUtils;
 
 @SuppressWarnings("rawtypes")
 public class Attachments {
+	public static Logger logger = LoggerFactory.getLogger(Attachments.class);
+
 	private String sfield;
 	private Boolean isHttps = false;
 	private List container;
 	private Map<String, Attachment> atts = new ConcurrentHashMap<String, Attachment>();
 	private DefineItems defineItems;
 	private DocServerDefines dns;
-	public static Logger logger = Logger.getLogger(Attachments.class);
 	private Map<String, String> cacheNames = new HashMap<String, String>();
 
 	public Map<String, String> getCacheNames() {

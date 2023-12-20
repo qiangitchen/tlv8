@@ -6,11 +6,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.doc.clt.doc.BizData;
@@ -24,6 +25,7 @@ import com.tlv8.doc.clt.doc.transform.Table2Row;
 
 @SuppressWarnings("rawtypes")
 public class AttachmentDefine {
+	private final Logger logger = LoggerFactory.getLogger(AttachmentDefine.class);
 
 	private String process;
 	private String activity;
@@ -32,7 +34,6 @@ public class AttachmentDefine {
 	private boolean isParent = false;
 	private AttachmentDefine parentDefine;
 	private String keyId;
-	private final Logger logger = Logger.getLogger(AttachmentDefine.class);
 
 	public AttachmentDefine(String process, String activity) {
 		this.process = process;

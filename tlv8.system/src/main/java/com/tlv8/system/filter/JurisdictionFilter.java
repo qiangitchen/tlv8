@@ -55,9 +55,9 @@ public class JurisdictionFilter extends OncePerRequestFilter {
 			chain.doFilter(request, response);
 			return;
 		}
-
+		
 		ContextBean context = tokenService.getContextBean(req);
-		if (StringUtils.isNotNull(context)) {
+		if (StpUtil.isLogin() && StringUtils.isNotNull(context)) {
 			tokenService.verifyToken(context);
 		}
 		if (EChatExecuteFilter.doFilter(req, res)) {

@@ -1,11 +1,12 @@
 package com.tlv8.doc.svr.controller.impl;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.tlv8.doc.svr.controller.inter.RequestHandler;
 
 public abstract class AbstractRequestHandler implements RequestHandler {
-	protected Logger requestErrorLogger = Logger.getLogger(getClass());
+	protected Logger logger = LoggerFactory.getLogger(getClass());
 
 	/*
 	 * (non-Javadoc)

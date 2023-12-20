@@ -12,10 +12,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.tlv8.doc.clt.doc.CommonUtils;
 import com.tlv8.doc.clt.doc.DocDBHelper;
@@ -33,6 +34,8 @@ import com.tlv8.system.utils.ContextUtils;
 
 @SuppressWarnings("rawtypes")
 public class DocLinkAttachments {
+	public static Logger logger = LoggerFactory.getLogger(Docs.class);
+
 	private String billIDs;
 	private String process;
 	private String activity;
@@ -40,11 +43,9 @@ public class DocLinkAttachments {
 	private Boolean isHttps = false;
 	private List container;
 	private Map<String, Attachment> atts = new ConcurrentHashMap<String, Attachment>();
-	public static Logger logger = Logger.getLogger(Docs.class);
 	private Map<String, String> cacheNames = new HashMap<String, String>();
 
-	public DocLinkAttachments(String billIDs, String process, String activity,
-			Boolean isLoad, Boolean isHttps) {
+	public DocLinkAttachments(String billIDs, String process, String activity, Boolean isLoad, Boolean isHttps) {
 		if (Utils.isNotNull(isHttps))
 			this.isHttps = isHttps;
 		this.billIDs = billIDs;
@@ -85,16 +86,14 @@ public class DocLinkAttachments {
 		queryItems();
 	}
 
-	public Attachment addDoc(String sID, String sParentID, String sDocName,
-			String sKind, String sDocPath, String sDocDisplayPath, String billID)
-			throws ModelException {
+	public Attachment addDoc(String sID, String sParentID, String sDocName, String sKind, String sDocPath,
+			String sDocDisplayPath, String billID) throws ModelException {
 		if (Utils.isNull(container)) {
 			container = DocDBHelper.initDocNode();
 			if (Utils.isEmptyString(billIDs)) {
 				billIDs = billID;
 			} else {
-				Utils.check(billIDs.equals(billID), billIDs + "和" + billID
-						+ "不是同一批的附件，不能统一保存");
+				Utils.check(billIDs.equals(billID), billIDs + "和" + billID + "不是同一批的附件，不能统一保存");
 			}
 		}
 		Docinfo r = new Docinfo((Map<?, ?>) container.get(0));
@@ -128,25 +127,21 @@ public class DocLinkAttachments {
 		return att;
 	}
 
-	public int createVersion() throws UnsupportedEncodingException,
-			DocumentException, Exception {
+	public int createVersion() throws UnsupportedEncodingException, DocumentException, Exception {
 		for (Entry<String, Attachment> entry : atts.entrySet()) {
 			Attachment up = entry.getValue();
-			if (DocDBHelper.checkLocker(up.getsID()) != 1
-					&& (up.getRow().getState().equals(ModifyState.EDIT) || up
-							.getRow().getState().equals(ModifyState.NONE))) {
+			if (DocDBHelper.checkLocker(up.getsID()) != 1 && (up.getRow().getState().equals(ModifyState.EDIT)
+					|| up.getRow().getState().equals(ModifyState.NONE))) {
 				deleteAtts(entry.getValue());
-			} else if (Utils.isEmptyString(up.getCacheName())
-					&& (up.getRow().getState().equals(ModifyState.EDIT) || up
-							.getRow().getState().equals(ModifyState.NONE))) {
+			} else if (Utils.isEmptyString(up.getCacheName()) && (up.getRow().getState().equals(ModifyState.EDIT)
+					|| up.getRow().getState().equals(ModifyState.NONE))) {
 				deleteAtts(entry.getValue());
 			}
 		}
 		int result = save();
 		for (Entry<String, Attachment> entry : atts.entrySet()) {
 			Attachment up = entry.getValue();
-			if (Utils.isEmptyString(up.getCacheName())
-					&& up.getRow().getState().equals(ModifyState.NEW)) {
+			if (Utils.isEmptyString(up.getCacheName()) && up.getRow().getState().equals(ModifyState.NEW)) {
 				deleteAtts(entry.getValue());
 			}
 		}
@@ -158,23 +153,18 @@ public class DocLinkAttachments {
 		for (Entry<String, Attachment> entry : atts.entrySet()) {
 			Docinfo row = entry.getValue().getRow();
 			String cacheName = cacheNames.get(row.getString("SA_DocNode"));
-			if (row.getState().equals(ModifyState.DELETE)
-					|| Utils.isNotEmptyString(cacheName)) {
+			if (row.getState().equals(ModifyState.DELETE) || Utils.isNotEmptyString(cacheName)) {
 				continue;
 			}
-			DocUtils.saveDocFlag(row.getString("sDocPath"),
-					row.getString("sKind"), row.getString("sFileID"),
-					cacheName, isHttps);
+			DocUtils.saveDocFlag(row.getString("sDocPath"), row.getString("sKind"), row.getString("sFileID"), cacheName,
+					isHttps);
 		}
 	}
 
-	public void commitFile() throws UnsupportedEncodingException,
-			DocumentException, Exception {
+	public void commitFile() throws UnsupportedEncodingException, DocumentException, Exception {
 		Map<String, List<StringBuffer>> logs = createChangeLogs();
-		for (Iterator<Entry<String, List<StringBuffer>>> it = logs.entrySet()
-				.iterator(); it.hasNext();) {
-			Entry<String, List<StringBuffer>> entry = (Entry<String, List<StringBuffer>>) it
-					.next();
+		for (Iterator<Entry<String, List<StringBuffer>>> it = logs.entrySet().iterator(); it.hasNext();) {
+			Entry<String, List<StringBuffer>> entry = (Entry<String, List<StringBuffer>>) it.next();
 			StringBuffer sb = new StringBuffer();
 			sb.append("<data>");
 			for (StringBuffer log : entry.getValue()) {
@@ -185,20 +175,17 @@ public class DocLinkAttachments {
 			String host = DocDBHelper.queryDocHost();
 			String url = host + "/repository/file/cache/commit";
 
-			Document result = DocUtils.excutePostAction(url,
-					new ByteArrayInputStream(sb.toString().getBytes("UTF-8")));
+			Document result = DocUtils.excutePostAction(url, new ByteArrayInputStream(sb.toString().getBytes("UTF-8")));
 			List<?> itemList = result.selectNodes("//item");
 			for (Object litem : itemList) {
 				Element item = (Element) litem;
 				String docID = item.selectSingleNode("doc-id").getText();
 				String fileID = item.selectSingleNode("file-id").getText();
-				String docVersionID = item.selectSingleNode("doc-version-id")
-						.getText();
+				String docVersionID = item.selectSingleNode("doc-version-id").getText();
 				setAfterCommit(docID, fileID, docVersionID);
 			}
 			if (!"true".equals(result.selectSingleNode("//flag").getText()))
-				throw new DocRTException("DocServer commit error ",
-						new Exception());
+				throw new DocRTException("DocServer commit error ", new Exception());
 		}
 	}
 
@@ -220,8 +207,7 @@ public class DocLinkAttachments {
 		return saveTable();
 	}
 
-	private int save() throws UnsupportedEncodingException, DocumentException,
-			Exception {
+	private int save() throws UnsupportedEncodingException, DocumentException, Exception {
 		commitFile();
 		int result = commitData();
 		return result;
@@ -238,8 +224,7 @@ public class DocLinkAttachments {
 			if ("dir".equals(att.getsKind()))
 				continue;
 			String accessType = getOperationType(att);
-			dl.addLog(null, accessType, att.getsID(), att.getsDocName(),
-					att.getsDocLiveVersionID(), att.getsSize());
+			dl.addLog(null, accessType, att.getsID(), att.getsDocName(), att.getsDocLiveVersionID(), att.getsSize());
 			if ("new".equals(accessType)) {
 				Map m = new HashMap();
 				Docinfo r = new Docinfo(m);
@@ -268,8 +253,7 @@ public class DocLinkAttachments {
 		return 0;
 	}
 
-	private Map<String, List<StringBuffer>> createChangeLogs()
-			throws DocumentException {
+	private Map<String, List<StringBuffer>> createChangeLogs() throws DocumentException {
 		Map<String, List<StringBuffer>> serverLogs = new HashMap<String, List<StringBuffer>>();
 		for (Attachment att : atts.values()) {
 			/* 删除操作不提交文档服务器 */
@@ -304,41 +288,29 @@ public class DocLinkAttachments {
 		result.append("<operation-type>" + operationType + "</operation-type>");
 		result.append("<process></process>");
 		result.append("<activity></activity>");
-		result.append("<person>" + doc.getRelation("sLastWriterFID")
-				+ "</person>");
-		result.append("<person-name>" + doc.getRelation("sLastWriterName")
-				+ "</person-name>");
-		result.append("<dept-name>"
-				+ DocUtils.getValue(doc.getRelation("sLastWriterDeptName"), "")
-				+ "</dept-name>");
+		result.append("<person>" + doc.getRelation("sLastWriterFID") + "</person>");
+		result.append("<person-name>" + doc.getRelation("sLastWriterName") + "</person-name>");
+		result.append("<dept-name>" + DocUtils.getValue(doc.getRelation("sLastWriterDeptName"), "") + "</dept-name>");
 		result.append("<bill-id></bill-id>");
 		result.append("<doc-id>" + doc.getsID() + "</doc-id>");
-		result.append("<version>" + String.valueOf(doc.getVersion())
-				+ "</version>");
-		result.append("<file-id>" + DocUtils.getValue(doc.getsFileID(), "")
-				+ "</file-id>");
-		result.append("<doc-version-id>"
-				+ String.valueOf(doc.getsDocLiveVersionID())
-				+ "</doc-version-id>");
+		result.append("<version>" + String.valueOf(doc.getVersion()) + "</version>");
+		result.append("<file-id>" + DocUtils.getValue(doc.getsFileID(), "") + "</file-id>");
+		result.append("<doc-version-id>" + String.valueOf(doc.getsDocLiveVersionID()) + "</doc-version-id>");
 		result.append("<doc-name><![CDATA[" + doc.getsDocName() + "]]></doc-name>");
 		result.append("<kind>" + doc.getsKind() + "</kind>");
 		result.append("<size>" + String.valueOf(doc.getsSize()) + "</size>");
 		result.append("<parent-id>" + doc.getsParentID() + "</parent-id>");
 		result.append("<doc-path><![CDATA[" + doc.getsDocPath() + "]]></doc-path>");
 		result.append("<doc-display-path><![CDATA[" + doc.getsDocDisplayPath() + "]]></doc-display-path>");
-		result.append("<description>"
-				+ DocUtils.getValue(doc.getRelation("sDescription"), "")
-				+ "</description>");
-		result.append("<classification>"
-				+ DocUtils.getValue(doc.getRelation("sClassification"), "")
-				+ "</classification>");
+		result.append("<description>" + DocUtils.getValue(doc.getRelation("sDescription"), "") + "</description>");
+		result.append(
+				"<classification>" + DocUtils.getValue(doc.getRelation("sClassification"), "") + "</classification>");
 		result.append("<keywords><![CDATA[" + DocUtils.getValue(doc.getRelation("sKeywords"), "") + "]]></keywords>");
 		result.append("<finish-time></finish-time>");
 		result.append("<serial-number></serial-number>");
 		result.append("<doc-type>document</doc-type>");
 		result.append("<cache-name>" + doc.getCacheName() + "</cache-name>");
-		result.append("<revision-cache-name>" + doc.getRevisionCacheName()
-				+ "</revision-cache-name>");
+		result.append("<revision-cache-name>" + doc.getRevisionCacheName() + "</revision-cache-name>");
 		result.append("<comment-file-content></comment-file-content>");
 		result.append("<link-id></link-id>");
 		result.append("<access-record-id></access-record-id>");
@@ -364,8 +336,7 @@ public class DocLinkAttachments {
 		String operationType = "";
 		String state = uploadDoc.getState();
 		if (state == ModifyState.NEW) {
-			operationType = "dir".equals(uploadDoc.getsKind()) ? "newDir"
-					: "new";
+			operationType = "dir".equals(uploadDoc.getsKind()) ? "newDir" : "new";
 		} else if (state == ModifyState.EDIT) {
 			operationType = "edit";
 		} else if (state == ModifyState.DELETE) {

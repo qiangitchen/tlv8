@@ -9,10 +9,13 @@ import java.util.stream.Collectors;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.tlv8.doc.svr.generator.utils.DBUtils;
-import com.tlv8.doc.svr.generator.utils.Sys;
 
 public class DataSourceLoaderListener implements ServletContextListener {
+	final static Logger logger = LoggerFactory.getLogger(DataSourceLoaderListener.class);
 	protected boolean started = false;
 
 	@Override
@@ -29,7 +32,7 @@ public class DataSourceLoaderListener implements ServletContextListener {
 
 	private void datalisten() {
 		try {
-			Sys.printMsg("启动数据库监听...");
+			logger.info("启动数据库监听...");
 			new Thread(new Runnable() {
 
 				@Override
@@ -55,9 +58,9 @@ public class DataSourceLoaderListener implements ServletContextListener {
 					}
 				}
 			}).start();
-			Sys.printMsg("启动数据库监听完成.");
+			logger.info("启动数据库监听完成.");
 		} catch (Exception e) {
-			Sys.printMsg("启动数据库监听异常:");
+			logger.error("启动数据库监听异常:");
 			e.printStackTrace();
 		}
 	}

@@ -10,7 +10,8 @@ import java.sql.SQLException;
 import javax.naming.NamingException;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +29,8 @@ import com.tlv8.system.utils.ContextUtils;
 @Controller
 @Scope("prototype")
 public class DeleteOrgGridInfo extends ActionSupport {
-	Logger log = Logger.getLogger(getClass());
+	Logger log = LoggerFactory.getLogger(getClass());
+
 	private Data data;
 	private String rowid;
 

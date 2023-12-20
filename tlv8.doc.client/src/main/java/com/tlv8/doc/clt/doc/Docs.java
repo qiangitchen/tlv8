@@ -17,10 +17,11 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.tlv8.base.Sys;
 import com.tlv8.base.db.DBUtils;
@@ -30,6 +31,8 @@ import com.tlv8.system.utils.ContextUtils;
 
 @SuppressWarnings("rawtypes")
 public class Docs {
+	public static Logger logger = LoggerFactory.getLogger(Docs.class);
+	
 	private List<Map<String, String>> container;
 	private Map<String, Doc> docs = new ConcurrentHashMap<String, Doc>();
 	private Map<String, Doc> removeDocs = new HashMap<String, Doc>();
@@ -37,7 +40,6 @@ public class Docs {
 
 	private final static String commitUrlPattern = "/repository/file/cache/commit";
 	private Map<String, String> cacheNames = new HashMap<String, String>();
-	public static Logger logger = Logger.getLogger(Docs.class);
 	private Boolean isHttps = false;
 	private Boolean isLogicDelete = true;
 	private Boolean isEditInfo = false;

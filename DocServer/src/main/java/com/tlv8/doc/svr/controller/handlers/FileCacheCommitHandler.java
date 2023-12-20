@@ -189,7 +189,7 @@ public class FileCacheCommitHandler extends AbstractRequestHandler {
 				writer.write(localStringBuilder.toString());
 				writer.close();
 			} catch (Exception localException) {
-				this.requestErrorLogger.error("commit error", localException);
+				logger.error("commit error", localException);
 				paramHttpServletResponse.sendError(400,
 						localException.toString());
 			}

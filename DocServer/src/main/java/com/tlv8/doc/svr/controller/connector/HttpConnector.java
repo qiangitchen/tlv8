@@ -12,12 +12,10 @@ public class HttpConnector {
 	HttpServletRequest httpservletrequest;
 	List<RequestHandler> handerList;
 
-	@SuppressWarnings("deprecation")
 	public HttpConnector(HttpServletRequest paramHttpServletRequest) {
 		this.httpservletrequest = paramHttpServletRequest;
 		handerList = new ArrayList<RequestHandler>();
-		List<Class> hclist = ClassUtil.getAllClassByInterface(
-				RequestHandler.class,
+		List<Class> hclist = ClassUtil.getAllClassByInterface(RequestHandler.class,
 				"com.tlv8.doc.svr.controller.handlers");
 		for (Class clas : hclist) {
 			try {
@@ -34,8 +32,7 @@ public class HttpConnector {
 		RequestHandler requesthandler = null;
 		String pathinfo = httpservletrequest.getPathInfo();
 		for (RequestHandler hander : handerList) {
-			if (isMathen("/" + hander.getNamespace() + hander.getPathPattern(),
-					pathinfo)) {
+			if (isMathen("/" + hander.getNamespace() + hander.getPathPattern(), pathinfo)) {
 				return hander;
 			}
 		}
@@ -49,7 +46,7 @@ public class HttpConnector {
 		}
 		String[] paten = str1.split("/");
 		String[] vale = str2.split("/");
-		if(vale.length<paten.length){
+		if (vale.length < paten.length) {
 			return false;
 		}
 		List trueler = new ArrayList();

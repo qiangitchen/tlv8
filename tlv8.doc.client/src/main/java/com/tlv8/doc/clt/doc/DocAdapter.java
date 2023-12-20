@@ -6,10 +6,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -25,7 +26,7 @@ public class DocAdapter {
 	/*
 	 * 文档中心调用
 	 */
-	public static Logger logger = Logger.getLogger(DocAdapter.class);
+	public static Logger logger = LoggerFactory.getLogger(DocAdapter.class);
 
 	public static List queryDocAuth(String concept, String idColumn, String select, String from, String condition,
 			List<DataPermission> range, String filter, Boolean distinct, int offset, int limit, String columns,
@@ -160,7 +161,7 @@ public class DocAdapter {
 			ds.commit();
 			result = ds;
 		} catch (Exception e) {
-			logger.error(e);
+			logger.error("提交文档中心文档失败:" + e.toString());
 			throw new DocRTException("提交文档中心文档失败", e);
 		}
 		return result;

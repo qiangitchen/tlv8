@@ -6,7 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.tlv8.base.ActionSupport;
 import com.tlv8.base.Data;
 import com.tlv8.base.db.DBUtils;
-import com.tlv8.system.BaseController;
 import com.tlv8.system.utils.ContextUtils;
 
 /**
@@ -29,7 +29,8 @@ import com.tlv8.system.utils.ContextUtils;
 @Controller
 @Scope("prototype")
 public class DeleteOrgDataAction extends ActionSupport {
-	Logger log = Logger.getLogger(getClass());
+	Logger log = LoggerFactory.getLogger(getClass());
+
 	private Data data;
 	private String rowid;
 

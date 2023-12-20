@@ -62,7 +62,7 @@ public class FileEditHandler extends AbstractRequestHandler {
 				paramHttpServletResponse.sendError(405);
 			}
 		} catch (Exception e) {
-			this.requestErrorLogger.error(e);
+			logger.error(e.toString());
 			paramHttpServletResponse.sendError(500);
 		}
 	}

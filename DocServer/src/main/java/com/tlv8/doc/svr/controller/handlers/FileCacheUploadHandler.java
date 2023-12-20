@@ -21,23 +21,18 @@ public class FileCacheUploadHandler extends AbstractRequestHandler {
 		paramHttpServletResponse.setCharacterEncoding("utf-8");
 	}
 
-	public void handleRequest(HttpServletRequest paramHttpServletRequest,
-			HttpServletResponse paramHttpServletResponse) throws Exception {
+	public void handleRequest(HttpServletRequest paramHttpServletRequest, HttpServletResponse paramHttpServletResponse)
+			throws Exception {
 		if (paramHttpServletRequest.getMethod().equals("POST")) {
-			StringBuilder localStringBuilder = new StringBuilder(
-					"<?xml version=\"1.0\" encoding=\"UTF-8\"?><root>");
+			StringBuilder localStringBuilder = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?><root>");
 			try {
-				FileIOContent rdoc = FileUploader.fileUpload(
-						paramHttpServletRequest, new DoupDoc());// 保存文件
+				FileIOContent rdoc = FileUploader.fileUpload(paramHttpServletRequest, new DoupDoc());// 保存文件
 				FileUploadData.newDocSave(rdoc);// 保存数据
 				localStringBuilder
-						.append(String
-								.format("<file mediatype=\"%s\" file-name=\"%s\" fileSize=\"%s\"></file>",
-										new Object[] { rdoc.getFileType(),
-												rdoc.getFileID(),
-												rdoc.getFileSize() + "" }));
+						.append(String.format("<file mediatype=\"%s\" file-name=\"%s\" fileSize=\"%s\"></file>",
+								new Object[] { rdoc.getFileType(), rdoc.getFileID(), rdoc.getFileSize() + "" }));
 			} catch (Exception localException) {
-				this.requestErrorLogger.error(localException);
+				logger.error(localException.toString());
 				localStringBuilder.append("<flag>false</flag>");
 				localStringBuilder.append("<message>");
 				localStringBuilder.append("upload fileCache  failure");

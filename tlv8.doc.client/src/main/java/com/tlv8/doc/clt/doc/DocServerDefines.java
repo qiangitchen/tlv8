@@ -5,19 +5,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.apache.log4j.Logger;
 import org.dom4j.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.tlv8.doc.clt.doc.transform.TransformConfig;
 
 @SuppressWarnings({ "rawtypes" })
 public class DocServerDefines {
+	final static Logger logger = LoggerFactory.getLogger(DocServerDefines.class);
 
 	private List nameSpaces;
 	private Map<String, DocServerDefine> docServers = new ConcurrentHashMap<String, DocServerDefine>();
 	@SuppressWarnings("unused")
 	private final static String DOCNameSPACE_CONCEPT = "SA_DocNameSpace";
-	public static Logger logger = Logger.getLogger(DocServerDefines.class);
 	private Boolean isLogicDelete = true;
 
 	private DocServerDefines() {
@@ -55,8 +56,7 @@ public class DocServerDefines {
 		loadNameSpace();
 	}
 
-	public DocServerDefine add(String sID, String sDisplayName, String sUrl,
-			String sAccessMode) {
+	public DocServerDefine add(String sID, String sDisplayName, String sUrl, String sAccessMode) {
 		if (Utils.isEmptyString(sID))
 			sID = CommonUtils.createGUID();
 		Docinfo r = new Docinfo((Map) nameSpaces.get(0));
