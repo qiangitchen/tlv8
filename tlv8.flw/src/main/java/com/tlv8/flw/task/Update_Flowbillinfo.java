@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlv8.base.Data;
 import com.tlv8.base.db.DBUtils;
+import com.tlv8.common.domain.AjaxResult;
 import com.tlv8.base.ActionSupport;
 
 /**
@@ -46,7 +47,7 @@ public class Update_Flowbillinfo extends ActionSupport {
 			data.setFlag("false");
 			data.setMessage(e.toString());
 		}
-		return this;
+		return AjaxResult.success(data);
 	}
 
 	@SuppressWarnings("resource")

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlv8.base.Data;
 import com.tlv8.base.db.DBUtils;
+import com.tlv8.common.domain.AjaxResult;
 import com.tlv8.base.ActionSupport;
 
 /**
@@ -89,7 +90,7 @@ public class savePermitionAction extends ActionSupport {
 		data.setMessage(m);
 		data.setPage(page);
 		data.setAllpage(allpage);
-		return this;
+		return AjaxResult.success(data);
 	}
 
 	public String setPermi() throws Exception {

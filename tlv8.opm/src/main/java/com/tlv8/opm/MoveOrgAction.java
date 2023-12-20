@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlv8.base.Data;
 import com.tlv8.base.db.DBUtils;
+import com.tlv8.common.domain.AjaxResult;
 import com.tlv8.base.ActionSupport;
 import com.tlv8.opm.org.OrgchildsFullpathUpdate;
 
@@ -120,7 +121,7 @@ public class MoveOrgAction extends ActionSupport {
 		data.setData(r);
 		data.setFlag(f);
 		data.setMessage(m);
-		return this;
+		return AjaxResult.success(data);
 	}
 
 	public void setDbkey(String dbkey) {

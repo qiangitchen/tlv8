@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.tlv8.base.Data;
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.base.utils.StringArray;
+import com.tlv8.common.domain.AjaxResult;
 import com.tlv8.flw.base.FlowActivity;
 import com.tlv8.flw.base.TaskData;
 import com.tlv8.flw.bean.FlowDataBean;
@@ -78,7 +79,7 @@ public class FlowControler extends FlowDataBean {
 			if (processID == null) {
 				data.setFlag("false");
 				data.setMessage("启动流程失败！找不到" + srcPath + "对应的流程图。");
-				return this;
+				return AjaxResult.success(data);
 			}
 			flowID = startflow(processID, sdata1);
 			List<OrgUtils> ePersonList = new ArrayList<OrgUtils>();
@@ -92,7 +93,7 @@ public class FlowControler extends FlowDataBean {
 			data.setMessage(e.toString());
 			e.printStackTrace();
 		}
-		return this;
+		return AjaxResult.success(data);
 	}
 
 	/**
@@ -106,7 +107,7 @@ public class FlowControler extends FlowDataBean {
 				start();
 			}
 			if ("".equals(taskID) || taskID == null || "undefined".equals(taskID)) {
-				return this;
+				return AjaxResult.error("流程id和任务id不能为空!");
 			}
 			String processID = TaskData.getCurrentProcessID(taskID);
 			String Activity = TaskData.getCurrentActivity(taskID);
@@ -127,7 +128,7 @@ public class FlowControler extends FlowDataBean {
 				setTaskID(flowout(flowID, taskID, sdata1, ePersonList, aftAList));
 				data.setFlag("end");
 				data.setData(toJSONString());
-				return this;
+				return AjaxResult.success(data);
 			}
 			// 共同模式且需要合并
 			if ("together".equals(flwA.getGrapModle()) && "merge".equals(flwA.getGrapWay())) {
@@ -150,7 +151,7 @@ public class FlowControler extends FlowDataBean {
 					DBUtils.execUpdateQuery("system", sql);
 					data.setFlag("msg");
 					data.setMessage("请等待其他人处理!");
-					return this;
+					return AjaxResult.success(data);
 				}
 			}
 			if (aftAList.size() == 1 && "no".equals(aftAList.get(0).getOutquery())) {// 不需要流转确认时处理
@@ -171,7 +172,7 @@ public class FlowControler extends FlowDataBean {
 					setTaskID(flowout(flowID, taskID, sdata1, ePersonList, aftAList));
 					data.setFlag("true");
 					data.setData(toJSONString());
-					return this;
+					return AjaxResult.success(data);
 				} else {// 未指定固定执行人
 					if (epersonids != null && !"".equals(epersonids)) {
 						// 不需要做什么【已经选择执行人】
@@ -236,7 +237,7 @@ public class FlowControler extends FlowDataBean {
 							setTaskID(flowout(flowID, taskID, sdata1, ePersonList, aftAList));
 							data.setFlag("end");
 							data.setData(toJSONString());
-							return SUCCESS;
+							return AjaxResult.success(data);
 						}
 					}
 					data.setFlag("select");
@@ -283,7 +284,7 @@ public class FlowControler extends FlowDataBean {
 
 					data.setData("{activityListStr:'" + afterActList.toString() + "',flowID:'" + flowID + "',taskID:'"
 							+ taskID + "'}");
-					return this;
+					return AjaxResult.success(data);
 				}
 			}
 			setTaskID(flowout(flowID, taskID, sdata1, ePersonList, aftAList));
@@ -294,7 +295,7 @@ public class FlowControler extends FlowDataBean {
 			data.setMessage(e.toString());
 			e.printStackTrace();
 		}
-		return this;
+		return AjaxResult.success(data);
 	}
 
 	/**
@@ -312,7 +313,7 @@ public class FlowControler extends FlowDataBean {
 			data.setMessage(e.toString());
 			e.printStackTrace();
 		}
-		return this;
+		return AjaxResult.success(data);
 	}
 
 	/**
@@ -364,7 +365,7 @@ public class FlowControler extends FlowDataBean {
 					afterActList.append("]");
 					data.setData("{activityListStr:'" + afterActList.toString() + "',flowID:'" + flowID + "',taskID:'"
 							+ taskID + "'}");
-					return this;
+					return AjaxResult.success(data);
 				}
 			}
 			setTaskID(flowforward(flowID, taskID, ePersonList));
@@ -375,7 +376,7 @@ public class FlowControler extends FlowDataBean {
 			data.setMessage(e.toString());
 			e.printStackTrace();
 		}
-		return this;
+		return AjaxResult.success(data);
 	}
 
 	/**
@@ -393,7 +394,7 @@ public class FlowControler extends FlowDataBean {
 			data.setMessage(e.toString());
 			e.printStackTrace();
 		}
-		return this;
+		return AjaxResult.success(data);
 	}
 
 	/**
@@ -411,7 +412,7 @@ public class FlowControler extends FlowDataBean {
 			data.setMessage(e.toString());
 			e.printStackTrace();
 		}
-		return this;
+		return AjaxResult.success(data);
 	}
 
 	/**
@@ -429,7 +430,7 @@ public class FlowControler extends FlowDataBean {
 			data.setMessage(e.toString());
 			e.printStackTrace();
 		}
-		return this;
+		return AjaxResult.success(data);
 	}
 
 	/**
@@ -447,7 +448,7 @@ public class FlowControler extends FlowDataBean {
 			data.setMessage(e.toString());
 			e.printStackTrace();
 		}
-		return this;
+		return AjaxResult.success(data);
 	}
 
 	public void setSrcPath(String srcPath) {

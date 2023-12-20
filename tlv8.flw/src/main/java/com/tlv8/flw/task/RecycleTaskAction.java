@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlv8.base.Data;
 import com.tlv8.base.db.DBUtils;
+import com.tlv8.common.domain.AjaxResult;
 import com.tlv8.base.ActionSupport;
 
 /**
@@ -63,7 +64,7 @@ public class RecycleTaskAction extends ActionSupport {
 						data.setMessage("操作失败，撤回后没有可执行的页面。");
 						data.setFlag("false");
 					}
-					return this;
+					return AjaxResult.success(data);
 				}
 			}
 			/* end */
@@ -110,7 +111,7 @@ public class RecycleTaskAction extends ActionSupport {
 				data.setFlag("false");
 			}
 		}
-		return this;
+		return AjaxResult.success(data);
 	}
 
 	public void setTaskID(String taskID) {

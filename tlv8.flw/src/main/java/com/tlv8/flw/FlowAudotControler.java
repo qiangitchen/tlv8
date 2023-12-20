@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlv8.base.Data;
+import com.tlv8.common.domain.AjaxResult;
 import com.tlv8.flw.base.TaskData;
 import com.tlv8.flw.bean.FlowDataBean;
 
@@ -37,6 +38,6 @@ public class FlowAudotControler extends FlowDataBean {
 			data.setMessage(e.toString());
 			e.printStackTrace();
 		}
-		return this;
+		return AjaxResult.success(data);
 	}
 }

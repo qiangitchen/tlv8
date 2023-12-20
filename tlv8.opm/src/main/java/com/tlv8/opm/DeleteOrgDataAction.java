@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.tlv8.base.ActionSupport;
 import com.tlv8.base.Data;
 import com.tlv8.base.db.DBUtils;
+import com.tlv8.common.domain.AjaxResult;
 import com.tlv8.system.utils.ContextUtils;
 
 /**
@@ -85,7 +86,7 @@ public class DeleteOrgDataAction extends ActionSupport {
 		} finally {
 			DBUtils.closeConn(session, conn, null, null);
 		}
-		return this;
+		return AjaxResult.success(data);
 	}
 
 	public void setRowid(String rowid) {

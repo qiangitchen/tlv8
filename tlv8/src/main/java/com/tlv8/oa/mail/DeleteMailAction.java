@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlv8.base.Data;
 import com.tlv8.base.db.DBUtils;
+import com.tlv8.common.domain.AjaxResult;
 import com.tlv8.base.ActionSupport;
 
 @Controller
@@ -35,7 +36,7 @@ public class DeleteMailAction extends ActionSupport {
 		} catch (Exception e) {
 			data.setFlag("false");
 		}
-		return this;
+		return AjaxResult.success(data);
 	}
 
 	public void setRowid(String rowid) {

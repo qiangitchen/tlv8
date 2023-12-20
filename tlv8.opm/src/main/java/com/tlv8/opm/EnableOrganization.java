@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.tlv8.base.ActionSupport;
 import com.tlv8.base.Data;
 import com.tlv8.base.db.DBUtils;
+import com.tlv8.common.domain.AjaxResult;
 
 /**
  * 启用组织
@@ -68,7 +69,7 @@ public class EnableOrganization extends ActionSupport {
 		data.setData(r);
 		data.setFlag(f);
 		data.setMessage(m);
-		return this;
+		return AjaxResult.success(data);
 	}
 
 	public void setRowid(String rowid) {

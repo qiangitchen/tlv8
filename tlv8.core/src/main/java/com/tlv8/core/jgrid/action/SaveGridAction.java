@@ -36,7 +36,7 @@ public class SaveGridAction extends BaseSaveGridAction {
 		if (userid == null || "".equals(userid)) {
 			data.setFlag("false");
 			data.setMessage("未登录或登录已超时，不允许操作!");
-			return this;
+			return AjaxResult.success(data);
 		}
 		String r = "";
 		String m = "success";

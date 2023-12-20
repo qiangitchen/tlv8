@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlv8.base.Data;
+import com.tlv8.common.domain.AjaxResult;
 import com.tlv8.base.ActionSupport;
 
 @Controller
@@ -31,7 +32,7 @@ public class GetMenuAction extends ActionSupport {
 				+ "{id:\"readfile\",ico:\"default_folder.png\",name:\"已阅文件\",url:\"/tlv8/mobileUI/SA/task/taskView/counterActivity.html\",action:\"\"},"
 				+ "{id:\"xttxl\",ico:\"xttxl.png\",name:\"通讯录\",url:\"/tlv8/mobileUI/OA/addressBook/process/addressBookSystem/startActivity.html\",action:\"\"}]";
 		data.setData(r);
-		return this;
+		return AjaxResult.success(data);
 	}
 
 }

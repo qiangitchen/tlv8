@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlv8.base.Data;
 import com.tlv8.base.db.DBUtils;
+import com.tlv8.common.domain.AjaxResult;
 import com.tlv8.flw.base.FlowFile;
 import com.tlv8.flw.base.FlowFolderTree;
 import com.tlv8.flw.bean.FlowFolderTreeBean;
@@ -50,7 +51,7 @@ public class FlowFolderControler extends FlowFolderTreeBean {
 		data.setData(r);
 		data.setFlag(f);
 		data.setMessage(m);
-		return this;
+		return AjaxResult.success(data);
 	}
 
 	/*
@@ -80,7 +81,7 @@ public class FlowFolderControler extends FlowFolderTreeBean {
 		data.setData(r);
 		data.setFlag(f);
 		data.setMessage(m);
-		return this;
+		return AjaxResult.success(data);
 	}
 
 	/*
@@ -103,7 +104,7 @@ public class FlowFolderControler extends FlowFolderTreeBean {
 		data.setData(r);
 		data.setFlag(f);
 		data.setMessage(m);
-		return this;
+		return AjaxResult.success(data);
 	}
 
 	/*
@@ -127,7 +128,7 @@ public class FlowFolderControler extends FlowFolderTreeBean {
 		data.setData(r);
 		data.setFlag(f);
 		data.setMessage(m);
-		return this;
+		return AjaxResult.success(data);
 	}
 	
 }

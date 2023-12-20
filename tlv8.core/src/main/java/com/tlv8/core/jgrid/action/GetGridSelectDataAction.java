@@ -48,7 +48,7 @@ public class GetGridSelectDataAction extends ActionSupport {
 		if (userid == null || "".equals(userid)) {
 			data.setFlag("timeout");
 			Sys.packErrMsg("未登录或登录已超时，不允许操作!");
-			return this;
+			return AjaxResult.success(data);
 		}
 		String r = "true";
 		String m = "success";

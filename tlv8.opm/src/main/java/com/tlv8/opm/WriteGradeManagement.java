@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.tlv8.base.Data;
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.base.utils.IDUtils;
+import com.tlv8.common.domain.AjaxResult;
 import com.tlv8.base.ActionSupport;
 import com.tlv8.system.bean.ContextBean;
 import com.tlv8.system.utils.ContextUtils;
@@ -92,7 +93,7 @@ public class WriteGradeManagement extends ActionSupport {
 		} finally {
 			DBUtils.closeConn(session, conn, null, null);
 		}
-		return this;
+		return AjaxResult.success(data);
 	}
 
 	public void setOrgid(String orgid) {

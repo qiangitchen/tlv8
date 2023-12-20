@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlv8.base.Data;
 import com.tlv8.base.Sys;
+import com.tlv8.common.domain.AjaxResult;
 import com.tlv8.flw.base.FlowActivity;
 import com.tlv8.flw.base.FlowProcess;
 import com.tlv8.flw.base.TaskData;
@@ -82,8 +83,7 @@ public class GetSpecFlowoutInfo extends FlowDataBean {
 			data.setMessage(e.toString());
 			System.out.println(e.toString());
 		}
-		return this;
-
+		return AjaxResult.success(data);
 	}
 
 }

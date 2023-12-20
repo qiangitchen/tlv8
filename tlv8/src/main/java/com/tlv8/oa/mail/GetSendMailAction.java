@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlv8.base.Data;
 import com.tlv8.base.db.DBUtils;
+import com.tlv8.common.domain.AjaxResult;
 import com.alibaba.fastjson.JSON;
 import com.tlv8.base.ActionSupport;
 import com.tlv8.system.bean.ContextBean;
@@ -84,7 +85,7 @@ public class GetSendMailAction extends ActionSupport {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return this;
+		return AjaxResult.success(data);
 	}
 
 	public void setCount(String count) {

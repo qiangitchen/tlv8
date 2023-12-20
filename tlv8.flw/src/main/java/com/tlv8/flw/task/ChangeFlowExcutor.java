@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.tlv8.base.Data;
 import com.tlv8.base.Sys;
 import com.tlv8.base.db.DBUtils;
+import com.tlv8.common.domain.AjaxResult;
 import com.tlv8.flw.bean.FlowDataBean;
 import com.tlv8.system.utils.OrgUtils;
 
@@ -84,7 +85,7 @@ public class ChangeFlowExcutor extends FlowDataBean {
 				DBUtils.closeConn(session, conn, ps, null);
 			}
 		}
-		return this;
+		return AjaxResult.success(data);
 	}
 
 }
