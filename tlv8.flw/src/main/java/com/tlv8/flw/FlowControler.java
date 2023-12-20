@@ -107,7 +107,7 @@ public class FlowControler extends FlowDataBean {
 				start();
 			}
 			if ("".equals(taskID) || taskID == null || "undefined".equals(taskID)) {
-				return AjaxResult.error("流程id和任务id不能为空!");
+				return AjaxResult.success(data);
 			}
 			String processID = TaskData.getCurrentProcessID(taskID);
 			String Activity = TaskData.getCurrentActivity(taskID);
