@@ -1,4 +1,4 @@
-package com.tlv8.server.config;
+package com.tlv8.config;
 
 import java.sql.SQLException;
 import java.util.List;

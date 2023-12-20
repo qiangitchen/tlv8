@@ -1,4 +1,4 @@
-package com.tlv8.sa;
+package com.tlv8.sa.personal.schedule;
 
 import java.net.URLDecoder;
 import java.sql.Connection;

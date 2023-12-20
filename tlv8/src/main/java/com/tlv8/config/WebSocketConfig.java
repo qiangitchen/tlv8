@@ -1,4 +1,4 @@
-package com.tlv8.server.config;
+package com.tlv8.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

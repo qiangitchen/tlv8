@@ -1,4 +1,4 @@
-package com.tlv8.server.config;
+package com.tlv8.config;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;

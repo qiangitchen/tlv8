@@ -1,4 +1,4 @@
-package com.tlv8.server.config;
+package com.tlv8.config;
 
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -17,9 +17,10 @@ public class ListenerConfig {
 		srb.setListener(new OnlineInitServerlet());
 		return srb;
 	}
-	
+
 	/**
 	 * 任务时限监听
+	 * 
 	 * @return
 	 */
 	@Bean
