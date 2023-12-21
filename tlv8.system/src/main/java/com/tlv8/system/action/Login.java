@@ -66,8 +66,6 @@ public class Login {
 				}
 				if (!"1".equals(rs.getString(16))) {
 					throw new Exception("您的账号暂时无法登陆，请联系管理员。");
-					// throw new Exception("非中国移动专线用户，不能访问协同办公系统！");
-//					throw new Exception("非安全认证的电子政务外网数据专线用户，严禁访问！");
 				}
 				if ("-1".equals(rs.getString(16)))
 					throw new Exception("用户已被删除!");
