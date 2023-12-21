@@ -2,7 +2,7 @@ package com.tlv8.flw;
 
 import com.tlv8.system.utils.ContextUtils;
 
-public class flwOrgUtils {
+public class FlowOrgUtils {
 	/*
 	 * 获取当前登录人信息
 	 */

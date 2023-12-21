@@ -3,127 +3,127 @@
 	<!-- 系统函数配置 -->
 	<item id="orgUtils" isParent="true" name="组织机构一般函数">
 		<function pId="orgUtils" id="getCurrentPersonID" name="获取当前人员ID"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentPersonID"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentPersonID"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentPersonID()">
 		</function>
 		<function pId="orgUtils" id="getCurrentPersonCode" name="获取当前人员Code"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentPersonCode"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentPersonCode"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentPersonCode()">
 		</function>
 		<function pId="orgUtils" id="getCurrentPersonName" name="获取当前人员Name"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentPersonName"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentPersonName"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentPersonName()">
 		</function>
 		<function pId="orgUtils" id="getCurrentPersonFID" name="获取当前人员FID"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentPersonFID"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentPersonFID"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentPersonFID()">
 		</function>
 		<function pId="orgUtils" id="getCurrentPersonFCode" name="获取当前人员FCode"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentPersonFCode"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentPersonFCode"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentPersonFCode()">
 		</function>
 		<function pId="orgUtils" id="getCurrentPersonFName" name="获取当前人员Name"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentPersonFName"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentPersonFName"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentPersonFName()">
 		</function>
 		<!-- 岗位信息 -->
 		<function pId="orgUtils" id="getCurrentPosID" name="获取当前人岗位ID"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentPosID"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentPosID"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentPosID()">
 		</function>
 		<function pId="orgUtils" id="getCurrentPosCode" name="获取当前人岗位Code"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentPosCode"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentPosCode"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentPosCode()">
 		</function>
 		<function pId="orgUtils" id="getCurrentPosName" name="获取当前人岗位Name"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentPosName"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentPosName"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentPosName()">
 		</function>
 		<function pId="orgUtils" id="getCurrentPosFID" name="获取当前人岗位FID"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentPosFID"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentPosFID"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentPosFID()">
 		</function>
 		<function pId="orgUtils" id="getCurrentPosFCode" name="获取当前人岗位FCode"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentPosFCode"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentPosFCode"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentPosFCode()">
 		</function>
 		<function pId="orgUtils" id="getCurrentPosFName" name="获取当前人岗位Name"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentPosFName"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentPosFName"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentPosFName()">
 		</function>
 		<!-- 部门信息 -->
 		<function pId="orgUtils" id="getCurrentDeptID" name="获取当前人部门ID"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentDeptID"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentDeptID"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentDeptID()">
 		</function>
 		<function pId="orgUtils" id="getCurrentDeptCode" name="获取当前人部门Code"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentDeptCode"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentDeptCode"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentDeptCode()">
 		</function>
 		<function pId="orgUtils" id="getCurrentDeptName" name="获取当前人部门Name"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentDeptName"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentDeptName"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentDeptName()">
 		</function>
 		<function pId="orgUtils" id="getCurrentDeptFID" name="获取当前人部门FID"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentDeptFID"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentDeptFID"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentDeptFID()">
 		</function>
 		<function pId="orgUtils" id="getCurrentDeptFCode" name="获取当前人部门FCode"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentDeptFCode"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentDeptFCode"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentDeptFCode()">
 		</function>
 		<function pId="orgUtils" id="getCurrentDeptFName" name="获取当前人部门Name"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentDeptFName"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentDeptFName"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentDeptFName()">
 		</function>
 		<!-- 机构信息 -->
 		<function pId="orgUtils" id="getCurrentOgnID" name="获取当前人机构ID"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentOgnID"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentOgnID"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentOgnID()">
 		</function>
 		<function pId="orgUtils" id="getCurrentOgnCode" name="获取当前人机构Code"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentOgnCode"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentOgnCode"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentOgnCode()">
 		</function>
 		<function pId="orgUtils" id="getCurrentOgnName" name="获取当前人机构Name"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentOgnName"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentOgnName"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentOgnName()">
 		</function>
 		<function pId="orgUtils" id="getCurrentOgnFID" name="获取当前人机构FID"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentOgnFID"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentOgnFID"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentOgnFID()">
 		</function>
 		<function pId="orgUtils" id="getCurrentOgnFCode" name="获取当前人机构FCode"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentOgnFCode"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentOgnFCode"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentOgnFCode()">
 		</function>
 		<function pId="orgUtils" id="getCurrentOgnFName" name="获取当前人机构Name"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentOgnFName"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentOgnFName"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentOgnFName()">
 		</function>
 		<!-- 组织信息 -->
 		<function pId="orgUtils" id="getCurrentOrgID" name="获取当前人组织ID"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentOrgID"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentOrgID"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentOrgID()">
 		</function>
 		<function pId="orgUtils" id="getCurrentOrgCode" name="获取当前人组织Code"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentOrgCode"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentOrgCode"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentOrgCode()">
 		</function>
 		<function pId="orgUtils" id="getCurrentOrgName" name="获取当前人组织Name"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentOrgName"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentOrgName"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentOrgName()">
 		</function>
 		<function pId="orgUtils" id="getCurrentOrgFID" name="获取当前人组织FID"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentOrgFID"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentOrgFID"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentOrgFID()">
 		</function>
 		<function pId="orgUtils" id="getCurrentOrgFCode" name="获取当前人组织FCode"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentOrgFCode"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentOrgFCode"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentOrgFCode()">
 		</function>
 		<function pId="orgUtils" id="getCurrentOrgFName" name="获取当前人组织Name"
-			javacode="com.tlv8.flw.flwOrgUtils.getCurrentOrgFName"
+			javacode="com.tlv8.flw.FlowOrgUtils.getCurrentOrgFName"
 			helper="说明: 获取当前人的ID，当前人是指拥有当前Process/Activity/Action权限的人，&lt;br/&gt;可能为当前登录着，或者当前登录着代理的人。&lt;br/&gt;例子: getCurrentOrgFName()">
 		</function>
 	</item>
