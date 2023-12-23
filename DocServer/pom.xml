@@ -54,6 +54,10 @@
 			<groupId>e-iceblue</groupId>
 			<artifactId>spire.xls</artifactId>
 			<version>5.3.3</version>
+			<!--依赖范围-->
+  			<scope>system</scope>
+  			<!--依赖所在位置-->
+  			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/spire.xls-5.3.3.jar</systemPath>
 		</dependency>
 
 		<!--word文件读取-添加本地的jar包 -->
