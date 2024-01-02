@@ -3,9 +3,13 @@ package com.tlv8.flw.expression;
 import java.util.List;
 
 import javax.script.ScriptEngine;
+import javax.script.ScriptEngineFactory;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.tlv8.base.CodeUtils;
 import com.tlv8.base.Sys;
@@ -13,6 +17,8 @@ import com.tlv8.flw.bean.ExpressionBean;
 import com.tlv8.flw.helper.ExpressionTreeHelper;
 
 public class BooleanExpression {
+	static final Logger logger = LoggerFactory.getLogger(BooleanExpression.class);
+
 	protected static ScriptEngine engine = null;
 
 	static {
@@ -22,9 +28,14 @@ public class BooleanExpression {
 		} catch (Exception e) {
 		}
 		if (engine == null) {
-			engineManager.registerEngineName("customScriptEngineFactory",
-					new org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory());
-			engine = engineManager.getEngineByName("JavaScript");
+			try {
+				engineManager.registerEngineName("customScriptEngineFactory", (ScriptEngineFactory) Class
+						.forName("org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory").newInstance());
+				engine = engineManager.getEngineByName("JavaScript");
+			} catch (Exception e) {
+				logger.error(e.toString());
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -46,6 +57,7 @@ public class BooleanExpression {
 				return true;
 			}
 		} catch (ScriptException e) {
+			logger.info(e.toString());
 		}
 		return false;
 	}
@@ -58,6 +70,7 @@ public class BooleanExpression {
 			expression = expression.replace("\n", "");
 			return String.valueOf(engine.eval(expression));
 		} catch (ScriptException e) {
+			logger.info(e.toString());
 		}
 		return expression;
 	}
@@ -73,6 +86,7 @@ public class BooleanExpression {
 			resolutionExpression = resolutionExpression.toString().replace("\n", "");
 			return String.valueOf(engine.eval(resolutionExpression.toString()));
 		} catch (ScriptException e) {
+			logger.info(e.toString());
 		}
 		return (String) resolutionExpression;
 	}
