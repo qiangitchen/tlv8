@@ -7,22 +7,31 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import javax.servlet.http.HttpServletRequest;
 
-//import org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory;
-
 import com.tlv8.base.CodeUtils;
 import com.tlv8.base.Sys;
 import com.tlv8.flw.bean.ExpressionBean;
 import com.tlv8.flw.helper.ExpressionTreeHelper;
 
 public class BooleanExpression {
+	protected static ScriptEngine engine = null;
+
+	static {
+		ScriptEngineManager engineManager = new ScriptEngineManager();
+		try {
+			engine = engineManager.getEngineByName("JavaScript"); // 得到脚本引擎
+		} catch (Exception e) {
+		}
+		if (engine == null) {
+			engineManager.registerEngineName("customScriptEngineFactory",
+					new org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory());
+			engine = engineManager.getEngineByName("JavaScript");
+		}
+	}
+
 	/**
 	 * 表达式值:true或false
 	 */
 	public static boolean verdict(String express) {
-		ScriptEngineManager engineManager = new ScriptEngineManager();
-//		engineManager.registerEngineName("customScriptEngineFactory", new NashornScriptEngineFactory());
-//		ScriptEngine engine = engineManager.getEngineByName("JavaScript"); // 得到脚本引擎
-		ScriptEngine engine = engineManager.getEngineByName("nashorn");
 		try {
 			express = express.toLowerCase().replace(" or ", " || ");
 			express = express.toLowerCase().replace(" and ", " && ");
@@ -45,10 +54,6 @@ public class BooleanExpression {
 	 * 执行JS表达式
 	 */
 	public static String getScriptExpressionVal(String expression) {
-		ScriptEngineManager engineManager = new ScriptEngineManager();
-//		engineManager.registerEngineName("customScriptEngineFactory", new NashornScriptEngineFactory());
-//		ScriptEngine engine = engineManager.getEngineByName("JavaScript"); // 得到脚本引擎
-		ScriptEngine engine = engineManager.getEngineByName("nashorn");
 		try {
 			expression = expression.replace("\n", "");
 			return String.valueOf(engine.eval(expression));
@@ -64,10 +69,6 @@ public class BooleanExpression {
 	 * @return
 	 */
 	public static String getScriptExpressionVal(Object resolutionExpression) {
-		ScriptEngineManager engineManager = new ScriptEngineManager();
-//		engineManager.registerEngineName("customScriptEngineFactory", new NashornScriptEngineFactory());
-//		ScriptEngine engine = engineManager.getEngineByName("JavaScript"); // 得到脚本引擎
-		ScriptEngine engine = engineManager.getEngineByName("nashorn");
 		try {
 			resolutionExpression = resolutionExpression.toString().replace("\n", "");
 			return String.valueOf(engine.eval(resolutionExpression.toString()));
