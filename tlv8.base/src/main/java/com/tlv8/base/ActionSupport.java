@@ -36,6 +36,12 @@ public class ActionSupport {
 		return this;
 	}
 
+	/**
+	 * UTF-8解码
+	 * 
+	 * @param str
+	 * @return
+	 */
 	protected String getDecode(String str) {
 		try {
 			return URLDecoder.decode(str, "UTF-8");
@@ -44,6 +50,16 @@ public class ActionSupport {
 		if (str != null)
 			return str;
 		return "";
+	}
+
+	/**
+	 * 两次UTF-8解码
+	 * 
+	 * @param str
+	 * @return
+	 */
+	protected String getDoubleDecode(String str) {
+		return getDecode(getDecode(str));
 	}
 
 	protected ResponseEntity<byte[]> getByteResponseEntity(InputStream inpbs, MediaType mediaType, String userAgent,

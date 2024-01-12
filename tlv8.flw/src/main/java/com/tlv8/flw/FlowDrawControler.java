@@ -87,11 +87,8 @@ public class FlowDrawControler extends ActionSupport {
 	}
 
 	public void setSdrawlg(String sdrawlg) {
-		try {
-			this.sdrawlg = URLDecoder.decode(sdrawlg, "UTF-8");
-		} catch (Exception e) {
-		}
-		this.sdrawlg = AesEncryptUtil.desEncrypt(this.sdrawlg);
+		this.sdrawlg = AesEncryptUtil.desEncrypt(sdrawlg);
+		this.sdrawlg = getDoubleDecode(this.sdrawlg);
 	}
 
 	public String getSdrawlg() {
@@ -103,10 +100,7 @@ public class FlowDrawControler extends ActionSupport {
 	}
 
 	public void setSprocessacty(String sprocessacty) {
-		try {
-			this.sprocessacty = URLDecoder.decode(sprocessacty, "UTF-8");
-		} catch (Exception e) {
-		}
-		this.sprocessacty = AesEncryptUtil.desEncrypt(this.sprocessacty);
+		this.sprocessacty = AesEncryptUtil.desEncrypt(sprocessacty);
+		this.sprocessacty = getDoubleDecode(this.sprocessacty);
 	}
 }
