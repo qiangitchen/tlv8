@@ -8,8 +8,7 @@ import javax.naming.NamingException;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlv8.base.ActionSupport;
@@ -20,6 +19,7 @@ import com.tlv8.system.bean.ContextBean;
 
 /**
  * 多行删除
+ * 
  * @author chenqian
  */
 @Controller
@@ -40,7 +40,7 @@ public class DeleteMutiAction extends ActionSupport {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/deleteMutiAction", produces = "application/json;charset=UTF-8",method = RequestMethod.POST)
+	@PostMapping(value = "/deleteMutiAction", produces = "application/json;charset=UTF-8")
 	@Override
 	public Object execute() throws Exception {
 		String userid = ContextBean.getContext(request).getCurrentPersonID();

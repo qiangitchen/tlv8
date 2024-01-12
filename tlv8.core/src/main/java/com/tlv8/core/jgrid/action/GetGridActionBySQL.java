@@ -2,7 +2,7 @@ package com.tlv8.core.jgrid.action;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlv8.base.Data;
@@ -27,7 +27,7 @@ public class GetGridActionBySQL extends BasegetGridAction {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/getGridActionBySQL", produces = "application/json;charset=UTF-8")
+	@PostMapping(value = "/getGridActionBySQL", produces = "application/json;charset=UTF-8")
 	public Object execute() throws Exception {
 		data = new Data();
 		String userid = ContextBean.getContext(request).getCurrentPersonID();

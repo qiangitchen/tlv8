@@ -206,16 +206,24 @@ Jtree.prototype.init = function(treebody, setting, param) {
 	} else if (param && typeof param == "object" && param.action) {
 		action = param.action;
 	}
-	// alert(action);
-
-	var pams = new tlv8.RequestParam();
-	pams.set("params", str);
-	pams.set("orderby", param.cell.orderby ? param.cell.orderby : "");
-	$("#" + treebody).html(
-			"<img src='"+cpath+"/comon/css/zTreeStyle/img/loading.gif'/>");
 	action = (action.startWith(cpath)?action:(cpath+"/"+action));
 	setting.async.url = action;
-	tlv8.XMLHttpRequest(action, pams, "post", false, function(data) {
+	// alert(action);
+	var actionName = action;
+    var query = "";
+    if(actionName.indexOf("?") > 0){
+    	query = actionName.substring(actionName.indexOf("?")+1);
+    	actionName = actionName.substring(0,actionName.indexOf("?"));
+    }else{
+    	query = "t=1";
+    }
+    query += "&params=" + str;
+    query += "&orderby=" + (param.cell.orderby ? param.cell.orderby : "");
+	var pams = new tlv8.RequestParam();
+	pams.set("query", CryptoJS.AESEncrypt(query));
+	$("#" + treebody).html(
+			"<img src='"+cpath+"/comon/css/zTreeStyle/img/loading.gif'/>");
+	tlv8.XMLHttpRequest(actionName, pams, "post", false, function(data) {
 		try {
 			var zNodes = data.jsonResult;
 			if(typeof zNodes == "string"){
@@ -295,7 +303,6 @@ Jtree.prototype.quickPosition = function(text) {
 				: "";
 		var quickCells = this.setting.isquickPosition.quickCells ? this.setting.isquickPosition.quickCells
 				: "";
-		var param = new tlv8.RequestParam();
 		var quicktext = this.Jtreeid
 				+ ","
 				+ this.Jtreename
@@ -312,12 +319,22 @@ Jtree.prototype.quickPosition = function(text) {
 				+ ","
 				+ (this.param.cell.rootFilter ? this.param.cell.rootFilter : "")
 				+ "," + (this.param.cell.filter ? this.param.cell.filter : "");
-		param.set("quicktext", quicktext);
-		param.set("quickCells", quickCells);
-		param.set("cloums", this.Jtreeother);
 		action = (action.startWith(cpath)?action:(cpath+"/"+action));
+		var actionName = action;
+        var query = "";
+        if(actionName.indexOf("?") > 0){
+        	query = actionName.substring(actionName.indexOf("?")+1);
+        	actionName = actionName.substring(0,actionName.indexOf("?"));
+        }else{
+        	query = "t=1";
+        }
+        query += "&quicktext=" + quicktext;
+        query += "&quickCells=" + quickCells;
+        query += "&cloums=" + this.Jtreeother;
+		var param = new tlv8.RequestParam();
+		param.set("query", CryptoJS.AESEncrypt(query));
 		var nodes = (this.setting.async.enable) ? (eval(tlv8
-				.XMLHttpRequest(action, param, "post", false, null).jsonResult))
+				.XMLHttpRequest(actionName, param, "post", false, null).jsonResult))
 				: this.zNodes;
 		qNode = nodes;
 		if (qNode.length < 1) {
@@ -370,13 +387,21 @@ Jtree.prototype.refreshJtree = function(panle, afcalback) {
 			+ (this.param.cell.rootFilter ? this.param.cell.rootFilter : "")
 			+ "\",\"filter\":\""
 			+ (this.param.cell.filter ? this.param.cell.filter : "") + "\"}";
-	var pamstens = new tlv8.RequestParam();
-	pamstens.set("params", str);
-	pamstens.set("orderby", this.param.cell.orderby ? this.param.cell.orderby
-			: "");
-	var Jtree_Ext = this;
 	action = (action.startWith(cpath)?action:(cpath+"/"+action));
-	tlv8.XMLHttpRequest(action, pamstens, "post", true, function(data) {
+	var actionName = action;
+    var query = "";
+    if(actionName.indexOf("?") > 0){
+    	query = actionName.substring(actionName.indexOf("?")+1);
+    	actionName = actionName.substring(0,actionName.indexOf("?"));
+    }else{
+    	query = "t=1";
+    }
+    query += "&params=" + str;
+    query += "&orderby=" + (this.param.cell.orderby ? this.param.cell.orderby : "");
+	var pamstens = new tlv8.RequestParam();
+	pamstens.set("query", CryptoJS.AESEncrypt(query));
+	var Jtree_Ext = this;
+	tlv8.XMLHttpRequest(actionName, pamstens, "post", true, function(data) {
 		var zNodes = data.jsonResult;
 		if(typeof zNodes == "string"){
 			zNodes = window.eval("("+zNodes+")");

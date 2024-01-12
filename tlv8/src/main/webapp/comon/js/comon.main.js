@@ -419,16 +419,20 @@ tlv8.Queryaction = function (actionName, post, callBack, data, where, ays) {
     if (!where || where == "") {
         where = tlv8.RequestURLParam.getParamByURL(actionName, "where");
     }
-    var param = new tlv8.RequestParam();
-    param.set("dbkay", dbkay);
-    param.set("table", table);
-    param.set("relation", relation);
-    param.set("orderby", orderby);
-    if (actionName.indexOf("getGridActionBySQL") > -1) {
-        actionName += "&where=" + J_u_encode(CryptoJS.AESEncrypt(where));
-    } else {
-        param.set("where", CryptoJS.AESEncrypt(where));
+    var query = "";
+    if(actionName.indexOf("?") > 0){
+    	query = actionName.substring(actionName.indexOf("?")+1);
+    	actionName = actionName.substring(0,actionName.indexOf("?"));
+    }else{
+    	query = "t=1";
     }
+    query += "&dbkay="+dbkay;
+    query += "&table="+table;
+    query += "&relation="+relation;
+    query += "&orderby="+orderby;
+    var param = new tlv8.RequestParam();
+    param.set("where", CryptoJS.AESEncrypt(where));
+    param.set("query", CryptoJS.AESEncrypt(query));
     var isay = (ays == false) ? ays : true;
     var rscallBack = function (r) {
         if (callBack)
@@ -463,11 +467,19 @@ tlv8.Deleteaction = function (actionName, post, callBack, rowid, data, ays) {
     var table = data ? data.table : "";
     var dbkay = data ? data.dbkay : "";
     var Cascade = data ? data.Cascade : "";
+    var query = "";
+    if(actionName.indexOf("?") > 0){
+    	query = actionName.substring(actionName.indexOf("?")+1);
+    	actionName = actionName.substring(0,actionName.indexOf("?"));
+    }else{
+    	query = "t=1";
+    }
+    query += "&dbkay="+dbkay;
+    query += "&table="+table;
+    query += "&rowid="+rowid;
+    query += "&cascade="+Cascade;
     var param = new tlv8.RequestParam();
-    param.set("dbkay", dbkay);
-    param.set("table", table);
-    param.set("rowid", rowid);
-    param.set("cascade", Cascade);
+    param.set("query", CryptoJS.AESEncrypt(query));
     var isay = (ays == false) ? ays : true;
     var rscallBack = function (r) {
         if (callBack)
@@ -494,18 +506,25 @@ tlv8.Deleteaction = function (actionName, post, callBack, rowid, data, ays) {
  * @param ays
  * @returns {JSON}
  */
-tlv8.saveAction = function (actionName, post, callBack, data, allreturn,
-                            ays) {
+tlv8.saveAction = function (actionName, post, callBack, data, allreturn, ays) {
     if (!data || data == "") {
         return;
     }
     var table = data.table;
     var cells = data.cells;
     var dbkay = data ? data.dbkay : "";
+    var query = "";
+    if(actionName.indexOf("?") > 0){
+    	query = actionName.substring(actionName.indexOf("?")+1);
+    	actionName = actionName.substring(0,actionName.indexOf("?"));
+    }else{
+    	query = "t=1";
+    }
+    query += "&dbkay="+dbkay;
+    query += "&table="+table;
+    query += "&cells="+cells;
     var param = new tlv8.RequestParam();
-    param.set("dbkay", dbkay);
-    param.set("table", table);
-    param.set("cells", cells);
+    param.set("query", CryptoJS.AESEncrypt(query));
     var ays_true = (ays == false) ? ays : true;
     var rscallBack = function (r) {
         if (callBack && allreturn)
@@ -6249,7 +6268,7 @@ JSON.parse = function (jsonStr) {
     try {
         return eval("(" + jsonStr + ")");
     } catch (e) {
-    	//layui.layer.alert("JSON.parse: " + e);
+    	// layui.layer.alert("JSON.parse: " + e);
     	console.error("JSON.parse: " + e);
     }
 };
@@ -6257,7 +6276,7 @@ String.prototype.toJSON = function () {
     try {
         return eval("(" + this + ")");
     } catch (e) {
-    	//layui.layer.alert("toJSON: " + e);
+    	// layui.layer.alert("toJSON: " + e);
     	console.error("JSON.parse: " + e);
     }
 };

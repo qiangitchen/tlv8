@@ -16,6 +16,7 @@ import com.tlv8.base.Sys;
 import com.tlv8.flw.bean.ExpressionBean;
 import com.tlv8.flw.helper.ExpressionTreeHelper;
 
+@SuppressWarnings("deprecation")
 public class BooleanExpression {
 	static final Logger logger = LoggerFactory.getLogger(BooleanExpression.class);
 

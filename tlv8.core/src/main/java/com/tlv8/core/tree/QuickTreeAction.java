@@ -1,5 +1,6 @@
 package com.tlv8.core.tree;
 
+import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -10,7 +11,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONArray;
@@ -27,11 +28,8 @@ public class QuickTreeAction extends ActionSupport {
 	private String jsonResult;
 
 	@ResponseBody
-	@RequestMapping(value = "/QuickTreeAction", produces = "application/json;charset=UTF-8")
-	public Object execute(String quicktext, String cloums, String quickCells) throws Exception {
-		this.quicktext = getDecode(quicktext);
-		this.cloums = getDecode(cloums);
-		this.quickCells = getDecode(quickCells);
+	@PostMapping(value = "/QuickTreeAction", produces = "application/json;charset=UTF-8")
+	public Object execute() throws Exception {
 		exeQuickAction();
 		JSONObject json = new JSONObject();
 		json.put("jsonResult", jsonResult);
@@ -120,4 +118,41 @@ public class QuickTreeAction extends ActionSupport {
 		}
 		return this.jsonResult;
 	}
+
+	public String getQuicktext() {
+		return quicktext;
+	}
+
+	public void setQuicktext(String quicktext) {
+		try {
+			this.quicktext = URLDecoder.decode(quicktext, "UTF-8");
+		} catch (Exception e) {
+			this.quicktext = quicktext;
+		}
+	}
+
+	public String getCloums() {
+		return cloums;
+	}
+
+	public void setCloums(String cloums) {
+		try {
+			this.cloums = URLDecoder.decode(cloums, "UTF-8");
+		} catch (Exception e) {
+			this.cloums = cloums;
+		}
+	}
+
+	public String getQuickCells() {
+		return quickCells;
+	}
+
+	public void setQuickCells(String quickCells) {
+		try {
+			this.quickCells = URLDecoder.decode(quickCells, "UTF-8");
+		} catch (Exception e) {
+			this.quickCells = quickCells;
+		}
+	}
+
 }

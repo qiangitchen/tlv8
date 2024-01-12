@@ -15,7 +15,7 @@ import javax.naming.NamingException;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
@@ -34,12 +34,8 @@ public class TreeSelectAction extends ActionSupport {
 	private String jsonResult;
 
 	@ResponseBody
-	@RequestMapping("/TreeSelectAction")
-	public Object execute(String currenid, String quicktext, String params, String orderby) throws Exception {
-		this.currenid = getDecode(currenid);
-		this.quicktext = getDecode(quicktext);
-		this.params = getDecode(params);
-		this.orderby = getDecode(orderby);
+	@PostMapping("/TreeSelectAction")
+	public Object execute() throws Exception {
 		if (this.params != null && !"".equals(this.params)) {
 			exeCreateTreeAction();
 			JSONObject json = new JSONObject();
@@ -190,6 +186,54 @@ public class TreeSelectAction extends ActionSupport {
 			return "false";
 		}
 		return "true";
+	}
+
+	public String getCurrenid() {
+		return currenid;
+	}
+
+	public void setCurrenid(String currenid) {
+		try {
+			this.currenid = URLDecoder.decode(currenid, "UTF-8");
+		} catch (Exception e) {
+			this.currenid = currenid;
+		}
+	}
+
+	public String getQuicktext() {
+		return quicktext;
+	}
+
+	public void setQuicktext(String quicktext) {
+		try {
+			this.quicktext = URLDecoder.decode(quicktext, "UTF-8");
+		} catch (Exception e) {
+			this.quicktext = quicktext;
+		}
+	}
+
+	public String getParams() {
+		return params;
+	}
+
+	public void setParams(String params) {
+		try {
+			this.params = URLDecoder.decode(params, "UTF-8");
+		} catch (Exception e) {
+			this.params = params;
+		}
+	}
+
+	public String getOrderby() {
+		return orderby;
+	}
+
+	public void setOrderby(String orderby) {
+		try {
+			this.orderby = URLDecoder.decode(orderby, "UTF-8");
+		} catch (Exception e) {
+			this.orderby = orderby;
+		}
 	}
 
 }

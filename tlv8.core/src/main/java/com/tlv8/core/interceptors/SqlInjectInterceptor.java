@@ -120,20 +120,15 @@ public class SqlInjectInterceptor implements HandlerInterceptor {
 		return value;
 	}
 
-	/*
+	/**
 	 * 后台动作 权限控制
+	 * 
+	 * @des 需要忽略拦截的请求[慎用]
 	 */
 	private boolean isBackAction(String requestPath) {
-		return requestPath.endsWith("/sqlQueryAction") || requestPath.endsWith("/sqlQueryActionforJson")
-				|| requestPath.endsWith("/sqlUpdateAction") || requestPath.endsWith("/deleteSystemAction")
-				|| requestPath.endsWith("/queryAction") || requestPath.endsWith("/saveAction")
-				|| requestPath.endsWith("/deleteAction") || requestPath.endsWith("/getGridAction")
-				|| requestPath.endsWith("/getGridSelectDataAction") || requestPath.endsWith("/TreeSelectAction")
-				|| requestPath.endsWith("/QuickTreeAction") || requestPath.endsWith("/getOrgGridInfo")
-				|| requestPath.endsWith("/saveOrgGridInfo") || requestPath.endsWith("/deleteOrgGridInfo")
-				|| requestPath.endsWith("/saveGridAction") || requestPath.endsWith("/getExecutorTree")
-				|| requestPath.endsWith("/saveFlowDrawLGAction") || requestPath.endsWith("/core/loadGridData")
-				|| requestPath.endsWith("/core/saveGridDatas");
+		return false;
+		// requestPath.endsWith("/core/loadGridData") ||
+		// requestPath.endsWith("/core/saveGridDatas");
 	}
 
 }

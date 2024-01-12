@@ -826,21 +826,21 @@
 						asavFn(grid);
 					}
 				}
-				var param = new tlv8.RequestParam();
-				param.set("dbkey", grid.data.dbkay);
-				param.set("table", grid.data.table);
-				param.set("datas", JSON.stringify(grid.editedDatas.values()));
+				var query = "dbkey=" + grid.data.dbkay;
+				query += "&table=" + grid.data.table;
+				query += "&datas=" + JSON.stringify(grid.editedDatas.values());
 				if (grid.billdataformid && grid.billcell) {
 					var billid = $(J$(grid.billdataformid)).attr("rowid");
 					if (billid && billid != "") {
-						param.set("billid", billid);
-						param.set("billcell", grid.billcell);
+						query += "&billid=" + billid;
+						query += "&billcell=" + grid.billcell;
 					}
 				}
-				var saveAction = grid.savAction;
-				if (!saveAction)
-					saveAction = "core/saveGridData";
-				var res = tlv8.XMLHttpRequest(saveAction, param, "post", false);
+				console.log(query);
+				var param = new tlv8.RequestParam();
+				param.set("query", CryptoJS.AESEncrypt(query));
+				var res = tlv8.XMLHttpRequest("core/saveGridData", param,
+						"post", false);
 				if (res.flag == "true") {
 					grid.editDataRowIds = [];
 					grid.editedDatas = new Map();
@@ -881,11 +881,8 @@
 					param.set("dbkey", grid.data.dbkay);
 					param.set("table", grid.data.table);
 					param.set("rowids", rowids);
-					var deleteAction = grid.deleteAction;
-					if (!deleteAction)
-						deleteAction = "core/removeGridData";
-					var res = tlv8.XMLHttpRequest(deleteAction, param, "post",
-							false);
+					var res = tlv8.XMLHttpRequest("core/removeGridData", param,
+							"post", false);
 					if (res.flag == "true") {
 						sAlert("操作成功!");
 						if (isRefresh != false) {
@@ -941,17 +938,18 @@
 								+ "')";
 					}
 					grid.billfilter = where;
+					var query = "dbkey=" + grid.data.dbkay;
+					query += "&table=" + grid.data.table;
+					query += "&columns=" + grid.relations.join(",");
+					query += "&columnstype=" + grid.datatypes.join(",");
+					query += "&where=" + where;
+					query += "&orderby=" + (grid.orderby ? grid.orderby : "");
+					query += "&page=" + grid.CurrentPage;
+					query += "&rows=" + grid.rows;
+					query += "&filter=" + (filter || "");
+					query += "&searchtext=" + (searchtext || "");
 					var param = new tlv8.RequestParam();
-					param.set("dbkey", grid.data.dbkay);
-					param.set("table", grid.data.table);
-					param.set("columns", grid.relations.join(","));
-					param.set("columnstype", grid.datatypes.join(","));
-					param.set("where", where);
-					param.set("orderby", grid.orderby ? grid.orderby : "");
-					param.set("page", grid.CurrentPage);
-					param.set("rows", grid.rows);
-					param.set("filter", filter || "");
-					param.set("searchtext", searchtext || "");
+					param.set("query", CryptoJS.AESEncrypt(query));
 					tlv8.XMLHttpRequest("core/loadGridData", param, "post",
 							true, grid.setDatatoGrid);
 				};

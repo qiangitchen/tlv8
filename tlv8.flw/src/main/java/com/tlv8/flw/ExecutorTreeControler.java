@@ -8,7 +8,7 @@ import java.util.Map;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tlv8.base.Data;
@@ -29,7 +29,6 @@ import com.tlv8.system.bean.ContextBean;
 public class ExecutorTreeControler extends ActionSupport {
 	private Data data = new Data();
 	private final String org_table = "SA_OPORG";
-	private String sql = null;
 	private String filter = null;
 
 	public void setData(Data data) {
@@ -41,8 +40,7 @@ public class ExecutorTreeControler extends ActionSupport {
 	}
 
 	@ResponseBody
-	@RequestMapping("/getExecutorTree")
-	@Override
+	@PostMapping("/getExecutorTree")
 	public Object execute() throws Exception {
 		try {
 			data.setData(findOrgInfo());
@@ -59,7 +57,7 @@ public class ExecutorTreeControler extends ActionSupport {
 		String result = "";
 		ContextBean context = ContextBean.getContext(request);
 		String ognfid = context.getCurrentOgnFullID();
-		sql = "select distinct a.SPARENT,a.SID,a.SCODE,a.SNAME,a.SFID,a.SORGKINDID,a.sSequence from " + org_table
+		String sql = "select distinct a.SPARENT,a.SID,a.SCODE,a.SNAME,a.SFID,a.SORGKINDID,a.sSequence from " + org_table
 				+ " a inner join (select SFID from " + org_table + " where SVALIDSTATE=1 ";
 		if (!"".equals(filter) && filter != null) {
 			sql += " and(" + filter + ")";
@@ -115,14 +113,6 @@ public class ExecutorTreeControler extends ActionSupport {
 
 	public String getFilter() {
 		return filter;
-	}
-
-	public void setSql(String sql) {
-		this.sql = sql;
-	}
-
-	public String getSql() {
-		return sql;
 	}
 
 }

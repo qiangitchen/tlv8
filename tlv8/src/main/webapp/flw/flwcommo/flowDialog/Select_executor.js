@@ -154,8 +154,9 @@ SelectExecutor.checkActivty = function(obj) {
 		}else{
 			excutorGroupfilter += " and SFID like '" + tlv8.Context.getCurrentOgnFID() + "%'";//只能选择当前机构下的
 		}
+		var query = "filter=" + excutorGroupfilter;
 		var param = new tlv8.RequestParam();
-		param.set("filter", excutorGroupfilter);
+		param.set("query", CryptoJS.AESEncrypt(query));
 		tlv8.XMLHttpRequest("getExecutorTree", param, "post", true,
 				function(r) {
 					var NodeData = r.data.data;

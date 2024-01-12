@@ -10,15 +10,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.tlv8.base.RequestParams;
 import com.tlv8.base.Sys;
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.base.helper.DataTypeHelper;
@@ -51,9 +55,27 @@ public class GridDataController extends GridCoreController {
 	 * @return Object
 	 */
 	@ResponseBody
-	@RequestMapping("loadGridData")
-	public Object execute(String dbkey, String table, String columns, String columnstype, String where, String orderby,
-			int page, int rows, String filter, String searchtext) {
+	@PostMapping("loadGridData")
+	public Object execute(HttpServletRequest request, String query) {
+		RequestParams params = new RequestParams(request, query);
+		String dbkey = params.getParamValue("dbkey");
+		String table = params.getParamValue("table");
+		String columns = params.getParamValue("columns");
+		String columnstype = params.getParamValue("columnstype");
+		String where = params.getParamValue("where");
+		String orderby = params.getParamValue("orderby");
+		String filter = params.getParamValue("filter");
+		String searchtext = params.getParamValue("searchtext");
+		int page = 0;
+		int rows = 0;
+		try {
+			page = Integer.parseInt(params.getParamValue("page"));
+		} catch (Exception e) {
+		}
+		try {
+			rows = Integer.parseInt(params.getParamValue("rows"));
+		} catch (Exception e) {
+		}
 		columns = deCode(columns);
 		columnstype = deCode(columnstype);
 		where = deCode(where);
@@ -178,8 +200,14 @@ public class GridDataController extends GridCoreController {
 	 */
 	@SuppressWarnings({ "resource" })
 	@ResponseBody
-	@RequestMapping("saveGridData")
-	public Object saveData(String dbkey, String table, String datas, String billid, String billcell) {
+	@PostMapping("saveGridData")
+	public Object saveData(HttpServletRequest request, String query) {
+		RequestParams params = new RequestParams(request, query);
+		String dbkey = params.getParamValue("dbkey");
+		String table = params.getParamValue("table");
+		String datas = params.getParamValue("datas");
+		String billid = params.getParamValue("billid");
+		String billcell = params.getParamValue("billcell");
 		Map<String, Object> map = new HashMap<>();
 		String userid = ContextUtils.getContext().getCurrentPersonID();
 		if (userid == null || "".equals(userid)) {
@@ -298,7 +326,7 @@ public class GridDataController extends GridCoreController {
 	 * @return Object
 	 */
 	@ResponseBody
-	@RequestMapping("removeGridData")
+	@PostMapping("removeGridData")
 	public Object removeData(String dbkey, String table, String rowids) {
 		Map<String, Object> map = new HashMap<>();
 		String userid = ContextUtils.getContext().getCurrentPersonID();

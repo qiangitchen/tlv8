@@ -41,6 +41,7 @@ public class RequestSetObject {
 	public static void setData(HttpServletRequest request, Object object) throws Exception {
 		Class<?> classType = object.getClass();
 		Field[] fields = getAllFields(object);
+		RequestParams params = new RequestParams(request);
 		for (int i = 0; i < fields.length; i++) {
 			try {
 				Field field = fields[i];
@@ -56,7 +57,7 @@ public class RequestSetObject {
 				// 执行getter方法获取当前域的值
 				// Object result = getter.invoke(object);
 				// 执行setter给object赋值
-				String fieldValue = request.getParameter(fieldName);
+				String fieldValue = params.getParamValue(fieldName);
 				Object fieldValueObj = fieldValue;
 				boolean istext = false;
 				if (paramclass == Date.class) {

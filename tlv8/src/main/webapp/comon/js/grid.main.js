@@ -3229,18 +3229,27 @@ tlv8.createGrid = function (div, labelid, labels, labelwidth, dataAction,
             }
             if (grid.savAction.indexOf("saveAction") > -1
                 || grid.savAction.indexOf("BaseSaveGridAction") > -1) {
-                var rParam = new tlv8.RequestParam();
-                rParam.set("dbkay", data.dbkay);
-                rParam.set("table", data.table);
-                rParam.set("cells", submitData.toString());
+            	var actionName = grid.savAction;
+            	var query = "";
+                if(actionName.indexOf("?") > 0){
+                	query = actionName.substring(actionName.indexOf("?")+1);
+                	actionName = actionName.substring(0,actionName.indexOf("?"));
+                }else{
+                	query = "t=1";
+                }
+                query += "&dbkay=" + data.dbkay;
+                query += "&table=" + data.table;
+                query += "&cells=" + submitData.toString();
                 if (billdataformid) {
                     var billid = document.getElementById(billdataformid).rowid;
                     if (billid) {
-                        rParam.set("billid", billcell + ":" + billid);
+                    	query += "&billid=" + billcell + ":" + billid;
                     } else {
-                        rParam.set("billid", "");
+                    	query += "billid=";
                     }
                 }
+                var rParam = new tlv8.RequestParam();
+                rParam.set("query", CryptoJS.AESEncrypt(query));
                 var saveBack = function (_rf) {
                     grid.editDataRowIds = "";
                     if (_rf.data.flag == "false") {
@@ -3329,11 +3338,20 @@ tlv8.createGrid = function (div, labelid, labels, labelwidth, dataAction,
                 }
                 if (dodeleteis) {
                     writeLog(window.event, "删除数据", "操作的表:" + data.dbkay + "." + data.table);
+                    var actionName = grid.deleteAction;
+                    var query = "";
+                    if(actionName.indexOf("?") > 0){
+                    	query = actionName.substring(actionName.indexOf("?")+1);
+                    	actionName = actionName.substring(0,actionName.indexOf("?"));
+                    }else{
+                    	query = "t=1";
+                    }
+                    query += "&dbkay=" + data.dbkay;
+                    query += "&table=" + data.table;
+                    query += "&rowids=" + chrowids;
+                    query += "&cascade=" + data.Cascade;
                     var param = new tlv8.RequestParam();
-                    param.set("dbkay", data.dbkay);
-                    param.set("table", data.table);
-                    param.set("rowids", chrowids);
-                    param.set("cascade", data.Cascade);
+                    param.set("query", CryptoJS.AESEncrypt(query));
                     tlv8.XMLHttpRequest("deleteMutiAction", param, "post", true, function (r) {
                         try {
                             var chrowidsary = chrowids.split(",");

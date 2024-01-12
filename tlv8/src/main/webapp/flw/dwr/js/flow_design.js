@@ -33,8 +33,8 @@ function saveFlowData(Love) {
 	var param = new tlv8.RequestParam();
 	param.set("sprocessid", Love.id);
 	param.set("sprocessname", Love.name);
-	param.set("sdrawlg", document.getElementById("group").innerHTML);
-	param.set("sprocessacty", Love.toJson().toString().encodeSpechars());
+	param.set("sdrawlg", CryptoJS.AESEncrypt(document.getElementById("group").innerHTML));
+	param.set("sprocessacty", CryptoJS.AESEncrypt(Love.toJson().toString().encodeSpechars()));
 	tlv8.XMLHttpRequest("saveFlowDrawLGAction", param, "post", true,
 			function(r) {
 				layui.layer.msg("保存成功!");
