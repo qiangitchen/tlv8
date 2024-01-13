@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.naming.NamingException;
 
 import com.tlv8.base.ActionSupport;
+import com.tlv8.base.CodeUtils;
 import com.tlv8.base.Data;
 import com.tlv8.base.db.DBUtils;
 import com.tlv8.base.utils.AesEncryptUtil;
@@ -52,12 +53,9 @@ public class BasegetGridAction extends ActionSupport {
 	}
 
 	public void setWhere(String where) {
-		try {
-			this.where = URLDecoder.decode(where, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
+		this.where = CodeUtils.getDoubleDecode(where);
 		this.where = AesEncryptUtil.desEncrypt(this.where);
+		this.where = CodeUtils.getDoubleDecode(this.where);
 	}
 
 	public String getWhere() {

@@ -117,7 +117,7 @@ tlv8.createGrid = function (div, labelid, labels, labelwidth, dataAction,
          *            sql
          */
         setSQL: function (sql) {
-            grid.sql = CryptoJS.AESEncrypt(sql);
+            grid.sql = CryptoJS.AESEncrypt(J_u_encode(sql));
             var cupage = (grid.CurrentPage && grid.CurrentPage == 0) ? 1
                 : grid.CurrentPage;
             var tempQueryAction = dataAction.queryAction + "?page="
@@ -2095,7 +2095,7 @@ tlv8.createGrid = function (div, labelid, labels, labelwidth, dataAction,
             }
         }
     };
-    grid.sql = CryptoJS.AESEncrypt(sql);
+    grid.sql = CryptoJS.AESEncrypt(J_u_encode(sql));
     var cqgrid = {};
     grid.rechangelay = function (obj) {
         try {
@@ -3249,7 +3249,7 @@ tlv8.createGrid = function (div, labelid, labels, labelwidth, dataAction,
                     }
                 }
                 var rParam = new tlv8.RequestParam();
-                rParam.set("query", CryptoJS.AESEncrypt(query));
+                rParam.set("query", CryptoJS.AESEncrypt(J_u_encode(query)));
                 var saveBack = function (_rf) {
                     grid.editDataRowIds = "";
                     if (_rf.data.flag == "false") {
@@ -3351,7 +3351,7 @@ tlv8.createGrid = function (div, labelid, labels, labelwidth, dataAction,
                     query += "&rowids=" + chrowids;
                     query += "&cascade=" + data.Cascade;
                     var param = new tlv8.RequestParam();
-                    param.set("query", CryptoJS.AESEncrypt(query));
+                    param.set("query", CryptoJS.AESEncrypt(J_u_encode(query)));
                     tlv8.XMLHttpRequest("deleteMutiAction", param, "post", true, function (r) {
                         try {
                             var chrowidsary = chrowids.split(",");

@@ -1068,7 +1068,7 @@
 				url : tools.apply(setting.async.url, [ setting.treeId, node ],
 						setting.async.url),
 				async : false,
-				data : "query=" + CryptoJS.AESEncrypt(tmpParam),
+				data : "query=" + J_u_encode(CryptoJS.AESEncrypt(J_u_encode(tmpParam))),
 				dataType : setting.async.dataType,
 				success : function(msg) {
 					var newNodes = [];

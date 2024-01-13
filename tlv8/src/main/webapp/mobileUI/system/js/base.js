@@ -487,16 +487,20 @@ tlv8.Queryaction = function(actionName, post, callBack, data, where, ays) {
 	if (!where || where == "") {
 		where = tlv8.RequestURLParam.getParamByURL(actionName, "where");
 	}
-	var param = new tlv8.RequestParam();
-	param.set("dbkay", dbkay);
-	param.set("table", table);
-	param.set("relation", relation);
-	param.set("orderby", orderby);
-	if (actionName.indexOf("getGridActionBySQL") > -1) {
-		actionName += "&where=" + J_u_encode(CryptoJS.AESEncrypt(where));
-	} else {
-		param.set("where", CryptoJS.AESEncrypt(where));
-	}
+	var query = "";
+    if(actionName.indexOf("?") > 0){
+    	query = actionName.substring(actionName.indexOf("?")+1);
+    	actionName = actionName.substring(0,actionName.indexOf("?"));
+    }else{
+    	query = "t=1";
+    }
+    query += "&dbkay="+dbkay;
+    query += "&table="+table;
+    query += "&relation="+relation;
+    query += "&orderby="+orderby;
+    var param = new tlv8.RequestParam();
+    param.set("where", CryptoJS.AESEncrypt(J_u_encode(where)));
+    param.set("query", CryptoJS.AESEncrypt(J_u_encode(query)));
 	var isay = (ays == false) ? ays : true;
 	var rscallBack = function(r) {
 		if (callBack)
@@ -690,8 +694,8 @@ tlv8.sqlQueryAction = function(dbkey, sql, callBack, ayn) {
 	};
 	ayn = (ayn == true) ? true : false;
 	var param = new tlv8.RequestParam();
-	param.set("dbkey", CryptoJS.AESEncrypt(dbkey));
-	param.set("querys", CryptoJS.AESEncrypt(sql));
+	param.set("dbkey", CryptoJS.AESEncrypt(J_u_encode(dbkey)));
+	param.set("querys", CryptoJS.AESEncrypt(J_u_encode(sql)));
 	var recallback = function(r) {
 		if (callBack) {
 			var res = new rsultData(r);
@@ -708,8 +712,8 @@ tlv8.sqlQueryAction = function(dbkey, sql, callBack, ayn) {
 tlv8.sqlQueryActionforJson = function(dbkey, sql, callBack, ayn) {
 	ayn = (ayn == true) ? true : false;
 	var param = new tlv8.RequestParam();
-	param.set("dbkey", CryptoJS.AESEncrypt(dbkey));
-	param.set("querys", CryptoJS.AESEncrypt(sql));
+	param.set("dbkey", CryptoJS.AESEncrypt(J_u_encode(dbkey)));
+	param.set("querys", CryptoJS.AESEncrypt(J_u_encode(sql)));
 	var recallback = function(r) {
 		if (callBack) {
 			var reData = (r.data.data) ? (window.eval("(" + r.data.data + ")"))

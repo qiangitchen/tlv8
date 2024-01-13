@@ -2,6 +2,7 @@ package com.tlv8.core.tree;
 
 import java.net.URLDecoder;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,8 +11,12 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.naming.NamingException;
 
+import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -24,9 +29,16 @@ import com.alibaba.fastjson.JSONObject;
 import com.tlv8.base.ActionSupport;
 import com.tlv8.base.db.DBUtils;
 
+/**
+ * jtree数据加载通用接口
+ * 
+ * @author 陈乾
+ *
+ */
 @Controller
 @Scope("prototype")
 public class TreeSelectAction extends ActionSupport {
+	private static final Logger logger = LoggerFactory.getLogger(TreeSelectAction.class);
 	private String currenid;
 	private String quicktext;
 	private String params;
@@ -36,6 +48,7 @@ public class TreeSelectAction extends ActionSupport {
 	@ResponseBody
 	@PostMapping("/TreeSelectAction")
 	public Object execute() throws Exception {
+		logger.debug("params:" + params);
 		if (this.params != null && !"".equals(this.params)) {
 			exeCreateTreeAction();
 			JSONObject json = new JSONObject();
@@ -56,7 +69,7 @@ public class TreeSelectAction extends ActionSupport {
 		String columns = null;
 		String rootFilter = "";
 		String filter = "";
-		String sql = "";
+		SQL sql = new SQL();
 		try {
 			JSONObject obj = JSON.parseObject(this.params);
 			Set<String> keyiter = obj.keySet();
@@ -93,36 +106,29 @@ public class TreeSelectAction extends ActionSupport {
 				} catch (Exception e) {
 				}
 			}
-			if ((!"".equals(columns)) && (columns != null))
-				sql = "select " + columns + "," + id + "," + name + "," + parent + " from " + table;
-			else
-				sql = "select " + id + "," + name + "," + parent + " from " + table;
-			if ((rootFilter != null) && (!"".equals(rootFilter)) && (currenid == null || "".equals(currenid))) {
-				sql = sql + " where " + rootFilter;
+			if ((!"".equals(columns)) && (columns != null)) {
+				sql.SELECT(columns);
 			}
-			if ((quicktext != null) && (!"".equals(quicktext)))
-				sql = sql + " where " + name + " like '" + quicktext + "'";
-			else if ((currenid != null) && (!"".equals(currenid))) {
-				sql = sql + " where " + parent + " = '" + currenid + "'";
+			sql.SELECT(id);
+			sql.SELECT(name);
+			sql.SELECT(parent);
+			sql.FROM(table);
+			if ((rootFilter != null) && (!"".equals(rootFilter)) && (currenid == null || "".equals(currenid))) {
+				sql.WHERE(rootFilter);
+			}
+			if ((quicktext != null) && (!"".equals(quicktext))) {
+				sql.WHERE(name + " like '" + quicktext + "'");
+			} else if ((currenid != null) && (!"".equals(currenid))) {
+				sql.WHERE(parent + "='" + currenid + "'");
 			}
 
 			if (filter != null && !"".equals(filter)) {
-				if (sql.indexOf(" where ") > 0) {
-					sql += " and (" + filter + ")";
-				} else {
-					sql += " where (" + filter + ")";
-				}
+				sql.WHERE(filter);
 			}
 
 			if ((this.orderby != null) && (!"".equals(this.orderby))) {
-				sql = sql + " order by " + this.orderby;
+				sql.ORDER_BY(orderby);
 			}
-
-			try {
-				sql = URLDecoder.decode(sql, "UTF-8");
-			} catch (Exception e) {
-			}
-
 			SqlSession session = DBUtils.getSession(databaseName);
 			Connection conn = null;
 			Statement stm = null;
@@ -131,7 +137,7 @@ public class TreeSelectAction extends ActionSupport {
 			try {
 				conn = session.getConnection();
 				stm = conn.createStatement();
-				rs = stm.executeQuery(sql);
+				rs = stm.executeQuery(sql.toString());
 				while (rs.next()) {
 					Map item = new HashMap();
 					item.put("id", rs.getString(id));
@@ -149,8 +155,13 @@ public class TreeSelectAction extends ActionSupport {
 						item.put("isParent", isParent(rs.getString("SORGKINDID")));
 						item.put("icon", createIcon(rs.getString("SORGKINDID")));
 					} catch (Exception e) {
-						item.put("isParent", isParent("folder"));
-						item.put("icon", createIcon("folder"));
+						if (isParentById(rs.getString(id), id, table, parent, conn)) {
+							item.put("isParent", "true");
+//							item.put("icon", createIcon("folder"));
+						} else {
+							item.put("isParent", "false");
+//							item.put("icon", "toolbar/org/iconText.gif");
+						}
 					}
 					jsonArray.add(item);
 				}
@@ -161,7 +172,7 @@ public class TreeSelectAction extends ActionSupport {
 			}
 			this.jsonResult = jsonArray.toString();
 		} catch (Exception e) {
-			System.out.println(this.params);
+			logger.error(e.toString());
 			e.printStackTrace();
 		}
 
@@ -186,6 +197,32 @@ public class TreeSelectAction extends ActionSupport {
 			return "false";
 		}
 		return "true";
+	}
+
+	public boolean isParentById(String rowid, String id, String table, String parent, Connection conn) {
+		boolean res = false;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			SQL sql = new SQL();
+			sql.SELECT(id);
+			sql.FROM(table);
+			sql.WHERE(parent + "=?");
+			ps = conn.prepareStatement(sql.toString());
+			ps.setString(1, rowid);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				res = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				DBUtils.closeConn(null, ps, rs);
+			} catch (SQLException e) {
+			}
+		}
+		return res;
 	}
 
 	public String getCurrenid() {

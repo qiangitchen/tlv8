@@ -470,16 +470,20 @@ tlv8.Queryaction = function(actionName, post, callBack, data, where, ays) {
 	if (!where || where == "") {
 		where = tlv8.RequestURLParam.getParamByURL(actionName, "where");
 	}
-	var param = new tlv8.RequestParam();
-	param.set("dbkay", dbkay);
-	param.set("table", table);
-	param.set("relation", relation);
-	param.set("orderby", orderby);
-	if (actionName.indexOf("getGridActionBySQL") > -1) {
-		actionName += "&where=" + J_u_encode(CryptoJS.AESEncrypt(where));
-	} else {
-		param.set("where", CryptoJS.AESEncrypt(where));
-	}
+	var query = "";
+    if(actionName.indexOf("?") > 0){
+    	query = actionName.substring(actionName.indexOf("?")+1);
+    	actionName = actionName.substring(0,actionName.indexOf("?"));
+    }else{
+    	query = "t=1";
+    }
+    query += "&dbkay="+dbkay;
+    query += "&table="+table;
+    query += "&relation="+relation;
+    query += "&orderby="+orderby;
+    var param = new tlv8.RequestParam();
+    param.set("where", CryptoJS.AESEncrypt(J_u_encode(where)));
+    param.set("query", CryptoJS.AESEncrypt(J_u_encode(query)));
 	var isay = (ays == false) ? ays : true;
 	var rscallBack = function(r) {
 		if (callBack)
@@ -513,11 +517,19 @@ tlv8.Deleteaction = function(actionName, post, callBack, rowid, data, ays) {
 	var table = data ? data.table : "";
 	var dbkay = data ? data.dbkay : "";
 	var Cascade = data ? data.Cascade : "";
-	var param = new tlv8.RequestParam();
-	param.set("dbkay", dbkay);
-	param.set("table", table);
-	param.set("rowid", rowid);
-	param.set("Cascade", Cascade);
+	var query = "";
+    if(actionName.indexOf("?") > 0){
+    	query = actionName.substring(actionName.indexOf("?")+1);
+    	actionName = actionName.substring(0,actionName.indexOf("?"));
+    }else{
+    	query = "t=1";
+    }
+    query += "&dbkay="+dbkay;
+    query += "&table="+table;
+    query += "&rowid="+rowid;
+    query += "&cascade="+Cascade;
+    var param = new tlv8.RequestParam();
+    param.set("query", CryptoJS.AESEncrypt(J_u_encode(query)));
 	var isay = (ays == false) ? ays : true;
 	var rscallBack = function(r) {
 		if (callBack)
@@ -550,10 +562,18 @@ tlv8.saveAction = function(actionName, post, callBack, data, allreturn, ays) {
 	var table = data.table;
 	var cells = data.cells;
 	var dbkay = data ? data.dbkay : "";
-	var param = new tlv8.RequestParam();
-	param.set("dbkay", dbkay);
-	param.set("table", table);
-	param.set("cells", cells);
+	var query = "";
+    if(actionName.indexOf("?") > 0){
+    	query = actionName.substring(actionName.indexOf("?")+1);
+    	actionName = actionName.substring(0,actionName.indexOf("?"));
+    }else{
+    	query = "t=1";
+    }
+    query += "&dbkay="+dbkay;
+    query += "&table="+table;
+    query += "&cells="+cells;
+    var param = new tlv8.RequestParam();
+    param.set("query", CryptoJS.AESEncrypt(J_u_encode(query)));
 	var ays_true = (ays == false) ? ays : true;
 	var rscallBack = function(r) {
 		if (callBack && allreturn)
@@ -613,29 +633,29 @@ tlv8.sqlQueryAction = function(dbkey, sql, callBack, ayn) {
  */
 tlv8.sqlQueryActionforJson = function(dbkey, sql, callBack, ayn) {
 	ayn = (ayn == true) ? true : false;
-	var param = new tlv8.RequestParam();
-	param.set("dbkey", CryptoJS.AESEncrypt(dbkey));
-	param.set("querys", CryptoJS.AESEncrypt(sql));
-	var recallback = function(r) {
-		if (r.data.flag == "false") {
-			alert(r.data.message);
-			return;
-		}
-		if (callBack) {
-			var reData = (r.data.data) ? (eval("(" + r.data.data + ")")) : [];
-			r.data.data = reData;
-			callBack(r.data);
-		}
-	};
-	var r = tlv8.XMLHttpRequest("sqlQueryActionforJson", param, "POST", ayn,
-			recallback);
-	if (ayn == false) {
-		var rvl = r.data.data;
-		rvl = rvl.replaceAll("\n", "").replaceAll("\r", "");
-		var reData = (r.data.data) ? (eval("(" + rvl + ")")) : [];
-		r.data.data = reData;
-		return r.data;
-	}
+    var param = new tlv8.RequestParam();
+    param.set("dbkey", CryptoJS.AESEncrypt(J_u_encode(dbkey)));
+    param.set("querys", CryptoJS.AESEncrypt(J_u_encode(sql)));
+    var recallback = function (r) {
+        if (r.data.flag == "false") {
+        	layui.layer.alert(r.data.message);
+            return;
+        }
+        if (callBack) {
+            var reData = (r.data.data) ? (eval("(" + r.data.data + ")")) : [];
+            r.data.data = reData;
+            callBack(r.data);
+        }
+    };
+    var r = tlv8.XMLHttpRequest("sqlQueryActionforJson", param, "POST",
+        ayn, recallback);
+    if (ayn == false) {
+        var rvl = r.data.data;
+        rvl = rvl.replaceAll("\n", "").replaceAll("\r", "");
+        var reData = (r.data.data) ? (eval("(" + rvl + ")")) : [];
+        r.data.data = reData;
+        return r.data;
+    }
 };
 
 /**

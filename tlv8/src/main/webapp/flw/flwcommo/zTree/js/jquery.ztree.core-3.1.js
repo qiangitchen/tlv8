@@ -915,7 +915,7 @@
 				contentType: setting.async.contentType,
 				type: setting.async.type,
 				url: tools.apply(setting.async.url, [setting.treeId, node], setting.async.url),
-				data: tmpParam,
+				data: "query=" + J_u_encode(CryptoJS.AESEncrypt(J_u_encode(tmpParam))),
 				dataType: setting.async.dataType,
 				success: function(msg) {
 					var newNodes = [];

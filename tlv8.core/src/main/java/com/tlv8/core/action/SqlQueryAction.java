@@ -31,7 +31,7 @@ import com.tlv8.system.bean.ContextBean;
  * @author ChenQian 用于公共的sql查询
  * @参数 {dbkey：数据库连接标识(String)；sql：需要执行的sql语句(String)}
  */
-@Deprecated 
+@Deprecated
 @Controller
 @Scope("prototype")
 public class SqlQueryAction extends ActionSupport {
@@ -48,7 +48,7 @@ public class SqlQueryAction extends ActionSupport {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/sqlQueryAction", produces = "application/json;charset=UTF-8",method = RequestMethod.POST)
+	@RequestMapping(value = "/sqlQueryAction", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
 	public Object execute() throws Exception {
 		data = new Data();
 		String userid = ContextBean.getContext(request).getCurrentPersonID();
@@ -182,15 +182,8 @@ public class SqlQueryAction extends ActionSupport {
 		} catch (Exception e) {
 		}
 		this.dbkey = AesEncryptUtil.desEncrypt(this.dbkey);
+		this.dbkey = getDoubleDecode(this.dbkey);
 	}
-
-//	public String getDbkey() {
-//		return dbkey;
-//	}
-//
-//	public String getQuerys() {
-//		return querys;
-//	}
 
 	public void setQuerys(String querys) {
 		try {
@@ -198,6 +191,7 @@ public class SqlQueryAction extends ActionSupport {
 		} catch (Exception e) {
 		}
 		this.querys = AesEncryptUtil.desEncrypt(this.querys);
+		this.querys = getDoubleDecode(this.querys);
 	}
 
 }

@@ -38,7 +38,7 @@ import com.tlv8.system.bean.ContextBean;
  * @C 2011-12-8
  * @update 2023-03-31
  */
-@Deprecated 
+@Deprecated
 @Controller
 @Scope("prototype")
 public class SqlQueryActionforJson extends ActionSupport {
@@ -154,15 +154,8 @@ public class SqlQueryActionforJson extends ActionSupport {
 		} catch (Exception e) {
 		}
 		this.dbkey = AesEncryptUtil.desEncrypt(this.dbkey);
+		this.dbkey = getDoubleDecode(this.dbkey);
 	}
-
-//	public String getDbkey() {
-//		return dbkey;
-//	}
-//
-//	public String getQuerys() {
-//		return querys;
-//	}
 
 	public void setQuerys(String querys) {
 		try {
@@ -170,5 +163,6 @@ public class SqlQueryActionforJson extends ActionSupport {
 		} catch (Exception e) {
 		}
 		this.querys = AesEncryptUtil.desEncrypt(this.querys);
+		this.querys = getDoubleDecode(this.querys);
 	}
 }

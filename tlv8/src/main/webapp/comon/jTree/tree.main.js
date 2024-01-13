@@ -220,7 +220,7 @@ Jtree.prototype.init = function(treebody, setting, param) {
     query += "&params=" + str;
     query += "&orderby=" + (param.cell.orderby ? param.cell.orderby : "");
 	var pams = new tlv8.RequestParam();
-	pams.set("query", CryptoJS.AESEncrypt(query));
+	pams.set("query", CryptoJS.AESEncrypt(J_u_encode(query)));
 	$("#" + treebody).html(
 			"<img src='"+cpath+"/comon/css/zTreeStyle/img/loading.gif'/>");
 	tlv8.XMLHttpRequest(actionName, pams, "post", false, function(data) {
@@ -332,7 +332,7 @@ Jtree.prototype.quickPosition = function(text) {
         query += "&quickCells=" + quickCells;
         query += "&cloums=" + this.Jtreeother;
 		var param = new tlv8.RequestParam();
-		param.set("query", CryptoJS.AESEncrypt(query));
+		param.set("query", CryptoJS.AESEncrypt(J_u_encode(query)));
 		var nodes = (this.setting.async.enable) ? (eval(tlv8
 				.XMLHttpRequest(actionName, param, "post", false, null).jsonResult))
 				: this.zNodes;
@@ -399,7 +399,7 @@ Jtree.prototype.refreshJtree = function(panle, afcalback) {
     query += "&params=" + str;
     query += "&orderby=" + (this.param.cell.orderby ? this.param.cell.orderby : "");
 	var pamstens = new tlv8.RequestParam();
-	pamstens.set("query", CryptoJS.AESEncrypt(query));
+	pamstens.set("query", CryptoJS.AESEncrypt(J_u_encode(query)));
 	var Jtree_Ext = this;
 	tlv8.XMLHttpRequest(actionName, pamstens, "post", true, function(data) {
 		var zNodes = data.jsonResult;

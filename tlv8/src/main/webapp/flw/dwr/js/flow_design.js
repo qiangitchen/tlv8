@@ -30,13 +30,13 @@ function flowdrowopenback(rdata) {
  * 保存流程图数据
  */
 function saveFlowData(Love) {
-	var sdrawlg = J_u_encode(document.getElementById("group").innerHTML);
-	var sprocessacty = J_u_encode(Love.toJson().toString().encodeSpechars());
+	var sdrawlg = document.getElementById("group").innerHTML;
+	var sprocessacty = Love.toJson().toString().encodeSpechars();
 	var param = new tlv8.RequestParam();
 	param.set("sprocessid", Love.id);
 	param.set("sprocessname", Love.name);
-	param.set("sdrawlg", CryptoJS.AESEncrypt(sdrawlg));
-	param.set("sprocessacty", CryptoJS.AESEncrypt(sprocessacty));
+	param.set("sdrawlg", CryptoJS.AESEncrypt(J_u_encode(sdrawlg)));
+	param.set("sprocessacty", CryptoJS.AESEncrypt(J_u_encode(sprocessacty)));
 	tlv8.XMLHttpRequest("saveFlowDrawLGAction", param, "post", true,
 			function(r) {
 				layui.layer.msg("保存成功!");

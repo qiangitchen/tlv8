@@ -1,6 +1,5 @@
 package com.tlv8.base;
 
-import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,10 +21,7 @@ public class RequestParams {
 		String query = request.getParameter("query");
 		logger.debug(query);
 		if (StringUtils.isNotEmpty(query)) {
-			try {
-				query = URLDecoder.decode(query, "UTF-8");
-			} catch (Exception e) {
-			}
+			query = CodeUtils.getDoubleDecode(query);
 			query = AesEncryptUtil.desEncrypt(query);
 			init(query);
 		}
@@ -34,15 +30,14 @@ public class RequestParams {
 	public RequestParams(HttpServletRequest request, String expstr) {
 		this.request = request;
 		logger.debug(expstr);
-		try {
-			expstr = URLDecoder.decode(expstr, "UTF-8");
-		} catch (Exception e) {
-		}
+		expstr = CodeUtils.getDoubleDecode(expstr);
 		expstr = AesEncryptUtil.desEncrypt(expstr);
 		init(expstr);
 	}
 
 	private void init(String expstr) {
+		logger.debug(expstr);
+		expstr = CodeUtils.getDoubleDecode(expstr);
 		logger.debug(expstr);
 		String[] pars = expstr.split("&");
 		for (int i = 0; i < pars.length; i++) {
@@ -63,10 +58,7 @@ public class RequestParams {
 				logger.debug("参数：" + name + ",获取值失败~");
 			}
 		}
-		try {
-			value = URLDecoder.decode(value, "UTF-8");
-		} catch (Exception e) {
-		}
+		value = CodeUtils.getDoubleDecode(value);
 		return value;
 	}
 

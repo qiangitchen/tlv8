@@ -838,7 +838,7 @@
 				}
 				console.log(query);
 				var param = new tlv8.RequestParam();
-				param.set("query", CryptoJS.AESEncrypt(query));
+				param.set("query", CryptoJS.AESEncrypt(J_u_encode(query)));
 				var res = tlv8.XMLHttpRequest("core/saveGridData", param,
 						"post", false);
 				if (res.flag == "true") {
@@ -949,7 +949,7 @@
 					query += "&filter=" + (filter || "");
 					query += "&searchtext=" + (searchtext || "");
 					var param = new tlv8.RequestParam();
-					param.set("query", CryptoJS.AESEncrypt(query));
+					param.set("query", CryptoJS.AESEncrypt(J_u_encode(query)));
 					tlv8.XMLHttpRequest("core/loadGridData", param, "post",
 							true, grid.setDatatoGrid);
 				};

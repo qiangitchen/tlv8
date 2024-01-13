@@ -156,7 +156,7 @@ SelectExecutor.checkActivty = function(obj) {
 		}
 		var query = "filter=" + excutorGroupfilter;
 		var param = new tlv8.RequestParam();
-		param.set("query", CryptoJS.AESEncrypt(query));
+		param.set("query", CryptoJS.AESEncrypt(J_u_encode(query)));
 		tlv8.XMLHttpRequest("getExecutorTree", param, "post", true,
 				function(r) {
 					var NodeData = r.data.data;
