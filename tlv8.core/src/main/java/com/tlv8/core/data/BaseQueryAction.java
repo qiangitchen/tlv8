@@ -69,7 +69,7 @@ public class BaseQueryAction extends ActionSupport {
 					String cel = crelation[j];
 					if (DBUtils.IsOracleDB(dbkay)) {
 						cel = cel.toUpperCase();
-					}else if (DBUtils.IsPostgreSQL(dbkay)) {
+					} else if (DBUtils.IsPostgreSQL(dbkay)) {
 						cel = cel.toLowerCase();
 					}
 					String celValue = String.valueOf(m.get(cel));
@@ -79,19 +79,16 @@ public class BaseQueryAction extends ActionSupport {
 				}
 			}
 		} catch (SQLException e) {
-			System.err.println("SQL:"+csql);
+			System.err.println("SQL:" + csql);
 			throw new SQLException(e.getMessage());
 		}
 		return strb.toString();
 	}
 
 	public void setWhere(String where) {
-		try {
-			this.where = URLDecoder.decode(where, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
+		this.where = CodeUtils.getDoubleDecode(where);
 		this.where = AesEncryptUtil.desEncrypt(this.where);
+		this.where = CodeUtils.getDoubleDecode(this.where);
 	}
 
 	public String getWhere() {
