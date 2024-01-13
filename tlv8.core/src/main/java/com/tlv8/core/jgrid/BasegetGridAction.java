@@ -316,7 +316,8 @@ public class BasegetGridAction extends ActionSupport {
 			}
 			result = Grid.createGridBysql(dbkay, sql, ismaster, isshowindex, startrow + 1, gridid);
 		} catch (SQLException e) {
-			throw new SQLException(e.getMessage());
+			e.printStackTrace();
+			throw new SQLException("数据查询失败~");
 		} catch (NamingException ne) {
 			throw new NamingException(ne.getMessage());
 		}
@@ -433,7 +434,8 @@ public class BasegetGridAction extends ActionSupport {
 			// System.out.println(sql);
 			result = Grid.createGridBysql(dbkay, sql, ismaster, isshowindex, startrow + 1, gridid);// (dbkey,sql，是否多选，是否序号，开始行数)
 		} catch (SQLException e) {
-			throw new SQLException(e.getMessage());
+			e.printStackTrace();
+			throw new SQLException("数据查询失败~");
 		} catch (NamingException ne) {
 			throw new NamingException(ne.getMessage());
 		}
