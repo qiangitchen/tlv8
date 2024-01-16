@@ -414,3 +414,27 @@ Jtree.prototype.refreshJtree = function(panle, afcalback) {
 		}
 	});
 };
+
+Jtree.prototype.expandLevel = function(level) {
+	var nodes = this.getNodes();
+	for (var i = 0; i < nodes.length; i++) {
+		var snode = nodes[i];
+		this.tree.expandNode(snode, true);
+		if (level > 1) {
+			level = level - 1;
+			this.expandChild(snode.id, level);
+		}
+	}
+};
+
+Jtree.prototype.expandChild = function(pid, level) {
+	var nodes = this.tree.getNodeByTId(pid).children || [];
+	for (var i = 0; i < nodes.length; i++) {
+		var snode = nodes[i];
+		this.tree.expandNode(snode, true);
+		if (level > 1) {
+			level = level - 1;
+			this.expandChild(snode.id, level);
+		}
+	}
+};
