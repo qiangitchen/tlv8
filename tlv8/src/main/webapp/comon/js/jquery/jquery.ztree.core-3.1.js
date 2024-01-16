@@ -1077,7 +1077,12 @@
 							newNodes = [];
 						} else if (typeof msg == "string") {
 							newNodes = eval("(" + msg + ")");
-							newNodes = eval(newNodes.jsonResult);
+							newNodes = newNodes.jsonResult;
+							try{
+								newNodes = CryptoJS.AESDecrypt(newNodes);
+			                }catch (e) {
+							}
+							newNodes = eval(newNodes);
 						} else {
 							newNodes = msg;
 						}

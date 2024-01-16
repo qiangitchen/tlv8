@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.tlv8.base.ActionSupport;
 import com.tlv8.base.db.DBUtils;
+import com.tlv8.base.utils.AesEncryptUtil;
 
 @Controller
 @Scope("prototype")
@@ -32,7 +33,7 @@ public class QuickTreeAction extends ActionSupport {
 	public Object execute() throws Exception {
 		exeQuickAction();
 		JSONObject json = new JSONObject();
-		json.put("jsonResult", jsonResult);
+		json.put("jsonResult", AesEncryptUtil.encrypt(jsonResult));
 		return json;
 	}
 

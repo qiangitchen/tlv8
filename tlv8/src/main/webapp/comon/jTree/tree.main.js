@@ -226,6 +226,10 @@ Jtree.prototype.init = function(treebody, setting, param) {
 	tlv8.XMLHttpRequest(actionName, pams, "post", false, function(data) {
 		try {
 			var zNodes = data.jsonResult;
+			try{
+				zNodes = CryptoJS.AESDecrypt(zNodes);
+            }catch (e) {
+			}
 			if(typeof zNodes == "string"){
 				zNodes = window.eval("("+zNodes+")");
 			}
@@ -333,9 +337,12 @@ Jtree.prototype.quickPosition = function(text) {
         query += "&cloums=" + this.Jtreeother;
 		var param = new tlv8.RequestParam();
 		param.set("query", CryptoJS.AESEncrypt(J_u_encode(query)));
-		var nodes = (this.setting.async.enable) ? (eval(tlv8
-				.XMLHttpRequest(actionName, param, "post", false, null).jsonResult))
-				: this.zNodes;
+		var jsonResult  = tlv8.XMLHttpRequest(actionName, param, "post", false, null).jsonResult;
+		try{
+			jsonResult = CryptoJS.AESDecrypt(jsonResult);
+        }catch (e) {
+		}
+		var nodes = (this.setting.async.enable) ? (eval(jsonResult)) : this.zNodes;
 		qNode = nodes;
 		if (qNode.length < 1) {
 			alert("未找到[" + text + "]对应的内容!");
@@ -403,6 +410,10 @@ Jtree.prototype.refreshJtree = function(panle, afcalback) {
 	var Jtree_Ext = this;
 	tlv8.XMLHttpRequest(actionName, pamstens, "post", true, function(data) {
 		var zNodes = data.jsonResult;
+		try{
+			zNodes = CryptoJS.AESDecrypt(zNodes);
+        }catch (e) {
+		}
 		if(typeof zNodes == "string"){
 			zNodes = window.eval("("+zNodes+")");
 		}

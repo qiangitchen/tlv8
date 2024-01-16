@@ -212,6 +212,14 @@ tlv8.XMLHttpRequest = function (actionName, param, post, ayn, callBack,
                     }
                 } catch (e) {
                 }
+                try{
+                	rs.data = CryptoJS.AESDecrypt(rs.data);
+                }catch (e) {
+				}
+                try{
+                	rs.data = window.eval("(" + rs.data + ")");
+                }catch (e) {
+				}
                 if (callBack && typeof callBack == "function") {
                     try {
                         callBack(rs);

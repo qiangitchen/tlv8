@@ -3,6 +3,7 @@ package com.tlv8.common.domain;
 import java.util.HashMap;
 
 import com.alibaba.fastjson.JSON;
+import com.tlv8.base.utils.AesEncryptUtil;
 import com.tlv8.base.utils.StringUtils;
 import com.tlv8.common.constant.HttpStatus;
 
@@ -57,7 +58,17 @@ public class AjaxResult extends HashMap<String, Object> {
         super.put(CODE_TAG, code);
         super.put(MSG_TAG, msg);
         if (StringUtils.isNotNull(data)) {
-            super.put(DATA_TAG, data);
+        	String endata = "";
+			if (data instanceof String) {
+				endata = (String) data;
+			} else {
+				endata = JSON.toJSONString(data);
+			}
+			try {
+				endata = AesEncryptUtil.encrypt(endata);
+			} catch (Exception e) {
+			}
+			super.put(DATA_TAG, endata);
         }
     }
 

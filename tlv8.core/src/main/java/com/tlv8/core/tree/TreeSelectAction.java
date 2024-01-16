@@ -28,6 +28,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.tlv8.base.ActionSupport;
 import com.tlv8.base.db.DBUtils;
+import com.tlv8.base.utils.AesEncryptUtil;
 
 /**
  * jtree数据加载通用接口
@@ -52,7 +53,7 @@ public class TreeSelectAction extends ActionSupport {
 		if (this.params != null && !"".equals(this.params)) {
 			exeCreateTreeAction();
 			JSONObject json = new JSONObject();
-			json.put("jsonResult", jsonResult);
+			json.put("jsonResult",  AesEncryptUtil.encrypt(jsonResult));
 			return json;
 		} else {
 			return "[]";
