@@ -97,17 +97,18 @@ function saveAuditOpinion() {
 		layui.layer.alert("审核意见不能为空!");
 		return false;
 	}
+	var query = "dbkey=oa";
+	query += "&audittable=OA_FLOWRECORD";
+	query += "&billidRe=FBILLID";
+	query += "&agreettextRe=FAGREETEXT";
+	query += "&opinion=" + $("#opinionData").val();
+	query += "&flowid=" + flowID;
+	query += "&taskID=" + taskID;
+	query += "&sdata1=" + sData1;
+	query += "&opviewID=" + opviewID;
+	query += "&sign=" + sign;
 	var param = new tlv8.RequestParam();
-	param.set("dbkey", "oa");
-	param.set("audittable", "OA_FLOWRECORD");
-	param.set("billidRe", "FBILLID");
-	param.set("agreettextRe", "FAGREETEXT");
-	param.set("opinion", $("#opinionData").val());
-	param.set("flowid", flowID);
-	param.set("taskID", taskID);
-	param.set("sdata1", sData1);
-	param.set("opviewID", opviewID);
-	param.set("sign", sign);
+	param.set("query", CryptoJS.AESEncrypt(J_u_encode(query)));
 	tlv8.XMLHttpRequest("SaveAuditOpinionSignAction", param, "post", false,
 			function(r) {
 				if (r.data.flag == "false") {

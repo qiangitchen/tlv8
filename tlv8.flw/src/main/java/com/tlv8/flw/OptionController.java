@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.tlv8.base.Data;
 import com.tlv8.base.db.DBUtils;
+import com.tlv8.base.utils.AesEncryptUtil;
 import com.tlv8.system.bean.ContextBean;
 
 @Controller
@@ -40,7 +41,7 @@ public class OptionController {
 			params.add(ContextBean.getContext(request).getCurrentPersonID());
 			List<Map<String, String>> res = DBUtils.selectStringList("oa", sql.toString(), params);
 			if (res.size() > 0) {
-				data.setData(res.get(0).get("FAGREETEXT"));
+				data.setData(AesEncryptUtil.encrypt(res.get(0).get("FAGREETEXT")));
 			} else {
 				data.setData("");
 			}
@@ -69,7 +70,7 @@ public class OptionController {
 			List<Object> params = new ArrayList<Object>();
 			params.add(ContextBean.getContext(request).getCurrentPersonID());
 			List<Map<String, String>> res = DBUtils.selectStringList("oa", sql.toString(), params);
-			data.setData(JSON.toJSONString(res));
+			data.setData(AesEncryptUtil.encrypt(JSON.toJSONString(res)));
 			data.setFlag("true");
 		} catch (Exception e) {
 			data.setFlag("false");
