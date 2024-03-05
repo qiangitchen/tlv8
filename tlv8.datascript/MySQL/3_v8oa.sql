@@ -107,7 +107,7 @@ create table OA_EM_RECEIVEEMAIL
 (
   FID            VARCHAR(100) not null comment '主键',
   VERSION        INT comment '版本号',
-  FEMAILNAME     VARCHAR(100) comment '邮件标题',
+  FEMAILNAME     VARCHAR(200) comment '邮件标题',
   FTEXT          TEXT comment '邮件内容',
   FFJID          VARCHAR(4000) comment '附件',
   FSENDPERNAME   VARCHAR(100) comment '发送名称',
