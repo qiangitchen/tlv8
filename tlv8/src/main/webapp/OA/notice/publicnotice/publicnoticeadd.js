@@ -85,8 +85,8 @@ var kindEditor1;
 function creatTextEditor() {
 	kindEditor1 = KindEditor.create('textarea[name="FCONTENT"]', {
 		cssPath: cpath + '/comon/kindeditor/plugins/code/prettify.css',
-		uploadJson: cpath + '/kindEditorUploadAction',
-		fileManagerJson: cpath + '/comon/kindeditor/jsp/file_manager_json.jsp',
+		uploadJson: cpath + '/kindeditor/kindEditorUploadAction',
+		fileManagerJson: cpath + '/kindeditor/file_manager_json',
 		allowFileManager: true,
 		afterCreate: function() {
 			var self = this;
