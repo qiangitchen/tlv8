@@ -21,6 +21,7 @@ import com.tlv8.doc.clt.doc.Docs;
  * kindeditor 上传文件（图片、flash、多媒体、文件）
  */
 @RestController
+@RequestMapping("/kindeditor")
 public class KindEditorUploadController {
 	static HashMap<String, String> extMap = new HashMap<String, String>();
 	// 定义允许上传的文件扩展名
