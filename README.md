@@ -85,9 +85,3 @@
 4.  [layui](https://gitee.com/sentsin/layui)
 5.  [layui-mini](https://gitee.com/zhongshaofa/layuimini)
 
-#### 捐赠支持
-
-开源项目不易，若此项目对您有帮助，可以捐赠支持作者持续开发与维护，感谢所有支持开源的朋友！
-
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0929/103128_3fce9898_1210964.jpeg "tl_qrcode.jpg")
-
