@@ -310,7 +310,8 @@ public class BasegetGridAction extends ActionSupport {
 				startrow = 0;
 			}
 			try {
-				sql = sql.replace("endrow", (DBUtils.IsMySQLDB(dbkay) ? rows : endrow) + "");
+				sql = sql.replace("endrow",
+						(DBUtils.IsMySQLDB(dbkay) || DBUtils.IsPostgreSQL(dbkay) ? rows : endrow) + "");
 				sql = sql.replace("startrow", startrow + "");
 			} catch (Exception e) {
 			}
@@ -385,6 +386,9 @@ public class BasegetGridAction extends ActionSupport {
 		} else if (DBUtils.IsMySQLDB(dbkay)) {
 			sql = "select fID," + columns + " from(" + lSQL + inwhere + " " + rSQL
 					+ ") where fID is not null param limit startrow,endrow";
+		} else if (DBUtils.IsPostgreSQL(dbkay)) {
+			sql = "select fID," + columns + " from(" + lSQL + inwhere + " " + rSQL
+					+ ") where fID is not null param limit endrow OFFSET startrow";
 		} else {
 			sql = "select fID," + columns + " from (select * from (" + lSQL + inwhere + " " + rSQL
 					+ ") where fID in (select top endrow fID from (" + lSQL + inwhere + " " + rSQL + ") where 1=1 "
@@ -427,7 +431,8 @@ public class BasegetGridAction extends ActionSupport {
 			}
 			try {
 				// sql = String.format(sql, endrow, startrow);
-				sql = sql.replace("endrow", (DBUtils.IsMySQLDB(dbkay) ? rows : endrow) + "");
+				sql = sql.replace("endrow",
+						(DBUtils.IsMySQLDB(dbkay) || DBUtils.IsPostgreSQL(dbkay) ? rows : endrow) + "");
 				sql = sql.replace("startrow", startrow + "");
 			} catch (Exception e) {
 			}
