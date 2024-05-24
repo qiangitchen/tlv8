@@ -231,6 +231,13 @@ tlv8.XMLHttpRequest = function (actionName, param, post, ayn, callBack,
             error: function (xreq, xmsg, xep) {
                 hideModelState();
                 // alert("请求失败! \nurl:"+actionName+"\n错误信息："+xmsg);
+                if (callBack && typeof callBack == "function") {
+                    try {
+                        callBack({state:false,msg:'请求失败!'});
+                    } catch (e) {
+                        // console.error(e);
+                    }
+                }
             }
         });
         return rs;
