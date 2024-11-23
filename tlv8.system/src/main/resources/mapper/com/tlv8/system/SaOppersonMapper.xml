@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tlv8.system.mapper.SaOppersonMapper">
+	<resultMap id="BaseResultMap"
+		type="com.tlv8.system.pojo.SaOpperson">
+		<id column="SID" jdbcType="VARCHAR" property="sid" />
+		<result column="SNAME" jdbcType="VARCHAR" property="sname" />
+		<result column="SCODE" jdbcType="VARCHAR" property="scode" />
+		<result column="SIDCARD" jdbcType="VARCHAR" property="sidcard" />
+		<result column="SNUMB" jdbcType="INTEGER" property="snumb" />
+		<result column="SLOGINNAME" jdbcType="VARCHAR"
+			property="sloginname" />
+		<result column="SPASSWORD" jdbcType="VARCHAR"
+			property="spassword" />
+		<result column="SPASSWORDTIMELIMIT" jdbcType="INTEGER"
+			property="spasswordtimelimit" />
+		<result column="SPASSWORDMODIFYTIME" jdbcType="TIMESTAMP"
+			property="spasswordmodifytime" />
+		<result column="SMAINORGID" jdbcType="VARCHAR"
+			property="smainorgid" />
+		<result column="SSAFELEVELID" jdbcType="VARCHAR"
+			property="ssafelevelid" />
+		<result column="SSEQUENCE" jdbcType="INTEGER"
+			property="ssequence" />
+		<result column="SVALIDSTATE" jdbcType="INTEGER"
+			property="svalidstate" />
+		<result column="SDESCRIPTION" jdbcType="VARCHAR"
+			property="sdescription" />
+		<result column="SSEX" jdbcType="VARCHAR" property="ssex" />
+		<result column="SBIRTHDAY" jdbcType="TIMESTAMP"
+			property="sbirthday" />
+		<result column="SJOINDATE" jdbcType="TIMESTAMP"
+			property="sjoindate" />
+		<result column="SHOMEPLACE" jdbcType="VARCHAR"
+			property="shomeplace" />
+		<result column="SDEGREE" jdbcType="VARCHAR" property="sdegree" />
+		<result column="SGRADUATESCHOOL" jdbcType="VARCHAR"
+			property="sgraduateschool" />
+		<result column="SSPECIALITY" jdbcType="VARCHAR"
+			property="sspeciality" />
+		<result column="SSCHOOLLENGTH" jdbcType="VARCHAR"
+			property="sschoollength" />
+		<result column="STITLE" jdbcType="VARCHAR" property="stitle" />
+		<result column="SMARRIAGE" jdbcType="VARCHAR"
+			property="smarriage" />
+		<result column="SCARDNO" jdbcType="VARCHAR" property="scardno" />
+		<result column="SCARDKIND" jdbcType="VARCHAR"
+			property="scardkind" />
+		<result column="SFAMILYADDRESS" jdbcType="VARCHAR"
+			property="sfamilyaddress" />
+		<result column="SZIP" jdbcType="VARCHAR" property="szip" />
+		<result column="SMSN" jdbcType="VARCHAR" property="smsn" />
+		<result column="SQQ" jdbcType="VARCHAR" property="sqq" />
+		<result column="SMAIL" jdbcType="VARCHAR" property="smail" />
+		<result column="SMOBILEPHONE" jdbcType="VARCHAR"
+			property="smobilephone" />
+		<result column="SFAMILYPHONE" jdbcType="VARCHAR"
+			property="sfamilyphone" />
+		<result column="SOFFICEPHONE" jdbcType="VARCHAR"
+			property="sofficephone" />
+		<result column="VERSION" jdbcType="INTEGER" property="version" />
+		<result column="SCOUNTRY" jdbcType="VARCHAR"
+			property="scountry" />
+		<result column="SPROVINCE" jdbcType="VARCHAR"
+			property="sprovince" />
+		<result column="SCITY" jdbcType="VARCHAR" property="scity" />
+		<result column="SPOSITIONS" jdbcType="VARCHAR"
+			property="spositions" />
+		<result column="SSCHOOL" jdbcType="VARCHAR" property="sschool" />
+		<result column="SSTUDY" jdbcType="VARCHAR" property="sstudy" />
+		<result column="SENGLISHNAME" jdbcType="VARCHAR"
+			property="senglishname" />
+		<result column="FCASN" jdbcType="VARCHAR" property="fcasn" />
+		<result column="FSIGNM" jdbcType="VARCHAR" property="fsignm" />
+		<result column="SPHOTO" jdbcType="LONGVARBINARY"
+			property="sphoto" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		sid, sname, scode,
+		sidcard, snumb, sloginname,
+		spassword,
+		spasswordtimelimit, spasswordmodifytime,
+		smainorgid, ssafelevelid,
+		ssequence,
+		svalidstate, sdescription, ssex,
+		sbirthday, sjoindate,
+		shomeplace,
+		sdegree, sgraduateschool, sspeciality,
+		sschoollength,
+		stitle, smarriage,
+		scardno, scardkind, sfamilyaddress,
+		szip, smsn, sqq,
+		smail,
+		smobilephone, sfamilyphone, sofficephone,
+		version, scountry,
+		sprovince,
+		scity, spositions, sschool,
+		sstudy, senglishname, fcasn,
+		fsignm, sphoto
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from SA_OpPerson
+		where sid = #{sid,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByCode" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from SA_OpPerson
+		where scode = #{scode,jdbcType=VARCHAR}
+	</select>
+	<insert id="insertData"
+		parameterType="com.tlv8.system.pojo.SaOpperson">
+		insert into sa_opperson (SID, SNAME, SCODE,
+		SIDCARD,
+		SNUMB, SLOGINNAME,
+		SPASSWORD, SPASSWORDTIMELIMIT, SPASSWORDMODIFYTIME,
+		SMAINORGID, SSAFELEVELID, SSEQUENCE,
+		SVALIDSTATE, SDESCRIPTION, SSEX,
+		SBIRTHDAY, SJOINDATE, SHOMEPLACE,
+		SDEGREE, SGRADUATESCHOOL,
+		SSPECIALITY,
+		SSCHOOLLENGTH, STITLE, SMARRIAGE,
+		SCARDNO, SCARDKIND,
+		SFAMILYADDRESS,
+		SZIP, SMSN, SQQ, SMAIL,
+		SMOBILEPHONE, SFAMILYPHONE,
+		SOFFICEPHONE,
+		VERSION, SCOUNTRY, SPROVINCE,
+		SCITY, SPOSITIONS, SSCHOOL,
+		SSTUDY, SENGLISHNAME, FCASN,
+		FSIGNM, SPHOTO)
+		values
+		(#{sid,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR},
+		#{scode,jdbcType=VARCHAR},
+		#{sidcard,jdbcType=VARCHAR},
+		#{snumb,jdbcType=INTEGER}, #{sloginname,jdbcType=VARCHAR},
+		#{spassword,jdbcType=VARCHAR}, #{spasswordtimelimit,jdbcType=INTEGER},
+		#{spasswordmodifytime,jdbcType=TIMESTAMP},
+		#{smainorgid,jdbcType=VARCHAR}, #{ssafelevelid,jdbcType=VARCHAR},
+		#{ssequence,jdbcType=INTEGER},
+		#{svalidstate,jdbcType=INTEGER},
+		#{sdescription,jdbcType=VARCHAR}, #{ssex,jdbcType=VARCHAR},
+		#{sbirthday,jdbcType=TIMESTAMP}, #{sjoindate,jdbcType=TIMESTAMP},
+		#{shomeplace,jdbcType=VARCHAR},
+		#{sdegree,jdbcType=VARCHAR},
+		#{sgraduateschool,jdbcType=VARCHAR}, #{sspeciality,jdbcType=VARCHAR},
+		#{sschoollength,jdbcType=VARCHAR}, #{stitle,jdbcType=VARCHAR},
+		#{smarriage,jdbcType=VARCHAR},
+		#{scardno,jdbcType=VARCHAR},
+		#{scardkind,jdbcType=VARCHAR}, #{sfamilyaddress,jdbcType=VARCHAR},
+		#{szip,jdbcType=VARCHAR}, #{smsn,jdbcType=VARCHAR},
+		#{sqq,jdbcType=VARCHAR}, #{smail,jdbcType=VARCHAR},
+		#{smobilephone,jdbcType=VARCHAR}, #{sfamilyphone,jdbcType=VARCHAR},
+		#{sofficephone,jdbcType=VARCHAR},
+		#{version,jdbcType=INTEGER},
+		#{scountry,jdbcType=VARCHAR}, #{sprovince,jdbcType=VARCHAR},
+		#{scity,jdbcType=VARCHAR}, #{spositions,jdbcType=VARCHAR},
+		#{sschool,jdbcType=VARCHAR},
+		#{sstudy,jdbcType=VARCHAR},
+		#{senglishname,jdbcType=VARCHAR}, #{fcasn,jdbcType=VARCHAR},
+		#{fsignm,jdbcType=VARCHAR}, #{sphoto,jdbcType=LONGVARBINARY})
+	</insert>
+	<update id="updateData"
+		parameterType="com.tlv8.system.pojo.SaOpperson">
+		update sa_opperson
+		set SNAME = #{sname,jdbcType=VARCHAR},
+		SCODE =
+		#{scode,jdbcType=VARCHAR},
+		SIDCARD =
+		#{sidcard,jdbcType=VARCHAR},
+		SNUMB
+		= #{snumb,jdbcType=INTEGER},
+		SLOGINNAME =
+		#{sloginname,jdbcType=VARCHAR},
+		SPASSWORD =
+		#{spassword,jdbcType=VARCHAR},
+		SPASSWORDTIMELIMIT =
+		#{spasswordtimelimit,jdbcType=INTEGER},
+		SPASSWORDMODIFYTIME =
+		#{spasswordmodifytime,jdbcType=TIMESTAMP},
+		SMAINORGID =
+		#{smainorgid,jdbcType=VARCHAR},
+		SSAFELEVELID =
+		#{ssafelevelid,jdbcType=VARCHAR},
+		SSEQUENCE =
+		#{ssequence,jdbcType=INTEGER},
+		SVALIDSTATE =
+		#{svalidstate,jdbcType=INTEGER},
+		SDESCRIPTION =
+		#{sdescription,jdbcType=VARCHAR},
+		SSEX = #{ssex,jdbcType=VARCHAR},
+		SBIRTHDAY = #{sbirthday,jdbcType=TIMESTAMP},
+		SJOINDATE =
+		#{sjoindate,jdbcType=TIMESTAMP},
+		SHOMEPLACE =
+		#{shomeplace,jdbcType=VARCHAR},
+		SDEGREE = #{sdegree,jdbcType=VARCHAR},
+		SGRADUATESCHOOL = #{sgraduateschool,jdbcType=VARCHAR},
+		SSPECIALITY =
+		#{sspeciality,jdbcType=VARCHAR},
+		SSCHOOLLENGTH =
+		#{sschoollength,jdbcType=VARCHAR},
+		STITLE = #{stitle,jdbcType=VARCHAR},
+		SMARRIAGE = #{smarriage,jdbcType=VARCHAR},
+		SCARDNO =
+		#{scardno,jdbcType=VARCHAR},
+		SCARDKIND = #{scardkind,jdbcType=VARCHAR},
+		SFAMILYADDRESS = #{sfamilyaddress,jdbcType=VARCHAR},
+		SZIP =
+		#{szip,jdbcType=VARCHAR},
+		SMSN = #{smsn,jdbcType=VARCHAR},
+		SQQ =
+		#{sqq,jdbcType=VARCHAR},
+		SMAIL = #{smail,jdbcType=VARCHAR},
+		SMOBILEPHONE = #{smobilephone,jdbcType=VARCHAR},
+		SFAMILYPHONE =
+		#{sfamilyphone,jdbcType=VARCHAR},
+		SOFFICEPHONE =
+		#{sofficephone,jdbcType=VARCHAR},
+		VERSION =
+		#{version,jdbcType=INTEGER},
+		SCOUNTRY = #{scountry,jdbcType=VARCHAR},
+		SPROVINCE = #{sprovince,jdbcType=VARCHAR},
+		SCITY =
+		#{scity,jdbcType=VARCHAR},
+		SPOSITIONS = #{spositions,jdbcType=VARCHAR},
+		SSCHOOL = #{sschool,jdbcType=VARCHAR},
+		SSTUDY =
+		#{sstudy,jdbcType=VARCHAR},
+		SENGLISHNAME =
+		#{senglishname,jdbcType=VARCHAR},
+		FCASN = #{fcasn,jdbcType=VARCHAR},
+		FSIGNM = #{fsignm,jdbcType=VARCHAR},
+		SPHOTO =
+		#{sphoto,jdbcType=LONGVARBINARY}
+		where SID = #{sid,jdbcType=VARCHAR}
+	</update>
+	<delete id="deleteData" parameterType="com.tlv8.system.pojo.SaOpperson">
+        delete
+        from SA_OpPerson
+        where sid = #{sid,jdbcType=VARCHAR}
+    </delete>
+    <delete id="deleteDataByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from SA_OpPerson
+        where sid = #{sid,jdbcType=VARCHAR}
+    </delete>
+    <update id="logicDeleteDataByPrimaryKey" parameterType="java.lang.String">
+        update SA_OpPerson
+        set svalidstate= -1
+        where sid = #{sid,jdbcType=VARCHAR}
+    </update>
+    <update id="logicRecoveryByPrimaryKey" parameterType="java.lang.String">
+        update SA_OpPerson
+        set svalidstate=1
+        where sid = #{sid,jdbcType=VARCHAR}
+    </update>
+</mapper>

@@ -32,7 +32,7 @@ import com.tlv8.base.ActionSupport;
  */
 @Controller
 @Scope("prototype")
-public class savePermitionAction extends ActionSupport {
+public class SavePermitionAction extends ActionSupport {
 	private Data data = new Data();
 	private String table;
 	private String cells;

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tlv8.system.mapper.SaOporgMapper">
+	<resultMap id="BaseResultMap"
+		type="com.tlv8.system.pojo.SaOporg">
+		<id column="SID" jdbcType="VARCHAR" property="sid" />
+		<result column="SNAME" jdbcType="VARCHAR" property="sname" />
+		<result column="SCODE" jdbcType="VARCHAR" property="scode" />
+		<result column="SLONGNAME" jdbcType="VARCHAR"
+			property="slongname" />
+		<result column="SFNAME" jdbcType="VARCHAR" property="sfname" />
+		<result column="SFCODE" jdbcType="VARCHAR" property="sfcode" />
+		<result column="SFID" jdbcType="VARCHAR" property="sfid" />
+		<result column="SORGKINDID" jdbcType="VARCHAR"
+			property="sorgkindid" />
+		<result column="SVALIDSTATE" jdbcType="INTEGER"
+			property="svalidstate" />
+		<result column="SPARENT" jdbcType="VARCHAR" property="sparent" />
+		<result column="SLEVEL" jdbcType="INTEGER" property="slevel" />
+		<result column="SPHONE" jdbcType="VARCHAR" property="sphone" />
+		<result column="SFAX" jdbcType="VARCHAR" property="sfax" />
+		<result column="SADDRESS" jdbcType="VARCHAR"
+			property="saddress" />
+		<result column="SZIP" jdbcType="VARCHAR" property="szip" />
+		<result column="SDESCRIPTION" jdbcType="VARCHAR"
+			property="sdescription" />
+		<result column="SPERSONID" jdbcType="VARCHAR"
+			property="spersonid" />
+		<result column="SNODEKIND" jdbcType="VARCHAR"
+			property="snodekind" />
+		<result column="VERSION" jdbcType="INTEGER" property="version" />
+		<result column="SSHOWNAME" jdbcType="VARCHAR"
+			property="sshowname" />
+		<result column="SSEQUENCE" jdbcType="INTEGER"
+			property="ssequence" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		sid, sname, scode, slongname, sfname, sfcode, sfid,
+		sorgkindid,
+		svalidstate,
+		sparent, slevel, sphone, sfax, saddress, szip,
+		sdescription, spersonid,
+		snodekind,
+		version, sshowname, ssequence
+	</sql>
+	<select id="selectList" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from SA_OpOrg where svalidstate > -1 order by slevel,ssequence
+	</select>
+	<select id="selectRootList" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from SA_OpOrg where sparent is null or sparent = '' and svalidstate >
+		-1 order by slevel,ssequence
+	</select>
+	<select id="selectListByParentID" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from SA_OpOrg
+		where sparent = #{parent,jdbcType=VARCHAR} and
+		svalidstate > -1 order by
+		slevel,ssequence
+	</select>
+	<select id="selectAllByParentID" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from SA_OpOrg
+		where sparent = #{parent,jdbcType=VARCHAR} order by
+		slevel,ssequence
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from SA_OpOrg
+		where sid = #{sid,jdbcType=VARCHAR}
+	</select>
+	<insert id="insertData"
+		parameterType="com.tlv8.system.pojo.SaOporg">
+		insert into sa_oporg (SID, SNAME, SCODE,
+		SLONGNAME,
+		SFNAME, SFCODE,
+		SFID, SORGKINDID, SVALIDSTATE,
+		SPARENT, SLEVEL, SPHONE,
+		SFAX, SADDRESS, SZIP,
+		SDESCRIPTION, SPERSONID, SNODEKIND,
+		VERSION,
+		SSHOWNAME, SSEQUENCE
+		)
+		values (#{sid,jdbcType=VARCHAR},
+		#{sname,jdbcType=VARCHAR},
+		#{scode,jdbcType=VARCHAR},
+		#{slongname,jdbcType=VARCHAR}, #{sfname,jdbcType=VARCHAR},
+		#{sfcode,jdbcType=VARCHAR},
+		#{sfid,jdbcType=VARCHAR},
+		#{sorgkindid,jdbcType=VARCHAR},
+		#{svalidstate,jdbcType=INTEGER},
+		#{sparent,jdbcType=VARCHAR}, #{slevel,jdbcType=INTEGER},
+		#{sphone,jdbcType=VARCHAR},
+		#{sfax,jdbcType=VARCHAR},
+		#{saddress,jdbcType=VARCHAR},
+		#{szip,jdbcType=VARCHAR},
+		#{sdescription,jdbcType=VARCHAR}, #{spersonid,jdbcType=VARCHAR},
+		#{snodekind,jdbcType=VARCHAR},
+		#{version,jdbcType=INTEGER},
+		#{sshowname,jdbcType=VARCHAR},
+		#{ssequence,jdbcType=INTEGER}
+		)
+	</insert>
+	<update id="updateData"
+		parameterType="com.tlv8.system.pojo.SaOporg">
+		update sa_oporg
+		set SNAME = #{sname,jdbcType=VARCHAR},
+		SCODE = #{scode,jdbcType=VARCHAR},
+		SLONGNAME =
+		#{slongname,jdbcType=VARCHAR},
+		SFNAME = #{sfname,jdbcType=VARCHAR},
+		SFCODE = #{sfcode,jdbcType=VARCHAR},
+		SFID = #{sfid,jdbcType=VARCHAR},
+		SORGKINDID = #{sorgkindid,jdbcType=VARCHAR},
+		SVALIDSTATE =
+		#{svalidstate,jdbcType=INTEGER},
+		SPARENT = #{sparent,jdbcType=VARCHAR},
+		SLEVEL = #{slevel,jdbcType=INTEGER},
+		SPHONE =
+		#{sphone,jdbcType=VARCHAR},
+		SFAX = #{sfax,jdbcType=VARCHAR},
+		SADDRESS =
+		#{saddress,jdbcType=VARCHAR},
+		SZIP = #{szip,jdbcType=VARCHAR},
+		SDESCRIPTION = #{sdescription,jdbcType=VARCHAR},
+		SPERSONID =
+		#{spersonid,jdbcType=VARCHAR},
+		SNODEKIND =
+		#{snodekind,jdbcType=VARCHAR},
+		VERSION = #{version,jdbcType=INTEGER},
+		SSHOWNAME = #{sshowname,jdbcType=VARCHAR},
+		SSEQUENCE =
+		#{ssequence,jdbcType=INTEGER}
+		where SID = #{sid,jdbcType=VARCHAR}
+	</update>
+	<delete id="deleteData"
+		parameterType="com.tlv8.system.pojo.SaOporg">
+		delete
+		from SA_OpOrg
+		where sid = #{sid,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteDataByPrimaryKey"
+		parameterType="java.lang.String">
+		delete
+		from SA_OpOrg
+		where sid = #{sid,jdbcType=VARCHAR}
+	</delete>
+	<update id="logicDeleteDataByPrimaryKey"
+		parameterType="java.lang.String">
+		update SA_OpOrg
+		set svalidstate= -1
+		where sid = #{sid,jdbcType=VARCHAR}
+	</update>
+	<update id="logicRecoveryByPrimaryKey"
+		parameterType="java.lang.String">
+		update SA_OpOrg
+		set svalidstate=1
+		where sid = #{sid,jdbcType=VARCHAR}
+	</update>
+	<select id="selectRecycleList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from SA_OpOrg where svalidstate = -1 order by slevel,ssequence
+	</select>
+	<select id="selectByParentIdPersonId" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from SA_OpOrg
+		where sparent = #{parent,jdbcType=VARCHAR} and spersonid =
+		#{personid,jdbcType=VARCHAR} limit 1
+	</select>
+</mapper>

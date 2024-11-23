@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>com.tlv8</groupId>
 		<artifactId>tlv8-root</artifactId>
-		<version>2.6.0</version>
+		<version>2.7.0</version>
 	</parent>
 	<artifactId>tlv8.flw</artifactId>
 

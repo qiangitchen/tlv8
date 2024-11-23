@@ -28,7 +28,7 @@ import com.tlv8.base.ActionSupport;
  */
 @Controller
 @Scope("prototype")
-public class saveAutherPermAction extends ActionSupport {
+public class SaveAutherPermAction extends ActionSupport {
 	private Data data = new Data();
 	private String orgID = "";
 	private String roleIDs = "";
