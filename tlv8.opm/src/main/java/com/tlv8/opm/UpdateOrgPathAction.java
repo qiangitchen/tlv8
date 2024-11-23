@@ -19,7 +19,7 @@ import com.tlv8.system.service.SaOporgService;
  * 更新机构路径信息
  * 
  * @author chenqian
- * @update 2021/4/21
+ * @update 2024/11/23
  */
 @Controller
 @Scope("prototype")

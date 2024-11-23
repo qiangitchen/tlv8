@@ -78,7 +78,11 @@ public class SaOporgServiceImpl implements SaOporgService {
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("parent", parent);
 		param.put("personid", personid);
-		return sSaOpOrgMapper.selectByParentIdPersonId(param);
+		List<SaOporg> list = sSaOpOrgMapper.selectByParentIdPersonId(param);
+		if (list.size() > 0) {
+			return list.get(0);
+		}
+		return null;
 	}
 
 }

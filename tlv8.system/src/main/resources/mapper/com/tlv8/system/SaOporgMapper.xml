@@ -179,6 +179,6 @@
 		<include refid="Base_Column_List" />
 		from SA_OpOrg
 		where sparent = #{parent,jdbcType=VARCHAR} and spersonid =
-		#{personid,jdbcType=VARCHAR} limit 1
+		#{personid,jdbcType=VARCHAR} 
 	</select>
 </mapper>
