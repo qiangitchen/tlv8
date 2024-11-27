@@ -21,7 +21,6 @@
 	<description>TLv8 平台</description>
 
 	<properties>
-		<tlv8.version>2.7.0</tlv8.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
@@ -288,56 +287,56 @@
 			<dependency>
 				<groupId>com.tlv8</groupId>
 				<artifactId>tlv8.base</artifactId>
-				<version>${tlv8.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
 			<!-- 核心包 -->
 			<dependency>
 				<groupId>com.tlv8</groupId>
 				<artifactId>tlv8.core</artifactId>
-				<version>${tlv8.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
 			<!-- 系统模块 -->
 			<dependency>
 				<groupId>com.tlv8</groupId>
 				<artifactId>tlv8.system</artifactId>
-				<version>${tlv8.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
 			<!-- 机构管理 -->
 			<dependency>
 				<groupId>com.tlv8</groupId>
 				<artifactId>tlv8.opm</artifactId>
-				<version>${tlv8.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
 			<!-- 流程引擎 -->
 			<dependency>
 				<groupId>com.tlv8</groupId>
 				<artifactId>tlv8.flw</artifactId>
-				<version>${tlv8.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
 			<!-- 服务器监控 -->
 			<dependency>
 				<groupId>com.tlv8</groupId>
 				<artifactId>tlv8.monitor</artifactId>
-				<version>${tlv8.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
 			<!-- 报表模块 -->
 			<dependency>
 				<groupId>com.tlv8</groupId>
 				<artifactId>tlv8.ureport</artifactId>
-				<version>${tlv8.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
 			<!-- 文档服务客户端 -->
 			<dependency>
 				<groupId>com.tlv8</groupId>
 				<artifactId>tlv8.doc.client</artifactId>
-				<version>${tlv8.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
 		</dependencies>
